@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" ng-app="enterprise-portal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Quiver Enterprise Portal</title>
+
+    <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
+
+    <script src="/assets/js/foundation.js"></script>
+    <script src="/assets/js/templates.js"></script>
+    <script src="/assets/js/routes.js"></script>
+    <script src="/assets/js/app.js"></script>
+
+  </head>
+  <body>
+  <div class="grid-frame vertical">
+
+    <div class="grid-content shrink" style="padding: 0;">
+      <header class="primary condense menu-group">
+        
+        <div class="menu-group-left">
+          <ul class="menu-bar">
+            <li><a ui-sref="home"><strong>Quiver Enterprise Portal</strong></a></li>
+          </ul>
+        </div>
+        
+        <nav class="menu-group-right">
+          <ul class="menu-bar">
+            <li><a ui-sref="messages">Messages</a></li>
+            <li><a ui-sref="settings">Enterprise Settings</a></li>
+
+          </ul>
+        </nav>
+
+      </header>
+    </div>
+
+
+    <div ui-view class="grid-content">
+
+  </div>
+  </div>
+
+
+
+
+  </body>
+</html>
