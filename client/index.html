@@ -8,17 +8,40 @@
 
     <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
 
-    <script src="/assets/js/foundation.js"></script>
-    <script src="/assets/js/templates.js"></script>
-    <script src="/assets/js/routes.js"></script>
-    <script src="/assets/js/app.js"></script>
+
 
   </head>
   <body>
+
+  <!-- User Menu -->
+  <zf-offcanvas id="user-panel" position="right"  class="detached g-user-panel">
+    <a zf-close="" class="close-button">×</a>
+
+    <div class="card">
+      <img src="http://placekitten.com/g/400/200">
+        <div class="card-divider">
+          <h4>Elon Musk</h4>
+          <h5 class="sunbeader">@elon</h4>
+        </div>
+        <div class="card-section">
+        
+        <h4>Description</h4>
+        <p>The real Iron man.</p>
+      </div>
+    </div>
+
+
+    <ul class="vertical menu-bar">
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </zf-offcanvas>
+
+  <!-- Main View -->
   <div class="grid-frame vertical">
 
     <div class="grid-content shrink" style="padding: 0;">
-      <header class="primary condense menu-group">
+      <header class="primary condense menu-group g-header">
         
         <div class="menu-group-left">
           <ul class="menu-bar">
@@ -27,10 +50,15 @@
         </div>
         
         <nav class="menu-group-right">
-          <ul class="menu-bar">
+          <ul class="menu-bar icon-left">
             <li><a ui-sref="messages">Messages</a></li>
             <li><a ui-sref="settings">Enterprise Settings</a></li>
-
+            <li>
+              <a zf-toggle="user-panel" class="button__user">
+                <img zf-iconic="" icon="person" size="small" class="iconic-color-primary">
+                Elon Musk
+              </a>
+            </li>
           </ul>
         </nav>
 
@@ -38,13 +66,15 @@
     </div>
 
 
-    <div ui-view class="grid-content">
-
+    <div ui-view class="grid-content"></div>
+  
   </div>
-  </div>
 
 
-
+    <script src="/assets/js/foundation.js"></script>
+    <script src="/assets/js/templates.js"></script>
+    <script src="/assets/js/routes.js"></script>
+    <script src="/assets/js/app.js"></script>
 
   </body>
 </html>
