@@ -1,0 +1,12 @@
+{
+  "_id": "<hex key>",
+  "username": "ninjaCheez",
+  "type": "enterprise-user", // "enterprise-user" "enterprise-admin" "system-admin" 
+  "email": "ninja@cheez.has",
+  "fullName": "Crouching Tiger",
+  "description": "This is the user description. Up to 140 characters",
+  "title": "Production Manager",
+  "department": "Product",
+  "phone": "555-123-1122",
+  "avatar": "http://s3.amazon.com/avatar.jpeg"
+}
