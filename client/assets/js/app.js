@@ -39,11 +39,54 @@
       "email": "elon@teslamotors.com",
       "fullName": "Elon Musk",
       "description": "The real Iron Man. This is the user description. Up to 140 characters",
+      "company": "Tesla Motors, Inc.",
+      "companyLogo": "images/logo.jpg",
+      "companyUsername": "teslamotors",
       "title": "Iron Man",
       "department": "The Avengers",
       "phone": "555-123-1122",
       "avatar": "images/avatar.jpg"
     };
+  }]);
+
+  app.controller('EntepriseController', ['$scope', function($scope){
+    $scope.company = {
+      "_id": "<hex key>",
+      "username": "teslamotors",
+      "type": "enterprise", 
+      "email": "marketing@teslamotors.com",
+      "companyName": "Tesla Motors, Inc.",
+      "description": "We like electric cars. (Up to 140 characters).",
+      "logo": "images/logo.jpg",
+      "administators": [
+        {
+          "name": "Elon Musk",
+          "title": "Executive",
+          "username": "elonmusk",
+          "avatar": "images/avatar.jpg"
+        },
+        {
+          "name": "Nikola Tesla",
+          "title": "Research & Development",
+          "username": "nikola",
+          "avatar": "images/avatar.jpg"
+        }
+      ],
+      "users": [
+        {
+          "name": "Jane Appleseed",
+          "title": "Marketing",
+          "username": "jane_a",
+          "avatar": "images/avatar.jpg"
+        },
+        {
+          "name": "John Appleseed",
+          "title": "Marketing",
+          "username": "john_a",
+          "avatar": "images/avatar.jpg"
+        }
+      ]
+    }
   }]);
 
 })();

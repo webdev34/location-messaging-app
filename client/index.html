@@ -19,11 +19,12 @@
     
     <span ng-controller="UserController">
       <div class="card dark user-info">
+
         <img ng-src="{{user.avatar}}">
       
         <div class="card-divider">
-          <h4><a ui-sref="enterprise/profile">{{ user.fullName }}</a></h4>
-          <h5 class="sunbeader">@{{user.username}}</h4>
+          <a ui-sref="enterprise/user" zf-toggle="user-panel"><h4>{{ user.fullName }}</h4></a>
+          <a ui-sref="enterprise/user" zf-toggle="user-panel"><h5 class="sunbeader">@{{user.username}}</h4></a>
         </div>
 
         <div class="card-section">
@@ -33,12 +34,13 @@
 
       </div>
 
-
       <ul class="vertical menu-bar primary">
         <li><a href="#">My Settings</a></li>
         <li><a href="#">Logout</a></li>
       </ul>
+
     </span>
+
   </zf-offcanvas>
 
   <!-- Main View -->

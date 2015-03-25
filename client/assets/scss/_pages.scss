@@ -5,11 +5,18 @@
 		padding: 2em;
 	}
 
+	$avatar-width: 200px;
+
 	.avatar {
-		width: 200px;
-		height: 200px;
+		width: $avatar-width;
+		height: $avatar-width;
 		margin-right: 1em;
 		float: left;
+	}
+
+	.profile-details {
+		float: left;
+		padding-top: 2em;
 	}
 
 	.profile-form {
@@ -21,4 +28,13 @@
 			resize: none;
 		}
 	}
+
+	.password-box {
+		max-width: 340px;
+	}
+
+	.corporate-info {
+		padding-left: 5em;
+	}
+
 }
