@@ -14,27 +14,31 @@
   <body>
 
   <!-- User Menu -->
-  <zf-offcanvas id="user-panel" position="right"  class="detached g-user-panel">
+  <zf-offcanvas id="user-panel" position="right"  class="detached dark g-user-panel"  >
     <a zf-close="" class="close-button">×</a>
-
-    <div class="card">
-      <img src="http://placekitten.com/g/400/200">
+    
+    <span ng-controller="UserController">
+      <div class="card dark user-info">
+        <img ng-src="{{user.avatar}}">
+      
         <div class="card-divider">
-          <h4>Elon Musk</h4>
-          <h5 class="sunbeader">@elon</h4>
+          <h4><a ui-sref="enterprise/profile">{{ user.fullName }}</a></h4>
+          <h5 class="sunbeader">@{{user.username}}</h4>
         </div>
+
         <div class="card-section">
-        
-        <h4>Description</h4>
-        <p>The real Iron man.</p>
+          <h4>Description</h4>
+          <p>{{user.description}}</p>
+        </div>
+
       </div>
-    </div>
 
 
-    <ul class="vertical menu-bar">
-      <li><a href="#">Settings</a></li>
-      <li><a href="#">Logout</a></li>
-    </ul>
+      <ul class="vertical menu-bar primary">
+        <li><a href="#">My Settings</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </span>
   </zf-offcanvas>
 
   <!-- Main View -->
@@ -53,10 +57,10 @@
           <ul class="menu-bar icon-left">
             <li><a ui-sref="messages">Messages</a></li>
             <li><a ui-sref="settings">Enterprise Settings</a></li>
-            <li>
+            <li ng-controller="UserController">
               <a zf-toggle="user-panel" class="button__user">
                 <img zf-iconic="" icon="person" size="small" class="iconic-color-primary">
-                Elon Musk
+                {{user.fullName}}
               </a>
             </li>
           </ul>

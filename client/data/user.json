@@ -5,6 +5,8 @@
   "email": "ninja@cheez.has",
   "fullName": "Crouching Tiger",
   "description": "This is the user description. Up to 140 characters",
+  "company": "Tesla Motors",
+  "companyLogo": "http://s3.amazon.com/logo.jpeg",
   "title": "Production Manager",
   "department": "Product",
   "phone": "555-123-1122",
