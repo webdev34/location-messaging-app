@@ -6,7 +6,7 @@
   "companyName": "Tesla Motors, Inc.",
   "description": "We like electric cars. (Up to 140 characters).",
   "logo": "http://s3.amazon.com/logo.jpeg",
-  "administators": [
+  "administrators": [
     {
       "name": "Elon Musk",
       "title": "Executive",

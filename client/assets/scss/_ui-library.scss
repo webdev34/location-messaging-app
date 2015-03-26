@@ -13,3 +13,45 @@
 
 	a { color: inherit }
 }
+
+.g-nav-subnav {
+	background: $dark-color;
+	padding: 1rem 1rem 0 1rem;
+	margin: 0 -1rem;
+}
+
+.g-user-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 2rem;
+
+	> li {
+		@extend .clearfix;
+		display: flex;
+  		justify-content: left;
+		padding: 1rem;
+		border: 1px solid $code-border-color;
+		margin-bottom: .5rem;
+		transition: all 0.3s ease-in-out;
+
+		&:hover {
+			border: 1px solid darken($code-border-color, 40%);
+		}
+
+		.avatar {
+			width: 45px;
+			height: 45px;
+			margin-right: 1rem;
+			align-self: flex-start;
+
+		}
+
+		.li-buttons {
+			margin-left: auto;
+
+
+		}
+	}
+
+}

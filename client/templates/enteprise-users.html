@@ -1,0 +1,60 @@
+---
+name: enterprise/users
+url: /enterprise/users
+---
+
+<nav class="g-nav-subnav">
+	<ul class="button-group secondary segmented">
+		<li ><a ui-sref="enterprise/profile">Profile</a></li>
+		<li class="is-active"><a ui-sref="enterprise/users">Users</a></li>
+	</ul>
+</nav>
+
+<div class="grid-block page-profile">
+	<section class="grid-content medium-6" ng-controller="EntepriseController">
+		
+		
+		<a href="" class="button "> + Add User</a>
+		<h2 >Users</h2>
+
+
+		<ul class="g-user-list">
+			<li ng-repeat="user in company.users">
+				<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
+				<div class="float-left">
+					<strong>{{user.name}}</strong>
+					<br>
+					{{user.title}}
+				</div>
+				
+				<ul class="li-buttons button-group secondary">
+					<li><a class="" href="#">Make Admin</a></li>
+					<li><a class="" href="#">Suspend</a></li>
+					<li><a class="" href="#">Remove</a></li>
+				</ul>
+			</li>
+		</ul>
+		<br>
+
+
+		<h2>Administators</h2>
+
+		<ul class="g-user-list">
+			<li ng-repeat="user in company.administrators">
+				<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
+				<div class="float-left">
+					<strong>{{user.name}}</strong>
+					<br>
+					{{user.title}}
+				</div>
+				
+				<ul class="li-buttons button-group secondary">
+					<li><a class="" href="#">Downgrade</a></li>
+					<li><a class="" href="#">Suspend</a></li>
+					<li><a class="" href="#">Remove</a></li>
+				</ul>
+			</li>
+		</ul>
+
+	</section>
+</div>

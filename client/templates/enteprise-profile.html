@@ -1,0 +1,46 @@
+---
+name: enterprise/profile
+url: /enterprise/profile
+---
+
+<nav class="g-nav-subnav">
+	<ul class="button-group secondary segmented">
+		<li class="is-active"><a ui-sref="enterprise/profile">Profile</a></li>
+		<li><a ui-sref="enterprise/users">Users</a></li>
+	</ul>
+</nav>
+
+<div class="grid-block page-profile">
+
+<section class="grid-content shrink meduim-6" ng-controller="EntepriseController">
+	<div class="clearfix">
+		<img ng-src="{{company.logo}}" alt="Logo" class="avatar">
+		
+		<div class="profile-details">
+			<h1>{{company.companyName}}</h1>
+			<h3 class="subheader">@{{company.username}}</h3>
+		</div>
+	</div>
+	<hr>
+
+	<form action="" class="profile-form">
+		<label>
+			Description
+			<span class="inline-label">
+				<textarea class="desc">{{user.description}}</textarea>
+			</span>
+		</label>
+		<hr>
+
+		<label>
+			Address
+			<span class="inline-label">
+				<input type="address">
+			</span>
+		</label>
+
+		<a class="button expand">Save Changes</a>
+	</form>
+</section>
+
+</div>

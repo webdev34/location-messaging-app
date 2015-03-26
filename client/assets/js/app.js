@@ -58,7 +58,7 @@
       "companyName": "Tesla Motors, Inc.",
       "description": "We like electric cars. (Up to 140 characters).",
       "logo": "images/logo.jpg",
-      "administators": [
+      "administrators": [
         {
           "name": "Elon Musk",
           "title": "Executive",
