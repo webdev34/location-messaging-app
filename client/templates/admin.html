@@ -1,0 +1,37 @@
+---
+name: admin
+url: /admin
+---
+
+
+
+<div class="grid-block page-profile">
+	<section class="grid-content medium-6" ng-controller="AdminController">
+		
+		
+		<a href="" class="button float-right"> + Add Enteprise</a>
+		<h2>Enterprises</h2>
+
+
+		<ul class="g-user-list">
+			<li ng-repeat="company in enteprises.enteprises">
+				<img ng-src="{{company.logo}}" alt="avatar" class="avatar">
+				<div class="float-left">
+					<strong>{{company.companyName}}</strong>
+					<br><br>
+					Admins: <br>
+					<a  ui-sref="enterprise/user" class="button small" ng-repeat="user in company.administrators">{{user.name}} </a>
+
+				</div>
+				
+				<ul class="li-buttons button-group secondary">
+					<li><a class="" href="#">Message</a></li>
+					<li><a class="" href="#">Suspend</a></li>
+					<li><a class="" href="#">Remove</a></li>
+				</ul>
+			</li>
+		</ul>
+
+
+	</section>
+</div>
