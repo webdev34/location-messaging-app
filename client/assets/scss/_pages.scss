@@ -67,7 +67,7 @@
 	}
 
 	.message-active-list {
-
+		padding-top: 2rem;
 
 		.stats {
 			float: right;
@@ -81,7 +81,7 @@
 				border: $code-border-color;
 				border-radius: 3px;
 				text-align: center;
-				background: #ccc;
+				background: #dfdfdf;
 				margin-left: 1rem;
 			}
 		}
@@ -92,8 +92,8 @@
 			.stats {
 				margin-right: 1rem;
 				font-size: 12px;
-				color: #999;
-				margin-bottom: 1rem;
+				color: #777;
+				margin-top: 1rem;
 
 				span {
 					line-height: 30px;

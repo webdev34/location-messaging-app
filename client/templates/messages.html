@@ -4,7 +4,7 @@ url: /enteprise/messages
 ---
 
 <div class="grid-block page-messages">
-	<div id="sidebar" class="medium-2 grid-block">
+	<div id="sidebar" class="medium-3 grid-block">
 		<div class="grid-content">
 			<div class="g-side-nav">
 				<br>
@@ -53,16 +53,19 @@ url: /enteprise/messages
 					</li>
 
 				</ul>
+
+
+				<a href="" class="button large align-center expanded">+ New Message</a>
 			</div>
 		</div>
 	</div>
 
-	<div id="main" class="medium-8 grid-block">
+	<div id="main" class="medium-7 grid-block">
 		<div class="grid-content">
 			
-			<section class="message-active-list">
+			<section class="message-active-list" ng-controller="ActiveMessageController">
 				<header>
-					<h2>Active Messages</h2>
+					<h2 class="float-left">Active Messages</h2>
 					<div class="stats">
 						<span>Sent</span>
 						<span>Read</span>
@@ -73,19 +76,23 @@ url: /enteprise/messages
 					</div>
 				</header>
 				<ul>
-					<li>
-						<a>Message Name 1</a>
+					<li ng-repeat="message in active.messages">
+						<a>{{message.content}}</a>
 						<div class="stats">
-							<span>150</span>
-							<span>100</span>
-							<span>37</span>
-							<span>7</span>
-							<span>3</span>
-							<span>15</span>
+							<span>{{message.sentCount}}</span>
+							<span>{{message.recipientCount}}</span>
+							<span>{{message.likeCount}}</span>
+							<span>{{message.commentCount}}</span>
+							<span>{{message.forwardCount}}</span>
+							<span>{{message.saveCount}}</span>
 						</div>
 					</li>
 				</ul>
 				
+			</section>
+
+			<section class="live-feed">
+				h
 			</section>
 
 		</div>
