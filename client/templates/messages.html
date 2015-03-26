@@ -3,14 +3,91 @@ name: messages
 url: /enteprise/messages
 ---
 
-<div class="grid-block">
-  <div zf-panel class="medium-grid-block medium-2 
-    panel panel-left" id="sidebar">
-    …sdfdsfsdf
-  </div>
-</div>
-<div class="grid-block small-12 medium-10 medium-12">
-  <div ui-view class="grid-content">
-    …sdfsdf
-  </div>
+<div class="grid-block page-messages">
+	<div id="sidebar" class="medium-2 grid-block">
+		<div class="grid-content">
+			<div class="g-side-nav">
+				<br>
+				<a class="expand button text-left" href="#">
+					<img zf-iconic="" icon="dashboard" size="small">
+					Dashboard
+				</a>
+				
+				<hr>
+
+				<label>
+					<span class="inline-label">
+						<span class="form-label">
+							<img zf-iconic="" icon="magnifying-glass" size="small" class="iconic-color-primary">
+						</span>
+						<input type="search" placeholder="Search Messages">
+					</span>
+				</label>
+
+
+				<ul class="message-side-list">
+
+					<li >
+						<a>
+							Message 1
+							<span class="float-right success label">
+								active
+							</span>
+						</a>
+					</li>
+					<li >
+						<a>
+							Message 2
+							<span class="float-right success label">
+								active
+							</span>
+						</a>
+					</li>
+					<li >
+						<a>
+							Message 3
+							<span class="float-right success label">
+								active
+							</span>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="main" class="medium-8 grid-block">
+		<div class="grid-content">
+			
+			<section class="message-active-list">
+				<header>
+					<h2>Active Messages</h2>
+					<div class="stats">
+						<span>Sent</span>
+						<span>Read</span>
+						<span>Likes</span>
+						<span>Comments</span>
+						<span>Forwards</span>
+						<span>Saves</span>
+					</div>
+				</header>
+				<ul>
+					<li>
+						<a>Message Name 1</a>
+						<div class="stats">
+							<span>150</span>
+							<span>100</span>
+							<span>37</span>
+							<span>7</span>
+							<span>3</span>
+							<span>15</span>
+						</div>
+					</li>
+				</ul>
+				
+			</section>
+
+		</div>
+	</div>
 </div>

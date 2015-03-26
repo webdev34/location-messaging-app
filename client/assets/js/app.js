@@ -78,6 +78,11 @@
           "title": "Marketing",
           "username": "jane_a",
           "avatar": "images/avatar.jpg"
+        },{
+          "name": "Jane Appleseed",
+          "title": "Marketing",
+          "username": "jane_a",
+          "avatar": "images/avatar.jpg"
         },
         {
           "name": "John Appleseed",
