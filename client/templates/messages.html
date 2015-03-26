@@ -90,9 +90,42 @@ url: /enteprise/messages
 				</ul>
 				
 			</section>
+			<hr>
 
-			<section class="live-feed">
-				h
+			<section class="live-feed" ng-controller="LiveFeedController">
+				<h2>Live Feed</h2>
+
+				<ul>
+					<li ng-repeat="update in feed.updates">
+						<div class="clearfix">
+							<div class="float-right">
+								<a href="" class="button small secondary">...</a>
+							</div>
+							<div class="float-left">
+								<a href="">
+									<img zf-iconic="" icon="person" size="small">
+									John Smith
+								</a>
+								discovered <a href="">Message 1</a>.
+							</div>
+						</div>
+						<div class="message">
+							<span class="quote">"</span>
+							This is the public message...
+						</div>
+						<hr>
+						<div class="clearfix">
+							<div class="float-right">
+								<span class="success label">12:35pm</span>
+							</div>
+							<div class="float-left">
+								<span class="secondary badge">.</span>
+								CN Tower, Toronto,ON
+
+							</div>
+						</div>
+					</li>
+				</ul>
 			</section>
 
 		</div>

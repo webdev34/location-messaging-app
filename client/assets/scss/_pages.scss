@@ -121,4 +121,30 @@
 			}
 		}
 	}
+
+	.live-feed {
+		margin-top: 1rem;
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			max-width: 650px;
+
+			li {
+				display: block;
+				border: 1px solid $code-border-color;
+				padding: 1rem;
+				margin-bottom: 0.5rem;
+
+				&:hover {
+					border: 1px solid darken($code-border-color, 40%);
+				}
+
+				.message {
+					margin: 0.5rem 1.5rem;
+				}
+			}
+		}
+	}
 }
