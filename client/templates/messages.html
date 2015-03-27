@@ -8,7 +8,7 @@ url: /enteprise/messages
 		<div class="grid-content">
 			<div class="g-side-nav">
 				<br>
-				<a class="expand button text-left" href="#">
+				<a ui-sref="messages" class="expand button text-left" href="#">
 					<img zf-iconic="" icon="dashboard" size="small">
 					Dashboard
 				</a>
@@ -25,32 +25,17 @@ url: /enteprise/messages
 				</label>
 
 
-				<ul class="message-side-list">
+				<ul class="message-side-list" ng-controller="MessageListController">
 
-					<li >
-						<a>
-							Message 1
+					<li ng-repeat="message in messages.messages">
+						<a ui-sref="messages-detail">
+							{{message.messageTitle}}
 							<span class="float-right success label">
-								active
+								{{message.status}}
 							</span>
 						</a>
 					</li>
-					<li >
-						<a>
-							Message 2
-							<span class="float-right success label">
-								active
-							</span>
-						</a>
-					</li>
-					<li >
-						<a>
-							Message 3
-							<span class="float-right success label">
-								active
-							</span>
-						</a>
-					</li>
+					
 
 				</ul>
 
@@ -88,9 +73,9 @@ url: /enteprise/messages
 						</div>
 					</li>
 				</ul>
-				
+				<hr>
+
 			</section>
-			<hr>
 
 			<section class="live-feed" ng-controller="LiveFeedController">
 				<h2>Live Feed</h2>

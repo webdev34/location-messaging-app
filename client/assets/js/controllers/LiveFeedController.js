@@ -12,8 +12,8 @@
           "discoveryTime": "12:35",
           "discoveryUser": {
             "_id": "<hex key>",
-                  "username": "elonmusk",
-                  "fullName": "Elon Musk",
+            "username": "elonmusk",
+            "fullName": "Elon Musk"
           }
         },
          {
@@ -24,8 +24,8 @@
           "discoveryTime": "12:35",
           "discoveryUser": {
             "_id": "<hex key>",
-                  "username": "Nokila",
-                  "fullName": "Nikola Tesla",
+            "username": "Nokila",
+            "fullName": "Nikola Tesla"
           }
         },
          {
@@ -36,8 +36,8 @@
           "discoveryTime": "12:35",
           "discoveryUser": {
             "_id": "<hex key>",
-                  "username": "elonmusk",
-                  "fullName": "Elon Musk",
+            "username": "elonmusk",
+            "fullName": "Elon Musk"
           }
         }
         
