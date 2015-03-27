@@ -6,15 +6,14 @@ url: /admin
 
 
 <div class="grid-block page-profile">
-	<section class="grid-content medium-6" ng-controller="AdminController">
+	<section class="grid-content large-8" ng-controller="AdminController">
 		
 		
 		<a href="" class="button float-right"> + Add Enteprise</a>
 		<h2>Enterprises</h2>
 
-
 		<ul class="g-user-list">
-			<li ng-repeat="company in enteprises.enteprises">
+			<li ng-repeat="company in enterprises.enterprise">
 				<img ng-src="{{company.logo}}" alt="avatar" class="avatar">
 				<div class="float-left">
 					<strong>{{company.companyName}}</strong>
