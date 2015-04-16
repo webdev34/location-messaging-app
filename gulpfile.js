@@ -41,7 +41,7 @@ var paths = {
   // These files are for your app's JavaScript
   appJS: [
     'client/app/app.js',
-    'client/app/**'
+    'client/app/**/*.js'
   ]
 }
 
@@ -104,12 +104,12 @@ gulp.task('uglify', function(cb) {
 
 // Copies your app's page templates and generates URLs for them
 gulp.task('copy:templates', function() {
-  return gulp.src('./client/templates/**/*.html')
+  return gulp.src(['./client/app/**/*.html'])
     .pipe(router({
       path: 'build/assets/js/routes.js',
       root: 'client'
     }))
-    .pipe(gulp.dest('./build/templates'))
+    .pipe(gulp.dest('./build/app'))
   ;
 });
 
