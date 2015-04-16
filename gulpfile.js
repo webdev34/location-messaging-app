@@ -64,7 +64,7 @@ gulp.task('copy', function() {
 
 // Compiles Sass
 gulp.task('sass', function () {
-  return gulp.src('client/assets/scss/app.scss')
+  return gulp.src('client/scss/app.scss')
     .pipe($.sass({
       includePaths: paths.sass,
       outputStyle: 'nested',
@@ -73,7 +73,7 @@ gulp.task('sass', function () {
     .pipe($.autoprefixer({
       browsers: ['last 2 versions', 'ie 10']
     }))
-    .pipe(gulp.dest('./build/assets/css/'))
+    .pipe(gulp.dest('./build/css/'))
   ;
 });
 
@@ -161,7 +161,7 @@ gulp.task('default', function () {
   sequence('build', 'server');
 
   // Watch Sass
-  gulp.watch(['./client/assets/scss/**/*', './scss/**/*'], ['sass']);
+  gulp.watch(['./client/scss/**/*', './scss/**/*'], ['sass']);
 
   // Watch JavaScript
   gulp.watch(['./client/assets/js/**/*', './js/**/*'], ['uglify']);
