@@ -17,7 +17,7 @@ var gulp     = require('gulp'),
 var paths = {
   assets: [
     './client/**/*.*',
-    '!./client/templates/**/*.*',
+    '!./client/app/**/*.html',
     '!./client/assets/{scss,js}/**/*.*'
   ],
   // Sass will check these folders for files when you use @import.
@@ -40,8 +40,8 @@ var paths = {
   ],
   // These files are for your app's JavaScript
   appJS: [
-    'client/assets/js/app.js',
-    'client/assets/js/**'
+    'client/app/app.js',
+    'client/app/**'
   ]
 }
 
@@ -64,7 +64,7 @@ gulp.task('copy', function() {
 
 // Compiles Sass
 gulp.task('sass', function () {
-  return gulp.src('client/scss/app.scss')
+  return gulp.src('client/assets/scss/app.scss')
     .pipe($.sass({
       includePaths: paths.sass,
       outputStyle: 'nested',
@@ -73,7 +73,7 @@ gulp.task('sass', function () {
     .pipe($.autoprefixer({
       browsers: ['last 2 versions', 'ie 10']
     }))
-    .pipe(gulp.dest('./build/css/'))
+    .pipe(gulp.dest('./build/assets/css/'))
   ;
 });
 
@@ -161,10 +161,10 @@ gulp.task('default', function () {
   sequence('build', 'server');
 
   // Watch Sass
-  gulp.watch(['./client/scss/**/*', './scss/**/*'], ['sass']);
+  gulp.watch(['./client/assets/scss/**/*', './scss/**/*'], ['sass']);
 
   // Watch JavaScript
-  gulp.watch(['./client/assets/js/**/*', './js/**/*'], ['uglify']);
+  gulp.watch(['./client/app/**/*', './js/**/*'], ['uglify']);
 
   // Watch static files
   gulp.watch(['./client/**/*.*', '!./client/templates/**/*.*', '!./client/assets/{scss,js}/**/*.*'], ['copy']);
