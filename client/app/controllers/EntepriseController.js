@@ -3,7 +3,7 @@
 
   angular.module('enterprise-portal').controller('EntepriseController', ['$scope', '$http', function($scope, $http){
     
-    $http.get('data/company.json').
+    $http.get('assets/data/company.json').
     success(function(data) {
       $scope.company = data;
     });

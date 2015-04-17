@@ -13,11 +13,13 @@
   </head>
   <body>
 
+
   <!-- User Menu -->
+
   <zf-offcanvas id="user-panel" position="right"  class="detached dark g-user-panel"  >
     <a zf-close="" class="close-button">×</a>
     
-    <span ng-controller="UserController">
+    <span ng-controller="UserProfileController">
       <div class="card dark user-info">
 
         <img ng-src="{{user.avatar}}">
@@ -60,7 +62,7 @@
             <li><a ui-sref="admin">Admin</a></li>
             <li><a ui-sref="messages">Messages</a></li>
             <li><a ui-sref="enterprise/profile">Enterprise Settings</a></li>
-            <li ng-controller="UserController">
+            <li ng-controller="UserProfileController">
               <a zf-toggle="user-panel" class="button__user">
                 <img zf-iconic="" icon="person" size="small" class="iconic-color-primary">
                 {{user.fullName}}
@@ -72,6 +74,9 @@
       </header>
     </div>
 
+
+
+          <user-side-bar></user-side-bar>
 
     <div ui-view class="grid-content"></div>
   

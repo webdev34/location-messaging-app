@@ -18,11 +18,11 @@
     "fullName": "Elon Musk",
     "description": "The real Iron Man. This is the user description. Up to 140 characters",
     "company": "Tesla Motors, Inc.",
-    "companyLogo": "images/logo.jpg",
+    "companyLogo": "assets/images/logo.jpg",
     "companyUsername": "teslamotors",
     "title": "Iron Man",
     "department": "The Avengers",
     "phone": "555-123-1122",
-    "avatar": "images/avatar.jpg"
+    "avatar": "assets/images/avatar.jpg"
   }
 }
