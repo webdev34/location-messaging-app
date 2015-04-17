@@ -15,35 +15,14 @@
 
 
   <!-- User Menu -->
-
   <zf-offcanvas id="user-panel" position="right"  class="detached dark g-user-panel"  >
-    <a zf-close="" class="close-button">×</a>
-    
-    <span ng-controller="UserProfileController">
-      <div class="card dark user-info">
-
-        <img ng-src="{{user.avatar}}">
+      <a zf-close="" class="close-button">×</a>
       
-        <div class="card-divider">
-          <a ui-sref="enterprise/user" zf-toggle="user-panel"><h4>{{ user.fullName }}</h4></a>
-          <a ui-sref="enterprise/user" zf-toggle="user-panel"><h5 class="sunbeader">@{{user.username}}</h4></a>
-        </div>
-
-        <div class="card-section">
-          <h4>Description</h4>
-          <p>{{user.description}}</p>
-        </div>
-
-      </div>
-
-      <ul class="vertical menu-bar primary">
-        <li><a href="#">My Settings</a></li>
-        <li><a href="#">Logout</a></li>
-      </ul>
-
-    </span>
+      <user-side-bar></user-side-bar>
 
   </zf-offcanvas>
+
+  
 
   <!-- Main View -->
   <div class="grid-frame vertical">
@@ -76,7 +55,6 @@
 
 
 
-          <user-side-bar></user-side-bar>
 
     <div ui-view class="grid-content"></div>
   
