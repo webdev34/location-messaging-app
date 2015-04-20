@@ -6,47 +6,12 @@ url: /enterprise/messages/detail
 <div class="grid-block page-messages">
 	<div id="sidebar" class="medium-3 grid-block">
 		<div class="grid-content">
-			<div class="g-side-nav">
-				<br>
-				<a ui-sref="messages" class="expand button text-left" href="#">
-					<img zf-iconic="" icon="dashboard" size="small">
-					Dashboard
-				</a>
-				
-				<hr>
-
-				<label>
-					<span class="inline-label">
-						<span class="form-label">
-							<img zf-iconic="" icon="magnifying-glass" size="small" class="iconic-color-primary">
-						</span>
-						<input type="search" placeholder="Search Messages">
-					</span>
-				</label>
-
-
-				<ul class="message-side-list" ng-controller="MessageListController">
-
-					<li ng-repeat="message in messages.messages">
-						<a ui-sref="enterprise/messages/detail">
-							{{message.messageTitle}}
-							<span class="float-right success label">
-								{{message.status}}
-							</span>
-						</a>
-					</li>
-					
-
-				</ul>
-
-
-				<a href="" class="button large align-center expanded">+ New Message</a>
-			</div>
+			<messages-side-bar></messages-side-bar>
 		</div>
 	</div>
 
-	<div id="main" class="medium-8 grid-block message-deatil">
-		<div class="grid-content" ng-controller="MessageDetailController">
+	<div id="main" class="medium-8 grid-block message-deatil" ng-controller="MessageDetailController as message">
+		<div class="grid-content">
 			<br>
 			<header class="clearfix">
 				<div class="float-left">

@@ -1,0 +1,36 @@
+<div class="g-side-nav">
+	<br>
+	<a ui-sref="messages" class="expand button text-left" href="#">
+		<img zf-iconic="" icon="dashboard" size="small">
+		Dashboard
+	</a>
+	
+	<hr>
+
+	<label>
+		<span class="inline-label">
+			<span class="form-label">
+				<img zf-iconic="" icon="magnifying-glass" size="small" class="iconic-color-primary">
+			</span>
+			<input type="search" placeholder="Search Messages">
+		</span>
+	</label>
+
+
+	<ul class="message-side-list" ng-controller="MessageListController">
+
+		<li ng-repeat="message in messages.messages">
+			<a ui-sref="messages-detail">
+				{{message.messageTitle}}
+				<span class="float-right success label">
+					{{message.status}}
+				</span>
+			</a>
+		</li>
+		
+
+	</ul>
+
+
+	<a href="" class="button large align-center expanded">+ New Message</a>
+</div>
