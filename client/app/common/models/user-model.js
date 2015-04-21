@@ -6,7 +6,7 @@
   	.service('UserModel', ['$http',  function($http) {
   		var model = this,
   			URLS = {
-  				FETCH: 'assets/data/message-detail.json'
+  				FETCH: 'assets/data/user.json'
   			},
   			user;
 

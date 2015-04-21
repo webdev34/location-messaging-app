@@ -11,6 +11,7 @@
     'foundation.dynamicRouting.animations',
 
     //Modules
+    'user-profile',
     'messages',
     'enterprise',
     'admin'
