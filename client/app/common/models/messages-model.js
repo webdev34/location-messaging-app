@@ -3,7 +3,7 @@
 
   angular.module('enterprise-portal.models.messages', [
   ])
-  	.service('MessageDetailModel', ['$http',  function($http) {
+  	.service('MessageDetailModel', ['$http', '$q',  function($http, $q) {
   		var model = this,
   			URLS = {
   				FETCH: 'assets/data/message-detail.json'
@@ -20,7 +20,7 @@
 		}
 
 		model.getMessageDetail = function() {
-			return $http.get(URLS.FETCH).then(cacheMessage);
+			return (message) ? $q.when(message) : $http.get(URLS.FETCH).then(cacheMessage);
 		};
 
   	}]);
