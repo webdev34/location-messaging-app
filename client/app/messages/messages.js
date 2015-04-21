@@ -23,7 +23,11 @@
 			//   $scope.message = data;
 			// });
 
-	  $scope.message = MessageDetailModel.getMessageDetail();
+	  	MessageDetailModel.getMessageDetail()
+	  		.then(function(result) {
+	  			$scope.message = result;
+	  			console.log('result', result);
+	  		});
 
 
 	  }]);
