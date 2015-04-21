@@ -3,7 +3,9 @@
 
   angular.module('messages', [
   	'enterprise-portal.models.messages',
-  	'messages.dashboard'
+  	'messages.dashboard',
+  	'messages.create',
+  	'messages.edit'
   ])
 
 	  .controller('MessageListController', ['$scope','$http', function($scope, $http) {
@@ -15,11 +17,14 @@
 
 	  }])
 
-	  .controller('MessageDetailController', ['$scope', '$http', function($scope, $http) {
-			$http.get('assets/data/message-detail.json')
-			.success(function(data) {
-			  $scope.message = data;
-			});
+	  .controller('MessageDetailController', ['$scope', '$http', 'MessageDetailModel', function($scope, $http, MessageDetailModel) {
+			// $http.get('assets/data/message-detail.json')
+			// .success(function(data) {
+			//   $scope.message = data;
+			// });
+
+	  $scope.message = MessageDetailModel.getMessageDetail();
+
 
 	  }]);
  
