@@ -11,7 +11,8 @@
     'foundation.dynamicRouting.animations',
 
     //Modules
-    'messages'
+    'messages',
+    'enterprise'
   ])
     .config(config)
     .run(run)

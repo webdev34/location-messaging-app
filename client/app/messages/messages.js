@@ -17,20 +17,13 @@
 
 	  }])
 
-	  .controller('MessageDetailController', ['$scope', '$http', 'MessageDetailModel', function($scope, $http, MessageDetailModel) {
-			// $http.get('assets/data/message-detail.json')
-			// .success(function(data) {
-			//   $scope.message = data;
-			// });
+	  .controller('MessageDetailController', ['$scope', 'MessageDetailModel', function($scope, MessageDetailModel) {
 
-	  	MessageDetailModel.getMessageDetail()
-	  		.then(function(result) {
-	  			$scope.message = result;
-	  			console.log('result', result);
-	  		});
-
+		  	MessageDetailModel.getMessageDetail()
+		  		.then(function(result) {
+		  			$scope.message = result;
+		  		});
 
 	  }]);
- 
 
 })();
