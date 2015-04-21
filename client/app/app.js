@@ -12,7 +12,8 @@
 
     //Modules
     'messages',
-    'enterprise'
+    'enterprise',
+    'admin'
   ])
     .config(config)
     .run(run)
