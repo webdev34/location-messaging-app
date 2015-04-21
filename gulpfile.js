@@ -84,21 +84,26 @@ gulp.task('sass', function () {
 gulp.task('uglify', function(cb) {
   // Foundation JavaScript
   gulp.src(paths.foundationJS)
+    .pipe($.sourcemaps.init())
     .pipe($.uglify()
       .on('error', function (e) {
         console.log(e);
       }))
     .pipe($.concat('foundation.js'))
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest('./build/assets/js/'))
   ;
 
   // App JavaScript
   gulp.src(paths.appJS)
+    .pipe($.sourcemaps.init())
+
     .pipe($.uglify()
       .on('error', function(e) {
         console.log(e);
       }))
     .pipe($.concat('app.js'))
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest('./build/assets/js/'))
   ;
 
