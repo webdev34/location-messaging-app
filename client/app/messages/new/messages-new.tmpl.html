@@ -18,7 +18,6 @@ url: /enterprise/messages/new
 				<header class="clearfix">
 					<br>
 					<h2>New Message</h2>
-
 					<div class="card message-box">
 						<img ng-src="{{company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseController">
 						<input ng-model="newMessage.content" type="text" class="message-input" placeholder="Write here...">
@@ -57,12 +56,11 @@ url: /enterprise/messages/new
 					</label>
 
 				</section>
-
 				<hr>
+
 				<div class="float-right">
-				    <button type="submit" class="success hollow button">Create Message</button>
-
-
+					<button ng-click="" class="alert hollow button">Cancel</button>
+				    <button type="submit" class="success button">Create Message</button>
 				</div>
 
 			</form>
