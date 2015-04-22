@@ -216,4 +216,26 @@
 			}
 		}
 	}
+
+	.message-new {
+
+		.message-box {
+			padding: 1rem;
+			width: 100%;
+			display: flex;
+			 align-items: stretch;
+
+			.company-logo {
+				width: 60px;
+				height: 60px;
+			}
+
+			.message-input {
+				margin: 10px 0 0 10px;
+				border: none;
+				font-size: 1.2rem;
+			}
+
+		}
+	}
 }
