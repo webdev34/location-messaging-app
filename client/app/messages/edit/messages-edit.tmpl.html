@@ -1,6 +1,6 @@
 ---
-name: messages-detail
-url: /enterprise/messages/detail
+name: messages-edit
+url: /enterprise/messages/edit
 ---
 
 <div class="grid-block page-messages">
@@ -17,24 +17,15 @@ url: /enterprise/messages/detail
 
 			<header class="clearfix">
 				<br>
-				<div class="float-right top-controls">
-					<a ui-sref="messages-edit" class="info button float-right">Edit Message</a>
-					<br>
-
-					<div class="status-box">
-						Status: 
-						<ul class="button-group small segmented">
-							<li><a href="#">Setup</a></li>
-							<li class="is-active"><a href="#">Active</a></li>
-							<li><a href="#">Inactive (Delivering)</a></li>
-							<li><a href="#">Closed</a></li>
-						</ul>
-					</div>
-
-					
-
+				<div class="float-right status-box">
+					Status: 
+					<ul class="button-group segmented">
+						<li><a href="#">Setup</a></li>
+						<li class="is-active"><a href="#">Active</a></li>
+						<li><a href="#">Inactive (Delivering)</a></li>
+						<li><a href="#">Closed</a></li>
+					</ul>
 				</div>
-				
 
 				<div class="float-left">
 					<h2>{{message.messageTitle}}</h2>
@@ -123,9 +114,9 @@ url: /enterprise/messages/detail
 			<hr>
 
 			<div class="float-right">
-				<a ui-sref="messages-edit" class="info  button">Edit Message</a>
+				<button ng-click="" class="alert hollow button">Disgard Changes</button>
+			    <button type="submit" class="success button">Save Changes</button>
 			</div>
-
 
 
 		</div>

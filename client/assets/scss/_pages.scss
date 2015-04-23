@@ -41,6 +41,50 @@
 
 .page-messages {
 
+	header {
+		h2 {
+			float: left;
+		}
+	}
+
+
+	.owner {
+		display: inline-block;
+
+		line-height: 40px;
+		margin: 0 0 1rem 0;
+
+		.avatar.small {
+			float: left;
+			width: 40px;
+			height: 40px;
+			margin-right: 1rem;
+		}
+	}
+	
+	.status-box {
+		margin-top: 2.5rem;
+	}
+	
+	.message-box {
+		padding: 1rem;
+		width: 100%;
+		display: flex;
+		 align-items: stretch;
+
+		.company-logo {
+			width: 60px;
+			height: 60px;
+		}
+
+		.message-input {
+			margin: 10px 0 0 10px;
+			border: none;
+			font-size: 1.2rem;
+		}
+	}
+
+
 	.message-side-list {
 		list-style: none;
 		padding: 0;
@@ -149,52 +193,14 @@
 		}
 	}
 
-	.message-deatil {
+	
 
-		.avatar.small {
-			float: left;
-			width: 40px;
-			height: 40px;
-			margin-right: 1rem;
-		}
-		.owner {
-			line-height: 40px;
-		}
-
-		.status-box {
-			margin-top: 2.5rem;
-		}
-
-		.preview {
-			margin-bottom: 4rem;
-			.message {
-				float: left;
-				padding: 1rem 2rem;
-				width: 450px;
-				margin-left: 100px;
-
-				&:before {
-					display: block;
-					float: left;
-					content: "\"";
-					font-weight: bold;
-					margin: -0.5rem 1rem 0 0;
-					font-size: 2rem;
-				}
-			}
-		}
-
-		.fence {
-			margin-left: 0rem;
-		}
-
-		.measure {
+	.measure {
 
 			.metric {
 				text-align: center;
 				display: inline-block;
 				margin: 1rem;
-
 
 				span {
 					$circle-diameter: 75px;
@@ -215,27 +221,5 @@
 				}
 			}
 		}
-	}
 
-	.message-new {
-
-		.message-box {
-			padding: 1rem;
-			width: 100%;
-			display: flex;
-			 align-items: stretch;
-
-			.company-logo {
-				width: 60px;
-				height: 60px;
-			}
-
-			.message-input {
-				margin: 10px 0 0 10px;
-				border: none;
-				font-size: 1.2rem;
-			}
-
-		}
-	}
 }
