@@ -45,6 +45,12 @@
 		h2 {
 			float: left;
 		}
+
+		.title-edit {
+			@extend h2;
+			border: none;
+			height: inherit;
+		}
 	}
 
 
@@ -65,7 +71,7 @@
 	.status-box {
 		margin-top: 2.5rem;
 	}
-	
+
 	.message-box {
 		padding: 1rem;
 		width: 100%;

@@ -21,15 +21,6 @@ url: /enterprise/messages/detail
 					<a ui-sref="messages-edit" class="info button float-right">Edit Message</a>
 					<br>
 
-					<div class="status-box">
-						Status: 
-						<ul class="button-group small segmented">
-							<li><a href="#">Setup</a></li>
-							<li class="is-active"><a href="#">Active</a></li>
-							<li><a href="#">Inactive (Delivering)</a></li>
-							<li><a href="#">Closed</a></li>
-						</ul>
-					</div>
 
 					
 
@@ -51,6 +42,16 @@ url: /enterprise/messages/detail
 					<img ng-src="{{company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseController">
 					<p  class="message-input" >{{message.content}}</p>
 				</div>
+
+					<div class="status-box float-right">
+						Status: 
+						<ul class="button-group small segmented">
+							<li><a href="#">Setup</a></li>
+							<li class="is-active"><a href="#">Active</a></li>
+							<li><a href="#">Inactive (Delivering)</a></li>
+							<li><a href="#">Closed</a></li>
+						</ul>
+					</div>
 
 				
 			</header>

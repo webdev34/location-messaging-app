@@ -17,30 +17,25 @@ url: /enterprise/messages/edit
 
 			<header class="clearfix">
 				<br>
-				<div class="float-right status-box">
-					Status: 
-					<ul class="button-group segmented">
-						<li><a href="#">Setup</a></li>
-						<li class="is-active"><a href="#">Active</a></li>
-						<li><a href="#">Inactive (Delivering)</a></li>
-						<li><a href="#">Closed</a></li>
-					</ul>
-				</div>
+				
 
 				<div class="float-left">
-					<h2>{{message.messageTitle}}</h2>
-					<br>
-
-					<a ui-sref="messages" class="owner">
-						<img ng-src="{{message.author.avatar}}" alt="avatar small" class="avatar small">
-						{{message.author.fullName}} (Owner)
-					</a>
+					<input type="text" class="title-edit" ng-model="message.messageTitle">
 				</div>
 				
 
 				<div class="card message-box">
 					<img ng-src="{{company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseController">
-					<p  class="message-input" >{{message.content}}</p>
+					<input ng-model="message.content" type="text" class="message-input" placeholder="Write here...">
+				</div>
+				<div class="float-right status-box">
+					Status: 
+					<ul class="button-group  small segmented">
+						<li><a href="#">Setup</a></li>
+						<li class="is-active"><a href="#">Active</a></li>
+						<li><a href="#">Inactive (Delivering)</a></li>
+						<li><a href="#">Closed</a></li>
+					</ul>
 				</div>
 
 				
