@@ -8,7 +8,13 @@
     //foundation
     'foundation',
     'foundation.dynamicRouting',
-    'foundation.dynamicRouting.animations'
+    'foundation.dynamicRouting.animations',
+
+    //Modules
+    'user-profile',
+    'messages',
+    'enterprise',
+    'admin'
   ])
     .config(config)
     .run(run)
