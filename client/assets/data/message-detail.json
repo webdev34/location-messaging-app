@@ -10,6 +10,11 @@
   "saveCount": 15,
   "content": "This is the content of the message",
   "status": "Active",
+  "startTime":"<time string>",
+  "endTime":"<time string>",
+  "locLat":"<latitude>",
+  "locLng": "<longitude>",
+  "locRadius":"<radius measure>",
   "author" : {
     "_id": "<hex key>",
     "username": "elonmusk",
