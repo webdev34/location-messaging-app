@@ -1,0 +1,103 @@
+---
+name: register
+url: /register
+---
+
+<div class="grid-block page-profile" ng-controller="RegisterUserProfileController">
+	<section class="grid-content">
+
+		<div class="card medium-6 medium-offset-3 register-user-box">
+			<br>
+
+			<section class="corporate-info" ng-controller="EnterpriseController">
+			<div class="clearfix">
+				<img ng-src="{{company.logo}}" alt="logo" class="avatar">
+			
+				<div class="profile-details">
+					<a ui-sref="enterprise/profile"><h1>{{user.company}}</h1></a>
+					<a ui-sref="enterprise/profile"><h3 class="subheader">@{{user.companyUsername}}</h3></a>
+				</div>
+			</div>
+
+			<hr>
+
+		<div class="card password-box">
+			<div class="card-section">
+				<h3>Set New Password</h3>
+				<form action="" class="profile-form">
+				
+				<label>
+					Old Password
+					<span class="inline-label">
+						<input type="password" >
+					</span>
+				</label>
+				<hr>
+
+				<label>
+					New Password
+					<span class="inline-label">
+						<input type="password" >
+					</span>
+				</label>
+				<label>
+					Confirm Password
+					<span class="inline-label">
+						<input type="password" >
+					</span>
+				</label>
+
+
+		</form>
+			</div>
+		</div>
+	</section>
+			<form action="" class="profile-form">
+			<label>
+				Description
+				<span class="inline-label">
+					<textarea class="desc">{{user.description}}</textarea>
+				</span>
+			</label>
+			<hr>
+
+			<label>
+				Title
+				<span class="inline-label">
+					<input type="text"  >
+				</span>
+			</label>
+
+			<label>
+				Department
+				<span class="inline-label">
+					<input type="text"  >
+				</span>
+			</label>
+
+			<label>
+				Email
+				<span class="inline-label">
+					<input type="text">
+				</span>
+			</label>
+
+			<label>
+				Phone
+				<span class="inline-label">
+					<input type="text" >
+				</span>
+			</label>
+
+			<a class="button expand">Save Changes</a>
+		</form>
+		
+		</div>
+		
+	
+
+		
+	</section>
+	
+
+</div>
