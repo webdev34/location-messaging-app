@@ -10,25 +10,37 @@
 
 	  .controller('MessageListController', ['$scope','$http', function($scope, $http) {
 
-	  	$scope.currentMessage = null;
-	    
-	    $http.get('assets/data/message-list.json').
+	  	$scope.isCreatingNew = false;
+	  	$scope.isEditing = false;
+
+	  	$http.get('assets/data/message-list.json').
 	    success(function(data) {
 	      $scope.messages = data;
 	    });
 
-	    $scope.setCurrentMessage = function(messageId) {
-	  		$scope.currentMessage = messageId;
-	  		//console.log(messageId)
-	  	};
 
-	  	$scope.openDashboard = function() {
-	  		$scope.currentMessage = null;
-	  	};
+	  	function startCreatingNew() {
+	  		$scope.isCreatingNew = true;
+	  		$scope.isEditing = false;
+	  	}
 
-	  	$scope.isCurrentMessage = function(messageId) {
-	  		return $scope.currentMessage !== null && messageId === $scope.currentMessage;
-	  	};
+	  	function cancelCreating() {
+	  		$scope.isCreatingNew = false;
+	  	}
+	  	function startEditing() {
+	  		$scope.isCreatingNew = false;
+	  		$scope.isEditing = true;
+	  	}
+
+	  	function cancelEditing() {
+	  		$scope.isEditing = false;
+	  	}
+	    
+	  	$scope.startCreatingNew = startCreatingNew;
+		$scope.cancelCreating = cancelCreating;
+		$scope.startEditing = startEditing;
+	   	$scope.cancelEditing = cancelEditing;
+
 
 	  }])
 
