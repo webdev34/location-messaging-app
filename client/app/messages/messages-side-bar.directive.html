@@ -18,9 +18,8 @@
 
 
 	<ul class="message-side-list" ng-controller="MessageListController">
-
 		<li ng-repeat="message in messages.messages">
-			<a ui-sref="messages-detail" ng-click="setCurrentMessage(message._id)" ng-class="{'active': isCurrentMessage(message._id) }">
+			<a ng-click="setCurrentMessage(message._id)" ui-sref="messages-detail" ui-sref-active="active"  >
 				{{message.messageTitle}}
 				<span class="float-right success label">
 					{{message.status}}

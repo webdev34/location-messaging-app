@@ -3,6 +3,10 @@
 	.button__user {
 		border-left: 1px solid #333;
 	}
+
+	.menu-bar.icon-left > li > a.active {
+		@extend &:hover;
+	}
 }
 
 .test {background-color: red;}
