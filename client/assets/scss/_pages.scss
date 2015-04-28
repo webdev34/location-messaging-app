@@ -113,6 +113,10 @@
 				border: 1px solid darken($code-border-color, 40%);
 			}
 
+			&.active {
+				background: #e0e0e0;
+			}
+
 		}
 	}
 

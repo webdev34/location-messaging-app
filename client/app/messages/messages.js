@@ -9,11 +9,26 @@
   ])
 
 	  .controller('MessageListController', ['$scope','$http', function($scope, $http) {
+
+	  	$scope.currentMessage = null;
 	    
 	    $http.get('assets/data/message-list.json').
 	    success(function(data) {
 	      $scope.messages = data;
 	    });
+
+	    $scope.setCurrentMessage = function(messageId) {
+	  		$scope.currentMessage = messageId;
+	  		//console.log(messageId)
+	  	};
+
+	  	$scope.openDashboard = function() {
+	  		$scope.currentMessage = null;
+	  	};
+
+	  	$scope.isCurrentMessage = function(messageId) {
+	  		return $scope.currentMessage !== null && messageId === $scope.currentMessage;
+	  	};
 
 	  }])
 
