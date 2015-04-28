@@ -3,13 +3,49 @@ name: home
 url: /
 ---
 
-<div class="grid-container">
+<div class="grid-container page-profile">
 
-	<div class="card medium-8 medium-offset-2" style="margin-top: 2rem;">
+	<div class="card medium-8 medium-offset-2" style="margin-top: 2rem;" ng-controller="UserProfileController">
 		<div class="grid-content">
 			<br>
-			<h2 class="text-center">Welcome to Quiver Web Portal!</h2>
+
+			<section class="corporate-info" ng-controller="EnterpriseController">
+				<div class="clearfix">
+					<img ng-src="{{company.logo}}" alt="logo" class="avatar">
+				
+					<div class="profile-details">
+						<h2>{{company.companyName}}</h2>
+						<h4>@{{company.username}}</h4>
+					</div>
+				</div>
+			</section>
+			<hr>
+
+			<h3>Login to Quiver Web Portal</h3>
 			<br>
+
+			<form class="login-form" ng-sugmit="userLogin(loginInfo)">
+	
+				<label>
+					Email
+					<span class="inline-label">
+						<input type="text" ng-model="loginInfo.email">
+					</span>
+				</label>
+
+				<label>
+					Password
+					<span class="inline-label">
+						<input type="loginInfo.password" >
+					</span>
+				</label>
+
+				<br>
+				<a ui-sref="messages" class="button success expand">Login</a>
+
+			</form>
+
+
 			<a ui-sref="register" class="expand button">Register a New User</a>
 		</div>
 		

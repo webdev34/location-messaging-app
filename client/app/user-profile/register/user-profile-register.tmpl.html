@@ -3,7 +3,7 @@ name: register
 url: /register
 ---
 
-<div class="grid-block page-profile" ng-controller="RegisterUserProfileController">
+<div class="grid-block page-profile" ng-controller="UserProfileController">
 	<div class="grid-content">
 
 		<section class="card medium-6 medium-offset-3 register-user-box grid-content">
@@ -21,22 +21,23 @@ url: /register
 			</section>
 
 			<hr>
-
+			{{company}}
 
 			<h3>Register a New User</h3>
-			<form action="" class="register-form">
+			
+			<form class="register-form" ng-sugmit="registerNewUser(newUser)">
 
 				<label>
 					Username
 					<span class="inline-label">
-						<input type="text">
+						<input type="text" ng-model="newUser.username">
 					</span>
 				</label>
 				
 				<label>
 					Email
 					<span class="inline-label">
-						<input type="text" placeholder="@YourCompanyDomain">
+						<input type="text" ng-model="newUser.email">
 					</span>
 				</label>
 
