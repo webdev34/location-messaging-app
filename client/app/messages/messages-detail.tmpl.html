@@ -11,19 +11,19 @@
 	
 
 	<div class="float-left">
-		<h2>{{message.messageTitle}} {{currentMessageId}}</h2>
+		<h2>{{messageDetailCtrl.message.messageTitle}} {{messageDetailCtrl.currentMessageId}}</h2>
 		<br>
 
 		<a ui-sref="messages" class="owner">
-			<img ng-src="{{message.author.avatar}}" alt="avatar small" class="avatar small">
-			{{message.author.fullName}} (Owner)
+			<img ng-src="{{messageDetailCtrl.message.author.avatar}}" alt="avatar small" class="avatar small">
+			{{messageDetailCtrl.message.author.fullName}} (Owner)
 		</a>
 	</div>
 	
 
 	<div class="card message-box">
 		<img ng-src="{{company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseController">
-		<p  class="message-input" >{{message.content}}</p>
+		<p  class="message-input" >{{messageDetailCtrl.message.content}}</p>
 	</div>
 
 		<div class="status-box float-right">
@@ -79,27 +79,27 @@
 	<h3>Measure</h3>
 	<br>
 	<div class="metric">
-		<span>{{message.sentCount}}</span>
+		<span>{{messageDetailCtrl.message.sentCount}}</span>
 		<label>Sent</label>
 	</div>
 	<div class="metric">
-		<span>{{message.recipientCount}}</span>
+		<span>{{messageDetailCtrl.message.recipientCount}}</span>
 		<label>Read</label>
 	</div>
 	<div class="metric">
-		<span>{{message.likeCount}}</span>
+		<span>{{messageDetailCtrl.message.likeCount}}</span>
 		<label>Likes</label>
 	</div>
 	<div class="metric">
-		<span>{{message.commentCount}}</span>
+		<span>{{messageDetailCtrl.message.commentCount}}</span>
 		<label>Comments</label>
 	</div>
 	<div class="metric">
-		<span>{{message.forwardCount}}</span>
+		<span>{{messageDetailCtrl.message.forwardCount}}</span>
 		<label>Forwards</label>
 	</div>
 	<div class="metric">
-		<span>{{message.saveCount}}</span>
+		<span>{{messageDetailCtrl.message.saveCount}}</span>
 		<label>Saves</label>
 	</div>
 </section>

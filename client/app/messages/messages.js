@@ -22,7 +22,7 @@
 			.state('messages.detail', {
 				url: '/detail/:_id',
 				templateUrl: '/app/messages/messages-detail.tmpl.html',
-				controller: 'MessageDetailController'
+				controller: 'MessageDetailCtrl as messageDetailCtrl'
 			});
 
 		$urlRouterProvider.otherwise('messages.dashboard');
@@ -64,13 +64,14 @@
 
 	  }])
 
-	  .controller('MessageDetailController', ['$scope', '$stateParams', 'MessageDetailModel', function($scope, $stateParams, MessageDetailModel) {
+	  .controller('MessageDetailCtrl', ['$stateParams', 'MessageDetailModel', function($stateParams, MessageDetailModel) {
+	  		var messageDetailCtrl = this;
 
-	  		$scope.currentMessageId = $stateParams._id;
+	  		messageDetailCtrl.currentMessageId = $stateParams._id;
 
 		  	MessageDetailModel.getMessageDetail()
 		  		.then(function(result) {
-		  			$scope.message = result;
+		  			messageDetailCtrl.message = result;
 		  		});
 
 	  }]);
