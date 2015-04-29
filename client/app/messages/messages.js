@@ -20,7 +20,7 @@
 
 			})
 			.state('messages.detail', {
-				url: '/detail/:_id',
+				url: '/:_id',
 				templateUrl: '/app/messages/messages-detail.tmpl.html',
 				controller: 'MessageDetailCtrl as messageDetailCtrl'
 			});

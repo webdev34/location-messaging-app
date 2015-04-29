@@ -8,7 +8,8 @@
   			URLS = {
   				FETCH: 'assets/data/message-detail.json'
   			},
-  			message;
+  			message,
+        currentMessage;
 
 		function extract(result) {
 			return result.data;
@@ -19,9 +20,13 @@
 			return message;
 		}
 
+    model.setCurrentMessage = function() {
+
+    }
+
 		model.getMessageDetail = function() {
 			return (message) ? $q.when(message) : $http.get(URLS.FETCH).then(cacheMessage);
-		};
+		}
 
   	}]);
   	
