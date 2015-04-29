@@ -20,7 +20,7 @@
 
 			})
 			.state('messages.detail', {
-				url: '/detail',
+				url: '/detail/:_id',
 				templateUrl: '/app/messages/messages-detail.tmpl.html',
 				controller: 'MessageDetailController'
 			});
@@ -64,7 +64,9 @@
 
 	  }])
 
-	  .controller('MessageDetailController', ['$scope', 'MessageDetailModel', function($scope, MessageDetailModel) {
+	  .controller('MessageDetailController', ['$scope', '$stateParams', 'MessageDetailModel', function($scope, $stateParams, MessageDetailModel) {
+
+	  		$scope.currentMessageId = $stateParams._id;
 
 		  	MessageDetailModel.getMessageDetail()
 		  		.then(function(result) {
