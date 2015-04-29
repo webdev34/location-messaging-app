@@ -1,6 +1,6 @@
 <div class="g-side-nav">
 	<br>
-	<a ui-sref="messages" class="expand button text-left" ng-click="openDashboard()">
+	<a ui-sref="messages.dashboard" class="expand button text-left" ng-click="openDashboard()">
 		<img zf-iconic="" icon="dashboard" size="small">
 		Dashboard
 	</a>
@@ -19,7 +19,7 @@
 
 	<ul class="message-side-list" ng-controller="MessageListController">
 		<li ng-repeat="message in messages.messages">
-			<a ng-click="setCurrentMessage(message._id)" ui-sref="messages-detail" ui-sref-active="active"  >
+			<a  ui-sref="messages.detail" ui-sref-active="active"  >
 				{{message.messageTitle}}
 				<span class="float-right success label">
 					{{message.status}}

@@ -1,80 +1,64 @@
-
-
-<div class="grid-block page-messages">
-	<div id="sidebar" class="medium-3 grid-block">
-		<div class="grid-content">
-			<messages-side-bar></messages-side-bar>
+<section class="message-active-list" ng-controller="ActiveMessageController">
+	<header>
+		<h2 class="float-left">Active Messages</h2>
+		<div class="stats">
+			<span>Sent</span>
+			<span>Read</span>
+			<span>Likes</span>
+			<span>Comments</span>
+			<span>Forwards</span>
+			<span>Saves</span>
 		</div>
-	</div>
+	</header>
+	<ul>
+		<li ng-repeat="message in active.messages">
+			<a>{{message.content}}</a>
+			<div class="stats">
+				<span>{{message.sentCount}}</span>
+				<span>{{message.recipientCount}}</span>
+				<span>{{message.likeCount}}</span>
+				<span>{{message.commentCount}}</span>
+				<span>{{message.forwardCount}}</span>
+				<span>{{message.saveCount}}</span>
+			</div>
+		</li>
+	</ul>
+	<hr>
 
-	<div id="main" class="medium-7 grid-block">
-		<div class="grid-content">
-			
-			<section class="message-active-list" ng-controller="ActiveMessageController">
-				<header>
-					<h2 class="float-left">Active Messages</h2>
-					<div class="stats">
-						<span>Sent</span>
-						<span>Read</span>
-						<span>Likes</span>
-						<span>Comments</span>
-						<span>Forwards</span>
-						<span>Saves</span>
-					</div>
-				</header>
-				<ul>
-					<li ng-repeat="message in active.messages">
-						<a>{{message.content}}</a>
-						<div class="stats">
-							<span>{{message.sentCount}}</span>
-							<span>{{message.recipientCount}}</span>
-							<span>{{message.likeCount}}</span>
-							<span>{{message.commentCount}}</span>
-							<span>{{message.forwardCount}}</span>
-							<span>{{message.saveCount}}</span>
-						</div>
-					</li>
-				</ul>
-				<hr>
+</section>
 
-			</section>
+<section class="live-feed" ng-controller="LiveFeedController">
+	<h2>Live Feed</h2>
 
-			<section class="live-feed" ng-controller="LiveFeedController">
-				<h2>Live Feed</h2>
+	<ul>
+		<li ng-repeat="update in feed.updates">
+			<div class="clearfix">
+				<div class="float-right">
+					<a href="" class="button small secondary">...</a>
+				</div>
+				<div class="float-left">
+					<a href="">
+						<img zf-iconic="" icon="person" size="small">
+						John Smith
+					</a>
+					discovered <a href="">Message 1</a>.
+				</div>
+			</div>
+			<div class="message">
+				<span class="quote">"</span>
+				This is the public message...
+			</div>
+			<hr>
+			<div class="clearfix">
+				<div class="float-right">
+					<span class="success label">12:35pm</span>
+				</div>
+				<div class="float-left">
+					<span class="secondary badge">.</span>
+					CN Tower, Toronto,ON
 
-				<ul>
-					<li ng-repeat="update in feed.updates">
-						<div class="clearfix">
-							<div class="float-right">
-								<a href="" class="button small secondary">...</a>
-							</div>
-							<div class="float-left">
-								<a href="">
-									<img zf-iconic="" icon="person" size="small">
-									John Smith
-								</a>
-								discovered <a href="">Message 1</a>.
-							</div>
-						</div>
-						<div class="message">
-							<span class="quote">"</span>
-							This is the public message...
-						</div>
-						<hr>
-						<div class="clearfix">
-							<div class="float-right">
-								<span class="success label">12:35pm</span>
-							</div>
-							<div class="float-left">
-								<span class="secondary badge">.</span>
-								CN Tower, Toronto,ON
-
-							</div>
-						</div>
-					</li>
-				</ul>
-			</section>
-
-		</div>
-	</div>
-</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+</section>

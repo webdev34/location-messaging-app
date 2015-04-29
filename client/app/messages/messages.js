@@ -7,6 +7,26 @@
   	'messages.new',
   	'messages.edit'
   ])
+  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+		$stateProvider
+			.state('messages', {
+				url: '/enterprise/messages',
+				templateUrl: '/app/messages/messages.tmpl.html',
+				abstract: true
+			})
+			.state('messages.dashboard', {
+				url: '/dashboard',
+				templateUrl: '/app/messages/dashboard/messages-dashboard.tmpl.html'
+
+			})
+			.state('messages.detail', {
+				url: '/detail',
+				templateUrl: '/app/messages/messages-detail.tmpl.html',
+				controller: 'MessageDetailController'
+			});
+
+		$urlRouterProvider.otherwise('messages.dashboard');
+	}])
 
 	  .controller('MessageListController', ['$scope','$http', function($scope, $http) {
 
