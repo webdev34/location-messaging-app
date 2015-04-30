@@ -17,8 +17,8 @@
 	</label>
 
 
-	<ul class="message-side-list" ng-controller="MessageListController">
-		<li ng-repeat="message in messages.messages">
+	<ul class="message-side-list" ng-controller="MessageListCtrl as messageListCtrl">
+		<li ng-repeat="message in messageListCtrl.messages.messages">
 			<a  ui-sref="messages.detail({_id:message._id})" ui-sref-active="active"  >
 				{{message.messageTitle}} + {{message._id}} <!-- Remove the second part when integrating-->
 				<span class="float-right success label">

@@ -3,31 +3,66 @@
 
   angular.module('enterprise-portal.models.messages', [
   ])
-  	.service('MessageDetailModel', ['$http', '$q',  function($http, $q) {
-  		var model = this,
-  			URLS = {
-  				FETCH: 'assets/data/message-detail.json'
-  			},
-  			message,
-        currentMessage;
+  	.service('MessageDetailModel', [
+      '$http', '$q',
+      function($http, $q) {
+    		var model = this,
+    			URLS = {
+    				FETCH: 'assets/data/message-detail.json'
+    			},
+    			message,
+          currentMessage;
 
-		function extract(result) {
-			return result.data;
-		}
+    		function extract(result) {
+    			return result.data;
+    		}
 
-		function cacheMessage(result) {
-			message = extract(result);
-			return message;
-		}
+    		function cacheMessage(result) {
+    			message = extract(result);
+    			return message;
+    		}
 
-    model.setCurrentMessage = function() {
+        // model.setCurrentMessage = function() {
 
-    }
+        // }
 
-		model.getMessageDetail = function() {
-			return (message) ? $q.when(message) : $http.get(URLS.FETCH).then(cacheMessage);
-		}
+    		model.getMessageDetail = function() {
+    			return (message) ? $q.when(message) : $http.get(URLS.FETCH).then(cacheMessage);
+    		};
 
-  	}]);
+        // model.createNewMessage = function(newMessage) {
+        //   newMessage._id = "<temp-id>";
+        //   e
+        // };
+
+      }])
+    .service('MessageListModel', [
+      '$http', '$q',
+      function ($http, $q) {
+        var model = this,
+          URLS = {
+            FETCH: 'assets/data/message-list.json'
+          },
+          messageList;
+
+          function extract(result) {
+            return result.data;
+          }
+
+          function cacheMessageList(result) {
+            messageList = extract(result);
+            return messageList;
+          }
+
+          // model.setCurrentMessage = function() {
+
+          // }
+
+          model.getMessageList = function() {
+            return (messageList) ? $q.when(messageList) : $http.get(URLS.FETCH).then(cacheMessageList);
+          };
+
+      
+    }]);
   	
 })();

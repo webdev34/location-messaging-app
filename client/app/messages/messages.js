@@ -28,43 +28,53 @@
 		$urlRouterProvider.otherwise('messages.dashboard');
 	}])
 
-	  .controller('MessageListController', ['$scope','$http', function($scope, $http) {
+	  .controller('MessageListCtrl', [
+	  	'$scope','$http', 'MessageListModel',
+	  	function($scope, $http, MessageListModel) {
+	  		var messageListCtrl = this;
 
-	  	$scope.isCreatingNew = false;
-	  	$scope.isEditing = false;
+  			MessageListModel.getMessageList()
+	  		.then(function(result) {
+	  			messageListCtrl.messages = result;
+	  		});
 
-	  	$http.get('assets/data/message-list.json').
-	    success(function(data) {
-	      $scope.messages = data;
-	    });
+		  	//$scope.isCreatingNew = false;
+		  	//$scope.isEditing = false;
 
-
-	  	function startCreatingNew() {
-	  		$scope.isCreatingNew = true;
-	  		$scope.isEditing = false;
-	  	}
-
-	  	function cancelCreating() {
-	  		$scope.isCreatingNew = false;
-	  	}
-	  	function startEditing() {
-	  		$scope.isCreatingNew = false;
-	  		$scope.isEditing = true;
-	  	}
-
-	  	function cancelEditing() {
-	  		$scope.isEditing = false;
-	  	}
-	    
-	  	$scope.startCreatingNew = startCreatingNew;
-		$scope.cancelCreating = cancelCreating;
-		$scope.startEditing = startEditing;
-	   	$scope.cancelEditing = cancelEditing;
+		  	// $http.get('assets/data/message-list.json').
+		   //  success(function(data) {
+		   //    $scope.messages = data;
+		   //  });
 
 
-	  }])
+			 //  	function startCreatingNew() {
+			 //  		$scope.isCreatingNew = true;
+			 //  		$scope.isEditing = false;
+			 //  	}
 
-	  .controller('MessageDetailCtrl', ['$stateParams', 'MessageDetailModel', function($stateParams, MessageDetailModel) {
+			 //  	function cancelCreating() {
+			 //  		$scope.isCreatingNew = false;
+			 //  	}
+			 //  	function startEditing() {
+			 //  		$scope.isCreatingNew = false;
+			 //  		$scope.isEditing = true;
+			 //  	}
+
+			 //  	function cancelEditing() {
+			 //  		$scope.isEditing = false;
+			 //  	}
+			    
+			 //  	$scope.startCreatingNew = startCreatingNew;
+				// $scope.cancelCreating = cancelCreating;
+				// $scope.startEditing = startEditing;
+			 //   	$scope.cancelEditing = cancelEditing;
+
+
+		  }])
+
+	  .controller('MessageDetailCtrl', [
+	  	'$stateParams', 'MessageDetailModel', 
+	  	function($stateParams, MessageDetailModel) {
 	  		var messageDetailCtrl = this;
 
 	  		messageDetailCtrl.currentMessageId = $stateParams._id;
