@@ -1,3 +1,4 @@
+// Global Header
 .g-header {
 
 	.button__user {
@@ -9,7 +10,6 @@
 	}
 }
 
-.test {background-color: red;}
 
 .g-user-panel {
 
@@ -26,7 +26,6 @@
 	margin: 0 -1rem;
 }
 
-.test {background: red}
 
 .g-user-list {
 	list-style: none;
@@ -64,6 +63,18 @@
 
 }
 
+//Global Side Nav
 .g-side-nav {
 	margin: 1em;
+}
+
+//Forms
+form {
+
+	.no-border {
+		border: none;
+	}
+	.dashed-border {
+		border: 1px dashed;
+	}
 }

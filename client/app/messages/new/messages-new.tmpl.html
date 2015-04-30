@@ -1,11 +1,11 @@
-<form role="form" ng-submit="newMessageCtrl.createNewMessage(newMessage)">
+<form role="form" ng-submit="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)">
 	
 	<header class="clearfix">
 		<br>
-		<h2>New Message</h2>
+		<input placeholder="Message Title" type="text" class="title-edit dashed-border" ng-model="newMessageCtrl.newMessage.messageTitle">
 		<div class="card message-box">
 			<img ng-src="{{company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseController">
-			<input ng-model="newMessage.content" type="text" class="message-input" placeholder="Write here...">
+			<input ng-model="newMessageCtrl.newMessage.content" type="text" class="message-input" placeholder="Write here...">
 		</div>
 
 	</header>
@@ -44,7 +44,7 @@
 	<hr>
 
 	<div class="float-right">
-		<button ng-click="" class="alert hollow button">Cancel</button>
+		<button ng-click="newMessageCtrl.cancelCreating()" class="alert hollow button">Cancel</button>
 	    <button type="submit" class="success button">Create Message</button>
 	</div>
 

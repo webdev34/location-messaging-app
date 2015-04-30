@@ -10,14 +10,36 @@
 				controller: 'NewMessageCtrl as newMessageCtrl'
   			});
   	}])
-  	.controller('NewMessageCtrl', function(){
-    	var newMessageCtrl = this
-	    
-	    newMessageCtrl.createNewMessage = function(newMessage) {
-	    	alert(newMessage.content);
-	    };
+  	.controller('NewMessageCtrl',[
+  		'$state', '$stateParams', 'MessageListModel',
+  		function($state, $stateParams, MessageListModel) {
+    		var newMessageCtrl = this;
 
-  	});
+    		function cancelCreating() {
+    			$state.go('messages.dashboard');
+    		}
+
+		    function createNewMessage(newMessage) {
+		    	alert(newMessage.content);
+          MessageListModel.createNewMessage(newMessage);
+		    }
+
+        function resetForm() {
+          newMessageCtrl.newMessage = {
+            "_id": "",
+            "messageTitle": "",
+            "content": "",
+            "status": ""
+          };
+        }
+
+		    newMessageCtrl.createNewMessage = createNewMessage;
+		    newMessageCtrl.cancelCreating = cancelCreating;
+
+        resetForm() 
+
+  		}
+	]);
  
 
 })();

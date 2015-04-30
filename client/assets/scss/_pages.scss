@@ -47,8 +47,7 @@
 		}
 
 		.title-edit {
-			@extend h2;
-			border: none;
+			@extend h3;
 			height: inherit;
 		}
 	}

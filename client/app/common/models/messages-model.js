@@ -30,10 +30,7 @@
     			return (message) ? $q.when(message) : $http.get(URLS.FETCH).then(cacheMessage);
     		};
 
-        // model.createNewMessage = function(newMessage) {
-        //   newMessage._id = "<temp-id>";
-        //   e
-        // };
+       
 
       }])
     .service('MessageListModel', [
@@ -60,6 +57,11 @@
 
           model.getMessageList = function() {
             return (messageList) ? $q.when(messageList) : $http.get(URLS.FETCH).then(cacheMessageList);
+          };
+
+          model.createNewMessage = function(newMessage) {
+            newMessage._id = "<temp-id>";
+            messageList.push(newMessage);
           };
 
       

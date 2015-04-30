@@ -29,46 +29,14 @@
 	}])
 
 	  .controller('MessageListCtrl', [
-	  	'$scope','$http', 'MessageListModel',
-	  	function($scope, $http, MessageListModel) {
+	  	'MessageListModel',
+	  	function( MessageListModel) {
 	  		var messageListCtrl = this;
 
   			MessageListModel.getMessageList()
 	  		.then(function(result) {
 	  			messageListCtrl.messages = result;
 	  		});
-
-		  	//$scope.isCreatingNew = false;
-		  	//$scope.isEditing = false;
-
-		  	// $http.get('assets/data/message-list.json').
-		   //  success(function(data) {
-		   //    $scope.messages = data;
-		   //  });
-
-
-			 //  	function startCreatingNew() {
-			 //  		$scope.isCreatingNew = true;
-			 //  		$scope.isEditing = false;
-			 //  	}
-
-			 //  	function cancelCreating() {
-			 //  		$scope.isCreatingNew = false;
-			 //  	}
-			 //  	function startEditing() {
-			 //  		$scope.isCreatingNew = false;
-			 //  		$scope.isEditing = true;
-			 //  	}
-
-			 //  	function cancelEditing() {
-			 //  		$scope.isEditing = false;
-			 //  	}
-			    
-			 //  	$scope.startCreatingNew = startCreatingNew;
-				// $scope.cancelCreating = cancelCreating;
-				// $scope.startEditing = startEditing;
-			 //   	$scope.cancelEditing = cancelEditing;
-
 
 		  }])
 
