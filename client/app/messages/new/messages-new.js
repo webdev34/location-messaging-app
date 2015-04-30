@@ -15,13 +15,17 @@
   		function($state, $stateParams, MessageListModel) {
     		var newMessageCtrl = this;
 
+        function returnToDashboard() {
+          $state.go('messages.dashboard');
+        }
+
     		function cancelCreating() {
-    			$state.go('messages.dashboard');
+          returnToDashboard();
     		}
 
-		    function createNewMessage(newMessage) {
-		    	alert(newMessage.content);
-          MessageListModel.createNewMessage(newMessage);
+		    function createNewMessage() {
+          MessageListModel.createNewMessage(newMessageCtrl.newMessage);
+          returnToDashboard();
 		    }
 
         function resetForm() {
@@ -36,7 +40,7 @@
 		    newMessageCtrl.createNewMessage = createNewMessage;
 		    newMessageCtrl.cancelCreating = cancelCreating;
 
-        resetForm() 
+        resetForm();
 
   		}
 	]);

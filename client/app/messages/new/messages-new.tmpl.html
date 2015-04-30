@@ -8,6 +8,18 @@
 			<input ng-model="newMessageCtrl.newMessage.content" type="text" class="message-input" placeholder="Write here...">
 		</div>
 
+		<h4 class="float-left">Set Status</h4>
+		
+		<div class="float-left">
+			<select class="select-status"  ng-model="newMessageCtrl.newMessage.status">
+				<option>Setup</option>
+				<option>Active</option>
+				<option>Inactive</option>
+				<option>Closed</option>
+			</select>
+		</div>
+			
+
 	</header>
 	<hr>
 
