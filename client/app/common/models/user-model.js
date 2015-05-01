@@ -23,6 +23,11 @@
 			return $http.get(URLS.FETCH).then(cacheUser);
 		};
 
+		model.updateUser = function(updatedUser) {
+          console.log('from the model' + updatedUser.username);
+          user = updatedUser;
+        };
+
   	}]);
 
 

@@ -5,7 +5,7 @@ url: /
 
 <div class="grid-container page-profile">
 
-	<div class="card medium-8 medium-offset-2" style="margin-top: 2rem;" ng-controller="UserProfileController">
+	<div class="card medium-8 medium-offset-2" style="margin-top: 2rem;" >
 		<div class="grid-content">
 			<br>
 
@@ -24,7 +24,7 @@ url: /
 			<h3>Login to Quiver Web Portal</h3>
 			<br>
 
-			<form class="login-form" ng-sugmit="userLogin(loginInfo)">
+			<form class="login-form" ng-sugmit="userLogin(loginInfo)" ng-controller="UserProfileCtrl as userProfileCtrl">
 	
 				<label>
 					Email

@@ -27,7 +27,7 @@
     		};
 
         model.updateMessage = function(updatedMessage) {
-          console.log('from the model' + updatedMessage.messageTitle);
+          //console.log('from the model' + updatedMessage.messageTitle);
           message = updatedMessage;
         };
 

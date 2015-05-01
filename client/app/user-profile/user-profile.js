@@ -6,31 +6,41 @@
       'enterprise'
   	])
 
-  	.controller('UserProfileController', [
-      '$scope',
-      '$rootScope',
-      'UserModel',
+    .config(['$stateProvider', function ($stateProvider) {
+    
+      $stateProvider
+        .state('user-profile', {
+          url: '/user',
+          templateUrl: '/app/user-profile/user-profile.tmpl.html',
+          controller: 'UserProfileCtrl as userProfileCtrl'
+        });
 
-      function($scope, $rootScope, UserModel){
+  }])
+
+  	.controller('UserProfileCtrl', [
+      '$rootScope', 'UserModel',
+      function( $rootScope, UserModel){
+
+        var userProfileCtrl = this;
       
-        $scope.user = null;
+        userProfileCtrl.user = null;
         $rootScope.isLoggedIn = false;
 
 
-        $scope.userLogin = function(loginInfo) {
+        userProfileCtrl.userLogin = function(loginInfo) {
           //console.log(loginInfo);
           UserModel.getUserDetail()
           .then(function(result) {
-            $scope.user = result;
+            userProfileCtrl.user = result;
             $rootScope.isLoggedIn = true;
             //console.log($rootScope.isLoggedIn);
           }); 
         };
 
-        $scope.userLogin();
+        userProfileCtrl.userLogin();
 
 
-        $scope.registerNewUser = function(newUser) {
+        userProfileCtrl.registerNewUser = function(newUser) {
           console.log(newUser.username)
         };
   

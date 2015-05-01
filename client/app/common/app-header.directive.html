@@ -1,4 +1,4 @@
-<header class="primary condense menu-group g-header" ng-controller="UserProfileController">
+<header class="primary condense menu-group g-header" ng-controller="UserProfileCtrl as userProfileCtrl">
   
   <div class="menu-group-left">
     <ul class="menu-bar">
@@ -14,7 +14,7 @@
       <li>
         <a zf-toggle="user-panel" class="button__user">
           <img zf-iconic="" icon="person" size="small" class="iconic-color-primary">
-          {{user.fullName}}
+          {{userProfileCtrl.user.fullName}}
         </a>
       </li>
     </ul>
