@@ -3,7 +3,17 @@
 
   angular.module('messages.dashboard', [])
 
-	    .controller('ActiveMessageController', ['$scope', '$http', function($scope, $http){
+  	.config(['$stateProvider', function ($stateProvider) {
+				
+				$stateProvider
+					.state('messages.dashboard', {
+						url: '/',
+						templateUrl: '/app/messages/dashboard/messages-dashboard.tmpl.html'
+					});
+
+		}])
+
+	  .controller('ActiveMessageController', ['$scope', '$http', function($scope, $http){
     
 	    $http.get('assets/data/active-messages.json').
 	    success(function(data) {
