@@ -22,15 +22,14 @@
     			return message;
     		}
 
-        // model.setCurrentMessage = function() {
-
-        // }
-
     		model.getMessageDetail = function() {
     			return (message) ? $q.when(message) : $http.get(URLS.FETCH).then(cacheMessage);
     		};
 
-       
+        model.updateMessage = function(updatedMessage) {
+          console.log('from the model' + updatedMessage.messageTitle);
+          message = updatedMessage;
+        };
 
       }])
     .service('MessageListModel', [
