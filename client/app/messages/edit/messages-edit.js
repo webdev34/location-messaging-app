@@ -25,9 +25,8 @@
 		  				editMessageCtrl.message = result;
 		  				editMessageCtrl.editedMessage = angular.copy(editMessageCtrl.message);
 		  			} else {
-
+		  				cancelEdit();
 		  			}
-		  			editMessageCtrl.message = result;
 		  		});
 
 
@@ -40,7 +39,7 @@
 		  	}
 
 		  	function updateMessage() {
-		  		console.log('updating');
+		  		//console.log('updating');
 		  		editMessageCtrl.message = angular.copy(editMessageCtrl.editedMessage);
 		  		MessageDetailModel.updateMessage(editMessageCtrl.message);
 

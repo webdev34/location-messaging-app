@@ -3,19 +3,25 @@
 
   angular.module('user-profile', [
   		'enterprise-portal.models.user',
-      'enterprise'
+      'user-profile.edit'
   	])
 
-    .config(['$stateProvider', function ($stateProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     
       $stateProvider
         .state('user-profile', {
           url: '/user',
           templateUrl: '/app/user-profile/user-profile.tmpl.html',
           controller: 'UserProfileCtrl as userProfileCtrl'
-        });
+        })
+        .state('register', {
+          url: '/register',
+          templateUrl: '/app/user-profile/register/user-profile-register.tmpl.html'
+        }); 
 
-  }])
+      //$urlRouterProvider.otherwise('/user');
+
+    }])
 
   	.controller('UserProfileCtrl', [
       '$rootScope', 'UserModel',

@@ -1,0 +1,101 @@
+<div class="grid-block page-profile" >
+	<section class="grid-content shrink">
+		<form  class="profile-form" ng-submit="editProfileCtrl.updateUser()">
+
+		<div class="clearfix">
+			<img ng-src="{{editProfileCtrl.editedUser.avatar}}" alt="avatar" class="avatar">
+			<div class="profile-details">
+				<input type="text" class="title-edit dashed-border" placeholder="First & Last Names" ng-model="editProfileCtrl.editedUser.fullName">
+
+				<input type="text" class="dashed-border" placeholder="username" ng-model="editProfileCtrl.editedUser.username">
+
+			</div>
+		</div>
+		<hr>
+
+			<label>
+				Description
+				<span class="inline-label">
+					<textarea class="desc" ng-model="editProfileCtrl.editedUser.description"></textarea>
+				</span>
+			</label>
+			<hr>
+
+			<label>
+				Title
+				<span class="inline-label">
+					<input type="text" ng-model="editProfileCtrl.editedUser.title">
+				</span>
+			</label>
+
+			<label>
+				Department
+				<span class="inline-label">
+					<input type="text" ng-model="editProfileCtrl.editedUser.department">
+				</span>
+			</label>
+
+			<label>
+				Email
+				<span class="inline-label">
+					<input type="email" ng-model="editProfileCtrl.editedUser.email">
+				</span>
+			</label>
+
+			<label>
+				Phone
+				<span class="inline-label">
+					<input type="phone" ng-model="editProfileCtrl.editedUser.phone">
+				</span>
+			</label>
+
+			<button type="submit" class="button expand">Save Changes</button>
+		</form>
+		
+	</section>
+	<section class="grid-content medium-6 medium-offest-1 corporate-info">
+		<div class="clearfix">
+			<img ng-src="{{editProfileCtrl.user.companyLogo}}" alt="logo" class="avatar">
+		
+			<div class="profile-details">
+				<a ui-sref="enterprise/profile"><h1>{{editProfileCtrl.user.company}}</h1></a>
+				<a ui-sref="enterprise/profile"><h3 class="subheader">@{{editProfileCtrl.user.companyUsername}}</h3></a>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="card password-box">
+			<div class="card-section">
+				<h3>Set New Password</h3>
+				<form action="" class="profile-form">
+				
+				<label>
+					Old Password
+					<span class="inline-label">
+						<input type="password" >
+					</span>
+				</label>
+				<hr>
+
+				<label>
+					New Password
+					<span class="inline-label">
+						<input type="password" >
+					</span>
+				</label>
+				<label>
+					Confirm Password
+					<span class="inline-label">
+						<input type="password" >
+					</span>
+				</label>
+
+			<a class="button expand">Change Password</a>
+
+		</form>
+			</div>
+		</div>
+	</section>
+
+</div>
