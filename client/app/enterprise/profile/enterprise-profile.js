@@ -11,16 +11,49 @@
 				  templateUrl: '/app/enterprise/profile/enterprise-profile.tmpl.html',
 				  controller: 'EnterpriseCtrl as enterpriseCtrl'
   			})
-        .state('enterprise.profile.edit', {
+        .state('enterprise.edit', {
           url: '/edit',
           templateUrl: '/app/enterprise/profile/edit/enterprise-profile-edit.tmpl.html',
           controller: 'EditEnterpriseCtrl as editEnterpriseCtrl'
         });;
   	}])
-    .controller('EditEnterpriseCtrl', ['$scope', function ($scope) {
+    .controller('EditEnterpriseCtrl', [
+      '$state', 'EnterpriseModel', 
+      function ($state, EnterpriseModel) {
       
       var editEnterpriseCtrl = this;
 
+      EnterpriseModel.getEnterpriseInfo()
+          .then(function(result) {
+            if(result) {
+              editEnterpriseCtrl.company = result;
+              editEnterpriseCtrl.editedCompany = angular.copy(editEnterpriseCtrl.company);
+            } else {
+              cancelEdit();
+            }
+          });
+
+      function returnToCompanyProfile() {
+        $state.go('enterprise.profile');
+      }
+
+      function cancelEdit() {
+        returnToCompanyProfile();
+      }
+
+      function updateCompany() {
+
+        editEnterpriseCtrl.company = angular.copy(editEnterpriseCtrl.editedCompany);
+        EnterpriseModel.updateCompany(editEnterpriseCtrl.company);
+
+        console.log('from controller' + editEnterpriseCtrl.company);
+
+        returnToCompanyProfile();
+      }
+
+
+      editEnterpriseCtrl.updateCompany = updateCompany;
+      editEnterpriseCtrl.cancelEdit = cancelEdit;
 
     }]);
  

@@ -1,4 +1,39 @@
 
+<form role="form" ng-submit="editEnterpriseCtrl.updateCompany()">
 <div class="clearfix">
-	<h1>editing</h1>
+	<img ng-src="{{editEnterpriseCtrl.editedCompany.logo}}" alt="Logo" class="avatar">
+	
+	<div class="profile-details">
+		
+		<input placeholder="Company Name" type="text" class="h1 dashed-border" ng-model="editEnterpriseCtrl.editedCompany.companyName">
+		
+		<input type="text" class="h3 dashed-border" placholder="@handle" ng-model="editEnterpriseCtrl.editedCompany.username">
+	</div>
+</div>
+<hr>
+
+<label>
+	{{editEnterpriseCtrl.editedCompany}}
+	Description
+	<span class="inline-label">
+		<input type="text" ng-model="editEnterpriseCtrl.editedCompany.description">
+	</span>
+</label>
+<hr>
+
+<label>
+	Email
+	<span class="inline-label">
+		<input type="email" ng-model="editEnterpriseCtrl.editedCompany.email">
+	</span>
+</label>
+<hr>
+
+<div class="float-right">
+	<a ng-click="editEnterpriseCtrl.cancelEdit()" class="alert hollow button">Cancel</a>
+	<button type="submit" class="success button">Save Changes</button>
+
+</div>
+
+
 </form>

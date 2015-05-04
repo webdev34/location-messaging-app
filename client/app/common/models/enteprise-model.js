@@ -4,26 +4,33 @@
   angular.module('enterprise-portal.models.enterprise', [
 
   	  ])
-  	.service('EnterpriseModel', ['$http',  function($http) {
-  		var model = this,
-  			URLS = {
-  				FETCH: 'assets/data/company.json'
-  			},
-  			company;
+  	.service('EnterpriseModel', [
+  		'$http', '$q',  
+  		function($http, $q) {
+  		
+	  		var model = this,
+	  			URLS = {
+	  				FETCH: 'assets/data/company.json'
+	  			},
+	  			company;
 
-		function extract(result) {
-			return result.data;
-		}
+			function extract(result) {
+				return result.data;
+			}
 
-		function cacheCompany(result) {
-			company = extract(result);
-			return company;
-		}
+			function cacheCompany(result) {
+				company = extract(result);
+				return company;
+			}
 
-		model.getEnterpriseInfo = function() {
-			return $http.get(URLS.FETCH).then(cacheCompany);
-		};
+			model.getEnterpriseInfo = function() {
+				return (company) ? $q.when(company) : $http.get(URLS.FETCH).then(cacheCompany);
+			};
 
-  	}]);
+			model.updateCompany = function(updatedCompany) {
+				company = updatedCompany;
+			}
+
+  		}]);
 
 })();

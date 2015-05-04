@@ -72,6 +72,13 @@
 //Forms
 form {
 
+	input {
+		&.h1 { @extend h1; height: inherit;}
+		&.h2 { @extend h2; height: inherit;}
+		&.h3 { @extend h3; height: inherit;}
+
+	}
+
 	.no-border {
 		border: none;
 	}
