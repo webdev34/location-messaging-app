@@ -4,7 +4,7 @@
 		<br>
 		<input placeholder="Message Title" type="text" class="title-edit dashed-border" ng-model="newMessageCtrl.newMessage.messageTitle">
 		<div class="card message-box">
-			<img ng-src="{{company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseController">
+			<img ng-src="{{enterpriseController.company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseController as enterpriseController">
 			<input ng-model="newMessageCtrl.newMessage.content" type="text" class="message-input" placeholder="Write here...">
 		</div>
 

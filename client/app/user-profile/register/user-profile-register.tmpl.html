@@ -5,13 +5,13 @@
 		<section class="card medium-6 medium-offset-3 register-user-box grid-content">
 			<br>
 
-			<section class="corporate-info" ng-controller="EnterpriseController">
+			<section class="corporate-info" ng-controller="EnterpriseCtrl as enterpriseCtrl">
 				<div class="clearfix">
-					<img ng-src="{{company.logo}}" alt="logo" class="avatar">
+					<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="avatar">
 				
 					<div class="profile-details">
-						<h2>{{company.companyName}}</h2>
-						<h4>@{{company.username}}</h4>
+						<h2>{{enterpriseCtrl.company.companyName}}</h2>
+						<h4>@{{enterpriseCtrl.company.username}}</h4>
 					</div>
 				</div>
 			</section>

@@ -9,21 +9,20 @@
 </div>
 <hr>
 
-<form action="" class="profile-form">
-	<label>
-		Description
-		<span class="inline-label">
-			<textarea class="desc">{{enterpriseCtrl.company.description}}</textarea>
-		</span>
-	</label>
-	<hr>
+<label>
+	Description
+	<span class="inline-label">
+		<p class="desc">{{enterpriseCtrl.company.description}}</p>
+	</span>
+</label>
+<hr>
 
-	<label>
-		Address
-		<span class="inline-label">
-			<input type="address">
-		</span>
-	</label>
+<label>
+	Email
+	<span class="inline-label">
+		<p>{{enterpriseCtrl.company.email}}</p>
+	</span>
+</label>
+<hr>
 
-	<a class="button expand">Save Changes</a>
-</form>
+<a ui-sref="enterprise.profile.edit" class="button info">Edit Enterprise Profile</a>
