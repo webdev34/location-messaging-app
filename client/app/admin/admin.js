@@ -3,12 +3,12 @@
 
   angular.module('admin', [
   	'enterprise-portal.models.admin'])
-  	.controller('AdminController', ['$http', 'AdminModel', function($http, AdminModel){
+  	.controller('AdminController', ['$scope', 'AdminModel', function($scope, AdminModel){
 
 
 	    AdminModel.getAdminData()
 	  		.then(function(result) {
-	  			$scope.enterpises = result;
+	  			$scope.enterprises = result;
 	  		});
 
 	  }]);

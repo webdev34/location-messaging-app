@@ -15,7 +15,8 @@
 		}
 
 		function cacheAdminData(result) {
-			user = extract(result);
+			adminData = extract(result);
+			console.log(adminData);
 			return adminData;
 		}
 

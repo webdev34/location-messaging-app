@@ -11,12 +11,11 @@ url: /admin
 		
 		<a href="" class="button float-right"> + Add Enterprise</a>
 		<h2>Enterprises</h2>
-
 		<ul class="g-user-list">
 			<li ng-repeat="company in enterprises.enterprise">
 				<img ng-src="{{company.logo}}" alt="avatar" class="avatar">
 				<div class="float-left">
-					<strong>{{company.companyName}}</strong>
+					<strong>hello {{company.companyName}}</strong>
 					<br><br>
 					Admins: <br>
 					<a  ui-sref="user-profile" class="button small" ng-repeat="user in company.administrators">{{user.name}} </a>
