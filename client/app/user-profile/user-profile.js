@@ -19,8 +19,6 @@
           templateUrl: '/app/user-profile/register/user-profile-register.tmpl.html'
         }); 
 
-      //$urlRouterProvider.otherwise('/user');
-
     }])
 
   	.controller('UserProfileCtrl', [

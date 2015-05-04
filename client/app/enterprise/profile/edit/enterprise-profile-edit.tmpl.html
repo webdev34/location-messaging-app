@@ -1,0 +1,29 @@
+
+<div class="clearfix">
+	<img ng-src="{{enterpriseController.company.logo}}" alt="Logo" class="avatar">
+	
+	<div class="profile-details">
+		<h1>{{enterpriseController.company.companyName}}</h1>
+		<h3 class="subheader">@{{enterpriseController.company.username}}</h3>
+	</div>
+</div>
+<hr>
+
+<form action="" class="profile-form">
+	<label>
+		Description
+		<span class="inline-label">
+			<textarea class="desc">{{enterpriseController.company.description}}</textarea>
+		</span>
+	</label>
+	<hr>
+
+	<label>
+		Address
+		<span class="inline-label">
+			<input type="address">
+		</span>
+	</label>
+
+	<a class="button expand">Save Changes</a>
+</form>

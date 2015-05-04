@@ -25,7 +25,7 @@
 		};
 
     model.loginMock = function() {
-      console.log('loginMock start');
+     // console.log('loginMock start');
 
       var body = { 
           'username': 'ninjacheez',
@@ -41,16 +41,15 @@
         // this callback will be called asynchronously
         // when the response is available
 
-        console.log('success' + data);
+       // console.log('success' + data);
       })
       .error(function(data, status, headers, config) {
-        console.log('error');
+      //  console.log('error');
 
         // called asynchronously if an error occurs
         // or server returns response with an error status.
       });
 
-      console.log('loginMock end');
     }
 
 		model.updateUser = function(updatedUser) {
