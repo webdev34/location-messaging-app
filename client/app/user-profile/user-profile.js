@@ -45,6 +45,8 @@
 
         userProfileCtrl.userLogin();
 
+        UserModel.loginMock();
+
 
         userProfileCtrl.registerNewUser = function(newUser) {
           console.log(newUser.username)
