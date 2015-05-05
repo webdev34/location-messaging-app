@@ -31,6 +31,14 @@
 				company = updatedCompany;
 			}
 
+			model.addAdmin = function(newAdmin) {
+				company.administrators.push(newAdmin);
+			}
+
+			model.addUser = function(newUser) {
+				company.users.push(newUser);
+			}
+
   		}]);
 
 })();

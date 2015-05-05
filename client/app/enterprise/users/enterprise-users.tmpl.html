@@ -1,44 +1,84 @@
+<a zf-open="addUserModal" class="button float-right"> + Add User</a>
+<h2 >Users</h2>
 
+
+<ul class="g-user-list">
+	<li ng-repeat="user in enterpriseCtrl.company.users">
+		<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
+		<div class="float-left">
+			<strong>{{user.name}}</strong>
+			<br>
+			{{user.title}}
+		</div>
 		
-		
-		<a href="" class="button "> + Add User</a>
-		<h2 >Users</h2>
-
-
-		<ul class="g-user-list">
-			<li ng-repeat="user in enterpriseCtrl.company.users">
-				<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
-				<div class="float-left">
-					<strong>{{user.name}}</strong>
-					<br>
-					{{user.title}}
-				</div>
-				
-				<ul class="li-buttons button-group secondary">
-					<li><a class="" href="#">Make Admin</a></li>
-					<li><a class="" href="#">Suspend</a></li>
-					<li><a class="" href="#">Remove</a></li>
-				</ul>
-			</li>
+		<ul class="li-buttons button-group secondary">
+			<li><a class="" href="#">Make Admin</a></li>
+			<li><a class="" href="#">Suspend</a></li>
+			<li><a class="" href="#">Remove</a></li>
 		</ul>
+	</li>
+</ul>
+<br>
+
+
+<h2>Administators</h2>
+
+<ul class="g-user-list">
+	<li ng-repeat="user in enterpriseCtrl.company.administrators">
+		<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
+		<div class="float-left">
+			<strong>{{user.name}}</strong>
+			<br>
+			{{user.title}}
+		</div>
+		
+		<ul class="li-buttons button-group secondary">
+			<li><a class="" href="#">Downgrade</a></li>
+			<li><a class="" href="#">Suspend</a></li>
+			<li><a class="" href="#">Remove</a></li>
+		</ul>
+	</li>
+</ul>
+
+<!-- Add User Modal -->
+<div zf-modal="" id="addUserModal">
+	<a zf-close="" class="close-button">×</a>
+	<h3>+ Add User</h3>
+
+	<form role="form" ng-submit="enterpriseCtrl.addUser()">
+		<label>Type of User</label>
+		<input type="radio" name="userType" value="admin" id="type_admin" ng-model="enterpriseCtrl.newUser.userType"><label for="type_admin">Admin</label>
+		<input type="radio" name="userType" value="user" id="type_user" ng-model="enterpriseCtrl.newUser.userType"><label for="type_user">User</label>
+		<hr>
 		<br>
+		<label>
+			Email
+			<span class="inline-label">
+				<input type="email" ng-model="enterpriseCtrl.newUser.email">
+			</span>
+		</label>
 
+		<label>
+			Name
+			<span class="inline-label">
+				<input type="text" ng-model="enterpriseCtrl.newUser.name">
+			</span>
+		</label>
 
-		<h2>Administators</h2>
+		<label>
+			Title
+			<span class="inline-label">
+				<input type="text" ng-model="enterpriseCtrl.newUser.title">
+			</span>
+		</label>
 
-		<ul class="g-user-list">
-			<li ng-repeat="user in enterpriseCtrl.company.administrators">
-				<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
-				<div class="float-left">
-					<strong>{{user.name}}</strong>
-					<br>
-					{{user.title}}
-				</div>
-				
-				<ul class="li-buttons button-group secondary">
-					<li><a class="" href="#">Downgrade</a></li>
-					<li><a class="" href="#">Suspend</a></li>
-					<li><a class="" href="#">Remove</a></li>
-				</ul>
-			</li>
-		</ul>
+		<hr>
+		<div class="float-right">
+			<a zf-close="" class="alert hollow button">Cancel</a>
+			<button type="submit" class="success button">Add User</button>
+		</div>
+
+	</form>
+	
+
+</div>

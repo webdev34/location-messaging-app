@@ -3,8 +3,7 @@
 
   angular.module('enterprise', [
   	'enterprise-portal.models.enterprise',
-    'enterprise.profile',
-    'enterprise.users'
+    'enterprise.profile'
   	])
 
    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -14,21 +13,59 @@
         url: '/enterprise/profile',
         templateUrl: '/app/enterprise/enterprise.tmpl.html',
         abstract: true
-      }); 
+      })
+      .state('enterprise.users', {
+        url: '/users',
+        templateUrl: '/app/enterprise/users/enterprise-users.tmpl.html',
+        controller: 'EnterpriseCtrl as enterpriseCtrl'
+        }); 
       $urlRouterProvider.otherwise('enterprise.profile');
     }])
   	.controller('EnterpriseCtrl', [
-      'EnterpriseModel',  
-      function(EnterpriseModel) {
+      '$state', 'EnterpriseModel', 'FoundationApi',
+      function($state, EnterpriseModel, FoundationApi) {
 
         var enterpriseCtrl = this;
-
-
 
         EnterpriseModel.getEnterpriseInfo()
   	  		.then(function(result) {
   	  			enterpriseCtrl.company = result;
   	  		});
+
+        function addUser() {
+          //console.log('user-added' + enterpriseCtrl.newUser.userType);
+          if (enterpriseCtrl.newUser.userType === 'admin') {
+            EnterpriseModel.addAdmin(enterpriseCtrl.newUser);
+          } else if (enterpriseCtrl.newUser.userType === 'user') {
+            EnterpriseModel.addUser(enterpriseCtrl.newUser);
+
+          } else {
+
+          }
+
+          resetForm();
+          FoundationApi.publish('addUserModal', 'close')
+
+        }
+
+        function resetForm() {
+          enterpriseCtrl.newUser = {
+            '_id': '',
+            "name": "",
+            "title": "",
+            "username": "",
+            "avatar": "assets/images/avatar.jpg",
+            'userType': null
+          }
+
+        }
+
+        resetForm();
+
+        enterpriseCtrl.addUser = addUser;
+
+
+
 
 
   	}]);
