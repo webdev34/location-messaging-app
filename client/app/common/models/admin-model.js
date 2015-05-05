@@ -21,8 +21,15 @@
 		}
 
 		model.getAdminData = function() {
-			return $http.get(URLS.FETCH).then(cacheAdminData);
+			// return $http.get(URLS.FETCH).then(cacheAdminData);
+			return (adminData) ? $q.when(adminData) : $http.get(URLS.FETCH).then(cacheAdminData);
+
 		};
+
+		model.addEnterprise = function(newEnterprise) {
+			adminData.enterprise.push(newEnterprise);
+
+		}
 
   	}]);
 

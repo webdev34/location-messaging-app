@@ -1,21 +1,14 @@
----
-name: admin
-url: /admin
----
-
-
-
 <div class="grid-block page-profile">
-	<section class="grid-content large-8" ng-controller="AdminController">
+	<section class="grid-content large-8">
 		
 		
-		<a href="" class="button float-right"> + Add Enterprise</a>
+		<a zf-open="addEnterpriseModal" class="button float-right"> + Add Enterprise</a>
 		<h2>Enterprises</h2>
 		<ul class="g-user-list">
-			<li ng-repeat="company in enterprises.enterprise">
+			<li ng-repeat="company in adminCtrl.enterprises.enterprise">
 				<img ng-src="{{company.logo}}" alt="avatar" class="avatar">
 				<div class="float-left">
-					<strong>hello {{company.companyName}}</strong>
+					<strong>{{company.companyName}}</strong>
 					<br><br>
 					Admins: <br>
 					<a  ui-sref="user-profile" class="button small" ng-repeat="user in company.administrators">{{user.name}} </a>
@@ -32,4 +25,45 @@ url: /admin
 
 
 	</section>
+</div>
+
+<!-- Add Enterprise Modal -->
+<div zf-modal="" id="addEnterpriseModal">
+	<a zf-close="" class="close-button">×</a>
+	<h3>+ Add Enterprise</h3>
+
+	<form role="form" ng-submit="adminCtrl.addEnterprise()">
+		
+		<br>
+		<label>
+			Enterprise Name
+			<span class="inline-label">
+				<input type="text" ng-model="adminCtrl.newEnterprise.companyName">
+			</span>
+		</label>
+
+		<label>
+			Enterprise Username
+			<span class="inline-label">
+				<input type="text" ng-model="adminCtrl.newEnterprise.username">
+			</span>
+		</label>
+
+		<label>
+			Email
+			<span class="inline-label">
+				<input type="email" ng-model="adminCtrl.newEnterprise.email">
+			</span>
+		</label>
+
+
+		<hr>
+		<div class="float-right">
+			<a zf-close="" class="alert hollow button">Cancel</a>
+			<button type="submit" class="success button">Add Enterprise</button>
+		</div>
+
+	</form>
+	
+
 </div>
