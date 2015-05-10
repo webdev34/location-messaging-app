@@ -24,24 +24,24 @@ url: /
 			<h3>Login to Quiver Web Portal.</h3>
 			<br>
 
-			<form class="login-form" ng-sugmit="userLogin(loginInfo)" ng-controller="UserProfileCtrl as userProfileCtrl">
+			<form class="login-form" ng-submit="userProfileCtrl.userLogin()" ng-controller="UserProfileCtrl as userProfileCtrl">
 	
 				<label>
-					Email
+					User Name
 					<span class="inline-label">
-						<input type="text" ng-model="loginInfo.email">
+						<input type="text" ng-model="userProfileCtrl.userLoginInfo.username" required>
 					</span>
 				</label>
 
 				<label>
 					Password
 					<span class="inline-label">
-						<input type="loginInfo.password" >
+						<input type="password" ng-model="userProfileCtrl.userLoginInfo.password" required>
 					</span>
 				</label>
 
 				<br>
-				<a ui-sref="messages" class="button success expand">Login</a>
+				<button type="submit" class="button success expand">Login</button>
 
 			</form>
 

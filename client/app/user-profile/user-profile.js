@@ -3,7 +3,8 @@
 
   angular.module('user-profile', [
   		'enterprise-portal.models.user',
-      'user-profile.edit'
+      'user-profile.edit',
+      'user-profile.register'
   	])
 
     .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -13,10 +14,6 @@
           url: '/user',
           templateUrl: '/app/user-profile/user-profile.tmpl.html',
           controller: 'UserProfileCtrl as userProfileCtrl'
-        })
-        .state('register', {
-          url: '/register',
-          templateUrl: '/app/user-profile/register/user-profile-register.tmpl.html'
         }); 
 
     }])
@@ -30,8 +27,11 @@
         userProfileCtrl.user = null;
         $rootScope.isLoggedIn = false;
 
+        userProfileCtrl.userLoginInfo = {};
 
-        userProfileCtrl.userLogin = function(loginInfo) {
+
+
+        userProfileCtrl.userLoginMock = function(loginInfo) {
           //console.log(loginInfo);
           UserModel.getUserDetail()
           .then(function(result) {
@@ -41,14 +41,15 @@
           }); 
         };
 
-        userProfileCtrl.userLogin();
+        function userLogin() {
+          //console.log(userProfileCtrl.userLoginInfo);
+          UserModel.login(userProfileCtrl.userLoginInfo);
+        }
 
-        UserModel.loginMock();
+        userProfileCtrl.userLogin = userLogin;
 
+        //userProfileCtrl.userLoginMock();
 
-        userProfileCtrl.registerNewUser = function(newUser) {
-          console.log(newUser.username)
-        };
   
   }]);
 

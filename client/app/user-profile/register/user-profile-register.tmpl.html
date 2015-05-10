@@ -1,5 +1,5 @@
 
-<div class="grid-block page-profile" ng-controller="UserProfileCtrl">
+<div class="grid-block page-profile">
 	<div class="grid-content">
 
 		<section class="card medium-6 medium-offset-3 register-user-box grid-content">
@@ -17,40 +17,39 @@
 			</section>
 
 			<hr>
-			{{company}}
 
 			<h3>Register a New User</h3>
 			
-			<form class="register-form" ng-sugmit="registerNewUser(newUser)">
+			<form role="form" class="register-form" ng-submit="registerUserCtrl.registerNewUser()">
 
 				<label>
 					Username
 					<span class="inline-label">
-						<input type="text" ng-model="newUser.username">
+						<input type="text" ng-model="registerUserCtrl.newUser.username" required>
 					</span>
 				</label>
 				
 				<label>
 					Email
 					<span class="inline-label">
-						<input type="text" ng-model="newUser.email">
+						<input type="text" ng-model="registerUserCtrl.newUser.email" required>
 					</span>
 				</label>
 
 				<label>
 					Password
 					<span class="inline-label">
-						<input type="password" >
+						<input type="password" ng-model="registerUserCtrl.newUser.password" required>
 					</span>
 				</label>
-				<label>
+				<!-- <label>
 					Confirm Password
 					<span class="inline-label">
 						<input type="password" >
 					</span>
-				</label>
+				</label> -->
 				<br>
-				<a ui-sref="messages" class="button expand">Register</a>
+				<button type="submit" class="button expand">Register</button>
 
 			</form>
 		</section>
