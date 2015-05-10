@@ -48,7 +48,7 @@
 
         userProfileCtrl.userLogin = userLogin;
 
-        //userProfileCtrl.userLoginMock();
+        userProfileCtrl.userLoginMock();
 
   
   }]);

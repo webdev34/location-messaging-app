@@ -53,12 +53,13 @@
           // this callback will be called asynchronously
           // when the response is available
           console.log('success');
-           console.log(data);
+          console.log(data);
           console.log(status);
           console.log(headers);
           console.log(config);
         })
         .error(function(data, status, headers, config) {
+          console.log('error');
           console.log(data);
           console.log(status);
           console.log(headers);
