@@ -1,20 +1,18 @@
-<header class="primary condense menu-group g-header" ng-controller="UserProfileCtrl as userProfileCtrl">
+<header class="menu-group g-header" ng-controller="UserProfileCtrl as userProfileCtrl">
   
-  <div class="menu-group-left">
-    <ul class="menu-bar">
-      <li><a ui-sref="home"><strong>Quiver Enterprise Portal</strong></a></li>
-    </ul>
-  </div>
+  <a ui-sref="home" class="header-branding">
+    <img class="header-logo" src="/assets/img/logo/header-logo.png" alt="Quiver">
+    <span class="portal-branding">Enterprise Portal</span>
+  </a>
   
-  <nav class="menu-group-right">
+  <nav class="menu-group-right header-nav">
     <ul class="menu-bar icon-left">
       <li><a ui-sref="admin">Admin</a></li>
       <li><a ui-sref="messages.dashboard" >Messages</a></li>
       <li><a ui-sref="enterprise.profile" >Enterprise Settings</a></li>
       <li>
         <a zf-toggle="user-panel" class="button__user">
-          <img zf-iconic="" icon="person" size="small" class="iconic-color-primary">
-          {{userProfileCtrl.user.fullName}}
+          <span class="icon i-header-user"></span>
         </a>
       </li>
     </ul>

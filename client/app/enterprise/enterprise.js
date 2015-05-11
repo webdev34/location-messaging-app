@@ -54,7 +54,7 @@
             "name": "",
             "title": "",
             "username": "",
-            "avatar": "assets/images/avatar.jpg",
+            "avatar": "assets/img/avatar.jpg",
             'userType': null
           }
 

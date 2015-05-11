@@ -26,8 +26,6 @@
         function registerNewUser() {
           console.log('from ctrl:' + registerUserCtrl.newUser);
           UserModel.registerUser(registerUserCtrl.newUser);
-
-
         }
 
         registerUserCtrl.registerNewUser = registerNewUser;
