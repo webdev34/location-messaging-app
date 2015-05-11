@@ -1,59 +1,31 @@
+<div class="page page--login">
 
-<div class="grid-block page-profile">
-	<div class="grid-content">
+	<section class="corporate-info" ng-controller="EnterpriseCtrl as enterpriseCtrl">
+		<div class="clearfix">
 
-		<section class="card medium-6 medium-offset-3 register-user-box grid-content">
-			<br>
-
-			<section class="corporate-info" ng-controller="EnterpriseCtrl as enterpriseCtrl">
-				<div class="clearfix">
-					<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="avatar">
-				
-					<div class="profile-details">
-						<h2>{{enterpriseCtrl.company.companyName}}</h2>
-						<h4>@{{enterpriseCtrl.company.username}}</h4>
-					</div>
-				</div>
-			</section>
-
-			<hr>
-
-			<h3>Register a New User</h3>
-			
-			<form role="form" class="register-form" ng-submit="registerUserCtrl.registerNewUser()">
-
-				<label>
-					Username
-					<span class="inline-label">
-						<input type="text" ng-model="registerUserCtrl.newUser.username" required>
-					</span>
-				</label>
-				
-				<label>
-					Email
-					<span class="inline-label">
-						<input type="text" ng-model="registerUserCtrl.newUser.email" required>
-					</span>
-				</label>
-
-				<label>
-					Password
-					<span class="inline-label">
-						<input type="password" ng-model="registerUserCtrl.newUser.password" required>
-					</span>
-				</label>
-				<!-- <label>
-					Confirm Password
-					<span class="inline-label">
-						<input type="password" >
-					</span>
-				</label> -->
+			<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo">
+		
+			<div class="corp-details">
+				{{enterpriseCtrl.company.companyName}}
 				<br>
-				<button type="submit" class="button expand">Register</button>
+				@{{enterpriseCtrl.company.username}}
+			</div>
+		</div>
 
-			</form>
-		</section>
+		<div class="arrow-down"></div>
+	</section>
 
-	</div>
-	
+	<form class="login-form register-form qvr-form on-dark  medium-4 medium-offset-4" ng-submit="registerUserCtrl.registerNewUser()">
+
+		<input type="text" placeholder="Name" ng-model="registerUserCtrl.newUser.fullName" required>
+		<input type="text" placeholder="@handle" ng-model="registerUserCtrl.newUser.username" required>
+		<input type="text" placeholder="Email" ng-model="registerUserCtrl.newUser.email" required>
+		<input type="password" placeholder="Password" ng-model="registerUserCtrl.newUser.password" required>
+\
+		<div class="qvr-align-center">
+			<button type="submit" class="qvr-button on-dark">Register</button>
+		</div>
+
+	</form>
+
 </div>
