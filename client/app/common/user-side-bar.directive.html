@@ -1,23 +1,24 @@
 <span ng-controller="UserProfileCtrl as userProfileCtrl">
-  <div class="card dark user-info">
+  <div class="user-info">
 
     <img ng-src="{{userProfileCtrl.user.avatar}}">
   
-    <div class="card-divider">
-      <a ui-sref="user-profile" zf-toggle="user-panel"><h4>{{ userProfileCtrl.user.fullName }}</h4></a>
-      <a ui-sref="user-profile" zf-toggle="user-panel"><h5 class="sunbeader">@{{userProfileCtrl.user.username}}</h4></a>
+    <div class="user-headings">
+      <a ui-sref="user-profile" zf-toggle="user-panel" class="fullname">{{ userProfileCtrl.user.fullName }}</a>
+      <br>
+      <a ui-sref="user-profile" zf-toggle="user-panel" class="username">@{{userProfileCtrl.user.username}}</a>
     </div>
 
-    <div class="card-section">
+    <div class="description">
       <h4>Description</h4>
       <p>{{userProfileCtrl.user.description}}</p>
     </div>
 
   </div>
 
-  <ul class="vertical menu-bar primary">
-    <li><a ui-sref="user-profile/edit" zf-toggle="user-panel">Edit Profile</a></li>
-    <li><a href="#">Logout</a></li>
-  </ul>
+  <nav class="user-side-bar-menu">
+    <a class="edit" ui-sref="user-profile/edit" zf-toggle="user-panel">Edit Profile</a>
+    <a href="#" class="signout">Sign Out</a>
+  </nav>
 
 </span>

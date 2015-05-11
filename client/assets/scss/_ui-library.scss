@@ -5,6 +5,8 @@ $qvr-secondary-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
 
 //Colors
 $qvr-color-body: #7F8184;
+$qvr-warning-color: #F15A29;
+
 $qvr-color-1: #00A8CB;
 
 //Global Styles
@@ -97,9 +99,65 @@ body {
 
 
 .g-user-panel {
+	text-align: center;
 
 	.user-info {
-		margin-top: 3em;
+		background-color: #7F8184;
+
+		.user-headings {
+			background-color: $qvr-color-1;
+			color: #fff;
+			padding: 32px 0;
+			line-height: 1.5em;
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			.fullname {
+				font-size: 23px;
+				font-weight: 700;
+			}
+
+			.username {
+				font-size: 16px;
+				font-weight: 300;
+			}
+		}
+
+		.description {
+			padding: 42px 25px;
+
+			h4 {
+				font-size: 23px;
+				font-weight: 700;
+				color: #fff;
+			}
+			p {
+				font-size: 16px;
+				font-weight: 300;
+			}
+		}
+	}
+
+	.user-side-bar-menu {
+		a {
+			display: block;
+			color: #fff;
+			font-family: $qvr-primary-font;
+			font-weight: 700;
+			font-size: 18px;
+			text-align: center;
+			padding: 30px 0;
+
+			&.edit {
+				background-color: $qvr-color-1;
+			}
+
+			&.signout {
+				background-color: $qvr-warning-color;
+			}
+		}
 	}
 
 	a { color: inherit }
