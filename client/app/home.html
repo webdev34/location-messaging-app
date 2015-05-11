@@ -3,53 +3,34 @@ name: home
 url: /
 ---
 
-<div class="grid-container page-profile">
+<div class="page page--login">
 
-	<div class="card medium-8 medium-offset-2" style="margin-top: 2rem;" >
-		<div class="grid-content">
-			<br>
+	<section class="corporate-info" ng-controller="EnterpriseCtrl as enterpriseCtrl">
+		<div class="clearfix">
 
-			<section class="corporate-info" ng-controller="EnterpriseCtrl as enterpriseCtrl">
-				<div class="clearfix">
-					<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="avatar">
-				
-					<div class="profile-details">
-						<h2>{{enterpriseCtrl.company.companyName}}</h2>
-						<h4>@{{enterpriseCtrl.company.username}}</h4>
-					</div>
-				</div>
-			</section>
-			<hr>
-
-			<h3>Login to Quiver Web Portal.</h3>
-			<br>
-
-			<form class="login-form" ng-submit="userProfileCtrl.userLogin()" ng-controller="UserProfileCtrl as userProfileCtrl">
-	
-				<label>
-					User Name
-					<span class="inline-label">
-						<input type="text" ng-model="userProfileCtrl.userLoginInfo.username" required>
-					</span>
-				</label>
-
-				<label>
-					Password
-					<span class="inline-label">
-						<input type="password" ng-model="userProfileCtrl.userLoginInfo.password" required>
-					</span>
-				</label>
-
-				<br>
-				<button type="submit" class="button success expand">Login</button>
-
-			</form>
-
-
-			<a ui-sref="register" class="expand button">Register a New User</a>
-		</div>
+			<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo">
 		
-	</div>
+			<div class="corp-details">
+				{{enterpriseCtrl.company.companyName}}
+				<br>
+				@{{enterpriseCtrl.company.username}}
+			</div>
+		</div>
+
+		<div class="arrow-down"></div>
+	</section>
+
+	<form class="login-form qvr-form on-dark  medium-4 medium-offset-4" ng-submit="userProfileCtrl.userLogin()" ng-controller="UserProfileCtrl as userProfileCtrl">
+
+		<input type="text" placeholder="Username" ng-model="userProfileCtrl.userLoginInfo.username" required>
+		<input type="password" placeholder="Password" ng-model="userProfileCtrl.userLoginInfo.password" required>
+
+		<button type="submit" class="qvr-button on-dark float-left">Login</button>
+		<a ui-sref="register" class="qvr-button on-dark float-right">Register New User</a>
+
+
+	</form>
+
 
 
 </div>

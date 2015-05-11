@@ -3,11 +3,18 @@
 $qvr-primary-font: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $qvr-secondary-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
+
+
 //Colors
 $qvr-color-body: #7F8184;
 $qvr-warning-color: #F15A29;
-
 $qvr-color-1: #00A8CB;
+$qvr-color_on-dark: #B9E9FF;
+
+//Sizes
+$qvr-input-btn-height: 53px;
+$qvr-border-radius: 7px;
+
 
 //Global Styles
 html {
@@ -19,8 +26,9 @@ body {
 	color: $qvr-color-body;
 }
 
-//icons
 
+
+//icons
 .icon {
 	display: inline-block;
 	background-size: cover;
@@ -34,8 +42,20 @@ body {
 
 }
 
+//CSS Shapes
+.arrow-down {
+	width: 0; 
+	height: 0; 
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	
+	border-top: 20px solid #f00;
+}
+
+
 // Global Header
 .g-header {
+	padding-bottom: 0.5em;
 
 	.header-branding {
 		float: left;
@@ -214,7 +234,7 @@ body {
 
 //Forms
 form {
-
+	//styling Foundation Apps form
 	input {
 		&.h1 { @extend h1; height: inherit;}
 		&.h2 { @extend h2; height: inherit;}
@@ -227,5 +247,83 @@ form {
 	}
 	.dashed-border {
 		border: 1px dashed;
+	}
+}
+
+
+//Quiver Custom Form
+.qvr-form {
+	$qvr-form_color-1: #ccc;
+	$qvr-form_placeholder-color: #f2f2f2;
+
+	::-webkit-input-placeholder {
+	   color: $qvr-form_placeholder-color;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+	   color: $qvr-form_placeholder-color;  
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+	   color: $qvr-form_placeholder-color;  
+	}
+
+	:placeholder {  
+	   color: $qvr-form_placeholder-color;  
+	}
+
+	
+	input {
+		height: $qvr-input-btn-height;
+		border: 1px solid $qvr-form_color-1;
+		border-radius: $qvr-border-radius;
+		background-color: transparent;
+		color: $qvr-form_color-1;
+		transition: all 0.4s ease-in-out;
+		padding: 0 1em;
+	}
+
+	&.on-dark {
+		input {
+			color: #f2f2f2;
+			border-color: $qvr-color_on-dark;
+
+			&:focus, &:hover {
+				background-color: inherit;
+				border-color: #fff;
+				color: #fff;
+			}
+
+		}
+
+	}
+
+}
+
+//Quiver Custom Buttons
+.qvr-button {
+	display: inline-block;
+	height: $qvr-input-btn-height;
+	line-height: $qvr-input-btn-height;
+	border-radius: $qvr-border-radius;
+	padding: 0 1em;
+	text-align: center;
+	box-shadow: none;
+	border: none;
+
+	font-family: $qvr-secondary-font;
+	font-weight: 700;
+	font-size: 14px;
+
+	transition: all 0.4s ease-in-out;
+
+	&.on-dark {
+		background-color: $qvr-color_on-dark;
+		color: $qvr-color-1;
+
+		&:hover {
+			background-color: darken($qvr-color_on-dark, 5%);
+
+		}
 	}
 }

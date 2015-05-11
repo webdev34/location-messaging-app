@@ -1,3 +1,53 @@
+.page-container {
+		display: flex;
+		align-items: stretch;
+		padding: 0;
+
+}
+
+.page {
+	width: 100%;
+
+}
+.page--login {
+	background-color: $qvr-color-1;
+
+	.corporate-info {
+		position: relative;
+		text-align: center;
+		background: #fff;
+		padding: 20px 0 35px 0;
+
+		.arrow-down {
+			position: absolute;
+			left: 50%;
+			margin: 0 0 -20px -20px;
+			bottom: 0;
+			border-top-color: #fff;
+		}
+
+		.corp-logo {
+			max-width: 300px;
+		}
+
+		.corp-details {
+			font-weight: 300;
+			font-size: 14px;
+			line-height: 1.3em;
+		}
+
+	}
+
+	.login-form {
+		margin-top: 100px;
+
+		.qvr-button {
+			width: 49%;
+		}
+	}
+
+}
+
 .page-profile {
 	margin-top: 2em;
 
