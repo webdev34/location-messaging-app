@@ -90,149 +90,159 @@
 }
 
 .page--messages {
-
-	header {
-		h2 {
-			float: left;
-		}
-
-		.title-edit {
-			@extend h3;
-			height: inherit;
-		}
-
-		.select-status {
-			margin-left: 1rem;
-		}
-	}
-
-	.qvr-btn-dashboard {
-		display: inline-block;
-		font-size: 20px;
-		font-weight: 700;
-		color: #fff;
-		background-color: transparent;
-		height: 100%;
-		width: 100%;
-		text-align: center;
-		transition: all 0.4s ease-in-out;
-
-		&:hover {
-			background-color: rgba(255,255,255,0.2);
-		}
-
-		.icon {
-			margin-bottom: -7px;
-			margin-right: 18px;
-		}
-	}
-
-	.qvr-btn-new-message {
-		display: block;
-		margin: 20px 20px;
-		height: 70px;
-		line-height: 70px;
-		border-radius: 20px;
-		font-size: 16px;
-		text-transform: capitalize;
-	}
+	display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0;
 
 
+	.messages-sidebar-wrap { width: 250px;}
+  .messages-view-wrap    { flex: 1;  }
 
-	.owner {
-		display: inline-block;
+	.message-side-nav {
 
-		line-height: 40px;
-		margin: 0 0 1rem 0;
-
-		.avatar.small {
-			float: left;
-			width: 40px;
-			height: 40px;
-			margin-right: 1rem;
-		}
-	}
-	
-	.status-box {
-		margin-top: 2.5rem;
-	}
-
-	.message-box {
-		padding: 1rem;
-		width: 100%;
-		display: flex;
-		 align-items: stretch;
-
-		.company-logo {
-			width: 60px;
-			height: 60px;
-		}
-
-		.message-input {
-			margin: 10px 0 0 10px;
-			border: none;
-			font-size: 1.2rem;
-		}
-	}
-
-
-	.message-side-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		
-		li {
-			display: flex;
-			margin: 0 0;
-			padding: 0;
-		}
-		a {
-			@extend .clearfix;
-			display: block;
-	  	width: 100%;
-	  	height: 50px;
-	  	line-height: 50px;
-			padding: 0 1rem;
-			border-bottom: 1px solid #f2f2f2;
-			transition: all 0.3s ease-in-out;
+		.qvr-btn-dashboard {
+			display: inline-block;
+			font-size: 20px;
 			font-weight: 700;
-			color: $qvr-color-body;
-			font-size: 12px;
+			color: #fff;
+			background-color: transparent;
+			height: 100%;
+			width: 100%;
+			text-align: center;
+			transition: all 0.4s ease-in-out;
 
-
-			&:hover, &.active {
-				border-bottom: 1px solid darken(#f2f2f2, 20%);
-				background: #f2f2f2;
+			&:hover {
+				background-color: rgba(255,255,255,0.2);
 			}
 
-			.status-label {
-				display: inline-block;
-				width: 55px;
-				margin-right: 1rem;
-				color: $qvr-color-1;
+			.icon {
+				margin-bottom: -7px;
+				margin-right: 18px;
 			}
-
 		}
-	}
+
+		.qvr-btn-new-message {
+			display: block;
+			margin: 20px 20px;
+			height: 70px;
+			line-height: 70px;
+			border-radius: 20px;
+			font-size: 16px;
+			text-transform: capitalize;
+		}
+
+		.message-side-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			
+			li {
+				display: flex;
+				margin: 0 0;
+				padding: 0;
+			}
+			a {
+				@extend .clearfix;
+				display: block;
+		  	width: 100%;
+		  	height: 50px;
+		  	line-height: 50px;
+				padding: 0 1rem;
+				border-bottom: 1px solid #f2f2f2;
+				transition: all 0.3s ease-in-out;
+				font-weight: 700;
+				color: $qvr-color-body;
+				font-size: 12px;
+				
+				.icon {
+					margin: 17px 0 0 0;
+				}
+
+				&:hover, &.active {
+					border-bottom: 1px solid darken(#f2f2f2, 20%);
+					background: #f2f2f2;
+				}
+
+				.status-label {
+					display: inline-block;
+					width: 55px;
+					margin-right: 1rem;
+					color: $qvr-color-1;
+				}
+
+			}
+		}
+
+  }
+
+  .message-content-wrap {
+  	padding: 20px 0 0 80px;
+  	.owner {
+			display: inline-block;
+
+			line-height: 40px;
+			margin: 0 0 1rem 0;
+
+			.avatar.small {
+				float: left;
+				width: 40px;
+				height: 40px;
+				margin-right: 1rem;
+			}
+		}
+		
+		.status-box {
+			margin-top: 2.5rem;
+		}
+
+		.message-box {
+			padding: 1rem;
+			width: 100%;
+			display: flex;
+			 align-items: stretch;
+
+			.company-logo {
+				width: 60px;
+				height: 60px;
+			}
+
+			.message-input {
+				margin: 10px 0 0 10px;
+				border: none;
+				font-size: 1.2rem;
+			}
+		}
+  }
+
 
 	.message-active-list {
-		padding-top: 2rem;
-		width: 800px;
+		margin-bottom: 5rem;
+
+		.title-width { 
+			display: inline-block;
+			width: 215px;
+			float: left;
+		}
+
+		.message-title {
+			padding-left: 50px;
+			font-size: 12px;
+			font-weight: 700;
+			color: $qvr-color-body;
+		}
 
 		.stats {
-			float: right;
+			@extend .clearfix;
+			text-align: center;
 
 			span {
 				display: inline-block;
 				float: left;
-				width: 65px;
-				height: 30px;
-				line-height: 30px;
-				border: $code-border-color;
-				border-radius: 3px;
-				text-align: center;
-				background: #dfdfdf;
-				margin-left: 1rem;
+				width: 90px;
+				height: 50px;
+				line-height: inherit;
 			}
 		}
 
@@ -243,12 +253,13 @@
 				margin-right: 1rem;
 				font-size: 12px;
 				color: #777;
-				margin-top: 1rem;
+				//margin-top: 1rem;
 
 				span {
-					line-height: 30px;
-					background: none;
-					border: 1px solid $code-border-color;
+					font-size: 12px;
+					text-transform: uppercase;
+					font-weight: bold;
+					color: #fff;
 				}
 			}
 		}
@@ -257,17 +268,47 @@
 			margin: 0;
 			padding: 0;
 			list-style: none;
+			display: flex;
+			flex-direction: column;
 
 			li {
 				@extend .clearfix;
-				margin: 0 0 0.5rem 0;
-				padding: 1rem;
-				border: 1px solid $code-border-color;
-				transition: all 0.3s ease-in-out;
+				margin: 0;
+				padding: 0;
+				height: 50px;
+				line-height: 50px;
+				transition: all 0.4s ease-in-out;
+				border-bottom: 1px solid #F2F2F2;
+				font-size: 12px;
+				font-weight: bold;
 
-				&:hover {
-					border: 1px solid darken($code-border-color, 40%);
+				a {
+					transition: all 0.4s ease-in-out;
+					
+					&:hover {
+						color: $qvr-color-1;
+					}
 				}
+				
+				&:hover {	
+					background-color: #f2f2f2;
+
+					.stats {
+						span {
+							border-color: darken(#F2F2F2, 20%);
+						}
+					}
+				}
+
+				.stats {
+					span {
+						color: $qvr-color-1;
+						border-left: 1px solid #f2f2f2;
+						transition: all 0.4s ease-in-out;
+
+					}
+				}
+
 			}
 		}
 	}
@@ -277,28 +318,63 @@
 
 		ul {
 			list-style: none;
-			margin: 0;
+			margin: 25px 45px;
 			padding: 0;
-			max-width: 650px;
+			max-width: 615px;
 
 			li {
-				display: block;
-				border: 1px solid $code-border-color;
-				padding: 1rem;
+				border: 1px solid #ccc;
+				border-radius: 10px;
+				padding: 12px 25px 12px 20px;
 				margin-bottom: 0.5rem;
+				transition: all 0.2s ease-in-out;
+				
+				display: flex;
+				flex-direction: row;
+  			flex-wrap: nowrap;
 
-				&:hover {
-					border: 1px solid darken($code-border-color, 40%);
+  			&:hover {
+					border: 1px solid darken(#ccc, 10%);
+					background-color: #f2f2f2;
 				}
 
-				.message {
-					margin: 0.5rem 1.5rem;
+				
+				.user {order: 1}
+
+				.update-body {
+					order: 2; 
+					flex: 2;
+					font-size: 12px;
+					font-weight: 700;
+
+					header {
+						padding: 0 0 0.5em 0;
+					}
+
+					a {
+						color: $qvr-color-1;
+					}
+
+					p {
+						font-weight: 300;
+						margin-bottom: 0.5em;
+						line-height: 1.2em;
+					}
+
+					.location {
+						.icon { margin-bottom: -5px;}
+					}
+
 				}
+
+				.link-wrap {
+					order: 3; 
+					padding-top: 10px;
+				}
+				
 			}
 		}
 	}
-
-	
 
 	.measure {
 

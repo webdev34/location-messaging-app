@@ -1,11 +1,7 @@
-
-<div class="heading-bar">
-	hello
-</div>
-
 <section class="message-active-list" ng-controller="ActiveMessageController">
-	<header>
-		<h2 class="float-left">Active Messages</h2>
+	
+	<header class="heading-bar">
+		<h1 class="float-left title-width">Active Messages</h1>
 		<div class="stats">
 			<span>Sent</span>
 			<span>Read</span>
@@ -15,9 +11,10 @@
 			<span>Saves</span>
 		</div>
 	</header>
+
 	<ul>
 		<li ng-repeat="message in active.messages">
-			<a>{{message.content}}</a>
+			<a ui-sref="messages.detail({_id:1})" class="message-title title-width">{{message.content}}</a>
 			<div class="stats">
 				<span>{{message.sentCount}}</span>
 				<span>{{message.recipientCount}}</span>
@@ -28,42 +25,47 @@
 			</div>
 		</li>
 	</ul>
-	<hr>
 
 </section>
 
 <section class="live-feed" ng-controller="LiveFeedController">
-	<h2>Live Feed</h2>
+	<header class="heading-bar">
+		<h1>Live Feed</h1>
+	</header>
 
 	<ul>
-		<li ng-repeat="update in feed.updates">
-			<div class="clearfix">
-				<div class="float-right">
-					<a href="" class="button small secondary">...</a>
-				</div>
-				<div class="float-left">
-					<a href="">
-						<img zf-iconic="" icon="person" size="small">
-						John Smith
-					</a>
-					discovered <a href="">Message 1</a>.
-				</div>
-			</div>
-			<div class="message">
-				<span class="quote">"</span>
-				This is the public message...
-			</div>
-			<hr>
-			<div class="clearfix">
-				<div class="float-right">
-					<span class="success label">12:35pm</span>
-				</div>
-				<div class="float-left">
-					<span class="secondary badge">.</span>
-					CN Tower, Toronto,ON
 
-				</div>
+		<li ng-repeat="update in feed.updates">
+
+			<div class="user">
+				<span class="icon i-user-large"></span>
 			</div>
+
+			<div class="update-body">
+
+				<header>
+					<a>John Smith</a> Discovered <a>Message 1 Title</a>
+				</header>
+
+				<p>
+					This is the message content truncated to two lines. Anything beyond two lines should be cut off and displayed with some of the word from the mes... 
+				</p>
+
+				<div class="location">
+					<span class="icon i-location"></span>
+					CN Tower, Toronto, ON
+				</div>
+
+			</div>
+
+			<div class="link-wrap">
+				<a>
+					<span class="icon i-btn-arrow-right"></span>
+				</a>
+			</div>
+
 		</li>
+
 	</ul>
+
 </section>
