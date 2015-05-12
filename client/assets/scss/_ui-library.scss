@@ -9,7 +9,7 @@ $qvr-secondary-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
 $qvr-color-body: #7F8184;
 $qvr-warning-color: #F15A29;
 $qvr-color-1: #00A8CB;
-$qvr-color_on-dark: #B9E9FF;
+$qvr-color-2: #B9E9FF;
 
 //Sizes
 $qvr-input-btn-height: 53px;
@@ -43,11 +43,22 @@ body {
 	display: inline-block;
 	background-size: cover;
 
-
 	&.i-header-user {
 		background-image: url(/assets/img/icons/i-header-user.png);
 		width: 26px;
 		height: 24px;
+	}
+
+	&.i-dashboard {
+		background-image: url(/assets/img/icons/i-dashboard.png);
+		width: 34px;
+		height: 34px;
+	}
+
+	&.i-search {
+		background-image: url(/assets/img/icons/i-search-zoom.png);
+		width: 20px;
+		height: 20px;
 	}
 
 }
@@ -239,7 +250,7 @@ body {
 
 //Global Side Nav
 .g-side-nav {
-	margin: 1em;
+	padding-right: 1px;
 }
 
 //Forms
@@ -296,7 +307,7 @@ form {
 	&.on-dark {
 		input {
 			color: #f2f2f2;
-			border-color: $qvr-color_on-dark;
+			border-color: $qvr-color-2;
 
 			&:focus, &:hover {
 				background-color: inherit;
@@ -306,6 +317,29 @@ form {
 
 		}
 
+	}
+
+}
+
+.qvr-search-wrap {
+	position: relative;
+
+	.icon.i-search {
+		position: absolute;
+		top: 10px;
+		left: 20px;
+	}
+
+	input.qvr-search-messages {
+		display: block;
+		background-color: $qvr-color-2;
+		height: 40px;
+		line-height: 40px;
+		text-align: left;
+		padding-left: 45px;
+		border: none;
+		font-size: 12px;
+		font-weight: 300;
 	}
 
 }
@@ -327,13 +361,24 @@ form {
 
 	transition: all 0.4s ease-in-out;
 
+	&.warning {
+		background-color: $qvr-warning-color;
+		color: #fff;
+
+		&:hover {
+			background-color: lighten($qvr-warning-color, 10%);
+		}
+	}
+
 	&.on-dark {
-		background-color: $qvr-color_on-dark;
+		background-color: $qvr-color-2;
 		color: $qvr-color-1;
 
 		&:hover {
-			background-color: darken($qvr-color_on-dark, 5%);
+			background-color: darken($qvr-color-2, 5%);
 
 		}
 	}
+
+
 }

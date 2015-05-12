@@ -89,7 +89,7 @@
 
 }
 
-.page-messages {
+.page--messages {
 
 	header {
 		h2 {
@@ -105,6 +105,38 @@
 			margin-left: 1rem;
 		}
 	}
+
+	.qvr-btn-dashboard {
+		display: inline-block;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		background-color: transparent;
+		height: 100%;
+		width: 100%;
+		text-align: center;
+		transition: all 0.4s ease-in-out;
+
+		&:hover {
+			background-color: rgba(255,255,255,0.2);
+		}
+
+		.icon {
+			margin-bottom: -7px;
+			margin-right: 18px;
+		}
+	}
+
+	.qvr-btn-new-message {
+		display: block;
+		margin: 20px 20px;
+		height: 70px;
+		line-height: 70px;
+		border-radius: 20px;
+		font-size: 16px;
+		text-transform: capitalize;
+	}
+
 
 
 	.owner {
@@ -151,23 +183,33 @@
 		
 		li {
 			display: flex;
-			margin: 0 0 .5rem 0;
+			margin: 0 0;
 			padding: 0;
 		}
 		a {
 			@extend .clearfix;
 			display: block;
-	  		width: 100%;
-			padding: 0.5rem;
-			border: 1px solid $code-border-color;
+	  	width: 100%;
+	  	height: 50px;
+	  	line-height: 50px;
+			padding: 0 1rem;
+			border-bottom: 1px solid #f2f2f2;
 			transition: all 0.3s ease-in-out;
+			font-weight: 700;
+			color: $qvr-color-body;
+			font-size: 12px;
 
-			&:hover {
-				border: 1px solid darken($code-border-color, 40%);
+
+			&:hover, &.active {
+				border-bottom: 1px solid darken(#f2f2f2, 20%);
+				background: #f2f2f2;
 			}
 
-			&.active {
-				background: #e0e0e0;
+			.status-label {
+				display: inline-block;
+				width: 55px;
+				margin-right: 1rem;
+				color: $qvr-color-1;
 			}
 
 		}

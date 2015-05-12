@@ -1,36 +1,34 @@
-<div class="g-side-nav">
+<div class="g-side-nav grid-content">
 	<div class="heading-bar">
-			<a ui-sref="messages.dashboard" class="" ng-click="openDashboard()">
-				<img zf-iconic="" icon="dashboard" size="small">
+			<a ui-sref="messages.dashboard" class="qvr-btn-dashboard" ng-click="openDashboard()">
+				<span class="icon i-dashboard"></span>
 					Dashboard
 			</a>
 	</div>
 
 	
-	<hr>
 
-	<label>
-		<span class="inline-label">
-			<span class="form-label">
-				<img zf-iconic="" icon="magnifying-glass" size="small" class="iconic-color-primary">
-			</span>
-			<input type="search" placeholder="Search Messages">
-		</span>
-	</label>
+	<a ui-sref="messages.new" class="qvr-button warning qvr-btn-new-message">+ New Message</a>
+
+	<div class="qvr-search-wrap">
+		<span class="icon i-search"></span>
+		<input type="search" class="qvr-search-messages" placeholder="Search Messages">
+	</div>
+
 
 
 	<ul class="message-side-list" ng-controller="MessageListCtrl as messageListCtrl">
 		<li ng-repeat="message in messageListCtrl.messages.messages">
 			<a  ui-sref="messages.detail({_id:message._id})" ui-sref-active="active"  >
-				{{message.messageTitle}} + {{message._id}} <!-- Remove the second part when integrating-->
-				<span class="float-right success label">
+				<span class="status-label">
 					{{message.status}}
 				</span>
+				{{message.messageTitle}} + {{message._id}} <!-- Remove the second part when integrating-->
+				
 			</a>
 		</li>
 
 	</ul>
 
 
-	<a ui-sref="messages.new" class="button large align-center expanded">+ New Message</a>
 </div>
