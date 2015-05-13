@@ -371,6 +371,10 @@ form {
 		resize: none;
 		padding: 1em;
 		color: $qvr-form_color-1;
+
+		&.text-description {
+			height: 140px;
+		}
 	}
 
 }
@@ -508,6 +512,14 @@ input[type="checkbox"].qvr-slide-toggle {
 		&:hover {
 			border-color: darken($qvr-color-body, 10%);
 		}
+	}
+
+	&.small {
+		height: $qvr-input-btn-height_small;
+		line-height: $qvr-input-btn-height_small;
+		padding: 0 1em;
+		font-size: 12px;
+		font-weight: 400;
 	}
 
 }

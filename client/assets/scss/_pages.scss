@@ -109,19 +109,10 @@
 				}
 			}
 
-			.text-description {
-				height: 140px;
-			}
+			
 		}
 		
 	}
-
-
-
-
-	
-
-
 
 }
 
@@ -748,6 +739,12 @@
 				font-size: 20px;
 				color: $qvr-color-1;
 			}
+  	}
+
+  	.enterprise-edit-form {
+
+  		max-width: 420px;
+  		label { font-size: 12px; font-weight: 700;}
   	}
 	
   }
