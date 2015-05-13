@@ -33,7 +33,8 @@
             "_id": "",
             "messageTitle": "",
             "content": "",
-            "status": ""
+            "status": "",
+            "range": 5
           };
         }
 

@@ -269,6 +269,7 @@ p {
 			p {
 				font-size: 16px;
 				font-weight: 300;
+				color: #fff;
 			}
 		}
 	}
@@ -458,7 +459,8 @@ input[type="checkbox"].qvr-slide-toggle {
   background-size: 100% 100%, 200% 100%;
   background-position: 0 0, 5px 0;
   border-radius: 20px;
-  
+  padding: 0;
+  border: none;
   cursor: pointer;
   height: 32px;
   position: relative;

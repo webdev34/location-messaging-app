@@ -217,8 +217,8 @@
 			line-height: 1.5em;
 
 			.avatar.small {
-				width: 40px;
-				height: 40px;
+				width: 60px;
+				height: 60px;
 			}
 		}
 		
@@ -336,7 +336,7 @@
 			margin-bottom: 2rem;
 			margin-right: 4rem;
 
-			.date {
+			span.date {
 				font-size: 26px;
 				font-weight: 700;
 				color: #999;
@@ -346,6 +346,21 @@
 			.icon {
 				margin-bottom: -5px;
 				margin-right: 10px;
+			}
+
+			input {
+				width: 320px;
+				padding-right: 50px;
+				background-repeat: no-repeat;
+				background-size: 30px;
+				background-position: 275px 10px;
+			}
+
+			input.date {
+				background-image: url(/assets/img/icons/i-calendar.png);
+			}
+			input.hourglass {
+				background-image: url(/assets/img/icons/i-hourglass.png);
 			}
 		}
 		
