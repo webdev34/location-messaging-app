@@ -29,15 +29,17 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		margin: 3rem 5rem;
+		margin: 3rem 0;
 		padding: 0;
 		justify-content: space-around;
 
 		.profile-detail {
 			order: 1;
 			width: 50%;
+			margin-left: 5rem;
 			font-size: 22px;
 			font-weight: 300;
+			max-width: 420px;
 
 			.names {
 				float: left;
@@ -47,53 +49,79 @@
 				a {margin-top: 12px;}
 			}
 
-			label {
-				font-weight: 700;
-				color: $qvr-color-1;
-				font-size: 19px;
-				margin-top: 40px;
-			}
+			
 			p {
 				font: inherit;
 				max-width: 300px;
 			}
+
 		}
 
-		.corporate-info {
+		.corporate-box {
 			order: 2;
 			width: 50%;
+			
+			.corporate-info {
+				margin-right: 5rem;
+			}
+
 		}
 
+		.password-box {
+			max-width: 450px;
+			padding-left: 30px;
+		}
+
+
+		//other components
+		$avatar-width: 135px;
+
+		.avatar {
+			width: $avatar-width;
+			height: $avatar-width;
+			margin-right: 1em;
+			float: left;
+		}
+
+		label {
+			font-weight: 700;
+			color: $qvr-color-1;
+			font-size: 19px;
+			margin-top: 40px;
+		}
+
+		.profile-edit-form {
+				
+			label {
+				font-size: 12px;
+				line-height: 2em;
+				margin: 0;
+				padding: 0;
+			}
+
+			.names {
+				margin: -25px 0 10px 0;
+				padding: 0;
+				width: 263px;
+
+				input {
+					margin: 0 0 5px 0;
+				}
+			}
+
+			.text-description {
+				height: 140px;
+			}
+		}
+		
 	}
 
-	$avatar-width: 132px;
 
-	.avatar {
-		width: $avatar-width;
-		height: $avatar-width;
-		margin-right: 1em;
-		float: left;
-	}
+
 
 	
 
-	.profile-form {
-		margin-top: 1em;
-		
-		textarea.desc {
-			width: 100%;
-			height: 120px;
-			resize: none;
-		}
-	}
 
-	.password-box {
-		max-width: 340px;
-	}
-
-	.corporate-info {
-		//padding-left: 5em;
-	}
 
 }
 
