@@ -12,50 +12,30 @@
 				<img ng-src="{{userProfileCtrl.user.avatar}}" alt="avatar" class="avatar">
 			
 				<div class="names">
-					<span class="name">{{userProfileCtrl.user.fullName}}</span>
-					<span class="handle">@{{userProfileCtrl.user.username}}</span>
+					{{userProfileCtrl.user.fullName}}
+					<br>
+					@{{userProfileCtrl.user.username}}
+					<br>
 					<a ui-sref="user-profile/edit" class="qvr-button info">Edit Profile</a>
 				</div>
 			</div>
 
-			<div  class="profile-form">
-				<label>
-					Description
-					<span class="inline-label">
-						<p>{{userProfileCtrl.user.description}}</p>
-					</span>
-				</label>
-				<hr>
 
-				<label>
-					Title
-					<span class="inline-label">
-						<h4>{{userProfileCtrl.user.title}}</h4>
-					</span>
-				</label>
+				<label>Description</label>
+				<p>{{userProfileCtrl.user.description}}</p>
 
-				<label>
-					Department
-					<span class="inline-label">
-						<h4>{{userProfileCtrl.user.department}}</h4>
-					</span>
-				</label>
+				<label>Title</label>
+				<p>{{userProfileCtrl.user.title}}</p>
+				
+				<label>Department</label>
+				<p>{{userProfileCtrl.user.department}}</p>
 
-				<label>
-					Email
-					<span class="inline-label">
-						<h4>{{userProfileCtrl.user.email}}</h4>
-					</span>
-				</label>
+				<label>Email</label>
+				<p>{{userProfileCtrl.user.email}}</p>
 
-				<label>
-					Phone
-					<span class="inline-label">
-						<h4>{{userProfileCtrl.user.phone}}</h4>
-					</span>
-				</label>
+				<label>Phone</label>
+				<p>{{userProfileCtrl.user.phone}}</p>
 
-			</div>
 			
 		</section>
 
