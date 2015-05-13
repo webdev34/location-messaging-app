@@ -3,62 +3,121 @@
 </header>
 <section class="message-content-wrap">
 
-<form role="form" ng-submit="editMessageCtrl.updateMessage()">
+<form role="form" class="qvr-form create-edit-message-form" ng-submit="editMessageCtrl.updateMessage()">
 	
-	<header class="clearfix">
-		<br>
-		<input placeholder="Message Title" type="text" class="title-edit dashed-border" ng-model="editMessageCtrl.editedMessage.messageTitle">
-		<div class="card message-box">
-			<img ng-src="{{enterpriseCtrl.company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseCtrl as enterpriseCtrl">
-			<input ng-model="editMessageCtrl.editedMessage.content" type="text" class="message-input" placeholder="Write here...">
+	<section>
+		<div class="float-right top-controls">
+			<button type="submit" class="qvr-button info edit-button">Save Changes</button>
+			<button ng-click="editMessageCtrl.cancelEdit()" class="qvr-button warning hollow edit-button">Cancel</button>
 		</div>
 
-		<h4 class="float-left">Set Status</h4>
 		
-		<div class="float-left">
-			<select class="select-status"  ng-model="editMessageCtrl.editedMessage.status">
+	</section>
+
+
+	<section>
+		<h2>Edit Message</h2>
+	</section>
+
+
+	<section >
+		<div class="half-size">
+			<label class="qvr-label">Message Label:</label>
+			<input placeholder="Message Title" type="text" class="message-label" ng-model="editMessageCtrl.editedMessage.messageTitle" required>
+		</div>
+		
+		<div class="half-size">
+			<label class="qvr-label">Set Message Status: </label>
+			
+			<select class="qvr-select select-status"  ng-model="editMessageCtrl.editedMessage.status" required>
 				<option>Setup</option>
 				<option>Active</option>
 				<option>Inactive</option>
 				<option>Closed</option>
 			</select>
+
 		</div>
-			
+		
+		<label class="qvr-label">To:</label>
+		<input placeholder="Choose Recipients" type="text">
 
-	</header>
-	<hr>
+		<label class="qvr-label">Content:</label>
+		<textarea ng-model="editMessageCtrl.editedMessage.content" class="message-content" placeholder="Insert Content"></textarea>
 
-	<section class="clearfix">
-		<h4>Add Location</h4>
+		<a class="qvr-button info attach-asset"><span class="icon i-camera"></span> Attach Asset</a>
+		<br>
+
+	</section>
+
+
+	<section class="location-section">
+
+		<label class="qvr-label">Add Delivery Location:</label>
+		<div class="map-search-wrap">
+			<span class="icon i-location-large"></span>
+			<div class="search-button">
+				<span class="icon i-search-white"></span>
+			</div>
+			<input type="search" placeholder="Search for Location">
+		</div>
+
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2692591501204!2d-79.38705699999998!3d43.642565999999974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34d68bf33a9b%3A0x15edd8c4de1c7581!2sCN+Tower!5e0!3m2!1sen!2sca!4v1427435891553" width="100%" height="320px" frameborder="0" style="border:0"></iframe>
+
+		<div class="radius">
+			<span>{{editMessageCtrl.editedMessage.range}} km</span> radius
+		</div>
+
+		<input type="range" class="radius-range" ng-model="editMessageCtrl.editedMessage.range">
+		
 	</section>
-	<hr>
 
-	<section class="clearfix">
-		<h4>Add Delivery Time</h4>
-
-		<label>
-			Start Time
-			<span class="inline-label">
-				<span class="form-label">Date</span>
-				<input type="date" value="2015-03-29">
-				<span class="form-label">Time</span>
-				<input type="time" value="12:35">
-			</span>
-		</label>
-
-		<label>
-			End Time
-			<span class="inline-label">
-				<span class="form-label">Date</span>
-				<input type="date" value="2015-04-12">
-				<span class="form-label">Time</span>
-				<input type="time" value="18:35">
-			</span>
-		</label>
-
+	<section class="location-details">
+		<div class="float-left">
+			<span class="icon i-location-enter"></span>
+			<input type="checkbox" class="qvr-slide-toggle">
+			<span class="icon i-location-leave"></span>
+		</div>
+		
+		<p class="float-left">
+			Recipient discovers message
+			<br>
+			when <span>entering</span> the <span>5 KM</span> radius
+		</p>
 	</section>
-	<hr>
+
+
+	<section>
+		<h2>Delivary Time</h2>
+	</section>
+
+	<section>
+		<br>
+		<div class="float-left">
+			<div class="delivery-box">
+				<label class="qvr-label">Start Date:</label>
+				<span class="icon i-calendar"></span>
+				<span class="date">2015 - 04 - 12 </span>
+			</div>
+			<div class="delivery-box">
+				<label class="qvr-label">End Date:</label>
+				<span class="icon i-calendar"></span>
+				<span class="date">2015 - 04 - 12 </span>
+			</div>
+		</div>
+
+		<div class="float-left">
+			<div class="delivery-box">
+				<label class="qvr-label">Start Time:</label>
+				<span class="icon i-hourglass"></span>
+				<span class="date">12:35 pm </span>
+			</div>
+			<div class="delivery-box">
+				<label class="qvr-label">End Time:</label>
+				<span class="icon i-hourglass"></span>
+				<span class="date">12:35 pm </span>
+			</div>
+		</div>
+	</section>
 
 	<div class="float-right">
 		<button ng-click="editMessageCtrl.cancelEdit()" class="alert hollow button">Cancel</button>

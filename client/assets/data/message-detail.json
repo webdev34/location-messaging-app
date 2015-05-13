@@ -4,6 +4,7 @@
   "sentTo": "group",
   "sentCount": 150,
   "likeCount": 100,
+  "range": 5,
   "commentCount": 7,
   "recipientCount": 100,
   "forwardCount": 3,

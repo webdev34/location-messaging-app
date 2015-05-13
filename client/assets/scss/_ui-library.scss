@@ -89,6 +89,12 @@ p {
 		width: 20px;
 		height: 20px;
 	}
+	//
+	&.i-search-white {
+		background-image: url(/assets/img/icons/i-search-zoom-white.png);
+		width: 32px;
+		height: 32px;
+	}
 
 	&.i-btn-arrow-right {
 		background-image: url(/assets/img/icons/i-btn-arrow-right.png);
@@ -140,6 +146,12 @@ p {
 		width: 50px;
 		height: 50px;
 	}
+	&.i-camera {
+		background-image: url(/assets/img/icons/i-camera.png);
+		width: 32px;
+		height: 32px;
+	}
+
 }
 
 
@@ -354,8 +366,8 @@ form {
 
 //Quiver Custom Form
 .qvr-form {
-	$qvr-form_color-1: #ccc;
-	$qvr-form_placeholder-color: #f2f2f2;
+	$qvr-form_color-1: lighten($qvr-color-body, 20%);
+	$qvr-form_placeholder-color: #ccc;
 
 	::-webkit-input-placeholder {
 	   color: $qvr-form_placeholder-color;
@@ -374,7 +386,8 @@ form {
 	}
 
 	
-	input {
+	
+	input, .form-element {
 		height: $qvr-input-btn-height;
 		border: 1px solid $qvr-form_color-1;
 		border-radius: $qvr-border-radius;
@@ -382,6 +395,10 @@ form {
 		color: $qvr-form_color-1;
 		transition: all 0.4s ease-in-out;
 		padding: 0 1em;
+
+		&:focus {
+			color: $qvr-color-body;
+		}
 	}
 
 	&.on-dark {
@@ -397,6 +414,17 @@ form {
 
 		}
 
+	}
+
+	.qvr-select {
+		@extend .form-element;
+	}
+
+	textarea {
+		@extend .form-element;
+		resize: none;
+		padding: 1em;
+		color: $qvr-form_color-1;
 	}
 
 }
@@ -484,6 +512,12 @@ input[type="checkbox"].qvr-slide-toggle {
 
 		&:hover {
 			background-color: lighten($qvr-warning-color, 10%);
+		}
+
+		&.hollow {
+			border: 1px solid $qvr-warning-color;
+			color: $qvr-warning-color;
+			background-color: transparent;
 		}
 	}
 

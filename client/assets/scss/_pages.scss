@@ -206,7 +206,6 @@
   	}
 
   	.edit-button {
-  		float: right;
   		font-size: 14px;
   	}
 
@@ -362,6 +361,142 @@
 			margin-top: 1rem;
 		}
 		
+  }
+
+  .create-edit-message-form {
+		
+		.half-size {
+			width: 50%;
+			float: left;
+			&:first-child {
+				padding-right: 20px;
+			}
+		}
+
+		.message-content {
+			height: 180px;
+		}
+
+		.attach-asset {
+			padding: 0 2em;
+			.icon {
+				margin-bottom: -10px;
+				margin-right: 10px;
+			}
+		}
+
+		.location-section {
+			padding-top: 2rem;
+		}
+		.map-search-wrap {
+			position: relative;
+
+			> .icon {
+				position: absolute;
+				top: 22px;
+				left: 24px;
+			}
+			.search-button {
+				position: absolute;
+				right: 0;
+				top: 0;
+				height: 75px;
+				width: 85px;
+				background-color: $qvr-color-1;
+
+				> .icon {
+					position: absolute;
+					top: 24px;
+					left: 27px;
+				}
+			}
+			> input {
+				font-size: 18px;
+				font-weight: 300;
+				height: 75px;
+				line-height: 75px;
+				border-radius: 0;
+				margin: 0;
+				padding-left: 70px;
+				padding-right: 90px;
+			}
+		}
+
+		input[type="range"].radius-range {
+			position: relative;
+		  -webkit-appearance: none;
+		  padding: 0 4rem;
+		  margin: 5rem 0;
+		  width: 100%;
+		  border: none;
+		  font-weight: 300;
+		  font-size: 30px;
+		  line-height: 15px;
+		  height: 20px;
+
+		  &:before {
+	  		position: absolute;
+	  		top: 0;
+	  		left: 2rem;
+		  	color: $qvr-color-1;
+		  	content: "-";
+		  	font-size: 45px;
+		  }
+		  &:after {
+	  		position: absolute;
+				top: 0;
+	  		right: 2rem;
+		  	color: $qvr-color-1;
+		  	content: "+";
+		  }
+		
+			&:focus {
+			  outline: none;
+			}
+			&::-webkit-slider-runnable-track {
+			  width: 100%;
+			  height: 20px;
+			  border-radius: 20px;
+			  cursor: pointer;
+			  animate: 0.2s;
+			  background: $qvr-color-1;
+
+			  
+			}
+			&::-webkit-slider-thumb {
+				position: relative;
+			  height: 100px;
+			  width: 100px;
+			  border-radius: 100px;
+			  box-shadow: 0 2px 4px #333, inset 0 1px 10px #999;
+			  background: #ffffff;
+			  cursor: pointer;
+			  -webkit-appearance: none;
+			  margin-top: -40px;
+
+			  &::after {
+			  	position: absolute;
+			  	display: block;
+			  	top: 22px;
+					left: 22px;
+					background-image: url(/assets/img/icons/i-location.png);
+					background-size: 50%;
+					background-repeat: no-repeat;
+					background-position: 14px 14px;
+					content: ' ';
+			  	width: 55px;
+			  	height: 55px;
+			  	border-radius: 55px;
+			  	border: 1px solid $qvr-color-1;
+			  }
+			}
+			&:focus::-webkit-slider-runnable-track {
+			  background: $qvr-color-1;
+			}
+			
+
+		}
+
   }
 
 
