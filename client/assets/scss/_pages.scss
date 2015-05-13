@@ -178,42 +178,190 @@
   }
 
   .message-content-wrap {
-  	padding: 20px 0 0 80px;
+  	padding: 1rem 0 0 4rem;
+
+  	section {
+  		@extend .clearfix;
+  		border-bottom: 1px solid #ccc;
+  		padding: 0.75rem 4rem 0.75rem 0.5rem;
+  	}
+  	
+  	.bottom-controls {
+  		padding: 0.75rem 4rem 0.75rem 0.5rem;
+  	}
+
+  	h2 {
+  		font-size: 20px;
+  		margin: 0;
+  		color: $qvr-color-body;
+
+  		&.message-title {
+  			line-height: 53px;
+  		}
+  	}
+
+  	p { 
+  		font-size: 14px; 
+  		margin: 0;
+  	}
+
+  	.edit-button {
+  		float: right;
+  		font-size: 14px;
+  	}
+
   	.owner {
 			display: inline-block;
-
-			line-height: 40px;
-			margin: 0 0 1rem 0;
+			color: $qvr-color-body;
+			font-size: 14px;
+			font-weight: 300;
+			line-height: 1.5em;
 
 			.avatar.small {
-				float: left;
 				width: 40px;
 				height: 40px;
-				margin-right: 1rem;
 			}
 		}
 		
 		.status-box {
-			margin-top: 2.5rem;
+			
+			a {
+				display: inline-block;
+				height: $qvr-input-btn-height;
+				line-height: $qvr-input-btn-height;
+				width: 155px;
+				color: #999;
+				font-size: 14px;
+				border: 1px solid #ccc;
+				border-radius: $qvr-border-radius;
+				text-align: center;
+
+				&.active {
+					background-color: $qvr-color-1;
+					color: #fff;
+					font-weight: 700;
+					border: none;
+				}
+			}
 		}
 
-		.message-box {
-			padding: 1rem;
-			width: 100%;
-			display: flex;
-			 align-items: stretch;
+		.measure {
+			margin-top: 3rem;
 
-			.company-logo {
-				width: 60px;
-				height: 60px;
-			}
+			.metric {
+				text-align: center;
+				display: inline-block;
+				margin-right: 1rem;
+				font-size: 14px;
+				font-weight: 300;
+				color: $qvr-color-1;
 
-			.message-input {
-				margin: 10px 0 0 10px;
-				border: none;
-				font-size: 1.2rem;
+				label {
+					font-size: 14px;
+					font-weight: 300;
+					color: $qvr-color-1;
+				}
+
+				span {
+					$circle-diameter: 100px;
+					display: inline-block;
+					width: $circle-diameter;
+					height: $circle-diameter;
+					line-height: $circle-diameter;
+					border-radius: $circle-diameter;
+					border: 1px solid $qvr-color-1;
+					margin-bottom: 0.5rem;
+					transition: all 0.3s ease-in-out;
+
+				}
+				&:hover {
+					span {
+						border: 1px solid darken($qvr-color-1, 10%);
+					}
+				}
 			}
 		}
+
+		.location-section {
+			border-color: $qvr-color-1;
+		}
+
+		.location-description {
+			margin: 1rem 1rem 2rem 1rem;
+
+			.icon {
+				float: left;
+				margin-right: 1rem;
+			}
+			p {
+				font-size: 17px;
+				color: $qvr-color-body;
+				font-weight: 300;
+			}
+		}
+
+		.radius {
+			margin: 30px 0;
+			font-family: $qvr-tertiary-font;
+			font-weight: 700;
+			font-size: 38px;
+			text-transform: uppercase;
+			text-align: center;
+
+			span {
+				color: $qvr-color-1;
+			}
+		}
+
+		.location-details {
+			padding: 2rem 3rem;
+
+			.icon, input { margin-right: 0.5em; }
+			input { margin-bottom: 12px;}
+
+			p {
+				font-size: 18px;
+				text-align: center;
+				font-weight: 100;
+				color: $qvr-color-body;
+				margin-left: 3rem;
+
+				span {
+					color: $qvr-color-1;
+				}
+			}
+
+		}
+
+		.delivery-box {	
+			margin-bottom: 2rem;
+			margin-right: 4rem;
+
+			.date {
+				font-size: 26px;
+				font-weight: 700;
+				color: #999;
+				text-transform: uppercase;
+			}
+
+			.icon {
+				margin-bottom: -5px;
+				margin-right: 10px;
+			}
+		}
+		
+
+		.info-details {
+			@extend .location-details;
+
+			input { margin-bottom: 7px;}
+
+		}
+
+		.bottom-controls {
+			margin-top: 1rem;
+		}
+		
   }
 
 
@@ -376,31 +524,6 @@
 		}
 	}
 
-	.measure {
-
-			.metric {
-				text-align: center;
-				display: inline-block;
-				margin: 1rem;
-
-				span {
-					$circle-diameter: 75px;
-					display: inline-block;
-					width: $circle-diameter;
-					height: $circle-diameter;
-					line-height: $circle-diameter;
-					border-radius: $circle-diameter;
-					border: 1px solid $code-border-color;
-					margin-bottom: 0.5rem;
-					transition: all 0.3s ease-in-out;
-
-				}
-				&:hover {
-					span {
-						border: 1px solid darken($code-border-color, 40%);
-					}
-				}
-			}
-		}
+	
 
 }

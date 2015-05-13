@@ -1,115 +1,160 @@
 <header class="heading-bar">
 </header>
 
-<section class="message-content-wrap">
+<div class="message-content-wrap">
 	
-
-<header class="clearfix">
-	<div class="float-right top-controls">
-		<a ui-sref="messages.edit({_id:messageDetailCtrl.message._id})" class="info button float-right">Edit Message</a>
-		<br>
-
-	</div>
-	
-
-	<div class="float-left">
-		<h2>{{messageDetailCtrl.message.messageTitle}} {{messageDetailCtrl.currentMessageId}}</h2>
-		<br>
-
-		<a ui-sref="messages" class="owner">
-			<img ng-src="{{messageDetailCtrl.message.author.avatar}}" alt="avatar small" class="avatar small">
-			{{messageDetailCtrl.message.author.fullName}} (Owner)
-		</a>
-	</div>
-	
-
-	<div class="card message-box">
-		<img ng-src="{{enterpriseCtrl.company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseCtrl as enterpriseCtrl">
-		<p  class="message-input" >{{messageDetailCtrl.message.content}}</p>
-	</div>
-
-		<div class="status-box float-right">
-			Status: 
-			<ul class="button-group small segmented">
-				<li><a href="#">Setup</a></li>
-				<li class="is-active"><a href="#">Active</a></li>
-				<li><a href="#">Inactive (Delivering)</a></li>
-				<li><a href="#">Closed</a></li>
-			</ul>
+	<section>
+		<div class="float-right top-controls">
+			<a ui-sref="messages.edit({_id:messageDetailCtrl.message._id})" class="qvr-button info edit-button">Edit Message</a>
 		</div>
 
+		<h2 class="float-left message-title">{{messageDetailCtrl.message.messageTitle}} {{messageDetailCtrl.currentMessageId}}</h2>
+	</section>
 	
-</header>
-<hr>
+		
+	<section>
+		<label class="qvr-label">Owner</label>
+		<a ui-sref="messages" class="owner">
+			{{messageDetailCtrl.message.author.fullName}}
+			<br>
+			<img ng-src="{{messageDetailCtrl.message.author.avatar}}" alt="avatar small" class="avatar small">
+		</a>
+	</section>
+
+	<section>
+		<label class="qvr-label">To:</label>
+		<p>All Followers</p>
+	</section>
+	
+	<section>
+		<label class="qvr-label">Content:</label>
+		<p>{{messageDetailCtrl.message.content}}</p>
+	</section>
+
+	<section>
+		<label class="qvr-label">Message Status:</label>
+		<div class="status-box">
+			<a>Setup</a>
+			<a class="active">Active</a>
+			<a>Inactive (Delivering)</a>
+			<a>Closed</a>
+		</div>
+
+		<div class="measure">
+			<div class="metric">
+				<label>Sent</label>
+				<span>{{messageDetailCtrl.message.sentCount}}</span>
+			</div>
+			<div class="metric">
+				<label>Read</label>
+				<span>{{messageDetailCtrl.message.recipientCount}}</span>
+			</div>
+			<div class="metric">
+				<label>Likes</label>
+				<span>{{messageDetailCtrl.message.likeCount}}</span>
+			</div>
+			<div class="metric">
+				<label>Comments</label>
+				<span>{{messageDetailCtrl.message.commentCount}}</span>
+			</div>
+			<div class="metric">
+				<label>Forwards</label>
+				<span>{{messageDetailCtrl.message.forwardCount}}</span>
+			</div>
+			<div class="metric">
+				<label>Saves</label>
+				<span>{{messageDetailCtrl.message.saveCount}}</span>
+			</div>
+		</div>
+
+	</section>
+
+	<section>
+		<h2>Deliver Location</h2>
+	</section>
+
+	<section class="location-section">
+
+		<div class="location-description">
+			<span class="icon i-location-large"></span>
+			<p>Toronto, ON</p>
+		</div>
+
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2692591501204!2d-79.38705699999998!3d43.642565999999974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34d68bf33a9b%3A0x15edd8c4de1c7581!2sCN+Tower!5e0!3m2!1sen!2sca!4v1427435891553" width="100%" height="320px" frameborder="0" style="border:0"></iframe>
+
+		<div class="radius">
+			<span>5 km</span> radius
+		</div>
+		
+	</section>
+
+	<section class="location-details">
+		<div class="float-left">
+			<span class="icon i-location-enter"></span>
+			<input type="checkbox" class="qvr-slide-toggle">
+			<span class="icon i-location-leave"></span>
+		</div>
+		
+		<p class="float-left">
+			Recipient discovers message
+			<br>
+			when <span>entering</span> the <span>5 KM</span> radius
+		</p>
+	</section>
+
+	<section>
+		<h2>Delivary Time</h2>
+	</section>
+
+	<section>
+		<br>
+		<div class="float-left">
+			<div class="delivery-box">
+				<label class="qvr-label">Start Date:</label>
+				<span class="icon i-calendar"></span>
+				<span class="date">2015 - 04 - 12 </span>
+			</div>
+			<div class="delivery-box">
+				<label class="qvr-label">End Date:</label>
+				<span class="icon i-calendar"></span>
+				<span class="date">2015 - 04 - 12 </span>
+			</div>
+		</div>
+
+		<div class="float-left">
+			<div class="delivery-box">
+				<label class="qvr-label">Start Time:</label>
+				<span class="icon i-hourglass"></span>
+				<span class="date">12:35 pm </span>
+			</div>
+			<div class="delivery-box">
+				<label class="qvr-label">End Time:</label>
+				<span class="icon i-hourglass"></span>
+				<span class="date">12:35 pm </span>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<h2>Delivery Information</h2>
+	</section>
+
+	<section class="info-details">
+		<div class="float-left">
+			<span class="icon i-info"></span>
+			<input type="checkbox" class="qvr-slide-toggle">
+			<span class="icon i-info-crossed"></span>
+		</div>
+		
+		<p class="float-left">
+			Recipient will know <span>WHERE</span> and <span>WHEN</span>
+			<br>
+			they will recieve your message
+		</p>
+	</section>
 
 
-<section class="clearfix">
-	<h4>Location</h4>
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2692591501204!2d-79.38705699999998!3d43.642565999999974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34d68bf33a9b%3A0x15edd8c4de1c7581!2sCN+Tower!5e0!3m2!1sen!2sca!4v1427435891553" width="100%" height="320px" frameborder="0" style="border:0"></iframe>
-</section>
-<hr>
-
-<section class="clearfix">
-	<h4>Delivery Time</h4>
-
-	<label>
-		Start Time
-		<span class="inline-label">
-			<span class="form-label">Date</span>
-			<input type="date" value="2015-03-29">
-			<span class="form-label">Time</span>
-			<input type="time" value="12:35">
-		</span>
-	</label>
-
-	<label>
-		End Time
-		<span class="inline-label">
-			<span class="form-label">Date</span>
-			<input type="date" value="2015-04-12">
-			<span class="form-label">Time</span>
-			<input type="time" value="18:35">
-		</span>
-	</label>
-
-</section>
-<hr>
-
-
-
-<section class="measure">
-	<h3>Measure</h3>
-	<br>
-	<div class="metric">
-		<span>{{messageDetailCtrl.message.sentCount}}</span>
-		<label>Sent</label>
+	<div class="float-right bottom-controls">
+		<a ui-sref="messages.edit({_id:messageDetailCtrl.message._id})" class="qvr-button info edit-button">Edit Message</a>
 	</div>
-	<div class="metric">
-		<span>{{messageDetailCtrl.message.recipientCount}}</span>
-		<label>Read</label>
-	</div>
-	<div class="metric">
-		<span>{{messageDetailCtrl.message.likeCount}}</span>
-		<label>Likes</label>
-	</div>
-	<div class="metric">
-		<span>{{messageDetailCtrl.message.commentCount}}</span>
-		<label>Comments</label>
-	</div>
-	<div class="metric">
-		<span>{{messageDetailCtrl.message.forwardCount}}</span>
-		<label>Forwards</label>
-	</div>
-	<div class="metric">
-		<span>{{messageDetailCtrl.message.saveCount}}</span>
-		<label>Saves</label>
-	</div>
-</section>
-
-<hr>
-
-<div class="float-right">
-	<a ui-sref="messages.edit" class="info  button">Edit Message</a>
 </div>
-
-</section>
