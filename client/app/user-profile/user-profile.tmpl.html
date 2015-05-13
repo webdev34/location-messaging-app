@@ -1,71 +1,79 @@
-<div class="grid-block page-profile" >
-	<section class="grid-content shrink">
+<div class="page page--profile">
+
+	<header class="heading-bar">
+		<h1>User Profile</h1>
+	</header>
+
+	<div class="profile-content">
 		
-		<div class="clearfix">
-			<img ng-src="{{userProfileCtrl.user.avatar}}" alt="avatar" class="avatar">
+		<section class="profile-detail">
 		
-			<div class="profile-details">
-				<h1>{{userProfileCtrl.user.fullName}}</h1>
-				<h3 class="subheader">@{{userProfileCtrl.user.username}}</h3>
-				<a ui-sref="user-profile/edit" class="button">Edit Profile</a>
+			<div class="clearfix">
+				<img ng-src="{{userProfileCtrl.user.avatar}}" alt="avatar" class="avatar">
+			
+				<div class="names">
+					<span class="name">{{userProfileCtrl.user.fullName}}</span>
+					<span class="handle">@{{userProfileCtrl.user.username}}</span>
+					<a ui-sref="user-profile/edit" class="qvr-button info">Edit Profile</a>
+				</div>
 			</div>
-		</div>
-		<hr>
 
-		<div  class="profile-form">
-			<label>
-				Description
-				<span class="inline-label">
-					<p>{{userProfileCtrl.user.description}}</p>
-				</span>
-			</label>
-			<hr>
+			<div  class="profile-form">
+				<label>
+					Description
+					<span class="inline-label">
+						<p>{{userProfileCtrl.user.description}}</p>
+					</span>
+				</label>
+				<hr>
 
-			<label>
-				Title
-				<span class="inline-label">
-					<h4>{{userProfileCtrl.user.title}}</h4>
-				</span>
-			</label>
+				<label>
+					Title
+					<span class="inline-label">
+						<h4>{{userProfileCtrl.user.title}}</h4>
+					</span>
+				</label>
 
-			<label>
-				Department
-				<span class="inline-label">
-					<h4>{{userProfileCtrl.user.department}}</h4>
-				</span>
-			</label>
+				<label>
+					Department
+					<span class="inline-label">
+						<h4>{{userProfileCtrl.user.department}}</h4>
+					</span>
+				</label>
 
-			<label>
-				Email
-				<span class="inline-label">
-					<h4>{{userProfileCtrl.user.email}}</h4>
-				</span>
-			</label>
+				<label>
+					Email
+					<span class="inline-label">
+						<h4>{{userProfileCtrl.user.email}}</h4>
+					</span>
+				</label>
 
-			<label>
-				Phone
-				<span class="inline-label">
-					<h4>{{userProfileCtrl.user.phone}}</h4>
-				</span>
-			</label>
+				<label>
+					Phone
+					<span class="inline-label">
+						<h4>{{userProfileCtrl.user.phone}}</h4>
+					</span>
+				</label>
 
-		</div>
-		
-	</section>
-	<section class="grid-content medium-6 medium-offest-1 corporate-info">
-		<div class="clearfix">
-			<img ng-src="{{userProfileCtrl.user.companyLogo}}" alt="logo" class="avatar">
-		
-			<div class="profile-details">
-				<a ui-sref="enterprise/profile"><h1>{{userProfileCtrl.user.company}}</h1></a>
-				<a ui-sref="enterprise/profile"><h3 class="subheader">@{{userProfileCtrl.user.companyUsername}}</h3></a>
 			</div>
-		</div>
-
-		<hr>
-
+			
+		</section>
 
 
-	</section>
+		<section class="corporate-info" ng-controller="EnterpriseCtrl as enterpriseCtrl">
+			<div class="clearfix">
+
+				<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo">
+			
+				<div class="corp-details">
+					{{enterpriseCtrl.company.companyName}}
+					<br>
+					@{{enterpriseCtrl.company.username}}
+				</div>
+			</div>
+
+			<div class="arrow-down"></div>
+		</section>
+	</div>
 
 </div>

@@ -32,30 +32,27 @@
 	</section>
 
 
+	<section class="user-section">
+		
+		<h2>Administators</h2>
 
-
-
-<section class="user-section">
-	
-	<h2>Administators</h2>
-
-	<ul class="g-user-list">
-		<li ng-repeat="user in enterpriseCtrl.company.administrators">
-			<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
-			<div>
-					<label class="qvr-label">{{user.name}}</label>
-					{{user.title}}
-				</div>
-			
-			<div class="user-rights">
-					<label class="qvr-label">User Rights</label>
-					<a class="qvr-button hollow" href="#">Downgrade</a>
-					<a class="qvr-button action" href="#">Suspend</a>
-					<a class="qvr-button hollow" href="#">Remove</a>
-				</div>
-		</li>
-	</ul>
-</section>	
+		<ul class="g-user-list">
+			<li ng-repeat="user in enterpriseCtrl.company.administrators">
+				<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
+				<div>
+						<label class="qvr-label">{{user.name}}</label>
+						{{user.title}}
+					</div>
+				
+				<div class="user-rights">
+						<label class="qvr-label">User Rights</label>
+						<a class="qvr-button hollow" href="#">Downgrade</a>
+						<a class="qvr-button action" href="#">Suspend</a>
+						<a class="qvr-button hollow" href="#">Remove</a>
+					</div>
+			</li>
+		</ul>
+	</section>	
 
 
 
@@ -88,8 +85,6 @@
 		</div>
 
 	</form>
-	
-
 </div>
 
 </div>

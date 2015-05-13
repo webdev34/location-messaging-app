@@ -32,24 +32,6 @@ p {
 	color: $qvr-color-body;
 }
 
-.heading-bar {
-	height: 52px;
-	line-height: 52px;
-	width: 100%;
-	display: block;
-	background-color: $qvr-color-1;
-
-	h1 {
-		color: #fff;
-		font-family: $qvr-primary-font;
-		font-size: 20px;
-		line-height: inherit;
-		font-weight: 700;
-		padding: 0 1rem;
-		margin: 0;
-	}
-}
-
 
 //icons
 .icon {
@@ -493,6 +475,10 @@ input[type="checkbox"].qvr-slide-toggle {
 			border: 1px solid $qvr-warning-color;
 			color: $qvr-warning-color;
 			background-color: transparent;
+
+			&:hover {
+				border-color: lighten($qvr-warning-color, 10%);
+			}
 		}
 	}
 

@@ -66,3 +66,21 @@
 
 
 }
+
+.heading-bar {
+	height: 52px;
+	line-height: 52px;
+	width: 100%;
+	display: block;
+	background-color: $qvr-color-1;
+
+	h1 {
+		color: #fff;
+		font-family: $qvr-primary-font;
+		font-size: 20px;
+		line-height: inherit;
+		font-weight: 700;
+		padding: 0 1rem;
+		margin: 0;
+	}
+}

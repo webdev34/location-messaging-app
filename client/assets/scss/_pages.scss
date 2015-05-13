@@ -23,14 +23,33 @@
 
 }
 
-.page-profile {
-	margin-top: 2em;
+.page--profile {
+
+	.profile-content {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		margin: 3rem 5rem;
+		padding: 0;
+		justify-content: space-around;
+
+		.profile-detail {
+			order: 1;
+			width: 50%;
+		}
+
+		.corporate-info {
+			order: 2;
+			width: 50%;
+		}
+
+	}
 
 	.content-block {
 		padding: 2em;
 	}
 
-	$avatar-width: 200px;
+	$avatar-width: 132px;
 
 	.avatar {
 		width: $avatar-width;
@@ -39,7 +58,7 @@
 		float: left;
 	}
 
-	.profile-details {
+	.names {
 		float: left;
 		padding-top: 2em;
 	}
@@ -653,11 +672,8 @@
 
 .page--enterprise {
 
-	.enterprise-content {
-		
-	}
+	.enterprise-content {}
 	
-
   .enterprise-profile {
   	display: flex;
   	flex-direction: row;
