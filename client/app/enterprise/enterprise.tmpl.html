@@ -1,14 +1,15 @@
-<nav class="g-nav-subnav">
-	<ul class="button-group  segmented">
-		<li  ui-sref-active='is-active'><a ui-sref="enterprise.profile">Profile</a></li>
-		<li  ui-sref-active='is-active'><a ui-sref="enterprise.users" >Users</a></li>
-	</ul>
-</nav>
+<div class="page page--enterprise">
+	
+	<header class="heading-bar">
+		<h1>Enterprise Settings</h1>
+	</header>
 
-<div class="grid-block page-profile">
-	<section class="grid-content medium-8" >
-		
-		<ui-view></ui-view>
+	<nav class="g-nav-subnav">
+		<a ui-sref="enterprise.profile" ui-sref-active="is-active" class="qvr-button info">Profile</a>
+		<a ui-sref="enterprise.users"  ui-sref-active="is-active" class="qvr-button info">Users</a>
+	</nav>
 
-	</section>
+
+	<ui-view class="enterprise-content"></ui-view>
+
 </div>

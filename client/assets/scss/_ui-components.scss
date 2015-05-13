@@ -1,0 +1,68 @@
+//Reusable Components
+.corporate-info {
+	position: relative;
+	text-align: center;
+	background: #fff;
+	padding: 20px 0 35px 0;
+
+	.arrow-down {
+		position: absolute;
+		left: 50%;
+		margin: 0 0 -20px -20px;
+		bottom: 0;
+		border-top-color: #fff;
+	}
+
+	.corp-logo {
+		max-width: 300px;
+	}
+
+	.corp-details {
+		font-weight: 300;
+		font-size: 14px;
+		line-height: 1.3em;
+	}
+
+}
+
+.g-user-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 2rem;
+
+	> li {
+		@extend .clearfix;
+		display: flex;
+  	justify-content: left;
+		padding: 1rem;
+		border: 1px solid #ccc;
+		border-radius: 12px;
+		margin-bottom: .5rem;
+		transition: all 0.3s ease-in-out;
+		font-size: 12px;
+
+		&:hover {
+			border: 1px solid darken(#ccc, 20%);
+		}
+
+		.avatar {
+			width: 80px;
+			height: 80px;
+			margin-right: 1rem;
+			align-self: flex-start;
+		}
+
+		.user-rights {
+			margin-left: auto;
+		}
+	}
+
+}
+
+//Global Side Nav
+.g-side-nav {
+	padding-right: 1px;
+
+
+}

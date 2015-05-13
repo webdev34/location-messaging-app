@@ -1,27 +1,16 @@
-//Typography Imports
-@import url("http://fonts.googleapis.com/css?family=Roboto:400,100,700,300|Open+Sans:400,300,700|Oswald:400,700");
-$qvr-primary-font: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$qvr-secondary-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$qvr-tertiary-font: Oswald, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-
-//Colors
-$qvr-color-body: #7F8184;
-$qvr-warning-color: #F15A29;
-$qvr-color-1: #00A8CB;
-$qvr-color-2: #B9E9FF;
-
-
-//Sizes
-$qvr-input-btn-height: 53px;
-$qvr-border-radius: 7px;
-
-
 //Helpers
 .qvr-align-center {text-align: center;}
 
 
 //Typography Elements
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: $qvr-color-body;
+
+}
 .qvr-label {
 	font-size: 1em;
 	font-weight: 700;
@@ -47,6 +36,7 @@ p {
 	height: 52px;
 	line-height: 52px;
 	width: 100%;
+	display: block;
 	background-color: $qvr-color-1;
 
 	h1 {
@@ -298,53 +288,21 @@ p {
 }
 
 .g-nav-subnav {
-	//background: $dark-color;
-	padding: 1rem 1rem 0 1rem;
-	margin: 0 -1rem;
-	border-bottom: 1px solid #ccc;
-}
+	padding: 2rem;
+	text-align: center;
 
+	a {
+		width: 180px;
+		margin: 0 0.5em;
 
-.g-user-list {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	margin-bottom: 2rem;
-
-	> li {
-		@extend .clearfix;
-		display: flex;
-  		justify-content: left;
-		padding: 1rem;
-		border: 1px solid $code-border-color;
-		margin-bottom: .5rem;
-		transition: all 0.3s ease-in-out;
-
-		&:hover {
-			border: 1px solid darken($code-border-color, 40%);
+		&.is-active {
+			@extend .action;
 		}
 
-		.avatar {
-			width: 45px;
-			height: 45px;
-			margin-right: 1rem;
-			align-self: flex-start;
-			border: 1px solid $code-border-color;
-		}
-
-		.li-buttons {
-			margin-left: auto;
-
-
-		}
 	}
 
 }
 
-//Global Side Nav
-.g-side-nav {
-	padding-right: 1px;
-}
 
 //Forms
 form {
@@ -400,6 +358,11 @@ form {
 		&:focus {
 			color: $qvr-color-body;
 		}
+	}
+
+	input[type="radio"] {
+		line-height: 1.5em;
+		height: 1.5em;
 	}
 
 	&.on-dark {
@@ -501,12 +464,22 @@ input[type="checkbox"].qvr-slide-toggle {
 	text-align: center;
 	box-shadow: none;
 	border: none;
+	
 
 	font-family: $qvr-secondary-font;
 	font-weight: 700;
 	font-size: 14px;
 
 	transition: all 0.4s ease-in-out;
+
+	&.action {
+		background-color: $qvr-color-1;
+		color: #fff;
+
+		&:hover {
+			background-color: lighten($qvr-color-1, 10%);
+		}
+	}
 
 	&.warning {
 		background-color: $qvr-warning-color;
@@ -538,9 +511,17 @@ input[type="checkbox"].qvr-slide-toggle {
 
 		&:hover {
 			background-color: darken($qvr-color-2, 5%);
-
 		}
+	}
 
+	&.hollow {
+		font-weight: 400;
+		color: $qvr-color-body;
+		border: 1px solid $qvr-color-body;
+
+		&:hover {
+			border-color: darken($qvr-color-body, 10%);
+		}
 	}
 
 }

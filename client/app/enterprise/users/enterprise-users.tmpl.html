@@ -1,85 +1,95 @@
-<a zf-open="addUserModal" class="button float-right"> + Add User</a>
+<div class="enterprise-users">
+	
+	<header>
+		<a zf-open="addUserModal" class="qvr-button info float-right"> + Add User</a>
 
-<h2 >Users</h2>
+	</header>
 
 
-<ul class="g-user-list">
-	<li ng-repeat="user in enterpriseCtrl.company.users">
-		<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
-		<div class="float-left">
-			<strong>{{user.name}}</strong>
-			<br>
-			{{user.title}}
-		</div>
-		
-		<ul class="li-buttons button-group secondary">
-			<li><a class="" href="#">Make Admin</a></li>
-			<li><a class="" href="#">Suspend</a></li>
-			<li><a class="" href="#">Remove</a></li>
+
+	<section class="user-section">
+			<h2 >Users</h2>
+
+		<ul class="g-user-list">
+			<li ng-repeat="user in enterpriseCtrl.company.users">
+				<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
+				
+				<div>
+					<label class="qvr-label">{{user.name}}</label>
+					{{user.title}}
+				</div>
+
+				<div class="user-rights">
+					<label class="qvr-label">User Rights</label>
+					<a class="qvr-button hollow" href="#">Make Admin</a>
+					<a class="qvr-button action" href="#">Suspend</a>
+					<a class="qvr-button hollow" href="#">Remove</a>
+				</div>
+				
+				
+			</li>
 		</ul>
-	</li>
-</ul>
-<br>
+	</section>
 
 
-<h2>Administators</h2>
 
-<ul class="g-user-list">
-	<li ng-repeat="user in enterpriseCtrl.company.administrators">
-		<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
-		<div class="float-left">
-			<strong>{{user.name}}</strong>
-			<br>
-			{{user.title}}
-		</div>
-		
-		<ul class="li-buttons button-group secondary">
-			<li><a class="" href="#">Downgrade</a></li>
-			<li><a class="" href="#">Suspend</a></li>
-			<li><a class="" href="#">Remove</a></li>
-		</ul>
-	</li>
-</ul>
+
+
+<section class="user-section">
+	
+	<h2>Administators</h2>
+
+	<ul class="g-user-list">
+		<li ng-repeat="user in enterpriseCtrl.company.administrators">
+			<img ng-src="{{user.avatar}}" alt="avatar" class="avatar">
+			<div>
+					<label class="qvr-label">{{user.name}}</label>
+					{{user.title}}
+				</div>
+			
+			<div class="user-rights">
+					<label class="qvr-label">User Rights</label>
+					<a class="qvr-button hollow" href="#">Downgrade</a>
+					<a class="qvr-button action" href="#">Suspend</a>
+					<a class="qvr-button hollow" href="#">Remove</a>
+				</div>
+		</li>
+	</ul>
+</section>	
+
+
 
 <!-- Add User Modal -->
 <div zf-modal="" id="addUserModal">
 	<a zf-close="" class="close-button">×</a>
-	<h3>+ Add User</h3>
+	<h2>+ Add User</h2>
+	<hr>
 
-	<form role="form" ng-submit="enterpriseCtrl.addUser()">
+	<form role="form" class="qvr-form" ng-submit="enterpriseCtrl.addUser()">
 		<label>Type of User</label>
 		<input type="radio" name="userType" value="admin" id="type_admin" ng-model="enterpriseCtrl.newUser.userType"><label for="type_admin">Admin</label>
 		<input type="radio" name="userType" value="user" id="type_user" ng-model="enterpriseCtrl.newUser.userType"><label for="type_user">User</label>
 		<hr>
 		<br>
-		<label>
-			Email
-			<span class="inline-label">
-				<input type="email" ng-model="enterpriseCtrl.newUser.email">
-			</span>
-		</label>
 
-		<label>
-			Name
-			<span class="inline-label">
-				<input type="text" ng-model="enterpriseCtrl.newUser.name">
-			</span>
-		</label>
+		<label class="qvr-label">Email</label>
+		<input type="email"  ng-model="enterpriseCtrl.newUser.email" required>
 
-		<label>
-			Title
-			<span class="inline-label">
-				<input type="text" ng-model="enterpriseCtrl.newUser.title">
-			</span>
-		</label>
+		<label  class="qvr-label">Name</label>
+		<input type="text" ng-model="enterpriseCtrl.newUser.name" required>
+
+		<label  class="qvr-label">Title</label>
+		<input type="text" ng-model="enterpriseCtrl.newUser.title" required>
 
 		<hr>
 		<div class="float-right">
-			<a zf-close="" class="alert hollow button">Cancel</a>
-			<button type="submit" class="success button">Add User</button>
+			<a zf-close="" class="qvr-button warning hollow">Cancel</a>
+			<button type="submit" class="qvr-button action">Add User</button>
 		</div>
 
 	</form>
 	
+
+</div>
 
 </div>

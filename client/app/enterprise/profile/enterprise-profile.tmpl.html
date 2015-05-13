@@ -1,28 +1,31 @@
-
-<div class="clearfix">
-	<img ng-src="{{enterpriseCtrl.company.logo}}" alt="Logo" class="avatar">
+<div class="enterprise-profile">
 	
-	<div class="profile-details">
-		<h1>{{enterpriseCtrl.company.companyName}}</h1>
-		<h3 class="subheader">@{{enterpriseCtrl.company.username}}</h3>
-	</div>
-</div>
-<hr>
+	<section class="corporate-info ">
+		<div class="clearfix">
 
-<label>
-	Description
-	<span class="inline-label">
-		<p class="desc">{{enterpriseCtrl.company.description}}</p>
-	</span>
-</label>
-<hr>
+			<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo">
+		
+			<div class="corp-details">
+				{{enterpriseCtrl.company.companyName}}
+				<br>
+				@{{enterpriseCtrl.company.username}}
+			</div>
+		</div>
 
-<label>
-	Email
-	<span class="inline-label">
+		<div class="arrow-down"></div>
+	</section>
+
+
+	<div class="details">
+		
+		<label>Description</label>
+		<p>{{enterpriseCtrl.company.description}}</p>
+
+		<label>Email</label>
 		<p>{{enterpriseCtrl.company.email}}</p>
-	</span>
-</label>
-<hr>
 
-<a ui-sref="enterprise.edit" class="button info">Edit Enterprise Profile</a>
+		<a ui-sref="enterprise.edit" class="qvr-button info">Edit Enterprise Profile</a>
+		
+	</div>
+
+</div>

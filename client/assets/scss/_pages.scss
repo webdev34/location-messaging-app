@@ -12,31 +12,6 @@
 .page--login {
 	background-color: $qvr-color-1;
 
-	.corporate-info {
-		position: relative;
-		text-align: center;
-		background: #fff;
-		padding: 20px 0 35px 0;
-
-		.arrow-down {
-			position: absolute;
-			left: 50%;
-			margin: 0 0 -20px -20px;
-			bottom: 0;
-			border-top-color: #fff;
-		}
-
-		.corp-logo {
-			max-width: 300px;
-		}
-
-		.corp-details {
-			font-weight: 300;
-			font-size: 14px;
-			line-height: 1.3em;
-		}
-
-	}
 
 	.login-form {
 		margin-top: 100px;
@@ -674,6 +649,80 @@
 		}
 	}
 
+}
+
+.page--enterprise {
+
+	.enterprise-content {
+		
+	}
 	
 
+  .enterprise-profile {
+  	display: flex;
+  	flex-direction: row;
+  	flex-wrap: nowrap;
+  	margin: 0;
+  	padding: 0;
+  	align-items: center;
+  	justify-content: space-around;
+
+  	.corporate-info {
+  		order: 1;
+  		width: 50%;
+
+  	}
+
+  	.details {
+  		order: 2;
+  		border-left: 1px solid #f2f2f2;
+  		width: 50%;
+  		padding-left: 3rem;
+
+  		p {
+  			font-size: 16px;
+  			font-weight: 300;
+  			width: 300px;
+
+  		}
+			
+			label {
+				font-size: 20px;
+				color: $qvr-color-1;
+			}
+  	}
+	
+  }
+
+  .enterprise-users {
+  	padding: 4rem;
+
+  	header {
+  		@extend .clearfix;
+  		padding-bottom: 1rem;	
+  		margin-bottom: 1rem;	
+  		border-bottom: 1px solid #ccc;
+  	}
+
+  	.user-section {
+  		display: flex;
+
+  		h2 {
+  			display: box;
+  			order: 1;
+				width: 200px;
+				text-align: right;
+				margin: 1rem;
+
+  		}
+  		.g-user-list {
+  			order: 2;
+  			flex-grow: 1;
+
+  			.user-rights {
+  				a { width: 160px;}
+  			}
+  		}
+  	}
+  }
 }
