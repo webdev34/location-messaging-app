@@ -20,6 +20,10 @@
     .run(run)
   ;
 
+  app.constant('APP_default_state', 'messages.dashboard');
+  app.constant('API_URL', 'http://localhost:8000/web-1.1');
+
+
   config.$inject = ['$urlRouterProvider', '$locationProvider'];
 
   function config($urlProvider, $locationProvider) {
@@ -38,8 +42,8 @@
   }
 
   app.controller('AppCtrl', [
-    'UserModel', 'FoundationApi', '$state',
-    function (UserModel, FoundationApi, $state) {
+    'UserModel', 'FoundationApi', '$state', '$stateParams', '$location','APP_default_state',
+    function (UserModel, FoundationApi, $state, $stateParams, $location, APP_default_state) {
 
       var appCtrl = this;
 
@@ -49,7 +53,13 @@
 
 
       function init() {
-        //console.log('appCtrl inititlized');
+        var stateTest = $state.get('home');
+        console.log(stateTest);
+
+        // if (!appCtrl.userIsLoggedIn) {
+        //   $state.go('home');
+        // }
+
       }
 
 
@@ -59,6 +69,10 @@
           appCtrl.user = result;
         }); 
       };
+
+      function goToHomePage() {
+        $state.go(APP_default_state);
+      }
 
       function userLogin() {
         UserModel.login(appCtrl.userLoginInfo)
@@ -73,11 +87,9 @@
                 color: 'success',
                 autoclose: '3000'
               });
-            $state.go('messages.dashboard');
-
+            goToHomePage();
             // console.log('user is: ');
             // console.log(appCtrl.user._id);
-
           });
       }
 
