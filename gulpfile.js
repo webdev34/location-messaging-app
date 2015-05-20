@@ -17,6 +17,7 @@ var gulp     = require('gulp'),
 var paths = {
   assets: [
     './client/**/*.*',
+    '!./client/app/**/*.js',
     '!./client/app/**/*.html',
     '!./client/assets/{scss,js}/**/*.*'
   ],
