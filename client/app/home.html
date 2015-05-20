@@ -20,10 +20,10 @@ url: /
 		<div class="arrow-down"></div>
 	</section>
 
-	<form class="login-form qvr-form on-dark  medium-4 medium-offset-4" ng-submit="userProfileCtrl.userLogin()" ng-controller="UserProfileCtrl as userProfileCtrl">
+	<form class="login-form qvr-form on-dark  medium-4 medium-offset-4" ng-submit="appCtrl.userLogin()">
 
-		<input type="text" placeholder="Username" ng-model="userProfileCtrl.userLoginInfo.username" required>
-		<input type="password" placeholder="Password" ng-model="userProfileCtrl.userLoginInfo.password" required>
+		<input type="text" placeholder="Username" ng-model="appCtrl.userLoginInfo.username" required>
+		<input type="password" placeholder="Password" ng-model="appCtrl.userLoginInfo.password" required>
 
 		<button type="submit" class="qvr-button on-dark float-left">Login</button>
 		<a ui-sref="register" class="qvr-button on-dark float-right">Register New User</a>

@@ -37,6 +37,59 @@
     FastClick.attach(document.body);
   }
 
+  app.controller('AppCtrl', [
+    'UserModel', 'FoundationApi', '$state',
+    function (UserModel, FoundationApi, $state) {
+
+      var appCtrl = this;
+
+      appCtrl.user = null;
+      appCtrl.userIsLoggedIn = false;
+      appCtrl.userLoginInfo = {};
+
+
+      function init() {
+        //console.log('appCtrl inititlized');
+      }
+
+
+      function userLoginMock(loginInfo) {
+        UserModel.getUserDetail()
+        .then(function(result) {
+          appCtrl.user = result;
+        }); 
+      };
+
+      function userLogin() {
+        UserModel.login(appCtrl.userLoginInfo)
+          .then(function success(response) {
+            appCtrl.user = {};
+            appCtrl.user._id = response.data.user;
+            appCtrl.userIsLoggedIn = true;
+            FoundationApi.publish('main-notifications', 
+              { 
+                title: 'Login Succesful', 
+                content: '',
+                color: 'success',
+                autoclose: '3000'
+              });
+            $state.go('messages.dashboard');
+
+            // console.log('user is: ');
+            // console.log(appCtrl.user._id);
+
+          });
+      }
+
+      appCtrl.init = init;
+      appCtrl.userLoginMock = userLoginMock;
+      appCtrl.userLogin = userLogin;
+
+      appCtrl.init();
+
+
+  }]);
+
 
   
 

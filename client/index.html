@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="enterprise-portal">
+<html lang="en" ng-app="enterprise-portal" ng-controller="AppCtrl as appCtrl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,9 @@
 
   </head>
   <body>
-
+ 
+  <!-- Notifications -->
+  <zf-notification-set id="main-notifications" position="top-right"></zf-notification-set>
 
   <!-- User Menu -->
   <zf-offcanvas id="user-panel" position="right"  class="detached dark g-user-panel"  >
