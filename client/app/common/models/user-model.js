@@ -25,6 +25,28 @@
 
     		};
 
+        model.getAccountInfo = function(userID) {
+           return $http.get(API_URL + '/enterprise/' + userID )
+            .success(function(data, status, headers, config) {
+              // this callback will be called asynchronously
+              // when the response is available
+              console.log('success');
+              console.log(data);
+              // console.log(status);
+              // console.log(headers);
+              // console.log(config);
+            })
+            .error(function(data, status, headers, config) {
+              console.log('error');
+              // console.log(data);
+              // console.log(status);
+              // console.log(headers);
+              // console.log(config);
+              // // called asynchronously if an error occurs
+              // or server returns response with an error status.
+            });
+        };
+
         model.registerUser = function(userDetail) {
           
           console.log(userDetail);
@@ -51,8 +73,8 @@
             .success(function(data, status, headers, config) {
               // this callback will be called asynchronously
               // when the response is available
-              // console.log('success');
-              // console.log(data);
+              console.log('success');
+              console.log(data);
               // console.log(status);
               // console.log(headers);
               // console.log(config);

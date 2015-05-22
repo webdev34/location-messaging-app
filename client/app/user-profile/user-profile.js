@@ -12,7 +12,7 @@
       $stateProvider
         .state('user-profile', {
           url: '/user',
-          templateUrl: '/app/user-profile/user-profile.tmpl.html'//,
+          templateUrl: 'app/user-profile/user-profile.tmpl.html'//,
          // controller: 'UserProfileCtrl as userProfileCtrl'
         }); 
 

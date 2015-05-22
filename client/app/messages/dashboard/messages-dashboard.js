@@ -8,7 +8,7 @@
 				$stateProvider
 					.state('messages.dashboard', {
 						url: '/',
-						templateUrl: '/app/messages/dashboard/messages-dashboard.tmpl.html'
+						templateUrl: 'app/messages/dashboard/messages-dashboard.tmpl.html'
 					});
 
 		}])

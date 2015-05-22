@@ -8,7 +8,7 @@
       $stateProvider
         .state('register', {
           url: '/register',
-          templateUrl: '/app/user-profile/register/user-profile-register.tmpl.html',
+          templateUrl: 'app/user-profile/register/user-profile-register.tmpl.html',
           controller: 'RegisterUserCtrl as registerUserCtrl'
         }); 
 

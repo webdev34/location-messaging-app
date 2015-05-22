@@ -4,6 +4,7 @@
   var app = angular.module('enterprise-portal', [
     'ui.router',
     'ngAnimate',
+    'ngCookies',
 
     //foundation
     'foundation',
@@ -42,8 +43,8 @@
   }
 
   app.controller('AppCtrl', [
-    'UserModel', 'FoundationApi', '$state', '$stateParams', '$location','APP_default_state',
-    function (UserModel, FoundationApi, $state, $stateParams, $location, APP_default_state) {
+    'UserModel', 'FoundationApi', '$state', '$location', '$cookieStore', 'APP_default_state',
+    function (UserModel, FoundationApi, $state, $location, $cookieStore, APP_default_state) {
 
       var appCtrl = this;
 
@@ -51,17 +52,14 @@
       appCtrl.userIsLoggedIn = false;
       appCtrl.userLoginInfo = {};
 
-
       function init() {
-        var stateTest = $state.get('home');
-        console.log(stateTest);
-
-        // if (!appCtrl.userIsLoggedIn) {
-        //   $state.go('home');
-        // }
-
+        var landingState = $location.url();
       }
 
+      function getAccountInfo(userID) {
+        UserModel.getAccountInfo(userID);
+
+      }
 
       function userLoginMock(loginInfo) {
         UserModel.getUserDetail()
@@ -69,6 +67,10 @@
           appCtrl.user = result;
         }); 
       };
+
+      function goToLogin() {
+        $state.go('home');
+      }
 
       function goToHomePage() {
         $state.go(APP_default_state);
@@ -93,16 +95,20 @@
           });
       }
 
+      function userLogout() {
+        appCtrl.user = null;
+        appCtrl.userIsLoggedIn = false;
+
+      }
+
       appCtrl.init = init;
       appCtrl.userLoginMock = userLoginMock;
       appCtrl.userLogin = userLogin;
+      appCtrl.getAccountInfo = getAccountInfo;
 
       appCtrl.init();
 
 
   }]);
-
-
-  
 
 })();
