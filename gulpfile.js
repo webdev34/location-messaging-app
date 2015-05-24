@@ -47,7 +47,10 @@ var paths = {
   ],
   templates: [
     './client/app/**/*.html'
-  ]
+  ],
+  build:'./build'
+  //build: './../quiver-api-server/api/web/enterprise'
+  
 }
 
 // 3. TASKS
@@ -55,7 +58,7 @@ var paths = {
 
 // Cleans the build directory
 gulp.task('clean', function(cb) {
-  rimraf('./build', cb);
+  rimraf( (paths.build) , cb);
 });
 
 // Copies everything in the client folder except templates, Sass, and JS
@@ -63,7 +66,7 @@ gulp.task('copy', function() {
   return gulp.src(paths.assets, {
     base: './client/'
   })
-    .pipe(gulp.dest('./build'))
+    .pipe(gulp.dest(paths.build))
   ;
 });
 
@@ -78,7 +81,7 @@ gulp.task('sass', function () {
     .pipe($.autoprefixer({
       browsers: ['last 2 versions', 'ie 10']
     }))
-    .pipe(gulp.dest('./build/assets/css/'))
+    .pipe(gulp.dest(paths.build +'/assets/css/'))
   ;
 });
 
@@ -93,7 +96,7 @@ gulp.task('uglify', function(cb) {
       }))
     .pipe($.concat('foundation.js'))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest('./build/assets/js/'))
+    .pipe(gulp.dest(paths.build + '/assets/js/'))
   ;
 
   // App JavaScript
@@ -106,7 +109,7 @@ gulp.task('uglify', function(cb) {
       }))
     .pipe($.concat('app.js'))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest('./build/assets/js/'))
+    .pipe(gulp.dest(paths.build + '/assets/js/'))
   ;
 
   cb();
@@ -119,7 +122,7 @@ gulp.task('copy:templates', function() {
       path: 'build/assets/js/routes.js',
       root: 'client'
     }))
-    .pipe(gulp.dest('./build/app'))
+    .pipe(gulp.dest(paths.build + '/app'))
   ;
 });
 
@@ -133,12 +136,12 @@ gulp.task('copy:foundation', function(cb) {
     }))
     .pipe($.uglify())
     .pipe($.concat('templates.js'))
-    .pipe(gulp.dest('./build/assets/js'))
+    .pipe(gulp.dest(paths.build + '/assets/js'))
   ;
 
   // Iconic SVG icons
   gulp.src('./bower_components/foundation-apps/iconic/**/*')
-    .pipe(gulp.dest('./build/assets/img/iconic/'))
+    .pipe(gulp.dest(paths.build + '/assets/img/iconic/'))
   ;
 
   cb();

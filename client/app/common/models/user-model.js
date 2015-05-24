@@ -26,7 +26,8 @@
     		};
 
         model.getAccountInfo = function(userID) {
-           return $http.get(API_URL + '/enterprise/' + userID )
+          console.log('userid: ' + userID);
+           return $http.get(API_URL + '/enterprise', userID  )
             .success(function(data, status, headers, config) {
               // this callback will be called asynchronously
               // when the response is available
@@ -38,7 +39,7 @@
             })
             .error(function(data, status, headers, config) {
               console.log('error');
-              // console.log(data);
+              console.log(data);
               // console.log(status);
               // console.log(headers);
               // console.log(config);

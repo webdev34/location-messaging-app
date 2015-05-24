@@ -6,13 +6,14 @@
 }
 
 .page {
+	min-height: 100%;
 	width: 100%;
-	overflow: scroll;
+	overflow: visible;
 
 }
 .page--login {
 	background-color: $qvr-color-1;
-
+	padding-bottom: 4rem;
 
 	.login-form {
 		margin-top: 100px;
@@ -20,6 +21,10 @@
 		.qvr-button {
 			width: 49%;
 		}
+	}
+
+	.corporate-info .corp-logo  {
+		max-width: 140px;
 	}
 
 }
@@ -64,6 +69,11 @@
 			
 			.corporate-info {
 				margin-right: 5rem;
+				height: 353px;
+
+				.corp-logo  {
+					max-width: 250px;
+				}
 			}
 
 		}
@@ -71,6 +81,7 @@
 		.password-box {
 			max-width: 450px;
 			padding-left: 30px;
+			margin-top: 5px;
 		}
 
 

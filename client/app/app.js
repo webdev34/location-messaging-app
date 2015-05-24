@@ -53,7 +53,13 @@
       appCtrl.userLoginInfo = {};
 
       function init() {
+        console.log('init running');
         var landingState = $location.url();
+        userLoginMock();
+        //var userCookie = $cookieStore.get('quiver-sid');
+        //console.log(userCookie);
+
+        //if (userCookie) { console.log('cookie exists');}
       }
 
       function getAccountInfo(userID) {
@@ -64,8 +70,14 @@
       function userLoginMock(loginInfo) {
         UserModel.getUserDetail()
         .then(function(result) {
+          console.log(result);
           appCtrl.user = result;
-        }); 
+          appCtrl.userIsLoggedIn = true;
+          goToHomePage();
+        });
+
+
+
       };
 
       function goToLogin() {
