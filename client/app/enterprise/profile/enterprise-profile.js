@@ -51,9 +51,16 @@
         returnToCompanyProfile();
       }
 
+      function testState() {
+        console.log('testing');
+        var includesState = $state.includes("enterprise");
+        console.log(includesState);
+      }
+
 
       editEnterpriseCtrl.updateCompany = updateCompany;
       editEnterpriseCtrl.cancelEdit = cancelEdit;
+      editEnterpriseCtrl.testState = testState;
 
     }]);
  

@@ -734,7 +734,12 @@
 
   	.corporate-info {
   		order: 1;
-  		width: 50%;
+  		//width: 50%;
+  		margin-left: auto;
+
+  		.corp-logo {
+  			max-width: 210px;
+  		}
 
   	}
 
