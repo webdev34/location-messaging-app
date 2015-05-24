@@ -1,18 +1,20 @@
 <!doctype html>
-<html lang="en" ng-app="enterprise-portal">
+<html lang="en" ng-app="enterprise-portal" ng-controller="AppCtrl as appCtrl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Quiver Enterprise Portal</title>
 
-    <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.css" rel="stylesheet" type="text/css">
 
 
 
   </head>
   <body>
-
+ 
+  <!-- Notifications -->
+  <zf-notification-set id="main-notifications" position="top-right"></zf-notification-set>
 
   <!-- User Menu -->
   <zf-offcanvas id="user-panel" position="right"  class="detached dark g-user-panel"  >
@@ -36,10 +38,10 @@
   </div>
 
 
-    <script src="/assets/js/foundation.js"></script>
-    <script src="/assets/js/templates.js"></script>
-    <script src="/assets/js/routes.js"></script>
-    <script src="/assets/js/app.js"></script>
+    <script src="assets/js/foundation.js"></script>
+    <script src="assets/js/templates.js"></script>
+    <script src="assets/js/routes.js"></script>
+    <script src="assets/js/app.js"></script>
 
 
   </body>

@@ -1,11 +1,11 @@
-<header class="menu-group g-header" ng-controller="UserProfileCtrl as userProfileCtrl">
+<header class="menu-group g-header">
   
   <a ui-sref="home" class="header-branding">
-    <img class="header-logo" src="/assets/img/logo/header-logo.png" alt="Quiver">
+    <img class="header-logo" src="assets/img/logo/header-logo.png" alt="Quiver">
     <span class="portal-branding">Enterprise Portal</span>
   </a>
-  
-  <nav class="menu-group-right header-nav">
+ 
+  <nav class="menu-group-right header-nav" ng-show="appCtrl.userIsLoggedIn">
     <ul class="menu-bar icon-left">
       <li><a ui-sref="admin">Admin</a></li>
       <li><a ui-sref="messages.dashboard" >Message Center</a></li>

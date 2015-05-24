@@ -14,7 +14,7 @@
 		$stateProvider
 			.state('messages', {
 				url: '/enterprise/messages',
-				templateUrl: '/app/messages/messages.tmpl.html',
+				templateUrl: 'app/messages/messages.tmpl.html',
 				abstract: true
 			});	
 

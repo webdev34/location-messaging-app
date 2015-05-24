@@ -6,7 +6,7 @@
   	.directive('messagesSideBar', function () {
 	    return {
 	      restrict: "E",
-	      templateUrl: '/app/messages/messages-side-bar.directive.html'
+	      templateUrl: 'app/messages/messages-side-bar.directive.html'
 	    };
 	  });
 

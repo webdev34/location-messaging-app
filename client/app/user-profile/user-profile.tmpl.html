@@ -9,12 +9,12 @@
 		<section class="profile-detail">
 		
 			<div class="clearfix">
-				<img ng-src="{{userProfileCtrl.user.avatar}}" alt="avatar" class="avatar">
+				<img ng-src="{{appCtrl.user.avatar}}" alt="avatar" class="avatar">
 			
 				<div class="names">
-					{{userProfileCtrl.user.fullName}}
+					{{appCtrl.user.fullName}}
 					<br>
-					@{{userProfileCtrl.user.username}}
+					@{{appCtrl.user.username}}
 					<br>
 					<a ui-sref="user-profile/edit" class="qvr-button info">Edit Profile</a>
 				</div>
@@ -22,20 +22,20 @@
 
 
 				<label>Description</label>
-				<p>{{userProfileCtrl.user.description}}</p>
+				<p>{{appCtrl.user.description}}</p>
 
 				<label>Title</label>
-				<p>{{userProfileCtrl.user.title}}</p>
+				<p>{{appCtrl.user.title}}</p>
 				
 
 				<label>Department</label>
-				<p>{{userProfileCtrl.user.department}}</p>
+				<p>{{appCtrl.user.department}}</p>
 
 				<label>Email</label>
-				<p>{{userProfileCtrl.user.email}}</p>
+				<p>{{appCtrl.user.email}}</p>
 
 				<label>Phone</label>
-				<p>{{userProfileCtrl.user.phone}}</p>
+				<p>{{appCtrl.user.phone}}</p>
 
 		</section>
 

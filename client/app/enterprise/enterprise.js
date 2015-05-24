@@ -11,12 +11,12 @@
      $stateProvider
       .state('enterprise', {
         url: '/enterprise/profile',
-        templateUrl: '/app/enterprise/enterprise.tmpl.html',
+        templateUrl: 'app/enterprise/enterprise.tmpl.html',
         abstract: true
       })
       .state('enterprise.users', {
         url: '/users',
-        templateUrl: '/app/enterprise/users/enterprise-users.tmpl.html',
+        templateUrl: 'app/enterprise/users/enterprise-users.tmpl.html',
         controller: 'EnterpriseCtrl as enterpriseCtrl'
         }); 
       $urlRouterProvider.otherwise('enterprise.profile');

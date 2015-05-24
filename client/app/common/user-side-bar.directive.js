@@ -6,7 +6,7 @@
   	.directive('userSideBar', function () {
 	    return {
 	      restrict: "E",
-	      templateUrl: '/app/common/user-side-bar.directive.html'
+	      templateUrl: 'app/common/user-side-bar.directive.html'
 	    };
 	  });
 

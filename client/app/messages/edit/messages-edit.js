@@ -6,7 +6,7 @@
 		$stateProvider
 			.state('messages.edit', {
 				url: '/:_id/edit',
-				templateUrl: '/app/messages/edit/messages-edit.tmpl.html',
+				templateUrl: 'app/messages/edit/messages-edit.tmpl.html',
 				controller: 'EditMessageCtrl as editMessageCtrl'
 			});
 

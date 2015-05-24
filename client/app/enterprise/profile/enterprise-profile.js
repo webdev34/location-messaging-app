@@ -8,12 +8,12 @@
   		$stateProvider
   			.state('enterprise.profile', {
 				  url: '/',
-				  templateUrl: '/app/enterprise/profile/enterprise-profile.tmpl.html',
+				  templateUrl: 'app/enterprise/profile/enterprise-profile.tmpl.html',
 				  controller: 'EnterpriseCtrl as enterpriseCtrl'
   			})
         .state('enterprise.edit', {
           url: '/edit',
-          templateUrl: '/app/enterprise/profile/edit/enterprise-profile-edit.tmpl.html',
+          templateUrl: 'app/enterprise/profile/edit/enterprise-profile-edit.tmpl.html',
           controller: 'EditEnterpriseCtrl as editEnterpriseCtrl'
         });;
   	}])

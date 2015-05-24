@@ -11,7 +11,7 @@
      	$stateProvider
 	      .state('admin', {
 	        url: '/admin',
-	        templateUrl: '/app/admin/admin.tmpl.html',
+	        templateUrl: 'app/admin/admin.tmpl.html',
 	        controller: 'AdminCtrl as adminCtrl'
 	      });
 

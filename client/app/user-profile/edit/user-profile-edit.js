@@ -10,7 +10,7 @@
       $stateProvider
         .state('user-profile/edit', {
           url: 'user/edit',
-          templateUrl: '/app/user-profile/edit/user-profile-edit.tmpl.html',
+          templateUrl: 'app/user-profile/edit/user-profile-edit.tmpl.html',
           controller: 'EditProfileCtrl as editProfileCtrl'
         });
   }])
