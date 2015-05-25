@@ -8,7 +8,7 @@
 
 	<section>
 		<div class="float-right top-controls">
-		<button type="submit" class="qvr-button info edit-button">Create New Message</button>
+		<button type="submit" class="qvr-button info edit-button">Save Message</button>
 			<button ng-click="newMessageCtrl.cancelCreating()" class="qvr-button warning hollow edit-button">Cancel</button>
 	</div>
 	</section>
@@ -29,17 +29,16 @@
 			<select class="qvr-select select-status"   ng-model="newMessageCtrl.newMessage.status" required>
 				<option>Setup</option>
 				<option>Active</option>
-				<option>Inactive</option>
 				<option>Closed</option>
 			</select>
 
 		</div>
 		
 		<label class="qvr-label">To:</label>
-		<input placeholder="Choose Recipients" type="text">
+		<input placeholder="Choose Recipients" ng-model="newMessageCtrl.newMessage.sentTo" type="text" disabled>
 
 		<label class="qvr-label">Content:</label>
-		<textarea ng-model="newMessageCtrl.newMessage.content" class="message-content" placeholder="Insert Content"></textarea>
+		<textarea ng-model="newMessageCtrl.newMessage.content" class="message-content" placeholder="Insert Content" required></textarea>
 
 		<a class="qvr-button info attach-asset"><span class="icon i-camera"></span> Attach Asset</a>
 		<br>
@@ -78,7 +77,7 @@
 		<p class="float-left">
 			Recipient discovers message
 			<br>
-			when <span>entering</span> the <span>5 KM</span> radius
+			when <span ng-show="newMessageCtrl.newMessage.discoverOn=='enter'">entering</span><span ng-show="newMessageCtrl.newMessage.discoverOn=='leave'">leaving</span> the <span>{{newMessageCtrl.newMessage.range}} KM</span> radius
 		</p>
 	</section>
 
@@ -112,7 +111,7 @@
 		</div>
 	</section>
 
-	<section>
+	<!-- <section>
 		<h2>Delivery Information</h2>
 	</section>
 
@@ -128,10 +127,10 @@
 			<br>
 			they will recieve your message
 		</p>
-	</section>
+	</section> -->
 
 	<div class="float-right bottom-controls">
-		<button type="submit" class="qvr-button info edit-button">Create New Message</button>
+		<button type="submit" class="qvr-button info edit-button">Save Message</button>
 			<button ng-click="newMessageCtrl.cancelCreating()" class="qvr-button warning hollow edit-button">Cancel</button>
 	</div>
 

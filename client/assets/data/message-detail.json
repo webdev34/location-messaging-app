@@ -1,7 +1,7 @@
 {
   "_id": "54a2be5cae5fc8347d356729",
   "messageTitle": "Message Title",
-  "sentTo": "group",
+  "sentTo": "All Followers",
   "sentCount": 150,
   "likeCount": 100,
   "range": 5,
@@ -11,6 +11,7 @@
   "saveCount": 15,
   "content": "This is the content of the message",
   "status": "Active",
+  "discoverOn": "enter",
   "startTime":"<time string>",
   "endTime":"<time string>",
   "locLat":"<latitude>",

@@ -1,4 +1,5 @@
 <header class="heading-bar">
+		<h1>{{messageDetailCtrl.message.status}} Message</h1>
 </header>
 
 <div class="message-content-wrap">
@@ -8,7 +9,7 @@
 			<a ui-sref="messages.edit({_id:messageDetailCtrl.message._id})" class="qvr-button info edit-button">Edit Message</a>
 		</div>
 
-		<h2 class="float-left message-title">{{messageDetailCtrl.message.messageTitle}} {{messageDetailCtrl.currentMessageId}}</h2>
+		<h2 class="float-left message-title">{{messageDetailCtrl.message.messageTitle}}</h2>
 	</section>
 	
 		
@@ -23,7 +24,7 @@
 
 	<section>
 		<label class="qvr-label">To:</label>
-		<p>All Followers</p>
+		<p>{{messageDetailCtrl.message.sentTo}}</p>
 	</section>
 	
 	<section>
@@ -34,10 +35,9 @@
 	<section>
 		<label class="qvr-label">Message Status:</label>
 		<div class="status-box">
-			<a>Setup</a>
-			<a class="active">Active</a>
-			<a>Inactive (Delivering)</a>
-			<a>Closed</a>
+			<a ng-class="{active: messageDetailCtrl.message.status=='Setup'}">Setup</a>
+			<a ng-class="{active: messageDetailCtrl.message.status=='Active'}">Active</a>
+			<a ng-class="{active: messageDetailCtrl.message.status=='Closed'}">Closed</a>
 		</div>
 
 		<div class="measure">
@@ -83,22 +83,21 @@
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2692591501204!2d-79.38705699999998!3d43.642565999999974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34d68bf33a9b%3A0x15edd8c4de1c7581!2sCN+Tower!5e0!3m2!1sen!2sca!4v1427435891553" width="100%" height="320px" frameborder="0" style="border:0"></iframe>
 
 		<div class="radius">
-			<span>5 km</span> radius
+			<span>{{messageDetailCtrl.message.range}} km</span> radius
 		</div>
 		
 	</section>
 
 	<section class="location-details">
 		<div class="float-left">
-			<span class="icon i-location-enter"></span>
-			<input type="checkbox" class="qvr-slide-toggle">
-			<span class="icon i-location-leave"></span>
+			<span class="icon i-location-enter" ng-show="messageDetailCtrl.message.discoverOn=='enter'"></span>
+			<span class="icon i-location-leave" ng-show="messageDetailCtrl.message.discoverOn=='leave'"></span>
 		</div>
 		
 		<p class="float-left">
 			Recipient discovers message
 			<br>
-			when <span>entering</span> the <span>5 KM</span> radius
+			when <span ng-show="messageDetailCtrl.message.discoverOn=='enter'">entering</span><span ng-show="messageDetailCtrl.message.discoverOn=='leave'">leaving</span> the <span>{{messageDetailCtrl.message.range}} KM</span> radius
 		</p>
 	</section>
 
@@ -135,7 +134,7 @@
 		</div>
 	</section>
 
-	<section>
+	<!-- <section>
 		<h2>Delivery Information</h2>
 	</section>
 
@@ -151,7 +150,7 @@
 			<br>
 			they will recieve your message
 		</p>
-	</section>
+	</section> -->
 
 
 	<div class="float-right bottom-controls">

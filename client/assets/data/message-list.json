@@ -17,6 +17,12 @@
       "messageTitle": "Message 3",
       "content": "This is the content of the message",
       "status": "Setup"
+    },
+    {
+      "_id": "<hex3>",
+      "messageTitle": "Message 4",
+      "content": "This is the content of the message",
+      "status": "Closed"
     }
   ]
 }

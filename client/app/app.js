@@ -53,7 +53,7 @@
       appCtrl.userLoginInfo = {};
 
       function init() {
-        console.log('init running');
+        //console.log('init running');
         var landingState = $location.url();
         userLoginMock();
         //var userCookie = $cookieStore.get('quiver-sid');
@@ -70,7 +70,7 @@
       function userLoginMock(loginInfo) {
         UserModel.getUserDetail()
         .then(function(result) {
-          console.log(result);
+          //console.log(result);
           appCtrl.user = result;
           appCtrl.userIsLoggedIn = true;
           //goToHomePage();

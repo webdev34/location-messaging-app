@@ -33,8 +33,10 @@
             "_id": "",
             "messageTitle": "",
             "content": "",
-            "status": "",
-            "range": 5
+            "status": "Setup",
+            "range": 5,
+            "sentTo": "All Followers",
+            "discoverOn": "leave"
           };
         }
 
