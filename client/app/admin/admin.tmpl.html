@@ -5,10 +5,14 @@
 
 	<div class="enterprise-content">
 		<div class="enterprise-users">
+			<br>
 			
-			<header>
-				<a zf-open="addEnterpriseModal" class="qvr-button info float-right"> + Add Enterprise</a>
-			</header>
+			<section class="user-section">
+				<h2></h2>
+				<div class="g-user-list">
+					<a zf-open="addEnterpriseModal" class="qvr-button warning"> + Add Enterprise</a>
+				</div>
+			</section>
 
 			<section class="user-section">
 				<h2>Enterprises</h2>
@@ -21,15 +25,19 @@
 							<br>
 							<strong>Admins:</strong>
 							<br>
-							<a ui-sref="user-profile" class="qvr-button info small" ng-repeat="user in company.administrators">{{user.name}} </a>
+							<span ng-repeat="user in company.administrators">
+								<a ui-sref="user-profile" class="" >{{user.name}} </a>
+								<br>
+
+							</span>
 
 						</div>
 						
 						<div class="user-rights">
 					<label class="qvr-label">User Rights</label>
-					<a class="qvr-button hollow" href="#">Message</a>
-					<a class="qvr-button action" href="#">Suspend</a>
-					<a class="qvr-button hollow" href="#">Remove</a>
+					<a class="qvr-button hollow small" href="#">Message</a>
+					<a class="qvr-button action small" href="#">Suspend</a>
+					<a class="qvr-button hollow small" href="#">Remove</a>
 				</div>
 					</li>
 				</ul>
