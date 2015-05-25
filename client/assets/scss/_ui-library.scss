@@ -469,7 +469,7 @@ input[type="checkbox"].qvr-slide-toggle {
 
 	&.warning {
 		background-color: $qvr-warning-color;
-		color: #fff;
+		color: $qvr-warning-color_text;
 
 		&:hover {
 			background-color: $qvr-warning-color_hover;
@@ -483,41 +483,86 @@ input[type="checkbox"].qvr-slide-toggle {
 		}
 
 		&.hollow {
-			border: 1px solid $qvr-warning-color;
+			border: 1px solid $qvr-warning-color_hollow_border;
 			color: $qvr-warning-color;
-			background-color: transparent;
+			background-color: $qvr-warning-color_hollow;
 
 			&:hover {
-				border-color: lighten($qvr-warning-color, 10%);
+				background-color: $qvr-warning-color_hollow_hover;
+				border-color: $qvr-warning-color_hollow_hover_border;
+			}
+
+			&.is-active {
+				background-color: $qvr-warning-color_hollow_active;
+				border-color: $qvr-warning-color_hollow_active_border;
+			}
+		}
+
+		&.on-dark {
+
+			&.is-disabled {
+				background-color: $qvr-warning-color_disabled_on-dark;
+				color: $qvr-warning-color_disabled_on-dark_text;
+			}
+			
+			&.hollow {
+				background-color: $qvr-warning-color_hollow;
+				border: 1px solid $qvr-warning-color_hollow_border;
+				color: $qvr-warning-color_hollow_text;
+
+				&:hover {
+					background-color: $qvr-warning-color_hollow_hover;
+					border-color: $qvr-warning-color_hollow_hover_border;
+				}
+				&.is-active {
+					background-color: $qvr-warning-color_hollow_active;
+					border-color: $qvr-warning-color_hollow_active_border;
+				}
+				&.is-disabled {
+					background-color: $qvr-warning-color_hollow_disabled_on-dark;
+					border-color: $qvr-warning-color_hollow_active_border;
+					color: $qvr-warning-color_hollow_disabled_on-dark_text;
+				}
 			}
 		}
 	}
 
 	&.info {
-		background-color: $qvr-color-2;
-		color: $qvr-color-1;
+		background-color: $qvr-info-color;
+		color: $qvr-info-color_text;
 
 		&:hover {
-			background-color: lighten($qvr-color-2, 10%);
+			background-color: $qvr-info-color_hover;
+		}
+		&.is-active {
+			background-color: $qvr-info-color_active;
+		}
+		&.is-disabled {
+			background-color: $qvr-info-color_disabled;
+			color: $qvr-info-color_disabled_text;
+		}
+
+		&.on-dark {
+			&.is-disabled {
+				background-color: $qvr-info-color_disabled_on-dark;
+				color: $qvr-info-color_disabled_on-dark_text;
+			}
 		}
 	}
-
-	&.on-dark {
-		background-color: $qvr-color-2;
-		color: $qvr-color-1;
-
-		&:hover {
-			background-color: darken($qvr-color-2, 5%);
-		}
-	}
+	
 
 	&.hollow {
-		font-weight: 400;
-		color: $qvr-color-body;
-		border: 1px solid $qvr-color-body;
+		color: $qvr-hallow-color_text;
+		background-color:$qvr-hallow-color;
+		border: 1px solid $qvr-hallow-color_border;
 
 		&:hover {
-			border-color: darken($qvr-color-body, 10%);
+			background-color: $qvr-hallow-color_hover;
+		}
+
+		&.is-disabled {
+			background-color: $qvr-hallow-color_disabled;
+			color: $qvr-hallow-color_disabled_text;
 		}
 	}
 
