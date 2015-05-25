@@ -36,7 +36,7 @@
             "status": "Inactive",
             "range": 5,
             "sentTo": "All Followers",
-            "discoverOn": "leave"
+            "discoverOn": "enter"
           };
         }
 

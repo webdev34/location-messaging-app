@@ -72,15 +72,24 @@
 
 	<section class="location-details">
 		<div class="float-left">
-			<span class="icon i-location-enter"></span>
-			<input type="checkbox" class="qvr-slide-toggle">
-			<span class="icon i-location-leave"></span>
+
+
+			<span class="icon i-location-enter" ng-class="{active: editMessageCtrl.editedMessage.discoverOn=='enter'}"></span>
+
+			<div class="switch enter-exit-switch">
+				<input type="checkbox" id="enter-exit-switch" ng-true-value="'leave'" ng-false-value="'enter'" ng-model="editMessageCtrl.editedMessage.discoverOn">
+				<label for="enter-exit-switch"></label>
+			</div>
+
+			<span class="icon i-location-leave" ng-class="{active: editMessageCtrl.editedMessage.discoverOn=='leave'}" ></span>
+
+
 		</div>
 		
 		<p class="float-left">
 			Recipient discovers message
 			<br>
-			when <span>entering</span> the <span>{{editMessageCtrl.editedMessage.range}} KM</span> radius
+			when  <span ng-show="editMessageCtrl.editedMessage.discoverOn=='enter'">entering</span><span ng-show="editMessageCtrl.editedMessage.discoverOn=='leave'">leaving</span> the <span>{{newMessageCtrl.newMessage.range}} KM</span> the <span>{{editMessageCtrl.editedMessage.range}} KM</span> radius
 		</p>
 	</section>
 

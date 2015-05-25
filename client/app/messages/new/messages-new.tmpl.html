@@ -69,9 +69,14 @@
 
 	<section class="location-details">
 		<div class="float-left">
-			<span class="icon i-location-enter"></span>
-			<input type="checkbox" class="qvr-slide-toggle">
-			<span class="icon i-location-leave"></span>
+			<span class="icon i-location-enter" ng-class="{active: newMessageCtrl.newMessage.discoverOn=='enter'}"></span>
+
+			<div class="switch enter-exit-switch">
+				<input type="checkbox" id="enter-exit-switch" ng-true-value="'leave'" ng-false-value="'enter'" ng-model="newMessageCtrl.newMessage.discoverOn">
+				<label for="enter-exit-switch"></label>
+			</div>
+
+			<span class="icon i-location-leave" ng-class="{active: newMessageCtrl.newMessage.discoverOn=='leave'}" ></span>
 		</div>
 		
 		<p class="float-left">
