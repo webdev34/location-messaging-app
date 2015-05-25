@@ -771,7 +771,9 @@
   }
 
   .enterprise-users {
-  	padding: 4rem;
+  	padding:0 4rem 4rem 4rem;
+  	max-width: 1100px;
+  	margin: 0 auto;
 
   	header {
   		@extend .clearfix;
