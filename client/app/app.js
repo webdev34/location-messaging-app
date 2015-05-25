@@ -43,24 +43,53 @@
   }
 
   app.controller('AppCtrl', [
-    'UserModel', 'FoundationApi', '$state', '$location', '$cookieStore', 'APP_default_state',
-    function (UserModel, FoundationApi, $state, $location, $cookieStore, APP_default_state) {
+    'UserModel',
+    'FoundationApi',
+    '$rootScope', 
+    '$state',
+    '$location',
+    '$cookieStore',
+    'APP_default_state',
+    function (UserModel, FoundationApi, $rootScope, $state, $location, $cookieStore, APP_default_state) {
 
       var appCtrl = this;
 
+      appCtrl.currentState = $rootScope.$state;
       appCtrl.user = null;
       appCtrl.userIsLoggedIn = false;
       appCtrl.userLoginInfo = {};
 
-      function init() {
-        //console.log('init running');
-        var landingState = $location.url();
-        userLoginMock();
-        //var userCookie = $cookieStore.get('quiver-sid');
-        //console.log(userCookie);
+      appCtrl.gNavStateIs = "";
 
-        //if (userCookie) { console.log('cookie exists');}
+      
+
+      $rootScope.$on('$stateChangeSuccess', 
+      function(event, toState, toParams, fromState, fromParams){ 
+          whatIsState();
+      });
+
+
+      function init() {
+        var landingState = $location.url();
+        whatIsState();
+        userLoginMock();
       }
+
+
+      function whatIsState() {
+        appCtrl.gNavStateIs = "";
+
+        var stateArray = ['messages','admin','enterprise'];
+
+        for (var i = 0; i < stateArray.length; i++) {
+          if (appCtrl.currentState.includes(stateArray[i])) {
+            appCtrl.gNavStateIs = stateArray[i];
+          }
+         
+        }
+
+      }
+
 
       function getAccountInfo(userID) {
         UserModel.getAccountInfo(userID);

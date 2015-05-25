@@ -7,9 +7,15 @@
  
   <nav class="menu-group-right header-nav" ng-show="appCtrl.userIsLoggedIn">
     <ul class="menu-bar icon-left">
-      <li><a ui-sref="admin">Admin</a></li>
-      <li><a ui-sref="messages.dashboard" >Message Center</a></li>
-      <li><a ui-sref="enterprise.profile" >Enterprise Settings</a></li>
+      <li>
+        <a ui-sref="admin" ng-class="{active: appCtrl.gNavStateIs=='admin'}">Admin</a>
+      </li>
+      <li>
+        <a ui-sref="messages.dashboard" ng-class="{active: appCtrl.gNavStateIs=='messages'}">Message Center</a>
+      </li>
+      <li>
+        <a ui-sref="enterprise.profile" ng-class="{active: appCtrl.gNavStateIs=='enterprise'}">Enterprise Settings</a>
+      </li>
       <li>
         <a zf-toggle="user-panel" class="button__user">
           <span class="icon i-header-user"></span>
