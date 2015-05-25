@@ -33,7 +33,7 @@
             "_id": "",
             "messageTitle": "",
             "content": "",
-            "status": "Setup",
+            "status": "Inactive",
             "range": 5,
             "sentTo": "All Followers",
             "discoverOn": "leave"
