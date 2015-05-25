@@ -60,13 +60,33 @@
 
 }
 
-//Global Side Nav
+//Global Navigation Styles
 .g-side-nav {
 	padding-right: 1px;
+}
 
+.g-nav-subnav {
+	padding: 2rem;
+	text-align: center;
+
+	a {
+		@extend .qvr-button;
+		@extend .info;
+
+		width: 180px;
+		margin: 0 0.5em;
+		background-color: #B9E9FF;
+
+		&.is-active, &:hover {
+			background-color: #00A8CB;
+			color: #fff;
+		}
+
+	}
 
 }
 
+//Heading Bar
 .heading-bar {
 	height: 52px;
 	line-height: 52px;
@@ -85,3 +105,4 @@
 		text-align: left;
 	}
 }
+

@@ -269,76 +269,72 @@ p {
 	a { color: inherit }
 }
 
-.g-nav-subnav {
-	padding: 2rem;
-	text-align: center;
 
-	a {
-		width: 180px;
-		margin: 0 0.5em;
-
-		&.is-active {
-			@extend .action;
-		}
-
-	}
-
-}
 
 
 //Forms
-form {
-	//styling Foundation Apps form
-	input {
-		&.h1 { @extend h1; height: inherit;}
-		&.h2 { @extend h2; height: inherit;}
-		&.h3 { @extend h3; height: inherit;}
-
-	}
-
-	.no-border {
-		border: none;
-	}
-	.dashed-border {
-		border: 1px dashed;
-	}
-}
-
-
 //Quiver Custom Form
 .qvr-form {
-	$qvr-form_color-1: lighten($qvr-color-body, 20%);
-	$qvr-form_placeholder-color: #ccc;
+	// Form Colors
+	$qvr-form_color-bg: #F7F7F7;
+	$qvr-form_color-bg_focus: $qvr-form_color-bg;
+	$qvr-form_color-border: #cccccc;
+	$qvr-form_color-border_focus: $qvr-form_color-border;
+	$qvr-form_color-placeholder: $qvr-form_color-border;
+	$qvr-form_color-text: #999999;
+	$qvr-form-color-text_focus: #666666;
+	$qvr-form-color-bg_disabled: #e6e6e6;
+	$qvr-form-color-text_disabled: $qvr-form_color-border;
+
+	//Form Colors - On Dark
+	$qvr-form_color-bg_on-dark: #00B4CC;
+	$qvr-form_color-bg_focus_on-dark: #00D0E0;
+	$qvr-form_color-border_on-dark: #00899B;
+	$qvr-form_color-border_focus_on-dark: $qvr-form_color-border_on-dark;
+	$qvr-form_color-placeholder_on-dark: $qvr-form_color-border;
+	$qvr-form_color-text_on-dark: #fff;
+	$qvr-form-color-text_focus_on-dark: $qvr-form_color-text_on-dark;
+	$qvr-form-color-bg_disabled_on-dark: #00B4CC;
+	$qvr-form-color-text_disabled_on-dark: #00A8CB;
+
 
 	::-webkit-input-placeholder {
-	   color: $qvr-form_placeholder-color;
+	   color: $qvr-form_color-placeholder;
 	}
 
 	:-moz-placeholder { /* Firefox 18- */
-	   color: $qvr-form_placeholder-color;  
+	   color: $qvr-form_color-placeholder;  
 	}
 
 	::-moz-placeholder {  /* Firefox 19+ */
-	   color: $qvr-form_placeholder-color;  
+	   color: $qvr-form_color-placeholder;  
 	}
 
 	:placeholder {  
-	   color: $qvr-form_placeholder-color;  
+	   color: $qvr-form_color-placeholder;  
 	}
 
 	
 	
 	input, .form-element {
 		height: $qvr-input-btn-height;
-		border: 1px solid $qvr-form_color-1;
+		border: 1px solid $qvr-form_color-border;
 		border-radius: $qvr-border-radius;
-		background-color: transparent;
-		color: $qvr-form_color-1;
+		background: $qvr-form_color-bg;
+		color: $qvr-form_color-text;
 		transition: all 0.4s ease-in-out;
 		padding: 0 1em;
+		font-size: 20px;
+		font-weight: 700;
 
-		&:focus {
-			color: $qvr-color-body;
+		&:focus, &:hover {
+			color: $qvr-form-color-text_focus;
+			background: $qvr-form_color-bg_focus;
+			border-color: $qvr-form_color-border_focus;
+		}
+		&[disabled], &.is-disabled {
+			color: $qvr-form-color-text_disabled;
+			background-color: $qvr-form-color-bg_disabled;
 		}
 	}
 
@@ -348,16 +344,26 @@ form {
 	}
 
 	&.on-dark {
-		input {
-			color: #f2f2f2;
-			border-color: $qvr-color-2;
+		input, .form-element {
+			height: $qvr-input-btn-height;
+			border: 1px solid $qvr-form_color-border_on-dark;
+			border-radius: $qvr-border-radius;
+			background: $qvr-form_color-bg_on-dark;
+			color: $qvr-form_color-text_on-dark;
+			transition: all 0.4s ease-in-out;
+			padding: 0 1em;
+			font-size: 20px;
+			font-weight: 700;
 
 			&:focus, &:hover {
-				background-color: inherit;
-				border-color: #fff;
-				color: #fff;
+				color: $qvr-form-color-text_focus_on-dark;
+				background: $qvr-form_color-bg_focus_on-dark;
+				border-color: $qvr-form_color-border_focus_on-dark;
 			}
-
+			&[disabled], &.is-disabled {
+				color: $qvr-form-color-text_disabled_on-dark;
+				background-color: $qvr-form-color-bg_disabled_on-dark;
+			}
 		}
 
 	}
@@ -370,7 +376,6 @@ form {
 		@extend .form-element;
 		resize: none;
 		padding: 1em;
-		color: $qvr-form_color-1;
 
 		&.text-description {
 			height: 140px;
@@ -458,14 +463,6 @@ input[type="checkbox"].qvr-slide-toggle {
 
 	transition: all 0.4s ease-in-out;
 
-	&.action {
-		background-color: $qvr-color-1;
-		color: #fff;
-
-		&:hover {
-			background-color: lighten($qvr-color-1, 10%);
-		}
-	}
 
 	&.warning {
 		background-color: $qvr-warning-color;
@@ -545,7 +542,7 @@ input[type="checkbox"].qvr-slide-toggle {
 		&.on-dark {
 			&.is-disabled {
 				background-color: $qvr-info-color_disabled_on-dark;
-				color: $qvr-info-color_disabled_on-dark_text;
+				color: $qvr-info-color_disabled_text_on-dark;
 			}
 		}
 	}
