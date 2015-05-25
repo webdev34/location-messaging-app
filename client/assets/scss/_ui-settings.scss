@@ -6,13 +6,19 @@ $qvr-tertiary-font: Oswald, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 
 //Colors
-$qvr-color-body: #7F8184;
-$qvr-warning-color: #F15A29;
+$qvr-color-body: 			#7F8184;
+
+$qvr-warning-color: #F35615;
+$qvr-warning-color_hover: #BC3F13;
+$qvr-warning-color_active: #F28964;
+$qvr-warning-color_disabled: #E6E6E6;
+
 $qvr-color-1: #00A8CB;
 $qvr-color-2: #B9E9FF;
 
 
 //Sizes
-$qvr-input-btn-height: 53px;
-$qvr-input-btn-height_small: 24px;
+$qvr-input-btn-height: 70px;
+$qvr-input-btn-height_small: 53px;
+$qvr-input-btn-font-size: 20px;
 $qvr-border-radius: 7px;

@@ -1,14 +1,22 @@
 <div class="enterprise-users">
 	
 	<header>
-		<a zf-open="addUserModal" class="qvr-button info float-right"> + Add User</a>
 
 	</header>
 
 
+	<section class="user-section">
+		<h2>&nbsp;</h2>
+		<div class="g-user-list">
+			<a zf-open="addUserModal" class="qvr-button warning"> + Add User</a>
+		</div>
+
+	</section>
+
 
 	<section class="user-section">
-			<h2 >Users</h2>
+
+		<h2>Users</h2>
 
 		<ul class="g-user-list">
 			<li ng-repeat="user in enterpriseCtrl.company.users">
@@ -21,9 +29,9 @@
 
 				<div class="user-rights">
 					<label class="qvr-label">User Rights</label>
-					<a class="qvr-button hollow" href="#">Make Admin</a>
-					<a class="qvr-button action" href="#">Suspend</a>
-					<a class="qvr-button hollow" href="#">Remove</a>
+					<a class="qvr-button hollow small" href="#">Make Admin</a>
+					<a class="qvr-button action small" href="#">Suspend</a>
+					<a class="qvr-button hollow small" href="#">Remove</a>
 				</div>
 				
 				
@@ -46,9 +54,9 @@
 				
 				<div class="user-rights">
 						<label class="qvr-label">User Rights</label>
-						<a class="qvr-button hollow" href="#">Downgrade</a>
-						<a class="qvr-button action" href="#">Suspend</a>
-						<a class="qvr-button hollow" href="#">Remove</a>
+						<a class="qvr-button hollow small" href="#">Downgrade</a>
+						<a class="qvr-button action small" href="#">Suspend</a>
+						<a class="qvr-button hollow small" href="#">Remove</a>
 					</div>
 			</li>
 		</ul>

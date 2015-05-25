@@ -454,7 +454,7 @@ input[type="checkbox"].qvr-slide-toggle {
 
 	font-family: $qvr-secondary-font;
 	font-weight: 700;
-	font-size: 14px;
+	font-size: 20px;
 
 	transition: all 0.4s ease-in-out;
 
@@ -472,7 +472,14 @@ input[type="checkbox"].qvr-slide-toggle {
 		color: #fff;
 
 		&:hover {
-			background-color: lighten($qvr-warning-color, 10%);
+			background-color: $qvr-warning-color_hover;
+		}
+
+		&.is-active {
+			background-color: $qvr-warning-color_active;
+		}
+		&.is-disabled {
+			background-color: $qvr-warning-color_disabled;
 		}
 
 		&.hollow {

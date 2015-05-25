@@ -73,7 +73,7 @@
           console.log(result);
           appCtrl.user = result;
           appCtrl.userIsLoggedIn = true;
-          goToHomePage();
+          //goToHomePage();
         });
 
 
