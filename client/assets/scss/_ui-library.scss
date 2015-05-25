@@ -454,7 +454,7 @@ input[type="checkbox"].qvr-slide-toggle {
 
 	font-family: $qvr-secondary-font;
 	font-weight: 700;
-	font-size: 20px;
+	font-size: $qvr-input-btn-font-size;
 
 	transition: all 0.4s ease-in-out;
 
@@ -525,8 +525,8 @@ input[type="checkbox"].qvr-slide-toggle {
 		height: $qvr-input-btn-height_small;
 		line-height: $qvr-input-btn-height_small;
 		padding: 0 1em;
-		font-size: 12px;
 		font-weight: 400;
+		font-size: $qvr-input-btn-font-size_small;
 	}
 
 }
