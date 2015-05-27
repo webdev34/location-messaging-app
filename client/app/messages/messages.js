@@ -86,8 +86,8 @@
       $scope.$on('mapInitialized', function(event, map) {
         var numTiles = 1 << map.getZoom();
         var projection = new MercatorProjection();
-        $scope.chicago = map.getCenter();
-        $scope.worldCoordinate = projection.fromLatLngToPoint($scope.chicago);
+        $scope.toronto = map.getCenter();
+        $scope.worldCoordinate = projection.fromLatLngToPoint($scope.toronto);
         $scope.pixelCoordinate = new google.maps.Point(
             $scope.worldCoordinate.x * numTiles,
             $scope.worldCoordinate.y * numTiles);
