@@ -5,6 +5,7 @@
     'ui.router',
     'ngAnimate',
     'ngCookies',
+    'ngMap',
 
     //foundation
     'foundation',

@@ -60,8 +60,16 @@
 			<input type="search" placeholder="Search for Location">
 		</div>
 
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2692591501204!2d-79.38705699999998!3d43.642565999999974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34d68bf33a9b%3A0x15edd8c4de1c7581!2sCN+Tower!5e0!3m2!1sen!2sca!4v1427435891553" width="100%" height="320px" frameborder="0" style="border:0"></iframe>
-
+		<div ng-controller="MapCoordinatesCtrl" class="ng-scope">
+      <map center="43.642566,-79.387057" zoom="12">
+        <info-window id="1" position="43.642566,-79.387057" visible="true">
+          <div ng-non-bindable="">
+            Toronto, ON
+          </div>
+        </info-window>
+      </map>
+    </div>
+    
 		<div class="radius">
 			<span>{{editMessageCtrl.editedMessage.range}} km</span> radius
 		</div>
