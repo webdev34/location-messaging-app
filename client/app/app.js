@@ -4,7 +4,6 @@
   var app = angular.module('enterprise-portal', [
     'ui.router',
     'ngAnimate',
-    'ngCookies',
     'ngMap',
 
     //foundation
@@ -23,7 +22,7 @@
   ;
 
   app.constant('APP_default_state', 'messages.dashboard');
-  app.constant('API_URL', 'http://localhost:8000/web-1.1');
+  app.constant('API_URL', 'http://localhost:8000/droid1.1');
 
 
   config.$inject = ['$urlRouterProvider', '$locationProvider'];
@@ -48,10 +47,8 @@
     'FoundationApi',
     '$rootScope', 
     '$state',
-    '$location',
-    '$cookieStore',
     'APP_default_state',
-    function (UserModel, FoundationApi, $rootScope, $state, $location, $cookieStore, APP_default_state) {
+    function (UserModel, FoundationApi, $rootScope, $state, APP_default_state) {
 
       var appCtrl = this;
 
@@ -71,7 +68,6 @@
 
 
       function init() {
-        var landingState = $location.url();
         whatIsState();
         userLoginMock();
       }
@@ -91,22 +87,14 @@
 
       }
 
-
-      function getAccountInfo(userID) {
-        UserModel.getAccountInfo(userID);
-
-      }
-
       function userLoginMock(loginInfo) {
         UserModel.getUserDetail()
         .then(function(result) {
           //console.log(result);
           appCtrl.user = result;
           appCtrl.userIsLoggedIn = true;
-          //goToHomePage();
+          goToHomePage();
         });
-
-
 
       };
 
@@ -121,8 +109,10 @@
       function userLogin() {
         UserModel.login(appCtrl.userLoginInfo)
           .then(function success(response) {
+            var responseData = response.data.data;
             appCtrl.user = {};
-            appCtrl.user._id = response.data.user;
+            appCtrl.user._id = responseData.user;
+            appCtrl.user.enterprise = responseData.enterprise[0];
             appCtrl.userIsLoggedIn = true;
             FoundationApi.publish('main-notifications', 
               { 
@@ -132,8 +122,6 @@
                 autoclose: '3000'
               });
             goToHomePage();
-            // console.log('user is: ');
-            // console.log(appCtrl.user._id);
           });
       }
 
@@ -146,7 +134,6 @@
       appCtrl.init = init;
       appCtrl.userLoginMock = userLoginMock;
       appCtrl.userLogin = userLogin;
-      appCtrl.getAccountInfo = getAccountInfo;
 
       appCtrl.init();
 

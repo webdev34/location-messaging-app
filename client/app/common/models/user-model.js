@@ -27,24 +27,15 @@
 
         model.getAccountInfo = function(userID) {
           console.log('userid: ' + userID);
-           return $http.get(API_URL + '/enterprise', userID  )
+           return $http.get(API_URL + '/account/' + userID  )
             .success(function(data, status, headers, config) {
-              // this callback will be called asynchronously
-              // when the response is available
               console.log('success');
               console.log(data);
-              // console.log(status);
-              // console.log(headers);
-              // console.log(config);
+
             })
             .error(function(data, status, headers, config) {
-              console.log('error');
-              console.log(data);
-              // console.log(status);
-              // console.log(headers);
-              // console.log(config);
-              // // called asynchronously if an error occurs
-              // or server returns response with an error status.
+              //console.log('error');
+              //console.log(data);
             });
         };
 
@@ -54,9 +45,6 @@
           
           $http.post(URLS.APIURL+'/register', userDetail)
             .success(function(data, status, headers, config) {
-             // this callback will be called asynchronously
-             // when the response is available
-
               console.log('success' + data);
             })
             .error(function(data, status, headers, config) {
@@ -69,25 +57,14 @@
 
         model.login = function(userDetail) {
 
-
-          return $http.post(API_URL + '/login', userDetail)
+          return $http.post(API_URL + '/session', userDetail)
             .success(function(data, status, headers, config) {
-              // this callback will be called asynchronously
-              // when the response is available
-              console.log('success');
-              console.log(data);
-              // console.log(status);
-              // console.log(headers);
-              // console.log(config);
+              //console.log('success');
+              //console.log(data);
+
             })
             .error(function(data, status, headers, config) {
-              // console.log('error');
-              // console.log(data);
-              // console.log(status);
-              // console.log(headers);
-              // console.log(config);
-              // // called asynchronously if an error occurs
-              // or server returns response with an error status.
+              //console.log('error');
             });
 
         }
