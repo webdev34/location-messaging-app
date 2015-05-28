@@ -42,25 +42,16 @@
       }
 
       function updateCompany() {
-
         editEnterpriseCtrl.company = angular.copy(editEnterpriseCtrl.editedCompany);
         EnterpriseModel.updateCompany(editEnterpriseCtrl.company);
-
-        console.log('from controller' + editEnterpriseCtrl.company);
 
         returnToCompanyProfile();
       }
 
-      function testState() {
-        console.log('testing');
-        var includesState = $state.includes("enterprise");
-        console.log(includesState);
-      }
 
 
       editEnterpriseCtrl.updateCompany = updateCompany;
       editEnterpriseCtrl.cancelEdit = cancelEdit;
-      editEnterpriseCtrl.testState = testState;
 
     }]);
  

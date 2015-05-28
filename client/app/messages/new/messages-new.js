@@ -11,8 +11,8 @@
   			});
   	}])
   	.controller('NewMessageCtrl',[
-  		'$state', '$stateParams', 'MessageListModel',
-  		function($state, $stateParams, MessageListModel) {
+  		'$state', 'MessageListModel',
+  		function($state, MessageListModel) {
     		var newMessageCtrl = this;
 
         function returnToDashboard() {

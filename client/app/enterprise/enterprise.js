@@ -38,9 +38,7 @@
             EnterpriseModel.addAdmin(enterpriseCtrl.newUser);
           } else if (enterpriseCtrl.newUser.userType === 'user') {
             EnterpriseModel.addUser(enterpriseCtrl.newUser);
-
           } else {
-
           }
 
           resetForm();
@@ -64,11 +62,6 @@
 
         enterpriseCtrl.addUser = addUser;
 
-
-
-
-
   	}]);
  
-
 })();

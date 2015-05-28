@@ -1,6 +1,5 @@
 (function() {
   'use strict';
-
   angular
   	.module('enterprise-portal')
   	.directive('messagesSideBar', function () {
@@ -9,7 +8,4 @@
 	      templateUrl: 'app/messages/messages-side-bar.directive.html'
 	    };
 	  });
-
- 
-
 })();

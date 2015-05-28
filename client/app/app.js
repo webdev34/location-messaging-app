@@ -56,10 +56,7 @@
       appCtrl.user = null;
       appCtrl.userIsLoggedIn = false;
       appCtrl.userLoginInfo = {};
-
       appCtrl.gNavStateIs = "";
-
-      
 
       $rootScope.$on('$stateChangeSuccess', 
       function(event, toState, toParams, fromState, fromParams){ 
@@ -72,7 +69,6 @@
         userLoginMock();
       }
 
-
       function whatIsState() {
         appCtrl.gNavStateIs = "";
 
@@ -81,10 +77,8 @@
         for (var i = 0; i < stateArray.length; i++) {
           if (appCtrl.currentState.includes(stateArray[i])) {
             appCtrl.gNavStateIs = stateArray[i];
-          }
-         
+          }         
         }
-
       }
 
       function userLoginMock(loginInfo) {
@@ -123,12 +117,6 @@
               });
             goToHomePage();
           });
-      }
-
-      function userLogout() {
-        appCtrl.user = null;
-        appCtrl.userIsLoggedIn = false;
-
       }
 
       appCtrl.init = init;

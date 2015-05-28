@@ -25,20 +25,6 @@
 
     		};
 
-        model.getAccountInfo = function(userID) {
-          console.log('userid: ' + userID);
-           return $http.get(API_URL + '/account/' + userID  )
-            .success(function(data, status, headers, config) {
-              console.log('success');
-              console.log(data);
-
-            })
-            .error(function(data, status, headers, config) {
-              //console.log('error');
-              //console.log(data);
-            });
-        };
-
         model.registerUser = function(userDetail) {
           
           console.log(userDetail);
