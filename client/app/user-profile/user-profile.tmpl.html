@@ -5,55 +5,44 @@
 	</header>
 
 	<div class="profile-content">
-		
 		<section class="profile-detail">
-		
 			<div class="clearfix">
 				<img ng-src="{{appCtrl.user.avatar}}" alt="avatar" class="avatar">
-			
+
 				<div class="names">
 					{{appCtrl.user.fullName}}
-					<br>
-					@{{appCtrl.user.username}}
+					<br> @{{appCtrl.user.username}}
 					<br>
 					<a ui-sref="user-profile/edit" class="qvr-button info">Edit Profile</a>
 				</div>
 			</div>
 
+			<label>Description</label>
+			<p>{{appCtrl.user.description}}</p>
 
-				<label>Description</label>
-				<p>{{appCtrl.user.description}}</p>
+			<label>Title</label>
+			<p>{{appCtrl.user.title}}</p>
 
-				<label>Title</label>
-				<p>{{appCtrl.user.title}}</p>
-				
+			<label>Department</label>
+			<p>{{appCtrl.user.department}}</p>
 
-				<label>Department</label>
-				<p>{{appCtrl.user.department}}</p>
+			<label>Email</label>
+			<p>{{appCtrl.user.email}}</p>
 
-				<label>Email</label>
-				<p>{{appCtrl.user.email}}</p>
-
-				<label>Phone</label>
-				<p>{{appCtrl.user.phone}}</p>
-
+			<label>Phone</label>
+			<p>{{appCtrl.user.phone}}</p>
 		</section>
 
-		
 		<div class="corporate-box">
-
 			<section class="corporate-info" ng-controller="EnterpriseCtrl as enterpriseCtrl">
 				<div class="clearfix">
-
 					<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo">
-				
+
 					<div class="corp-details">
 						{{enterpriseCtrl.company.companyName}}
-						<br>
-						@{{enterpriseCtrl.company.username}}
+						<br> @{{enterpriseCtrl.company.username}}
 					</div>
 				</div>
-
 			</section>
 		</div>
 	</div>

@@ -1,131 +1,138 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  var app = angular.module('enterprise-portal', [
-    'ui.router',
-    'ngAnimate',
-    'ngMap',
+	var app = angular.module('enterprise-portal', [
+			'ui.router',
+			'ngAnimate',
+			'ngMap',
 
-    //foundation
-    'foundation',
-    'foundation.dynamicRouting',
-    'foundation.dynamicRouting.animations',
+			// foundation
+			'foundation',
+			'foundation.dynamicRouting',
+			'foundation.dynamicRouting.animations',
 
-    //Modules
-    'user-profile',
-    'messages',
-    'enterprise',
-    'admin'
-  ])
-    .config(config)
-    .run(run)
-  ;
+			// Modules
+			'user-profile',
+			'messages',
+			'enterprise',
+			'admin'
+		])
+		.config(config)
+		.run(run);
 
-  app.constant('APP_default_state', 'messages.dashboard');
-  app.constant('API_URL', 'http://localhost:8000/droid1.1');
+	app.constant('APP_default_state', 'messages.dashboard');
+	//app.constant('API_URL', 'http://localhost:8000/droid1.1');
+	app.constant('API_URL', 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/web1.1');
 
+	config.$inject = ['$urlRouterProvider', '$locationProvider'];
 
-  config.$inject = ['$urlRouterProvider', '$locationProvider'];
+	function config($urlProvider, $locationProvider) {
+		$urlProvider.otherwise('/');
 
-  function config($urlProvider, $locationProvider) {
-    $urlProvider.otherwise('/');
+		$locationProvider.html5Mode({
+			enabled: false,
+			requireBase: false
+		});
 
-    $locationProvider.html5Mode({
-      enabled:false,
-      requireBase: false
-    });
+		$locationProvider.hashPrefix('!');
+	}
 
-    $locationProvider.hashPrefix('!');
-  }
+	function run() {
+		FastClick.attach(document.body);
+	}
 
-  function run() {
-    FastClick.attach(document.body);
-  }
+	app.controller('AppCtrl', [
+		'UserModel',
+		'FoundationApi',
+		'$rootScope',
+		'$state',
+		'APP_default_state',
+		function(UserModel, FoundationApi, $rootScope, $state, APP_default_state) {
+			var appCtrl = this;
 
-  app.controller('AppCtrl', [
-    'UserModel',
-    'FoundationApi',
-    '$rootScope', 
-    '$state',
-    'APP_default_state',
-    function (UserModel, FoundationApi, $rootScope, $state, APP_default_state) {
+			appCtrl.currentState = $rootScope.$state;
+			appCtrl.user = null;
+			appCtrl.userIsLoggedIn = false;
+			appCtrl.userLoginInfo = {};
+			appCtrl.gNavStateIs = "";
 
-      var appCtrl = this;
+			$rootScope.$on('$stateChangeSuccess',
+				function(event, toState, toParams, fromState, fromParams) {
+					whatIsState();
+				});
 
-      appCtrl.currentState = $rootScope.$state;
-      appCtrl.user = null;
-      appCtrl.userIsLoggedIn = false;
-      appCtrl.userLoginInfo = {};
-      appCtrl.gNavStateIs = "";
+			function init() {
+				whatIsState();
+				userLoginMock();
+			}
 
-      $rootScope.$on('$stateChangeSuccess', 
-      function(event, toState, toParams, fromState, fromParams){ 
-          whatIsState();
-      });
+			function whatIsState() {
+				appCtrl.gNavStateIs = "";
 
+				var stateArray = ['messages', 'admin', 'enterprise'];
 
-      function init() {
-        whatIsState();
-        userLoginMock();
-      }
+				for (var i = 0; i < stateArray.length; i++) {
+					if (appCtrl.currentState.includes(stateArray[i])) {
+						appCtrl.gNavStateIs = stateArray[i];
+					}
+				}
+			}
 
-      function whatIsState() {
-        appCtrl.gNavStateIs = "";
+			function userLoginMock(loginInfo) {
+				UserModel.getUserDetail()
+					.then(function(result) {
+						//console.log(result);
+						appCtrl.user = result;
+						appCtrl.userIsLoggedIn = true;
+						goToHomePage();
+					});
+			};
 
-        var stateArray = ['messages','admin','enterprise'];
+			function goToLogin() {
+				$state.go('home');
+			}
 
-        for (var i = 0; i < stateArray.length; i++) {
-          if (appCtrl.currentState.includes(stateArray[i])) {
-            appCtrl.gNavStateIs = stateArray[i];
-          }         
-        }
-      }
+			function goToHomePage() {
+				$state.go(APP_default_state);
+			}
 
-      function userLoginMock(loginInfo) {
-        UserModel.getUserDetail()
-        .then(function(result) {
-          //console.log(result);
-          appCtrl.user = result;
-          appCtrl.userIsLoggedIn = true;
-          goToHomePage();
-        });
+			function userLogin() {
+				UserModel.login(appCtrl.userLoginInfo)
+					.then(
+						function success(response) {
+							var responseData = response.data.data;
+							
+							appCtrl.user = {};
+							appCtrl.user._id = responseData.user;
+							appCtrl.user.enterprise = responseData.enterprise[0];
+							appCtrl.userIsLoggedIn = true;
+							
+							FoundationApi.publish('main-notifications', {
+								title: 'Login Succesful',
+								content: '',
+								color: 'success',
+								autoclose: '3000'
+							});
 
-      };
+							goToHomePage();
+						},
+						function error(response) {
+							FoundationApi.publish('main-notifications', {
+								title: 'Login Failed',
+								content: '',
+								color: 'fail',
+								autoclose: '3000'
+							});
+						}
+					);
+			}
 
-      function goToLogin() {
-        $state.go('home');
-      }
+			appCtrl.init = init;
+			appCtrl.userLoginMock = userLoginMock;
+			appCtrl.userLogin = userLogin;
 
-      function goToHomePage() {
-        $state.go(APP_default_state);
-      }
-
-      function userLogin() {
-        UserModel.login(appCtrl.userLoginInfo)
-          .then(function success(response) {
-            var responseData = response.data.data;
-            appCtrl.user = {};
-            appCtrl.user._id = responseData.user;
-            appCtrl.user.enterprise = responseData.enterprise[0];
-            appCtrl.userIsLoggedIn = true;
-            FoundationApi.publish('main-notifications', 
-              { 
-                title: 'Login Succesful', 
-                content: '',
-                color: 'success',
-                autoclose: '3000'
-              });
-            goToHomePage();
-          });
-      }
-
-      appCtrl.init = init;
-      appCtrl.userLoginMock = userLoginMock;
-      appCtrl.userLogin = userLogin;
-
-      appCtrl.init();
-
-
-  }]);
+			appCtrl.init();
+		}
+	]);
 
 })();
