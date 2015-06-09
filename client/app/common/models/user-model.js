@@ -36,19 +36,21 @@
 				};
 
 				model.login = function(userDetail) {
-					return $http.post(API_URL + '/session', userDetail)
-						.then(function(response) {
-							if (typeof response.data.data === 'object') {
-								return response;
-							} else {
-								// invalid response
+					return $http.post(API_URL + '/session', {'user' : userDetail})
+						.then(
+							function(response) {
+								if (typeof response.data.data === 'object') {
+									return response;
+								} else {
+									// invalid response
+									return $q.reject(response);
+								}
+							},
+							function(response) {
+								// something went wrong
 								return $q.reject(response);
 							}
-						},
-						function(response) {
-							// something went wrong
-							return $q.reject(response);
-						});
+						);
 				}
 
 				model.updateUser = function(updatedUser) {
