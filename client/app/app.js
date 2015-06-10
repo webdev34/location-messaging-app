@@ -47,6 +47,7 @@
 		'$rootScope',
 		'$state',
 		'APP_default_state',
+		
 		function(UserModel, FoundationApi, $rootScope, $state, APP_default_state) {
 			var appCtrl = this;
 
@@ -58,15 +59,16 @@
 
 			$rootScope.$on('$stateChangeSuccess',
 				function(event, toState, toParams, fromState, fromParams) {
-					whatIsState();
+					setNavigationState();
 				});
 
 			function init() {
-				whatIsState();
+				setNavigationState();
 				userLoginMock();
+				//goToLogin();
 			}
 
-			function whatIsState() {
+			function setNavigationState() {
 				appCtrl.gNavStateIs = "";
 
 				var stateArray = ['messages', 'admin', 'enterprise'];
@@ -74,10 +76,12 @@
 				for (var i = 0; i < stateArray.length; i++) {
 					if (appCtrl.currentState.includes(stateArray[i])) {
 						appCtrl.gNavStateIs = stateArray[i];
+						break;
 					}
 				}
 			}
 
+			//***
 			function userLoginMock(loginInfo) {
 				UserModel.getUserDetail()
 					.then(function(result) {
@@ -96,15 +100,11 @@
 				$state.go(APP_default_state);
 			}
 
-			function userLogin() {
+			appCtrl.userLogin = function() {
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
 						function success(response) {
-							var responseData = response.data.data;
-							
-							appCtrl.user = {};
-							appCtrl.user._id = responseData.user;
-							appCtrl.user.enterprise = responseData.enterprise[0];
+							appCtrl.user = response.user;
 							appCtrl.userIsLoggedIn = true;
 							
 							FoundationApi.publish('main-notifications', {
@@ -119,7 +119,7 @@
 						function error(response) {
 							FoundationApi.publish('main-notifications', {
 								title: 'Login Failed',
-								content: '',
+								content: response.code,
 								color: 'fail',
 								autoclose: '3000'
 							});
@@ -127,11 +127,7 @@
 					);
 			}
 
-			appCtrl.init = init;
-			appCtrl.userLoginMock = userLoginMock;
-			appCtrl.userLogin = userLogin;
-
-			appCtrl.init();
+			init();
 		}
 	]);
 

@@ -9,7 +9,8 @@
 					URLS = {
 						FETCH: 'assets/data/user.json'
 					},
-					user;
+					user,
+					enterprise;
 
 				function extract(result) {
 					return result.data;
@@ -40,15 +41,15 @@
 						.then(
 							function(response) {
 								if (typeof response.data.data === 'object') {
-									return response;
+									return response.data.data;
 								} else {
 									// invalid response
-									return $q.reject(response);
+									return $q.reject(response.data);
 								}
 							},
 							function(response) {
 								// something went wrong
-								return $q.reject(response);
+								return $q.reject(response.data);
 							}
 						);
 				}
