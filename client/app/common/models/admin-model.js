@@ -1,14 +1,14 @@
 (function() {
-  'use strict';
+'use strict';
 
-  angular.module('enterprise-portal.models.admin', [
-  	])
-  	.service('AdminModel', ['$http',  function($http) {
-  		var model = this,
-  			URLS = {
-  				FETCH: 'assets/data/admin.json'
-  			},
-  			adminData;
+	angular.module('enterprise-portal.models.admin', [])
+	
+	.service('AdminModel', ['$http',  function($http) {
+		var model = this,
+			URLS = {
+				FETCH: 'assets/data/admin.json'
+			},
+			adminData;
 
 		function extract(result) {
 			return result.data;
@@ -30,8 +30,6 @@
 			adminData.enterprise.push(newEnterprise);
 
 		}
-
-  	}]);
-
+	}]);
 
 })();

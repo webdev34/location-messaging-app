@@ -6,6 +6,7 @@
 		'user-profile.edit',
 		'user-profile.register'
 	])
+	
 	.config(['$stateProvider', function($stateProvider) {
 		$stateProvider
 			.state('user-profile', {

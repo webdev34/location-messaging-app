@@ -7,30 +7,30 @@
 	<div class="profile-content">
 		<section class="profile-detail">
 			<div class="clearfix">
-				<img ng-src="{{appCtrl.user.avatar}}" alt="avatar" class="avatar">
+				<img ng-src="{{appCtrl.userModel.user.avatar}}" alt="avatar" class="avatar">
 
 				<div class="names">
-					{{appCtrl.user.fullName}}
-					<br> @{{appCtrl.user.username}}
+					{{appCtrl.userModel.user.fullName}}
+					<br> @{{appCtrl.userModel.user.username}}
 					<br>
 					<a ui-sref="user-profile/edit" class="qvr-button info">Edit Profile</a>
 				</div>
 			</div>
 
 			<label>Description</label>
-			<p>{{appCtrl.user.description}}</p>
+			<p>{{appCtrl.userModel.user.description}}</p>
 
 			<label>Title</label>
-			<p>{{appCtrl.user.title}}</p>
+			<p>{{appCtrl.userModel.user.title}}</p>
 
 			<label>Department</label>
-			<p>{{appCtrl.user.department}}</p>
+			<p>{{appCtrl.userModel.user.department}}</p>
 
 			<label>Email</label>
-			<p>{{appCtrl.user.email}}</p>
+			<p>{{appCtrl.userModel.user.email}}</p>
 
 			<label>Phone</label>
-			<p>{{appCtrl.user.phone}}</p>
+			<p>{{appCtrl.userModel.user.phone}}</p>
 		</section>
 
 		<div class="corporate-box">

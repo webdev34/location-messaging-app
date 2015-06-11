@@ -1,65 +1,90 @@
 (function() {
 	'use strict';
 
-	angular.module('enterprise-portal.models.user', [])
-		.service('UserModel', [
-			'$http', '$q', 'API_URL',
-			function($http, $q, API_URL) {
-				var model = this,
-					URLS = {
-						FETCH: 'assets/data/user.json'
-					},
-					user,
-					enterprise;
+	angular.module('enterprise-portal.models.user', [
+		'enterprise-portal.services.user'
+	])
+	
+	.service('UserModel', [
+		'$http',
+		'$q',
+		'API_URL',
+		'UserService',
+		
+		function($http, $q, API_URL, UserService) {
+			var model = this;
 
-				function extract(result) {
-					return result.data;
-				}
+			model.getUserDetail = function() {
+				return (model.user) ? $q.when(model.user) : UserService.get()
+					.then(
+						function(response) {
+							model.user = response.user;
+							model.enterprise = response.enterprise;
+							return model.user;
+						}
+					);
+			};
 
-				function cacheUser(result) {
-					user = extract(result);
-					return user;
-				}
+			model.getEnterpriseDetail = function() {
+				return (model.enterprise) ? $q.when(model.enterprise) : UserService.get()
+					.then(
+						function(response) {
+							model.user = response.user;
+							model.enterprise = response.enterprise;
+							return model.enterprise;
+						}
+					);
+			};
 
-				model.getUserDetail = function() {
-					return (user) ? $q.when(user) : $http.get(URLS.FETCH).then(cacheUser);
-				};
+			model.registerUser = function(userDetail) {
+				return UserService.register(userDetail)
+					.then(
+						function(response) {
+							model.user = response.user;
+							model.enterprise = response.enterprise;
+							return response;
+						},
+						function(response) {
+							return response;
+						}
+					);
+			};
 
-				model.registerUser = function(userDetail) {
-					//console.log(userDetail);
-					$http.post(URLS.APIURL + '/register', userDetail)
-						.success(function(data, status, headers, config) {
-							console.log('success' + data);
-						})
-						.error(function(data, status, headers, config) {
-							console.log('error' + data);
-						});
-				};
-
-				model.login = function(userDetail) {
-					return $http.post(API_URL + '/session', {'user' : userDetail})
-						.then(
-							function(response) {
-								if (typeof response.data.data === 'object') {
-									return response.data.data;
-								} else {
-									// invalid response
-									return $q.reject(response.data);
-								}
-							},
-							function(response) {
-								// something went wrong
-								return $q.reject(response.data);
-							}
-						);
-				}
-
-				model.updateUser = function(updatedUser) {
-					//console.log('from the model' + updatedUser.username);
-					user = updatedUser;
-				};
-
+			model.login = function(userDetail) {
+				return UserService.login(userDetail)
+					.then(
+						function(response) {
+							model.user = response.user;
+							model.enterprise = response.enterprise;
+							return response;
+						},
+						function(response) {
+							return response;
+						}
+					);
 			}
-		]);
+
+			model.logout = function() {
+				return UserService.logout();
+			}
+
+			model.updateUser = function(updatedUserDetail) {
+				model.user = updatedUserDetail;
+				
+				return UserService.update(updatedUserDetail)
+					.then(
+						function(response) {
+							model.user = response.user;
+							model.enterprise = response.enterprise;
+							return response;
+						},
+						function(response) {
+							return response;
+						}
+					);
+			};
+
+		}
+	]);
 
 })();

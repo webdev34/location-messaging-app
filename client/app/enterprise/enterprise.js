@@ -5,6 +5,7 @@
 		'enterprise-portal.models.enterprise',
 		'enterprise.profile'
 	])
+	
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 		$stateProvider
 			.state('enterprise', {
@@ -20,8 +21,12 @@
 		
 		$urlRouterProvider.otherwise('enterprise.profile');
 	}])
+	
 	.controller('EnterpriseCtrl', [
-		'$state', 'EnterpriseModel', 'FoundationApi',
+		'$state',
+		'EnterpriseModel',
+		'FoundationApi',
+		
 		function($state, EnterpriseModel, FoundationApi) {
 			var enterpriseCtrl = this;
 

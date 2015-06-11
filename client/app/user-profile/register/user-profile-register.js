@@ -1,36 +1,37 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  angular.module('user-profile.register', [])
+	angular.module('user-profile.register', [])
 
-    .config(['$stateProvider', function ($stateProvider) {
-    
-      $stateProvider
-        .state('register', {
-          url: '/register',
-          templateUrl: 'app/user-profile/register/user-profile-register.tmpl.html',
-          controller: 'RegisterUserCtrl as registerUserCtrl'
-        }); 
+	.config(['$stateProvider', function($stateProvider) {
 
-    }])
+		$stateProvider
+			.state('register', {
+				url: '/register',
+				templateUrl: 'app/user-profile/register/user-profile-register.tmpl.html',
+				controller: 'RegisterUserCtrl as registerUserCtrl'
+			});
 
-  	.controller('RegisterUserCtrl', [
-      '$rootScope', 'UserModel',
-      function( $rootScope, UserModel){
+	}])
 
-        var registerUserCtrl = this;
+	.controller('RegisterUserCtrl', [
+		'$rootScope',
+		'UserModel',
 
-        registerUserCtrl.newUser = {};
-        
+		function($rootScope, UserModel) {
+			var registerUserCtrl = this;
 
-        function registerNewUser() {
-          UserModel.registerUser(registerUserCtrl.newUser);
-        }
+			registerUserCtrl.newUser = {};
 
-        registerUserCtrl.registerNewUser = registerNewUser;
+			function registerNewUser() {
+				UserModel.registerUser(registerUserCtrl.newUser);
+			}
 
-  }]);
+			registerUserCtrl.registerNewUser = registerNewUser;
 
- 
+		}
+	]);
+
+
 
 })();

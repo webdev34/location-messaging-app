@@ -1,51 +1,57 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  angular.module('admin', [
-  	'enterprise-portal.models.admin'
-  	])
-  	.config([
-  		'$stateProvider', '$urlRouterProvider', 
-  		function ($stateProvider, $urlRouterProvider) {
-    
-     	$stateProvider
-	      .state('admin', {
-	        url: '/admin',
-	        templateUrl: 'app/admin/admin.tmpl.html',
-	        controller: 'AdminCtrl as adminCtrl'
-	      });
+	angular.module('admin', [
+		'enterprise-portal.models.admin'
+	])
+	
+	.config([
+		'$stateProvider',
+		'$urlRouterProvider',
+		
+		function($stateProvider, $urlRouterProvider) {
 
-      $urlRouterProvider.otherwise('messages.dashboard');
-    }])
-  	.controller('AdminCtrl', [
-  		'AdminModel', 'FoundationApi', 
-  		function(AdminModel, FoundationApi){
+			$stateProvider
+				.state('admin', {
+					url: '/admin',
+					templateUrl: 'app/admin/admin.tmpl.html',
+					controller: 'AdminCtrl as adminCtrl'
+				});
 
-  			var adminCtrl = this;
+			$urlRouterProvider.otherwise('messages.dashboard');
+		}
+	])
+	
+	.controller('AdminCtrl', [
+		'AdminModel',
+		'FoundationApi',
+		
+		function(AdminModel, FoundationApi) {
 
-		    AdminModel.getAdminData()
-		  		.then(function(result) {
-		  			adminCtrl.enterprises = result;
-		  		});
+			var adminCtrl = this;
 
-		  	function addEnterprise() {
-		  		console.log('adding');
-          AdminModel.addEnterprise(adminCtrl.newEnterprise);
+			AdminModel.getAdminData()
+				.then(function(result) {
+					adminCtrl.enterprises = result;
+				});
 
-          resetForm();
-          FoundationApi.publish('addEnterpriseModal', 'close')
+			function addEnterprise() {
+				console.log('adding');
+				AdminModel.addEnterprise(adminCtrl.newEnterprise);
 
-        }
+				resetForm();
+				FoundationApi.publish('addEnterpriseModal', 'close')
 
-        function resetForm() {
-          adminCtrl.newEnterprise = {}
-        }
+			}
 
-        resetForm();
+			function resetForm() {
+				adminCtrl.newEnterprise = {}
+			}
 
-        adminCtrl.addEnterprise = addEnterprise;
+			resetForm();
 
-
-	  }]);
+			adminCtrl.addEnterprise = addEnterprise;
+		}
+	]);
 
 })();

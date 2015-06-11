@@ -2,7 +2,6 @@
 
 	<section class="corporate-info" >
 		<div class="clearfix">
-
 			<img ng-src="{{editEnterpriseCtrl.editedCompany.logo}}" alt="logo" class="corp-logo">
 		
 			<div class="corp-details">
@@ -11,12 +10,10 @@
 				@{{editEnterpriseCtrl.editedCompany.username}}
 			</div>
 		</div>
-
 	</section>
 
 	<div class="details">
 		<form role="form" class="qvr-form enterprise-edit-form" ng-submit="editEnterpriseCtrl.updateCompany()">
-
 			<label>Description</label>
 			<textarea class="text-description" ng-model="editEnterpriseCtrl.editedCompany.description"></textarea>
 
@@ -26,7 +23,6 @@
 			
 			<button type="submit" class="qvr-button info">Save Changes</button>
 			<a ng-click="editEnterpriseCtrl.cancelEdit()" class="qvr-button warning hollow">Cancel</a>
-
 		</form>
 	</div>
 

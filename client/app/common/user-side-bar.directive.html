@@ -1,24 +1,21 @@
 <span>
-  <div class="user-info">
-
-    <img ng-src="{{appCtrl.user.avatar}}">
-  
-    <div class="user-headings">
-      <a ui-sref="user-profile" zf-toggle="user-panel" class="fullname">{{ appCtrl.user.fullName }}</a>
-      <br>
-      <a ui-sref="user-profile" zf-toggle="user-panel" class="username">@{{appCtrl.user.username}}</a>
-    </div>
-
-    <div class="description">
-      <h4>Description</h4>
-      <p>{{appCtrl.user.description}}</p>
-    </div>
-
-  </div>
-
-  <nav class="user-side-bar-menu">
-    <a class="edit" ui-sref="user-profile/edit" zf-toggle="user-panel">Edit Profile</a>
-    <a href="#" class="signout">Sign Out</a>
-  </nav>
-
+	<div class="user-info">
+		<img ng-src="{{appCtrl.userModel.user.avatar}}">
+		
+		<div class="user-headings">
+			<a ui-sref="user-profile" zf-toggle="user-panel" class="fullname">{{appCtrl.userModel.user.fullName}}</a>
+			<br>
+			<a ui-sref="user-profile" zf-toggle="user-panel" class="username">@{{appCtrl.userModel.user.username}}</a>
+		</div>
+		
+		<div class="description">
+			<h4>Description</h4>
+			<p>{{appCtrl.userModel.user.description}}</p>
+		</div>
+	</div>
+	
+	<nav class="user-side-bar-menu">
+		<a class="edit" ui-sref="user-profile/edit" zf-toggle="user-panel">Edit Profile</a>
+		<a href="#" class="signout">Sign Out</a>
+	</nav>
 </span>

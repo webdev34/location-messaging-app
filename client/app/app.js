@@ -51,21 +51,28 @@
 		function(UserModel, FoundationApi, $rootScope, $state, APP_default_state) {
 			var appCtrl = this;
 
+			appCtrl.userModel = UserModel;
+			
 			appCtrl.currentState = $rootScope.$state;
-			appCtrl.user = null;
 			appCtrl.userIsLoggedIn = false;
 			appCtrl.userLoginInfo = {};
 			appCtrl.gNavStateIs = "";
 
+			$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+				$dialogs.error("Something went wrong!", error);
+				console.error("$stateChangeError: ", toState, error);
+			});
+
 			$rootScope.$on('$stateChangeSuccess',
 				function(event, toState, toParams, fromState, fromParams) {
+					console.log(fromState.name, "-->", toState.name);
 					setNavigationState();
-				});
+				}
+			);
 
 			function init() {
 				setNavigationState();
-				userLoginMock();
-				//goToLogin();
+				goToHomePage();
 			}
 
 			function setNavigationState() {
@@ -81,19 +88,8 @@
 				}
 			}
 
-			//***
-			function userLoginMock(loginInfo) {
-				UserModel.getUserDetail()
-					.then(function(result) {
-						//console.log(result);
-						appCtrl.user = result;
-						appCtrl.userIsLoggedIn = true;
-						goToHomePage();
-					});
-			};
-
 			function goToLogin() {
-				$state.go('home');
+				//$state.go('home');
 			}
 
 			function goToHomePage() {
@@ -104,7 +100,6 @@
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
 						function success(response) {
-							appCtrl.user = response.user;
 							appCtrl.userIsLoggedIn = true;
 							
 							FoundationApi.publish('main-notifications', {
