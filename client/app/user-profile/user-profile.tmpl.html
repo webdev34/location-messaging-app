@@ -36,11 +36,14 @@
 		<div class="corporate-box">
 			<section class="corporate-info" ng-controller="EnterpriseCtrl as enterpriseCtrl">
 				<div class="clearfix">
-					<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo">
+					<img ng-src="{{enterpriseCtrl.enterpriseModel.company.logo}}" alt="logo" class="corp-logo">
 
 					<div class="corp-details">
-						{{enterpriseCtrl.company.companyName}}
-						<br> @{{enterpriseCtrl.company.username}}
+						{{enterpriseCtrl.enterpriseModel.company.sid}}
+						<br>
+						{{enterpriseCtrl.enterpriseModel.company.companyName}}
+						<br>
+						@{{enterpriseCtrl.enterpriseModel.company.username}}
 					</div>
 				</div>
 			</section>

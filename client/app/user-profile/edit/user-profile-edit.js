@@ -19,24 +19,9 @@
 		function(UserModel, $state) {
 			var editProfileCtrl = this;
 
-			UserModel.getUserDetail()
-				.then(function(result) {
-					if (result) {
-						editProfileCtrl.user = result;
-						editProfileCtrl.editedUser = angular.copy(editProfileCtrl.user);
-					/*
-					console.log("why");
-					var a = true;
-					while (a){
-						//***
-					}
-					*/
-					} else {
-						cancelEdit();
-					console.log("poop");
-					}
-				});
-
+			editProfileCtrl.user = UserModel.user;
+			editProfileCtrl.editedUser = angular.copy(editProfileCtrl.user);
+			
 			function returnToUserProfile() {
 				$state.go('user-profile');
 			}

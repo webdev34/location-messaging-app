@@ -1,3 +1,8 @@
+/*
+* This is the current user's set enterprise.
+* NOT a definition model for enterprises in general
+*/
+
 (function() {
 	'use strict';
 
@@ -6,41 +11,61 @@
 	])
 	
 	.service('EnterpriseModel', [
+		'$rootScope',
 		'$http',
 		'$q',
+		'$cookies',
+		'$cookieStore',
 		'EnterpriseService',
+		'UserModel',
 		
-		function($http, $q, EnterpriseService) {
-			var model = this,
-				URLS = {
-					FETCH: 'assets/data/company.json'
-				},
-				company;
+		function($rootScope, $http, $q, $cookies, $cookieStore, EnterpriseService, UserModel) {
+			var model = this;
+			
+			// load remembered company
+			model.company = $cookieStore.get("QVR.company");
 
-			function extract(result) {
-				return result.data;
-			}
+			// update company on login
+			$rootScope.$on('QVR.onLoginSuccess', function(response) {
+				console.log('test');
+				//model.getEnterprise();
+			});
 
-			function cacheCompany(result) {
-				company = extract(result);
-				return company;
-			}
-
-			model.getEnterpriseInfo = function() {
-				return (company) ? $q.when(company) : $http.get(URLS.FETCH).then(cacheCompany);
-				//return (company) ? $q.when(company) : EnterpriseService.get(/*** This id comes from where? ***/).then(cacheCompany);
+			model.getEnterprise = function() {
+				return EnterpriseService.get(UserModel.user.enterprise)
+					.then(
+						function (response) {
+							//model.company = response.enterprise;
+							angular.extend(model.company, response);
+							$cookieStore.put("QVR.company", model.company);
+							return response;
+						}
+					);
 			};
 
 			model.updateCompany = function(updatedCompany) {
-				company = updatedCompany;
-			}
-
+				angular.extend(model.company, updatedCompany);
+				
+				return EnterpriseService.update(updatedCompany)
+					.then(
+						function(response) {
+							//angular.extend(model.company, response.enterprise);
+							angular.extend(model.company, response);
+							$cookieStore.put("QVR.company", model.company);
+							return response;
+						},
+						function(response) {
+							return response;
+						}
+					);
+			};
+			
 			model.addAdmin = function(newAdmin) {
-				company.administrators.push(newAdmin);
+				model.company.administrators.push(newAdmin);
 			}
 
 			model.addUser = function(newUser) {
-				company.users.push(newUser);
+				model.company.users.push(newUser);
 			}
 		}
 	]);

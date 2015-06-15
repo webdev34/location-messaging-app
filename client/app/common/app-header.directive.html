@@ -1,27 +1,27 @@
 <header class="menu-group g-header">
-  
-  <a ui-sref="home" class="header-branding">
-    <img class="header-logo" src="assets/img/logo/header-logo.png" alt="Quiver">
-    <span class="portal-branding">Enterprise Portal</span>
-  </a>
- 
-  <nav class="menu-group-right header-nav" ng-show="appCtrl.userIsLoggedIn">
-    <ul class="menu-bar icon-left">
-      <li>
-        <a ui-sref="admin" ng-class="{active: appCtrl.gNavStateIs=='admin'}">Admin</a>
-      </li>
-      <li>
-        <a ui-sref="messages.dashboard" ng-class="{active: appCtrl.gNavStateIs=='messages'}">Message Center</a>
-      </li>
-      <li>
-        <a ui-sref="enterprise.profile" ng-class="{active: appCtrl.gNavStateIs=='enterprise'}">Enterprise Settings</a>
-      </li>
-      <li>
-        <a zf-toggle="user-panel" class="button__user">
-          <span class="icon i-header-user"></span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+
+	<a ui-sref="home" class="header-branding">
+		<img class="header-logo" src="assets/img/logo/header-logo.png" alt="Quiver">
+		<span class="portal-branding">Enterprise Portal</span>
+	</a>
+
+	<nav class="menu-group-right header-nav" ng-show="appCtrl.userModel.user.isLoggedIn">
+		<ul class="menu-bar icon-left">
+			<li>
+				<a ui-sref="admin" ng-class="{active: appCtrl.gNavStateIs=='admin'}">Admin</a>
+			</li>
+			<li>
+				<a ui-sref="messages.dashboard" ng-class="{active: appCtrl.gNavStateIs=='messages'}">Message Center</a>
+			</li>
+			<li>
+				<a ui-sref="enterprise.profile" ng-class="{active: appCtrl.gNavStateIs=='enterprise'}">Enterprise Settings</a>
+			</li>
+			<li>
+				<a zf-toggle="user-panel" class="button__user">
+					<span class="icon i-header-user"></span>
+				</a>
+			</li>
+		</ul>
+	</nav>
 
 </header>

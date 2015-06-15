@@ -29,14 +29,10 @@
 		
 		function($state, EnterpriseModel, FoundationApi) {
 			var enterpriseCtrl = this;
-
-			EnterpriseModel.getEnterpriseInfo()
-				.then(function(result) {
-					enterpriseCtrl.company = result;
-				});
+			
+			enterpriseCtrl.enterpriseModel = EnterpriseModel;
 
 			function addUser() {
-				//console.log('user-added' + enterpriseCtrl.newUser.userType);
 				if (enterpriseCtrl.newUser.userType === 'admin') {
 					EnterpriseModel.addAdmin(enterpriseCtrl.newUser);
 				} else if (enterpriseCtrl.newUser.userType === 'user') {

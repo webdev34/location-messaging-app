@@ -24,15 +24,8 @@
 		function($state, EnterpriseModel) {
 			var editEnterpriseCtrl = this;
 
-			EnterpriseModel.getEnterpriseInfo()
-				.then(function(result) {
-					if (result) {
-						editEnterpriseCtrl.company = result;
-						editEnterpriseCtrl.editedCompany = angular.copy(editEnterpriseCtrl.company);
-					} else {
-						cancelEdit();
-					}
-				});
+			editEnterpriseCtrl.enterpriseModel = EnterpriseModel;
+			editEnterpriseCtrl.editedCompany = angular.copy(editEnterpriseCtrl.enterpriseModel.company);
 
 			function returnToCompanyProfile() {
 				$state.go('enterprise.profile');

@@ -5,6 +5,7 @@
 			'ui.router',
 			'ngAnimate',
 			'ngMap',
+			'ngCookies',
 
 			// foundation
 			'foundation',
@@ -54,7 +55,6 @@
 			appCtrl.userModel = UserModel;
 			
 			appCtrl.currentState = $rootScope.$state;
-			appCtrl.userIsLoggedIn = false;
 			appCtrl.userLoginInfo = {};
 			appCtrl.gNavStateIs = "";
 
@@ -70,6 +70,13 @@
 				}
 			);
 
+			$rootScope.$on('$routeChangeStart', function (event) {
+				if (!UserModel.isLoggedIn) {
+					event.preventDefault();
+					goToLogin();
+				}
+			});
+			
 			function init() {
 				setNavigationState();
 				goToHomePage();
@@ -89,7 +96,7 @@
 			}
 
 			function goToLogin() {
-				//$state.go('home');
+				$state.go('home');
 			}
 
 			function goToHomePage() {
@@ -100,8 +107,6 @@
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
 						function success(response) {
-							appCtrl.userIsLoggedIn = true;
-							
 							FoundationApi.publish('main-notifications', {
 								title: 'Login Succesful',
 								content: '',

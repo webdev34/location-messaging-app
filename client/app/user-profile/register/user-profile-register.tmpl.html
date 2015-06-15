@@ -1,22 +1,6 @@
 <div class="page page--login page--register">
 
-	<section class="corporate-info" ng-controller="EnterpriseCtrl as enterpriseCtrl">
-		<div class="clearfix">
-
-			<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo">
-		
-			<div class="corp-details">
-				{{enterpriseCtrl.company.companyName}}
-				<br>
-				@{{enterpriseCtrl.company.username}}
-			</div>
-		</div>
-
-		<div class="arrow-down"></div>
-	</section>
-
 	<form class="login-form register-form qvr-form on-dark  medium-4 medium-offset-4" ng-submit="registerUserCtrl.registerNewUser()">
-
 		<input type="text" placeholder="Name" ng-model="registerUserCtrl.newUser.fullName" required>
 		<input type="text" placeholder="@handle" ng-model="registerUserCtrl.newUser.username" required>
 		<input type="text" placeholder="Email" ng-model="registerUserCtrl.newUser.email" required>
@@ -25,7 +9,6 @@
 		<div class="qvr-align-center">
 			<button type="submit" class="qvr-button on-dark">Register</button>
 		</div>
-
 	</form>
 
 </div>

@@ -9,12 +9,18 @@
 		'API_URL',
 		
 		function($http, $q, API_URL) {
-			function extract(result) {
-				return result.data;
+			function extractData(response) {
+				//return response.data.data;
+				return response.data;
+			}
+			
+			function extractError(response) {
+				return response.data;
 			}
 			
 			function validate(result){
-				return typeof result.data.data === 'object';
+				//return typeof result.data.data === 'object';
+				return true;
 			}
 
 			return {
@@ -22,10 +28,10 @@
 					return $http.post(API_URL + '/enterprise', {'enterprise' : enterpriseObj})
 						.then(
 							function(response) {
-								return validate(response) ? extract(response) : $q.reject(response);
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
 							},
 							function(response) {
-								return $q.reject(response);
+								return $q.reject(extractError(response));
 							}
 						);
 				},
@@ -34,10 +40,10 @@
 					return $http.get(API_URL + '/enterprise/' + enterpriseId + '/user')
 						.then(
 							function(response) {
-								return validate(response) ? extract(response) : $q.reject(response);
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
 							},
 							function(response) {
-								return $q.reject(response);
+								return $q.reject(extractError(response));
 							}
 						);
 				},
@@ -46,10 +52,10 @@
 					return $http.post(API_URL + '/enterprise/' + enterpriseId + '/user', {'enterprise' : enterpriseObj})
 						.then(
 							function(response) {
-								return validate(response) ? extract(response) : $q.reject(response);
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
 							},
 							function(response) {
-								return $q.reject(response);
+								return $q.reject(extractError(response));
 							}
 						);
 				},
@@ -58,10 +64,10 @@
 					return $http.del(API_URL + '/enterprise/' + enterpriseId + '/user')
 						.then(
 							function(response) {
-								return validate(response) ? extract(response) : $q.reject(response);
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
 							},
 							function(response) {
-								return $q.reject(response);
+								return $q.reject(extractError(response));
 							}
 						);
 				},
@@ -70,10 +76,10 @@
 					return $http.post(API_URL + '/enterprise/' + enterpriseId + '/user')
 						.then(
 							function(response) {
-								return validate(response) ? extract(response) : $q.reject(response);
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
 							},
 							function(response) {
-								return $q.reject(response);
+								return $q.reject(extractError(response));
 							}
 						);
 				},
@@ -82,10 +88,10 @@
 					return $http.post(API_URL + '/enterprise/' + enterpriseId + '/user/' + username, {'username' : username, 'type' : usertype})
 						.then(
 							function(response) {
-								return validate(response) ? extract(response) : $q.reject(response);
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
 							},
 							function(response) {
-								return $q.reject(response);
+								return $q.reject(extractError(response));
 							}
 						);
 				},
@@ -94,10 +100,10 @@
 					return $http.del(API_URL + '/enterprise/' + enterpriseId + '/user/' + userId)
 						.then(
 							function(response) {
-								return validate(response) ? extract(response) : $q.reject(response);
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
 							},
 							function(response) {
-								return $q.reject(response);
+								return $q.reject(extractError(response));
 							}
 						);
 				}

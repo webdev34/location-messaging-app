@@ -1,3 +1,19 @@
+/*
+User types - these are NOT 'social users' (followers)
+	admin
+		a/e/d users
+		a/e/d campaigns
+		a/e/d messages
+	campaign manager
+		a/e/d campaigns
+		a/e/d messages
+	normal
+		a/e/d messages
+	quiver admin
+		a/e/d enterprises
+		a/e/d users
+*/
+
 (function() {
 	'use strict';
 
@@ -6,42 +22,23 @@
 	])
 	
 	.service('UserModel', [
-		'$http',
-		'$q',
+		'$rootScope',
+		'$cookies',
+		'$cookieStore',
 		'API_URL',
 		'UserService',
 		
-		function($http, $q, API_URL, UserService) {
+		function($rootScope, $cookies, $cookieStore, API_URL, UserService) {
 			var model = this;
-
-			model.getUserDetail = function() {
-				return (model.user) ? $q.when(model.user) : UserService.get()
-					.then(
-						function(response) {
-							model.user = response.user;
-							model.enterprise = response.enterprise;
-							return model.user;
-						}
-					);
-			};
-
-			model.getEnterpriseDetail = function() {
-				return (model.enterprise) ? $q.when(model.enterprise) : UserService.get()
-					.then(
-						function(response) {
-							model.user = response.user;
-							model.enterprise = response.enterprise;
-							return model.enterprise;
-						}
-					);
-			};
-
+			
+			// load remembered user
+			model.user = $cookieStore.get("QVR.user");
+			
 			model.registerUser = function(userDetail) {
 				return UserService.register(userDetail)
 					.then(
 						function(response) {
 							model.user = response.user;
-							model.enterprise = response.enterprise;
 							return response;
 						},
 						function(response) {
@@ -55,27 +52,32 @@
 					.then(
 						function(response) {
 							model.user = response.user;
-							model.enterprise = response.enterprise;
+							model.user.isLoggedIn = true;
+							$cookieStore.put("QVR.user", model.user);
+							$rootScope.$broadcast('QVR.onLoginSuccess');
 							return response;
 						},
 						function(response) {
+							$rootScope.$broadcast('QVR.onLoginFail');
 							return response;
 						}
 					);
 			}
 
 			model.logout = function() {
+				model.user = {};
+				$rootScope.$broadcast('QVR.onLogoutSuccess');
 				return UserService.logout();
 			}
 
 			model.updateUser = function(updatedUserDetail) {
-				model.user = updatedUserDetail;
+				angular.extend(model.user, updatedUserDetail);
 				
 				return UserService.update(updatedUserDetail)
 					.then(
 						function(response) {
-							model.user = response.user;
-							model.enterprise = response.enterprise;
+							angular.extend(model.user, response.user);
+							$cookieStore.put("QVR.user", model.user);
 							return response;
 						},
 						function(response) {

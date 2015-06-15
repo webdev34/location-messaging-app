@@ -10,7 +10,6 @@
 		'$urlRouterProvider',
 		
 		function($stateProvider, $urlRouterProvider) {
-
 			$stateProvider
 				.state('admin', {
 					url: '/admin',
@@ -27,7 +26,6 @@
 		'FoundationApi',
 		
 		function(AdminModel, FoundationApi) {
-
 			var adminCtrl = this;
 
 			AdminModel.getAdminData()
@@ -36,12 +34,10 @@
 				});
 
 			function addEnterprise() {
-				console.log('adding');
 				AdminModel.addEnterprise(adminCtrl.newEnterprise);
 
 				resetForm();
-				FoundationApi.publish('addEnterpriseModal', 'close')
-
+				FoundationApi.publish('addEnterpriseModal', 'close');
 			}
 
 			function resetForm() {
