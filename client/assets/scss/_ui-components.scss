@@ -1,4 +1,4 @@
-//Reusable Components
+// Reusable Components
 .corporate-info {
 	position: relative;
 	text-align: center;
@@ -22,7 +22,6 @@
 		font-size: 14px;
 		line-height: 1.3em;
 	}
-
 }
 
 .g-user-list {
@@ -34,7 +33,7 @@
 	> li {
 		@extend .clearfix;
 		display: flex;
-  	justify-content: left;
+		justify-content: left;
 		padding: 1rem;
 		border: 1px solid #ccc;
 		border-radius: 12px;
@@ -60,7 +59,7 @@
 
 }
 
-//Global Navigation Styles
+// Global Navigation Styles
 .g-side-nav {
 	padding-right: 1px;
 }
@@ -81,12 +80,10 @@
 			background-color: #00A8CB;
 			color: #fff;
 		}
-
 	}
-
 }
 
-//Heading Bar
+// Heading Bar
 .heading-bar {
 	height: 52px;
 	line-height: 52px;

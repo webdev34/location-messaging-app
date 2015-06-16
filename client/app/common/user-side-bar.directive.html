@@ -1,16 +1,16 @@
 <span>
 	<div class="user-info">
-		<img ng-src="{{appCtrl.userModel.user.avatar}}">
+		<img ng-src="{{appCtrl.user.avatar}}">
 		
 		<div class="user-headings">
-			<a ui-sref="user-profile" zf-toggle="user-panel" class="fullname">{{appCtrl.userModel.user.fullName}}</a>
+			<a ui-sref="user-profile" zf-toggle="user-panel" class="fullname">{{appCtrl.user.fullName}}</a>
 			<br>
-			<a ui-sref="user-profile" zf-toggle="user-panel" class="username">@{{appCtrl.userModel.user.username}}</a>
+			<a ui-sref="user-profile" zf-toggle="user-panel" class="username">@{{appCtrl.user.username}}</a>
 		</div>
 		
 		<div class="description">
 			<h4>Description</h4>
-			<p>{{appCtrl.userModel.user.description}}</p>
+			<p>{{appCtrl.user.description}}</p>
 		</div>
 	</div>
 	

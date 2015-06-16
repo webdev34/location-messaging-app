@@ -1,9 +1,10 @@
-//Helpers
-.qvr-align-center {text-align: center;}
+// Helpers
+.qvr-align-center {
+	text-align: center;
+}
 
 
-//Typography Elements
-
+// Typography Elements
 h2 {
   font-size: 22px;
   font-weight: 700;
@@ -17,7 +18,8 @@ h2 {
 	color: $qvr-color-1;
 }
 
-//Global Styles
+
+// Global Styles
 html {
 	//font-size:62.5%;
 }
@@ -31,9 +33,11 @@ p {
 	font-size: 12px;
 	color: $qvr-color-body;
 }
+
 .map-canvas { height: 100%; margin: 0; padding: 0;}
 
-//Icons
+
+// Icons
 .icon {
 	display: inline-block;
 	background-size: cover;
@@ -61,7 +65,6 @@ p {
 		width: 20px;
 		height: 20px;
 	}
-	//
 	&.i-search-white {
 		background-image: url(../img/icons/i-search-zoom-white.png);
 		width: 32px;
@@ -134,13 +137,12 @@ p {
 }
 
 
-//CSS Shapes
+// CSS Shapes
 .arrow-down {
 	width: 0; 
 	height: 0; 
 	border-left: 20px solid transparent;
 	border-right: 20px solid transparent;
-	
 	border-top: 20px solid #f00;
 }
 
@@ -204,9 +206,6 @@ p {
 		}
 
 	}
-	
-	
-
 }
 
 
@@ -279,8 +278,8 @@ p {
 
 
 
-//Forms
-//Quiver Custom Form
+// Forms
+// Quiver Custom Form
 .qvr-form {
 	// Form Colors
 	$qvr-form_color-bg: #F7F7F7;
@@ -293,7 +292,7 @@ p {
 	$qvr-form-color-bg_disabled: #e6e6e6;
 	$qvr-form-color-text_disabled: $qvr-form_color-border;
 
-	//Form Colors - On Dark
+	// Form Colors - On Dark
 	$qvr-form_color-bg_on-dark: #00B4CC;
 	$qvr-form_color-bg_focus_on-dark: #00D0E0;
 	$qvr-form_color-border_on-dark: #00899B;
@@ -303,7 +302,6 @@ p {
 	$qvr-form-color-text_focus_on-dark: $qvr-form_color-text_on-dark;
 	$qvr-form-color-bg_disabled_on-dark: #00B4CC;
 	$qvr-form-color-text_disabled_on-dark: #00A8CB;
-
 
 	::-webkit-input-placeholder {
 	   color: $qvr-form_color-placeholder;
@@ -320,8 +318,6 @@ p {
 	:placeholder {  
 	   color: $qvr-form_color-placeholder;  
 	}
-
-	
 	
 	input, .form-element {
 		height: $qvr-input-btn-height;
@@ -388,7 +384,6 @@ p {
 			height: 140px;
 		}
 	}
-
 }
 
 .qvr-search-wrap {
@@ -412,33 +407,34 @@ p {
 		font-weight: 300;
 		margin: 0;
 	}
-
 }
 
 input[type="checkbox"].qvr-slide-toggle {
-  background-color: $qvr-color-1;
-  background-size: 100% 100%, 200% 100%;
-  background-position: 0 0, 5px 0;
-  border-radius: 20px;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  height: 32px;
-  position: relative;
-  width: 53px;
-  -webkit-appearance: none;
-  transition: all 0.3s ease-in-out;
+	background-color: $qvr-color-1;
+	background-size: 100% 100%, 200% 100%;
+	background-position: 0 0, 5px 0;
 	
+	border-radius: 20px;
+	padding: 0;
+	border: none;
+	cursor: pointer;
+	height: 32px;
+	position: relative;
+	width: 53px;
+	-webkit-appearance: none;
+	
+	transition: all 0.3s ease-in-out;
+
 	&:after {
-    background-color: #fff;
-    border-radius: 28px;
-    content: '';
-    display: block;
-    height: 28px;
-    left: 2px;
-    position: relative;
-    top: 2px;
-    width: 28px;
+		background-color: #fff;
+		border-radius: 28px;
+		content: '';
+		display: block;
+		height: 28px;
+		left: 2px;
+		position: relative;
+		top: 2px;
+		width: 28px;
 	}
 
 	&:checked {
@@ -448,11 +444,11 @@ input[type="checkbox"].qvr-slide-toggle {
 	}
 
 	&:focus {
-    outline: none;
+		outline: none;
 	}
 }
 
-//Quiver Custom Buttons
+// Quiver Custom Buttons
 .qvr-button {
 	display: inline-block;
 	height: $qvr-input-btn-height;
@@ -463,13 +459,11 @@ input[type="checkbox"].qvr-slide-toggle {
 	box-shadow: none;
 	border: 1px solid transparent;
 	
-
 	font-family: $qvr-secondary-font;
 	font-weight: 700;
 	font-size: $qvr-input-btn-font-size;
 
 	transition: all 0.4s ease-in-out;
-
 
 	&.warning {
 		background-color: $qvr-warning-color;
@@ -503,7 +497,6 @@ input[type="checkbox"].qvr-slide-toggle {
 		}
 
 		&.on-dark {
-
 			&.is-disabled {
 				background-color: $qvr-warning-color_disabled_on-dark;
 				color: $qvr-warning-color_disabled_on-dark_text;
@@ -554,7 +547,6 @@ input[type="checkbox"].qvr-slide-toggle {
 		}
 	}
 	
-
 	&.hollow {
 		color: $qvr-hallow-color_text;
 		background-color:$qvr-hallow-color;
@@ -577,5 +569,4 @@ input[type="checkbox"].qvr-slide-toggle {
 		font-weight: 400;
 		font-size: $qvr-input-btn-font-size_small;
 	}
-
 }

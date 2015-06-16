@@ -24,8 +24,10 @@
 		function($state, EnterpriseModel) {
 			var editEnterpriseCtrl = this;
 
-			editEnterpriseCtrl.enterpriseModel = EnterpriseModel;
-			editEnterpriseCtrl.editedCompany = angular.copy(editEnterpriseCtrl.enterpriseModel.company);
+			EnterpriseModel.getEnterprise().then(function(){
+				editEnterpriseCtrl.enterpriseModel = EnterpriseModel;
+				editEnterpriseCtrl.editedCompany = angular.copy(editEnterpriseCtrl.enterpriseModel.company);
+			});
 
 			function returnToCompanyProfile() {
 				$state.go('enterprise.profile');

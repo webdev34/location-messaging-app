@@ -30,8 +30,10 @@
 		function($state, EnterpriseModel, FoundationApi) {
 			var enterpriseCtrl = this;
 			
-			enterpriseCtrl.enterpriseModel = EnterpriseModel;
-
+			EnterpriseModel.getEnterprise().then(function(){
+				enterpriseCtrl.company = EnterpriseModel.company;
+			});
+			
 			function addUser() {
 				if (enterpriseCtrl.newUser.userType === 'admin') {
 					EnterpriseModel.addAdmin(enterpriseCtrl.newUser);

@@ -2,24 +2,24 @@
 	
 	<section class="corporate-info ">
 		<div class="clearfix">
-			<img ng-src="{{enterpriseCtrl.enterpriseModel.company.logo}}" alt="logo" class="corp-logo">
+			<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo">
 		
 			<div class="corp-details">
-				{{enterpriseCtrl.enterpriseModel.company.sid}}
+				{{enterpriseCtrl.company.sid}}
 				<br>
-				{{enterpriseCtrl.enterpriseModel.company.companyName}}
+				{{enterpriseCtrl.company.companyName}}
 				<br>
-				@{{enterpriseCtrl.enterpriseModel.company.username}}
+				@{{enterpriseCtrl.company.username}}
 			</div>
 		</div>
 	</section>
 
 	<div class="details">
 		<label>Description</label>
-		<p>{{enterpriseCtrl.enterpriseModel.company.description}}</p>
+		<p>{{enterpriseCtrl.company.description}}</p>
 
 		<label>Email</label>
-		<p>{{enterpriseCtrl.enterpriseModel.company.email}}</p>
+		<p>{{enterpriseCtrl.company.email}}</p>
 		<br>
 
 		<a ui-sref="enterprise.edit" class="qvr-button info">Edit Enterprise Profile</a>

@@ -1,8 +1,3 @@
-/*
-* This is the current user's set enterprise.
-* NOT a definition model for enterprises in general
-*/
-
 (function() {
 	'use strict';
 
@@ -11,32 +6,43 @@
 	])
 	
 	.service('EnterpriseModel', [
-		'$rootScope',
-		'$http',
 		'$q',
 		'$cookies',
 		'$cookieStore',
 		'EnterpriseService',
 		'UserModel',
 		
-		function($rootScope, $http, $q, $cookies, $cookieStore, EnterpriseService, UserModel) {
+		function(
+			$q,
+			$cookies,
+			$cookieStore,
+			EnterpriseService,
+			UserModel
+		) {
 			var model = this;
 			
-			// load remembered company
-			model.company = $cookieStore.get("QVR.company");
+			if (!model.company){
+				model.company = $cookieStore.get("QVR.company");
+			}
 
-			// update company on login
-			$rootScope.$on('QVR.onLoginSuccess', function(response) {
-				console.log('test');
-				//model.getEnterprise();
-			});
-
+			model.getEnterprise = function() {
+				return (model.company) ? $q.when(model.company) : EnterpriseService.get(UserModel.user.enterprise)
+					.then(
+						function (response) {
+							//model.company = response.enterprise;
+							model.company = response;
+							$cookieStore.put("QVR.company", model.company);
+							return response;
+						}
+					);
+			};
+			
 			model.getEnterprise = function() {
 				return EnterpriseService.get(UserModel.user.enterprise)
 					.then(
 						function (response) {
 							//model.company = response.enterprise;
-							angular.extend(model.company, response);
+							model.company = response;
 							$cookieStore.put("QVR.company", model.company);
 							return response;
 						}
@@ -66,6 +72,10 @@
 
 			model.addUser = function(newUser) {
 				model.company.users.push(newUser);
+			}
+
+			if (!model.company){
+				model.getEnterprise();
 			}
 		}
 	]);

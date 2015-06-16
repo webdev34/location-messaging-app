@@ -1,28 +1,29 @@
-//Typography Imports
+// Typography Imports
 @import url("http://fonts.googleapis.com/css?family=Roboto:400,100,700,300|Open+Sans:400,300,700|Oswald:400,700");
 $qvr-primary-font: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $qvr-secondary-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $qvr-tertiary-font: Oswald, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-
-//Colors
+// Colors
 $qvr-color-body: #7F8184;
-
 $qvr-color-1: #00A8CB;
 $qvr-color-2: #B9E9FF;
 
+// Button Sizes
+$qvr-input-btn-height: 70px;
+$qvr-input-btn-height_small: 53px;
+$qvr-input-btn-font-size: 20px;
+$qvr-input-btn-font-size_small: 16px;
+$qvr-border-radius: 7px;
 
-
-//Button Colors
-
-//Warning Button
-$qvr-warning-color: 											#F35615;
-$qvr-warning-color_text:									#ffffff;
-$qvr-warning-color_hover: 								#BC3F13;
-$qvr-warning-color_active: 								#F28964;
-$qvr-warning-color_disabled: 							#E6E6E6;
-$qvr-warning-color_disabled_text:					#cccccc;
-$qvr-warning-color_disabled_on-dark:			#00B4CC;
+// Warning Button
+$qvr-warning-color: #F35615;
+$qvr-warning-color_text: #ffffff;
+$qvr-warning-color_hover: #BC3F13;
+$qvr-warning-color_active: #F28964;
+$qvr-warning-color_disabled: #E6E6E6;
+$qvr-warning-color_disabled_text: #cccccc;
+$qvr-warning-color_disabled_on-dark: #00B4CC;
 $qvr-warning-color_disabled_on-dark_text: #00A8CC;
 
 $qvr-warning-color_hollow: #EFBEAF;
@@ -34,41 +35,30 @@ $qvr-warning-color_hollow_active: #EFBEAF;
 $qvr-warning-color_hollow_active_border: #F36226;
 $qvr-warning-color_hollow_disabled_on-dark: transparent;
 $qvr-warning-color_hollow_disabled_on-dark_text: $qvr-warning-color_disabled_on-dark;
-$qvr-warning-color_hollow_disabled_on-dark_border: $qvr-warning-color_disabled_on-dark;  
+$qvr-warning-color_hollow_disabled_on-dark_border: $qvr-warning-color_disabled_on-dark; 
 
+// Info Button
+$qvr-info-color: #B9E9FF;
+$qvr-info-color_text: #00A8CB;
+$qvr-info-color_hover: #9EC9D8;
+$qvr-info-color_active: #AFDEEF;
+$qvr-info-color_disabled: #E6E6E6;
+$qvr-info-color_disabled_text: #cccccc;
 
-//Info Button
-$qvr-info-color: 											#B9E9FF;
-$qvr-info-color_text:									#00A8CB;
-$qvr-info-color_hover: 								#9EC9D8;
-$qvr-info-color_active: 							#AFDEEF;
-$qvr-info-color_disabled: 						#E6E6E6;
-$qvr-info-color_disabled_text:				#cccccc;
-
-
-$qvr-info-color_on-dark: 							#E6E6E6;
-$qvr-info-color_text_on-dark:					#00A8CB;
-$qvr-info-color_hover_on-dark: 				$qvr-info-color_hover;
-$qvr-info-color_active_on-dark: 			$qvr-info-color_active;
-$qvr-info-color_disabled_on-dark: 		#E6E6E6;
+$qvr-info-color_on-dark: #E6E6E6;
+$qvr-info-color_text_on-dark: #00A8CB;
+$qvr-info-color_hover_on-dark: $qvr-info-color_hover;
+$qvr-info-color_active_on-dark: $qvr-info-color_active;
+$qvr-info-color_disabled_on-dark: #E6E6E6;
 $qvr-info-color_disabled_text_on-dark:#cccccc;
-$qvr-info-color_disabled_on-dark:			#00B4CC;
+$qvr-info-color_disabled_on-dark: #00B4CC;
 $qvr-info-color_disabled_text_on-dark:#00A8CB;
 
-
-
-//Hollow Button
-$qvr-hallow-color: 											#f2f2f2;
-$qvr-hallow-color_border: 							#CFCFCF;
-$qvr-hallow-color_text:									#666666;
-$qvr-hallow-color_hover: 								#cccccc;
-$qvr-hallow-color_active: 							$qvr-hallow-color;
-$qvr-hallow-color_disabled: 						#e6e6e6;
-$qvr-hallow-color_disabled_text:				#cccccc;
-
-//Sizes
-$qvr-input-btn-height: 70px;
-$qvr-input-btn-height_small: 53px;
-$qvr-input-btn-font-size: 20px;
-$qvr-input-btn-font-size_small: 16px;
-$qvr-border-radius: 7px;
+// Hollow Button
+$qvr-hallow-color: #f2f2f2;
+$qvr-hallow-color_border: #CFCFCF;
+$qvr-hallow-color_text: #666666;
+$qvr-hallow-color_hover: #cccccc;
+$qvr-hallow-color_active: $qvr-hallow-color;
+$qvr-hallow-color_disabled: #e6e6e6;
+$qvr-hallow-color_disabled_text: #cccccc;

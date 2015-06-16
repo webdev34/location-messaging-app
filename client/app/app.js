@@ -52,16 +52,18 @@
 		function(UserModel, FoundationApi, $rootScope, $state, APP_default_state) {
 			var appCtrl = this;
 
-			appCtrl.userModel = UserModel;
+			appCtrl.user = UserModel.user;
 			
 			appCtrl.currentState = $rootScope.$state;
 			appCtrl.userLoginInfo = {};
 			appCtrl.gNavStateIs = "";
 
+			/*
 			$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
 				$dialogs.error("Something went wrong!", error);
 				console.error("$stateChangeError: ", toState, error);
 			});
+			*/
 
 			$rootScope.$on('$stateChangeSuccess',
 				function(event, toState, toParams, fromState, fromParams) {
@@ -86,6 +88,8 @@
 				appCtrl.gNavStateIs = "";
 
 				var stateArray = ['messages', 'admin', 'enterprise'];
+				
+				//var stateArray = ['admin', 'campaigns', 'reporting', 'profile'];
 
 				for (var i = 0; i < stateArray.length; i++) {
 					if (appCtrl.currentState.includes(stateArray[i])) {
@@ -107,6 +111,8 @@
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
 						function success(response) {
+							appCtrl.user = UserModel.user;
+							
 							FoundationApi.publish('main-notifications', {
 								title: 'Login Succesful',
 								content: '',

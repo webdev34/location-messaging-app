@@ -22,16 +22,19 @@ User types - these are NOT 'social users' (followers)
 	])
 	
 	.service('UserModel', [
-		'$rootScope',
 		'$cookies',
 		'$cookieStore',
 		'API_URL',
 		'UserService',
 		
-		function($rootScope, $cookies, $cookieStore, API_URL, UserService) {
+		function(
+			$cookies,
+			$cookieStore,
+			API_URL,
+			UserService
+		) {
 			var model = this;
 			
-			// load remembered user
 			model.user = $cookieStore.get("QVR.user");
 			
 			model.registerUser = function(userDetail) {
@@ -54,11 +57,9 @@ User types - these are NOT 'social users' (followers)
 							model.user = response.user;
 							model.user.isLoggedIn = true;
 							$cookieStore.put("QVR.user", model.user);
-							$rootScope.$broadcast('QVR.onLoginSuccess');
 							return response;
 						},
 						function(response) {
-							$rootScope.$broadcast('QVR.onLoginFail');
 							return response;
 						}
 					);
@@ -66,7 +67,8 @@ User types - these are NOT 'social users' (followers)
 
 			model.logout = function() {
 				model.user = {};
-				$rootScope.$broadcast('QVR.onLogoutSuccess');
+				$cookieStore.remove("QVR.user");
+				$cookieStore.remove("QVR.company");
 				return UserService.logout();
 			}
 

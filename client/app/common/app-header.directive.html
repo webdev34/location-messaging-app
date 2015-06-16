@@ -1,11 +1,11 @@
-<header class="menu-group g-header">
+<header class="menu-group g-header" ng-show="appCtrl.user.isLoggedIn">
 
 	<a ui-sref="home" class="header-branding">
 		<img class="header-logo" src="assets/img/logo/header-logo.png" alt="Quiver">
 		<span class="portal-branding">Enterprise Portal</span>
 	</a>
 
-	<nav class="menu-group-right header-nav" ng-show="appCtrl.userModel.user.isLoggedIn">
+	<nav class="header-nav">
 		<ul class="menu-bar icon-left">
 			<li>
 				<a ui-sref="admin" ng-class="{active: appCtrl.gNavStateIs=='admin'}">Admin</a>
