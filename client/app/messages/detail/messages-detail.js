@@ -1,31 +1,26 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  angular.module('messages.detail', [])
-  	.config(['$stateProvider', function ($stateProvider) {
-				$stateProvider
-					.state('messages.detail', {
-						url: '/:_id',
-						templateUrl: '/app/messages/detail/messages-detail.tmpl.html',
-						controller: 'MessageDetailCtrl as messageDetailCtrl'
-					});
+	angular.module('messages.detail', [])
+	
+	.controller('MessageDetailCtrl', [
+		'$stateParams',
+		'MessageDetailModel',
+		
+		function(
+			$stateParams,
+			MessageDetailModel
+		) {
+			var messageDetailCtrl = this;
 
-			}])
+			messageDetailCtrl.currentMessageId = $stateParams._id;
 
-		.controller('MessageDetailCtrl', [
-	  	'$stateParams', 'MessageDetailModel', 
-	  	function($stateParams, MessageDetailModel) {
-	  		var messageDetailCtrl = this;
-
-	  		messageDetailCtrl.currentMessageId = $stateParams._id;
-
-		  	MessageDetailModel.getMessageDetail()
-		  		.then(function(result) {
-		  			messageDetailCtrl.message = result;
-		  		});
-
-	  }])
-  ;
+			MessageDetailModel.getMessageDetail()
+				.then(function(result) {
+					messageDetailCtrl.message = result;
+				});
+		}
+	]);
 
 
 })();
