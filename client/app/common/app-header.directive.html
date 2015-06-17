@@ -11,7 +11,7 @@
 				<a ui-sref="admin" ng-class="{active: appCtrl.gNavStateIs=='admin'}">Admin</a>
 			</li>
 			<li>
-				<a ui-sref="messages.dashboard" ng-class="{active: appCtrl.gNavStateIs=='messages'}">Message Center</a>
+				<a ui-sref="messages.dashboard" ng-class="{active: appCtrl.gNavStateIs=='messages'}">Campaign Center</a>
 			</li>
 			<li>
 				<a ui-sref="enterprise.profile" ng-class="{active: appCtrl.gNavStateIs=='enterprise'}">Enterprise Settings</a>
@@ -20,6 +20,15 @@
 				<a zf-toggle="user-panel" class="button__user">
 					<span class="icon i-header-user"></span>
 				</a>
+			</li>
+		</ul>
+	</nav>
+
+
+	<nav class="header-subnav">
+		<ul class="">
+			<li ng-repeat="subnav in appCtrl.subnav">
+				<a ui-sref="{{subnav.state}}" ng-class="{active: appCtrl.currentState==subnav.state}">{{subnav.title}}</a>
 			</li>
 		</ul>
 	</nav>

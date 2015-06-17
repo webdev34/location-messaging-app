@@ -22,12 +22,16 @@
 		.run(run);
 
 	app.constant('APP_default_state', 'messages.dashboard');
+	
+	var API_SERVER = 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/';
+	app.constant('API_SERVER', API_SERVER);
+	app.constant('API_URL', API_SERVER + 'web1.1');
+	app.constant('API_URL_DROID', API_SERVER + 'droid1.1');
 	//app.constant('API_URL', 'http://localhost:8000/droid1.1');
-	app.constant('API_URL', 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/web1.1');
 
-	config.$inject = ['$urlRouterProvider', '$locationProvider'];
+	config.$inject = ['$httpProvider', '$urlRouterProvider', '$locationProvider'];
 
-	function config($urlProvider, $locationProvider) {
+	function config($httpProvider, $urlProvider, $locationProvider) {
 		$urlProvider.otherwise('/');
 
 		$locationProvider.html5Mode({
@@ -43,20 +47,35 @@
 	}
 
 	app.controller('AppCtrl', [
+		'$http',
 		'UserModel',
 		'FoundationApi',
 		'$rootScope',
 		'$state',
 		'APP_default_state',
 		
-		function(UserModel, FoundationApi, $rootScope, $state, APP_default_state) {
+		function(
+			$http,
+			UserModel,
+			FoundationApi,
+			$rootScope,
+			$state,
+			APP_default_state
+		) {
 			var appCtrl = this;
 
 			appCtrl.user = UserModel.user;
 			
 			appCtrl.currentState = $rootScope.$state;
 			appCtrl.userLoginInfo = {};
+			
 			appCtrl.gNavStateIs = "";
+			appCtrl.subnav = [];
+			appCtrl.navObj = {
+				'admin' : [],
+				'messages' : [{'title' : 'Compose Message', 'state' : 'messages.new'}],
+				'enterprise' : []
+			};
 
 			/*
 			$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
@@ -97,6 +116,8 @@
 						break;
 					}
 				}
+				
+				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];
 			}
 
 			function goToLogin() {
@@ -111,6 +132,9 @@
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
 						function success(response) {
+							//$http.defaults.headers.common.Authorization = response.authorization
+							$http.defaults.headers.common['Authorization'] = "Basic " + response.authorization;
+							
 							appCtrl.user = UserModel.user;
 							
 							FoundationApi.publish('main-notifications', {

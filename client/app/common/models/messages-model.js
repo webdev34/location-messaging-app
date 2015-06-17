@@ -1,7 +1,9 @@
 (function() {
 	'use strict';
 
-	angular.module('enterprise-portal.models.messages', [])
+	angular.module('enterprise-portal.models.messages', [
+		'enterprise-portal.services.messages'
+	])
 	
 	.service('MessageDetailModel', [
 		'$http',
@@ -41,10 +43,12 @@
 	.service('MessageListModel', [
 		'$http',
 		'$q',
+		'MessagesService',
 		
 		function(
 			$http,
-			$q
+			$q,
+			MessagesService
 		) {
 			var model = this,
 				URLS = {
@@ -66,8 +70,13 @@
 			};
 
 			model.createNewMessage = function(newMessage) {
-				newMessage._id = "<temp-id>";
-				messageList.messages.push(newMessage);
+				console.log("--->", newMessage);
+				
+				MessagesService.create(newMessage).then(function(response){
+					console.log("-->", response);
+					newMessage._id = "<temp-id>";
+					messageList.messages.push(newMessage);
+				});
 			};
 		}
 	]);
