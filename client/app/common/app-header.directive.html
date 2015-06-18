@@ -1,7 +1,7 @@
-<header class="g-header" ng-show="appCtrl.user.isLoggedIn">
+<header class="g-header" ng-show="appCtrl.showHeader">
 
 	<a ui-sref="home" class="header-branding">
-		<img class="header-logo" src="assets/img/logo/header-logo.png" alt="Quiver">
+		<img class="header-logo" src="assets/img/logo/header-logo-white.png" alt="Quiver">
 		<span class="portal-branding">Enterprise Portal</span>
 	</a>
 
@@ -11,23 +11,24 @@
 				<a ui-sref="admin" ng-class="{active: appCtrl.gNavStateIs=='admin'}">Admin</a>
 			</li>
 			<li>
-				<a ui-sref="messages.dashboard" ng-class="{active: appCtrl.gNavStateIs=='messages'}">Campaign Center</a>
+				<a ui-sref="messages.dashboard" ng-class="{active: appCtrl.gNavStateIs=='messages'}">Campaigns</a>
 			</li>
 			<li>
 				<a ui-sref="enterprise.profile" ng-class="{active: appCtrl.gNavStateIs=='enterprise'}">Enterprise Settings</a>
 			</li>
-			<li>
-				<a zf-toggle="user-panel" class="button__user">
-					<span class="icon i-header-user"></span>
-				</a>
-			</li>
 		</ul>
+		
+		<section class="user-info float-right">
+			<a zf-toggle="user-panel" class="button__user">
+				<span class="icon i-header-user"></span>
+			</a>
+		</section>
 	</nav>
-
+	
 	<nav class="header-subnav">
 		<ul class="">
 			<li ng-repeat="subnav in appCtrl.subnav">
-				<a ui-sref="{{subnav.state}}" ng-class="{active: appCtrl.currentState==subnav.state}">{{subnav.title}}</a>
+				<a ui-sref="{{subnav.state}}" ng-class="{active: appCtrl.currentState.current.name==subnav.state}">{{subnav.title}}</a>
 			</li>
 		</ul>
 	</nav>

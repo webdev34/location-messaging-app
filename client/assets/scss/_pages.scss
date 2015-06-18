@@ -1,8 +1,8 @@
 .page-container {
-		display: flex;
-		align-items: stretch;
-		padding: 0;
-		height: 100%;
+	display: flex;
+	align-items: stretch;
+	padding: 0;
+	height: 100%;
 }
 
 .page {
@@ -15,12 +15,22 @@
 
 	display: block;
 	min-height: 100%;
-
+	
+	input[type='text'], input[type='password'], button.action {
+		height: 36px;
+		border-radius: 6px;
+	}
+	
+	input[type='text'] {
+		margin: 0 0 5px 0;
+	}
+	
 	.login-form {
 		@extend .clearfix;
 		
-		width: 400px;
-		height: 300px;
+		min-width: 272px;
+		width: 272px;
+		height: 215px;
 		
 		margin: auto;
 		position: absolute;
@@ -30,15 +40,16 @@
 		right: 0;
 
 		.qvr-button {
-			font-size: $qvr-input-font-size-small;
+			font-size: 9px;
 			width: 50%;
 		}
 	}
 
 	.header-logo {
 		float: left;
-		width: 150px;
-		margin-bottom: 38px;
+		height: 34px;
+		width: 106px;
+		margin-bottom: 28px;
 	}
 
 	.portal-branding {
@@ -48,13 +59,13 @@
 		color: $qvr-blue-1;
 		border-left: 2px solid $qvr-blue-1;
 		
-		margin: 5px 0 0 21px;
-		padding: 0 0 0 21px;
+		margin: 2px 0 0 17px;
+		padding: 0 0 0 17px;
 		
-		height: 42px;
-		line-height: 42px;
+		height: 34px;
+		line-height: 34px;
 		
-		font-size: 28px;
+		font-size: 18px;
 		font-family: $qvr-primary-font;
 		font-weight: 100;
 	}
@@ -63,10 +74,9 @@
 		display: inline-block;
 		
 		width: 50%;
-		height: $qvr-input-height;
-		line-height: $qvr-input-height;
+		height: 36px;
+		line-height: 36px;
 		
-		border-radius: $qvr-border-radius;
 		padding: 0 2em;
 
 		background-color: $qvr-white-1;
@@ -76,7 +86,7 @@
 		
 		font-family: $qvr-secondary-font;
 		font-weight: bold;
-		font-size: $qvr-input-font-size-small;
+		font-size: 9px;
 		font-weight: normal;
 		color: $qvr-grey-3;
 
@@ -94,13 +104,13 @@
 	input[type="checkbox"] {
 		-webkit-appearance: none;
 		
-		border-radius: 5px;
+		border-radius: 2px;
 		
-		width: 20px;
-		height: 20px;
+		width: 13px;
+		height: 13px;
 		
 		padding: 0;
-		margin: 15px 10px 0 0;
+		margin: 11px -5px 0 0;
 	}
 }
 
@@ -133,7 +143,6 @@
 				font: inherit;
 				max-width: 300px;
 			}
-
 		}
 
 		.corporate-box {
@@ -156,7 +165,6 @@
 			margin-top: 5px;
 		}
 
-
 		// other components
 		$avatar-width: 135px;
 
@@ -175,7 +183,6 @@
 		}
 
 		.profile-edit-form {
-				
 			label {
 				font-size: 12px;
 				line-height: 2em;
@@ -485,7 +492,6 @@
 	}
 
 	.create-edit-message-form {
-		
 		.half-size {
 			width: 50%;
 			float: left;
@@ -509,6 +515,7 @@
 		.location-section {
 			padding-top: 2rem;
 		}
+		
 		.map-search-wrap {
 			position: relative;
 
@@ -563,6 +570,7 @@
 				content: "-";
 				font-size: 45px;
 			}
+			
 			&:after {
 				position: absolute;
 				top: 0;
@@ -574,6 +582,7 @@
 			&:focus {
 				outline: none;
 			}
+			
 			&::-webkit-slider-runnable-track {
 				width: 100%;
 				height: 20px;
@@ -581,9 +590,8 @@
 				cursor: pointer;
 				animate: 0.2s;
 				background: $qvr-color-1;
-
-				
 			}
+			
 			&::-webkit-slider-thumb {
 				position: relative;
 				height: 100px;
@@ -611,15 +619,12 @@
 					border: 1px solid $qvr-color-1;
 				}
 			}
+			
 			&:focus::-webkit-slider-runnable-track {
 				background: $qvr-color-1;
 			}
-			
-
 		}
-
 	}
-
 
 	.message-active-list {
 		margin-bottom: 0;
@@ -742,8 +747,9 @@
 					background-color: #f2f2f2;
 				}
 
-				
-				.user {order: 1}
+				.user {
+					order: 1
+				}
 
 				.update-body {
 					order: 2; 
@@ -768,14 +774,12 @@
 					.location {
 						.icon { margin-bottom: -5px;}
 					}
-
 				}
 
 				.link-wrap {
 					order: 3; 
 					padding-top: 10px;
 				}
-				
 			}
 		}
 	}
@@ -783,7 +787,6 @@
 }
 
 .page--enterprise {
-
 	.enterprise-content {}
 	
 	.enterprise-profile {
@@ -797,13 +800,11 @@
 
 		.corporate-info {
 			order: 1;
-			//width: 50%;
 			margin-left: auto;
 
 			.corp-logo {
 				max-width: 210px;
 			}
-
 		}
 
 		.details {
@@ -830,7 +831,6 @@
 			max-width: 420px;
 			label { font-size: 12px; font-weight: 700;}
 		}
-	
 	}
 
 	.enterprise-users {
@@ -856,6 +856,7 @@
 				margin: 1rem;
 
 			}
+			
 			.g-user-list {
 				order: 2;
 				flex-grow: 1;

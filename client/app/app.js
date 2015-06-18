@@ -69,6 +69,8 @@
 			appCtrl.currentState = $rootScope.$state;
 			appCtrl.userLoginInfo = {};
 			
+			appCtrl.showHeader = false;
+			
 			appCtrl.gNavStateIs = "";
 			appCtrl.subnav = [];
 			appCtrl.navObj = {
@@ -116,13 +118,15 @@
 				//var stateArray = ['admin', 'campaigns', 'reporting', 'profile'];
 
 				for (var i = 0; i < stateArray.length; i++) {
-					if (appCtrl.currentState.includes(stateArray[i])) {
+					if (appCtrl.currentState.current.name.includes(stateArray[i])) {
 						appCtrl.gNavStateIs = stateArray[i];
 						break;
 					}
 				}
 				
 				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];
+				
+				appCtrl.showHeader = appCtrl.currentState.current.name != 'home';
 			}
 
 			function goToLogin() {

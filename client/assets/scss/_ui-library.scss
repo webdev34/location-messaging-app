@@ -46,6 +46,12 @@ p {
 	padding: 0;
 }
 
+// Bower foundation overrides
+ul {
+	margin: 0;
+	padding: 0;
+}
+
 
 // Icons
 .icon {
@@ -157,10 +163,33 @@ p {
 }
 
 
+// Global Activity Bar
+.g-activity  {
+	width: 113px;
+	background-color: $qvr-blue-2;
+	
+	font-family: $qvr-tertiary-font;
+	color: $qvr-white-1;
+	
+	.title {
+		font-size: 16px;
+	}
+	
+	.desc {
+		height: 30px;
+		font-size: 12px;
+		background-color: $qvr-blue-1;
+	}
+	
+	.count {
+		height: 70px;
+		font-size: 20px;
+	}
+}
+
+
 // Global Header
 .g-header {
-	padding-bottom: 0.5em;
-	
 	background-color: $qvr-blue-1;
 
 	.menu-bar { //override foundation-app.css class in bower
@@ -169,12 +198,12 @@ p {
 	
 	.header-branding {
 		float: left;
-		margin: 10px 0 0 25px;
+		margin: 12px 0 0 25px;
 
 		.header-logo {
 			float: left;
-			width: 108px;
-			height: 34px;
+			width: 80px;
+			height: 25px;
 		}
 
 		.portal-branding {
@@ -187,53 +216,45 @@ p {
 			margin: 3px 0 0 16px;
 			padding: 0 1.2em;
 			
-			height: 30px;
-			line-height: 30px;
+			height: 23px;
+			line-height: 23px;
 			
-			font-size: 18px;
+			font-size: 14px;
 			font-family: $qvr-primary-font;
 			font-weight: 100;
 		}
 	}
 
 	.header-nav {
+		height: 50px;
+		
 		ul {
 			display: inline-block;
 			
 			li {
 				display: inline-block;
 			}
-		}
-		
-		a {
-			display: block;
 			
-			text-align: center;
-			font-family: $qvr-primary-font;
-			font-size: 12px;
-			font-weight: 700;
-			color: $qvr-white-1;
-			
-			border-bottom: 3px solid transparent;
-			
-			width: 150px;
-			height: 50px;
-			
-			margin: 0 10px;
-
-			transition: all 0.2s ease-in-out;
-			
-			&:hover, &.active {
-				border-bottom: 3px solid $qvr-white-1;
-				background-color: inherit;
+			a {
+				display: block;
+				
+				text-align: center;
+				font-family: $qvr-primary-font;
+				font-size: 11px;
+				font-weight: 700;
 				color: $qvr-white-1;
-			}
-
-			&.button__user {
-				margin-left: 10px;
-
-				&:hover {
-					border-bottom-color: transparent;
+				
+				border-bottom: 7px solid transparent;
+				
+				width: 150px;
+				height: 30px;
+				
+				margin: 20px 10px 0 0;
+				
+				transition: all 0.2s ease-in-out;
+				
+				&:hover, &.active {
+					border-bottom: 7px solid $qvr-white-2;
 				}
 			}
 		}
@@ -243,7 +264,7 @@ p {
 		background-color: $qvr-grey-4;
 		
 		ul {
-			margin: 0;
+			margin: 0 0 0 265px;
 			padding: 0;
 			
 			li {
@@ -252,7 +273,19 @@ p {
 		}
 		
 		a {
+			height: 25px;
+			
+			margin: 0 20px 0 0;
+			
 			color: $qvr-grey-3;
+			font-size: 12px;
+			line-height: 25px;
+			
+			transition: all 0.2s ease-in-out;
+			
+			&:hover, &.active {
+				color: $qvr-blue-1;
+			}
 		}
 	}
 }
