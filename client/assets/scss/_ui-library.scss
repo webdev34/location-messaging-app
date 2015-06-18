@@ -62,6 +62,9 @@ ul {
 		background-image: url(../img/icons/i-header-user.png);
 		width: 26px;
 		height: 24px;
+		&.active {
+			background-image: url(../img/icons/i-header-user_active.png);
+		}
 	}
 
 	&.i-user-large {
@@ -165,24 +168,37 @@ ul {
 
 // Global Activity Bar
 .g-activity  {
+	position: absolute;
 	width: 113px;
+	margin: -25px 0 10px 0;
 	background-color: $qvr-blue-2;
+	border-radius: 0 0 22px 0;
+	text-transform: uppercase;
 	
 	font-family: $qvr-tertiary-font;
 	color: $qvr-white-1;
 	
+	text-align: center;
+	
 	.title {
+		background-color: $qvr-blue-2;
+		height: 90px;
+		border-top: solid 25px $qvr-blue-2;
 		font-size: 16px;
+		line-height: 18px;
+		padding: 16px 5px 0 5px;
 	}
 	
 	.desc {
 		height: 30px;
+		line-height: 30px;
 		font-size: 12px;
 		background-color: $qvr-blue-1;
 	}
 	
 	.count {
-		height: 70px;
+		height: 48px;
+		line-height: 48px;
 		font-size: 20px;
 	}
 }
@@ -198,7 +214,7 @@ ul {
 	
 	.header-branding {
 		float: left;
-		margin: 12px 0 0 25px;
+		margin: 12px 0 0 17px;
 
 		.header-logo {
 			float: left;
@@ -211,10 +227,10 @@ ul {
 			display: inline-block;
 			
 			color: $qvr-white-1;
-			border-left: 2px solid $qvr-white-1;
+			border-left: 1px solid $qvr-white-1;
 			
-			margin: 3px 0 0 16px;
-			padding: 0 1.2em;
+			margin: 3px 0 0 15px;
+			padding: 0 15px;
 			
 			height: 23px;
 			line-height: 23px;
@@ -261,6 +277,7 @@ ul {
 	}
 	
 	.header-subnav {
+		height: 25px;
 		background-color: $qvr-grey-4;
 		
 		ul {
@@ -274,7 +291,6 @@ ul {
 		
 		a {
 			height: 25px;
-			
 			margin: 0 20px 0 0;
 			
 			color: $qvr-grey-3;
@@ -285,6 +301,68 @@ ul {
 			
 			&:hover, &.active {
 				color: $qvr-blue-1;
+			}
+		}
+	}
+		
+	.header-user-info {
+		min-width: 215px;
+		
+		position: absolute;
+		top: 0;
+		right: 0;
+		
+		.icon-wrapper {
+			width: 50px;
+			height: 50px;
+			float: left;
+			background-color: $qvr-grey-1;
+			
+			.icon {
+				width: 25px;
+				height: 25px;
+				margin: 12px;
+			}
+		}
+		
+		.details {
+			min-width: 165px;
+			height: 50px;
+			display: block;
+			margin: 0 0 0 50px;
+			font-size: 16px;
+			color: $qvr-white-1;
+			padding: 10px 10px 0 10px;
+			text-align: center;
+			
+			.enterprise-name {
+				font-family: $qvr-tertiary-font;
+			}
+			
+			.enterprise-plan {
+				font-size: 10px;
+				font-family: $qvr-primary-font;
+				
+				margin: 4px 0 0 0;
+				
+				span:first-child {
+					font-weight: bold;
+				}
+				
+				span:last-child {
+					color: $qvr-green-1;
+				}
+			}
+		}
+		
+		.username {
+			width: 100%;
+			height: 24px;
+			line-height: 24px;
+			float: right;
+			
+			span {
+				font-weight: bold;
 			}
 		}
 	}

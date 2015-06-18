@@ -15,18 +15,13 @@
 	<!-- Notifications -->
 	<zf-notification-set id="main-notifications" position="top-right"></zf-notification-set>
 
-	<!-- User Menu -->
-	<zf-offcanvas id="user-panel" position="right" class="detached dark g-user-panel">
-		<a zf-close="" class="close-button">×</a>
-		<user-side-bar></user-side-bar>
-	</zf-offcanvas>
-
 	<!-- Main View -->
-	<div class="grid-frame vertical">
-		<div class="grid-content shrink" style="padding: 0;">
+	<div>
+		<div>
 			<app-header></app-header>
 		</div>
-		<div ui-view class="grid-content page-container"></div>
+		<app-activity></app-activity>
+		<div ui-view class="page-container"></div>
 	</div>
 
 	<script src="assets/js/foundation.js"></script>
