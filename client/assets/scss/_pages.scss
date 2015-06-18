@@ -11,31 +11,97 @@
 }
 
 .page--login {
-	background-color: $qvr-color-1;
-	padding-bottom: 4rem;
-	display:block;
-	min-height: 600px;
+	background-color: $qvr-white-1;
 
-	&.page--register {
-		min-height: 760px;
-	}
+	display: block;
+	min-height: 100%;
 
 	.login-form {
 		@extend .clearfix;
-		margin-top: 100px;
-		min-width: 380px;
-		margin-bottom: 100px;
-
+		
+		width: 400px;
+		height: 300px;
+		
+		margin: auto;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
 
 		.qvr-button {
-			width: 49%;
+			font-size: $qvr-input-font-size-small;
+			width: 50%;
 		}
 	}
 
-	.corporate-info .corp-logo	{
-		max-width: 140px;
+	.header-logo {
+		float: left;
+		width: 150px;
+		margin-bottom: 38px;
 	}
 
+	.portal-branding {
+		float: left;
+		display: inline-block;
+		
+		color: $qvr-blue-1;
+		border-left: 2px solid $qvr-blue-1;
+		
+		margin: 5px 0 0 21px;
+		padding: 0 0 0 21px;
+		
+		height: 42px;
+		line-height: 42px;
+		
+		font-size: 28px;
+		font-family: $qvr-primary-font;
+		font-weight: 100;
+	}
+	
+	.forget, .remember {
+		display: inline-block;
+		
+		width: 50%;
+		height: $qvr-input-height;
+		line-height: $qvr-input-height;
+		
+		border-radius: $qvr-border-radius;
+		padding: 0 2em;
+
+		background-color: $qvr-white-1;
+		text-align: center;
+		box-shadow: none;
+		border: 1px solid transparent;
+		
+		font-family: $qvr-secondary-font;
+		font-weight: bold;
+		font-size: $qvr-input-font-size-small;
+		font-weight: normal;
+		color: $qvr-grey-3;
+
+		transition: all 0.4s ease-in-out;
+	}
+	
+	.forget {
+		font-style: italic;
+		
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	
+	input[type="checkbox"] {
+		-webkit-appearance: none;
+		
+		border-radius: 5px;
+		
+		width: 20px;
+		height: 20px;
+		
+		padding: 0;
+		margin: 15px 10px 0 0;
+	}
 }
 
 .page--profile {
@@ -266,8 +332,8 @@
 			
 			a {
 				display: inline-block;
-				height: $qvr-input-btn-height;
-				line-height: $qvr-input-btn-height;
+				height: $qvr-input-height;
+				line-height: $qvr-input-height;
 				width: 155px;
 				color: #999;
 				font-size: 14px;

@@ -73,7 +73,12 @@
 			appCtrl.subnav = [];
 			appCtrl.navObj = {
 				'admin' : [],
-				'messages' : [{'title' : 'Compose Message', 'state' : 'messages.new'}],
+				'messages' : [
+					{'title' : 'Campaign Center', 'state' : 'messages.dashboard'},
+					{'title' : 'Manage Campaign', 'state' : '#'},
+					{'title' : 'Compose Message', 'state' : 'messages.new'},
+					{'title' : 'Asset Management', 'state' : '#'}
+				],
 				'enterprise' : []
 			};
 

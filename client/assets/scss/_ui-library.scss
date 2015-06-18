@@ -12,6 +12,7 @@ h2 {
   color: $qvr-color-body;
 
 }
+
 .qvr-label {
 	font-size: 1em;
 	font-weight: 700;
@@ -20,10 +21,15 @@ h2 {
 
 
 // Global Styles
-html {
-	//font-size:62.5%;
-}
-body {
+html, body {
+	height: 100%;
+	width: 100%;
+	
+	margin: 0;
+	padding: 0;
+	
+	position: relative;
+	
 	font-family: $qvr-primary-font;
 	font-size: 12px;
 	color: $qvr-color-body;
@@ -34,7 +40,11 @@ p {
 	color: $qvr-color-body;
 }
 
-.map-canvas { height: 100%; margin: 0; padding: 0;}
+.map-canvas {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
 
 
 // Icons
@@ -150,7 +160,13 @@ p {
 // Global Header
 .g-header {
 	padding-bottom: 0.5em;
+	
+	background-color: $qvr-blue-1;
 
+	.menu-bar { //override foundation-app.css class in bower
+		background-color: transparent;
+	}
+	
 	.header-branding {
 		float: left;
 		margin: 10px 0 0 25px;
@@ -164,12 +180,16 @@ p {
 		.portal-branding {
 			float: left;
 			display: inline-block;
-			color: $qvr-color-1;
-			border-left: 2px solid $qvr-color-1;
+			
+			color: $qvr-white-1;
+			border-left: 2px solid $qvr-white-1;
+			
 			margin: 3px 0 0 16px;
 			padding: 0 1.2em;
+			
 			height: 30px;
 			line-height: 30px;
+			
 			font-size: 18px;
 			font-family: $qvr-primary-font;
 			font-weight: 100;
@@ -177,22 +197,36 @@ p {
 	}
 
 	.header-nav {
-		margin-top: 5px;
+		ul {
+			display: inline-block;
+			
+			li {
+				display: inline-block;
+			}
+		}
 		
 		a {
+			display: block;
+			
+			text-align: center;
 			font-family: $qvr-primary-font;
-			color: $qvr-color-body;
 			font-size: 12px;
 			font-weight: 700;
-			transition: all 0.2s ease-in-out;
+			color: $qvr-white-1;
+			
 			border-bottom: 3px solid transparent;
+			
+			width: 150px;
 			height: 50px;
+			
 			margin: 0 10px;
 
+			transition: all 0.2s ease-in-out;
+			
 			&:hover, &.active {
-				color: $qvr-color-1;
-				border-bottom: 3px solid $qvr-color-1;
+				border-bottom: 3px solid $qvr-white-1;
 				background-color: inherit;
+				color: $qvr-white-1;
 			}
 
 			&.button__user {
@@ -202,9 +236,24 @@ p {
 					border-bottom-color: transparent;
 				}
 			}
-
 		}
-
+	}
+	
+	.header-subnav {
+		background-color: $qvr-grey-4;
+		
+		ul {
+			margin: 0;
+			padding: 0;
+			
+			li {
+				display: inline-block;
+			}
+		}
+		
+		a {
+			color: $qvr-grey-3;
+		}
 	}
 }
 
@@ -276,8 +325,6 @@ p {
 }
 
 
-
-
 // Forms
 // Quiver Custom Form
 .qvr-form {
@@ -304,40 +351,44 @@ p {
 	$qvr-form-color-text_disabled_on-dark: #00A8CB;
 
 	::-webkit-input-placeholder {
-	   color: $qvr-form_color-placeholder;
+			color: $qvr-grey-3;
 	}
 
 	:-moz-placeholder { /* Firefox 18- */
-	   color: $qvr-form_color-placeholder;  
+			color: $qvr-grey-3;
 	}
 
 	::-moz-placeholder {  /* Firefox 19+ */
-	   color: $qvr-form_color-placeholder;  
+			color: $qvr-grey-3;
 	}
 
 	:placeholder {  
-	   color: $qvr-form_color-placeholder;  
+			color: $qvr-grey-3;
 	}
 	
 	input, .form-element {
-		height: $qvr-input-btn-height;
-		border: 1px solid $qvr-form_color-border;
+		height: $qvr-input-height;
+		
+		border: 1px solid $qvr-grey-2;
 		border-radius: $qvr-border-radius;
-		background: $qvr-form_color-bg;
-		color: $qvr-form_color-text;
+		
+		background: $qvr-grey-1;
+		color: $qvr-grey-3;
+		
 		transition: all 0.4s ease-in-out;
-		padding: 0 1em;
-		font-size: 20px;
-		font-weight: 700;
+		
+		padding: 0 15px;
+		font-size: $qvr-input-font-size;
 
 		&:focus, &:hover {
-			color: $qvr-form-color-text_focus;
-			background: $qvr-form_color-bg_focus;
-			border-color: $qvr-form_color-border_focus;
+			background: $qvr-grey-1;
+			border-color: $qvr-grey-2;
+			color: $qvr-grey-3;
 		}
 		&[disabled], &.is-disabled {
-			color: $qvr-form-color-text_disabled;
-			background-color: $qvr-form-color-bg_disabled;
+			background: $qvr-grey-1;
+			border-color: $qvr-grey-2;
+			color: $qvr-grey-3;
 		}
 	}
 
@@ -348,7 +399,7 @@ p {
 
 	&.on-dark {
 		input, .form-element {
-			height: $qvr-input-btn-height;
+			height: $qvr-input-height;
 			border: 1px solid $qvr-form_color-border_on-dark;
 			border-radius: $qvr-border-radius;
 			background: $qvr-form_color-bg_on-dark;
@@ -451,8 +502,54 @@ input[type="checkbox"].qvr-slide-toggle {
 // Quiver Custom Buttons
 .qvr-button {
 	display: inline-block;
-	height: $qvr-input-btn-height;
-	line-height: $qvr-input-btn-height;
+	
+	height: $qvr-input-height;
+	line-height: $qvr-input-height;
+	
+	border-radius: $qvr-border-radius;
+	padding: 0 2em;
+	text-align: center;
+	box-shadow: none;
+	border: 1px solid transparent;
+	
+	font-family: $qvr-secondary-font;
+	font-weight: bold;
+	font-size: $qvr-input-font-size;
+
+	transition: all 0.4s ease-in-out;
+
+	&.action {
+		background-color: $qvr-blue-1;
+		color: $qvr-white-1;
+
+		&:hover {
+			background-color: $qvr-blue-1;
+		}
+
+		&:focus {
+			background-color: $qvr-blue-1;
+		}
+
+		&:visited {
+			background-color: $qvr-blue-1;
+		}
+
+		&.is-active, &:active {
+			background-color: $qvr-blue-1;
+		}
+		
+		&.is-disabled, &:disabled {
+			background-color: $qvr-blue-1;
+		}
+	}
+}
+
+
+/*
+.qvr-button {
+	display: inline-block;
+	height: $qvr-input-height;
+	line-height: $qvr-input-height;
 	border-radius: $qvr-border-radius;
 	padding: 0 2em;
 	text-align: center;
@@ -461,7 +558,7 @@ input[type="checkbox"].qvr-slide-toggle {
 	
 	font-family: $qvr-secondary-font;
 	font-weight: 700;
-	font-size: $qvr-input-btn-font-size;
+	font-size: $qvr-input-font-size;
 
 	transition: all 0.4s ease-in-out;
 
@@ -563,10 +660,11 @@ input[type="checkbox"].qvr-slide-toggle {
 	}
 
 	&.small {
-		height: $qvr-input-btn-height_small;
-		line-height: $qvr-input-btn-height_small;
+		height: $qvr-input-height-small;
+		line-height: $qvr-input-height-small;
 		padding: 0 1em;
 		font-weight: 400;
-		font-size: $qvr-input-btn-font-size_small;
+		font-size: $qvr-input-font-size-small;
 	}
 }
+*/
