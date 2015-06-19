@@ -7,16 +7,20 @@
 // Typography Elements
 h2 {
   font-size: 22px;
-  font-weight: 700;
+  font-weight: $qvr-font-weight-bold;
   margin: 0;
-  color: $qvr-color-body;
+  color: $qvr-grey-3;
 
 }
 
 .qvr-label {
-	font-size: 1em;
-	font-weight: 700;
-	color: $qvr-color-1;
+	font-size: 10px;
+	font-weight: $qvr-font-weight-bold;
+	color: $qvr-blue-1;
+	
+	.subtext {
+		color: $qvr-grey-3;
+	}
 }
 
 
@@ -32,12 +36,12 @@ html, body {
 	
 	font-family: $qvr-primary-font;
 	font-size: 12px;
-	color: $qvr-color-body;
+	color: $qvr-grey-3;
 }
 
 p {
 	font-size: 12px;
-	color: $qvr-color-body;
+	color: $qvr-grey-3;
 }
 
 .map-canvas {
@@ -237,7 +241,7 @@ ul {
 			
 			font-size: 14px;
 			font-family: $qvr-primary-font;
-			font-weight: 100;
+			font-weight: $qvr-font-weight-thin;
 		}
 	}
 
@@ -257,7 +261,7 @@ ul {
 				text-align: center;
 				font-family: $qvr-primary-font;
 				font-size: 11px;
-				font-weight: 700;
+				font-weight: $qvr-font-weight-bold;
 				color: $qvr-white-1;
 				
 				border-bottom: 7px solid transparent;
@@ -300,6 +304,7 @@ ul {
 			transition: all 0.2s ease-in-out;
 			
 			&:hover, &.active {
+				font-weight: $qvr-font-weight-medium;
 				color: $qvr-blue-1;
 			}
 		}
@@ -346,7 +351,7 @@ ul {
 				margin: 4px 0 0 0;
 				
 				span:first-child {
-					font-weight: bold;
+					font-weight: $qvr-font-weight-bold;
 				}
 				
 				span:last-child {
@@ -362,7 +367,7 @@ ul {
 			float: right;
 			
 			span {
-				font-weight: bold;
+				font-weight: $qvr-font-weight-bold;
 			}
 		}
 	}
@@ -376,7 +381,7 @@ ul {
 		background-color: #7F8184;
 
 		.user-headings {
-			background-color: $qvr-color-1;
+			background-color: $qvr-blue-1;
 			color: #fff;
 			padding: 32px 0;
 			line-height: 1.5em;
@@ -387,12 +392,12 @@ ul {
 
 			.fullname {
 				font-size: 23px;
-				font-weight: 700;
+				font-weight: $qvr-font-weight-bold;
 			}
 
 			.username {
 				font-size: 16px;
-				font-weight: 300;
+				font-weight: $qvr-font-weight-light;
 			}
 		}
 
@@ -401,12 +406,12 @@ ul {
 
 			h4 {
 				font-size: 23px;
-				font-weight: 700;
+				font-weight: $qvr-font-weight-bold;
 				color: #fff;
 			}
 			p {
 				font-size: 16px;
-				font-weight: 300;
+				font-weight: $qvr-font-weight-light;
 				color: #fff;
 			}
 		}
@@ -417,13 +422,13 @@ ul {
 			display: block;
 			color: #fff;
 			font-family: $qvr-primary-font;
-			font-weight: 700;
+			font-weight: $qvr-font-weight-bold;
 			font-size: 18px;
 			text-align: center;
 			padding: 30px 0;
 
 			&.edit {
-				background-color: $qvr-color-1;
+				background-color: $qvr-blue-1;
 			}
 
 			&.signout {
@@ -480,22 +485,24 @@ ul {
 	input, .form-element {
 		height: $qvr-input-height;
 		
+		background: $qvr-white-1;
 		border: 1px solid $qvr-grey-2;
-		border-radius: $qvr-border-radius;
+		@include border-radius($qvr-border-radius);
 		
-		background: $qvr-grey-1;
+		font-size: $qvr-input-font-size;
 		color: $qvr-grey-3;
 		
+		margin: 0 0 15px 0;
+		padding: 0 10px 0 10px;
+
 		transition: all 0.4s ease-in-out;
 		
-		padding: 0 15px;
-		font-size: $qvr-input-font-size;
-
 		&:focus, &:hover {
 			background: $qvr-grey-1;
 			border-color: $qvr-grey-2;
 			color: $qvr-grey-3;
 		}
+		
 		&[disabled], &.is-disabled {
 			background: $qvr-grey-1;
 			border-color: $qvr-grey-2;
@@ -508,33 +515,28 @@ ul {
 		height: 1.5em;
 	}
 
-	&.on-dark {
-		input, .form-element {
-			height: $qvr-input-height;
-			border: 1px solid $qvr-form_color-border_on-dark;
-			border-radius: $qvr-border-radius;
-			background: $qvr-form_color-bg_on-dark;
-			color: $qvr-form_color-text_on-dark;
-			transition: all 0.4s ease-in-out;
-			padding: 0 1em;
-			font-size: 20px;
-			font-weight: 700;
-
-			&:focus, &:hover {
-				color: $qvr-form-color-text_focus_on-dark;
-				background: $qvr-form_color-bg_focus_on-dark;
-				border-color: $qvr-form_color-border_focus_on-dark;
-			}
-			&[disabled], &.is-disabled {
-				color: $qvr-form-color-text_disabled_on-dark;
-				background-color: $qvr-form-color-bg_disabled_on-dark;
-			}
-		}
-
-	}
-
 	.qvr-select {
 		@extend .form-element;
+		
+		background: $qvr-white-1 right 10px center no-repeat;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #808285"></polygon></svg>');
+		background-size: 10px;
+		
+		padding-right: 25px;
+		
+		cursor: pointer;
+		
+		&:focus, &:hover, &[disabled], &.is-disabled {
+			background: $qvr-white-1 right 10px center no-repeat;
+			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #808285"></polygon></svg>');
+			background-size: 10px;
+			padding-right: 25px;
+		}
+		
+		option {
+			color: $qvr-grey-3;
+			background-color: $qvr-white-1;
+		}
 	}
 
 	textarea {
@@ -566,13 +568,13 @@ ul {
 		padding-left: 45px;
 		border: none;
 		font-size: 12px;
-		font-weight: 300;
+		font-weight: $qvr-font-weight-light;
 		margin: 0;
 	}
 }
 
 input[type="checkbox"].qvr-slide-toggle {
-	background-color: $qvr-color-1;
+	background-color: $qvr-blue-1;
 	background-size: 100% 100%, 200% 100%;
 	background-position: 0 0, 5px 0;
 	
@@ -617,14 +619,14 @@ input[type="checkbox"].qvr-slide-toggle {
 	height: $qvr-input-height;
 	line-height: $qvr-input-height;
 	
-	border-radius: $qvr-border-radius;
+	@include border-radius($qvr-border-radius);
 	padding: 0 2em;
 	text-align: center;
 	box-shadow: none;
 	border: 1px solid transparent;
 	
 	font-family: $qvr-secondary-font;
-	font-weight: bold;
+	font-weight: $qvr-font-weight-bold;
 	font-size: $qvr-input-font-size;
 
 	transition: all 0.4s ease-in-out;
@@ -654,128 +656,3 @@ input[type="checkbox"].qvr-slide-toggle {
 		}
 	}
 }
-
-
-/*
-.qvr-button {
-	display: inline-block;
-	height: $qvr-input-height;
-	line-height: $qvr-input-height;
-	border-radius: $qvr-border-radius;
-	padding: 0 2em;
-	text-align: center;
-	box-shadow: none;
-	border: 1px solid transparent;
-	
-	font-family: $qvr-secondary-font;
-	font-weight: 700;
-	font-size: $qvr-input-font-size;
-
-	transition: all 0.4s ease-in-out;
-
-	&.warning {
-		background-color: $qvr-warning-color;
-		color: $qvr-warning-color_text;
-
-		&:hover {
-			background-color: $qvr-warning-color_hover;
-		}
-
-		&.is-active {
-			background-color: $qvr-warning-color_active;
-		}
-		&.is-disabled {
-			background-color: $qvr-warning-color_disabled;
-		}
-
-		&.hollow {
-			border: 1px solid $qvr-warning-color_hollow_border;
-			color: $qvr-warning-color;
-			background-color: $qvr-warning-color_hollow;
-
-			&:hover {
-				background-color: $qvr-warning-color_hollow_hover;
-				border-color: $qvr-warning-color_hollow_hover_border;
-			}
-
-			&.is-active {
-				background-color: $qvr-warning-color_hollow_active;
-				border-color: $qvr-warning-color_hollow_active_border;
-			}
-		}
-
-		&.on-dark {
-			&.is-disabled {
-				background-color: $qvr-warning-color_disabled_on-dark;
-				color: $qvr-warning-color_disabled_on-dark_text;
-			}
-			
-			&.hollow {
-				background-color: $qvr-warning-color_hollow;
-				border: 1px solid $qvr-warning-color_hollow_border;
-				color: $qvr-warning-color_hollow_text;
-
-				&:hover {
-					background-color: $qvr-warning-color_hollow_hover;
-					border-color: $qvr-warning-color_hollow_hover_border;
-				}
-				&.is-active {
-					background-color: $qvr-warning-color_hollow_active;
-					border-color: $qvr-warning-color_hollow_active_border;
-				}
-				&.is-disabled {
-					background-color: $qvr-warning-color_hollow_disabled_on-dark;
-					border-color: $qvr-warning-color_hollow_active_border;
-					color: $qvr-warning-color_hollow_disabled_on-dark_text;
-				}
-			}
-		}
-	}
-
-	&.info {
-		background-color: $qvr-info-color;
-		color: $qvr-info-color_text;
-
-		&:hover {
-			background-color: $qvr-info-color_hover;
-		}
-		&.is-active {
-			background-color: $qvr-info-color_active;
-		}
-		&.is-disabled {
-			background-color: $qvr-info-color_disabled;
-			color: $qvr-info-color_disabled_text;
-		}
-
-		&.on-dark {
-			&.is-disabled {
-				background-color: $qvr-info-color_disabled_on-dark;
-				color: $qvr-info-color_disabled_text_on-dark;
-			}
-		}
-	}
-	
-	&.hollow {
-		color: $qvr-hallow-color_text;
-		background-color:$qvr-hallow-color;
-		border: 1px solid $qvr-hallow-color_border;
-
-		&:hover {
-			background-color: $qvr-hallow-color_hover;
-		}
-
-		&.is-disabled {
-			background-color: $qvr-hallow-color_disabled;
-			color: $qvr-hallow-color_disabled_text;
-		}
-	}
-
-	&.small {
-		height: $qvr-input-height-small;
-		line-height: $qvr-input-height-small;
-		padding: 0 1em;
-		font-weight: 400;
-		font-size: $qvr-input-font-size-small;
-	}
-}
-*/

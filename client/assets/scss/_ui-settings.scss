@@ -7,23 +7,42 @@ $qvr-tertiary-font: Oswald, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 // General
 $qvr-border-radius: 10px;
-$qvr-input-height: 32px;
 
-$qvr-input-height-small: 53px; //***
-$qvr-input-font-size: 14px;
-$qvr-input-font-size-small: 14px; //***
+
+// Font weights
+$qvr-font-weight-thin: 100;
+$qvr-font-weight-light: 400;
+$qvr-font-weight-medium: 500;
+$qvr-font-weight-bold: 700;
 
 
 // Colors
 $qvr-white-1: #FFFFFF;
 $qvr-white-2: rgba(255, 255, 255, 0.4);
+
 $qvr-blue-1: #00A9CC;
 $qvr-blue-2: #007484;
+$qvr-blue-3: #D6E4EA;
+
+$qvr-green-1: #00FF00;
+
 $qvr-grey-1: #F4F4F4;
 $qvr-grey-2: #D1D2D3;
 $qvr-grey-3: #808285;
 $qvr-grey-4: #F2F2F2;
-$qvr-green-1: #00FF00;
+$qvr-grey-5: #E6E6E6;
+
+
+// Inputs
+$qvr-input-height: 32px;
+$qvr-input-font-size: 14px;
+
+
+// Ascii Arrows
+$left-arrow: '&#9668'; 
+$right-arrow: '&#9658'; 
+$down-arrow: '&#9660'; 
+$up-arrow: '&#9650';
 
 
 
@@ -33,11 +52,6 @@ $qvr-green-1: #00FF00;
 
 
 
-
-
-
-$qvr-color-body: #7F8184;
-$qvr-color-1: #00A8CB;
 $qvr-color-2: #B9E9FF;
 
 // Warning Button

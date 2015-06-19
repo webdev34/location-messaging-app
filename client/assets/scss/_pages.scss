@@ -22,6 +22,10 @@
 		border-radius: 6px;
 	}
 	
+	input[type='text'], input[type='password'] {
+		background: $qvr-grey-1;
+	}
+	
 	input[type='text'] {
 		margin: 0 0 5px 0;
 	}
@@ -68,7 +72,7 @@
 		
 		font-size: 18px;
 		font-family: $qvr-primary-font;
-		font-weight: 100;
+		font-weight: $qvr-font-weight-thin;
 	}
 	
 	.forget, .remember {
@@ -86,7 +90,7 @@
 		border: 1px solid transparent;
 		
 		font-family: $qvr-secondary-font;
-		font-weight: bold;
+		font-weight: $qvr-font-weight-bold;
 		font-size: 9px;
 		font-weight: normal;
 		color: $qvr-grey-3;
@@ -129,7 +133,7 @@
 			width: 50%;
 			margin-left: 5rem;
 			font-size: 22px;
-			font-weight: 300;
+			font-weight: $qvr-font-weight-light;
 			max-width: 420px;
 
 			.names {
@@ -177,8 +181,8 @@
 		}
 
 		label {
-			font-weight: 700;
-			color: $qvr-color-1;
+			font-weight: $qvr-font-weight-bold;
+			color: $qvr-blue-1;
 			font-size: 19px;
 			margin-top: 40px;
 		}
@@ -214,104 +218,21 @@
 	.messages-sidebar-wrap {
 		width: 250px;
 	}
+	
 	.messages-view-wrap {
 		flex: 1;
 	}
-
-	.message-side-nav {
-		.qvr-btn-dashboard {
-			display: inline-block;
-			font-size: 20px;
-			font-weight: 700;
-			color: #fff;
-			background-color: transparent;
-			
-			height: 100%;
-			width: 100%;
-			
-			text-align: center;
-			transition: all 0.4s ease-in-out;
-
-			&:hover {
-				background-color: rgba(255,255,255,0.2);
-			}
-
-			.icon {
-				margin-bottom: -9px;
-				margin-right: 18px;
-			}
-		}
-
-		.qvr-btn-new-message {
-			display: block;
-			margin: 20px 20px;
-			height: 70px;
-			line-height: 70px;
-			border-radius: 20px;
-			font-size: 16px;
-			text-transform: capitalize;
-		}
-
-		.message-side-list {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			
-			li {
-				display: flex;
-				margin: 0 0;
-				padding: 0;
-			}
-			
-			a {
-				@extend .clearfix;
-				display: block;
-				width: 100%;
-				height: 50px;
-				line-height: 50px;
-				padding: 0 1rem;
-				border-bottom: 1px solid #f2f2f2;
-				transition: all 0.3s ease-in-out;
-				font-weight: 700;
-				color: $qvr-color-body;
-				font-size: 12px;
-				
-				.icon {
-					margin: 17px 0 0 0;
-				}
-
-				&:hover, &.active {
-					border-bottom: 1px solid darken(#f2f2f2, 20%);
-					background: #f2f2f2;
-				}
-
-				.status-label {
-					display: inline-block;
-					width: 55px;
-					margin-right: 1rem;
-					color: $qvr-color-1;
-				}
-			}
-		}
-	}
-
+	
 	.message-content-wrap {
-		padding: 1rem 0 0 4rem;
-
 		section {
 			@extend .clearfix;
-			border-bottom: 1px solid #ccc;
-			padding: 0.75rem 4rem 0.75rem 0.5rem;
+			padding: 15px 15px 0 15px;
 		}
 		
-		.bottom-controls {
-			padding: 0.75rem 4rem 0.75rem 0.5rem;
-		}
-
 		h2 {
 			font-size: 20px;
 			margin: 0;
-			color: $qvr-color-body;
+			color: $qvr-grey-3;
 
 			&.message-title {
 				line-height: 53px;
@@ -325,9 +246,9 @@
 
 		.owner {
 			display: inline-block;
-			color: $qvr-color-body;
+			color: $qvr-grey-3;
 			font-size: 14px;
-			font-weight: 300;
+			font-weight: $qvr-font-weight-light;
 			line-height: 1.5em;
 
 			.avatar.small {
@@ -337,7 +258,6 @@
 		}
 		
 		.status-box {
-			
 			a {
 				display: inline-block;
 				height: $qvr-input-height;
@@ -346,13 +266,13 @@
 				color: #999;
 				font-size: 14px;
 				border: 1px solid #ccc;
-				border-radius: $qvr-border-radius;
+				@include border-radius($qvr-border-radius);
 				text-align: center;
 
 				&.active {
-					background-color: $qvr-color-1;
+					background-color: $qvr-blue-1;
 					color: #fff;
-					font-weight: 700;
+					font-weight: $qvr-font-weight-bold;
 					border: none;
 				}
 			}
@@ -366,13 +286,13 @@
 				display: inline-block;
 				margin-right: 1rem;
 				font-size: 14px;
-				font-weight: 300;
-				color: $qvr-color-1;
+				font-weight: $qvr-font-weight-light;
+				color: $qvr-blue-1;
 
 				label {
 					font-size: 14px;
-					font-weight: 300;
-					color: $qvr-color-1;
+					font-weight: $qvr-font-weight-light;
+					color: $qvr-blue-1;
 				}
 
 				span {
@@ -382,21 +302,18 @@
 					height: $circle-diameter;
 					line-height: $circle-diameter;
 					border-radius: $circle-diameter;
-					border: 1px solid $qvr-color-1;
+					border: 1px solid $qvr-blue-1;
 					margin-bottom: 0.5rem;
 					transition: all 0.3s ease-in-out;
 
 				}
+				
 				&:hover {
 					span {
-						border: 1px solid darken($qvr-color-1, 10%);
+						border: 1px solid darken($qvr-blue-1, 10%);
 					}
 				}
 			}
-		}
-
-		.location-section {
-			border-color: $qvr-color-1;
 		}
 
 		.location-description {
@@ -406,53 +323,48 @@
 				float: left;
 				margin-right: 1rem;
 			}
+			
 			p {
 				font-size: 17px;
-				color: $qvr-color-body;
-				font-weight: 300;
+				color: $qvr-grey-3;
+				font-weight: $qvr-font-weight-light;
 			}
 		}
 
 		.radius {
 			margin: 30px 0;
 			font-family: $qvr-tertiary-font;
-			font-weight: 700;
+			font-weight: $qvr-font-weight-bold;
 			font-size: 38px;
 			text-transform: uppercase;
 			text-align: center;
 
 			span {
-				color: $qvr-color-1;
+				color: $qvr-blue-1;
 			}
 		}
 
 		.location-details {
 			padding: 2rem 3rem;
 
-
 			.enter-exit-switch { margin: 10px;}
 
 			p {
 				font-size: 18px;
 				text-align: center;
-				font-weight: 100;
-				color: $qvr-color-body;
-				margin-left: 3rem;
+				font-weight: $qvr-font-weight-thin;
+				color: $qvr-grey-3;
 
 				span {
-					color: $qvr-color-1;
+					color: $qvr-blue-1;
 				}
 			}
-
 		}
 
 		.delivery-box {	
-			margin-bottom: 2rem;
-			margin-right: 4rem;
-
 			span.date {
 				font-size: 26px;
-				font-weight: 700;
+				font-weight: $qvr-font-weight-bold;
 				color: #999;
 				text-transform: uppercase;
 			}
@@ -463,8 +375,6 @@
 			}
 
 			input {
-				width: 320px;
-				padding-right: 50px;
 				background-repeat: no-repeat;
 				background-size: 30px;
 				background-position: 275px 20px;
@@ -473,26 +383,38 @@
 			input.date {
 				background-image: url(..//img/icons/i-calendar.png);
 			}
+			
 			input.hourglass {
 				background-image: url(..//img/icons/i-hourglass.png);
 			}
 		}
 		
-
 		.info-details {
 			@extend .location-details;
-
-			input { margin-bottom: 7px;}
-
+			input {
+				margin-bottom: 7px;
+			}
 		}
-
-		.bottom-controls {
-			margin-top: 1rem;
-		}
-		
 	}
 
 	.create-edit-message-form {
+		.form-upper {
+			padding: 30px 0 10px 15px;
+			background-color: $qvr-blue-3;
+			
+			@include box-shadow-inner(0px, 30px, 20px, -30px, $qvr-grey-3);
+			
+			label {
+				width: auto;
+			}
+			
+			.input-wrapper {
+				display: inline-block;
+				margin: 0 10px 0 0;
+				width: auto;
+			}
+		}
+
 		.half-size {
 			width: 50%;
 			float: left;
@@ -513,10 +435,6 @@
 			}
 		}
 
-		.location-section {
-			padding-top: 2rem;
-		}
-		
 		.map-search-wrap {
 			position: relative;
 
@@ -531,7 +449,7 @@
 				top: 0;
 				height: 75px;
 				width: 85px;
-				background-color: $qvr-color-1;
+				background-color: $qvr-blue-1;
 
 				> .icon {
 					position: absolute;
@@ -541,7 +459,7 @@
 			}
 			> input {
 				font-size: 18px;
-				font-weight: 300;
+				font-weight: $qvr-font-weight-light;
 				height: 75px;
 				line-height: 75px;
 				border-radius: 0;
@@ -558,7 +476,7 @@
 			margin: 5rem 0;
 			width: 100%;
 			border: none;
-			font-weight: 300;
+			font-weight: $qvr-font-weight-light;
 			font-size: 30px;
 			line-height: 15px;
 			height: 20px;
@@ -567,7 +485,7 @@
 				position: absolute;
 				top: 0;
 				left: 2rem;
-				color: $qvr-color-1;
+				color: $qvr-blue-1;
 				content: "-";
 				font-size: 45px;
 			}
@@ -576,7 +494,7 @@
 				position: absolute;
 				top: 0;
 				right: 2rem;
-				color: $qvr-color-1;
+				color: $qvr-blue-1;
 				content: "+";
 			}
 		
@@ -590,7 +508,7 @@
 				border-radius: 20px;
 				cursor: pointer;
 				animate: 0.2s;
-				background: $qvr-color-1;
+				background: $qvr-blue-1;
 			}
 			
 			&::-webkit-slider-thumb {
@@ -617,12 +535,12 @@
 					width: 55px;
 					height: 55px;
 					border-radius: 55px;
-					border: 1px solid $qvr-color-1;
+					border: 1px solid $qvr-blue-1;
 				}
 			}
 			
 			&:focus::-webkit-slider-runnable-track {
-				background: $qvr-color-1;
+				background: $qvr-blue-1;
 			}
 		}
 	}
@@ -639,8 +557,8 @@
 		.message-title {
 			padding-left: 50px;
 			font-size: 12px;
-			font-weight: 700;
-			color: $qvr-color-body;
+			font-weight: $qvr-font-weight-bold;
+			color: $qvr-grey-3;
 		}
 
 		.stats {
@@ -668,7 +586,7 @@
 				span {
 					font-size: 12px;
 					text-transform: uppercase;
-					font-weight: bold;
+					font-weight: $qvr-font-weight-bold;
 					color: #fff;
 				}
 			}
@@ -690,13 +608,13 @@
 				transition: all 0.4s ease-in-out;
 				border-bottom: 1px solid #F2F2F2;
 				font-size: 12px;
-				font-weight: bold;
+				font-weight: $qvr-font-weight-bold;
 
 				a {
 					transition: all 0.4s ease-in-out;
 					
 					&:hover {
-						color: $qvr-color-1;
+						color: $qvr-blue-1;
 					}
 				}
 				
@@ -712,7 +630,7 @@
 
 				.stats {
 					span {
-						color: $qvr-color-1;
+						color: $qvr-blue-1;
 						border-left: 1px solid #f2f2f2;
 						transition: all 0.4s ease-in-out;
 
@@ -756,18 +674,18 @@
 					order: 2; 
 					flex: 2;
 					font-size: 12px;
-					font-weight: 700;
+					font-weight: $qvr-font-weight-bold;
 
 					header {
 						padding: 0 0 0.5em 0;
 					}
 
 					a {
-						color: $qvr-color-1;
+						color: $qvr-blue-1;
 					}
 
 					p {
-						font-weight: 300;
+						font-weight: $qvr-font-weight-light;
 						margin-bottom: 0.5em;
 						line-height: 1.2em;
 					}
@@ -784,7 +702,79 @@
 			}
 		}
 	}
-
+	
+	.new-message {
+		h2 {
+			width: 100%;
+			margin: 0 0 25px 0;
+			text-align: center;
+			color: $qvr-blue-1;
+			font-family: $qvr-tertiary-font;
+			font-weight: $qvr-font-weight-bold;
+			font-size: 20px;
+		}
+		
+		#msg-title-text {
+			width: 250px;
+		}
+		
+		#msg-id-text {
+			width: 90px;
+		}
+		
+		.column-3 {
+			width: 33.3%;
+			padding: 0 15px 0 0;
+			float: left;
+			
+			&:last-child {
+				padding: 0;
+				float: right;
+			}
+		}
+		
+		.content-row {
+			padding: 15px;
+		}
+		
+		.message-recipients {
+			@extend .form-element;
+			
+			width: 100%;
+			@include border-radius(10px);
+			height: 50px;
+		}
+		
+		.message-content {
+			width: 100%;
+			@include border-radius(10px);
+			height: 470px;
+		}
+		
+		.location-section {
+			width: 100%;
+			height: 550px;
+			@include border-radius(10px);
+			background-color: $qvr-grey-5;
+		}
+		
+		.time-selector {
+			width: 100%;
+			@include border-radius(10px);
+			background-color: $qvr-grey-5;
+			@include border-radius(10px);
+			background-color: $qvr-grey-5;
+		}
+		
+		.location-details {
+			margin: 20px 0 0 0;
+			width: 100%;
+			@include border-radius(10px);
+			background-color: $qvr-grey-5;
+			@include border-radius(10px);
+			background-color: $qvr-grey-5;
+		}
+	}
 }
 
 .page--enterprise {
@@ -816,21 +806,21 @@
 
 			p {
 				font-size: 16px;
-				font-weight: 300;
+				font-weight: $qvr-font-weight-light;
 				width: 300px;
 
 			}
 			
 			label {
 				font-size: 20px;
-				color: $qvr-color-1;
+				color: $qvr-blue-1;
 			}
 		}
 
 		.enterprise-edit-form {
 
 			max-width: 420px;
-			label { font-size: 12px; font-weight: 700;}
+			label { font-size: 12px; font-weight: $qvr-font-weight-bold;}
 		}
 	}
 

@@ -77,9 +77,9 @@
 				'admin' : [],
 				'messages' : [
 					{'title' : 'Campaign Center', 'state' : 'messages.dashboard'},
-					{'title' : 'Manage Campaign', 'state' : '#'},
+					{'title' : 'Manage Campaign', 'state' : ''},
 					{'title' : 'Compose Message', 'state' : 'messages.new'},
-					{'title' : 'Asset Management', 'state' : '#'}
+					{'title' : 'Asset Management', 'state' : ''}
 				],
 				'enterprise' : []
 			};

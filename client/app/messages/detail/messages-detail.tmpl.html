@@ -1,9 +1,8 @@
 <header class="heading-bar">
-		<h1>{{messageDetailCtrl.message.status}} Message</h1>
+	<h1>{{messageDetailCtrl.message.status}} Message</h1>
 </header>
 
 <div class="message-content-wrap">
-	
 	<section>
 		<div class="float-right top-controls">
 			<a ui-sref="messages.edit({_id:messageDetailCtrl.message._id})" class="qvr-button info edit-button">Edit Message</a>
@@ -11,7 +10,6 @@
 
 		<h2 class="float-left message-title">{{messageDetailCtrl.message.messageTitle}}</h2>
 	</section>
-	
 		
 	<section>
 		<label class="qvr-label">Owner</label>
@@ -66,7 +64,6 @@
 				<span>{{messageDetailCtrl.message.saveCount}}</span>
 			</div>
 		</div>
-
 	</section>
 
 	<section>
@@ -74,27 +71,24 @@
 	</section>
 
 	<section class="location-section">
-
 		<div class="location-description">
 			<span class="icon i-location-large"></span>
 			<p>Toronto, ON</p>
 		</div>
 
 		<div ng-controller="MapCoordinatesCtrl" class="ng-scope">
-      <map center="43.642566,-79.387057" zoom="12">
-        <info-window id="1" position="43.642566,-79.387057" visible="true">
-          <div ng-non-bindable="">
-            Toronto, ON
-          </div>
-        </info-window>
-      </map>
-    </div>
-
+			<map center="43.642566,-79.387057" zoom="12">
+				<info-window id="1" position="43.642566,-79.387057" visible="true">
+					<div ng-non-bindable="">
+						Toronto, ON
+					</div>
+				</info-window>
+			</map>
+		</div>
 
 		<div class="radius">
 			<span>{{messageDetailCtrl.message.range}} km</span> radius
 		</div>
-		
 	</section>
 
 	<section class="location-details">
@@ -115,8 +109,9 @@
 		<h2>Delivery Time</h2>
 	</section>
 
+	<br>
+	
 	<section>
-		<br>
 		<div class="float-left">
 			<div class="delivery-box">
 				<label class="qvr-label">Start Date:</label>
@@ -143,27 +138,4 @@
 			</div>
 		</div>
 	</section>
-
-	<!-- <section>
-		<h2>Delivery Information</h2>
-	</section>
-
-	<section class="info-details">
-		<div class="float-left">
-			<span class="icon i-info"></span>
-			<input type="checkbox" class="qvr-slide-toggle">
-			<span class="icon i-info-crossed"></span>
-		</div>
-		
-		<p class="float-left">
-			Recipient will know <span>WHERE</span> and <span>WHEN</span>
-			<br>
-			they will recieve your message
-		</p>
-	</section> -->
-
-
-	<div class="float-right bottom-controls">
-		<a ui-sref="messages.edit({_id:messageDetailCtrl.message._id})" class="qvr-button info edit-button">Edit Message</a>
-	</div>
 </div>
