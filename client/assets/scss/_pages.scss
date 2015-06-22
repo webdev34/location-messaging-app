@@ -332,12 +332,22 @@
 		}
 
 		.radius {
-			margin: 30px 0;
 			font-family: $qvr-tertiary-font;
 			font-weight: $qvr-font-weight-bold;
-			font-size: 38px;
+			font-size: 16px;
+			
 			text-transform: uppercase;
 			text-align: center;
+			
+			input {
+				display: inline-block;
+				width: 70px;
+				margin: 10px 0 15px 0;
+				padding: 0 5px;
+				color: $qvr-blue-1;
+				font-size: 16px;
+				text-align: right;
+			}
 
 			span {
 				color: $qvr-blue-1;
@@ -347,12 +357,24 @@
 		.location-details {
 			padding: 2rem 3rem;
 
-			.enter-exit-switch { margin: 10px;}
+			.switch-wrapper {
+				text-align: center;
+			}
+			
+			.enter-exit-switch {
+				margin: 10px;
+			}
+			
+			.icon {
+				background-image: cover;
+				width: 43px;
+				height: 43px;
+			}
 
 			p {
-				font-size: 18px;
-				text-align: center;
+				font-size: 14px;
 				font-weight: $qvr-font-weight-thin;
+				text-align: center;
 				color: $qvr-grey-3;
 
 				span {
@@ -369,15 +391,10 @@
 				text-transform: uppercase;
 			}
 
-			.icon {
-				margin-bottom: -5px;
-				margin-right: 10px;
-			}
-
 			input {
 				background-repeat: no-repeat;
-				background-size: 30px;
-				background-position: 275px 20px;
+				background-size: 22px;
+				background-position: right 5px center;
 			}
 
 			input.date {
@@ -428,74 +445,85 @@
 		}
 
 		.attach-asset {
-			padding: 0 2em;
-			.icon {
-				margin-bottom: -10px;
-				margin-right: 10px;
+		  padding: 0;
+		  position: relative;
+		  top: -60px;
+		  left: 15px;
+		  
+		  .icon {
+				background-position: 0 -5px;
+				width: 44px;
+				height: 33px;
 			}
 		}
 
 		.map-search-wrap {
 			position: relative;
-
+			
+			input {
+				padding: 0 $qvr-input-height;
+			}
+			
 			> .icon {
 				position: absolute;
-				top: 22px;
-				left: 24px;
+				background-position: center;
+				background-size: 50%;
+				background-repeat: no-repeat;
 			}
+			
 			.search-button {
 				position: absolute;
 				right: 0;
-				top: 0;
-				height: 75px;
-				width: 85px;
+				
+				height: $qvr-input-height;
+				width: $qvr-input-height * 1.1;
+				
 				background-color: $qvr-blue-1;
-
-				> .icon {
-					position: absolute;
-					top: 24px;
-					left: 27px;
+				
+				@include border-radius($qvr-border-radius);
+				
+				cursor: pointer;
+				
+				.icon {
+					width: 100%;
+					background-position: center;
+					background-size: 40%;
+					background-repeat: no-repeat;
 				}
-			}
-			> input {
-				font-size: 18px;
-				font-weight: $qvr-font-weight-light;
-				height: 75px;
-				line-height: 75px;
-				border-radius: 0;
-				margin: 0;
-				padding-left: 70px;
-				padding-right: 90px;
 			}
 		}
 
 		input[type="range"].radius-range {
 			position: relative;
 			-webkit-appearance: none;
-			padding: 0 4rem;
-			margin: 5rem 0;
+			
 			width: 100%;
-			border: none;
-			font-weight: $qvr-font-weight-light;
-			font-size: 30px;
-			line-height: 15px;
 			height: 20px;
+			
+			padding: 0 10px;
+			
+			border: none;
+			background: transparent;
+			
+			font-weight: $qvr-font-weight-light;
+			line-height: 15px;
 
 			&:before {
 				position: absolute;
 				top: 0;
-				left: 2rem;
+				left: 0;
 				color: $qvr-blue-1;
 				content: "-";
-				font-size: 45px;
+				font-size: 25px;
 			}
 			
 			&:after {
 				position: absolute;
 				top: 0;
-				right: 2rem;
+				right: 0;
 				color: $qvr-blue-1;
 				content: "+";
+				font-size: 14px;
 			}
 		
 			&:focus {
@@ -504,8 +532,8 @@
 			
 			&::-webkit-slider-runnable-track {
 				width: 100%;
-				height: 20px;
-				border-radius: 20px;
+				height: 8px;
+				border-radius: 8px;
 				cursor: pointer;
 				animate: 0.2s;
 				background: $qvr-blue-1;
@@ -513,28 +541,33 @@
 			
 			&::-webkit-slider-thumb {
 				position: relative;
-				height: 100px;
-				width: 100px;
-				border-radius: 100px;
-				box-shadow: 0 2px 4px #333, inset 0 1px 10px #999;
+				height: 36px;
+				width: 36px;
+				border-radius: 36px;
+				box-shadow: 0 2px 4px #333;
 				background: #ffffff;
 				cursor: pointer;
 				-webkit-appearance: none;
-				margin-top: -40px;
+				margin-top: -15px;
 
 				&::after {
-					position: absolute;
-					display: block;
-					top: 22px;
-					left: 22px;
-					background-image: url(..//img/icons/i-location.png);
-					background-size: 50%;
-					background-repeat: no-repeat;
-					background-position: 14px 14px;
 					content: ' ';
-					width: 55px;
-					height: 55px;
-					border-radius: 55px;
+					
+					display: block;
+					
+					position: absolute;
+					top: 6px;
+					left: 6px;
+					
+					background-image: url(..//img/icons/i-location.png);
+					background-size: 49%;
+					background-repeat: no-repeat;
+					background-position: 6px 6px;
+					
+					width: 22px;
+					height: 22px;
+					
+					border-radius: 22px;
 					border: 1px solid $qvr-blue-1;
 				}
 			}
@@ -706,12 +739,13 @@
 	.new-message {
 		h2 {
 			width: 100%;
-			margin: 0 0 25px 0;
+			margin: 0 0 20px 0;
 			text-align: center;
 			color: $qvr-blue-1;
 			font-family: $qvr-tertiary-font;
 			font-weight: $qvr-font-weight-bold;
 			font-size: 20px;
+			text-transform: uppercase;
 		}
 		
 		#msg-title-text {
@@ -722,57 +756,80 @@
 			width: 90px;
 		}
 		
+		map > div {
+			border: 1px solid $qvr-grey-2;
+			@include border-radius($qvr-border-radius);
+		}
+		
 		.column-3 {
 			width: 33.3%;
 			padding: 0 15px 0 0;
 			float: left;
-			
-			&:last-child {
-				padding: 0;
-				float: right;
-			}
 		}
 		
 		.content-row {
-			padding: 15px;
+			padding: 15px 0 15px 15px;
 		}
 		
-		.message-recipients {
-			@extend .form-element;
+		.qvr-form {
+			.message-recipients {
+				@extend .form-element;
+				
+				width: 100%;
+				height: 50px;
+				
+				padding: 10px 0 0 0;
+				
+				.targeted-followers-count {
+					color: $qvr-blue-1;
+					font-family: $qvr-tertiary-font;
+					font-size: 30px;
+					font-weight: $qvr-font-weight-bold;
+					float: right;
+					width: 100%;
+					text-align: right;
+					margin: 0 -85px 0 0;
+					padding: 0 85px 0 0;
+				}
+				
+				.targeted-followers-label {
+					width: 85px;
+					text-align: center;
+					float: right;
+				}
+			}
 			
-			width: 100%;
-			@include border-radius(10px);
-			height: 50px;
-		}
-		
-		.message-content {
-			width: 100%;
-			@include border-radius(10px);
-			height: 470px;
-		}
-		
-		.location-section {
-			width: 100%;
-			height: 550px;
-			@include border-radius(10px);
-			background-color: $qvr-grey-5;
-		}
-		
-		.time-selector {
-			width: 100%;
-			@include border-radius(10px);
-			background-color: $qvr-grey-5;
-			@include border-radius(10px);
-			background-color: $qvr-grey-5;
-		}
-		
-		.location-details {
-			margin: 20px 0 0 0;
-			width: 100%;
-			@include border-radius(10px);
-			background-color: $qvr-grey-5;
-			@include border-radius(10px);
-			background-color: $qvr-grey-5;
+			.message-content {
+				width: 100%;
+				height: 458px;
+			}
+			
+			.location-section {
+				width: 100%;
+				height: 555px;
+				padding: 20px;
+				@include border-radius(10px);
+				background-color: $qvr-grey-5;
+			}
+			
+			.time-selector {
+				width: 100%;
+				padding: 20px 20px 39px 20px;
+				@include border-radius(10px);
+				background-color: $qvr-grey-5;
+				
+				.delivery-box {
+					padding: 0 25px;
+				}
+			}
+			
+			.location-details {
+				width: 100%;
+				padding: 20px;
+				margin: 20px 0 0 0;
+				@include border-radius(10px);
+				background-color: $qvr-grey-5;
+			}
 		}
 	}
 }
@@ -808,7 +865,6 @@
 				font-size: 16px;
 				font-weight: $qvr-font-weight-light;
 				width: 300px;
-
 			}
 			
 			label {
@@ -818,7 +874,6 @@
 		}
 
 		.enterprise-edit-form {
-
 			max-width: 420px;
 			label { font-size: 12px; font-weight: $qvr-font-weight-bold;}
 		}
@@ -845,7 +900,6 @@
 				width: 200px;
 				text-align: right;
 				margin: 1rem;
-
 			}
 			
 			.g-user-list {

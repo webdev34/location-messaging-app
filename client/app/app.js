@@ -23,11 +23,11 @@
 
 	app.constant('APP_default_state', 'messages.dashboard');
 	
+	//var API_SERVER = 'http://localhost:8000/';
 	var API_SERVER = 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/';
 	app.constant('API_SERVER', API_SERVER);
 	app.constant('API_URL', API_SERVER + 'web1.1');
 	app.constant('API_URL_DROID', API_SERVER + 'droid1.1');
-	//app.constant('API_URL', 'http://localhost:8000/droid1.1');
 
 	config.$inject = ['$httpProvider', '$urlRouterProvider', '$locationProvider'];
 
@@ -74,14 +74,21 @@
 			appCtrl.gNavStateIs = "";
 			appCtrl.subnav = [];
 			appCtrl.navObj = {
-				'admin' : [],
-				'messages' : [
-					{'title' : 'Campaign Center', 'state' : 'messages.dashboard'},
-					{'title' : 'Manage Campaign', 'state' : ''},
-					{'title' : 'Compose Message', 'state' : 'messages.new'},
-					{'title' : 'Asset Management', 'state' : ''}
+				'admin' : [
+					{'title': 'Admin Center', 'state': 'admin'}
 				],
-				'enterprise' : []
+				'messages' : [
+					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
+					{'title': 'Manage Campaign', 'state': 'messages.dashboard'},
+					{'title': 'Compose Message', 'state': 'messages.new'},
+					{'title': 'Asset Management', 'state': 'messages.dashboard'}
+				],
+				'reports' : [
+					{'title': 'Report Center', 'state': 'messages.dashboard'}
+				],
+				'enterprise' : [
+					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'}
+				]
 			};
 
 			/*
@@ -115,8 +122,6 @@
 
 				var stateArray = ['messages', 'admin', 'enterprise'];
 				
-				//var stateArray = ['admin', 'campaigns', 'reporting', 'profile'];
-
 				for (var i = 0; i < stateArray.length; i++) {
 					if (appCtrl.currentState.current.name.includes(stateArray[i])) {
 						appCtrl.gNavStateIs = stateArray[i];

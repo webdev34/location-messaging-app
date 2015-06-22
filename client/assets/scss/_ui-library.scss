@@ -548,6 +548,14 @@ ul {
 			height: 140px;
 		}
 	}
+	
+	.switch > label, .switch input:checked + label {
+		background: $qvr-blue-1;
+		
+		&::after {
+			border: solid 1px $qvr-blue-1;
+		}
+	}
 }
 
 .qvr-search-wrap {

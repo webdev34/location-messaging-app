@@ -39,36 +39,47 @@
 		<section class="content-row">
 			<section class="column-3">
 				<label class="qvr-label">Recipients</label>
-				<div class="message-recipients"></div>
+				<div class="message-recipients">
+					<span class="targeted-followers-label">Targeted Followers</span>
+					<span class="targeted-followers-count">0000000000</span>
+				</div>
 				<label class="qvr-label">Message Content</label>
 				<textarea ng-model="newMessageCtrl.newMessage.content" class="message-content" placeholder="Insert Content" required></textarea>
-				<a class="qvr-button info attach-asset"><span class="icon i-camera"></span> Attach Asset</a>
+				<a class="attach-asset"><span class="icon i-camera"></span></a>
 			</section>
 
 			<section class="column-3">
 				<section class="location-section">
-					<label class="qvr-label">Add Delivery Location:</label>
+					<h2>Add Delivery Location</h2>
+					
+					<label class="qvr-label">Select Preset Locations</label>
+					<select class="qvr-select" required>
+						<option>---</option>
+					</select>
 					
 					<div class="map-search-wrap">
+						<label class="qvr-label">Create Custom Delivery Location</label>
 						<span class="icon i-location-large"></span>
-						<div class="search-button">
+						<div class="search-button" ng-click="doSearch()">
 							<span class="icon i-search-white"></span>
 						</div>
-						<input type="search" placeholder="Search for Location">
+						<input type="search" ng-model="newMessageCtrl.search" placeholder="Enter Address">
 					</div>
 
 					<div ng-controller="MapCoordinatesCtrl" class="ng-scope">
-						<map center="43.642566,-79.387057" zoom="12">
+						<map center="43.642566,-79.387057" zoom="12" style="height:250px">
+							<!--
 							<info-window id="1" position="43.642566,-79.387057" visible="true">
 							<div ng-non-bindable="">
 								Toronto, ON
 							</div>
 							</info-window>
+							-->
 						</map>
 					</div>
 
 					<div class="radius">
-						<span>{{newMessageCtrl.newMessage.range}} km</span> radius
+						<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span> km</span> radius
 					</div>
 
 					<input type="range" class="radius-range" ng-model="newMessageCtrl.newMessage.range">
@@ -101,7 +112,7 @@
 				<section class="location-details">
 					<h2>Set Entry/Exit</h2>
 					
-					<div>
+					<div class="switch-wrapper">
 						<span class="icon i-location-enter" ng-class="{active: newMessageCtrl.newMessage.discoverOn=='enter'}"></span>
 
 						<div class="switch enter-exit-switch">

@@ -53,14 +53,21 @@
 	])
 	
 	.controller('MapCoordinatesCtrl', [
+		'$rootScope',
 		'$scope',
 		'$compile',
 		
 		function(
+			$rootScope,
 			$scope,
 			$compile
 		) {
 			var TILE_SIZE = 256;
+			
+			var geocoder = new google.maps.Geocoder();
+			
+			$scope.map_range = 5;
+			$scope.map_search = "Toronto, Ontario";
 
 			function bound(value, opt_min, opt_max) {
 				if (opt_min != null) value = Math.max(value, opt_min);
@@ -119,6 +126,50 @@
 				$scope.tileCoordinate = new google.maps.Point(
 					Math.floor($scope.pixelCoordinate.x / TILE_SIZE),
 					Math.floor($scope.pixelCoordinate.y / TILE_SIZE));
+				
+				$scope.marker = new google.maps.Marker({
+					position: $scope.toronto,
+					map: map,
+					icon: {
+						url: 'assets/img/icons/i-location-large.png',
+						scaledSize: new google.maps.Size(20, 20),
+						origin: new google.maps.Point(0,0),
+						anchor: new google.maps.Point(10, 15)
+					}
+				});
+				
+				$scope.rangeCircle = new google.maps.Circle({
+					'strokeColor': '#00A9CC',
+					'strokeOpacity': 1,
+					'strokeWeight': 2,
+					'fillColor': '#FFFFFF',
+					'fillOpacity': 0.3,
+					'map': map,
+					'center': $scope.toronto,
+					'radius': 5000
+				});
+				map.fitBounds($scope.rangeCircle.getBounds());
+				
+				$rootScope.$watch("map_range", function(newValue, oldValue){
+					$scope.rangeCircle.setRadius(parseInt(newValue) * 1000);
+					map.fitBounds($scope.rangeCircle.getBounds());
+				});
+				
+				$rootScope.$watch("map_search", function(newValue, oldValue){
+					geocoder.geocode({'address': newValue}, function(results, status) {
+						if (status == google.maps.GeocoderStatus.OK) {
+							var loc = results[0].geometry.location;
+							
+							$scope.marker.setPosition(loc);
+							$scope.rangeCircle.setCenter(loc);
+							
+							map.setCenter(loc);
+							map.fitBounds($scope.rangeCircle.getBounds());
+						} else {
+							console.log("Geocode was not successful for the following reason: " + status);
+						}
+					});
+				});
 			});
 		}
 	]);
