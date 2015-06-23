@@ -4,15 +4,19 @@
 	angular.module('enterprise-portal.services.messages', [])
 	
 	.factory('MessagesService', [
+		'$rootScope',
 		'$http',
 		'$q',
 		'API_URL_DROID',
 		
 		function(
+			$rootScope,
 			$http,
 			$q,
 			API_URL
 		) {
+			$http.defaults.headers.common['Authorization'] = "Basic " + $rootScope.auth;
+			
 			function extractData(response) {
 				return response.data.data;
 			}

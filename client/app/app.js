@@ -21,10 +21,9 @@
 		.config(config)
 		.run(run);
 
-	app.constant('APP_default_state', 'messages.dashboard');
+	app.constant('APP_default_state', 'messages.new');
 	
-	//var API_SERVER = 'http://localhost:8000/';
-	var API_SERVER = 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/';
+	var API_SERVER = window.location.host.includes("localhost") ? 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/' : "/";
 	app.constant('API_SERVER', API_SERVER);
 	app.constant('API_URL', API_SERVER + 'web1.1');
 	app.constant('API_URL_DROID', API_SERVER + 'droid1.1');
@@ -79,12 +78,12 @@
 				],
 				'messages' : [
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
-					{'title': 'Manage Campaign', 'state': 'messages.dashboard'},
+					{'title': 'Manage Campaign', 'state': ''},
 					{'title': 'Compose Message', 'state': 'messages.new'},
-					{'title': 'Asset Management', 'state': 'messages.dashboard'}
+					{'title': 'Asset Management', 'state': ''}
 				],
 				'reports' : [
-					{'title': 'Report Center', 'state': 'messages.dashboard'}
+					{'title': 'Report Center', 'state': ''}
 				],
 				'enterprise' : [
 					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'}
@@ -146,8 +145,7 @@
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
 						function success(response) {
-							//$http.defaults.headers.common.Authorization = response.authorization
-							$http.defaults.headers.common['Authorization'] = "Basic " + response.authorization;
+							$rootScope.auth = response.authorization;
 							
 							appCtrl.user = UserModel.user;
 							
