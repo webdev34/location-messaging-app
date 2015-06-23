@@ -59,10 +59,14 @@
 				]
 				*/
 				create : function(messageObj) {
+					// TARGET_MYSELF      = 1;
+					// TARGET_RECIPIENTS  = 2;
+					// TARGET_FRIENDS     = 3;
+
 					var msgObj = {
 						comment: { text: messageObj.content },
 						messageLocation: messageObj.locationArray,
-						envelope: { target: messageObj.range },
+						envelope: { target: 3 },
 						messageRecipient: []
 					};
 					
