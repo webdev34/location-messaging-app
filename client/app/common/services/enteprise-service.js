@@ -4,23 +4,29 @@
 	angular.module('enterprise-portal.services.enterprise', [])
 	
 	.factory('EnterpriseService', [
+		'$rootScope',
 		'$http',
 		'$q',
 		'API_URL',
 		
-		function($http, $q, API_URL) {
+		function(
+			$rootScope,
+			$http,
+			$q,
+			API_URL
+		) {
+			$http.defaults.headers.common['Authorization'] = $rootScope.auth;
+			
 			function extractData(response) {
-				//return response.data.data;
-				return response.data;
+				return response.data.data;
 			}
 			
 			function extractError(response) {
-				return response.data;
+				return response.data || {'code': "Server Connection Failed"};
 			}
 			
-			function validate(result){
-				//return typeof result.data.data === 'object';
-				return true;
+			function validate(response){
+				return typeof response.data.data === 'object';
 			}
 
 			return {

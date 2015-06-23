@@ -22,7 +22,7 @@
 			}
 			
 			function extractError(response) {
-				return response.data;
+				return response.data || {'code': "Server Connection Failed"};
 			}
 			
 			function validate(response){
@@ -30,44 +30,28 @@
 			}
 
 			return {
-				/*
-				comment: {
-					text: 'some text'
+				get : function(sid){
+					//*** doesn't exist server side
+					return $http.post(API_URL + '/message', sid)
+						.then(
+							function(response) {
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
+							},
+							function(response) {
+								return $q.reject(extractError(response));
+							}
+						);
 				},
-				messageLocation: [
-					{
-						//name: 'Toronto',
-						//geoFence: {
-						//    type: 'Point',
-						//    coordinates: [-79.383184, 43.653226]
-						//},
-						//distance: 500,
-						//trigger: 1,
-						//startTime: new Date().getTime() + 60,
-						//endTime: new Date().getTime() + 600
-
-						distance: 0.0,
-						trigger: 0,
-						startTime: 1434064463343,
-						endTime: 0
-					}
-				],
-				envelope: {
-					target: 3
-				},
-				messageRecipient: [
-				]
-				*/
 				create : function(messageObj) {
 					// TARGET_MYSELF      = 1;
 					// TARGET_RECIPIENTS  = 2;
 					// TARGET_FRIENDS     = 3;
 
 					var msgObj = {
-						comment: { text: messageObj.content },
-						messageLocation: messageObj.locationArray,
-						envelope: { target: 3 },
-						messageRecipient: []
+						comment: { text: messageObj.content || "" },
+						messageLocation: messageObj.locations || [],
+						envelope: { target: messageObj.target || 3 },
+						messageRecipient: messageObj.recipients || []
 					};
 					
 					return $http.post(API_URL + '/message', msgObj)
@@ -76,7 +60,17 @@
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
 							},
 							function(response) {
-								console.error(response);
+								return $q.reject(extractError(response));
+							}
+						);
+				},
+				list : function(timestamp, limit){
+					return $http.post(API_URL + '/message/' + (timestamp || (new Date().getTime())) + '/limit/' + (limit || 0))
+						.then(
+							function(response) {
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
+							},
+							function(response) {
 								return $q.reject(extractError(response));
 							}
 						);

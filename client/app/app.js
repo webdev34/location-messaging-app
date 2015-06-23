@@ -78,12 +78,12 @@
 				],
 				'messages' : [
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
-					{'title': 'Manage Campaign', 'state': ''},
+					{'title': 'Manage Campaign', 'state': 'home'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
-					{'title': 'Asset Management', 'state': ''}
+					{'title': 'Asset Management', 'state': 'home'}
 				],
 				'reports' : [
-					{'title': 'Report Center', 'state': ''}
+					{'title': 'Report Center', 'state': 'home'}
 				],
 				'enterprise' : [
 					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'}

@@ -29,8 +29,7 @@
 				return (model.company) ? $q.when(model.company) : EnterpriseService.get(UserModel.user.enterprise)
 					.then(
 						function (response) {
-							//model.company = response.enterprise;
-							model.company = response;
+							model.company = response.enterprise;
 							$cookieStore.put("QVR.company", model.company);
 							return response;
 						}
@@ -41,8 +40,7 @@
 				return EnterpriseService.get(UserModel.user.enterprise)
 					.then(
 						function (response) {
-							//model.company = response.enterprise;
-							model.company = response;
+							model.company = response.enterprise;
 							$cookieStore.put("QVR.company", model.company);
 							return response;
 						}
@@ -55,8 +53,7 @@
 				return EnterpriseService.update(updatedCompany)
 					.then(
 						function(response) {
-							//angular.extend(model.company, response.enterprise);
-							angular.extend(model.company, response);
+							angular.extend(model.company, response.enterprise);
 							$cookieStore.put("QVR.company", model.company);
 							return response;
 						},

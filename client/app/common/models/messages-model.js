@@ -8,38 +8,34 @@
 	.service('MessageDetailModel', [
 		'$http',
 		'$q',
+		'$routeParams',
+		'MessagesService',
 		
 		function(
 			$http,
-			$q
+			$q,
+			$routeParams,
+			MessagesService
 		) {
 			var model = this,
-				URLS = {
-					FETCH: 'assets/data/message-detail.json'
-				},
 				message,
-				currentMessage;
-
-			function extract(result) {
-				return result.data;
-			}
-
-			function cacheMessage(result) {
-				message = extract(result);
-				return message;
-			}
-
+				sid = $routeParams.sid;
+			
 			model.getMessageDetail = function() {
-				return (message) ? $q.when(message) : $http.get(URLS.FETCH).then(cacheMessage);
+				return (message) ? $q.when(message) : MessagesService.get(sid).then(
+					function(response) {
+						message = response;
+						return response;
+					}
+				);
 			};
 
 			model.updateMessage = function(updatedMessage) {
-				//console.log('from the model' + updatedMessage.messageTitle);
 				message = updatedMessage;
 			};
 		}
 	])
-	
+		
 	.service('MessageListModel', [
 		'$http',
 		'$q',
@@ -51,30 +47,28 @@
 			MessagesService
 		) {
 			var model = this,
-				URLS = {
-					FETCH: 'assets/data/message-list.json'
-				},
 				messageList;
 
-			function extract(result) {
-				return result.data;
-			}
-
-			function cacheMessageList(result) {
-				messageList = extract(result);
-				return messageList;
-			}
-
 			model.getMessageList = function() {
-				return (messageList) ? $q.when(messageList) : $http.get(URLS.FETCH).then(cacheMessageList);
+				return (messageList) ? $q.when(messageList) : MessagesService.list()
+					.then(
+						function(response){
+							messageList = response;
+							return response;
+						}
+					);
 			};
 
 			model.createNewMessage = function(newMessage) {
-				console.log("--->", newMessage);
+				newMessage.target = 3;
 				
-				MessagesService.create(newMessage).then(function(response){
-					console.log("-->", response);
-					newMessage._id = "<temp-id>";
+				return MessagesService.create(newMessage).then(function(response){
+					newMessage = response.message;
+					newMessage.comment = response.comment;
+					newMessage.envelope = response.envelope;
+					newMessage.recipients = response.messageRecipient;
+					newMessage.user = response.user;
+					
 					messageList.messages.push(newMessage);
 				});
 			};

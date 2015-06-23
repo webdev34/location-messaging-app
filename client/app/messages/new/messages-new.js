@@ -7,32 +7,21 @@
 		'$rootScope',
 		'$scope',
 		'$state',
+		'FoundationApi',
 		'MessageListModel',
 		
 		function(
 			$rootScope,
 			$scope,
 			$state,
+			FoundationApi,
 			MessageListModel
 		) {
 			var newMessageCtrl = this;
 			
-			function returnToDashboard() {
-				$state.go('messages.dashboard');
-			}
-
-			function cancelCreating() {
-				returnToDashboard();
-			}
-
-			function createNewMessage() {
-				MessageListModel.createNewMessage(newMessageCtrl.newMessage);
-				returnToDashboard();
-			}
-
 			function resetForm() {
 				newMessageCtrl.newMessage = {
-					"_id": "",
+					"sid": "",
 					"messageTitle": "",
 					"content": "",
 					"status": "Inactive",
@@ -42,6 +31,29 @@
 				};
 			}
 			
+			newMessageCtrl.createNewMessage = function() {
+				MessageListModel.createNewMessage(newMessageCtrl.newMessage).then(
+					function success(response){
+						$state.go('messages.dashboard');
+						
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Sent',
+							content: '',
+							color: 'success',
+							autoclose: '3000'
+						});
+					},
+					function error(response) {
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Was Not Sent',
+							content: response.code,
+							color: 'fail',
+							autoclose: '3000'
+						});
+					}
+				);
+			}
+
 			$scope.$watch("newMessageCtrl.newMessage.range", function(newValue, oldValue){
 				$rootScope.map_range = newValue;
 			});
@@ -49,17 +61,12 @@
 			$scope.checkRange = function(stuff){
 				var range = parseInt(newMessageCtrl.newMessage.range);
 				range = range > 100 ? 100 : (range < 0 || !range ? 0 : range);
-				console.log(range, newMessageCtrl.newMessage.range);
 				newMessageCtrl.newMessage.range = range;
 			};
 
 			$scope.doSearch = function(){
-				console.log("newMessageCtrl.search");
 				$rootScope.map_search = newMessageCtrl.search;
 			};
-
-			newMessageCtrl.createNewMessage = createNewMessage;
-			newMessageCtrl.cancelCreating = cancelCreating;
 
 			resetForm();
 		}
