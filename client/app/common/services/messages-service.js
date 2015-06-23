@@ -31,7 +31,7 @@
 
 			return {
 				get : function(messageId){
-					return $http.post(API_URL + '/message/' + messageId)
+					return $http.get(API_URL + '/message/' + messageId)
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -64,7 +64,7 @@
 						);
 				},
 				list : function(timestamp, limit){
-					return $http.post(API_URL + '/message/' + (timestamp || (new Date().getTime())) + '/limit/' + (limit || 0))
+					return $http.get(API_URL + '/message/' + (timestamp || (new Date().getTime())) + '/limit/' + (limit || 0))
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
