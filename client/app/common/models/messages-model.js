@@ -48,6 +48,8 @@
 		) {
 			var model = this,
 				messageList;
+				
+			messageList.messages = [];
 
 			model.getMessageList = function() {
 				return (messageList) ? $q.when(messageList) : MessagesService.list()
