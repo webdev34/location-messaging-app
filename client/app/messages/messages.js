@@ -66,9 +66,6 @@
 			
 			var geocoder = new google.maps.Geocoder();
 			
-			$scope.map_range = 5;
-			$scope.map_search = "Toronto, Ontario";
-
 			function bound(value, opt_min, opt_max) {
 				if (opt_min != null) value = Math.max(value, opt_min);
 				if (opt_max != null) value = Math.min(value, opt_max);

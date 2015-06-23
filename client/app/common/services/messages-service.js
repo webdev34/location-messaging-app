@@ -15,7 +15,7 @@
 			$q,
 			API_URL
 		) {
-			$http.defaults.headers.common['Authorization'] = "Basic " + $rootScope.auth;
+			$http.defaults.headers.common['Authorization'] = $rootScope.auth;
 			
 			function extractData(response) {
 				return response.data.data;
