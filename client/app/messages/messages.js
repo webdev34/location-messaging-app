@@ -44,9 +44,11 @@
 		
 		function(MessageListModel) {
 			var messageListCtrl = this;
-
+console.log("messageListCtrl");
+console.log(MessageListModel);
 			MessageListModel.getMessageList()
 				.then(function(result) {
+					console.log(result);
 					messageListCtrl.messages = result;
 				});
 		}

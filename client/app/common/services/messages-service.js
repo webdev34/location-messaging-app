@@ -30,9 +30,8 @@
 			}
 
 			return {
-				get : function(sid){
-					//*** doesn't exist server side
-					return $http.post(API_URL + '/message', sid)
+				get : function(messageId){
+					return $http.post(API_URL + '/message/' + messageId)
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -66,6 +65,17 @@
 				},
 				list : function(timestamp, limit){
 					return $http.post(API_URL + '/message/' + (timestamp || (new Date().getTime())) + '/limit/' + (limit || 0))
+						.then(
+							function(response) {
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
+							},
+							function(response) {
+								return $q.reject(extractError(response));
+							}
+						);
+				},
+				remove : function(messageId){
+					return $http.del(API_URL + '/message/' + messageId)
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));

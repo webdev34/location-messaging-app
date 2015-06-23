@@ -50,7 +50,8 @@
 				messageList = {'messages': []};
 
 			model.getMessageList = function() {
-				return (messageList) ? $q.when(messageList) : MessagesService.list()
+				//return (messageList) ? $q.when(messageList) : MessagesService.list()
+				return MessagesService.list()
 					.then(
 						function(response){
 							messageList = response;
@@ -63,6 +64,7 @@
 				newMessage.target = 3;
 				
 				return MessagesService.create(newMessage).then(function(response){
+					/*
 					newMessage = response.message;
 					newMessage.comment = response.comment;
 					newMessage.envelope = response.envelope;
@@ -70,6 +72,7 @@
 					newMessage.user = response.user;
 					
 					messageList.messages.push(newMessage);
+					*/
 				});
 			};
 		}

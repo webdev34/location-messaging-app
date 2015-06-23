@@ -2,17 +2,74 @@
 	<h1>Campaign Center</h1>
 </header>
 
+<messages-list></messages-list>
+
+
+
+
+
+
+<!--
 <section class="message-active-list" ng-controller="ActiveMessageController">
+	<header class="heading-bar">
+		<h1 class="float-left title-width">Active Messages</h1>
+		<div class="stats">
+			<span>Sent</span>
+			<span>Read</span>
+			<span>Likes</span>
+			<span>Comments</span>
+			<span>Forwards</span>
+			<span>Saves</span>
+		</div>
+	</header>
+
 	<ul>
 		<li ng-repeat="message in active.messages">
-			<a ui-sref="messages.detail({_id:message.sid})" class="message-title title-width">{{message.comment.text}}</a>
+			<a ui-sref="messages.detail({_id:1})" class="message-title title-width">{{message.content}}</a>
 			<div class="stats">
 				<span>{{message.sentCount}}</span>
 				<span>{{message.recipientCount}}</span>
 				<span>{{message.likeCount}}</span>
 				<span>{{message.commentCount}}</span>
-				<span>{{message.shareCount}}</span>
+				<span>{{message.forwardCount}}</span>
+				<span>{{message.saveCount}}</span>
 			</div>
 		</li>
 	</ul>
 </section>
+
+<section class="live-feed" ng-controller="LiveFeedController">
+	<header class="heading-bar">
+		<h1>Live Feed</h1>
+	</header>
+
+	<ul>
+		<li ng-repeat="update in feed.updates">
+			<div class="user">
+				<span class="icon i-user-large"></span>
+			</div>
+
+			<div class="update-body">
+				<header>
+					<a>John Smith</a> Discovered <a>Message 1 Title</a>
+				</header>
+
+				<p>
+					This is the message content truncated to two lines. Anything beyond two lines should be cut off and displayed with some of the word from the mes... 
+				</p>
+
+				<div class="location">
+					<span class="icon i-location"></span>
+					CN Tower, Toronto, ON
+				</div>
+			</div>
+
+			<div class="link-wrap">
+				<a>
+					<span class="icon i-btn-arrow-right"></span>
+				</a>
+			</div>
+		</li>
+	</ul>
+</section>
+-->
