@@ -13,8 +13,10 @@
 			$http,
 			MessageListModel
 		) {
+					console.log("Active Messages");
 			MessageListModel.getMessageList().then(
 				function(response){
+					console.log("------>", response);
 					$scope.active = response;
 				}
 			);
