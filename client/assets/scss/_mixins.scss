@@ -16,3 +16,11 @@
        -moz-box-shadow: inset $v $h $blur $spread $color;
             box-shadow: inset $v $h $blur $spread $color;
 }
+
+@mixin user-select($type) {
+	-webkit-user-select: $type;
+	 -khtml-user-select: $type;
+	   -moz-user-select: $type;
+		-ms-user-select: $type;
+			user-select: $type;
+}

@@ -14,8 +14,8 @@
 	</div>
 
 	<ul class="message-side-list" ng-controller="MessageListCtrl as messageListCtrl">
-		<li ng-repeat="message in messageListCtrl.messages.messages">
-			<a  ui-sref="messages.detail({_id:message._id})" ui-sref-active="active"  >
+		<li ng-repeat="message in messageListCtrl.messages">
+			<a  ui-sref="messages.detail({sid:message.sid})" ui-sref-active="active"  >
 				<span class="status-label">
 					{{message.status}}
 				</span>
