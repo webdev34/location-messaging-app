@@ -11,7 +11,9 @@
 				restrict: "E",
 				templateUrl: 'app/common/time-picker.directive.html',
 				scope: {
-					value: '=ngModel'
+					value: '=ngModel',
+					mustBe: '@mustBe',
+					compareTo: '=compareTo'
 				},
 				link: function (scope, el, attrs) {
 					var oldTime = scope.value;
