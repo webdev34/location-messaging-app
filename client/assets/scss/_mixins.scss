@@ -24,3 +24,32 @@
 		-ms-user-select: $type;
 			user-select: $type;
 }
+
+@mixin display-flex(){
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+@mixin flex-align-items($align){
+	-webkit-align-items: $align;
+	  -webkit-box-align: $align;
+		 -moz-box-align: $align;
+		 -ms-flex-align: $align;
+			align-items: $align;
+}
+
+@mixin flex-justify-content($justify){
+	-webkit-justify-content: $justify;
+		   -webkit-box-pack: $justify;
+			  -moz-box-pack: $justify;
+			  -ms-flex-pack: $justify;
+			justify-content: $justify;
+}
+
+@mixin flex-flow($flow){
+	-webkit-flex-flow: $flow;
+			flex-flow: $flow;
+}

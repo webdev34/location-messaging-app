@@ -87,10 +87,16 @@
 			</section>
 
 			<section class="column-3">
-				<section class="time-selector">
+				<section class="time-selector" ng-show="newMessageCtrl.showStartTimePicker">
+					<time-picker name="startTime" title="Start Time" ng-model="newMessageCtrl.newMessage.startTime"></time-picker>
+				</section>
+				
+				<section class="time-selector" ng-show="newMessageCtrl.showEndTimePicker">
+					<time-picker name="endTime" title="End Time" ng-model="newMessageCtrl.newMessage.endTime"></time-picker>
+				</section>
+				
+				<section class="time-selector" ng-hide="newMessageCtrl.showStartTimePicker || newMessageCtrl.showEndTimePicker">
 					<h2>Add Delivery Time</h2>
-					
-					<time-picker name="startTime" title="Start Time"></time-picker>
 					
 					<div class="delivery-box">
 						<label class="qvr-label">Start Date:</label>
@@ -103,11 +109,11 @@
 
 					<div class="delivery-box">
 						<label class="qvr-label">Start Time:</label>
-						<input type="text" class="hourglass" value="{{startTime}}">
+						<input type="text" class="hourglass" ng-model="newMessageCtrl.newMessage.startTime" ng-click="newMessageCtrl.showStartTimePicker=true">
 					</div>
 					<div class="delivery-box">
 						<label class="qvr-label">End Time:</label>
-						<input type="text" class="hourglass" value="12:35 PM">
+						<input type="text" class="hourglass" ng-model="newMessageCtrl.newMessage.endTime" ng-click="newMessageCtrl.showEndTimePicker=true">
 					</div>
 				</section>
 

@@ -582,18 +582,22 @@ ul {
 }
 
 input[type="checkbox"].qvr-slide-toggle {
+	position: relative;
+	-webkit-appearance: none;
+	
+	width: 53px;
+	height: 32px;
+	
+	padding: 0;
+	
 	background-color: $qvr-blue-1;
 	background-size: 100% 100%, 200% 100%;
 	background-position: 0 0, 5px 0;
 	
 	border-radius: 20px;
-	padding: 0;
 	border: none;
+	
 	cursor: pointer;
-	height: 32px;
-	position: relative;
-	width: 53px;
-	-webkit-appearance: none;
 	
 	transition: all 0.3s ease-in-out;
 
@@ -636,6 +640,10 @@ input[type="checkbox"].qvr-slide-toggle {
 	font-family: $qvr-secondary-font;
 	font-weight: $qvr-font-weight-bold;
 	font-size: $qvr-input-font-size;
+	
+	cursor: pointer;
+	
+	@include user-select(none);
 
 	transition: all 0.4s ease-in-out;
 
@@ -664,3 +672,99 @@ input[type="checkbox"].qvr-slide-toggle {
 		}
 	}
 }
+
+// Time Picker Component
+.time-picker {
+	text-align: center;
+	border: solid 3px $qvr-grey-3;
+	@include border-radius($qvr-border-radius);
+	background-color: $qvr-white-1;
+	padding: 0 0 25px 0 !important;
+	
+	h2 {
+		height: 45px;
+		padding: 10px;
+		
+		font-size: $qvr-input-font-size !important;
+		font-family: $qvr-secondary-font !important;
+		font-weight: $qvr-font-weight-medium !important;
+		color: $qvr-white-1 !important;
+		
+		background-color: $qvr-blue-1;
+		border-bottom: solid 3px $qvr-grey-3;
+	}
+	
+	.qvr-button.down-arrow {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 32 16"><polygon points="0,0 32,0 16,16" style="fill: #FFFFFF"></polygon></svg>');
+		background-size: 25px;
+	}
+	
+	.qvr-button.up-arrow {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 32 16"><polygon points="0,16 32,16 16,0" style="fill: #FFFFFF"></polygon></svg>');
+		background-size: 25px;
+	}
+	
+	.button-row {
+		@include display-flex();
+		@include flex-flow(row);
+		@include flex-justify-content(center);
+		@include flex-align-items(center);
+		
+		span {
+			width: 52px;
+			margin: 3px 5px;
+			padding: 0;
+			
+			&.qvr-button {
+				height: 37px;
+			}
+			
+			input, &.median {
+				height: 52px;
+				margin: 0;
+				padding: 0;
+				font-size: 30px;
+				color: $qvr-grey-3;
+				font-family: $qvr-tertiary-font;
+				font-weight: $qvr-font-weight-bold;
+				text-align: center;
+			}
+			
+			input {
+				border: solid 1px $qvr-grey-3;
+				@include border-radius($qvr-border-radius);
+			}
+			
+			&.median {
+				margin: 3px 5px;
+				padding: 12px 0 0 0;
+			}
+		}
+	}
+	
+	.alert-row {
+		height: 58px;
+		
+		@include display-flex();
+		@include flex-flow(row);
+		@include flex-justify-content(center);
+		@include flex-align-items(center);
+	}
+	
+	.alert {
+		width: 100%;
+		font-size: $qvr-input-font-size;
+		color: $qvr-red-1;
+		text-align: center;
+	}
+	
+	.set {
+		width: 100%;
+		max-width: 125px;
+	}
+}
+

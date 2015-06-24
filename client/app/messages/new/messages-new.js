@@ -19,6 +19,9 @@
 		) {
 			var newMessageCtrl = this;
 			
+			newMessageCtrl.showStartTimePicker = false;
+			newMessageCtrl.endStartTimePicker = false;
+			
 			function resetForm() {
 				newMessageCtrl.newMessage = {
 					"sid": "",
@@ -27,7 +30,9 @@
 					"status": "Inactive",
 					"range": 5,
 					"sentTo": "All Followers",
-					"discoverOn": "enter"
+					"discoverOn": "enter",
+					"startTime": "12:00 AM",
+					"endTime": "01:00 AM"
 				};
 			}
 			
@@ -58,7 +63,17 @@
 				$rootScope.map_range = newValue;
 			});
 			
-			$scope.checkRange = function(stuff){
+			$scope.$watch("newMessageCtrl.newMessage.startTime", function(newValue, oldValue){
+				newMessageCtrl.showStartTimePicker = false;
+				newMessageCtrl.showEndTimePicker = false;
+			});
+			
+			$scope.$watch("newMessageCtrl.newMessage.endTime", function(newValue, oldValue){
+				newMessageCtrl.showStartTimePicker = false;
+				newMessageCtrl.showEndTimePicker = false;
+			});
+			
+			$scope.checkRange = function(){
 				var range = parseInt(newMessageCtrl.newMessage.range);
 				range = range > 100 ? 100 : (range < 0 || !range ? 0 : range);
 				newMessageCtrl.newMessage.range = range;

@@ -2,18 +2,28 @@
 
 	<h2>{{title}}</h2>
 	
-	<div>{{time}}</div>
-
-	<div class="qvr-button action" ng-click="adjustHours(1)"></div>
-	<div class="qvr-button action" ng-click="adjustMinutes(1)"></div>
-	<div class="qvr-button action" ng-click="adjustMedian()"></div>
-
-	<input type="text" ng-model="hour" />
-	<input type="text" ng-model="minute" />
-	<input type="text" ng-model="median" />
-
-	<div class="qvr-button action" ng-click="adjustHours(-1)"></div>
-	<div class="qvr-button action" ng-click="adjustMinutes(-1)"></div>
-	<div class="qvr-button action" ng-click="adjustMedian()"></div>
+	<div class="button-row">
+		<span class="qvr-button action up-arrow" ng-click="adjustHours(1)" ng-mousedown="mouseDown('hours', 1)" ng-mouseup="mouseUp()"></span>
+		<span class="qvr-button action up-arrow" ng-click="adjustMinutes(1)" ng-mousedown="mouseDown('minutes', 1)" ng-mouseup="mouseUp()"></span>
+		<span class="qvr-button action up-arrow" ng-click="adjustMedian()" ng-mousedown="mouseDown('median')" ng-mouseup="mouseUp()"></span>
+	</div>
+	
+	<div class="button-row">
+		<span><input type="text" ng-model="hour" ng-change="checkHours()" /></span>
+		<span><input type="text" ng-model="minute" ng-change="checkMinutes()" /></span>
+		<span class="median">{{median}}</span>
+	</div>
+	
+	<div class="button-row">
+		<span class="qvr-button action down-arrow" ng-click="adjustHours(-1)" ng-mousedown="mouseDown('hours', -1)" ng-mouseup="mouseUp()"></span>
+		<span class="qvr-button action down-arrow" ng-click="adjustMinutes(-1)" ng-mousedown="mouseDown('minutes', -1)" ng-mouseup="mouseUp()"></span>
+		<span class="qvr-button action down-arrow" ng-click="adjustMedian()" ng-mousedown="mouseDown('median')" ng-mouseup="mouseUp()"></span>
+	</div>
+	
+	<div class="alert-row">
+		<span class="alert">{{alert}}</span>
+	</div>
+	
+	<div class="qvr-button action set" ng-click="makeTime()">SET</div>
 
 </section>
