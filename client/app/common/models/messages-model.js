@@ -47,15 +47,26 @@
 			MessagesService
 		) {
 			var model = this,
-				messageList = {'messages': []};
+				messageList;
 
 			model.getMessageList = function() {
 				//return (messageList) ? $q.when(messageList) : MessagesService.list()
 				return MessagesService.list()
 					.then(
 						function(response){
-							messageList = response;
-							return response;
+							messageList = [];	
+							
+							for (var i = 0; i < response.length; i++){
+								var newMessage = response[i].message;
+								newMessage.comment = response[i].comment;
+								newMessage.envelope = response[i].envelope;
+								newMessage.recipients = response[i].messageRecipient;
+								newMessage.user = response[i].user;
+								
+								messageList.push(newMessage);
+							}
+							
+							return messageList;
 						}
 					);
 			};
@@ -71,7 +82,7 @@
 					newMessage.recipients = response.messageRecipient;
 					newMessage.user = response.user;
 					
-					messageList.messages.push(newMessage);
+					messageList.push(newMessage);
 					*/
 				});
 			};

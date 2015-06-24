@@ -1,10 +1,10 @@
 <ul ng-controller="MessageListCtrl as messageListCtrl">
-	<li ng-repeat="message in messageListCtrl.messages.messages">
-		<a ui-sref="messages.detail({_id:message.sid})" ui-sref-active="active"  >
+	<li ng-repeat="message in messageListCtrl.messages">
+		<a ui-sref="messages.detail({sid:message.sid})" ui-sref-active="active"  >
 			<span class="status-label">
-				{{message.status}}
+				{{message.likedCount}}
 			</span>
-			{{message.messageTitle}}
+			{{message.comment.text}}
 			<span class="icon i-side-bar-arrow float-right"></span>
 		</a>
 	</li>
