@@ -64,7 +64,12 @@
 						);
 				},
 				list : function(timestamp, limit){
-					return $http.get(API_URL + '/message/' + (timestamp || (new Date().getTime())) + '/limit/' + (limit || 0))
+					if (!timestamp){
+						var date = new Date();
+						timestamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
+					}
+					
+					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0))
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
