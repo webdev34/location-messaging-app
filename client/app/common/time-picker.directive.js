@@ -12,7 +12,6 @@
 				templateUrl: 'app/common/time-picker.directive.html',
 				scope: {
 					value: '=ngModel',
-					//mustBe: '@mustBe',
 					startDate: '=startDate',
 					startTime: '=startTime',
 					endDate: '=endDate',

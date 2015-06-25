@@ -24,7 +24,7 @@
 			
 			function resetForm() {
 				var today = new Date(),
-					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
 					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
 				
 				newMessageCtrl.newMessage = {
