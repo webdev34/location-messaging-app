@@ -93,6 +93,7 @@
 						name="start-time"
 						ng-model="newMessageCtrl.newMessage.startTime"
 						start-date="newMessageCtrl.newMessage.startDate"
+						start-time="newMessageCtrl.newMessage.startTime"
 						end-date="newMessageCtrl.newMessage.endDate"
 						end-time="newMessageCtrl.newMessage.endTime"
 					></time-picker>
@@ -106,15 +107,40 @@
 						start-date="newMessageCtrl.newMessage.startDate"
 						start-time="newMessageCtrl.newMessage.startTime"
 						end-date="newMessageCtrl.newMessage.endDate"
+						end-time="newMessageCtrl.newMessage.endTime"
 					></time-picker>
 				</section>
 				
-				<section class="time-selector" ng-hide="newMessageCtrl.showStartTimePicker || newMessageCtrl.showEndTimePicker">
+				<section class="date-selector" ng-show="newMessageCtrl.showStartDatePicker">
+					<date-picker
+						title="Start Date"
+						name="start-date"
+						ng-model="newMessageCtrl.newMessage.startDate"
+						start-date="newMessageCtrl.newMessage.startDate"
+						start-time="newMessageCtrl.newMessage.startTime"
+						end-date="newMessageCtrl.newMessage.endDate"
+						end-time="newMessageCtrl.newMessage.endTime"
+					></date-picker>
+				</section>
+				
+				<section class="date-selector" ng-show="newMessageCtrl.showEndDatePicker">
+					<date-picker
+						title="End Date"
+						name="end-date"
+						ng-model="newMessageCtrl.newMessage.endDate"
+						start-date="newMessageCtrl.newMessage.startDate"
+						start-time="newMessageCtrl.newMessage.startTime"
+						end-date="newMessageCtrl.newMessage.endDate"
+						end-time="newMessageCtrl.newMessage.endTime"
+					></date-picker>
+				</section>
+				
+				<section class="time-selector" ng-hide="newMessageCtrl.showStartTimePicker || newMessageCtrl.showEndTimePicker || newMessageCtrl.showStartDatePicker || newMessageCtrl.showEndDatePicker">
 					<h2>Add Delivery Time</h2>
 					
 					<div class="delivery-box start-date">
 						<label class="qvr-label">Start Date:</label>
-						<input type="text" class="date" ng-model="newMessageCtrl.newMessage.startDate">
+						<input type="text" class="date" ng-model="newMessageCtrl.newMessage.startDate" ng-click="newMessageCtrl.showStartDatePicker=true">
 					</div>
 					<div class="delivery-box start-time">
 						<label class="qvr-label">Start Time:</label>
@@ -123,7 +149,7 @@
 
 					<div class="delivery-box end-date">
 						<label class="qvr-label">End Date:</label>
-						<input type="text" class="date" ng-model="newMessageCtrl.newMessage.endDate">
+						<input type="text" class="date" ng-model="newMessageCtrl.newMessage.endDate" ng-click="newMessageCtrl.showEndDatePicker=true">
 					</div>
 					<div class="delivery-box end-time">
 						<label class="qvr-label">End Time:</label>

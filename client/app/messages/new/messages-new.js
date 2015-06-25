@@ -19,6 +19,8 @@
 		) {
 			var newMessageCtrl = this;
 			
+			newMessageCtrl.showStartDatePicker = false;
+			newMessageCtrl.showEndDatePicker = false;
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
 			
@@ -26,6 +28,10 @@
 				var today = new Date(),
 					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
 					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
+				
+				var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 2)),
+					tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
+					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
 				newMessageCtrl.newMessage = {
 					"sid": "",
@@ -37,12 +43,12 @@
 					"discoverOn": "enter",
 					"startDate": todayFormatted,
 					"startTime": "12:01 AM",
-					"endDate": todayFormatted,
+					"endDate": tomorrowFormatted,
 					"endTime": "11:59 PM",
 					"locationName": "",
 					"latlng": [],
-					"startTimestamp": todayProperFormatted + " 12:01",
-					"endTimestamp": todayProperFormatted + " 23:59"
+					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
+					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
 				};
 			}
 			
@@ -73,15 +79,17 @@
 				$rootScope.map_range = newValue;
 			});
 			
-			$scope.$watch("newMessageCtrl.newMessage.startTime", function(newValue, oldValue){
+			function clearTakeOverSelectors(){
+				newMessageCtrl.showStartDatePicker = false;
+				newMessageCtrl.showEndDatePicker = false;
 				newMessageCtrl.showStartTimePicker = false;
 				newMessageCtrl.showEndTimePicker = false;
-			});
+			}
 			
-			$scope.$watch("newMessageCtrl.newMessage.endTime", function(newValue, oldValue){
-				newMessageCtrl.showStartTimePicker = false;
-				newMessageCtrl.showEndTimePicker = false;
-			});
+			$scope.$watch("newMessageCtrl.newMessage.startDate", clearTakeOverSelectors);
+			$scope.$watch("newMessageCtrl.newMessage.endDate", clearTakeOverSelectors);
+			$scope.$watch("newMessageCtrl.newMessage.startTime", clearTakeOverSelectors);
+			$scope.$watch("newMessageCtrl.newMessage.endTime", clearTakeOverSelectors);
 			
 			$scope.checkRange = function(){
 				var range = parseInt(newMessageCtrl.newMessage.range);

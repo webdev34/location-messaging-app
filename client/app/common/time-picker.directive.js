@@ -77,6 +77,10 @@
 						return ("00" + scope.hour).slice(-2) + ":" + ("00" + scope.minute).slice(-2) + " " + scope.median;
 					}
 					
+					function toDateStr(month, day, year, hour, minute, second, median){
+						return month + "/" + day + "/" + year + " " + hour + ":" + minute + ":" + second + " " + median;
+					}
+					
 					scope.makeTime = function(){
 						scope.adjustHours(0);
 						scope.adjustMinutes(0);
@@ -97,10 +101,8 @@
 						
 						// adding one second ":01" takes care of some midnight weirdness
 						// month and day are reversed
-						var startDateStr = startDate[1] + "/" + startDate[0] + "/" + startDate[2] + " " + (startTime[2] == "PM" ? parseInt(startTime[0]) + 12 : startTime[0]) + ":" + startTime[1] + ":01",
-							startDateTime = Date.parse(startDateStr),
-							endDateStr = endDate[1] + "/" + endDate[0] + "/" + endDate[2] + " " + (endTime[2] == "PM" ? parseInt(endTime[0]) + 12 : endTime[0]) + ":" + endTime[1] + ":01",
-							endDateTime = Date.parse(endDateStr);
+						var startDateTime = Date.parse(toDateStr(startDate[1], startDate[0], startDate[2], startTime[0], startTime[1], "01", startTime[2])),
+							endDateTime = Date.parse(toDateStr(endDate[1], endDate[0], endDate[2], endTime[0], endTime[1], "01", endTime[2]));
 						
 						if (startDateTime > endDateTime){
 							scope.alert = "OOPS! END/TIME EARLIER THAN START/TIME";

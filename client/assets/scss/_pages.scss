@@ -823,6 +823,13 @@
 				background-color: $qvr-grey-5;
 			}
 			
+			.date-selector {
+				width: 100%;
+				padding: 20px;
+				@include border-radius(10px);
+				background-color: $qvr-grey-5;
+			}
+			
 			.time-selector {
 				width: 100%;
 				padding: 20px;

@@ -676,24 +676,101 @@ input[type="checkbox"].qvr-slide-toggle {
 }
 
 // Time Picker Component
-.time-picker {
+.date-picker, .time-picker {
 	text-align: center;
 	border: solid 3px $qvr-grey-3;
 	@include border-radius($qvr-border-radius);
 	background-color: $qvr-white-1;
 	padding: 0 0 25px 0 !important;
 	
-	h2 {
+	.header {
 		height: 45px;
-		padding: 10px;
+		line-height: 45px;
 		
-		font-size: $qvr-input-font-size !important;
-		font-family: $qvr-secondary-font !important;
-		font-weight: $qvr-font-weight-medium !important;
-		color: $qvr-white-1 !important;
+		font-size: $qvr-input-font-size;
+		font-family: $qvr-secondary-font;
+		font-weight: $qvr-font-weight-medium;
+		color: $qvr-white-1;
 		
 		background-color: $qvr-blue-1;
 		border-bottom: solid 3px $qvr-grey-3;
+	}
+	
+	.alert-row {
+		height: 58px;
+		
+		@include display-flex();
+		@include flex-flow(row);
+		@include flex-justify-content(center);
+		@include flex-align-items(center);
+	}
+	
+	.alert {
+		width: 100%;
+		font-size: $qvr-input-font-size;
+		color: $qvr-red-1;
+		text-align: center;
+	}
+}
+	
+.date-picker {
+	.month-bar {
+		height: 45px;
+		line-height: 45px;
+		
+		border-bottom: solid 2px $qvr-grey-4;
+		
+		font-size: $qvr-input-font-size;
+		font-family: $qvr-secondary-font;
+		font-weight: $qvr-font-weight-medium;
+	}
+	
+	.day-grid {
+		.day {
+			display: block;
+			float: left;
+			
+			width: 14.28%;
+			height: 30px;
+			line-height: 30px;
+			
+			border-bottom: solid 1px $qvr-grey-4;
+			
+			font-size: $qvr-input-font-size;
+			font-family: $qvr-secondary-font;
+			font-weight: $qvr-font-weight-medium;
+			
+			cursor: default;
+			
+			&.off {
+			
+			}
+			
+			&.standard {
+				cursor: pointer;
+			}
+			
+			&.selected {
+				cursor: pointer;
+				background-color: $qvr-blue-1;
+				color: $qvr-white-1;
+			}
+			
+			&.beforeToday {
+				color: $qvr-grey-4;
+			}
+			
+			&.between {
+				cursor: pointer;
+				background-color: $qvr-blue-4;
+			}
+		}
+	}
+}
+	
+.time-picker {
+	.header {
+		margin: 0 0 20px 0;
 	}
 	
 	.qvr-button.down-arrow {
@@ -746,22 +823,6 @@ input[type="checkbox"].qvr-slide-toggle {
 				padding: 12px 0 0 0;
 			}
 		}
-	}
-	
-	.alert-row {
-		height: 58px;
-		
-		@include display-flex();
-		@include flex-flow(row);
-		@include flex-justify-content(center);
-		@include flex-align-items(center);
-	}
-	
-	.alert {
-		width: 100%;
-		font-size: $qvr-input-font-size;
-		color: $qvr-red-1;
-		text-align: center;
 	}
 	
 	.set {
