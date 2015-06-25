@@ -56,12 +56,12 @@
 						function(response){
 							messageList = [];	
 							
-							for (var i = 0; i < response.length; i++){
-								var newMessage = response[i].message;
-								newMessage.comment = response[i].comment;
-								newMessage.envelope = response[i].envelope;
-								newMessage.recipients = response[i].messageRecipient;
-								newMessage.user = response[i].user;
+							for (var i = 0; i < response.message.length; i++){
+								var newMessage = response.message[i];
+								newMessage.comment = response.comment[i];
+								newMessage.envelope = response.envelope[i];
+								newMessage.recipients = response.messageRecipient[i];
+								newMessage.user = response.user[i];
 								
 								messageList.push(newMessage);
 							}

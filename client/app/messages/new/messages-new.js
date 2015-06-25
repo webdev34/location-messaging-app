@@ -23,6 +23,9 @@
 			newMessageCtrl.endStartTimePicker = false;
 			
 			function resetForm() {
+				var today = new Date(),
+					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+				
 				newMessageCtrl.newMessage = {
 					"sid": "",
 					"messageTitle": "",
@@ -31,8 +34,10 @@
 					"range": 5,
 					"sentTo": "All Followers",
 					"discoverOn": "enter",
-					"startTime": "12:00 AM",
-					"endTime": "01:00 AM"
+					"startDate": todayFormatted,
+					"startTime": "12:01 AM",
+					"endDate": todayFormatted,
+					"endTime": "11:59 PM"
 				};
 			}
 			
