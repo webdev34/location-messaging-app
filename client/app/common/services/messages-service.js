@@ -42,15 +42,61 @@
 						);
 				},
 				create : function(messageObj) {
-					// TARGET_MYSELF      = 1;
-					// TARGET_RECIPIENTS  = 2;
-					// TARGET_FRIENDS     = 3;
+					/*
+					"sid": "",
+					"messageTitle": "",
+					x "content": "",
+					"status": "Inactive",
+					x "range": 5,
+					x "sentTo": "TARGET_FRIENDS",
+					x "discoverOn": "enter",
+					"startDate": todayFormatted,
+					"startTime": "12:01 AM",
+					"endDate": todayFormatted,
+					"endTime": "11:59 PM"
+					
+					locationName
+					latlng
+					startTimestamp
+					endTimestamp
+					*/
+					
+					var target;
+					switch (messageObj.sentTo){
+						case "TARGET_MYSELF":
+							target = 1;
+							break;
+						case "TARGET_RECIPIENTS":
+							target = 2;
+							break;
+						case "TARGET_FRIENDS":
+							target = 3;
+							break;
+						default:
+							target = 3;
+					}
 
+					var locationObj = {
+						name: messageObj.locationName || "",
+						geoFence: {
+						    type: 'Point',
+						    coordinates: messageObj.latlng || []
+						},
+						distance: messageObj.range || 0,
+						trigger: messageObj.discoverOn == "enter" ? 1 : 0,
+						startTime: messageObj.startTimestamp || 0,
+						endTime: messageObj.endTimestamp || 0
+					};
+					
 					var msgObj = {
-						comment: { text: messageObj.content || "" },
-						messageLocation: messageObj.locations || [],
-						envelope: { target: messageObj.target || 3 },
-						messageRecipient: messageObj.recipients || []
+						"comment": {
+							"text": messageObj.content || ""
+						},
+						"messageLocation": [locationObj],
+						"envelope": {
+							"target": target
+						},
+						"messageRecipient": messageObj.recipients || []
 					};
 					
 					return $http.post(API_URL + '/message', msgObj)

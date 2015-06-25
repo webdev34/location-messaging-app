@@ -25,6 +25,7 @@
 			function resetForm() {
 				var today = new Date(),
 					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
 				
 				newMessageCtrl.newMessage = {
 					"sid": "",
@@ -32,12 +33,16 @@
 					"content": "",
 					"status": "Inactive",
 					"range": 5,
-					"sentTo": "All Followers",
+					"sentTo": "TARGET_FRIENDS",
 					"discoverOn": "enter",
 					"startDate": todayFormatted,
 					"startTime": "12:01 AM",
 					"endDate": todayFormatted,
-					"endTime": "11:59 PM"
+					"endTime": "11:59 PM",
+					"locationName": "",
+					"latlng": [],
+					"startTimestamp": todayProperFormatted + " 12:01",
+					"endTimestamp": todayProperFormatted + " 23:59"
 				};
 			}
 			
