@@ -61,7 +61,6 @@
 								newMessage.comment = response.comment[i];
 								newMessage.envelope = response.envelope[i];
 								newMessage.recipients = response.messageRecipient[i];
-								newMessage.user = response.user[i];
 								
 								messageList.push(newMessage);
 							}
