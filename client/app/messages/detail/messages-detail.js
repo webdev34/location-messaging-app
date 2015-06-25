@@ -15,7 +15,7 @@
 
 			messageDetailCtrl.currentMessageId = $stateParams._id;
 
-			MessageDetailModel.getMessageDetail()
+			MessageDetailModel.getMessageDetail(messageDetailCtrl.currentMessageId)
 				.then(function(result) {
 					messageDetailCtrl.message = result;
 				});

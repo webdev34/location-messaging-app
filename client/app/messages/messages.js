@@ -26,7 +26,7 @@
 				controller: 'NewMessageCtrl as newMessageCtrl'
 			})
 			.state('messages.detail', {
-				url: '/message/:sid',
+				url: '/message/:_id',
 				templateUrl: 'app/messages/detail/messages-detail.tmpl.html',
 				controller: 'MessageDetailCtrl as messageDetailCtrl'
 			})

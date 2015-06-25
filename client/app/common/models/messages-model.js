@@ -8,21 +8,18 @@
 	.service('MessageDetailModel', [
 		'$http',
 		'$q',
-		'$routeParams',
 		'MessagesService',
 		
 		function(
 			$http,
 			$q,
-			$routeParams,
 			MessagesService
 		) {
 			var model = this,
-				message,
-				sid = $routeParams.sid;
+				message;
 			
-			model.getMessageDetail = function() {
-				return (message) ? $q.when(message) : MessagesService.get(sid).then(
+			model.getMessageDetail = function(messageId) {
+				return (message) ? $q.when(message) : MessagesService.get(messageId).then(
 					function(response) {
 						message = response;
 						return response;
