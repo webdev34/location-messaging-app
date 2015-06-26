@@ -3,20 +3,45 @@
 
 	angular.module('enterprise-portal.services.enterprise', [])
 	
-	.factory('EnterpriseService', [
+	.factory('httpRequestInterceptor', [
+		'$q',
 		'$rootScope',
+	
+		function (
+			$q,
+			$rootScope
+		) {
+			return {
+				'request': function(config) {
+					config.headers['Authorization'] = $rootScope.auth;
+					return config;
+				},
+
+				'response': function(response) {
+					return response;
+				},
+
+				'responseError': function(rejection) {
+					return $q.reject(rejection);
+				}
+			};
+		}
+	])
+	
+	.config(['$httpProvider', function($httpProvider) {  
+		$httpProvider.interceptors.push('httpRequestInterceptor');
+	}])
+	
+	.factory('EnterpriseService', [
 		'$http',
 		'$q',
 		'API_URL',
 		
 		function(
-			$rootScope,
 			$http,
 			$q,
 			API_URL
 		) {
-			$http.defaults.headers.common['Authorization'] = $rootScope.auth;
-			
 			function extractData(response) {
 				return response.data.data;
 			}

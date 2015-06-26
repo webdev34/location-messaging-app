@@ -13,8 +13,7 @@
 		) {
 			return {
 				'request': function(config) {
-					console.log($rootScope.auth);
-					console.log(config);
+					config.headers['Authorization'] = $rootScope.auth;
 					return config;
 				},
 
@@ -28,19 +27,17 @@
 			};
 		}
 	])
-
+	
 	.config(['$httpProvider', function($httpProvider) {  
 		$httpProvider.interceptors.push('httpRequestInterceptor');
 	}])
 	
 	.factory('MessagesService', [
-		'$rootScope',
 		'$http',
 		'$q',
 		'API_URL_DROID',
 		
 		function(
-			$rootScope,
 			$http,
 			$q,
 			API_URL
@@ -59,14 +56,7 @@
 
 			return {
 				get : function(messageId){
-					//return $http.get(API_URL + '/message/' + messageId)
-					return $http({
-						method: 'GET',
-						url: API_URL + '/message/' + messageId,
-						headers: {
-							'Authorization': $rootScope.auth
-						}
-					})
+					return $http.get(API_URL + '/message/' + messageId)
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -134,15 +124,7 @@
 						"messageRecipient": messageObj.recipients || []
 					};
 					
-					//return $http.post(API_URL + '/message', msgObj)
-					return $http({
-						method: 'POST',
-						url: API_URL + '/message',
-						headers: {
-							'Authorization': $rootScope.auth
-						},
-						data: msgObj
-					})
+					return $http.post(API_URL + '/message', msgObj)
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -159,14 +141,7 @@
 						timestamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
 					}
 					
-					//return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0))
-					return $http({
-						method: 'GET',
-						url: API_URL + '/message/' + timestamp + '/limit/' + (limit || 0),
-						headers: {
-							'Authorization': $rootScope.auth
-						}
-					})
+					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0))
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -177,14 +152,7 @@
 						);
 				},
 				remove : function(messageId){
-					//return $http.del(API_URL + '/message/' + messageId)
-					return $http({
-						method: 'DELETE',
-						url: API_URL + '/message/' + messageId,
-						headers: {
-							'Authorization': $rootScope.auth
-						}
-					})
+					return $http.del(API_URL + '/message/' + messageId)
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
