@@ -26,17 +26,18 @@
 			return {
 				'request': function(config) {
 					config.headers['Authorization'] = $rootScope.auth;
+					
+					angular.extend(config, {
+						transformResponse: function(data){
+							return validate(data) ? extractData(data) : $q.reject(extractError(data));
+						},
+						transformResponseError: function(data){
+							return $q.reject(extractError(data));
+						}
+					});
+					
 					return config;
 				},
-
-				'response': function(response) {
-					console.log(response);
-					return validate(response) ? extractData(response) : $q.reject(extractError(response));
-				},
-
-				'responseError': function(rejection) {
-					return $q.reject(extractError(rejection));
-				}
 			};
 		}
 	])
