@@ -3,6 +3,26 @@
 
 	angular.module('enterprise-portal.services.messages', [])
 	
+	/***************************************************************
+	
+	// Would this see the auth token change?
+	.factory('httpRequestInterceptor', function () {
+		return {
+			request: function (config) {
+				config.headers['Authorization'] = $rootScope.auth;
+				return config;
+			}
+		};
+	})
+
+	.config(function ($httpProvider) {
+		$httpProvider.interceptors.push('httpRequestInterceptor');
+	})
+	
+	//*** Add interceptor for response transformation
+	
+	***************************************************************/
+
 	.factory('MessagesService', [
 		'$rootScope',
 		'$http',
@@ -31,7 +51,14 @@
 
 			return {
 				get : function(messageId){
-					return $http.get(API_URL + '/message/' + messageId)
+					//return $http.get(API_URL + '/message/' + messageId)
+					return $http({
+						method: 'GET',
+						url: API_URL + '/message/' + messageId,
+						headers: {
+							'Authorization': $rootScope.auth
+						}
+					})
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -99,7 +126,15 @@
 						"messageRecipient": messageObj.recipients || []
 					};
 					
-					return $http.post(API_URL + '/message', msgObj)
+					//return $http.post(API_URL + '/message', msgObj)
+					return $http({
+						method: 'POST',
+						url: API_URL + '/message',
+						headers: {
+							'Authorization': $rootScope.auth
+						},
+						data: msgObj
+					})
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -111,11 +146,19 @@
 				},
 				list : function(timestamp, limit){
 					if (!timestamp){
+						// beginning of the month
 						var date = new Date();
 						timestamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
 					}
 					
-					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0))
+					//return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0))
+					return $http({
+						method: 'GET',
+						url: API_URL + '/message/' + timestamp + '/limit/' + (limit || 0),
+						headers: {
+							'Authorization': $rootScope.auth
+						}
+					})
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -126,7 +169,14 @@
 						);
 				},
 				remove : function(messageId){
-					return $http.del(API_URL + '/message/' + messageId)
+					//return $http.del(API_URL + '/message/' + messageId)
+					return $http({
+						method: 'DELETE',
+						url: API_URL + '/message/' + messageId,
+						headers: {
+							'Authorization': $rootScope.auth
+						}
+					})
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
