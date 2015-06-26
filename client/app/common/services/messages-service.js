@@ -11,6 +11,18 @@
 			$q,
 			$rootScope
 		) {
+			function extractData(response) {
+				return response.data.data;
+			}
+			
+			function extractError(response) {
+				return response.data || {'code': "Server_Connection_Failed"};
+			}
+			
+			function validate(response){
+				return typeof response.data.data === 'object';
+			}
+
 			return {
 				'request': function(config) {
 					config.headers['Authorization'] = $rootScope.auth;
@@ -18,11 +30,11 @@
 				},
 
 				'response': function(response) {
-					return response;
+					return validate(response) ? extractData(response) : $q.reject(extractError(response));
 				},
 
 				'responseError': function(rejection) {
-					return $q.reject(rejection);
+					return $q.reject(extractError(rejection));
 				}
 			};
 		}
@@ -42,21 +54,10 @@
 			$q,
 			API_URL
 		) {
-			function extractData(response) {
-				return response.data.data;
-			}
-			
-			function extractError(response) {
-				return response.data || {'code': "Server Connection Failed"};
-			}
-			
-			function validate(response){
-				return typeof response.data.data === 'object';
-			}
-
 			return {
 				get : function(messageId){
-					return $http.get(API_URL + '/message/' + messageId)
+					return $http.get(API_URL + '/message/' + messageId);
+						/*
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -65,6 +66,7 @@
 								return $q.reject(extractError(response));
 							}
 						);
+						*/
 				},
 				create : function(messageObj) {
 					/*
@@ -124,7 +126,8 @@
 						"messageRecipient": messageObj.recipients || []
 					};
 					
-					return $http.post(API_URL + '/message', msgObj)
+					return $http.post(API_URL + '/message', msgObj);
+						/*
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -133,6 +136,7 @@
 								return $q.reject(extractError(response));
 							}
 						);
+						*/
 				},
 				list : function(timestamp, limit){
 					if (!timestamp){
@@ -141,7 +145,8 @@
 						timestamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
 					}
 					
-					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0))
+					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0));
+						/*
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -150,9 +155,11 @@
 								return $q.reject(extractError(response));
 							}
 						);
+						*/
 				},
 				remove : function(messageId){
-					return $http.del(API_URL + '/message/' + messageId)
+					return $http["delete"](API_URL + '/message/' + messageId);
+						/*
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -161,6 +168,7 @@
 								return $q.reject(extractError(response));
 							}
 						);
+						*/
 				}
 			};
 		}
