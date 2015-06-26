@@ -23,6 +23,32 @@
 	
 	***************************************************************/
 
+	.factory('httpRequestInterceptor', [
+		'$q',
+		'$rootScope',
+	
+		function (
+			$q,
+			$rootScope
+		) {
+			console.log($rootScope.auth);
+			
+			return {
+				'response': function(response) {
+					return response;
+				},
+
+				'responseError': function(rejection) {
+					return $q.reject(rejection);
+				}
+			};
+		}
+	])
+
+	.config(['$httpProvider', function($httpProvider) {  
+		$httpProvider.interceptors.push('httpRequestInterceptor');
+	}])
+	
 	.factory('MessagesService', [
 		'$rootScope',
 		'$http',
@@ -35,8 +61,6 @@
 			$q,
 			API_URL
 		) {
-			$http.defaults.headers.common['Authorization'] = $rootScope.auth;
-			
 			function extractData(response) {
 				return response.data.data;
 			}
