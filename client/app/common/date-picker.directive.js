@@ -65,16 +65,16 @@
 							num = i - firstDay + 1;
 							
 							offGrid = num < 1 || num > totalDays;
-							beforeToday = (month < todayObj.month) || (month == todayObj.month && num < todayObj.day);
-							isSelected = (num == parseDate(scope.startDate, "day") && month == parseDate(scope.startDate, "month"))
-										|| (num == parseDate(scope.endDate, "day") && month == parseDate(scope.endDate, "month"));
 							
 							tsStart = Date.parse(toDateStr(parseDate(scope.startDate, "month"), parseDate(scope.startDate, "day"), parseDate(scope.startDate, "year"), 0, 0, 0, "PM"));
 							tsEnd = Date.parse(toDateStr(parseDate(scope.endDate, "month"), parseDate(scope.endDate, "day"), parseDate(scope.endDate, "year"), 0, 0, 0, "PM"));
 							tsThis = Date.parse(toDateStr(month, num, year, 0, 0, 0, "PM"));
-							between = tsThis > tsStart && tsThis < tsEnd;
 							
-							//*** what about year?
+							between = tsThis > tsStart && tsThis < tsEnd;
+							beforeToday = tsThis < today.getTime();
+							
+							isSelected = (num == parseDate(scope.startDate, "day") && month == parseDate(scope.startDate, "month"))
+										|| (num == parseDate(scope.endDate, "day") && month == parseDate(scope.endDate, "month"));
 							
 							if (offGrid){
 								type = "off";
@@ -118,6 +118,7 @@
 							dayArray = createDayArray(newMonth, newYear, totalDays, firstDay);
 						
 						scope.month = ("00" + newMonth).slice(-2);
+						scope.year = newYear;
 						scope.monthName = monthNames[newMonth];
 						scope.totalDays = totalDays;
 						scope.firstDay = firstDay;
