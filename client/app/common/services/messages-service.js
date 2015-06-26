@@ -26,19 +26,17 @@
 			return {
 				'request': function(config) {
 					config.headers['Authorization'] = $rootScope.auth;
-					
-					config.transformResponse = [function(data){
-						return validate(data) ? extractData(data) : $q.reject(extractError(data));
-					}];
-					
-					config.transformResponseError = [function(data){
-						return $q.reject(extractError(data));
-					}];
-					
-					console.log(config);
-					
 					return config;
 				},
+
+				'response': function(response) {
+					console.log(response);
+					return validate(response) ? extractData(response) : $q.reject(extractError(response));
+				},
+
+				'responseError': function(rejection) {
+					return $q.reject(extractError(rejection));
+				}
 			};
 		}
 	])
@@ -71,8 +69,7 @@
 
 			return {
 				get : function(messageId){
-					return $http.get(API_URL + '/message/' + messageId);
-						/*
+					return $http.get(API_URL + '/message/' + messageId)
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -81,7 +78,6 @@
 								return $q.reject(extractError(response));
 							}
 						);
-						*/
 				},
 				create : function(messageObj) {
 					/*
@@ -141,8 +137,7 @@
 						"messageRecipient": messageObj.recipients || []
 					};
 					
-					return $http.post(API_URL + '/message', msgObj);
-						/*
+					return $http.post(API_URL + '/message', msgObj)
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -151,7 +146,6 @@
 								return $q.reject(extractError(response));
 							}
 						);
-						*/
 				},
 				list : function(timestamp, limit){
 					if (!timestamp){
@@ -160,8 +154,7 @@
 						timestamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
 					}
 					
-					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0));
-						/*
+					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0))
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -170,11 +163,9 @@
 								return $q.reject(extractError(response));
 							}
 						);
-						*/
 				},
 				remove : function(messageId){
-					return $http["delete"](API_URL + '/message/' + messageId);
-						/*
+					return $http["delete"](API_URL + '/message/' + messageId)
 						.then(
 							function(response) {
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
@@ -183,7 +174,6 @@
 								return $q.reject(extractError(response));
 							}
 						);
-						*/
 				}
 			};
 		}
