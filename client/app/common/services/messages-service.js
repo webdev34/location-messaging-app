@@ -30,6 +30,7 @@
 				},
 
 				'response': function(response) {
+					console.log(response);
 					return validate(response) ? extractData(response) : $q.reject(extractError(response));
 				},
 
@@ -54,6 +55,18 @@
 			$q,
 			API_URL
 		) {
+			function extractData(response) {
+				return response.data.data;
+			}
+			
+			function extractError(response) {
+				return response.data || {'code': "Server_Connection_Failed"};
+			}
+			
+			function validate(response){
+				return typeof response.data.data === 'object';
+			}
+
 			return {
 				get : function(messageId){
 					return $http.get(API_URL + '/message/' + messageId);

@@ -51,8 +51,6 @@
 				return MessagesService.list()
 					.then(
 						function(response){
-							console.log(response);
-							
 							messageList = [];	
 							
 							for (var i = 0; i < response.message.length; i++){
