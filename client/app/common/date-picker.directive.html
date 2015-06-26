@@ -1,0 +1,29 @@
+<section class="date-picker">
+
+	<div class="header">{{title}}</div>
+	
+	<div class="month-bar">
+		<span class="prev-month" ng-click="adjustMonth(-1)"></span>
+		<span class="current-month">{{monthName}} {{year}}</span>
+		<span class="next-month" ng-click="adjustMonth(1)"></span>
+	</div>
+	
+	<div class="week-bar clearfix">
+		<span class="day">Su</span>
+		<span class="day">Mu</span>
+		<span class="day">Tu</span>
+		<span class="day">We</span>
+		<span class="day">Th</span>
+		<span class="day">Fr</span>
+		<span class="day">Sa</span>
+	</div>
+	
+	<div class="day-grid clearfix">
+		<span ng-repeat="day in dayArray" class="day {{day.type}}" ng-click="setDay(day.day, day.selectable)">{{day.day}}</span>
+	</div>
+	
+	<div class="alert-row" ng-show="alert">
+		<span class="alert">{{alert}}</span>
+	</div>
+	
+</section>

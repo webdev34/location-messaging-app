@@ -675,13 +675,14 @@ input[type="checkbox"].qvr-slide-toggle {
 	}
 }
 
-// Time Picker Component
+// Date & Time Picker Component
 .date-picker, .time-picker {
 	text-align: center;
-	border: solid 3px $qvr-grey-3;
+	border: solid 3px $qvr-grey-2;
 	@include border-radius($qvr-border-radius);
 	background-color: $qvr-white-1;
 	padding: 0 0 25px 0 !important;
+	overflow: hidden;
 	
 	.header {
 		height: 45px;
@@ -693,7 +694,7 @@ input[type="checkbox"].qvr-slide-toggle {
 		color: $qvr-white-1;
 		
 		background-color: $qvr-blue-1;
-		border-bottom: solid 3px $qvr-grey-3;
+		border-bottom: solid 3px $qvr-grey-2;
 	}
 	
 	.alert-row {
@@ -714,15 +715,50 @@ input[type="checkbox"].qvr-slide-toggle {
 }
 	
 .date-picker {
+	font-size: $qvr-input-font-size;
+	font-family: $qvr-secondary-font;
+	
 	.month-bar {
 		height: 45px;
 		line-height: 45px;
+		border-bottom: solid 3px $qvr-grey-2;
+		font-weight: $qvr-font-weight-bold;
+		display: flex;
 		
-		border-bottom: solid 2px $qvr-grey-4;
+		.current-month {
+			flex-grow: 1;
+		}
 		
-		font-size: $qvr-input-font-size;
-		font-family: $qvr-secondary-font;
-		font-weight: $qvr-font-weight-medium;
+		.prev-month, .next-month {
+			width: 14.28%;
+			height: 100%;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: 25px;
+			cursor: pointer;
+		}
+		
+		.prev-month {
+			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 16 16"><polygon points="0,8 8,16 8,8 16,16 16,0 8,8 8,0" style="fill: #00A9CC"></polygon></svg>');
+		}
+		
+		.next-month {
+			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 16 16"><polygon points="0,0 0,16 8,8 8,16 16,8 8,0 8,8" style="fill: #00A9CC"></polygon></svg>');
+		}
+	}
+	
+	.week-bar {
+		.day {
+			display: block;
+			float: left;
+			
+			width: 14.28%;
+			height: 30px;
+			line-height: 30px;
+			
+			border-bottom: solid 1px $qvr-grey-4;
+			font-weight: $qvr-font-weight-bold;
+		}
 	}
 	
 	.day-grid {
@@ -735,11 +771,7 @@ input[type="checkbox"].qvr-slide-toggle {
 			line-height: 30px;
 			
 			border-bottom: solid 1px $qvr-grey-4;
-			
-			font-size: $qvr-input-font-size;
-			font-family: $qvr-secondary-font;
 			font-weight: $qvr-font-weight-medium;
-			
 			cursor: default;
 			
 			&.off {
@@ -814,7 +846,7 @@ input[type="checkbox"].qvr-slide-toggle {
 			}
 			
 			input {
-				border: solid 1px $qvr-grey-3;
+				border: solid 1px $qvr-grey-2;
 				@include border-radius($qvr-border-radius);
 			}
 			
