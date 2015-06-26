@@ -3,26 +3,6 @@
 
 	angular.module('enterprise-portal.services.messages', [])
 	
-	/***************************************************************
-	
-	// Would this see the auth token change?
-	.factory('httpRequestInterceptor', function () {
-		return {
-			request: function (config) {
-				config.headers['Authorization'] = $rootScope.auth;
-				return config;
-			}
-		};
-	})
-
-	.config(function ($httpProvider) {
-		$httpProvider.interceptors.push('httpRequestInterceptor');
-	})
-	
-	//*** Add interceptor for response transformation
-	
-	***************************************************************/
-
 	.factory('httpRequestInterceptor', [
 		'$q',
 		'$rootScope',
@@ -31,9 +11,13 @@
 			$q,
 			$rootScope
 		) {
-			console.log($rootScope.auth);
-			
 			return {
+				'request': function(config) {
+					console.log($rootScope.auth);
+					console.log(config);
+					return config;
+				},
+
 				'response': function(response) {
 					return response;
 				},
