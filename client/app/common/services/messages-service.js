@@ -30,12 +30,12 @@
 				},
 
 				'response': function(response) {
+					console.log("is -->", response);
 					return response || $q.when(response);
 					/*
 					return $q.when(response)
 						.then(
 							function(response) {
-								console.log("is -->", response);
 								return validate(response) ? extractData(response) : $q.reject(extractError(response));
 							},
 							function(response) {
