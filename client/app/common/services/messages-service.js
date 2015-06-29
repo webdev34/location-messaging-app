@@ -3,59 +3,6 @@
 
 	angular.module('enterprise-portal.services.messages', [])
 	
-	.config(['$httpProvider', function($httpProvider) {  
-		$httpProvider.interceptors.push(['$q', '$rootScope', 'FoundationApi', function($q, $rootScope, FoundationApi) {
-			function extractData(response) {
-				return response.data.data;
-			}
-
-			function extractError(response) {
-				return response.data || {
-					'code': "QVR_Server_Connection_Failed"
-				};
-			}
-
-			function validate(response) {
-				return typeof response.data.data === 'object';
-			}
-
-			return {
-				request: function(config) {
-					config.headers['Authorization'] = $rootScope.auth;
-					console.log("request", config);
-					return config;
-				},
-				response: function(response) {
-					if (response.config.url.includes("/web1.1/") || response.config.url.includes("/droid1.1/")) {
-						response = validate(response) ? extractData(response) : $q.reject(extractError(response));
-					}
-					return response || $q.when(response);
-				},
-				responseError: function(rejection) {
-					if (rejection.status == 401) {
-						rejection.data = {
-							status: 401,
-							descr: 'unauthorized',
-							code: 'QVR_Autherization_Failed'
-						}
-						return rejection.data;
-					}
-
-					rejection = extractError(rejection);
-					
-					FoundationApi.publish('main-notifications', {
-						title: rejection.code.replace("QVR_", "").replace(/_/g, " "),
-						content: '',
-						color: 'fail',
-						autoclose: '3000'
-					});
-					
-					return $q.reject(rejection);
-				}
-			}
-		}]);
-	}])
-	
 	.factory('MessagesService', [
 		'$http',
 		'API_URL_DROID',

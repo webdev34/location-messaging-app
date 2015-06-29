@@ -45,6 +45,59 @@
 		FastClick.attach(document.body);
 	}
 
+	app.config(['$httpProvider', function($httpProvider) {  
+		$httpProvider.interceptors.push(['$q', '$rootScope', 'FoundationApi', function($q, $rootScope, FoundationApi) {
+			function extractData(response) {
+				return response.data.data;
+			}
+
+			function extractError(response) {
+				return response.data || {
+					'code': "QVR_Server_Connection_Failed"
+				};
+			}
+
+			function validate(response) {
+				return typeof response.data.data === 'object';
+			}
+
+			return {
+				request: function(config) {
+					config.headers['Authorization'] = $rootScope.auth;
+					return config;
+				},
+				response: function(response) {
+					if (response.config.url.includes("/web1.1/") || response.config.url.includes("/droid1.1/")) {
+						return validate(response) ? extractData(response) || $q.when(extractData(response)) : $q.reject(extractError(response));
+					}else{
+						return response || $q.when(response);
+					}
+				},
+				responseError: function(rejection) {
+					if (rejection.status == 401) {
+						rejection.data = {
+							status: 401,
+							descr: 'unauthorized',
+							code: 'QVR_Autherization_Failed'
+						}
+						return rejection.data;
+					}
+
+					rejection = extractError(rejection);
+					
+					FoundationApi.publish('main-notifications', {
+						title: rejection.code.replace("QVR_", "").replace(/_/g, " "),
+						content: '',
+						color: 'fail',
+						autoclose: '3000'
+					});
+					
+					return $q.reject(rejection);
+				}
+			}
+		}]);
+	}]);
+	
 	app.controller('AppCtrl', [
 		'$http',
 		'UserModel',
