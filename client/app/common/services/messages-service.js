@@ -3,25 +3,8 @@
 
 	angular.module('enterprise-portal.services.messages', [])
 	
-	.factory('httpRequestInterceptor', [
-		'$rootScope',
-	
-		function (
-			$rootScope
-		) {
-			return {
-				'request': function(config) {
-					config.headers['Authorization'] = $rootScope.auth;
-					return config;
-				}
-			};
-		}
-	])
-	
 	.config(['$httpProvider', function($httpProvider) {  
-		$httpProvider.interceptors.push('httpRequestInterceptor');
-		
-		$httpProvider.interceptors.push(['$q', 'FoundationApi', function($q, FoundationApi) {
+		$httpProvider.interceptors.push(['$q', '$rootScope', 'FoundationApi', function($q, $rootScope, FoundationApi) {
 			function extractData(response) {
 				return response.data.data;
 			}
@@ -37,6 +20,11 @@
 			}
 
 			return {
+				request: function(config) {
+					config.headers['Authorization'] = $rootScope.auth;
+					console.log("request", config);
+					return config;
+				},
 				response: function(response) {
 					if (response.config.url.includes("/web1.1/") || response.config.url.includes("/droid1.1/")) {
 						response = validate(response) ? extractData(response) : $q.reject(extractError(response));
