@@ -1,71 +1,38 @@
 <!doctype html>
-<html lang="en" ng-app="enterprise-portal">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Quiver Enterprise Portal</title>
+<html lang="en" ng-app="enterprise-portal" ng-controller="AppCtrl as appCtrl">
 
-    <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+	<title>Quiver Enterprise Portal</title>
 
+	<link href="assets/css/app.css" rel="stylesheet" type="text/css">
+</head>
 
-  </head>
-  <body>
+<body>
+	<!-- Notifications -->
+	<zf-notification-set id="main-notifications" position="top-right"></zf-notification-set>
 
+	<!-- Main View -->
+	<div>
+		<div>
+			<app-header></app-header>
+		</div>
+		<app-activity></app-activity>
+		<div ui-view class="page-container"></div>
+	</div>
 
-  <!-- User Menu -->
-  <zf-offcanvas id="user-panel" position="right"  class="detached dark g-user-panel"  >
-      <a zf-close="" class="close-button">×</a>
-      
-      <user-side-bar></user-side-bar>
+	<script src="assets/js/foundation.js"></script>
+	<script src="assets/js/templates.js"></script>
+	<script src="assets/js/routes.js"></script>
+	<script src="assets/js/app.js"></script>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-cookies.js"></script>
 
-  </zf-offcanvas>
+	<script src="http://maps.google.com/maps/api/js"></script>
+	<script src="http://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.min.js"></script>
+</body>
 
-  
-
-  <!-- Main View -->
-  <div class="grid-frame vertical">
-
-    <div class="grid-content shrink" style="padding: 0;">
-      <header class="primary condense menu-group g-header">
-        
-        <div class="menu-group-left">
-          <ul class="menu-bar">
-            <li><a ui-sref="home"><strong>Quiver Enterprise Portal</strong></a></li>
-          </ul>
-        </div>
-        
-        <nav class="menu-group-right">
-          <ul class="menu-bar icon-left">
-            <li><a ui-sref="admin">Admin</a></li>
-            <li><a ui-sref="messages">Messages</a></li>
-            <li><a ui-sref="enterprise/profile">Enterprise Settings</a></li>
-            <li ng-controller="UserProfileController">
-              <a zf-toggle="user-panel" class="button__user">
-                <img zf-iconic="" icon="person" size="small" class="iconic-color-primary">
-                {{user.fullName}}
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-      </header>
-    </div>
-
-
-
-
-    <div ui-view class="grid-content"></div>
-  
-  </div>
-
-
-    <script src="/assets/js/foundation.js"></script>
-    <script src="/assets/js/templates.js"></script>
-    <script src="/assets/js/routes.js"></script>
-    <script src="/assets/js/app.js"></script>
-
-
-  </body>
 </html>

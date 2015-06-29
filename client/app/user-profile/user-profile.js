@@ -1,19 +1,18 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  angular.module('user-profile', [
-  		'enterprise-portal.models.user'
-  	])
-
-  	.controller('UserProfileController', ['$scope','UserModel', function($scope, UserModel){
-   
-		UserModel.getUserDetail()
-	  		.then(function(result) {
-	  			$scope.user = result;
-	  		});   
-  
-  }]);
-
- 
+	angular.module('user-profile', [
+		'enterprise-portal.models.user',
+		'user-profile.edit',
+		'user-profile.register'
+	])
+	
+	.config(['$stateProvider', function($stateProvider) {
+		$stateProvider
+			.state('user-profile', {
+				url: '/user',
+				templateUrl: 'app/user-profile/user-profile.tmpl.html'
+			});
+	}]);
 
 })();

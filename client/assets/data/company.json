@@ -5,19 +5,19 @@
   "email": "marketing@teslamotors.com",
   "companyName": "Tesla Motors, Inc.",
   "description": "We like electric cars. (Up to 140 characters).",
-  "logo": "assets/images/logo.jpg",
+  "logo": "assets/img/logo.jpg",
   "administrators": [
     {
       "name": "Elon Musk",
       "title": "Executive",
       "username": "elonmusk",
-      "avatar": "assets/images/avatar.jpg"
+      "avatar": "assets/img/avatar.jpg"
     },
     {
       "name": "Nikola Tesla",
       "title": "Research & Development",
       "username": "nikola",
-      "avatar": "assets/images/avatar.jpg"
+      "avatar": "assets/img/avatar.jpg"
     }
   ],
   "users": [
@@ -25,18 +25,18 @@
       "name": "Jane Appleseed",
       "title": "Marketing",
       "username": "jane_a",
-      "avatar": "assets/images/avatar.jpg"
+      "avatar": "assets/img/avatar.jpg"
     },{
       "name": "Jane Appleseed",
       "title": "Marketing",
       "username": "jane_a",
-      "avatar": "assets/images/avatar.jpg"
+      "avatar": "assets/img/avatar.jpg"
     },
     {
       "name": "John Appleseed",
       "title": "Marketing",
       "username": "john_a",
-      "avatar": "assets/images/avatar.jpg"
+      "avatar": "assets/img/avatar.jpg"
     }
   ]
 }

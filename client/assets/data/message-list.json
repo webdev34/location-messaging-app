@@ -1,22 +1,28 @@
 {
   "messages": [
     {
-      "_id": "<hex>",
+      "_id": "<hex1>",
       "messageTitle": "Message 1",
       "content": "This is the content of the message",
       "status": "Active"
     },
     {
-      "_id": "<hex>",
+      "_id": "<hex2>",
       "messageTitle": "Message 2",
       "content": "This is the content of the message",
       "status": "Active"
     },
     {
-      "_id": "<hex>",
+      "_id": "<hex3>",
       "messageTitle": "Message 3",
       "content": "This is the content of the message",
-      "status": "Setup"
+      "status": "Inactive"
+    },
+    {
+      "_id": "<hex3>",
+      "messageTitle": "Message 4",
+      "content": "This is the content of the message",
+      "status": "Closed"
     }
   ]
 }

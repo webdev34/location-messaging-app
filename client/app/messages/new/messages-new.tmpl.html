@@ -1,70 +1,183 @@
----
-name: messages-new
-url: /enterprise/messages/new
----
+<header class="heading-bar">
+	<h1>Compose</h1>
+</header>
 
-<div class="grid-block page-messages">
-	<div id="sidebar" class="medium-3 grid-block">
-		<div class="grid-content">
-			<messages-side-bar></messages-side-bar>
-		</div>
-	</div>
-
-	<div class="medium-8 grid-block message-detail" ng-controller="NewMessageCtrl">
-		<div class="grid-content">
+<section class="message-content-wrap new-message">
+	<form role="form" class="qvr-form create-edit-message-form" ng-submit="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)">
+		<div class="float-right top-controls">
+			<label class="qvr-label">Message Status </label>
 			
-			<form role="form" ng-submit="createNewMessage(newMessage)">
-				
-				<header class="clearfix">
-					<br>
-					<h2>New Message</h2>
-					<div class="card message-box">
-						<img ng-src="{{company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseController">
-						<input ng-model="newMessage.content" type="text" class="message-input" placeholder="Write here...">
+			<select class="qvr-select select-status" ng-model="newMessageCtrl.newMessage.status" required>
+				<option>Draft</option>
+				<option>Inactive</option>
+				<option>Active</option>
+				<option>Closed</option>
+			</select>
+			
+			<button type="submit" class="qvr-button action">Save Message</button>
+		</div>
+
+		<section class="form-upper">
+			<span id="msg-title-text" class="input-wrapper">
+				<label class="qvr-label">Message Label</label>
+				<input placeholder="" type="text" ng-model="newMessageCtrl.newMessage.messageTitle" required>
+			</span>
+			
+			<span id="msg-id-text" class="input-wrapper">
+				<label class="qvr-label">Message ID</label>
+				<input placeholder="00000" type="text">
+			</span>
+			
+			<span id="campaign-select" class="input-wrapper">
+				<label class="qvr-label">Associated Campaign</label>
+				<select class="qvr-select" required>
+					<option>No campaigns currently available</option>
+				</select>
+			</span>
+		</section>
+			
+		<section class="content-row">
+			<section class="column-3">
+				<label class="qvr-label">Recipients</label>
+				<div class="message-recipients">
+					<span class="targeted-followers-label">Targeted Followers</span>
+					<span class="targeted-followers-count">0</span>
+				</div>
+				<label class="qvr-label">Message Content</label>
+				<textarea ng-model="newMessageCtrl.newMessage.content" class="message-content" placeholder="Insert Content" required></textarea>
+				<a class="attach-asset"><span class="icon i-camera"></span></a>
+			</section>
+
+			<section class="column-3">
+				<section class="location-section">
+					<h2>Add Delivery Location</h2>
+					
+					<label class="qvr-label">Select Preset Locations</label>
+					<select class="qvr-select" required>
+						<option>---</option>
+					</select>
+					
+					<div class="map-search-wrap">
+						<label class="qvr-label">Create Custom Delivery Location</label>
+						<span class="icon i-location-large"></span>
+						<div class="search-button" ng-click="doSearch()">
+							<span class="icon i-search-white"></span>
+						</div>
+						<input type="search" ng-model="newMessageCtrl.search" placeholder="Enter Address">
 					</div>
 
-				</header>
-				<hr>
+					<div ng-controller="MapCoordinatesCtrl" class="ng-scope">
+						<map center="43.642566,-79.387057" zoom="12" style="height:250px">
+							<!--
+							<info-window id="1" position="43.642566,-79.387057" visible="true">
+							<div ng-non-bindable="">
+								Toronto, ON
+							</div>
+							</info-window>
+							-->
+						</map>
+					</div>
 
-				<section class="clearfix">
-					<h4>Add Location</h4>
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2692591501204!2d-79.38705699999998!3d43.642565999999974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34d68bf33a9b%3A0x15edd8c4de1c7581!2sCN+Tower!5e0!3m2!1sen!2sca!4v1427435891553" width="100%" height="320px" frameborder="0" style="border:0"></iframe>
+					<div class="radius">
+						<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span> km</span> radius
+					</div>
+
+					<input type="range" class="radius-range" ng-model="newMessageCtrl.newMessage.range">
 				</section>
-				<hr>
+			</section>
 
-				<section class="clearfix">
-					<h4>Add Delivery Time</h4>
-
-					<label>
-						Start Time
-						<span class="inline-label">
-							<span class="form-label">Date</span>
-							<input type="date" value="2015-03-29">
-							<span class="form-label">Time</span>
-							<input type="time" value="12:35">
-						</span>
-					</label>
-
-					<label>
-						End Time
-						<span class="inline-label">
-							<span class="form-label">Date</span>
-							<input type="date" value="2015-04-12">
-							<span class="form-label">Time</span>
-							<input type="time" value="18:35">
-						</span>
-					</label>
-
+			<section class="column-3">
+				<section class="time-selector" ng-show="newMessageCtrl.showStartTimePicker">
+					<time-picker
+						title="Start Time"
+						name="start-time"
+						ng-model="newMessageCtrl.newMessage.startTime"
+						start-date="newMessageCtrl.newMessage.startDate"
+						start-time="newMessageCtrl.newMessage.startTime"
+						end-date="newMessageCtrl.newMessage.endDate"
+						end-time="newMessageCtrl.newMessage.endTime"
+					></time-picker>
 				</section>
-				<hr>
+				
+				<section class="time-selector" ng-show="newMessageCtrl.showEndTimePicker">
+					<time-picker
+						title="End Time"
+						name="end-time"
+						ng-model="newMessageCtrl.newMessage.endTime"
+						start-date="newMessageCtrl.newMessage.startDate"
+						start-time="newMessageCtrl.newMessage.startTime"
+						end-date="newMessageCtrl.newMessage.endDate"
+						end-time="newMessageCtrl.newMessage.endTime"
+					></time-picker>
+				</section>
+				
+				<section class="date-selector" ng-show="newMessageCtrl.showStartDatePicker">
+					<date-picker
+						title="Start Date"
+						name="start-date"
+						ng-model="newMessageCtrl.newMessage.startDate"
+						start-date="newMessageCtrl.newMessage.startDate"
+						start-time="newMessageCtrl.newMessage.startTime"
+						end-date="newMessageCtrl.newMessage.endDate"
+						end-time="newMessageCtrl.newMessage.endTime"
+					></date-picker>
+				</section>
+				
+				<section class="date-selector" ng-show="newMessageCtrl.showEndDatePicker">
+					<date-picker
+						title="End Date"
+						name="end-date"
+						ng-model="newMessageCtrl.newMessage.endDate"
+						start-date="newMessageCtrl.newMessage.startDate"
+						start-time="newMessageCtrl.newMessage.startTime"
+						end-date="newMessageCtrl.newMessage.endDate"
+						end-time="newMessageCtrl.newMessage.endTime"
+					></date-picker>
+				</section>
+				
+				<section class="time-selector" ng-hide="newMessageCtrl.showStartTimePicker || newMessageCtrl.showEndTimePicker || newMessageCtrl.showStartDatePicker || newMessageCtrl.showEndDatePicker">
+					<h2>Add Delivery Time</h2>
+					
+					<div class="delivery-box start-date">
+						<label class="qvr-label">Start Date:</label>
+						<input type="text" class="date" ng-model="newMessageCtrl.newMessage.startDate" ng-click="newMessageCtrl.showStartDatePicker=true">
+					</div>
+					<div class="delivery-box start-time">
+						<label class="qvr-label">Start Time:</label>
+						<input type="text" class="hourglass" ng-model="newMessageCtrl.newMessage.startTime" ng-click="newMessageCtrl.showStartTimePicker=true">
+					</div>
 
-				<div class="float-right">
-					<button ng-click="" class="alert hollow button">Cancel</button>
-				    <button type="submit" class="success button">Create Message</button>
-				</div>
+					<div class="delivery-box end-date">
+						<label class="qvr-label">End Date:</label>
+						<input type="text" class="date" ng-model="newMessageCtrl.newMessage.endDate" ng-click="newMessageCtrl.showEndDatePicker=true">
+					</div>
+					<div class="delivery-box end-time">
+						<label class="qvr-label">End Time:</label>
+						<input type="text" class="hourglass" ng-model="newMessageCtrl.newMessage.endTime" ng-click="newMessageCtrl.showEndTimePicker=true">
+					</div>
+				</section>
 
-			</form>
+				<section class="location-details">
+					<h2>Set Entry/Exit</h2>
+					
+					<div class="switch-wrapper">
+						<span class="icon i-location-enter" ng-class="{active: newMessageCtrl.newMessage.discoverOn=='enter'}"></span>
 
-		</div>
-	</div>
-</div>
+						<div class="switch enter-exit-switch">
+							<input type="checkbox" id="enter-exit-switch" ng-true-value="'leave'" ng-false-value="'enter'" ng-model="newMessageCtrl.newMessage.discoverOn">
+							<label for="enter-exit-switch"></label>
+						</div>
+
+						<span class="icon i-location-leave" ng-class="{active: newMessageCtrl.newMessage.discoverOn=='leave'}" ></span>
+					</div>
+					
+					<p>
+						Recipient discovers message
+						<br>
+						when <span ng-show="newMessageCtrl.newMessage.discoverOn=='enter'">entering</span><span ng-show="newMessageCtrl.newMessage.discoverOn=='leave'">leaving</span> the <span>{{newMessageCtrl.newMessage.range}} KM</span> radius
+					</p>
+				</section>
+			</section>
+		</section>
+	</form>
+</section>

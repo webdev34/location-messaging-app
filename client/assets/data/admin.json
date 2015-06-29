@@ -3,38 +3,38 @@
     {
       "companyName": "Tesla Motors, Inc.",
       "username": "teslamotors",
-      "logo": "assets/images/logo.jpg",
+      "logo": "assets/img/logo.jpg",
       "administrators": [
         {
           "name": "Elon Musk",
           "title": "Executive",
           "username": "elonmusk",
-          "avatar": "assets/images/avatar.jpg"
+          "avatar": "assets/img/avatar.jpg"
         },
         {
           "name": "Nikola Tesla",
           "title": "Research & Development",
           "username": "nikola",
-          "avatar": "assets/images/avatar.jpg"
+          "avatar": "assets/img/avatar.jpg"
         }
       ]
     },
     {
       "companyName": "Space X",
       "username": "teslamotors",
-      "logo": "assets/images/logo.jpg",
+      "logo": "assets/img/logo.jpg",
       "administrators": [
         {
           "name": "Elon Musk",
           "title": "Executive",
           "username": "elonmusk",
-          "avatar": "assets/images/avatar.jpg"
+          "avatar": "assets/img/avatar.jpg"
         },
         {
           "name": "Alber Einstein",
           "title": "Research & Development",
           "username": "albert",
-          "avatar": "assets/images/avatar.jpg"
+          "avatar": "assets/img/avatar.jpg"
         }
       ]
     }

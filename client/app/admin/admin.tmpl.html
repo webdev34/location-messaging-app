@@ -1,36 +1,84 @@
----
-name: admin
-url: /admin
----
+<div class="page page--enterprise">
+	<header class="heading-bar">
+		<h1>Admin</h1>
+	</header>
 
-
-
-<div class="grid-block page-profile">
-	<section class="grid-content large-8" ng-controller="AdminController">
-		
-		
-		<a href="" class="button float-right"> + Add Enterprise</a>
-		<h2>Enterprises</h2>
-
-		<ul class="g-user-list">
-			<li ng-repeat="company in enterprises.enterprise">
-				<img ng-src="{{company.logo}}" alt="avatar" class="avatar">
-				<div class="float-left">
-					<strong>{{company.companyName}}</strong>
-					<br><br>
-					Admins: <br>
-					<a  ui-sref="enterprise/user" class="button small" ng-repeat="user in company.administrators">{{user.name}} </a>
-
+	<div class="enterprise-content">
+		<div class="enterprise-users">
+			<br>
+			
+			<section class="user-section">
+				<h2></h2>
+				<div class="g-user-list">
+					<a zf-open="addEnterpriseModal" class="qvr-button warning"> + Add Enterprise</a>
 				</div>
-				
-				<ul class="li-buttons button-group secondary">
-					<li><a class="" href="#">Message</a></li>
-					<li><a class="" href="#">Suspend</a></li>
-					<li><a class="" href="#">Remove</a></li>
+			</section>
+
+			<section class="user-section">
+				<h2>Enterprises</h2>
+				<ul class="g-user-list">
+					<li ng-repeat="company in adminCtrl.enterprises.enterprise">
+						<img ng-src="{{company.logo}}" alt="avatar" class="avatar">
+						
+						<div>
+							<label class="qvr-label">{{company.companyName}}</label>
+							<br>
+							<strong>Admins:</strong>
+							<br>
+							<span ng-repeat="user in company.administrators">
+								<a ui-sref="user-profile" class="" >{{user.name}} </a>
+								<br>
+
+							</span>
+
+						</div>
+						
+						<div class="user-rights">
+					<label class="qvr-label">User Rights</label>
+					<a class="qvr-button hollow small" href="#">Message</a>
+					<a class="qvr-button info small" href="#">Suspend</a>
+					<a class="qvr-button hollow small" href="#">Remove</a>
+				</div>
+					</li>
 				</ul>
-			</li>
-		</ul>
+			</section>
+
+		</div>
+	</div>
+
+		
+		
+		
 
 
 	</section>
+</div>
+
+<!-- Add Enterprise Modal -->
+<div zf-modal="" id="addEnterpriseModal">
+	<a zf-close="" class="close-button">×</a>
+	<h2>+ Add Enterprise</h2>
+	<hr>
+
+	<form role="form"  class="qvr-form" ng-submit="adminCtrl.addEnterprise()">
+		
+		<label>Enterprise Name</label>
+		<input type="text" ng-model="adminCtrl.newEnterprise.companyName">
+
+		<label>Enterprise Username</label>
+		<input type="text" ng-model="adminCtrl.newEnterprise.username">
+
+		<label>Email</label>
+		<input type="email" ng-model="adminCtrl.newEnterprise.email">
+
+
+		<hr>
+		<div class="float-right">
+			<a zf-close="" class="qvr-button warning hollow">Cancel</a>
+			<button type="submit" class="qvr-button info">Add Enterprise</button>
+		</div>
+
+	</form>
+	
+
 </div>

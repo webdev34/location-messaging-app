@@ -1,119 +1,124 @@
----
-name: messages-edit
-url: /enterprise/messages/edit
----
+<header class="heading-bar">
+	<h1>Edit Message</h1>
+</header>
 
-<div class="grid-block page-messages">
-	<div id="sidebar" class="medium-3 grid-block">
-		<div class="grid-content">
-			<messages-side-bar></messages-side-bar>
-		</div>
-	</div>
+<section class="message-content-wrap">
+	<form role="form" class="qvr-form create-edit-message-form" ng-submit="editMessageCtrl.updateMessage()">
+		<section>
+			<div class="float-right top-controls">
+				<button type="submit" class="qvr-button info edit-button">Save Changes</button>
+				<button ng-click="editMessageCtrl.cancelEdit()" class="qvr-button warning hollow edit-button">Cancel</button>
+			</div>
+		</section>
 
-	<div class="medium-8 grid-block message-deatil" ng-controller="MessageDetailController">
-		<div class="grid-content">
-			<br>
+		<section>
+			<h2>Edit Message</h2>
+		</section>
 
-
-			<header class="clearfix">
-				<br>
-				
-
-				<div class="float-left">
-					<input type="text" class="title-edit" ng-model="message.messageTitle">
-				</div>
-				
-
-				<div class="card message-box">
-					<img ng-src="{{company.logo}}" alt="" class="company-logo" ng-controller="EnterpriseController">
-					<input ng-model="message.content" type="text" class="message-input" placeholder="Write here...">
-				</div>
-				<div class="float-right status-box">
-					Status: 
-					<ul class="button-group  small segmented">
-						<li><a href="#">Setup</a></li>
-						<li class="is-active"><a href="#">Active</a></li>
-						<li><a href="#">Inactive (Delivering)</a></li>
-						<li><a href="#">Closed</a></li>
-					</ul>
-				</div>
-
-				
-			</header>
-			<hr>
-
+		<section>
+			<div class="half-size">
+				<label class="qvr-label">Message Label:</label>
+				<input placeholder="Message Title" type="text" class="message-label" ng-model="editMessageCtrl.editedMessage.messageTitle" required>
+			</div>
 			
-			<section class="clearfix">
-				<h4>Location</h4>
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2692591501204!2d-79.38705699999998!3d43.642565999999974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34d68bf33a9b%3A0x15edd8c4de1c7581!2sCN+Tower!5e0!3m2!1sen!2sca!4v1427435891553" width="100%" height="320px" frameborder="0" style="border:0"></iframe>
-			</section>
-			<hr>
+			<div class="half-size">
+				<label class="qvr-label">Set Message Status: </label>
+				
+				<select class="qvr-select select-status"  ng-model="editMessageCtrl.editedMessage.status" required>
+					<option>Inactive</option>
+					<option>Active</option>
+					<option>Closed</option>
+				</select>
 
-			<section class="clearfix">
-				<h4>Delivery Time</h4>
+			</div>
+			
+			<label class="qvr-label">To:</label>
+			<input placeholder="Choose Recipients" ng-model="editMessageCtrl.editedMessage.sentTo" type="text" disabled>
 
-				<label>
-					Start Time
-					<span class="inline-label">
-						<span class="form-label">Date</span>
-						<input type="date" value="2015-03-29">
-						<span class="form-label">Time</span>
-						<input type="time" value="12:35">
-					</span>
-				</label>
+			<label class="qvr-label">Content:</label>
+			<textarea ng-model="editMessageCtrl.editedMessage.content" class="message-content" placeholder="Insert Content"></textarea>
 
-				<label>
-					End Time
-					<span class="inline-label">
-						<span class="form-label">Date</span>
-						<input type="date" value="2015-04-12">
-						<span class="form-label">Time</span>
-						<input type="time" value="18:35">
-					</span>
-				</label>
+			<a class="qvr-button info attach-asset"><span class="icon i-camera"></span> Attach Asset</a>
+		</section>
 
-			</section>
-			<hr>
+		<br>
 
-
-
-			<section class="measure">
-				<h3>Measure</h3>
-				<br>
-				<div class="metric">
-					<span>{{message.sentCount}}</span>
-					<label>Sent</label>
+		<section class="location-section">
+			<label class="qvr-label">Add Delivery Location:</label>
+			<div class="map-search-wrap">
+				<span class="icon i-location-large"></span>
+				<div class="search-button">
+					<span class="icon i-search-white"></span>
 				</div>
-				<div class="metric">
-					<span>{{message.recipientCount}}</span>
-					<label>Read</label>
-				</div>
-				<div class="metric">
-					<span>{{message.likeCount}}</span>
-					<label>Likes</label>
-				</div>
-				<div class="metric">
-					<span>{{message.commentCount}}</span>
-					<label>Comments</label>
-				</div>
-				<div class="metric">
-					<span>{{message.forwardCount}}</span>
-					<label>Forwards</label>
-				</div>
-				<div class="metric">
-					<span>{{message.saveCount}}</span>
-					<label>Saves</label>
-				</div>
-			</section>
-
-			<hr>
-
-			<div class="float-right">
-				<button ng-click="" class="alert hollow button">Disgard Changes</button>
-			    <button type="submit" class="success button">Save Changes</button>
+				<input type="search" placeholder="Search for Location">
 			</div>
 
+			<div ng-controller="MapCoordinatesCtrl" class="ng-scope">
+				<map center="43.642566,-79.387057" zoom="12">
+					<info-window id="1" position="43.642566,-79.387057" visible="true">
+						<div ng-non-bindable="">
+							Toronto, ON
+						</div>
+					</info-window>
+				</map>
+			</div>
+		
+			<div class="radius">
+				<span>{{editMessageCtrl.editedMessage.range}} km</span> radius
+			</div>
 
-		</div>
-	</div>
-</div>
+			<input type="range" class="radius-range" ng-model="editMessageCtrl.editedMessage.range">
+		</section>
+
+		<section class="location-details">
+			<div class="float-left">
+				<span class="icon i-location-enter" ng-class="{active: editMessageCtrl.editedMessage.discoverOn=='enter'}"></span>
+
+				<div class="switch enter-exit-switch">
+					<input type="checkbox" id="enter-exit-switch" ng-true-value="'leave'" ng-false-value="'enter'" ng-model="editMessageCtrl.editedMessage.discoverOn">
+					<label for="enter-exit-switch"></label>
+				</div>
+
+				<span class="icon i-location-leave" ng-class="{active: editMessageCtrl.editedMessage.discoverOn=='leave'}" ></span>
+			</div>
+			
+			<p class="float-left">
+				Recipient discovers message
+				<br>
+				when  <span ng-show="editMessageCtrl.editedMessage.discoverOn=='enter'">entering</span><span ng-show="editMessageCtrl.editedMessage.discoverOn=='leave'">leaving</span> the <span>{{newMessageCtrl.newMessage.range}} KM</span> the <span>{{editMessageCtrl.editedMessage.range}} KM</span> radius
+			</p>
+		</section>
+
+		<section>
+			<h2>Delivery Time</h2>
+		</section>
+
+		<br>
+		
+		<section>
+			<div class="float-left">
+				<div class="delivery-box">
+					<label class="qvr-label">Start Date:</label>
+					<input type="text" class="date" value="2015 - 04 - 12">
+				</div>
+				
+				<div class="delivery-box">
+					<label class="qvr-label">End Date:</label>
+					<input type="text" class="date" value="2015 - 04 - 12">
+				</div>
+			</div>
+
+			<div class="float-left">
+				<div class="delivery-box">
+					<label class="qvr-label">Start Time:</label>
+					<input type="text" class="hourglass" value="12:35 PM">
+				</div>
+				
+				<div class="delivery-box">
+					<label class="qvr-label">End Time:</label>
+					<input type="text" class="hourglass" value="12:35 PM">
+				</div>
+			</div>
+		</section>
+	</form>
+</section>
