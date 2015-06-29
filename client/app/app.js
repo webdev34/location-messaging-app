@@ -67,8 +67,9 @@
 					return config;
 				},
 				response: function(response) {
-					if (response.config.url.includes("/web1.1/") || response.config.url.includes("/droid1.1/")) {
-						return validate(response) ? extractData(response) || $q.when(extractData(response)) : $q.reject(extractError(response));
+					// filter out template requests
+					if (response.headers()['content-type'] === "application/json; charset=utf-8") {
+						return validate(response) ? extractData(response) || $q.when(extractData(response)) : $q.reject(extractError(response)); // doesn't force a fail response
 					}else{
 						return response || $q.when(response);
 					}
@@ -199,17 +200,19 @@
 					.then(
 						function success(response) {
 							$rootScope.auth = response.authorization;
-							
 							appCtrl.user = UserModel.user;
 							
-							FoundationApi.publish('main-notifications', {
-								title: 'Login Succesful',
-								content: '',
-								color: 'success',
-								autoclose: '3000'
-							});
+							// suppress false positives
+							if (!response.code){
+								FoundationApi.publish('main-notifications', {
+									title: 'Login Succesful',
+									content: '',
+									color: 'success',
+									autoclose: '3000'
+								});
 
-							goToHomePage();
+								goToHomePage();
+							}
 						},
 						function error(response) {
 							FoundationApi.publish('main-notifications', {
