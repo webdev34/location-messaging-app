@@ -4,12 +4,25 @@
 	angular.module('enterprise-portal.services.messages', [])
 	
 	.factory('httpRequestInterceptor', [
-		'$q',
 		'$rootScope',
 	
 		function (
-			$q,
 			$rootScope
+		) {
+			return {
+				'request': function(config) {
+					config.headers['Authorization'] = $rootScope.auth;
+					return config;
+				}
+			};
+		}
+	])
+	
+	.factory('httpResponseInterceptor', [
+		'$q',
+	
+		function (
+			$q
 		) {
 			function extractData(response) {
 				return response.data.data;
@@ -23,34 +36,24 @@
 				return typeof response.data.data === 'object';
 			}
 
-			return {
-				'request': function(config) {
-					config.headers['Authorization'] = $rootScope.auth;
-					return config;
-				},
-
-				'response': function(response) {
-					console.log("is -->", response);
-					return response || $q.when(response);
-					/*
-					return $q.when(response)
-						.then(
-							function(response) {
-								return validate(response) ? extractData(response) : $q.reject(extractError(response));
-							},
-							function(response) {
-								console.log("ie -->", response);
-								return $q.reject(extractError(response));
-							}
-						);
-					*/
-				}
+			return function(promise){
+				return promise.then(
+						function(response) {
+							console.log("is -->", response);
+							return validate(response) ? extractData(response) : $q.reject(extractError(response));
+						},
+						function(response) {
+							console.log("ie -->", response);
+							return $q.reject(extractError(response));
+						}
+					);
 			};
 		}
 	])
 	
 	.config(['$httpProvider', function($httpProvider) {  
 		$httpProvider.interceptors.push('httpRequestInterceptor');
+		$httpProvider.interceptors.push('httpResponseInterceptor');
 	}])
 	
 	.factory('MessagesService', [
