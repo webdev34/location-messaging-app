@@ -30,7 +30,9 @@
 				},
 
 				'response': function(response) {
-					return (response || $q.when(response))
+					return response || $q.when(response);
+					/*
+					return $q.when(response)
 						.then(
 							function(response) {
 								console.log("is -->", response);
@@ -41,6 +43,7 @@
 								return $q.reject(extractError(response));
 							}
 						);
+					*/
 				}
 			};
 		}
