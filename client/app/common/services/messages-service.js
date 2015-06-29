@@ -18,77 +18,67 @@
 		}
 	])
 	
-	.factory('httpResponseInterceptor', [
-		'$q',
-	
-		function (
-			$q
-		) {
-			function extractData(response) {
-				return response.data.data;
-			}
-			
-			function extractError(response) {
-				return response.data || {'code': "Server_Connection_Failed"};
-			}
-			
-			function validate(response){
-				return typeof response.data.data === 'object';
-			}
-
-			return function(promise){
-				return promise.then(
-						function(response) {
-							console.log("is -->", response);
-							return validate(response) ? extractData(response) : $q.reject(extractError(response));
-						},
-						function(response) {
-							console.log("ie -->", response);
-							return $q.reject(extractError(response));
-						}
-					);
-			};
-		}
-	])
-	
 	.config(['$httpProvider', function($httpProvider) {  
 		$httpProvider.interceptors.push('httpRequestInterceptor');
-		$httpProvider.interceptors.push('httpResponseInterceptor');
-	}])
-	
-	.factory('MessagesService', [
-		'$http',
-		'$q',
-		'API_URL_DROID',
 		
-		function(
-			$http,
-			$q,
-			API_URL
-		) {
+		$httpProvider.interceptors.push(['$q', 'FoundationApi', function($q, FoundationApi) {
 			function extractData(response) {
 				return response.data.data;
 			}
-			
+
 			function extractError(response) {
-				return response.data || {'code': "Server_Connection_Failed"};
+				return response.data || {
+					'code': "QVR_Server_Connection_Failed"
+				};
 			}
-			
-			function validate(response){
+
+			function validate(response) {
 				return typeof response.data.data === 'object';
 			}
 
 			return {
+				response: function(response) {
+					if (response.config.url.includes("/web1.1/") || response.config.url.includes("/droid1.1/")) {
+						response = validate(response) ? extractData(response) : $q.reject(extractError(response));
+					}
+					return response || $q.when(response);
+				},
+				responseError: function(rejection) {
+					if (rejection.status == 401) {
+						rejection.data = {
+							status: 401,
+							descr: 'unauthorized',
+							code: 'QVR_Autherization_Failed'
+						}
+						return rejection.data;
+					}
+
+					rejection = extractError(rejection);
+					
+					FoundationApi.publish('main-notifications', {
+						title: rejection.code.replace("QVR_", "").replace(/_/g, " "),
+						content: '',
+						color: 'fail',
+						autoclose: '3000'
+					});
+					
+					return $q.reject(rejection);
+				}
+			}
+		}]);
+	}])
+	
+	.factory('MessagesService', [
+		'$http',
+		'API_URL_DROID',
+		
+		function(
+			$http,
+			API_URL
+		) {
+			return {
 				get : function(messageId){
-					return $http.get(API_URL + '/message/' + messageId)
-						.then(
-							function(response) {
-								return validate(response) ? extractData(response) : $q.reject(extractError(response));
-							},
-							function(response) {
-								return $q.reject(extractError(response));
-							}
-						);
+					return $http.get(API_URL + '/message/' + messageId);
 				},
 				create : function(messageObj) {
 					/*
@@ -148,15 +138,7 @@
 						"messageRecipient": messageObj.recipients || []
 					};
 					
-					return $http.post(API_URL + '/message', msgObj)
-						.then(
-							function(response) {
-								return validate(response) ? extractData(response) : $q.reject(extractError(response));
-							},
-							function(response) {
-								return $q.reject(extractError(response));
-							}
-						);
+					return $http.post(API_URL + '/message', msgObj);
 				},
 				list : function(timestamp, limit){
 					if (!timestamp){
@@ -165,26 +147,10 @@
 						timestamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
 					}
 					
-					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0))
-						.then(
-							function(response) {
-								return validate(response) ? extractData(response) : $q.reject(extractError(response));
-							},
-							function(response) {
-								return $q.reject(extractError(response));
-							}
-						);
+					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0));
 				},
 				remove : function(messageId){
-					return $http["delete"](API_URL + '/message/' + messageId)
-						.then(
-							function(response) {
-								return validate(response) ? extractData(response) : $q.reject(extractError(response));
-							},
-							function(response) {
-								return $q.reject(extractError(response));
-							}
-						);
+					return $http["delete"](API_URL + '/message/' + messageId);
 				}
 			};
 		}
