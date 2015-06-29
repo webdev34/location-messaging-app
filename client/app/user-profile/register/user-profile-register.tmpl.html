@@ -1,0 +1,14 @@
+<div class="page page--login page--register">
+
+	<form class="login-form register-form qvr-form on-dark  medium-4 medium-offset-4" ng-submit="registerUserCtrl.registerNewUser()">
+		<input type="text" placeholder="Name" ng-model="registerUserCtrl.newUser.fullName" required>
+		<input type="text" placeholder="@handle" ng-model="registerUserCtrl.newUser.username" required>
+		<input type="text" placeholder="Email" ng-model="registerUserCtrl.newUser.email" required>
+		<input type="password" placeholder="Password" ng-model="registerUserCtrl.newUser.password" required>
+\
+		<div class="qvr-align-center">
+			<button type="submit" class="qvr-button on-dark">Register</button>
+		</div>
+	</form>
+
+</div>

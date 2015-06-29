@@ -1,0 +1,128 @@
+// Reusable Components
+.corporate-info {
+	position: relative;
+	text-align: center;
+	background: #fff;
+	padding: 20px 0 35px 0;
+
+	.arrow-down {
+		position: absolute;
+		left: 50%;
+		margin: 0 0 -20px -20px;
+		bottom: 0;
+		border-top-color: #fff;
+	}
+
+	.corp-logo {
+		max-width: 275px;
+	}
+
+	.corp-details {
+		font-weight: $qvr-font-weight-light;
+		font-size: 14px;
+		line-height: 1.3em;
+	}
+}
+
+.g-user-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 2rem;
+
+	> li {
+		@extend .clearfix;
+		display: flex;
+		justify-content: left;
+		padding: 1rem;
+		border: 1px solid #ccc;
+		border-radius: 12px;
+		margin-bottom: .5rem;
+		transition: all 0.3s ease-in-out;
+		font-size: 12px;
+
+		&:hover {
+			border: 1px solid darken(#ccc, 20%);
+		}
+
+		.avatar {
+			width: 80px;
+			height: 80px;
+			margin-right: 1rem;
+			align-self: flex-start;
+		}
+
+		.user-rights {
+			margin-left: auto;
+		}
+	}
+
+}
+
+// Global Navigation Styles
+.g-side-nav {
+	padding-right: 1px;
+}
+
+// Heading Bar
+.heading-bar {
+	display: block;
+	
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	
+	background-color: $qvr-white-1;
+	border-bottom: solid 1px $qvr-grey-2;
+
+	h1 {
+		padding: 0 0 0 30px;
+		margin: 0;
+		
+		border-bottom: solid 1 px $qvr-grey-3;
+		
+		color: $qvr-grey-3;
+		font-family: $qvr-primary-font;
+		font-size: 40px;
+		line-height: inherit;
+		font-weight: $qvr-font-weight-thin;
+		text-align: left;
+		text-transform: uppercase;
+	}
+}
+
+// Top Controls - is in line with heading bar
+.top-controls {
+	margin: -55px 30px 0 0;
+	height: 80px;
+	
+	.qvr-label {
+		float: left;
+		font-size: 14px;
+		font-family: $qvr-secondary-font;
+		font-weight: $qvr-font-weight-bold;
+		color: $qvr-grey-3;
+		line-height: $qvr-input-height;
+	}
+	
+	.qvr-select {
+		width: auto;
+		display: inline-block;
+		margin: 0 12px 0 12px;
+		color: $qvr-white-1;
+		background-color: $qvr-grey-3;
+		border: solid 1px transparent;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #F2F2F2"></polygon></svg>');
+		
+		&:focus, &:hover, &[disabled], &.is-disabled {
+			width: auto;
+			display: inline-block;
+			margin: 0 12px 0 12px;
+			color: $qvr-white-1;
+			background-color: $qvr-grey-3;
+			border: solid 1px transparent;
+			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #F2F2F2"></polygon></svg>');
+		}
+	}
+}
+

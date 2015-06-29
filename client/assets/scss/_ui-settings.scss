@@ -1,0 +1,105 @@
+// Typography Imports
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,100,700,300|Open+Sans:400,300,700|Oswald:400,700");
+$qvr-primary-font: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$qvr-secondary-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$qvr-tertiary-font: Oswald, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+
+// General
+$qvr-border-radius: 10px;
+
+
+// Font weights
+$qvr-font-weight-thin: 100;
+$qvr-font-weight-light: 400;
+$qvr-font-weight-medium: 500;
+$qvr-font-weight-bold: 700;
+
+
+// Colors
+$qvr-white-1: #FFFFFF;
+$qvr-white-2: rgba(255, 255, 255, 0.4);
+
+$qvr-blue-1: #00A9CC;
+$qvr-blue-2: #007484;
+$qvr-blue-3: #D6E4EA;
+$qvr-blue-4: #BAEAFF;
+
+$qvr-green-1: #00FF00;
+
+$qvr-red-1: #F15A29;
+
+$qvr-grey-1: #F4F4F4;
+$qvr-grey-2: #D1D2D3;
+$qvr-grey-3: #808285;
+$qvr-grey-4: #F2F2F2;
+$qvr-grey-5: #E6E6E6;
+
+
+// Inputs
+$qvr-input-height: 32px;
+$qvr-input-font-size: 14px;
+
+
+// Ascii Arrows
+$left-arrow: '&#9668'; 
+$right-arrow: '&#9658'; 
+$down-arrow: '&#9660'; 
+$up-arrow: '&#9650';
+
+
+
+
+
+
+
+
+
+$qvr-color-2: #B9E9FF;
+
+// Warning Button
+$qvr-warning-color: #F35615;
+$qvr-warning-color_text: #ffffff;
+$qvr-warning-color_hover: #BC3F13;
+$qvr-warning-color_active: #F28964;
+$qvr-warning-color_disabled: #E6E6E6;
+$qvr-warning-color_disabled_text: #cccccc;
+$qvr-warning-color_disabled_on-dark: #00B4CC;
+$qvr-warning-color_disabled_on-dark_text: #00A8CC;
+
+$qvr-warning-color_hollow: #EFBEAF;
+$qvr-warning-color_hollow_text: $qvr-warning-color;
+$qvr-warning-color_hollow_border: #F26226;
+$qvr-warning-color_hollow_hover: $qvr-warning-color_active;
+$qvr-warning-color_hollow_hover_border: #F36124;
+$qvr-warning-color_hollow_active: #EFBEAF;
+$qvr-warning-color_hollow_active_border: #F36226;
+$qvr-warning-color_hollow_disabled_on-dark: transparent;
+$qvr-warning-color_hollow_disabled_on-dark_text: $qvr-warning-color_disabled_on-dark;
+$qvr-warning-color_hollow_disabled_on-dark_border: $qvr-warning-color_disabled_on-dark; 
+
+// Info Button
+$qvr-info-color: #B9E9FF;
+$qvr-info-color_text: #00A8CB;
+$qvr-info-color_hover: #9EC9D8;
+$qvr-info-color_active: #AFDEEF;
+$qvr-info-color_disabled: #E6E6E6;
+$qvr-info-color_disabled_text: #cccccc;
+
+$qvr-info-color_on-dark: #E6E6E6;
+$qvr-info-color_text_on-dark: #00A8CB;
+$qvr-info-color_hover_on-dark: $qvr-info-color_hover;
+$qvr-info-color_active_on-dark: $qvr-info-color_active;
+$qvr-info-color_disabled_on-dark: #E6E6E6;
+$qvr-info-color_disabled_text_on-dark:#cccccc;
+$qvr-info-color_disabled_on-dark: #00B4CC;
+$qvr-info-color_disabled_text_on-dark:#00A8CB;
+
+// Hollow Button
+$qvr-hallow-color: #f2f2f2;
+$qvr-hallow-color_border: #CFCFCF;
+$qvr-hallow-color_text: #666666;
+$qvr-hallow-color_hover: #cccccc;
+$qvr-hallow-color_active: $qvr-hallow-color;
+$qvr-hallow-color_disabled: #e6e6e6;
+$qvr-hallow-color_disabled_text: #cccccc;
