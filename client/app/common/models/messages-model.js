@@ -35,12 +35,12 @@
 		
 	.service('MessageListModel', [
 		'$http',
-		'$q',
+		//'$q',
 		'MessagesService',
 		
 		function(
 			$http,
-			$q,
+			//$q,
 			MessagesService
 		) {
 			var model = this,
@@ -58,7 +58,6 @@
 								newMessage.comment = response.comment[i];
 								newMessage.envelope = response.envelope[i];
 								newMessage.recipients = response.messageRecipient[i];
-								
 								messageList.push(newMessage);
 							}
 							
@@ -72,12 +71,10 @@
 				
 				return MessagesService.create(newMessage).then(function(response){
 					/*
-					newMessage = response.message;
-					newMessage.comment = response.comment;
-					newMessage.envelope = response.envelope;
-					newMessage.recipients = response.messageRecipient;
-					newMessage.user = response.user;
-					
+					var newMessage = response.message[i];
+					newMessage.comment = response.comment[i];
+					newMessage.envelope = response.envelope[i];
+					newMessage.recipients = response.messageRecipient[i];
 					messageList.push(newMessage);
 					*/
 				});

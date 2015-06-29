@@ -46,7 +46,7 @@
 	}
 
 	app.config(['$httpProvider', function($httpProvider) {  
-		$httpProvider.interceptors.push(['$q', '$rootScope', 'FoundationApi', function($q, $rootScope, FoundationApi) {
+		$httpProvider.interceptors.push(['$q', '$rootScope', '$location', 'FoundationApi', function($q, $rootScope, $state, FoundationApi) {
 			function extractData(response) {
 				return response.data.data;
 			}
@@ -57,24 +57,43 @@
 				};
 			}
 
-			function validate(response) {
-				return typeof response.data.data === 'object';
-			}
-
 			return {
 				request: function(config) {
+					// add auth header for each request
+					// allows for auth id refresh on new login
 					config.headers['Authorization'] = $rootScope.auth;
 					return config;
 				},
 				response: function(response) {
-					// filter out template requests
+					// filter for only API requests
 					if (response.headers()['content-type'] === "application/json; charset=utf-8") {
-						return validate(response) ? extractData(response) || $q.when(extractData(response)) : $q.reject(extractError(response)); // doesn't force a fail response
-					}else{
-						return response || $q.when(response);
+						var appData = extractData(response);
+						var errorData = extractError(response);
+						
+						if (!response.data){
+							return $q.reject(errorData)
+						}
+						
+						switch(response.data.code){
+							case 'QVR_RESULT' || 'QVR_RESULT_OK':
+								return appData || $q.when(appData)
+								break;
+							case 'QVR_RESULT_ERROR_NO_SESSION':
+								// can't use $state because of cyclical dependency
+								$location.path('/');
+								return $q.reject(errorData);
+								break;
+							default:
+								return $q.reject(errorData)
+								break;
+						}
 					}
+					
+					// return unchanged for template requests
+					return response || $q.when(response);
 				},
 				responseError: function(rejection) {
+					// transport protocol errors only, application protocol errors all result in status 200
 					if (rejection.status == 401) {
 						rejection.data = {
 							status: 401,

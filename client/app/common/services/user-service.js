@@ -5,10 +5,12 @@
 	
 	.factory('UserService', [
 		'$http',
-		'$q',
 		'API_URL',
 		
-		function($http, $q, API_URL) {
+		function(
+			$http,
+			API_URL
+		) {
 			return {
 				login : function(userObj) {
 					return $http.post(API_URL + '/session', {'user' : userObj});
