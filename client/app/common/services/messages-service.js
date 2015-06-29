@@ -30,12 +30,17 @@
 				},
 
 				'response': function(response) {
-					console.log(response);
-					return validate(response) ? extractData(response) : $q.reject(extractError(response));
-				},
-
-				'responseError': function(rejection) {
-					return $q.reject(extractError(rejection));
+					return (response || $q.when(response))
+						.then(
+							function(response) {
+								console.log("is -->", response);
+								return validate(response) ? extractData(response) : $q.reject(extractError(response));
+							},
+							function(response) {
+								console.log("ie -->", response);
+								return $q.reject(extractError(response));
+							}
+						);
 				}
 			};
 		}
