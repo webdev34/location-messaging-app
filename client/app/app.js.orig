@@ -16,7 +16,6 @@
 			'user-profile',
 			'messages',
 			'enterprise',
-			'reporting',
 			'admin'
 		])
 		.config(config)
@@ -24,8 +23,7 @@
 
 	app.constant('APP_default_state', 'messages.new');
 	
-	//var API_SERVER = window.location.host.includes("localhost") ? 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/' : "/";
-	var API_SERVER = window.location.host.includes("localhost") ? 'http://172.31.16.14/' : "/";
+	var API_SERVER = window.location.host.includes("localhost") ? 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/' : "/";
 	app.constant('API_SERVER', API_SERVER);
 	app.constant('API_URL', API_SERVER + 'web1.1');
 	app.constant('API_URL_DROID', API_SERVER + 'droid1.1');
@@ -48,7 +46,11 @@
 	}
 
 	app.config(['$httpProvider', function($httpProvider) {  
+<<<<<<< HEAD
+		$httpProvider.interceptors.push(['$q', '$rootScope', 'FoundationApi', function($q, $rootScope, FoundationApi) {
+=======
 		$httpProvider.interceptors.push(['$q', '$rootScope', '$location', 'FoundationApi', function($q, $rootScope, $state, FoundationApi) {
+>>>>>>> 474902ec05355a7e873587e0df0a9b179e7998c4
 			function extractData(response) {
 				return response.data.data;
 			}
@@ -59,14 +61,33 @@
 				};
 			}
 
+<<<<<<< HEAD
+			function validate(response) {
+				return typeof response.data.data === 'object';
+			}
+
+			return {
+				request: function(config) {
+=======
 			return {
 				request: function(config) {
 					// add auth header for each request
 					// allows for auth id refresh on new login
+>>>>>>> 474902ec05355a7e873587e0df0a9b179e7998c4
 					config.headers['Authorization'] = $rootScope.auth;
 					return config;
 				},
 				response: function(response) {
+<<<<<<< HEAD
+					// filter out template requests
+					if (response.headers()['content-type'] === "application/json; charset=utf-8") {
+						return validate(response) ? extractData(response) || $q.when(extractData(response)) : $q.reject(extractError(response)); // doesn't force a fail response
+					}else{
+						return response || $q.when(response);
+					}
+				},
+				responseError: function(rejection) {
+=======
 					// filter for only API requests
 					if (response.headers()['content-type'] === "application/json; charset=utf-8") {
 						var appData = extractData(response);
@@ -96,6 +117,7 @@
 				},
 				responseError: function(rejection) {
 					// transport protocol errors only, application protocol errors all result in status 200
+>>>>>>> 474902ec05355a7e873587e0df0a9b179e7998c4
 					if (rejection.status == 401) {
 						rejection.data = {
 							status: 401,
@@ -153,12 +175,12 @@
 				],
 				'messages' : [
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
-					{'title': 'Manage Campaign', 'state': 'messages.manage'},
+					{'title': 'Manage Campaign', 'state': 'home'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
-					{'title': 'Asset Management', 'state': 'messages.asset'}
+					{'title': 'Asset Management', 'state': 'home'}
 				],
-				'reporting' : [
-					{'title': 'Reporting Center', 'state': 'reporting'}
+				'reports' : [
+					{'title': 'Report Center', 'state': 'home'}
 				],
 				'enterprise' : [
 					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'}
@@ -194,7 +216,7 @@
 			function setNavigationState() {
 				appCtrl.gNavStateIs = "";
 
-				var stateArray = ['messages', 'admin', 'enterprise', 'reporting'];
+				var stateArray = ['messages', 'admin', 'enterprise'];
 				
 				for (var i = 0; i < stateArray.length; i++) {
 					if (appCtrl.currentState.current.name.includes(stateArray[i])) {
@@ -233,13 +255,6 @@
 								});
 
 								goToHomePage();
-							}else{
-								FoundationApi.publish('main-notifications', {
-									title: 'Login Failed',
-									content: response.code,
-									color: 'fail',
-									autoclose: '3000'
-								});
 							}
 						},
 						function error(response) {
