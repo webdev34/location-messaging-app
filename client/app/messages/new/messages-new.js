@@ -25,6 +25,8 @@
 			newMessageCtrl.endStartTimePicker = false;
 			
 			function resetForm() {
+				newMessageCtrl.search = "Toronto, Ontario";
+				
 				var today = new Date(),
 					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
 					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
@@ -45,7 +47,7 @@
 					"startTime": "12:01 AM",
 					"endDate": tomorrowFormatted,
 					"endTime": "11:59 PM",
-					"locationName": "",
+					"locationName": newMessageCtrl.search,
 					"latlng": [],
 					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
@@ -84,12 +86,22 @@
 				newMessageCtrl.showEndDatePicker = false;
 				newMessageCtrl.showStartTimePicker = false;
 				newMessageCtrl.showEndTimePicker = false;
+				
+				var sdArray = newMessageCtrl.newMessage.startDate.split("/"),
+					edArray = newMessageCtrl.newMessage.endDate.split("/");
+				
+				newMessageCtrl.startTimestamp = new Date(sdArray[1] + "/" + sdArray[0] + "/" + sdArray[2] + "/" + newMessageCtrl.newMessage.startTime).getTime();
+				newMessageCtrl.endTimestamp = new Date(edArray[1] + "/" + edArray[0] + "/" + edArray[2] + "/" + newMessageCtrl.newMessage.endTime).getTime();
 			}
 			
 			$scope.$watch("newMessageCtrl.newMessage.startDate", clearTakeOverSelectors);
 			$scope.$watch("newMessageCtrl.newMessage.endDate", clearTakeOverSelectors);
 			$scope.$watch("newMessageCtrl.newMessage.startTime", clearTakeOverSelectors);
 			$scope.$watch("newMessageCtrl.newMessage.endTime", clearTakeOverSelectors);
+			
+			$scope.$watch("$rootScope.map_coords", function(){
+				newMessageCtrl.latlng = $rootScope.map_coords;
+			});
 			
 			$scope.checkRange = function(){
 				var range = parseInt(newMessageCtrl.newMessage.range);
@@ -100,7 +112,7 @@
 			$scope.doSearch = function(){
 				$rootScope.map_search = newMessageCtrl.search;
 			};
-
+			
 			resetForm();
 		}
 	]);
