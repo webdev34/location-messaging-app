@@ -26,6 +26,7 @@
 			
 			function resetForm() {
 				newMessageCtrl.search = "Toronto, Ontario";
+				$scope.doSearch();
 				
 				var today = new Date(),
 					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
@@ -77,10 +78,6 @@
 				);
 			}
 
-			$scope.$watch("newMessageCtrl.newMessage.range", function(newValue, oldValue){
-				$rootScope.map_range = newValue;
-			});
-			
 			function clearTakeOverSelectors(){
 				newMessageCtrl.showStartDatePicker = false;
 				newMessageCtrl.showEndDatePicker = false;
@@ -99,8 +96,12 @@
 			$scope.$watch("newMessageCtrl.newMessage.startTime", clearTakeOverSelectors);
 			$scope.$watch("newMessageCtrl.newMessage.endTime", clearTakeOverSelectors);
 			
-			$scope.$watch("$rootScope.map_coords", function(){
-				newMessageCtrl.latlng = $rootScope.map_coords;
+			$rootScope.$watch("map_coords", function(newValue, oldValue){
+				newMessageCtrl.latlng = newValue;
+			});
+			
+			$scope.$watch("newMessageCtrl.newMessage.range", function(newValue, oldValue){
+				$rootScope.map_range = newValue;
 			});
 			
 			$scope.checkRange = function(){
@@ -110,6 +111,7 @@
 			};
 
 			$scope.doSearch = function(){
+				newMessageCtrl.locationName = newMessageCtrl.search;
 				$rootScope.map_search = newMessageCtrl.search;
 			};
 			

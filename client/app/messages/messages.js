@@ -151,15 +151,11 @@
 					
 					map.fitBounds($scope.rangeCircle.getBounds());
 					
-					var center = map.getCenter();
-					
-					$rootScope.map_coords = [];
+					var center = $scope.marker.getPosition();
 					$rootScope.map_coords = [center.lat(), center.lng()];
 				});
 				
 				$rootScope.$watch("map_search", function(newValue, oldValue){
-					console.log("$scope", $scope);
-					
 					geocoder.geocode({'address': newValue}, function(results, status) {
 						if (status == google.maps.GeocoderStatus.OK) {
 							var loc = results[0].geometry.location;
