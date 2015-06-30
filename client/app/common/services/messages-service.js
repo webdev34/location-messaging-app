@@ -16,24 +16,7 @@
 					return $http.get(API_URL + '/message/' + messageId);
 				},
 				create : function(messageObj) {
-					/*
-					"sid": "",
-					"messageTitle": "",
-					x "content": "",
-					"status": "Inactive",
-					x "range": 5,
-					x "sentTo": "TARGET_FRIENDS",
-					x "discoverOn": "enter",
-					"startDate": todayFormatted,
-					"startTime": "12:01 AM",
-					"endDate": todayFormatted,
-					"endTime": "11:59 PM"
-					
-					locationName
-					latlng
-					startTimestamp
-					endTimestamp
-					*/
+					//*** service does not accept messageTitle or status
 					
 					var target;
 					switch (messageObj.sentTo){

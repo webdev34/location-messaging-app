@@ -97,7 +97,7 @@
 			$scope.$watch("newMessageCtrl.newMessage.endTime", clearTakeOverSelectors);
 			
 			$rootScope.$watch("map_coords", function(newValue, oldValue){
-				newMessageCtrl.latlng = newValue;
+				newMessageCtrl.newMessage.latlng = newValue;
 			});
 			
 			$scope.$watch("newMessageCtrl.newMessage.range", function(newValue, oldValue){
