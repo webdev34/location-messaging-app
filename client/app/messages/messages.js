@@ -25,6 +25,16 @@
 				templateUrl: 'app/messages/new/messages-new.tmpl.html',
 				controller: 'NewMessageCtrl as newMessageCtrl'
 			})
+			.state('messages.asset', {
+				url: '/assets',
+				templateUrl: 'app/messages/asset/messages-asset.tmpl.html',
+				controller: 'AssetMessageCtrl as assetMessageCtrl'
+			})
+			.state('messages.manage', {
+				url: '/manage',
+				templateUrl: 'app/messages/manage/messages-manage.tmpl.html',
+				controller: 'ManageMessageCtrl as manageMessageCtrl'
+			})
 			.state('messages.detail', {
 				url: '/message/:_id',
 				templateUrl: 'app/messages/detail/messages-detail.tmpl.html',

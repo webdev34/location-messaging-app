@@ -16,6 +16,7 @@
 			'user-profile',
 			'messages',
 			'enterprise',
+			'reporting',
 			'admin'
 		])
 		.config(config)
@@ -152,12 +153,12 @@
 				],
 				'messages' : [
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
-					{'title': 'Manage Campaign', 'state': 'home'},
+					{'title': 'Manage Campaign', 'state': 'messages.manage'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
-					{'title': 'Asset Management', 'state': 'home'}
+					{'title': 'Asset Management', 'state': 'messages.asset'}
 				],
-				'reports' : [
-					{'title': 'Report Center', 'state': 'home'}
+				'reporting' : [
+					{'title': 'Reporting Center', 'state': 'reporting'}
 				],
 				'enterprise' : [
 					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'}
@@ -193,7 +194,7 @@
 			function setNavigationState() {
 				appCtrl.gNavStateIs = "";
 
-				var stateArray = ['messages', 'admin', 'enterprise'];
+				var stateArray = ['messages', 'admin', 'enterprise', 'reporting'];
 				
 				for (var i = 0; i < stateArray.length; i++) {
 					if (appCtrl.currentState.current.name.includes(stateArray[i])) {
