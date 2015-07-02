@@ -25,6 +25,11 @@
 				templateUrl: 'app/messages/new/messages-new.tmpl.html',
 				controller: 'NewMessageCtrl as newMessageCtrl'
 			})
+			.state('messages.edit', {
+				url: '/message/:_id',
+				templateUrl: 'app/messages/new/messages-new.tmpl.html',
+				controller: 'NewMessageCtrl as newMessageCtrl'
+			})
 			.state('messages.asset', {
 				url: '/assets',
 				templateUrl: 'app/messages/asset/messages-asset.tmpl.html',
@@ -35,16 +40,6 @@
 				templateUrl: 'app/messages/manage/messages-manage.tmpl.html',
 				controller: 'ManageMessageCtrl as manageMessageCtrl'
 			})
-			.state('messages.detail', {
-				url: '/message/:_id',
-				templateUrl: 'app/messages/detail/messages-detail.tmpl.html',
-				controller: 'MessageDetailCtrl as messageDetailCtrl'
-			})
-			.state('messages.edit', {
-				url: '/message/:_id/edit',
-				templateUrl: 'app/messages/edit/messages-edit.tmpl.html',
-				controller: 'EditMessageCtrl as editMessageCtrl'
-			});
 
 		$urlRouterProvider.otherwise('messages.dashboard');
 	}])

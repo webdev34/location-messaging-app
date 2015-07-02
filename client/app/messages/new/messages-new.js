@@ -7,15 +7,19 @@
 		'$rootScope',
 		'$scope',
 		'$state',
+		'$stateParams',
 		'FoundationApi',
 		'MessageListModel',
+		'MessageDetailModel',
 		
 		function(
 			$rootScope,
 			$scope,
 			$state,
+			$stateParams,
 			FoundationApi,
-			MessageListModel
+			MessageListModel,
+			MessageDetailModel
 		) {
 			var newMessageCtrl = this;
 			
@@ -23,6 +27,13 @@
 			newMessageCtrl.showEndDatePicker = false;
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
+			
+			newMessageCtrl.getTitle = function(){
+				return {
+					"messages.new": "Compose",
+					"messages.edit": "Edit"
+				}[$state.current.name];
+			}
 			
 			function resetForm() {
 				newMessageCtrl.search = "Toronto, Ontario";
@@ -74,6 +85,42 @@
 				);
 			}
 
+			newMessageCtrl.updateMessage = function() {
+				newMessageCtrl.newMessage = angular.copy(newMessageCtrl.editedMessage);
+				
+				MessageDetailModel.updateMessage(newMessageCtrl.newMessage).then(
+					function success(response){
+						$state.go('messages.dashboard');
+						
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Sent',
+							content: '',
+							color: 'success',
+							autoclose: '3000'
+						});
+					},
+					function error(response) {
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Was Not Sent',
+							content: response.code,
+							color: 'fail',
+							autoclose: '3000'
+						});
+					}
+				);
+			}
+			
+			newMessageCtrl.saveMessage = function(){
+				switch($state.current.name){
+					case "messages.new":
+						newMessageCtrl.createNewMessage();
+						break;
+					case "messages.edit":
+						newMessageCtrl.updateMessage();
+						break;
+				}
+			}
+			
 			function clearTakeOverSelectors(){
 				newMessageCtrl.showStartDatePicker = false;
 				newMessageCtrl.showEndDatePicker = false;
@@ -111,7 +158,19 @@
 				$rootScope.map_search = newMessageCtrl.search;
 			};
 			
-			resetForm();
+			if ($stateParams._id){
+				MessageDetailModel.getMessageDetail($stateParams._id)
+					.then(function(result) {
+						if (result) {
+							newMessageCtrl.newMessage = result;
+							newMessageCtrl.editedMessage = angular.copy(result);
+						} else {
+							cancelEdit();
+						}
+					});
+			}else{
+				resetForm();
+			}
 		}
 	]);
 

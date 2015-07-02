@@ -25,7 +25,9 @@
 					showMe: '=showMe'
 				},
 				link: function (scope, element, attrs) {
-					var fn = $parse(attrs.clickOff);
+					var hideMe = function(event){
+						scope.showMe = false;
+					}
 					
 					element.bind("click", function(event) {
 						event.stopPropagation();
@@ -33,7 +35,7 @@
 					
 					angular.element($document[0].body).bind("click", function(event) {
 						scope.$apply(function() {
-							fn(scope, {
+							hideMe(scope, {
 								$event: event
 							});
 						});

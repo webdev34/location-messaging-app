@@ -1,5 +1,5 @@
 <header class="heading-bar">
-	<h1>Compose</h1>
+	<h1>{{newMessageCtrl.getTitle()}}</h1>
 </header>
 
 <section class="message-content-wrap new-message">
@@ -97,7 +97,6 @@
 						end-date="newMessageCtrl.newMessage.endDate"
 						end-time="newMessageCtrl.newMessage.endTime"
 						show-me="newMessageCtrl.showStartDatePicker"
-						click-off="newMessageCtrl.showStartDatePicker=false"
 					></date-picker>
 				</section>
 				
@@ -111,7 +110,6 @@
 						end-date="newMessageCtrl.newMessage.endDate"
 						end-time="newMessageCtrl.newMessage.endTime"
 						show-me="newMessageCtrl.showStartTimePicker"
-						click-off="newMessageCtrl.showStartTimePicker=false"
 					></time-picker>
 				</section>
 				
@@ -125,7 +123,6 @@
 						end-date="newMessageCtrl.newMessage.endDate"
 						end-time="newMessageCtrl.newMessage.endTime"
 						show-me="newMessageCtrl.showEndDatePicker"
-						click-off="newMessageCtrl.showEndDatePicker=false"
 					></date-picker>
 				</section>
 				
@@ -139,7 +136,6 @@
 						end-date="newMessageCtrl.newMessage.endDate"
 						end-time="newMessageCtrl.newMessage.endTime"
 						show-me="newMessageCtrl.showEndTimePicker"
-						click-off="newMessageCtrl.showEndTimePicker=false"
 					></time-picker>
 				</section>
 				
