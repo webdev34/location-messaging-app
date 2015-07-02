@@ -571,16 +571,19 @@
 			
 			.date-selector {
 				@extend .sub-section;
+				height: 370px;
 			}
 			
 			.time-selector {
 				@extend .sub-section;
 				
+				height: 370px;
+				
 				.delivery-box {
 					padding: 0 25px;
 				}
 				
-				.start-time, .end-time {
+				.start-time {
 					margin-bottom: 40px;
 				}
 				
