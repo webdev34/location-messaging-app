@@ -23,9 +23,9 @@
 				<input placeholder="" type="text" ng-model="newMessageCtrl.newMessage.messageTitle" required>
 			</span>
 			
-			<span id="msg-id-text" class="input-wrapper">
+			<span class="input-wrapper">
 				<label class="qvr-label">Message ID</label>
-				<input placeholder="00000" type="text">
+				<div class="msg-id">558ad4daed1954f366cd0c4a</div>
 			</span>
 			
 			<span id="campaign-select" class="input-wrapper">
@@ -87,30 +87,6 @@
 			</section>
 
 			<section class="column-3">
-				<section class="time-selector" ng-show="newMessageCtrl.showStartTimePicker">
-					<time-picker
-						title="Start Time"
-						name="start-time"
-						ng-model="newMessageCtrl.newMessage.startTime"
-						start-date="newMessageCtrl.newMessage.startDate"
-						start-time="newMessageCtrl.newMessage.startTime"
-						end-date="newMessageCtrl.newMessage.endDate"
-						end-time="newMessageCtrl.newMessage.endTime"
-					></time-picker>
-				</section>
-				
-				<section class="time-selector" ng-show="newMessageCtrl.showEndTimePicker">
-					<time-picker
-						title="End Time"
-						name="end-time"
-						ng-model="newMessageCtrl.newMessage.endTime"
-						start-date="newMessageCtrl.newMessage.startDate"
-						start-time="newMessageCtrl.newMessage.startTime"
-						end-date="newMessageCtrl.newMessage.endDate"
-						end-time="newMessageCtrl.newMessage.endTime"
-					></time-picker>
-				</section>
-				
 				<section class="date-selector" ng-show="newMessageCtrl.showStartDatePicker">
 					<date-picker
 						title="Start Date"
@@ -120,7 +96,23 @@
 						start-time="newMessageCtrl.newMessage.startTime"
 						end-date="newMessageCtrl.newMessage.endDate"
 						end-time="newMessageCtrl.newMessage.endTime"
+						show-me="newMessageCtrl.showStartDatePicker"
+						click-off="newMessageCtrl.showStartDatePicker=false"
 					></date-picker>
+				</section>
+				
+				<section class="time-selector" ng-show="newMessageCtrl.showStartTimePicker">
+					<time-picker
+						title="Start Time"
+						name="start-time"
+						ng-model="newMessageCtrl.newMessage.startTime"
+						start-date="newMessageCtrl.newMessage.startDate"
+						start-time="newMessageCtrl.newMessage.startTime"
+						end-date="newMessageCtrl.newMessage.endDate"
+						end-time="newMessageCtrl.newMessage.endTime"
+						show-me="newMessageCtrl.showStartTimePicker"
+						click-off="newMessageCtrl.showStartTimePicker=false"
+					></time-picker>
 				</section>
 				
 				<section class="date-selector" ng-show="newMessageCtrl.showEndDatePicker">
@@ -132,7 +124,23 @@
 						start-time="newMessageCtrl.newMessage.startTime"
 						end-date="newMessageCtrl.newMessage.endDate"
 						end-time="newMessageCtrl.newMessage.endTime"
+						show-me="newMessageCtrl.showEndDatePicker"
+						click-off="newMessageCtrl.showEndDatePicker=false"
 					></date-picker>
+				</section>
+				
+				<section class="time-selector" ng-show="newMessageCtrl.showEndTimePicker">
+					<time-picker
+						title="End Time"
+						name="end-time"
+						ng-model="newMessageCtrl.newMessage.endTime"
+						start-date="newMessageCtrl.newMessage.startDate"
+						start-time="newMessageCtrl.newMessage.startTime"
+						end-date="newMessageCtrl.newMessage.endDate"
+						end-time="newMessageCtrl.newMessage.endTime"
+						show-me="newMessageCtrl.showEndTimePicker"
+						click-off="newMessageCtrl.showEndTimePicker=false"
+					></time-picker>
 				</section>
 				
 				<section class="time-selector" ng-hide="newMessageCtrl.showStartTimePicker || newMessageCtrl.showEndTimePicker || newMessageCtrl.showStartDatePicker || newMessageCtrl.showEndDatePicker">
@@ -140,20 +148,20 @@
 					
 					<div class="delivery-box start-date">
 						<label class="qvr-label">Start Date:</label>
-						<input type="text" class="date" ng-model="newMessageCtrl.newMessage.startDate" ng-click="newMessageCtrl.showStartDatePicker=true">
+						<div class="form-element date" ng-click="newMessageCtrl.showStartDatePicker=true; $event.stopPropagation();">{{newMessageCtrl.newMessage.startDate == '0' ? 'Never' : newMessageCtrl.newMessage.startDate}}</div>
 					</div>
 					<div class="delivery-box start-time">
 						<label class="qvr-label">Start Time:</label>
-						<input type="text" class="hourglass" ng-model="newMessageCtrl.newMessage.startTime" ng-click="newMessageCtrl.showStartTimePicker=true">
+						<div class="form-element hourglass" ng-click="newMessageCtrl.showStartTimePicker=true; $event.stopPropagation();">{{newMessageCtrl.newMessage.startTime == '0' ? 'Never' : newMessageCtrl.newMessage.startTime}}</div>
 					</div>
 
 					<div class="delivery-box end-date">
 						<label class="qvr-label">End Date:</label>
-						<input type="text" class="date" ng-model="newMessageCtrl.newMessage.endDate" ng-click="newMessageCtrl.showEndDatePicker=true">
+						<div class="form-element date" ng-click="newMessageCtrl.showEndDatePicker=true; $event.stopPropagation();">{{newMessageCtrl.newMessage.endDate == '0' ? 'Never' : newMessageCtrl.newMessage.endDate}}</div>
 					</div>
 					<div class="delivery-box end-time">
 						<label class="qvr-label">End Time:</label>
-						<input type="text" class="hourglass" ng-model="newMessageCtrl.newMessage.endTime" ng-click="newMessageCtrl.showEndTimePicker=true">
+						<div class="form-element hourglass" ng-click="newMessageCtrl.showEndTimePicker=true; $event.stopPropagation();">{{newMessageCtrl.newMessage.endTime == '0' ? 'Never' : newMessageCtrl.newMessage.endTime}}</div>
 					</div>
 				</section>
 

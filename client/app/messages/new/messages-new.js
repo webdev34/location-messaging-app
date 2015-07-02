@@ -29,12 +29,8 @@
 				$scope.doSearch();
 				
 				var today = new Date(),
-					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
+					todayFormatted = ("00" + today.getDate()).slice(-2) + "/" + ("00" + (today.getMonth() + 1)).slice(-2) + "/" + today.getFullYear(),
 					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-				
-				var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
-					tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
-					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
 				newMessageCtrl.newMessage = {
 					"sid": "",
@@ -46,12 +42,12 @@
 					"discoverOn": "enter",
 					"startDate": todayFormatted,
 					"startTime": "12:01 AM",
-					"endDate": tomorrowFormatted,
-					"endTime": "11:59 PM",
+					"endDate": 0,
+					"endTime": 0,
 					"locationName": newMessageCtrl.search,
 					"latlng": [],
 					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
-					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
+					"endTimestamp": 0
 				};
 			}
 			
@@ -85,10 +81,10 @@
 				newMessageCtrl.showEndTimePicker = false;
 				
 				var sdArray = newMessageCtrl.newMessage.startDate.split("/"),
-					edArray = newMessageCtrl.newMessage.endDate.split("/");
+					edArray = newMessageCtrl.newMessage.endDate ? newMessageCtrl.newMessage.endDate.split("/") : null;
 				
 				newMessageCtrl.startTimestamp = new Date(sdArray[1] + "/" + sdArray[0] + "/" + sdArray[2] + "/" + newMessageCtrl.newMessage.startTime).getTime();
-				newMessageCtrl.endTimestamp = new Date(edArray[1] + "/" + edArray[0] + "/" + edArray[2] + "/" + newMessageCtrl.newMessage.endTime).getTime();
+				newMessageCtrl.endTimestamp = edArray ? new Date(edArray[1] + "/" + edArray[0] + "/" + edArray[2] + "/" + newMessageCtrl.newMessage.endTime).getTime() : 0;
 			}
 			
 			$scope.$watch("newMessageCtrl.newMessage.startDate", clearTakeOverSelectors);
