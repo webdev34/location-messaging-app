@@ -66,6 +66,8 @@
 			$scope,
 			$compile
 		) {
+			console.log($scope);
+			
 			var TILE_SIZE = 256;
 			
 			var geocoder = new google.maps.Geocoder();

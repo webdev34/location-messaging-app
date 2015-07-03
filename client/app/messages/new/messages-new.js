@@ -23,19 +23,115 @@
 		) {
 			var newMessageCtrl = this;
 			
-			newMessageCtrl.showStartDatePicker = false;
-			newMessageCtrl.showEndDatePicker = false;
-			newMessageCtrl.showStartTimePicker = false;
-			newMessageCtrl.endStartTimePicker = false;
-			
-			newMessageCtrl.getTitle = function(){
-				return {
+			newMessageCtrl.title = {
 					"messages.new": "Compose",
 					"messages.edit": "Edit"
 				}[$state.current.name];
+			
+			var createNewMessage = function() {
+				MessageListModel.createNewMessage(newMessageCtrl.newMessage).then(
+					function success(response){
+						$state.go('messages.dashboard');
+						
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Sent',
+							content: '',
+							color: 'success',
+							autoclose: '3000'
+						});
+					},
+					function error(response) {
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Was Not Sent',
+							content: response.code,
+							color: 'fail',
+							autoclose: '3000'
+						});
+					}
+				);
+			}
+
+			var updateMessage = function() {
+				MessageDetailModel.updateMessage(newMessageCtrl.newMessage).then(
+					function success(response){
+						$state.go('messages.dashboard');
+						
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Sent',
+							content: '',
+							color: 'success',
+							autoclose: '3000'
+						});
+					},
+					function error(response) {
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Was Not Sent',
+							content: response.code,
+							color: 'fail',
+							autoclose: '3000'
+						});
+					}
+				);
 			}
 			
-			function resetForm() {
+			// Fire create or update depending on mode
+			newMessageCtrl.saveMessage = function(){
+				newMessageCtrl.message = angular.copy(newMessageCtrl.newMessage); //*** matters if pulling message from cache
+				
+				switch($state.current.name){
+					case "messages.new":
+						createNewMessage();
+						break;
+					case "messages.edit":
+						updateMessage();
+						break;
+				}
+			}
+			
+			
+			// Communicate with date & time selectors
+			var clearTakeOverSelectors = function(){
+				newMessageCtrl.showStartDatePicker = false;
+				newMessageCtrl.showEndDatePicker = false;
+				newMessageCtrl.showStartTimePicker = false;
+				newMessageCtrl.showEndTimePicker = false;
+				
+				var sdArray = newMessageCtrl.newMessage.startDate.split("/"),
+					edArray = newMessageCtrl.newMessage.endDate ? newMessageCtrl.newMessage.endDate.split("/") : null;
+				
+				newMessageCtrl.startTimestamp = new Date(sdArray[1] + "/" + sdArray[0] + "/" + sdArray[2] + "/" + newMessageCtrl.newMessage.startTime).getTime();
+				newMessageCtrl.endTimestamp = edArray ? new Date(edArray[1] + "/" + edArray[0] + "/" + edArray[2] + "/" + newMessageCtrl.newMessage.endTime).getTime() : 0;
+			};
+			
+			$scope.$watch("newMessageCtrl.newMessage.startDate", clearTakeOverSelectors);
+			$scope.$watch("newMessageCtrl.newMessage.endDate", clearTakeOverSelectors);
+			$scope.$watch("newMessageCtrl.newMessage.startTime", clearTakeOverSelectors);
+			$scope.$watch("newMessageCtrl.newMessage.endTime", clearTakeOverSelectors);
+			
+			
+			// Communicate with map
+			$rootScope.$watch("map_coords", function(newValue, oldValue){
+				newMessageCtrl.newMessage.latlng = newValue;
+			});
+			
+			$scope.$watch("newMessageCtrl.newMessage.range", function(newValue, oldValue){
+				$rootScope.map_range = newValue;
+			});
+			
+			$scope.checkRange = function(){
+				var range = parseInt(newMessageCtrl.newMessage.range);
+				range = range > 100 ? 100 : (range < 0 || !range ? 0 : range);
+				newMessageCtrl.newMessage.range = range;
+			};
+
+			$scope.doSearch = function(){
+				newMessageCtrl.locationName = newMessageCtrl.search;
+				$rootScope.map_search = newMessageCtrl.search;
+			};
+			
+			
+			// Reset form
+			var resetForm = function() {
 				newMessageCtrl.search = "Toronto, Ontario";
 				$scope.doSearch();
 				
@@ -60,116 +156,24 @@
 					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 					"endTimestamp": 0
 				};
-			}
-			
-			newMessageCtrl.createNewMessage = function() {
-				MessageListModel.createNewMessage(newMessageCtrl.newMessage).then(
-					function success(response){
-						$state.go('messages.dashboard');
-						
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Sent',
-							content: '',
-							color: 'success',
-							autoclose: '3000'
-						});
-					},
-					function error(response) {
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Was Not Sent',
-							content: response.code,
-							color: 'fail',
-							autoclose: '3000'
-						});
-					}
-				);
-			}
-
-			newMessageCtrl.updateMessage = function() {
-				newMessageCtrl.newMessage = angular.copy(newMessageCtrl.editedMessage);
 				
-				MessageDetailModel.updateMessage(newMessageCtrl.newMessage).then(
-					function success(response){
-						$state.go('messages.dashboard');
-						
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Sent',
-							content: '',
-							color: 'success',
-							autoclose: '3000'
-						});
-					},
-					function error(response) {
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Was Not Sent',
-							content: response.code,
-							color: 'fail',
-							autoclose: '3000'
-						});
-					}
-				);
-			}
-			
-			newMessageCtrl.saveMessage = function(){
-				switch($state.current.name){
-					case "messages.new":
-						newMessageCtrl.createNewMessage();
-						break;
-					case "messages.edit":
-						newMessageCtrl.updateMessage();
-						break;
-				}
-			}
-			
-			function clearTakeOverSelectors(){
-				newMessageCtrl.showStartDatePicker = false;
-				newMessageCtrl.showEndDatePicker = false;
-				newMessageCtrl.showStartTimePicker = false;
-				newMessageCtrl.showEndTimePicker = false;
-				
-				var sdArray = newMessageCtrl.newMessage.startDate.split("/"),
-					edArray = newMessageCtrl.newMessage.endDate ? newMessageCtrl.newMessage.endDate.split("/") : null;
-				
-				newMessageCtrl.startTimestamp = new Date(sdArray[1] + "/" + sdArray[0] + "/" + sdArray[2] + "/" + newMessageCtrl.newMessage.startTime).getTime();
-				newMessageCtrl.endTimestamp = edArray ? new Date(edArray[1] + "/" + edArray[0] + "/" + edArray[2] + "/" + newMessageCtrl.newMessage.endTime).getTime() : 0;
-			}
-			
-			$scope.$watch("newMessageCtrl.newMessage.startDate", clearTakeOverSelectors);
-			$scope.$watch("newMessageCtrl.newMessage.endDate", clearTakeOverSelectors);
-			$scope.$watch("newMessageCtrl.newMessage.startTime", clearTakeOverSelectors);
-			$scope.$watch("newMessageCtrl.newMessage.endTime", clearTakeOverSelectors);
-			
-			$rootScope.$watch("map_coords", function(newValue, oldValue){
-				newMessageCtrl.newMessage.latlng = newValue;
-			});
-			
-			$scope.$watch("newMessageCtrl.newMessage.range", function(newValue, oldValue){
-				$rootScope.map_range = newValue;
-			});
-			
-			$scope.checkRange = function(){
-				var range = parseInt(newMessageCtrl.newMessage.range);
-				range = range > 100 ? 100 : (range < 0 || !range ? 0 : range);
-				newMessageCtrl.newMessage.range = range;
-			};
-
-			$scope.doSearch = function(){
-				newMessageCtrl.locationName = newMessageCtrl.search;
-				$rootScope.map_search = newMessageCtrl.search;
+				clearTakeOverSelectors();
 			};
 			
+			// Reset form
+			resetForm();
+			
+			// Search for message by id if provided otherwise start new message
 			if ($stateParams._id){
 				MessageDetailModel.getMessageDetail($stateParams._id)
 					.then(function(result) {
 						if (result) {
-							newMessageCtrl.newMessage = result;
-							newMessageCtrl.editedMessage = angular.copy(result);
+							newMessageCtrl.message = result;
+							newMessageCtrl.newMessage = angular.copy(newMessageCtrl.message); //*** matters if pulling message from cache
 						} else {
 							cancelEdit();
 						}
 					});
-			}else{
-				resetForm();
 			}
 		}
 	]);
