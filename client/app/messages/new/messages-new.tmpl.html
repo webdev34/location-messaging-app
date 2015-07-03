@@ -79,10 +79,10 @@
 					</div>
 
 					<div class="radius">
-						<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span> km</span> radius
+						<span><input ng-model="newMessageCtrl.newMessage.range"></span><span> km</span> radius
 					</div>
 
-					<input type="range" class="radius-range" ng-model="newMessageCtrl.newMessage.range">
+					<input type="range" class="radius-range" ng-model="newMessageCtrl.range_meter" ng-change="checkRange()" ng-mouseup="newMessageCtrl.range_meter=50;checkRange();">
 				</section>
 			</section>
 

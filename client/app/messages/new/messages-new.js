@@ -118,10 +118,28 @@
 				$rootScope.map_range = newValue;
 			});
 			
+			var range_timer;
+			newMessageCtrl.range_meter = 50;
 			$scope.checkRange = function(){
-				var range = parseInt(newMessageCtrl.newMessage.range);
-				range = range > 100 ? 100 : (range < 0 || !range ? 0 : range);
-				newMessageCtrl.newMessage.range = range;
+				var range_meter = parseInt(newMessageCtrl.range_meter);
+				
+				if (range_timer){
+					clearInterval(range_timer);
+				}
+				
+				if (range_meter != 50){ 
+					var range_setting = (range_meter - 50) / 50; // -1 to 1
+					var multiplier = range_setting > 0 ? 1 + Math.abs(range_setting) : 1 / (1 + Math.abs(range_setting));
+					var speed = range_setting;
+					
+					range_timer = setInterval(function(){
+						newMessageCtrl.newMessage.range = (parseFloat(newMessageCtrl.newMessage.range) * multiplier).toFixed(3);
+						if (newMessageCtrl.newMessage.range < 0.009){
+							newMessageCtrl.newMessage.range = 0.009; // 9 meters, same as the app
+						}
+						$scope.$apply();
+					}, 200);
+				}
 			};
 
 			$scope.doSearch = function(){
