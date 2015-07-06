@@ -172,7 +172,8 @@
 					"locationName": newMessageCtrl.search,
 					"latlng": [],
 					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
-					"endTimestamp": 0
+					"endTimestamp": 0,
+					"userFile": null
 				};
 				
 				clearTakeOverSelectors();

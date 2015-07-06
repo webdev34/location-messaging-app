@@ -56,7 +56,8 @@
 						"envelope": {
 							"target": target
 						},
-						"messageRecipient": messageObj.recipients || []
+						"messageRecipient": messageObj.recipients || [],
+						"userFile": messageObj.userFile
 					};
 					
 					return $http.post(API_URL + '/message', msgObj);
