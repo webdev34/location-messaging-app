@@ -56,7 +56,8 @@
 						"envelope": {
 							"target": target
 						},
-						"messageRecipient": messageObj.recipients || []
+						"messageRecipient": messageObj.recipients || [],
+						"attachments": messageObj.file
 					};
 					
 					//return $http.post(API_URL + '/message', msgObj);
@@ -64,7 +65,7 @@
 						method: 'POST',
 						url: API_URL + '/message',
 						headers: {
-							'Content-Type': false
+							'Content-Type': undefined
 						},
 						transformRequest: function(data) {
 							var formData = new FormData();
@@ -76,6 +77,7 @@
 							"msgObj": msgObj,
 							"file": messageObj.file
 						}
+						//data: msgObj
 					});
 				},
 				list : function(timestamp, limit){
