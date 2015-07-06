@@ -56,8 +56,7 @@
 						"envelope": {
 							"target": target
 						},
-						"messageRecipient": messageObj.recipients || [],
-						"attachments": messageObj.file
+						"messageRecipient": messageObj.recipients || []
 					};
 					
 					//return $http.post(API_URL + '/message', msgObj);
@@ -70,12 +69,12 @@
 						transformRequest: function(data) {
 							var formData = new FormData();
 							formData.append("payload", JSON.stringify(data.msgObj));
-							formData.append("file", data.file);
+							formData.append("attachments", data.attachments);
 							return formData;
 						},
 						data: {
 							"msgObj": msgObj,
-							"file": messageObj.file
+							"attachments": messageObj.file
 						}
 						//data: msgObj
 					});
