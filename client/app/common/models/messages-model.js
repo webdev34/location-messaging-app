@@ -19,7 +19,8 @@
 				message;
 			
 			model.getMessageDetail = function(messageId) {
-				return (message) ? $q.when(message) : MessagesService.get(messageId).then(
+				//return (message) ? $q.when(message) : MessagesService.get(messageId).then(
+				return MessagesService.get(messageId).then(
 					function(response) {
 						message = response;
 						return response;

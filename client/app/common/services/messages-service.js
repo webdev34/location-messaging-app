@@ -74,7 +74,6 @@
 							"msgObj": msgObj,
 							"attachments": messageObj.file
 						}
-						//data: msgObj
 					});
 				},
 				list : function(timestamp, limit){
