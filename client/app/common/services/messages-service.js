@@ -16,6 +16,9 @@
 					return $http.get(API_URL + '/message/' + messageId);
 				},
 				create : function(messageObj) {
+					console.log(messageObj);
+					console.log("userFile", messageObj.userFile);
+					
 					//*** service does not accept messageTitle or status
 					
 					var target;

@@ -185,12 +185,8 @@
 			if ($stateParams._id){
 				MessageDetailModel.getMessageDetail($stateParams._id)
 					.then(function(result) {
-						if (result) {
-							newMessageCtrl.message = result;
-							newMessageCtrl.newMessage = angular.copy(newMessageCtrl.message); //*** matters if pulling message from cache
-						} else {
-							cancelEdit();
-						}
+						newMessageCtrl.message = result;
+						newMessageCtrl.newMessage = angular.copy(newMessageCtrl.message); //*** matters if pulling message from cache
 					});
 			}
 		}

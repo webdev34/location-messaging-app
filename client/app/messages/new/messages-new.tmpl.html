@@ -43,9 +43,13 @@
 					<span class="targeted-followers-label">Targeted Followers</span>
 					<span class="targeted-followers-count">0</span>
 				</div>
+				
 				<label class="qvr-label">Message Content</label>
 				<textarea ng-model="newMessageCtrl.newMessage.content" class="message-content" placeholder="Insert Content" required></textarea>
-				<a class="attach-asset"><span class="icon i-camera"></span></a>
+				
+				<span class="attach-asset"><span class="icon i-camera"><input type="file" file-model="newMessageCtrl.newMessage.userFile"/></span></span>
+				
+				<span>{{newMessageCtrl.newMessage.userFile.name}}</span>
 			</section>
 
 			<section class="column-3">
