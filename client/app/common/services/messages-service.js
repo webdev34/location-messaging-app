@@ -17,7 +17,7 @@
 				},
 				create : function(messageObj) {
 					console.log(messageObj);
-					console.log("userFile", messageObj.userFile);
+					console.log("file", messageObj.file);
 					
 					//*** service does not accept messageTitle or status
 					
@@ -56,11 +56,27 @@
 						"envelope": {
 							"target": target
 						},
-						"messageRecipient": messageObj.recipients || [],
-						"userFile": messageObj.userFile
+						"messageRecipient": messageObj.recipients || []
 					};
 					
-					return $http.post(API_URL + '/message', msgObj);
+					//return $http.post(API_URL + '/message', msgObj);
+					return $http({
+						method: 'POST',
+						url: API_URL + '/message',
+						headers: {
+							'Content-Type': false
+						},
+						transformRequest: function(data) {
+							var formData = new FormData();
+							formData.append("payload", JSON.stringify(data.msgObj));
+							formData.append("file", data.file);
+							return formData;
+						},
+						data: {
+							"msgObj": msgObj,
+							"file": messageObj.file
+						}
+					});
 				},
 				list : function(timestamp, limit){
 					if (!timestamp){

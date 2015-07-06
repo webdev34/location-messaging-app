@@ -1,6 +1,6 @@
 <ul ng-controller="MessageListCtrl as messageListCtrl">
 	<li ng-repeat="message in messageListCtrl.messages">
-		<a ui-sref="messages.new({_id:message.sid})" ui-sref-active="active"  >
+		<a ui-sref="messages.edit({_id:message.sid})" ui-sref-active="active"  >
 			<img src="{{message.comment.media[0].url}}" />
 			<span class="status-label">
 				{{message.likedCount}}
