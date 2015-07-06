@@ -5,21 +5,20 @@
 	
 	.factory('MessagesService', [
 		'$http',
+		'API_URL',
 		'API_URL_DROID',
 		
 		function(
 			$http,
-			API_URL
+			API_URL,
+			API_URL_DROID
 		) {
 			return {
 				get : function(messageId){
 					return $http.get(API_URL + '/message/' + messageId);
 				},
 				create : function(messageObj) {
-					console.log(messageObj);
-					console.log("file", messageObj.file);
-					
-					//*** service does not accept messageTitle or status
+					//*** service does not accept messageTitle, status, or campaign
 					
 					var target;
 					switch (messageObj.sentTo){
@@ -59,10 +58,9 @@
 						"messageRecipient": messageObj.recipients || []
 					};
 					
-					//return $http.post(API_URL + '/message', msgObj);
 					return $http({
 						method: 'POST',
-						url: API_URL + '/message',
+						url: API_URL_DROID + '/message',
 						headers: {
 							'Content-Type': undefined
 						},
@@ -86,10 +84,10 @@
 						timestamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
 					}
 					
-					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0));
+					return $http.get(API_URL_DROID + '/message/' + timestamp + '/limit/' + (limit || 0));
 				},
 				remove : function(messageId){
-					return $http["delete"](API_URL + '/message/' + messageId);
+					return $http["delete"](API_URL_DROID + '/message/' + messageId);
 				}
 			};
 		}
