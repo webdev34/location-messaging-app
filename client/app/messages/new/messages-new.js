@@ -186,7 +186,31 @@
 			if ($stateParams._id){
 				MessageDetailModel.getMessageDetail($stateParams._id)
 					.then(function(result) {
-						newMessageCtrl.message = result;
+						var startDate = new Date(result.messageLocation[0].startTime);
+						var endDate = new Date(result.messageLocation[0].endTime);
+						
+						var msgObj = {
+							"sid": result.message[0].sid,
+							"messageTitle": result.comment[0].text, //*** temporary, BE doesn't accept title yet
+							"content": result.comment[0].text,
+							"status": "Inactive", //*** temporary, BE doesn't accept status yet
+							"range": result.messageLocation[0].distance,
+							"sentTo": "TARGET_FRIENDS", //*** no envelope in response
+							"discoverOn": result.messageLocation[0].trigger ? "enter" : "exit",
+							"startDate": result.messageLocation[0].startTime == 0 ? 0 : startDate.getDate() + "/" + (startDate.getMonth() + 1) + "/" + startDate.getFullYear(),
+							"startTime": result.messageLocation[0].startTime == 0 ? 0 : startDate.getHours() + ":" + startDate.getSeconds(),
+							"endDate": result.messageLocation[0].endTime == 0 ? 0 : endDate.getDate() + "/" + (endDate.getMonth() + 1) + "/" + endDate.getFullYear(),
+							"endTime": result.messageLocation[0].endTime == 0 ? 0 : endDate.getHours() + ":" + endDate.getSeconds(),
+							"locationName": result.messageLocation[0].name,
+							"latlng": result.messageLocation[0].geoFence.coordinates,
+							"startTimestamp": result.messageLocation[0].startTime,
+							"endTimestamp": result.messageLocation[0].endTime,
+							"file": result.comment[0].media[0]
+						}
+						
+						newMessageCtrl.search = result.messageLocation[0].name;
+						
+						newMessageCtrl.message = msgObj;
 						newMessageCtrl.newMessage = angular.copy(newMessageCtrl.message); //*** matters if pulling message from cache
 					});
 			}
