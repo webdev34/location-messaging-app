@@ -156,29 +156,26 @@
 				var file;
 				var imageType = /^image\//;
 
-				var img = preview.getElementsByTagName("img")[0] || document.createElement("img");
-				preview.appendChild(img);
-
 				for (var i = 0; i < files.length; i++) {
 					file = files[i];
-					
-					console.log(file);
 					
 					if (!imageType.test(file.type)) {
 						continue;
 					}
 					
-					img.file = file;
-					
 					var reader = new FileReader();
 					reader.onload = (function(aImg) {
 						return function(e) {
-							aImg.src = e.target.result;
+							preview.style.backgroundImage = "url('" + e.target.result + "')";
 						};
-					})(img);
+					})();
 					reader.readAsDataURL(file);
 				}
 			});
+			
+			newMessageCtrl.clearImage = function(){
+				newMessageCtrl.newMessage.file = null;
+			}
 			
 			
 			// Reset form

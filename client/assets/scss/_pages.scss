@@ -607,12 +607,34 @@
 			}
 			
 			.img-preview {
+				position: relative;
+				
 				width: 100px;
 				height: 100px;
 				
 				@include border-radius($qvr-border-radius);
 				
 				overflow: hidden;
+				
+				background-size: cover;
+				background-position: center;
+				
+				span {
+					position: absolute;
+					right: 0;
+					
+					height: 20px;
+					width: 20px;
+					
+					background: $qvr-white-1;
+					color: $qvr-grey-3;
+					font-weight: $qvr-font-weight-bold;
+					line-height: 20px;
+					
+					text-align: center;
+					
+					cursor: pointer;
+				}
 			}
 			
 			.location-section {

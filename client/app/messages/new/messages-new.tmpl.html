@@ -49,7 +49,7 @@
 					<textarea elastic ng-model="newMessageCtrl.newMessage.content" class="message-text" placeholder="Insert Content" required></textarea>
 					<!-- <div contenteditable class="message-text" ng-model="newMessageCtrl.newMessage.content" placeholder="Insert Content" required></div> -->
 					
-					<div id="img-preview" class="img-preview"></div>
+					<div id="img-preview" class="img-preview" ng-show="newMessageCtrl.newMessage.file"><span ng-click="newMessageCtrl.clearImage()">x</span></div>
 				</div>
 				
 				<span class="attach-asset">
