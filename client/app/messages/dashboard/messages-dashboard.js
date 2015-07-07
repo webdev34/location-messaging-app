@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('messages.dashboard', [])
+	angular.module('messages.dashboard', []);
 
 	/*
 	.controller('ActiveMessageController', [

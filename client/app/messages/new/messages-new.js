@@ -189,7 +189,7 @@
 				
 				newMessageCtrl.newMessage = {
 					"sid": "",
-					"messageTitle": "",
+					"label": "",
 					"content": "",
 					"status": "Inactive",
 					"range": 5,
@@ -221,7 +221,7 @@
 						
 						var msgObj = {
 							"sid": result.message[0].sid,
-							"messageTitle": result.comment[0].text, //*** temporary, BE doesn't accept title yet
+							"label": result.comment[0].text, //*** temporary, BE doesn't accept title yet
 							"content": result.comment[0].text,
 							"status": "Inactive", //*** temporary, BE doesn't accept status yet
 							"range": result.messageLocation[0].distance,

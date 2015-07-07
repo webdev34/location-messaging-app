@@ -1,14 +1,12 @@
 (function() {
 	'use strict';
 
-	angular.module('messages.manage', [
-	])
+	angular.module('messages.manage', [])
 	
-	.controller('ManageMessageCtrl', [
-		
+	.controller('MessagesManageCtrl', [
 		function(
 		) {
-			var manageMessageCtrl = this;
+			var messagesManageCtrl = this;
 		}
 	]);
 

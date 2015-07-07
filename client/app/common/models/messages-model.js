@@ -55,11 +55,14 @@
 							messageList = [];	
 							
 							for (var i = 0; i < response.message.length; i++){
-								var newMessage = response.message[i];
-								newMessage.comment = response.comment[i];
-								newMessage.envelope = response.envelope[i];
-								newMessage.recipients = response.messageRecipient[i];
-								messageList.push(newMessage);
+								var messageDetail = {
+									message: response.message[i],
+									comment: response.comment[i],
+									envelope: response.envelope[i],
+									messageRecipient: response.messageRecipient[i]
+								}
+								
+								messageList.push(messageDetail);
 							}
 							
 							return messageList;
@@ -72,11 +75,13 @@
 				
 				return MessagesService.create(newMessage).then(function(response){
 					/*
-					var newMessage = response.message[i];
-					newMessage.comment = response.comment[i];
-					newMessage.envelope = response.envelope[i];
-					newMessage.recipients = response.messageRecipient[i];
-					messageList.push(newMessage);
+					var messageDetail = {
+						message: response.message[0],
+						comment: response.comment[0],
+						envelope: response.envelope[0],
+						messageRecipient: response.messageRecipient[0]
+					}
+					messageList.push(messageDetail);
 					*/
 				});
 			};

@@ -6,7 +6,9 @@
 		'messages.dashboard',
 		'messages.detail',
 		'messages.new',
-		'messages.edit'
+		'messages.edit',
+		'messages.asset',
+		'messages.manage'
 	])
 
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -38,7 +40,7 @@
 			.state('messages.manage', {
 				url: '/manage',
 				templateUrl: 'app/messages/manage/messages-manage.tmpl.html',
-				controller: 'ManageMessageCtrl as manageMessageCtrl'
+				controller: 'MessagesManageCtrl as messagesManageCtrl'
 			})
 
 		$urlRouterProvider.otherwise('messages.dashboard');

@@ -18,7 +18,7 @@
 					return $http.get(API_URL + '/message/' + messageId);
 				},
 				create : function(messageObj) {
-					//*** service does not accept messageTitle, status, or campaign
+					//*** service does not accept label, status, or campaign
 					
 					var target;
 					switch (messageObj.sentTo){

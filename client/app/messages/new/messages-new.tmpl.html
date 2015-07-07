@@ -20,7 +20,7 @@
 		<section class="form-upper">
 			<span id="msg-title-text" class="input-wrapper">
 				<label class="qvr-label">Message Label</label>
-				<input placeholder="" type="text" ng-model="newMessageCtrl.newMessage.messageTitle" required>
+				<input placeholder="" type="text" ng-model="newMessageCtrl.newMessage.label" required>
 			</span>
 			
 			<span class="input-wrapper">
@@ -47,8 +47,6 @@
 				<label class="qvr-label">Message Content</label>
 				<div class="message-text-wrapper form-element">
 					<textarea elastic ng-model="newMessageCtrl.newMessage.content" class="message-text" placeholder="Insert Content" required></textarea>
-					<!-- <div contenteditable class="message-text" ng-model="newMessageCtrl.newMessage.content" placeholder="Insert Content" required></div> -->
-					
 					<div id="img-preview" class="img-preview" ng-show="newMessageCtrl.newMessage.file"><span ng-click="newMessageCtrl.clearImage()">x</span></div>
 				</div>
 				
