@@ -543,6 +543,7 @@ ul {
 		}
 	}
 
+	/*
 	textarea {
 		@extend .form-element;
 		resize: none;
@@ -552,6 +553,7 @@ ul {
 			height: 140px;
 		}
 	}
+	*/
 	
 	.switch > label, .switch input:checked + label {
 		background: $qvr-blue-1;

@@ -600,6 +600,10 @@
 				color: $qvr-grey-3;
 				border: 0;
 				outline: none;
+				resize: none;
+				background: transparent;
+				transition: all 0.4s ease-in-out;
+				overflow: hidden;
 			}
 			
 			.img-preview {
