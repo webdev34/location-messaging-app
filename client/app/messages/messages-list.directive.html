@@ -1,4 +1,4 @@
-<ul ng-controller="MessageListCtrl as messageListCtrl">
+<ul class="message-list" ng-controller="MessageListCtrl as messageListCtrl">
 	<li ng-repeat="message in messageListCtrl.messages">
 		<a ui-sref="messages.edit({_id:message.sid})" ui-sref-active="active"  >
 			<img src="{{message.comment.media[0].url}}" />
