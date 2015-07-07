@@ -148,6 +148,39 @@
 			};
 			
 			
+			// Image management
+			$scope.$watch("newMessageCtrl.newMessage.file", function(newValue, oldValue){
+				var att = document.getElementById("attachment-input");
+				var preview = document.getElementById("img-preview");
+				var files = att.files;
+				var file;
+				var imageType = /^image\//;
+
+				var img = preview.getElementsByTagName("img")[0] || document.createElement("img");
+				preview.appendChild(img);
+
+				for (var i = 0; i < files.length; i++) {
+					file = files[i];
+					
+					console.log(file);
+					
+					if (!imageType.test(file.type)) {
+						continue;
+					}
+					
+					img.file = file;
+					
+					var reader = new FileReader();
+					reader.onload = (function(aImg) {
+						return function(e) {
+							aImg.src = e.target.result;
+						};
+					})(img);
+					reader.readAsDataURL(file);
+				}
+			});
+			
+			
 			// Reset form
 			var resetForm = function() {
 				newMessageCtrl.search = "Toronto, Ontario";
@@ -198,9 +231,9 @@
 							"sentTo": "TARGET_FRIENDS", //*** no envelope in response
 							"discoverOn": result.messageLocation[0].trigger ? "enter" : "exit",
 							"startDate": !result.messageLocation[0].startTime ? 0 : startDate.getDate() + "/" + (startDate.getMonth() + 1) + "/" + startDate.getFullYear(),
-							"startTime": !result.messageLocation[0].startTime ? 0 : startDate.getHours() + ":" + startDate.getSeconds(),
+							"startTime": !result.messageLocation[0].startTime ? 0 : startDate.getHours() + ":" + startDate.getMinutes(),
 							"endDate": !result.messageLocation[0].endTime ? 0 : endDate.getDate() + "/" + (endDate.getMonth() + 1) + "/" + endDate.getFullYear(),
-							"endTime": !result.messageLocation[0].endTime ? 0 : endDate.getHours() + ":" + endDate.getSeconds(),
+							"endTime": !result.messageLocation[0].endTime ? 0 : endDate.getHours() + ":" + endDate.getMinutes(),
 							"locationName": result.messageLocation[0].name,
 							"latlng": result.messageLocation[0].geoFence.coordinates,
 							"startTimestamp": result.messageLocation[0].startTime,
@@ -212,8 +245,6 @@
 						
 						newMessageCtrl.message = msgObj;
 						newMessageCtrl.newMessage = angular.copy(newMessageCtrl.message); //*** matters if pulling message from cache
-						
-						console.log(newMessageCtrl.newMessage);
 					});
 			}
 		}

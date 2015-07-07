@@ -25,7 +25,7 @@
 			
 			<span class="input-wrapper">
 				<label class="qvr-label">Message ID</label>
-				<div class="msg-id">{{newMessageCtrl.newMessage.sid || 00000}}</div>
+				<div class="msg-id">{{newMessageCtrl.newMessage.sid || "00000"}}</div>
 			</span>
 			
 			<span id="campaign-select" class="input-wrapper">
@@ -45,11 +45,18 @@
 				</div>
 				
 				<label class="qvr-label">Message Content</label>
-				<textarea ng-model="newMessageCtrl.newMessage.content" class="message-content" placeholder="Insert Content" required></textarea>
+				<div class="message-text-wrapper form-element">
+					<!-- <textarea elastic ng-model="newMessageCtrl.newMessage.content" class="message-text" placeholder="Insert Content" required></textarea> -->
+					<div contenteditable class="message-text" ng-model="newMessageCtrl.newMessage.content" placeholder="Insert Content" required></div>
+					
+					<div id="img-preview" class="img-preview"></div>
+				</div>
 				
-				<span class="attach-asset"><span class="icon i-camera"><input type="file" file-model="newMessageCtrl.newMessage.file"/></span></span>
-				
-				<span>{{newMessageCtrl.newMessage.file.name}}</span>
+				<span class="attach-asset">
+					<span class="icon i-camera">
+						<input type="file" id="attachment-input" file-model="newMessageCtrl.newMessage.file" accept="image/*" />
+					</span>
+				</span>
 			</section>
 
 			<section class="column-3">
