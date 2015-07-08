@@ -25,32 +25,30 @@
 			Status
 		</span>
 	</li>
-	<li ng-repeat="messageDetail in messageListCtrl.messages">
-		<a ui-sref="messages.edit({_id:messageDetail.message.sid})" ui-sref-active="active">
-			<span>
-				<input type="checkbox">
-			</span>
-			<span>
-				{{messageDetail.message.sid}}
-			</span>
-			<span>
-				{{messageDetail.comment.text}} <!-- really message.label, but doesn't exist yet -->
-			</span>
-			<span>
-				{{messageDetail.shareCount}} <!-- supposed to be recipient count -->
-			</span>
-			<span>
-				{{messageDetail.messageLocation.name}}
-			</span>
-			<span>
-				{{messageDetail.messageLocation.startTime}}
-			</span>
-			<span>
-				{{messageDetail.messageLocation.endTime}}
-			</span>
-			<span>
-				{{messageDetail.message.status}}
-			</span>
-		</a>
+	<li ng-repeat="messageDetail in messageListCtrl.messages" ng-click="$state.go({_id:messageDetail.message.sid})">
+		<span>
+			<input type="checkbox">
+		</span>
+		<span>
+			{{messageDetail.message.sid}}
+		</span>
+		<span>
+			{{messageDetail.comment.text}} <!-- really message.label, but doesn't exist yet -->
+		</span>
+		<span>
+			{{messageDetail.shareCount}} <!-- supposed to be recipient count -->
+		</span>
+		<span>
+			{{messageDetail.messageLocation.name}}
+		</span>
+		<span>
+			{{messageDetail.messageLocation.startTime}}
+		</span>
+		<span>
+			{{messageDetail.messageLocation.endTime}}
+		</span>
+		<span>
+			{{messageDetail.message.status}}
+		</span>
 	</li>
 </ul>
