@@ -352,7 +352,7 @@
 			
 			input {
 				display: inline-block;
-				width: 70px;
+				width: 35px;
 				margin: 10px 0 15px 0;
 				padding: 0 5px;
 				color: $qvr-blue-1;
@@ -362,6 +362,26 @@
 
 			span {
 				color: $qvr-blue-1;
+				&.km{
+					margin-right: 5px;
+				}
+			}
+		}
+
+		.switch-wrapper{
+			text-align: center;
+			margin: 15px auto;
+			float: left;
+			width: 100%;
+			&.delivery-info{
+				@include border-radius($qvr-border-radius);
+				background-color: $qvr-grey-5;
+				padding: 15px;
+				margin-top: 0px;
+			}
+			
+			p{
+				margin-top: 15px;
 			}
 		}
 
@@ -406,6 +426,7 @@
 				background-repeat: no-repeat;
 				background-size: 22px;
 				background-position: right 5px center;
+				width: 95%;
 			}
 
 			input.date {
@@ -783,6 +804,9 @@
 		}
 		
 		.qvr-form {
+			.qvr-label{
+				margin-left: 5px;
+			}
 			.message-recipients {
 				@extend .form-element;
 				
@@ -808,6 +832,28 @@
 					text-align: center;
 					float: right;
 				}
+			}
+
+			.target-filters {
+				width: 100%;
+				padding: 30px;
+				@include border-radius(10px);
+				background-color: $qvr-grey-5;
+				margin-bottom: 20px;
+				h2{
+					margin-bottom: 0px;
+				}
+			}
+
+			#targeting-filters{
+				.input-wrapper{
+					margin-top: 10px;
+				}
+			}
+
+			#message-tags{
+				top: -30px;
+    			position: relative;
 			}
 			
 			.message-content {
@@ -837,11 +883,13 @@
 				background-color: $qvr-grey-5;
 				
 				.delivery-box {
-					padding: 0 25px;
+					//padding: 0 25px;
+					width: 50%;
+    				float: left;
 				}
 				
 				.start-time, .end-time {
-					margin-bottom: 40px;
+					margin-bottom: 10px;
 				}
 			}
 			

@@ -75,6 +75,8 @@
 	background-color: $qvr-white-1;
 	border-bottom: solid 1px $qvr-grey-2;
 
+	box-shadow: 0px 3px 10px -3px #999;
+
 	h1 {
 		padding: 0 0 0 30px;
 		margin: 0;
@@ -85,7 +87,7 @@
 		font-family: $qvr-primary-font;
 		font-size: 40px;
 		line-height: inherit;
-		font-weight: $qvr-font-weight-thin;
+		font-weight: $qvr-font-weight-lighter;
 		text-align: left;
 		text-transform: uppercase;
 	}
@@ -112,6 +114,7 @@
 		color: $qvr-white-1;
 		background-color: $qvr-grey-3;
 		border: solid 1px transparent;
+		font-weight: bold;
 		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #F2F2F2"></polygon></svg>');
 		
 		&:focus, &:hover, &[disabled], &.is-disabled {
