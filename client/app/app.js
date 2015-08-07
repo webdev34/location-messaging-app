@@ -46,7 +46,7 @@
 	}
 
 	app.config(['$httpProvider', function($httpProvider) {  
-		$httpProvider.interceptors.push(['$q', '$rootScope', '$location', 'FoundationApi', function($q, $rootScope, $location, FoundationApi) {
+		$httpProvider.interceptors.push(['$q', '$rootScope', '$location', 'FoundationApi', function($q, $rootScope, $state, FoundationApi) {
 			function extractData(response) {
 				return response.data.data;
 			}
