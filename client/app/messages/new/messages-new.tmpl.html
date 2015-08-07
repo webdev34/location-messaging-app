@@ -2,7 +2,7 @@
 	<h1>Compose</h1>
 </header>
 <section class="message-content-wrap new-message">
-	<form role="form" class="qvr-form create-edit-message-form" ng-submit="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)">
+	<form role="form" class="qvr-form create-edit-message-form" name="msgForm">
 		<div class="float-right top-controls">
 			<label class="qvr-label">Message Status </label>
 			
@@ -13,7 +13,8 @@
 				<option>Closed</option>
 			</select>
 			<button class="qvr-button action">Preview</button>
-			<button type="submit" class="qvr-button action">Save Message</button>
+			<button type="submit" ng-click="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)" class="qvr-button action" ng-disabled="!msgForm.$valid">Save Message</button>
+			
 		</div>
 		<section class="form-upper">
 			<span id="msg-title-text" class="input-wrapper">
@@ -113,7 +114,7 @@
 							<p>
 							Recipient will know<br>
 							 <span class="qvr-blue">WHERE</span> and <span class="qvr-blue">WHEN</span><br/>
-							 they will recieve your message
+							 they will receive your message
 							</span>
 						</p>
 					</div>				
