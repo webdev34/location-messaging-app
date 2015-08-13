@@ -151,7 +151,7 @@
 				],
 				'messages' : [
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
-					{'title': 'Manage Campaign', 'state': 'home'},
+					{'title': 'Manage Campaign', 'state': 'messages.manage-campaign'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
 					{'title': 'Asset Management', 'state': 'home'}
 				],

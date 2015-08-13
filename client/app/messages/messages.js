@@ -34,7 +34,12 @@
 				url: '/message/:_id/edit',
 				templateUrl: 'app/messages/edit/messages-edit.tmpl.html',
 				controller: 'EditMessageCtrl as editMessageCtrl'
-			});
+			})
+			.state('messages.manage-campaign', {
+				url: '/manage-campaign',
+				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html'
+			})
+			;
 
 		$urlRouterProvider.otherwise('messages.dashboard');
 	}])
