@@ -3,10 +3,13 @@
 	text-align: center;
 }
 
+.qvr-blue{
+	color: #00A9D3;
+}
 
 // Typography Elements
 h2 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: $qvr-font-weight-bold;
   margin: 0;
   color: $qvr-grey-3;
@@ -14,7 +17,7 @@ h2 {
 }
 
 .qvr-label {
-	font-size: 10px;
+	font-size: 14px;
 	font-weight: $qvr-font-weight-bold;
 	color: $qvr-blue-1;
 	
@@ -241,9 +244,9 @@ ul {
 			height: 23px;
 			line-height: 23px;
 			
-			font-size: 14px;
+			font-size: 16px;
 			font-family: $qvr-primary-font;
-			font-weight: $qvr-font-weight-thin;
+			//ont-weight: $qvr-font-weight-thin;
 		}
 	}
 
@@ -262,7 +265,7 @@ ul {
 				
 				text-align: center;
 				font-family: $qvr-primary-font;
-				font-size: 11px;
+				font-size: 15px;
 				font-weight: $qvr-font-weight-bold;
 				color: $qvr-white-1;
 				
@@ -271,7 +274,8 @@ ul {
 				width: 150px;
 				height: 30px;
 				
-				margin: 20px 10px 0 0;
+				margin: 14px 10px 0 0;
+				padding-bottom: 28px;
 				
 				transition: all 0.2s ease-in-out;
 				
@@ -306,8 +310,11 @@ ul {
 			transition: all 0.2s ease-in-out;
 			
 			&:hover, &.active {
-				font-weight: $qvr-font-weight-medium;
 				color: $qvr-blue-1;
+			}
+
+			&.active {
+				font-weight: $qvr-font-weight-bold;
 			}
 		}
 	}
@@ -341,16 +348,19 @@ ul {
 			color: $qvr-white-1;
 			padding: 10px 10px 0 10px;
 			text-align: center;
+			text-transform: uppercase;
+    		font-weight: bold;
 			
 			.enterprise-name {
 				font-family: $qvr-tertiary-font;
 			}
 			
 			.enterprise-plan {
-				font-size: 10px;
+				font-size: 12px;
 				font-family: $qvr-primary-font;
 				
 				margin: 4px 0 0 0;
+				text-transform: capitalize;
 				
 				span:first-child {
 					font-weight: $qvr-font-weight-bold;
@@ -499,18 +509,16 @@ ul {
 
 		transition: all 0.4s ease-in-out;
 		
-		&:focus, &:active {
-			background: $qvr-white-1;
-		}
-		
-		&:hover:not(&:focus) {
+		&:focus, &:hover {
 			background: $qvr-grey-1;
+			border-color: $qvr-grey-2;
 			color: $qvr-grey-3;
 		}
 		
 		&[disabled], &.is-disabled {
-			background: $qvr-grey-1;
-			background: $qvr-grey-1;
+			background: #eee;
+    		border-color: darkgrey;
+    		color: #999;
 		}
 	}
 
@@ -519,20 +527,26 @@ ul {
 		height: 1.5em;
 	}
 
+	input[type="text"],
+	input[type="search"]{
+		font-weight: $qvr-font-weight-bold;
+	}
+
 	.qvr-select {
 		@extend .form-element;
 		
 		background: $qvr-white-1 right 10px center no-repeat;
-		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #808285"></polygon></svg>');
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #CCCCCC"></polygon></svg>');
 		background-size: 10px;
 		
 		padding-right: 25px;
 		
 		cursor: pointer;
+		font-weight: $qvr-font-weight-bold;
 		
-		&:focus, &:hover, &:hover:not(&:focus), &[disabled], &.is-disabled {
+		&:focus, &:hover, &[disabled], &.is-disabled {
 			background: $qvr-white-1 right 10px center no-repeat;
-			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #808285"></polygon></svg>');
+			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #CCCCCC"></polygon></svg>');
 			background-size: 10px;
 			padding-right: 25px;
 		}
@@ -543,7 +557,6 @@ ul {
 		}
 	}
 
-	/*
 	textarea {
 		@extend .form-element;
 		resize: none;
@@ -553,7 +566,6 @@ ul {
 			height: 140px;
 		}
 	}
-	*/
 	
 	.switch > label, .switch input:checked + label {
 		background: $qvr-blue-1;
@@ -561,6 +573,10 @@ ul {
 		&::after {
 			border: solid 1px $qvr-blue-1;
 		}
+	}
+	.switch.enter-exit-switch{
+		position: relative;
+    	top: -17px;
 	}
 }
 
@@ -632,6 +648,7 @@ input[type="checkbox"].qvr-slide-toggle {
 
 // Quiver Custom Buttons
 .qvr-button {
+	margin-right: 10px;
 	display: inline-block;
 	
 	height: $qvr-input-height;
@@ -656,6 +673,7 @@ input[type="checkbox"].qvr-slide-toggle {
 	&.action {
 		background-color: $qvr-blue-1;
 		color: $qvr-white-1;
+		text-transform: uppercase;
 
 		&:hover {
 			background-color: $qvr-blue-1;
@@ -674,22 +692,18 @@ input[type="checkbox"].qvr-slide-toggle {
 		}
 		
 		&.is-disabled, &:disabled {
-			background-color: $qvr-blue-1;
+			background-color: $qvr-grey-2;
 		}
 	}
 }
 
 // Date & Time Picker Component
 .date-picker, .time-picker {
-	height: 100%;
-	
 	text-align: center;
-	
 	border: solid 3px $qvr-grey-2;
 	@include border-radius($qvr-border-radius);
 	background-color: $qvr-white-1;
-	padding: 0 !important;
-	
+	padding: 0 0 25px 0 !important;
 	overflow: hidden;
 	
 	.header {
@@ -871,47 +885,3 @@ input[type="checkbox"].qvr-slide-toggle {
 	}
 }
 
-ul.table-list {
-	display: table;
-	
-	width: 100%;
-	
-	border: solid 1px $qvr-grey-3;
-	@include border-radius($qvr-border-radius);
-	
-	overflow: hidden;
-	
-	li:first-child {
-		background-color: $qvr-grey-4;
-		font-weight: $qvr-font-weight-bold;
-		
-		span:not(:first-child):after {
-			content: '';
-			width: 10px;
-			height: 10px;
-			display: inline-block;
-			background-repeat: no-repeat;
-			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #808285"></polygon></svg>');
-			background-size: 10px;
-		}
-	}
-	
-	li {
-		display: table-row;
-		
-		height: 45px;
-		line-height: 45px;
-		
-		background-color: $qvr-white-1;
-		border-bottom: solid 1px $qvr-grey-3;
-		
-		span {
-			display: table-cell;
-			padding: 0 10px;
-		}
-		
-		span:first-child {
-			text-align: center;
-		}
-	}
-}
