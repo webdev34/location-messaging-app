@@ -1,1 +1,70 @@
-<h1>manage campaign</h1>
+<header class="heading-bar">
+	<h1>manage campaign</h1>
+</header>
+<section class="message-content-wrap manage-campaign">
+	<form role="form" class="qvr-form manage-campaign-form" name="msgForm">
+		<div class="float-right top-controls">
+			<label class="qvr-label">Campaign Status</label>
+			
+			<select class="qvr-select select-status" ng-model="manageCampaignCtrl.manageCampaign.status" required>
+				<option>Draft</option>
+				<option>Inactive</option>
+				<option>Active</option>
+				<option>Closed</option>
+			</select>
+			<button type="submit" class="qvr-button action">Save Campaign</button>
+		</div>
+		<section class="form-wrapper">
+			<div id="campaign-name-text" class="input-wrapper">
+				<label class="qvr-label">Campaign Name</label>
+				<input placeholder="" type="text" ng-model="manageCampaignCtrl.manageCampaign.campaignName" required>
+			</div>
+			<div id="campaign-id-text" class="input-wrapper">
+				<label class="qvr-label">Campaign ID</label>
+				<input placeholder="00000" type="text" disabled ng-model="manageCampaignCtrl.manageCampaign.campaignID">
+			</div>
+			<div class="delivery-box start-date">
+				<label class="qvr-label">Start Date</label>
+				<input type="text" class="date" ng-model="manageCampaignCtrl.manageCampaign.startDate" ng-click="manageCampaignCtrl.showStartDatePicker=true">
+			</div>
+			<div class="delivery-box start-time">
+				<label class="qvr-label">Start Time</label>
+				<input type="text" class="hourglass" ng-model="manageCampaignCtrl.manageCampaign.startTime" ng-click="manageCampaignCtrl.showStartTimePicker=true">
+			</div>
+			<div id="campaign-participants" class="input-wrapper">
+				<label class="qvr-label">Campaign Participants <span>(Groups and Individuals)</span></label>
+				<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignParticipants" required>
+					<option>Select</option>
+				</select>
+			</div>
+			<div class="clearfix"></div>
+			<div id="campaign-description" class="input-wrapper">
+				<label class="qvr-label">Campaign Description</label>
+				<textarea ng-model="manageCampaignCtrl.manageCampaign.campaignDescription" class="campaign-description-textarea" required></textarea>
+			</div>
+			<div class="delivery-box end-date">
+				<label class="qvr-label">End Date</label>
+				<input type="text" class="date" ng-model="manageCampaignCtrl.manageCampaign.endDate" ng-click="manageCampaignCtrl.showEndDatePicker=true">
+			</div>
+			<div class="delivery-box end-time">
+				<label class="qvr-label">End Time</label>
+				<input type="text" class="hourglass" ng-model="manageCampaignCtrl.manageCampaign.endTime" ng-click="manageCampaignCtrl.showEndTimePicker=true">
+			</div>
+			<br/>
+			<div id="marketing-assets" class="input-wrapper">
+				<label class="qvr-label">Marketing Assets</label>
+				<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.marketingAssets" required>
+					<option>Select</option>
+				</select>
+			</div>
+			<div id="campaigns-tags" class="input-wrapper">
+				<label class="qvr-label">Campaigns Tags</label>
+				<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignsTags" required>
+					<option>Select</option>
+				</select>
+			</div>
+
+		</section>
+
+	</form>
+</section>

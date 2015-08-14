@@ -1,0 +1,118 @@
+.page--login {
+	display: block;
+	width: 100%;
+	height: 100%;
+	
+	margin: auto;
+	
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+  
+	background-color: $qvr-white-1;
+
+	input[type='text'], input[type='password'], button.action {
+		height: 36px;
+		border-radius: 6px;
+	}
+	
+	input[type='text'], input[type='password'] {
+		background: $qvr-grey-1;
+	}
+	
+	input[type='text'] {
+		margin: 0 0 5px 0;
+	}
+	
+	.login-form {
+		@extend .clearfix;
+		
+		min-width: 272px;
+		width: 272px;
+		height: 215px;
+		
+		margin: auto;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		
+		background-color: $qvr-white-1;
+
+		.qvr-button {
+			font-size: 9px;
+			width: 50%;
+		}
+	}
+
+	.header-logo {
+		float: left;
+		height: 34px;
+		width: 106px;
+		margin-bottom: 28px;
+	}
+
+	.portal-branding {
+		float: left;
+		display: inline-block;
+		
+		color: $qvr-blue-1;
+		border-left: 2px solid $qvr-blue-1;
+		
+		margin: 2px 0 0 17px;
+		padding: 0 0 0 17px;
+		
+		height: 34px;
+		line-height: 34px;
+		
+		font-size: 18px;
+		font-family: $qvr-primary-font;
+		font-weight: $qvr-font-weight-thin;
+	}
+	
+	.forget, .remember {
+		display: inline-block;
+		
+		width: 50%;
+		height: 36px;
+		line-height: 36px;
+		
+		padding: 0 2em;
+
+		background-color: $qvr-white-1;
+		text-align: center;
+		box-shadow: none;
+		border: 1px solid transparent;
+		
+		font-family: $qvr-secondary-font;
+		font-weight: $qvr-font-weight-bold;
+		font-size: 9px;
+		font-weight: normal;
+		color: $qvr-grey-3;
+
+		transition: all 0.4s ease-in-out;
+	}
+	
+	.forget {
+		font-style: italic;
+		
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	
+	input[type="checkbox"] {
+		-webkit-appearance: none;
+		
+		border-radius: 2px;
+		
+		width: 13px;
+		height: 13px;
+		
+		padding: 0;
+		margin: 11px -5px 0 0;
+	}
+}

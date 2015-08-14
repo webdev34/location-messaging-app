@@ -1,0 +1,79 @@
+.page--enterprise {
+	.enterprise-content {}
+	
+	.enterprise-profile {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		margin: 0;
+		padding: 0;
+		align-items: center;
+		justify-content: space-around;
+
+		.corporate-info {
+			order: 1;
+			margin-left: auto;
+
+			.corp-logo {
+				max-width: 210px;
+			}
+		}
+
+		.details {
+			order: 2;
+			border-left: 1px solid #f2f2f2;
+			width: 50%;
+			padding-left: 3rem;
+
+			p {
+				font-size: 16px;
+				font-weight: $qvr-font-weight-light;
+				width: 300px;
+			}
+			
+			label {
+				font-size: 20px;
+				color: $qvr-blue-1;
+			}
+		}
+
+		.enterprise-edit-form {
+			max-width: 420px;
+			label { font-size: 12px; font-weight: $qvr-font-weight-bold;}
+		}
+	}
+
+	.enterprise-users {
+		padding:0 4rem 4rem 4rem;
+		max-width: 1150px;
+		margin: 0 auto;
+
+		header {
+			@extend .clearfix;
+			padding-bottom: 1rem;	
+			margin-bottom: 1rem;	
+			border-bottom: 1px solid #ccc;
+		}
+
+		.user-section {
+			display: flex;
+
+			h2 {
+				display: box;
+				order: 1;
+				width: 200px;
+				text-align: right;
+				margin: 1rem;
+			}
+			
+			.g-user-list {
+				order: 2;
+				flex-grow: 1;
+
+				.user-rights {
+					a { width: 160px;}
+				}
+			}
+		}
+	}
+}

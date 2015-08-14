@@ -1,0 +1,693 @@
+@import "campaigns/manage-campaign";
+
+.page--messages {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	margin: 0;
+	padding: 0;
+
+	.messages-sidebar-wrap {
+		width: 250px;
+	}
+	
+	.messages-view-wrap {
+		flex: 1;
+	}
+	
+	.message-content-wrap {
+		section {
+			@extend .clearfix;
+			padding: 15px 15px 0 15px;
+		}
+		
+		h2 {
+			font-size: 20px;
+			margin: 0;
+			color: $qvr-grey-3;
+
+			&.message-title {
+				line-height: 53px;
+			}
+		}
+
+		p { 
+			font-size: 14px; 
+			margin: 0;
+		}
+
+		.owner {
+			display: inline-block;
+			color: $qvr-grey-3;
+			font-size: 14px;
+			font-weight: $qvr-font-weight-light;
+			line-height: 1.5em;
+
+			.avatar.small {
+				width: 60px;
+				height: 60px;
+			}
+		}
+		
+		.status-box {
+			a {
+				display: inline-block;
+				height: $qvr-input-height;
+				line-height: $qvr-input-height;
+				width: 155px;
+				color: #999;
+				font-size: 14px;
+				border: 1px solid #ccc;
+				@include border-radius($qvr-border-radius);
+				text-align: center;
+
+				&.active {
+					background-color: $qvr-blue-1;
+					color: #fff;
+					font-weight: $qvr-font-weight-bold;
+					border: none;
+				}
+			}
+		}
+
+		.measure {
+			margin-top: 3rem;
+
+			.metric {
+				text-align: center;
+				display: inline-block;
+				margin-right: 1rem;
+				font-size: 14px;
+				font-weight: $qvr-font-weight-light;
+				color: $qvr-blue-1;
+
+				label {
+					font-size: 14px;
+					font-weight: $qvr-font-weight-light;
+					color: $qvr-blue-1;
+				}
+
+				span {
+					$circle-diameter: 100px;
+					display: inline-block;
+					width: $circle-diameter;
+					height: $circle-diameter;
+					line-height: $circle-diameter;
+					border-radius: $circle-diameter;
+					border: 1px solid $qvr-blue-1;
+					margin-bottom: 0.5rem;
+					transition: all 0.3s ease-in-out;
+
+				}
+				
+				&:hover {
+					span {
+						border: 1px solid darken($qvr-blue-1, 10%);
+					}
+				}
+			}
+		}
+
+		.location-description {
+			margin: 1rem 1rem 2rem 1rem;
+
+			.icon {
+				float: left;
+				margin-right: 1rem;
+			}
+			
+			p {
+				font-size: 17px;
+				color: $qvr-grey-3;
+				font-weight: $qvr-font-weight-light;
+			}
+		}
+
+		.radius {
+			font-family: $qvr-tertiary-font;
+			font-weight: $qvr-font-weight-bold;
+			font-size: 16px;
+			
+			text-transform: uppercase;
+			text-align: center;
+			
+			input {
+				display: inline-block;
+				width: 70px;
+				margin: 10px 0 15px 0;
+				padding: 0 5px;
+				color: $qvr-blue-1;
+				font-size: 16px;
+				text-align: right;
+			}
+
+			span {
+				color: $qvr-blue-1;
+				&.km{
+					margin-right: 5px;
+				}
+			}
+		}
+
+		.switch-wrapper{
+			text-align: center;
+			margin: 15px auto;
+			float: left;
+			width: 100%;
+			&.delivery-info{
+				@include border-radius($qvr-border-radius);
+				background-color: $qvr-grey-5;
+				padding: 15px;
+				margin-top: 0px;
+			}
+			
+			p{
+				margin-top: 15px;
+			}
+		}
+
+		.location-details {
+			padding: 2rem 3rem;
+
+			.switch-wrapper {
+				text-align: center;
+			}
+			
+			.enter-exit-switch {
+				margin: 10px;
+			}
+			
+			.icon {
+				background-image: cover;
+				width: 43px;
+				height: 43px;
+			}
+
+			p {
+				font-size: 14px;
+				font-weight: $qvr-font-weight-thin;
+				text-align: center;
+				color: $qvr-grey-3;
+
+				span {
+					color: $qvr-blue-1;
+				}
+			}
+		}
+
+		.delivery-box {	
+			span.date {
+				font-size: 26px;
+				font-weight: $qvr-font-weight-bold;
+				color: #999;
+				text-transform: uppercase;
+			}
+
+			input {
+				background-repeat: no-repeat;
+				background-size: 22px;
+				background-position: right 5px center;
+				width: 95%;
+			}
+
+			input.date {
+				background-image: url(..//img/icons/i-calendar.png);
+			}
+			
+			input.hourglass {
+				background-image: url(..//img/icons/i-hourglass.png);
+			}
+		}
+		
+		.info-details {
+			@extend .location-details;
+			input {
+				margin-bottom: 7px;
+			}
+		}
+	}
+
+	.create-edit-message-form {
+		.form-upper {
+			padding: 30px 0 10px 15px;
+			background-color: $qvr-blue-3;
+			
+			@include box-shadow-inner(0px, 30px, 20px, -30px, $qvr-grey-3);
+			
+			label {
+				width: auto;
+			}
+			
+			.input-wrapper {
+				display: inline-block;
+				margin: 0 10px 0 0;
+				width: auto;
+			}
+		}
+
+		.half-size {
+			width: 50%;
+			float: left;
+			&:first-child {
+				padding-right: 20px;
+			}
+		}
+
+		.message-content {
+			height: 180px;
+		}
+
+		.attach-asset {
+		  padding: 0;
+		  position: relative;
+		  top: -60px;
+		  left: 15px;
+		  
+		  .icon {
+				background-position: 0 -5px;
+				width: 44px;
+				height: 33px;
+			}
+		}
+
+		.map-search-wrap {
+			position: relative;
+			
+			input {
+				padding: 0 $qvr-input-height;
+			}
+			
+			> .icon {
+				position: absolute;
+				background-position: center;
+				background-size: 50%;
+				background-repeat: no-repeat;
+			}
+			
+			.search-button {
+				position: absolute;
+				right: 0;
+				
+				height: $qvr-input-height;
+				width: $qvr-input-height * 1.1;
+				
+				background-color: $qvr-blue-1;
+				
+				@include border-radius($qvr-border-radius);
+				
+				cursor: pointer;
+				
+				.icon {
+					width: 100%;
+					background-position: center;
+					background-size: 40%;
+					background-repeat: no-repeat;
+				}
+			}
+		}
+
+		.radius-wrapper{
+			position: relative;
+		}
+		.radius-minus {
+			color: $qvr-blue-1;
+			font-size: 25px;
+			position: absolute;
+    		top: -3px;
+    		left: -3px;
+    		cursor: pointer;
+		}
+		.radius-plus {
+			color: $qvr-blue-1;
+			font-size: 16px;
+			position: absolute;
+			right: -4px;
+			top: 2px;
+			cursor: pointer;
+		}
+
+		input[type="range"].radius-range {
+			position: relative;
+			-webkit-appearance: none;
+			
+			width: 98%;
+			height: 20px;
+			
+			padding: 0 10px;
+			
+			border: none;
+			background: transparent;
+			
+			font-weight: $qvr-font-weight-light;
+			line-height: 15px;
+			margin-left: 5px;
+		
+			&:focus {
+				outline: none;
+			}
+			
+			&::-webkit-slider-runnable-track {
+				width: 100%;
+				height: 8px;
+				border-radius: 8px;
+				cursor: pointer;
+				animate: 0.2s;
+				background: $qvr-blue-1;
+			}
+			
+			&::-webkit-slider-thumb {
+				position: relative;
+				height: 36px;
+				width: 36px;
+				border-radius: 36px;
+				box-shadow: 0 2px 4px #333;
+				background: #ffffff;
+				cursor: pointer;
+				-webkit-appearance: none;
+				margin-top: -15px;
+
+				&::after {
+					content: ' ';
+					
+					display: block;
+					
+					position: absolute;
+					top: 6px;
+					left: 6px;
+					
+					background-image: url(..//img/icons/i-location.png);
+					background-size: 49%;
+					background-repeat: no-repeat;
+					background-position: 6px 6px;
+					
+					width: 22px;
+					height: 22px;
+					
+					border-radius: 22px;
+					border: 1px solid $qvr-blue-1;
+				}
+			}
+			
+			&:focus::-webkit-slider-runnable-track {
+				background: $qvr-blue-1;
+			}
+		}
+	}
+
+	.message-active-list {
+		margin-bottom: 0;
+
+		.title-width { 
+			display: inline-block;
+			width: 215px;
+			float: left;
+		}
+
+		.message-title {
+			padding-left: 50px;
+			font-size: 12px;
+			font-weight: $qvr-font-weight-bold;
+			color: $qvr-grey-3;
+		}
+
+		.stats {
+			@extend .clearfix;
+			text-align: center;
+
+			span {
+				display: inline-block;
+				float: left;
+				width: 90px;
+				height: 50px;
+				line-height: inherit;
+			}
+		}
+
+		header {
+			@extend .clearfix;
+
+			.stats {
+				margin-right: 1rem;
+				font-size: 12px;
+				color: #777;
+				//margin-top: 1rem;
+
+				span {
+					font-size: 12px;
+					text-transform: uppercase;
+					font-weight: $qvr-font-weight-bold;
+					color: #fff;
+				}
+			}
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+
+			li {
+				@extend .clearfix;
+				margin: 0;
+				padding: 0;
+				height: 50px;
+				line-height: 50px;
+				transition: all 0.4s ease-in-out;
+				border-bottom: 1px solid #F2F2F2;
+				font-size: 12px;
+				font-weight: $qvr-font-weight-bold;
+
+				a {
+					transition: all 0.4s ease-in-out;
+					
+					&:hover {
+						color: $qvr-blue-1;
+					}
+				}
+				
+				&:hover {	
+					background-color: #f2f2f2;
+
+					.stats {
+						span {
+							border-color: darken(#F2F2F2, 20%);
+						}
+					}
+				}
+
+				.stats {
+					span {
+						color: $qvr-blue-1;
+						border-left: 1px solid #f2f2f2;
+						transition: all 0.4s ease-in-out;
+
+					}
+				}
+
+			}
+		}
+	}
+
+	.live-feed {
+		margin-top: 0;
+
+		ul {
+			list-style: none;
+			margin: 25px 45px;
+			padding: 0;
+			max-width: 615px;
+
+			li {
+				border: 1px solid #ccc;
+				border-radius: 10px;
+				padding: 12px 25px 12px 20px;
+				margin-bottom: 0.5rem;
+				transition: all 0.2s ease-in-out;
+				
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+
+				&:hover {
+					border: 1px solid darken(#ccc, 10%);
+					background-color: #f2f2f2;
+				}
+
+				.user {
+					order: 1
+				}
+
+				.update-body {
+					order: 2; 
+					flex: 2;
+					font-size: 12px;
+					font-weight: $qvr-font-weight-bold;
+
+					header {
+						padding: 0 0 0.5em 0;
+					}
+
+					a {
+						color: $qvr-blue-1;
+					}
+
+					p {
+						font-weight: $qvr-font-weight-light;
+						margin-bottom: 0.5em;
+						line-height: 1.2em;
+					}
+
+					.location {
+						.icon { margin-bottom: -5px;}
+					}
+				}
+
+				.link-wrap {
+					order: 3; 
+					padding-top: 10px;
+				}
+			}
+		}
+	}
+	
+	.new-message {
+		h2 {
+			width: 100%;
+			margin: 0 0 20px 0;
+			text-align: center;
+			color: $qvr-blue-1;
+			font-family: $qvr-tertiary-font;
+			font-weight: $qvr-font-weight-bold;
+			font-size: 20px;
+			text-transform: uppercase;
+		}
+		
+		#msg-title-text {
+			width: 250px;
+		}
+		
+		#msg-id-text {
+			width: 90px;
+		}
+		
+		map > div {
+			border: 1px solid $qvr-grey-2;
+			@include border-radius($qvr-border-radius);
+		}
+		
+		.column-3 {
+			width: 33.3%;
+			padding: 0 15px 0 0;
+			float: left;
+		}
+		
+		.content-row {
+			padding: 15px 0 15px 15px;
+		}
+		
+		.qvr-form {
+			.qvr-label{
+				margin-left: 5px;
+			}
+			.message-recipients {
+				@extend .form-element;
+				
+				width: 100%;
+				height: 50px;
+				
+				padding: 10px 0 0 0;
+				
+				.targeted-followers-count {
+					color: $qvr-blue-1;
+					font-family: $qvr-tertiary-font;
+					font-size: 30px;
+					font-weight: $qvr-font-weight-bold;
+					float: right;
+					width: 100%;
+					text-align: right;
+					margin: 0 -85px 0 0;
+					padding: 0 85px 0 0;
+				}
+				
+				.targeted-followers-label {
+					width: 85px;
+					text-align: center;
+					float: right;
+				}
+			}
+
+			.target-filters {
+				width: 100%;
+				padding: 30px;
+				@include border-radius(10px);
+				background-color: $qvr-grey-5;
+				margin-bottom: 20px;
+				h2{
+					margin-bottom: 0px;
+				}
+			}
+
+			#targeting-filters{
+				.input-wrapper{
+					margin-top: 10px;
+				}
+			}
+
+			#message-tags{
+				top: -30px;
+    			position: relative;
+			}
+			
+			.message-content {
+				width: 100%;
+				height: 458px;
+			}
+			
+			.location-section {
+				width: 100%;
+				height: 555px;
+				padding: 0px;
+				@include border-radius(10px);
+				background-color: $qvr-grey-5;
+			}
+			
+			.date-selector {
+				width: 100%;
+				padding: 20px;
+				@include border-radius(10px);
+				background-color: $qvr-grey-5;
+			}
+			
+			.time-selector {
+				width: 100%;
+				padding: 20px;
+				@include border-radius(10px);
+				background-color: $qvr-grey-5;
+				
+				.delivery-box {
+					//padding: 0 25px;
+					width: 50%;
+    				float: left;
+				}
+				
+				.start-time, .end-time {
+					margin-bottom: 10px;
+				}
+
+				.location-section{
+					padding: 0px;
+				}
+			}
+			
+			.location-details {
+				width: 100%;
+				padding: 20px;
+				margin: 20px 0 0 0;
+				@include border-radius(10px);
+				background-color: $qvr-grey-5;
+			}
+		}
+	}
+}

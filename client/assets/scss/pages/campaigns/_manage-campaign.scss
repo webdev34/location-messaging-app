@@ -1,0 +1,39 @@
+.manage-campaign.message-content-wrap{
+	.manage-campaign-form{
+		.qvr-label{
+			span{
+				color: #808285;
+			}
+		}
+		.top-controls{
+			margin-top: -75px;
+		}
+		.form-wrapper{
+			margin-top: 20px;
+		}
+		.input-wrapper{
+			margin-right: 20px;
+			float: left;
+		}
+		.delivery-box{
+			float: left;
+			width: 15%;
+		}
+		#campaign-name-text{
+			width: 300px;
+		}
+		#campaign-id-text{
+			width: 100px;
+		}
+		#campaign-participants{
+			width: 325px;
+		}
+		#campaign-description{
+			width: 420px;
+		}
+		.campaign-description-textarea{
+			height: 150px;
+		}
+		
+	}
+} 
