@@ -15,6 +15,7 @@
 			// Modules
 			'user-profile',
 			'messages',
+			'reporting',
 			'enterprise',
 			'admin'
 		])
@@ -156,7 +157,7 @@
 					{'title': 'Asset Management', 'state': 'home'}
 				],
 				'reports' : [
-					{'title': 'Report Center', 'state': 'home'}
+					{'title': 'Report Center', 'state': 'reporting.center'}
 				],
 				'enterprise' : [
 					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'}
