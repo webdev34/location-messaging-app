@@ -6,7 +6,8 @@
 		'messages.dashboard',
 		'messages.detail',
 		'messages.new',
-		'messages.edit'
+		'messages.edit',
+		'messages.manage-campaign'
 	])
 
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -37,7 +38,8 @@
 			})
 			.state('messages.manage-campaign', {
 				url: '/manage-campaign',
-				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html'
+				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html',
+				controller: 'ManageCampaignCtrl as manageCampaignCtrl'
 			})
 			;
 
