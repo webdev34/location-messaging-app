@@ -177,6 +177,14 @@ ul {
 	border-top: 20px solid #f00;
 }
 
+.check-mark {
+	background-image: url(../img/icons/i-check.png);
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+    background-repeat: no-repeat;
+}
+
 
 // Global Activity Bar
 .g-activity  {
