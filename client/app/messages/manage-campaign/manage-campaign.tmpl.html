@@ -1,5 +1,5 @@
 <header class="heading-bar">
-	<h1>manage campaign</h1>
+	<h1>Manage Campaign</h1>
 </header>
 <section class="message-content-wrap manage-campaign">
 	<form role="form" class="qvr-form manage-campaign-form" name="msgForm">
@@ -42,29 +42,91 @@
 				<label class="qvr-label">Campaign Description</label>
 				<textarea ng-model="manageCampaignCtrl.manageCampaign.campaignDescription" class="campaign-description-textarea" required></textarea>
 			</div>
-			<div class="delivery-box end-date">
-				<label class="qvr-label">End Date</label>
-				<input type="text" class="date" ng-model="manageCampaignCtrl.manageCampaign.endDate" ng-click="manageCampaignCtrl.showEndDatePicker=true">
-			</div>
-			<div class="delivery-box end-time">
-				<label class="qvr-label">End Time</label>
-				<input type="text" class="hourglass" ng-model="manageCampaignCtrl.manageCampaign.endTime" ng-click="manageCampaignCtrl.showEndTimePicker=true">
-			</div>
-			<br/>
-			<div id="marketing-assets" class="input-wrapper">
-				<label class="qvr-label">Marketing Assets</label>
-				<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.marketingAssets" required>
-					<option>Select</option>
-				</select>
-			</div>
-			<div id="campaigns-tags" class="input-wrapper">
-				<label class="qvr-label">Campaigns Tags</label>
-				<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignsTags" required>
-					<option>Select</option>
-				</select>
-			</div>
-
+			<div class="float-left">
+				<div class="delivery-box end-date">
+					<label class="qvr-label">End Date</label>
+					<input type="text" class="date" ng-model="manageCampaignCtrl.manageCampaign.endDate" ng-click="manageCampaignCtrl.showEndDatePicker=true">
+				</div>
+				<div class="delivery-box end-time">
+					<label class="qvr-label">End Time</label>
+					<input type="text" class="hourglass" ng-model="manageCampaignCtrl.manageCampaign.endTime" ng-click="manageCampaignCtrl.showEndTimePicker=true">
+				</div>
+			<div class="clearfix"></div>
+				<div id="marketing-assets" class="input-wrapper">
+					<label class="qvr-label">Marketing Assets</label>
+					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.marketingAssets" required>
+						<option>Select</option>
+					</select>
+				</div>
+				<div id="campaigns-tags" class="input-wrapper">
+					<label class="qvr-label">Campaigns Tags</label>
+					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignsTags" required>
+						<option>Select</option>
+					</select>
+				</div>
+		    </div>
 		</section>
-
 	</form>
+	<section class="campaign-messages-wrapper">
+		<div class="campaign-messages-header qvr-form">
+			<h1 class="float-left">Campaign Messages</h1>
+			<button class="qvr-button action">+ NEW MESSAGE</button>
+			<div class="search-wrapper">
+				<label for="filter-by"><i class="fa fa-search"></i></label>
+				<input type="search" class="search-campaigns" ng-model="manageCampaignCtrl.campaignMessages.searchCampaigns" ng-click="manageCampaignCtrl.showEndTimePicker=true" placeholder="Search Campaigns">
+			</div>
+		</div>
+
+		<div class="campaign-messages-table-wrapper qvr-form">
+			<table>
+			  <thead>
+			    <tr>
+			      <th><input type="checkbox" /></th>
+			      <th><label>ID</label></th>
+			      <th><label>Label</label></th>
+			      <th><label>To</label></th>
+			      <th><label>Location</label></th>
+			      <th><label>Start</label></th>
+			      <th><label>End</label></th>
+			      <th><label>Status</label></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td><input type="checkbox" /></td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			    </tr>
+			    <tr>
+			      <td><input type="checkbox" /></td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			    </tr>
+			    <tr>
+			      <td><input type="checkbox" /></td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+
+	</section>
+
+</section>
 </section>

@@ -5,11 +5,8 @@
 				color: #808285;
 			}
 		}
-		.top-controls{
-			margin-top: -75px;
-		}
 		.form-wrapper{
-			margin-top: 20px;
+			background-color: #f8f8f8;
 		}
 		.input-wrapper{
 			margin-right: 20px;
@@ -17,7 +14,7 @@
 		}
 		.delivery-box{
 			float: left;
-			width: 15%;
+			margin-right: 20px;
 		}
 		#campaign-name-text{
 			width: 300px;
@@ -25,15 +22,114 @@
 		#campaign-id-text{
 			width: 100px;
 		}
-		#campaign-participants{
-			width: 325px;
-		}
 		#campaign-description{
 			width: 420px;
 		}
 		.campaign-description-textarea{
 			height: 150px;
 		}
-		
+		#marketing-assets,
+		#campaigns-tags, 
+		#campaign-participants{
+			width: 350px;
+		}
+		#campaigns-tags{
+			margin-left: 5px;
+		}	
+	}
+
+	.campaign-messages-wrapper{
+		padding: 45px 0px;
+		.campaign-messages-header{
+			h1{
+				padding: 0 0 0 30px;
+			    margin: 0;
+			    border-bottom: solid 1 px #808285;
+			    color: #808285;
+			    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			    font-size: 40px;
+			    line-height: inherit;
+			    font-weight: 300;
+			    text-align: left;
+			    text-transform: uppercase;
+			}	
+			.qvr-button {
+	    		padding: 0px 1em;
+	    		margin-left: 25px;
+			}
+			.search-wrapper{
+				float: right;
+				width: 30%;
+				display: inline-block;
+				margin-right: 20px;
+				position: relative;
+				label{
+					position: absolute;
+				    font-size: 21px;
+				    top: 5px;
+				    left: 10px;
+				    color: #666666;
+				}
+				input[type="search"]{
+					text-indent: 25px;
+					font-weight: normal;
+				}
+			}			
+		}
+		.campaign-messages-table-wrapper{
+			table{
+    			width: 98%;
+    			margin-left: 10px;
+				border: thin solid  #D1D2D3;
+				border-collapse: separate;
+    			border-spacing: 0;
+    			padding: 0px;
+				@include border-radius(20px);
+				th{
+					background-color: #F2F2F2;
+					text-align: left;
+					label{
+						font-size: 1.2rem;
+						margin-bottom: 0px;
+						color: #666666;
+					}
+					input[type="checkbox"]{
+						margin-left: 10px;
+    					margin-top: 15px;
+					}
+				}
+				td{
+					text-align: left;
+					border-bottom: thin solid #D1D2D3;
+					input[type="checkbox"]{
+						margin-left: 10px;
+    					margin-top: 15px;
+					}
+				}
+				tr{
+					background-color: white;
+					&:first-child{
+						th{
+							&:first-child{
+								@include border-radius( 20px 0px 0px 0px);
+							}
+							&:last-child{
+								@include border-radius( 0px 20px 0px 0px);
+							}
+						}	
+					}					
+					&:last-child{
+						td{
+							&:first-child{
+								@include border-radius( 0px 0px 0px 20px);
+							}
+							&:last-child{
+								@include border-radius( 0px 0px 20px 00px);
+							}
+						}	
+					}
+				}
+			}
+		}
 	}
 } 
