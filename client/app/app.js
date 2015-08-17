@@ -179,15 +179,25 @@
 			);
 
 			$rootScope.$on('$routeChangeStart', function (event) {
-				if (!UserModel.isLoggedIn) {
-					event.preventDefault();
-					goToLogin();
-				}
+				console.log('routechangestart');
+				checkIfLoggedIn();
+
 			});
 			
 			function init() {
+				checkIfLoggedIn();
 				setNavigationState();
 				goToHomePage();
+			}
+
+			function checkIfLoggedIn() {
+				console.log('checking if loggedin');
+
+				if (!UserModel.isLoggedIn) {
+					event.preventDefault();
+					goToLogin();
+					return;
+				}
 			}
 
 			function setNavigationState() {
@@ -215,6 +225,11 @@
 				$state.go(APP_default_state);
 			}
 
+			appCtrl.test = function(){
+				console.log('testing')
+			}
+
+			
 			appCtrl.userLogin = function() {
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
@@ -244,6 +259,12 @@
 						}
 					);
 			}
+
+			appCtrl.userLogout = function(){
+				UserModel.logout();
+				goToLogin();
+			}
+
 
 			init();
 		}

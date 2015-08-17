@@ -69,7 +69,7 @@ User types - these are NOT 'social users' (followers)
 				model.user = {};
 				$cookieStore.remove("QVR.user");
 				$cookieStore.remove("QVR.company");
-				return UserService.logout();
+				//return UserService.logout();
 			}
 
 			model.updateUser = function(updatedUserDetail) {
