@@ -41,9 +41,9 @@
 					"marketingAssets": "",
 					"campaignsTags": "",
 					"status": "Draft",
-					"startDate": todayFormatted,
+					"startDate": todayProperFormatted,
 					"startTime": "12:01 AM",
-					"endDate": tomorrowFormatted,
+					"endDate": tomorrowProperFormatted,
 					"endTime": "11:59 PM",
 					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
@@ -86,7 +86,7 @@
 			$scope.$watch("manageCampaignCtrl.manageCampaign.startTime", clearTakeOverSelectors);
 			$scope.$watch("manageCampaignCtrl.manageCampaign.endTime", clearTakeOverSelectors);
 			
-			//resetForm();
+			resetForm();
 		}
 	]);
 
