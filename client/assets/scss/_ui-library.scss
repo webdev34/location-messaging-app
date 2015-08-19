@@ -1,898 +1,800 @@
 // Helpers
 .qvr-align-center {
-	text-align: center;
+    text-align: center;
 }
 
-.qvr-blue{
-	color: #00A9D3;
+.qvr-blue {
+    color: #00A9D3;
 }
 
 // Typography Elements
 h2 {
-  font-size: 24px;
-  font-weight: $qvr-font-weight-bold;
-  margin: 0;
-  color: $qvr-grey-3;
-
+    font-size: 24px;
+    font-weight: $qvr-font-weight-bold;
+    margin: 0;
+    color: $qvr-grey-3;
 }
 
 .qvr-label {
-	font-size: 14px;
-	font-weight: $qvr-font-weight-bold;
-	color: $qvr-blue-1;
-	
-	.subtext {
-		color: $qvr-grey-3;
-	}
+    font-size: 14px;
+    font-weight: $qvr-font-weight-bold;
+    color: $qvr-blue-1;
+    .subtext {
+        color: $qvr-grey-3;
+    }
 }
 
-.clearfix{
-	clear: both;
+.clearfix {
+    clear: both;
 }
 
 // Global Styles
 html, body {
-	height: 100%;
-	width: 100%;
-	
-	margin: 0;
-	padding: 0;
-	
-	position: relative;
-	
-	font-family: $qvr-primary-font;
-	font-size: 12px;
-	color: $qvr-grey-3;
-	
-	background-color: $qvr-grey-4;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-family: $qvr-primary-font;
+    font-size: 12px;
+    color: $qvr-grey-3;
+    background-color: $qvr-grey-4;
 }
 
 p {
-	font-size: 12px;
-	color: $qvr-grey-3;
+    font-size: 12px;
+    color: $qvr-grey-3;
 }
 
 .map-canvas {
-	height: 100%;
-	margin: 0;
-	padding: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 // Bower foundation overrides
 ul {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
-
 
 // Icons
 .icon {
-	display: inline-block;
-	background-size: cover;
-
-	&.i-header-user {
-		background-image: url(../img/icons/i-header-user.png);
-		width: 26px;
-		height: 24px;
-		&.active {
-			background-image: url(../img/icons/i-header-user_active.png);
-		}
-	}
-
-	&.i-user-large {
-		background-image: url(../img/icons/i-user.png);
-		width: 80px;
-		height: 80px;
-	}
-
-	&.i-dashboard {
-		background-image: url(../img/icons/i-dashboard.png);
-		width: 34px;
-		height: 34px;
-	}
-
-	&.i-search {
-		background-image: url(../img/icons/i-search-zoom.png);
-		width: 20px;
-		height: 20px;
-	}
-	&.i-search-white {
-		background-image: url(../img/icons/i-search-zoom-white.png);
-		width: 32px;
-		height: 32px;
-	}
-
-	&.i-btn-arrow-right {
-		background-image: url(../img/icons/i-btn-arrow-right.png);
-		width: 60px;
-		height: 60px;
-	}
-	&.i-location {
-		background-image: url(../img/icons/i-location.png);
-		width: 24px;
-		height: 24px;
-	}
-	&.i-side-bar-arrow {
-		background-image: url(../img/icons/i-side-bar-arrow-right.png);
-		width: 15px;
-		height: 15px;
-	}
-	&.i-location-large {
-		background-image: url(../img/icons/i-location-large.png);
-		width: 34px;
-		height: 34px;
-	}
-	&.i-location-enter {
-		background-image: url(../img/icons/i-location-enter.png);
-		width: 60px;
-		height: 60px;
-		&.active {
-			background-image: url(../img/icons/i-location-enter_active.png);
-
-		}
-	}
-	&.i-location-leave {
-		background-image: url(../img/icons/i-location-leave.png);
-		width: 60px;
-		height: 60px;
-		&.active {
-			background-image: url(../img/icons/i-location-leave_active.png);
-		}
-	}
-	&.i-calendar {
-		background-image: url(..//img/icons/i-calendar.png);
-		width: 30px;
-		height: 30px;
-	}
-	&.i-hourglass {
-		background-image: url(../img/icons/i-hourglass.png);
-		width: 30px;
-		height: 30px;
-	}
-	&.i-info {
-		background-image: url(../img/icons/i-info.png);
-		width: 50px;
-		height: 50px;
-	}
-	&.i-info-crossed {
-		background-image: url(..//img/icons/i-info-crossed.png);
-		width: 50px;
-		height: 50px;
-	}
-	&.i-camera {
-		background-image: url(../img/icons/i-camera.png);
-		width: 32px;
-		height: 32px;
-	}
-
+    display: inline-block;
+    background-size: cover;
+    &.i-header-user {
+        background-image: url(../img/icons/i-header-user.png);
+        width: 26px;
+        height: 24px;
+        &.active {
+            background-image: url(../img/icons/i-header-user_active.png);
+        }
+    }
+    &.i-user-large {
+        background-image: url(../img/icons/i-user.png);
+        width: 80px;
+        height: 80px;
+    }
+    &.i-dashboard {
+        background-image: url(../img/icons/i-dashboard.png);
+        width: 34px;
+        height: 34px;
+    }
+    &.i-search {
+        background-image: url(../img/icons/i-search-zoom.png);
+        width: 20px;
+        height: 20px;
+    }
+    &.i-search-white {
+        background-image: url(../img/icons/i-search-zoom-white.png);
+        width: 32px;
+        height: 32px;
+    }
+    &.i-btn-arrow-right {
+        background-image: url(../img/icons/i-btn-arrow-right.png);
+        width: 60px;
+        height: 60px;
+    }
+    &.i-location {
+        background-image: url(../img/icons/i-location.png);
+        width: 24px;
+        height: 24px;
+    }
+    &.i-side-bar-arrow {
+        background-image: url(../img/icons/i-side-bar-arrow-right.png);
+        width: 15px;
+        height: 15px;
+    }
+    &.i-location-large {
+        background-image: url(../img/icons/i-location-large.png);
+        width: 34px;
+        height: 34px;
+    }
+    &.i-location-enter {
+        background-image: url(../img/icons/i-location-enter.png);
+        width: 60px;
+        height: 60px;
+        &.active {
+            background-image: url(../img/icons/i-location-enter_active.png);
+        }
+    }
+    &.i-location-leave {
+        background-image: url(../img/icons/i-location-leave.png);
+        width: 60px;
+        height: 60px;
+        &.active {
+            background-image: url(../img/icons/i-location-leave_active.png);
+        }
+    }
+    &.i-calendar {
+        background-image: url(..//img/icons/i-calendar.png);
+        width: 30px;
+        height: 30px;
+    }
+    &.i-hourglass {
+        background-image: url(../img/icons/i-hourglass.png);
+        width: 30px;
+        height: 30px;
+    }
+    &.i-info {
+        background-image: url(../img/icons/i-info.png);
+        width: 50px;
+        height: 50px;
+    }
+    &.i-info-crossed {
+        background-image: url(..//img/icons/i-info-crossed.png);
+        width: 50px;
+        height: 50px;
+    }
+    &.i-camera {
+        background-image: url(../img/icons/i-camera.png);
+        width: 32px;
+        height: 32px;
+    }
 }
-
 
 // CSS Shapes
 .arrow-down {
-	width: 0; 
-	height: 0; 
-	border-left: 20px solid transparent;
-	border-right: 20px solid transparent;
-	border-top: 20px solid #f00;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #f00;
 }
 
 .check-mark {
-	background-image: url(../img/icons/i-check.png);
-	width: 30px;
-	height: 30px;
-	display: inline-block;
+    background-image: url(../img/icons/i-check.png);
+    width: 30px;
+    height: 30px;
+    display: inline-block;
     background-repeat: no-repeat;
 }
 
+// Table Pagination
 
-// Global Activity Bar
-.g-activity  {
-	position: absolute;
-	width: 113px;
-	margin: -25px 0 10px 0;
-	background-color: $qvr-blue-2;
-	border-radius: 0 0 22px 0;
-	text-transform: uppercase;
-	
-	font-family: $qvr-tertiary-font;
-	color: $qvr-white-1;
-	
-	text-align: center;
-	
-	.title {
-		background-color: $qvr-blue-2;
-		height: 90px;
-		border-top: solid 25px $qvr-blue-2;
-		font-size: 16px;
-		line-height: 18px;
-		padding: 16px 5px 0 5px;
-	}
-	
-	.desc {
-		height: 30px;
-		line-height: 30px;
-		font-size: 12px;
-		background-color: $qvr-blue-1;
-	}
-	
-	.count {
-		height: 48px;
-		line-height: 48px;
-		font-size: 20px;
-	}
+.pagination-wrapper {
+		@include display-flex();
+	    width: 28%;
+    	float: right;
+    &.bottom {
+        margin-top: 10px;
+    }
+    button {
+        float: left;
+        padding: 18px;
+        padding-top: 0px;
+        margin-right: 15px;
+        i {
+            color: #f8f8f8;
+            font-size: 31px;
+            font-weight: bold;
+            &:before {
+                top: -2px;
+                left: -3px;
+                position: relative;
+            }
+            &.right {
+                &:before {
+                    left: 3px;
+                }
+            }
+        }
+    }
+    input {
+        width: 50px;
+        float: left;
+        font-weight: normal;
+    }
+    .pagination-info {
+    	display: inline-table;
+        span {
+            float: left;
+            margin: 5px;
+            margin-top: 10px;
+            font-size: 16px;
+            span {
+                float: right;
+                margin-top: 0px;
+            }
+        }
+    }
 }
 
+// Global Activity Bar
+.g-activity {
+    position: absolute;
+    width: 113px;
+    margin: -25px 0 10px 0;
+    background-color: $qvr-blue-2;
+    border-radius: 0 0 22px 0;
+    text-transform: uppercase;
+    font-family: $qvr-tertiary-font;
+    color: $qvr-white-1;
+    text-align: center;
+    .title {
+        background-color: $qvr-blue-2;
+        height: 90px;
+        border-top: solid 25px $qvr-blue-2;
+        font-size: 16px;
+        line-height: 18px;
+        padding: 16px 5px 0 5px;
+    }
+    .desc {
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+        background-color: $qvr-blue-1;
+    }
+    .count {
+        height: 48px;
+        line-height: 48px;
+        font-size: 20px;
+    }
+}
 
 // Global Header
 .g-header {
-	background-color: $qvr-blue-1;
-
-	.menu-bar { //override foundation-app.css class in bower
-		background-color: transparent;
-	}
-	
-	.header-branding {
-		float: left;
-		margin: 12px 0 0 17px;
-
-		.header-logo {
-			float: left;
-			width: 80px;
-			height: 25px;
-		}
-
-		.portal-branding {
-			float: left;
-			display: inline-block;
-			
-			color: $qvr-white-1;
-			border-left: 1px solid $qvr-white-1;
-			
-			margin: 3px 0 0 15px;
-			padding: 0 15px;
-			
-			height: 23px;
-			line-height: 23px;
-			
-			font-size: 16px;
-			font-family: $qvr-primary-font;
-			//ont-weight: $qvr-font-weight-thin;
-		}
-	}
-
-	.header-nav {
-		height: 50px;
-		
-		ul {
-			display: inline-block;
-			
-			li {
-				display: inline-block;
-			}
-			
-			a {
-				display: block;
-				
-				text-align: center;
-				font-family: $qvr-primary-font;
-				font-size: 15px;
-				font-weight: $qvr-font-weight-bold;
-				color: $qvr-white-1;
-				
-				border-bottom: 7px solid transparent;
-				
-				width: 150px;
-				height: 30px;
-				
-				margin: 14px 10px 0 0;
-				padding-bottom: 28px;
-				
-				transition: all 0.2s ease-in-out;
-				
-				&:hover, &.active {
-					border-bottom: 7px solid $qvr-white-2;
-				}
-			}
-		}
-	}
-	
-	.header-subnav {
-		height: 25px;
-		background-color: $qvr-grey-4;
-		
-		ul {
-			margin: 0 0 0 265px;
-			padding: 0;
-			
-			li {
-				display: inline-block;
-			}
-		}
-		
-		a {
-			height: 25px;
-			margin: 0 20px 0 0;
-			
-			color: $qvr-grey-3;
-			font-size: 12px;
-			line-height: 25px;
-			
-			transition: all 0.2s ease-in-out;
-			
-			&:hover, &.active {
-				color: $qvr-blue-1;
-			}
-
-			&.active {
-				font-weight: $qvr-font-weight-bold;
-			}
-		}
-	}
-		
-	.header-user-info {
-		min-width: 215px;
-		
-		position: absolute;
-		top: 0;
-		right: 0;
-		
-		.icon-wrapper {
-			width: 50px;
-			height: 50px;
-			float: left;
-			background-color: $qvr-grey-1;
-			
-			.icon {
-				width: 25px;
-				height: 25px;
-				margin: 12px;
-			}
-		}
-		
-		.details {
-			min-width: 165px;
-			height: 50px;
-			display: block;
-			margin: 0 0 0 50px;
-			font-size: 16px;
-			color: $qvr-white-1;
-			padding: 10px 10px 0 10px;
-			text-align: center;
-			text-transform: uppercase;
-    		font-weight: bold;
-			
-			.enterprise-name {
-				font-family: $qvr-tertiary-font;
-			}
-			
-			.enterprise-plan {
-				font-size: 12px;
-				font-family: $qvr-primary-font;
-				
-				margin: 4px 0 0 0;
-				text-transform: capitalize;
-				
-				span:first-child {
-					font-weight: $qvr-font-weight-bold;
-				}
-				
-				span:last-child {
-					color: $qvr-green-1;
-				}
-			}
-		}
-		
-		.username {
-			width: 100%;
-			height: 24px;
-			line-height: 24px;
-			float: right;
-			
-			span {
-				font-weight: $qvr-font-weight-bold;
-			}
-		}
-	}
+    background-color: $qvr-blue-1;
+    .menu-bar {
+        //override foundation-app.css class in bower
+        background-color: transparent;
+    }
+    .header-branding {
+        float: left;
+        margin: 12px 0 0 17px;
+        .header-logo {
+            float: left;
+            width: 80px;
+            height: 25px;
+        }
+        .portal-branding {
+            float: left;
+            display: inline-block;
+            color: $qvr-white-1;
+            border-left: 1px solid $qvr-white-1;
+            margin: 3px 0 0 15px;
+            padding: 0 15px;
+            height: 23px;
+            line-height: 23px;
+            font-size: 16px;
+            font-family: $qvr-primary-font;
+            //ont-weight: $qvr-font-weight-thin;
+       
+        }
+    }
+    .header-nav {
+        height: 50px;
+        ul {
+            display: inline-block;
+            li {
+                display: inline-block;
+            }
+            a {
+                display: block;
+                text-align: center;
+                font-family: $qvr-primary-font;
+                font-size: 15px;
+                font-weight: $qvr-font-weight-bold;
+                color: $qvr-white-1;
+                border-bottom: 7px solid transparent;
+                width: 150px;
+                height: 30px;
+                margin: 14px 10px 0 0;
+                padding-bottom: 28px;
+                transition: all 0.2s ease-in-out;
+                &:hover, &.active {
+                    border-bottom: 7px solid $qvr-white-2;
+                }
+            }
+        }
+    }
+    .header-subnav {
+        height: 25px;
+        background-color: $qvr-grey-4;
+        ul {
+            margin: 0 0 0 265px;
+            padding: 0;
+            li {
+                display: inline-block;
+            }
+        }
+        a {
+            height: 25px;
+            margin: 0 20px 0 0;
+            color: $qvr-grey-3;
+            font-size: 12px;
+            line-height: 25px;
+            transition: all 0.2s ease-in-out;
+            &:hover, &.active {
+                color: $qvr-blue-1;
+            }
+            &.active {
+                font-weight: $qvr-font-weight-bold;
+            }
+        }
+    }
+    .header-user-info {
+        min-width: 215px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        .icon-wrapper {
+            width: 50px;
+            height: 50px;
+            float: left;
+            background-color: $qvr-grey-1;
+            .icon {
+                width: 25px;
+                height: 25px;
+                margin: 12px;
+            }
+        }
+        .details {
+            min-width: 165px;
+            height: 50px;
+            display: block;
+            margin: 0 0 0 50px;
+            font-size: 16px;
+            color: $qvr-white-1;
+            padding: 10px 10px 0 10px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            .enterprise-name {
+                font-family: $qvr-tertiary-font;
+            }
+            .enterprise-plan {
+                font-size: 12px;
+                font-family: $qvr-primary-font;
+                margin: 4px 0 0 0;
+                text-transform: capitalize;
+                span:first-child {
+                    font-weight: $qvr-font-weight-bold;
+                }
+                span:last-child {
+                    color: $qvr-green-1;
+                }
+            }
+        }
+        .username {
+            width: 100%;
+            height: 24px;
+            line-height: 24px;
+            float: right;
+            span {
+                font-weight: $qvr-font-weight-bold;
+            }
+        }
+    }
 }
-
 
 .g-user-panel {
-	text-align: center;
-
-	.user-info {
-		background-color: #7F8184;
-
-		.user-headings {
-			background-color: $qvr-blue-1;
-			color: #fff;
-			padding: 32px 0;
-			line-height: 1.5em;
-
-			a:hover {
-				text-decoration: underline;
-			}
-
-			.fullname {
-				font-size: 23px;
-				font-weight: $qvr-font-weight-bold;
-			}
-
-			.username {
-				font-size: 16px;
-				font-weight: $qvr-font-weight-light;
-			}
-		}
-
-		.description {
-			padding: 42px 25px;
-
-			h4 {
-				font-size: 23px;
-				font-weight: $qvr-font-weight-bold;
-				color: #fff;
-			}
-			p {
-				font-size: 16px;
-				font-weight: $qvr-font-weight-light;
-				color: #fff;
-			}
-		}
-	}
-
-	.user-side-bar-menu {
-		a {
-			display: block;
-			color: #fff;
-			font-family: $qvr-primary-font;
-			font-weight: $qvr-font-weight-bold;
-			font-size: 18px;
-			text-align: center;
-			padding: 30px 0;
-
-			&.edit {
-				background-color: $qvr-blue-1;
-			}
-
-			&.signout {
-				background-color: $qvr-warning-color;
-			}
-		}
-	}
-
-	a { color: inherit }
+    text-align: center;
+    .user-info {
+        background-color: #7F8184;
+        .user-headings {
+            background-color: $qvr-blue-1;
+            color: #fff;
+            padding: 32px 0;
+            line-height: 1.5em;
+            a:hover {
+                text-decoration: underline;
+            }
+            .fullname {
+                font-size: 23px;
+                font-weight: $qvr-font-weight-bold;
+            }
+            .username {
+                font-size: 16px;
+                font-weight: $qvr-font-weight-light;
+            }
+        }
+        .description {
+            padding: 42px 25px;
+            h4 {
+                font-size: 23px;
+                font-weight: $qvr-font-weight-bold;
+                color: #fff;
+            }
+            p {
+                font-size: 16px;
+                font-weight: $qvr-font-weight-light;
+                color: #fff;
+            }
+        }
+    }
+    .user-side-bar-menu {
+        a {
+            display: block;
+            color: #fff;
+            font-family: $qvr-primary-font;
+            font-weight: $qvr-font-weight-bold;
+            font-size: 18px;
+            text-align: center;
+            padding: 30px 0;
+            &.edit {
+                background-color: $qvr-blue-1;
+            }
+            &.signout {
+                background-color: $qvr-warning-color;
+            }
+        }
+    }
+    a {
+        color: inherit;
+    }
 }
-
 
 // Forms
 // Quiver Custom Form
 .qvr-form {
-	// Form Colors
-	$qvr-form_color-bg: #F7F7F7;
-	$qvr-form_color-bg_focus: $qvr-form_color-bg;
-	$qvr-form_color-border: #cccccc;
-	$qvr-form_color-border_focus: $qvr-form_color-border;
-	$qvr-form_color-placeholder: $qvr-form_color-border;
-	$qvr-form_color-text: #999999;
-	$qvr-form-color-text_focus: #666666;
-	$qvr-form-color-bg_disabled: #e6e6e6;
-	$qvr-form-color-text_disabled: $qvr-form_color-border;
-
-	// Form Colors - On Dark
-	$qvr-form_color-bg_on-dark: #00B4CC;
-	$qvr-form_color-bg_focus_on-dark: #00D0E0;
-	$qvr-form_color-border_on-dark: #00899B;
-	$qvr-form_color-border_focus_on-dark: $qvr-form_color-border_on-dark;
-	$qvr-form_color-placeholder_on-dark: $qvr-form_color-border;
-	$qvr-form_color-text_on-dark: #fff;
-	$qvr-form-color-text_focus_on-dark: $qvr-form_color-text_on-dark;
-	$qvr-form-color-bg_disabled_on-dark: #00B4CC;
-	$qvr-form-color-text_disabled_on-dark: #00A8CB;
-
-	::-webkit-input-placeholder {
-			color: $qvr-grey-3;
-	}
-
-	:-moz-placeholder { /* Firefox 18- */
-			color: $qvr-grey-3;
-	}
-
-	::-moz-placeholder {  /* Firefox 19+ */
-			color: $qvr-grey-3;
-	}
-
-	:placeholder {  
-			color: $qvr-grey-3;
-	}
-	
-	input, .form-element {
-		height: $qvr-input-height;
-		
-		background: $qvr-white-1;
-		border: 1px solid $qvr-grey-2;
-		@include border-radius($qvr-border-radius);
-		
-		font-size: $qvr-input-font-size;
-		color: $qvr-grey-3;
-		
-		margin: 0 0 15px 0;
-		padding: 0 10px 0 10px;
-
-		transition: all 0.4s ease-in-out;
-		
-		&:focus, &:hover {
-			background: $qvr-grey-1;
-			border-color: $qvr-grey-2;
-			color: $qvr-grey-3;
-		}
-		
-		&[disabled], &.is-disabled {
-			background: #eee;
-    		border-color: darkgrey;
-    		color: #999;
-		}
-	}
-
-	input[type="radio"] {
-		line-height: 1.5em;
-		height: 1.5em;
-	}
-
-	input[type="text"],
-	input[type="search"]{
-		font-weight: $qvr-font-weight-bold;
-	}
-
-	.qvr-select {
-		@extend .form-element;
-		
-		background: $qvr-white-1 right 10px center no-repeat;
-		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #CCCCCC"></polygon></svg>');
-		background-size: 10px;
-		
-		padding-right: 25px;
-		
-		cursor: pointer;
-		font-weight: $qvr-font-weight-bold;
-		
-		&:focus, &:hover, &[disabled], &.is-disabled {
-			background: $qvr-white-1 right 10px center no-repeat;
-			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #CCCCCC"></polygon></svg>');
-			background-size: 10px;
-			padding-right: 25px;
-		}
-		
-		option {
-			color: $qvr-grey-3;
-			background-color: $qvr-white-1;
-		}
-	}
-
-	textarea {
-		@extend .form-element;
-		resize: none;
-		padding: 1em;
-
-		&.text-description {
-			height: 140px;
-		}
-	}
-	
-	.switch > label, .switch input:checked + label {
-		background: $qvr-blue-1;
-		
-		&::after {
-			border: solid 1px $qvr-blue-1;
-		}
-	}
-	.switch.enter-exit-switch{
-		position: relative;
-    	top: -17px;
-	}
+    // Form Colors
+    $qvr-form_color-bg: #F7F7F7;
+    $qvr-form_color-bg_focus: $qvr-form_color-bg;
+    $qvr-form_color-border: #cccccc;
+    $qvr-form_color-border_focus: $qvr-form_color-border;
+    $qvr-form_color-placeholder: $qvr-form_color-border;
+    $qvr-form_color-text: #999999;
+    $qvr-form-color-text_focus: #666666;
+    $qvr-form-color-bg_disabled: #e6e6e6;
+    $qvr-form-color-text_disabled: $qvr-form_color-border;
+    // Form Colors - On Dark
+    $qvr-form_color-bg_on-dark: #00B4CC;
+    $qvr-form_color-bg_focus_on-dark: #00D0E0;
+    $qvr-form_color-border_on-dark: #00899B;
+    $qvr-form_color-border_focus_on-dark: $qvr-form_color-border_on-dark;
+    $qvr-form_color-placeholder_on-dark: $qvr-form_color-border;
+    $qvr-form_color-text_on-dark: #fff;
+    $qvr-form-color-text_focus_on-dark: $qvr-form_color-text_on-dark;
+    $qvr-form-color-bg_disabled_on-dark: #00B4CC;
+    $qvr-form-color-text_disabled_on-dark: #00A8CB;
+    ::-webkit-input-placeholder {
+        color: $qvr-grey-3;
+    }
+    :-moz-placeholder {
+        /* Firefox 18- */
+        color: $qvr-grey-3;
+    }
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: $qvr-grey-3;
+    }
+    :placeholder {
+        color: $qvr-grey-3;
+    }
+    input, .form-element {
+        height: $qvr-input-height;
+        background: $qvr-white-1;
+        border: 1px solid $qvr-grey-2;
+        @include border-radius($qvr-border-radius);
+        font-size: $qvr-input-font-size;
+        color: $qvr-grey-3;
+        margin: 0 0 15px 0;
+        padding: 0 10px 0 10px;
+        transition: all 0.4s ease-in-out;
+        &:focus, &:hover {
+            background: $qvr-grey-1;
+            border-color: $qvr-grey-2;
+            color: $qvr-grey-3;
+        }
+        &[disabled], &.is-disabled {
+            background: #eee;
+            border-color: darkgrey;
+            color: #999;
+        }
+    }
+    input[type="radio"] {
+        line-height: 1.5em;
+        height: 1.5em;
+    }
+    input[type="text"],
+    input[type="search"] {
+        font-weight: $qvr-font-weight-bold;
+    }
+    .qvr-select {
+        @extend .form-element;
+        background: $qvr-white-1 right 10px center no-repeat;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #CCCCCC"></polygon></svg>');
+        background-size: 10px;
+        padding-right: 25px;
+        cursor: pointer;
+        font-weight: $qvr-font-weight-bold;
+        &:focus, &:hover, &[disabled], &.is-disabled {
+            background: $qvr-white-1 right 10px center no-repeat;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #CCCCCC"></polygon></svg>');
+            background-size: 10px;
+            padding-right: 25px;
+        }
+        option {
+            color: $qvr-grey-3;
+            background-color: $qvr-white-1;
+        }
+    }
+    textarea {
+        @extend .form-element;
+        resize: none;
+        padding: 1em;
+        &.text-description {
+            height: 140px;
+        }
+    }
+    .switch > label, .switch input:checked + label {
+        background: $qvr-blue-1;
+        &::after {
+            border: solid 1px $qvr-blue-1;
+        }
+    }
+    .switch.enter-exit-switch {
+        position: relative;
+        top: -17px;
+    }
 }
 
 .qvr-search-wrap {
-	position: relative;
-
-	.icon.i-search {
-		position: absolute;
-		top: 10px;
-		left: 20px;
-	}
-
-	input.qvr-search-messages {
-		display: block;
-		background-color: $qvr-color-2;
-		height: 40px;
-		line-height: 40px;
-		text-align: left;
-		padding-left: 45px;
-		border: none;
-		font-size: 12px;
-		font-weight: $qvr-font-weight-light;
-		margin: 0;
-	}
+    position: relative;
+    .icon.i-search {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+    }
+    input.qvr-search-messages {
+        display: block;
+        background-color: $qvr-color-2;
+        height: 40px;
+        line-height: 40px;
+        text-align: left;
+        padding-left: 45px;
+        border: none;
+        font-size: 12px;
+        font-weight: $qvr-font-weight-light;
+        margin: 0;
+    }
 }
 
 input[type="checkbox"].qvr-slide-toggle {
-	position: relative;
-	-webkit-appearance: none;
-	
-	width: 53px;
-	height: 32px;
-	
-	padding: 0;
-	
-	background-color: $qvr-blue-1;
-	background-size: 100% 100%, 200% 100%;
-	background-position: 0 0, 5px 0;
-	
-	border-radius: 20px;
-	border: none;
-	
-	cursor: pointer;
-	
-	transition: all 0.3s ease-in-out;
-
-	&:after {
-		background-color: #fff;
-		border-radius: 28px;
-		content: '';
-		display: block;
-		height: 28px;
-		left: 2px;
-		position: relative;
-		top: 2px;
-		width: 28px;
-	}
-
-	&:checked {
-	    background-position: 0 0, 15px 0;
-	    padding-left: 21px;
-	    padding-right: 0;
-	}
-
-	&:focus {
-		outline: none;
-	}
+    position: relative;
+    -webkit-appearance: none;
+    width: 53px;
+    height: 32px;
+    padding: 0;
+    background-color: $qvr-blue-1;
+    background-size: 100% 100%, 200% 100%;
+    background-position: 0 0, 5px 0;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:after {
+        background-color: #fff;
+        border-radius: 28px;
+        content: '';
+        display: block;
+        height: 28px;
+        left: 2px;
+        position: relative;
+        top: 2px;
+        width: 28px;
+    }
+    &:checked {
+        background-position: 0 0, 15px 0;
+        padding-left: 21px;
+        padding-right: 0;
+    }
+    &:focus {
+        outline: none;
+    }
 }
 
 // Quiver Custom Buttons
 .qvr-button {
-	margin-right: 10px;
-	display: inline-block;
-	
-	height: $qvr-input-height;
-	line-height: $qvr-input-height;
-	
-	@include border-radius($qvr-border-radius);
-	padding: 0 2em;
-	text-align: center;
-	box-shadow: none;
-	border: 1px solid transparent;
-	
-	font-family: $qvr-secondary-font;
-	font-weight: $qvr-font-weight-bold;
-	font-size: $qvr-input-font-size;
-	
-	cursor: pointer;
-	
-	@include user-select(none);
-
-	transition: all 0.4s ease-in-out;
-
-	&.action {
-		background-color: $qvr-blue-1;
-		color: $qvr-white-1;
-		text-transform: uppercase;
-
-		&:hover {
-			background-color: $qvr-blue-1;
-		}
-
-		&:focus {
-			background-color: $qvr-blue-1;
-		}
-
-		&:visited {
-			background-color: $qvr-blue-1;
-		}
-
-		&.is-active, &:active {
-			background-color: $qvr-blue-1;
-		}
-		
-		&.is-disabled, &:disabled {
-			background-color: $qvr-grey-2;
-		}
-	}
+    margin-right: 10px;
+    display: inline-block;
+    height: $qvr-input-height;
+    line-height: $qvr-input-height;
+    @include border-radius($qvr-border-radius);
+    padding: 0 2em;
+    text-align: center;
+    box-shadow: none;
+    border: 1px solid transparent;
+    font-family: $qvr-secondary-font;
+    font-weight: $qvr-font-weight-bold;
+    font-size: $qvr-input-font-size;
+    cursor: pointer;
+    @include user-select(none);
+    transition: all 0.4s ease-in-out;
+    &.action {
+        background-color: $qvr-blue-1;
+        color: $qvr-white-1;
+        text-transform: uppercase;
+        &:hover {
+            background-color: $qvr-blue-1;
+        }
+        &:focus {
+            background-color: $qvr-blue-1;
+        }
+        &:visited {
+            background-color: $qvr-blue-1;
+        }
+        &.is-active, &:active {
+            background-color: $qvr-blue-1;
+        }
+        &.is-disabled, &:disabled {
+            background-color: $qvr-grey-2;
+        }
+    }
 }
 
 // Date & Time Picker Component
 .date-picker, .time-picker {
-	text-align: center;
-	border: solid 3px $qvr-grey-2;
-	@include border-radius($qvr-border-radius);
-	background-color: $qvr-white-1;
-	padding: 0 0 25px 0 !important;
-	overflow: hidden;
-	
-	.header {
-		height: 45px;
-		line-height: 45px;
-		
-		font-size: $qvr-input-font-size;
-		font-family: $qvr-secondary-font;
-		font-weight: $qvr-font-weight-medium;
-		color: $qvr-white-1;
-		
-		background-color: $qvr-blue-1;
-		border-bottom: solid 3px $qvr-grey-2;
-	}
-	
-	.alert-row {
-		height: 58px;
-		
-		@include display-flex();
-		@include flex-flow(row);
-		@include flex-justify-content(center);
-		@include flex-align-items(center);
-	}
-	
-	.alert {
-		width: 100%;
-		font-size: $qvr-input-font-size;
-		color: $qvr-red-1;
-		text-align: center;
-	}
-}
-	
-.date-picker {
-	font-size: $qvr-input-font-size;
-	font-family: $qvr-secondary-font;
-	
-	.month-bar {
-		height: 45px;
-		line-height: 45px;
-		border-bottom: solid 3px $qvr-grey-2;
-		font-weight: $qvr-font-weight-bold;
-		display: flex;
-		
-		.current-month {
-			flex-grow: 1;
-		}
-		
-		.prev-month, .next-month {
-			width: 14.28%;
-			height: 100%;
-			background-position: center center;
-			background-repeat: no-repeat;
-			background-size: 25px;
-			cursor: pointer;
-		}
-		
-		.prev-month {
-			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 16 16"><polygon points="0,8 8,16 8,8 16,16 16,0 8,8 8,0" style="fill: #00A9CC"></polygon></svg>');
-		}
-		
-		.next-month {
-			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 16 16"><polygon points="0,0 0,16 8,8 8,16 16,8 8,0 8,8" style="fill: #00A9CC"></polygon></svg>');
-		}
-	}
-	
-	.week-bar {
-		.day {
-			display: block;
-			float: left;
-			
-			width: 14.28%;
-			height: 30px;
-			line-height: 30px;
-			
-			border-bottom: solid 1px $qvr-grey-4;
-			font-weight: $qvr-font-weight-bold;
-		}
-	}
-	
-	.day-grid {
-		.day {
-			display: block;
-			float: left;
-			
-			width: 14.28%;
-			height: 30px;
-			line-height: 30px;
-			
-			border-bottom: solid 1px $qvr-grey-4;
-			font-weight: $qvr-font-weight-medium;
-			cursor: default;
-			
-			&.off {
-			
-			}
-			
-			&.standard {
-				cursor: pointer;
-			}
-			
-			&.selected {
-				cursor: pointer;
-				background-color: $qvr-blue-1;
-				color: $qvr-white-1;
-			}
-			
-			&.beforeToday {
-				color: $qvr-grey-4;
-			}
-			
-			&.between {
-				cursor: pointer;
-				background-color: $qvr-blue-4;
-			}
-		}
-	}
-}
-	
-.time-picker {
-	.header {
-		margin: 0 0 20px 0;
-	}
-	
-	.qvr-button.down-arrow {
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 32 16"><polygon points="0,0 32,0 16,16" style="fill: #FFFFFF"></polygon></svg>');
-		background-size: 25px;
-	}
-	
-	.qvr-button.up-arrow {
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 32 16"><polygon points="0,16 32,16 16,0" style="fill: #FFFFFF"></polygon></svg>');
-		background-size: 25px;
-	}
-	
-	.button-row {
-		@include display-flex();
-		@include flex-flow(row);
-		@include flex-justify-content(center);
-		@include flex-align-items(center);
-		
-		span {
-			width: 52px;
-			margin: 3px 5px;
-			padding: 0;
-			
-			&.qvr-button {
-				height: 37px;
-			}
-			
-			input, &.median {
-				height: 52px;
-				margin: 0;
-				padding: 0;
-				font-size: 30px;
-				color: $qvr-grey-3;
-				font-family: $qvr-tertiary-font;
-				font-weight: $qvr-font-weight-bold;
-				text-align: center;
-			}
-			
-			input {
-				border: solid 1px $qvr-grey-2;
-				@include border-radius($qvr-border-radius);
-			}
-			
-			&.median {
-				margin: 3px 5px;
-				padding: 12px 0 0 0;
-			}
-		}
-	}
-	
-	.set {
-		width: 100%;
-		max-width: 125px;
-	}
+    text-align: center;
+    border: solid 3px $qvr-grey-2;
+    @include border-radius($qvr-border-radius);
+    background-color: $qvr-white-1;
+    padding: 0 0 25px 0 !important;
+    overflow: hidden;
+    .header {
+        height: 45px;
+        line-height: 45px;
+        font-size: $qvr-input-font-size;
+        font-family: $qvr-secondary-font;
+        font-weight: $qvr-font-weight-medium;
+        color: $qvr-white-1;
+        background-color: $qvr-blue-1;
+        border-bottom: solid 3px $qvr-grey-2;
+    }
+    .alert-row {
+        height: 58px;
+        @include display-flex;
+        @include flex-flow(row);
+        @include flex-justify-content(center);
+        @include flex-align-items(center);
+    }
+    .alert {
+        width: 100%;
+        font-size: $qvr-input-font-size;
+        color: $qvr-red-1;
+        text-align: center;
+    }
 }
 
+.date-picker {
+    font-size: $qvr-input-font-size;
+    font-family: $qvr-secondary-font;
+    .month-bar {
+        height: 45px;
+        line-height: 45px;
+        border-bottom: solid 3px $qvr-grey-2;
+        font-weight: $qvr-font-weight-bold;
+        display: flex;
+        .current-month {
+            flex-grow: 1;
+        }
+        .prev-month, .next-month {
+            width: 14.28%;
+            height: 100%;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 25px;
+            cursor: pointer;
+        }
+        .prev-month {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 16 16"><polygon points="0,8 8,16 8,8 16,16 16,0 8,8 8,0" style="fill: #00A9CC"></polygon></svg>');
+        }
+        .next-month {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 16 16"><polygon points="0,0 0,16 8,8 8,16 16,8 8,0 8,8" style="fill: #00A9CC"></polygon></svg>');
+        }
+    }
+    .week-bar {
+        .day {
+            display: block;
+            float: left;
+            width: 14.28%;
+            height: 30px;
+            line-height: 30px;
+            border-bottom: solid 1px $qvr-grey-4;
+            font-weight: $qvr-font-weight-bold;
+        }
+    }
+    .day-grid {
+        .day {
+            display: block;
+            float: left;
+            width: 14.28%;
+            height: 30px;
+            line-height: 30px;
+            border-bottom: solid 1px $qvr-grey-4;
+            font-weight: $qvr-font-weight-medium;
+            cursor: default;
+            &.off {}
+            &.standard {
+                cursor: pointer;
+            }
+            &.selected {
+                cursor: pointer;
+                background-color: $qvr-blue-1;
+                color: $qvr-white-1;
+            }
+            &.beforeToday {
+                color: $qvr-grey-4;
+            }
+            &.between {
+                cursor: pointer;
+                background-color: $qvr-blue-4;
+            }
+        }
+    }
+}
+
+.time-picker {
+    .header {
+        margin: 0 0 20px 0;
+    }
+    .qvr-button.down-arrow {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 32 16"><polygon points="0,0 32,0 16,16" style="fill: #FFFFFF"></polygon></svg>');
+        background-size: 25px;
+    }
+    .qvr-button.up-arrow {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="16" viewBox="0 0 32 16"><polygon points="0,16 32,16 16,0" style="fill: #FFFFFF"></polygon></svg>');
+        background-size: 25px;
+    }
+    .button-row {
+        @include display-flex;
+        @include flex-flow(row);
+        @include flex-justify-content(center);
+        @include flex-align-items(center);
+        span {
+            width: 52px;
+            margin: 3px 5px;
+            padding: 0;
+            &.qvr-button {
+                height: 37px;
+            }
+            input, &.median {
+                height: 52px;
+                margin: 0;
+                padding: 0;
+                font-size: 30px;
+                color: $qvr-grey-3;
+                font-family: $qvr-tertiary-font;
+                font-weight: $qvr-font-weight-bold;
+                text-align: center;
+            }
+            input {
+                border: solid 1px $qvr-grey-2;
+                @include border-radius($qvr-border-radius);
+            }
+            &.median {
+                margin: 3px 5px;
+                padding: 12px 0 0 0;
+            }
+        }
+    }
+    .set {
+        width: 100%;
+        max-width: 125px;
+    }
+}

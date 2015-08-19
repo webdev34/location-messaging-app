@@ -1,7 +1,8 @@
 	.campaign-center-wrapper{
-		padding: 45px 0px;
-		background-color: #f0f0f0;
-		margin-top: 30px;
+		padding-top: 45px;
+		padding-bottom: 60px;
+		background-color: #f2f2f2;
+
 		.campaign-center-header{
 			h1{
 				padding: 0 0 0 30px;
@@ -21,7 +22,7 @@
 			}
 			.search-wrapper{
 				float: right;
-				width: 30%;
+				width: 27%;
 				display: inline-block;
 				margin-right: 20px;
 				position: relative;
@@ -42,7 +43,7 @@
 			margin-top: 25px;
 			#bulk-action,
 			#tag-filters{
-				width: 38%;
+				width: 34%;
 				float: left;
 				display: inline-block;
 				select{
@@ -51,8 +52,8 @@
 				}
 				button{
 					float: left;
-					margin-left: 5px;
-					padding: 4px;
+					margin-left: 10px;
+					padding: 8px;
     				padding-top: 0px;
     				i{
     					position: relative;
