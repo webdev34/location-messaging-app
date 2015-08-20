@@ -160,7 +160,8 @@
 					{'title': 'Report Center', 'state': 'reporting.center'}
 				],
 				'enterprise' : [
-					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'}
+					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'},
+					{'title': 'User Profile', 'state': 'enterprise.user-profile'}
 				]
 			};
 

@@ -2,13 +2,45 @@
 	
 	<header class="heading-bar">
 		<h1>Enterprise Settings</h1>
+		<div class="edit-enterprise-btn-wrapper">
+			<button class="qvr-button action">EDIT PROFILE</button>
+		</div>
 	</header>
 
-	<nav class="g-nav-subnav">
-		<a ui-sref="enterprise.profile" ui-sref-active="is-active">Profile</a>
-		<a ui-sref="enterprise.users" ui-sref-active="is-active">Users</a>
-	</nav>
+	<!-- <ui-view class="enterprise-content"></ui-view> 
+ -->
+	<div class="enterprise-profile">
+		<section class="enterprise-content-wrapper">
+			<div class="enterprise-content-left corporate-info">
+				<div class="details full-width">
+					<label>Account Name</label>
+					<p>{{enterpriseCtrl.company.companyName}}</p>
+				</div>
+				<img  ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo" />
+				
+				<div class="details full-width">
+					<label>Company Bio</label>
+					<p class="longer">{{enterpriseCtrl.company.bio}}</p>
+					<label>Primary Contact</label>
+					<p>{{enterpriseCtrl.company.primaryContact}}</p>
+					<label>Contact Email</label>
+					<p>{{enterpriseCtrl.company.email}}</p>
+					<label>Contact Number</label>
+					<p>{{enterpriseCtrl.company.phone}}</p>
+				</div>
+			</div>
+			<div class="enterprise-content-right corporate-info">
+					<div class="details full-width">
+					<label>Company Address</label>
+					<p class="longer">
+						{{enterpriseCtrl.company.address}}
+						<br/>
+						{{enterpriseCtrl.company.state}}, {{enterpriseCtrl.company.city}} {{enterpriseCtrl.company.zip}}
+					</p>
+					</div>
 
-	<ui-view class="enterprise-content"></ui-view>
-
+			</div>
+			<div class="clearfix"></div>
+		</section>
+	</div>
 </div>

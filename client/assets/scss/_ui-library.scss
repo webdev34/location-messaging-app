@@ -317,6 +317,12 @@ ul {
             li {
                 display: inline-block;
             }
+            &.enterprise{
+                margin-left: 620px;
+                li{
+                    margin-right: 30px;
+                }
+            }
         }
         a {
             height: 25px;

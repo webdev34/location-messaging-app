@@ -22,7 +22,7 @@
 			var model = this;
 			
 			if (!model.company){
-				model.company = $cookieStore.get("QVR.company");
+				//model.company = $cookieStore.get("QVR.company");
 			}
 
 			model.getEnterprise = function() {

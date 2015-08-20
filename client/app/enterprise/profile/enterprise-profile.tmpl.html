@@ -3,7 +3,7 @@
 	<section class="corporate-info ">
 		<div class="clearfix">
 			<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo">
-		
+		{{enterpriseCtrl.company}}
 			<div class="corp-details">
 				{{enterpriseCtrl.company.sid}}
 				<br>
@@ -22,7 +22,7 @@
 		<p>{{enterpriseCtrl.company.email}}</p>
 		<br>
 
-		<a ui-sref="enterprise.edit" class="qvr-button info">Edit Enterprise Profile</a>
+		<!-- <a ui-sref="enterprise.edit" class="qvr-button info">Edit Enterprise Profile</a> -->
 	</div>
 
 </div>

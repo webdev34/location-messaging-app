@@ -11,7 +11,8 @@
 			.state('enterprise', {
 				url: '/enterprise/profile',
 				templateUrl: 'app/enterprise/enterprise.tmpl.html',
-				abstract: true
+				abstract: true,
+				controller: 'EnterpriseCtrl as enterpriseCtrl'
 			})
 			.state('enterprise.users', {
 				url: '/users',
@@ -30,9 +31,24 @@
 		function($state, EnterpriseModel, FoundationApi) {
 			var enterpriseCtrl = this;
 			
-			EnterpriseModel.getEnterprise().then(function(){
-				enterpriseCtrl.company = EnterpriseModel.company;
-			});
+			// EnterpriseModel.getEnterprise().then(function(){
+			// 	enterpriseCtrl.company = EnterpriseModel.company;
+			// });
+
+				enterpriseCtrl.company = {
+					'_id': '',
+					"companyName": "TESLA Motors",
+					"username": "",
+					"primaryContact": "Jason Tumbler",
+					"logo": "assets/img/tesla.png",
+					"email": "NASales@teslamotors.com",
+					"phone": "7187187188",
+					"address": "3500 Deer Creek Rd",
+					"state": "Palo Alto",
+					"city": "CA",
+					"zip": 94304,
+					"bio": "Tesla Motors, Inc. designs, develops, manufac- tures, and sells electric vehicles, electric vehicle powertrain components, and stationary energy storage systems in the United States, China, Norway, and internationally. It also provides development services to develop electric vehicle powertrain components and systems for other automotive manufacturers. The company sells its products through a network of Tesla stores and galleries, as well as through Internet. It has col- laboration agreement with EnerNOC, Inc. for the deployment and management of energy storage systems in commercial and industrial buildings."
+				}
 			
 			function addUser() {
 				if (enterpriseCtrl.newUser.userType === 'admin') {
@@ -59,7 +75,7 @@
 
 			resetForm();
 
-			enterpriseCtrl.addUser = addUser;
+			//enterpriseCtrl.addUser = addUser;
 		}
 	]);
 
