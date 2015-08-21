@@ -42,6 +42,11 @@
 				templateUrl: 'app/messages/manage/messages-manage.tmpl.html',
 				controller: 'MessagesManageCtrl as messagesManageCtrl'
 			})
+			.state('messages.manage-campaign', {
+				url: '/manage-campaign',
+				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html'
+			})
+			;
 
 		$urlRouterProvider.otherwise('messages.dashboard');
 	}])
