@@ -36,6 +36,7 @@ User types - these are NOT 'social users' (followers)
 			var model = this;
 			
 			model.user = $cookieStore.get("QVR.user");
+			//console.log(model.user);
 			
 			model.registerUser = function(userDetail) {
 				return UserService.register(userDetail)
@@ -55,6 +56,8 @@ User types - these are NOT 'social users' (followers)
 					.then(
 						function(response) {
 							model.user = response.user;
+							model.authorization = response.authorization;
+							console.log('authorization: ' + model.authorization);
 							model.user.isLoggedIn = true;
 							$cookieStore.put("QVR.user", model.user);
 							return response;

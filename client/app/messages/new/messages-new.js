@@ -23,6 +23,11 @@
 			newMessageCtrl.showEndDatePicker = false;
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
+
+			newMessageCtrl.createMessageTest = function() {
+				console.log('test');
+				MessageListModel.getMessageList();
+			}
 			
 			function resetForm() {
 				var today = new Date(),
