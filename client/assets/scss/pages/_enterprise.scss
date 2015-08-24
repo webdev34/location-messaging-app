@@ -21,6 +21,17 @@
 		.enterprise-content-right{
 			width: 50%;
 			float: left;
+			padding: 20px;
+		}
+
+		&.edit{
+			textarea{
+				min-height: 150px;
+			}
+			input[type="text"],
+			textarea{
+				margin-bottom: 20px;
+			}
 		}
 
 		.corporate-info {

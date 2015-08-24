@@ -3,13 +3,16 @@
 	<header class="heading-bar">
 		<h1>Enterprise Settings</h1>
 		<div class="edit-enterprise-btn-wrapper">
-			<button class="qvr-button action">EDIT PROFILE</button>
+			<button class="qvr-button action" ng-click="editProfileToggle()">
+				<span ng-hide="editProfile" >EDIT PROFILE</span>
+				<span ng-show="editProfile">SAVE CHANGES</span>
+			</button>
 		</div>
 	</header>
 
 	<!-- <ui-view class="enterprise-content"></ui-view> 
  -->
-	<div class="enterprise-profile">
+	<div class="enterprise-profile" ng-hide="editProfile">
 		<section class="enterprise-content-wrapper">
 			<div class="enterprise-content-left corporate-info">
 				<div class="details full-width">
@@ -43,4 +46,42 @@
 			<div class="clearfix"></div>
 		</section>
 	</div>
+
+
+	<div class="enterprise-profile edit qvr-form" ng-show="editProfile">
+		<section class="enterprise-content-wrapper">
+			<div class="enterprise-content-left corporate-info">
+				<div class="details full-width">
+					<label>Account Name</label>
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.company.companyName" required >
+				</div>
+				<img  ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo" />
+				
+				<div class="details full-width">
+					<label>Company Bio</label>
+					<textarea placeholder="" ng-model="enterpriseCtrl.company.bio" required rows="4" cols="50" ></textarea>
+					<label>Primary Contact</label>
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.company.primaryContact" required >
+					<label>Contact Email</label>
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.company.email" required >
+					<label>Contact Number</label>
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.company.phone" required >
+				</div>
+			</div>
+			<div class="enterprise-content-right corporate-info">
+					<div class="details full-width">
+						<label>Company Address</label>
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.company.address" required >
+						<label>State</label>
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.company.state" required >
+						<label>City</label>
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.company.city" required >
+						<label>Zip</label>
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.company.zip" required >
+					</div>
+			</div>
+			<div class="clearfix"></div>
+		</section>
+	</div>
+
 </div>
