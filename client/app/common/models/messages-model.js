@@ -67,7 +67,7 @@
 			};
 
 			model.createNewMessage = function(newMessage) {
-				newMessage.target = 3;
+				//newMessage.target = 3;
 				
 				return MessagesService.create(newMessage).then(function(response){
 					/*
