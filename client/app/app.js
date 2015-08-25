@@ -156,7 +156,7 @@
 					{'title': 'Compose Message', 'state': 'messages.new'},
 					{'title': 'Asset Management', 'state': 'home'}
 				],
-				'reports' : [
+				'reporting' : [
 					{'title': 'Report Center', 'state': 'reporting.center'}
 				],
 				'enterprise' : [
@@ -194,7 +194,7 @@
 			function setNavigationState() {
 				appCtrl.gNavStateIs = "";
 
-				var stateArray = ['messages', 'admin', 'enterprise'];
+				var stateArray = ['messages', 'admin', 'enterprise', 'reporting'];
 				
 				for (var i = 0; i < stateArray.length; i++) {
 					if (appCtrl.currentState.current.name.includes(stateArray[i])) {

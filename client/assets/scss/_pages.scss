@@ -2,7 +2,8 @@
 @import "pages/messages";
 @import "pages/profile";
 @import "pages/enterprise";
-@import "pages/reporting-center";
+@import "pages/reporting/reporting-center";
+@import "pages/reporting/follower-summary";
 
 .page-container {
 	display: flex;

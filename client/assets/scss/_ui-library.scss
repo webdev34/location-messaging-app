@@ -323,12 +323,15 @@ ul {
                     margin-right: 30px;
                 }
             }
+            &.reporting{
+                margin-left: 456px;
+            }
         }
         a {
             height: 25px;
             margin: 0 20px 0 0;
             color: $qvr-grey-3;
-            font-size: 12px;
+            font-size: 14px;
             line-height: 25px;
             transition: all 0.2s ease-in-out;
             &:hover, &.active {
