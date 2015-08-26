@@ -2,6 +2,8 @@
 @import "pages/messages";
 @import "pages/profile";
 @import "pages/enterprise";
+@import "pages/reporting/reporting-center";
+@import "pages/reporting/follower-summary";
 
 .page-container {
 	display: flex;
@@ -9,6 +11,7 @@
 	height: 100%;
 	padding: 0;
 	margin: 0 0 0 113px;
+	background-color: #f8f8f8;
 }
 
 .page {

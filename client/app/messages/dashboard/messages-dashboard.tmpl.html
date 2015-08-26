@@ -1,75 +1,205 @@
 <header class="heading-bar">
 	<h1>Campaign Center</h1>
 </header>
-
-<messages-list></messages-list>
-
-
-
-
-
-
-<!--
-<section class="message-active-list" ng-controller="ActiveMessageController">
-	<header class="heading-bar">
-		<h1 class="float-left title-width">Active Messages</h1>
-		<div class="stats">
-			<span>Sent</span>
-			<span>Read</span>
-			<span>Likes</span>
-			<span>Comments</span>
-			<span>Forwards</span>
-			<span>Saves</span>
+<!-- <messages-list></messages-list> -->
+	<section class="campaign-center-wrapper">
+		<div class="campaign-center-header qvr-form">
+			<button class="qvr-button action">+ NEW CAMPAIGN</button>
+			<div class="search-wrapper">
+				<label for="filter-by"><i class="fa fa-search"></i></label>
+				<input type="search" class="search-campaigns" ng-model="campaignCenterCtrl.searchCampaigns"  placeholder="Search Campaigns">
+			</div>
 		</div>
-	</header>
 
-	<ul>
-		<li ng-repeat="message in active.messages">
-			<a ui-sref="messages.detail({_id:1})" class="message-title title-width">{{message.content}}</a>
-			<div class="stats">
-				<span>{{message.sentCount}}</span>
-				<span>{{message.recipientCount}}</span>
-				<span>{{message.likeCount}}</span>
-				<span>{{message.commentCount}}</span>
-				<span>{{message.forwardCount}}</span>
-				<span>{{message.saveCount}}</span>
+		<div class="clearfix"></div>
+
+		<div class="campaign-center-filter-wrapper qvr-form">
+			<div id="bulk-action" class="input-wrapper">
+				<select class="qvr-select" ng-model="" required>
+					<option value="" selected>Bulk Action</option>
+					<option value="Delete">Delete</option>
+					<option value="Set To Draft">Set To Draft</option>
+					<option value="Set To Live">Set To Live</option>
+					<option value="Close">Close</option>
+				</select>
+				<button class="qvr-button action">
+					<i class="check-mark"></i>
+				</button>
 			</div>
-		</li>
-	</ul>
-</section>
+			<div id="tag-filters" class="input-wrapper">
+				<select class="qvr-select" ng-model="" required>
+					<option value="" selected>Add #Tag</option>
+				</select>
+				<button class="qvr-button action">
+					<i class="check-mark"></i>
+				</button>
+			</div>	
+			<div class="pagination-wrapper input-wrapper">
+				<button class="qvr-button">
+					<i class="fa fa-angle-double-left"></i>
+				</button>
+				<button class="qvr-button">
+					<i class="fa fa-angle-left"></i>
+				</button>
+				<span class="pagination-info">
+					<input type="text" value="0" />
+					<span>
+						of 
+						<span>0</span>
+					</span>
+			    </span>
 
-<section class="live-feed" ng-controller="LiveFeedController">
-	<header class="heading-bar">
-		<h1>Live Feed</h1>
-	</header>
 
-	<ul>
-		<li ng-repeat="update in feed.updates">
-			<div class="user">
-				<span class="icon i-user-large"></span>
-			</div>
+				<button class="qvr-button">
+					<i class="fa fa-angle-right right"></i>
+				</button>
+				<button class="qvr-button">
+					<i class="fa fa-angle-double-right right"></i>
+				</button>
+			</div>	
 
-			<div class="update-body">
-				<header>
-					<a>John Smith</a> Discovered <a>Message 1 Title</a>
-				</header>
+		</div>
 
-				<p>
-					This is the message content truncated to two lines. Anything beyond two lines should be cut off and displayed with some of the word from the mes... 
-				</p>
+		<div class="clearfix"></div>
 
-				<div class="location">
-					<span class="icon i-location"></span>
-					CN Tower, Toronto, ON
-				</div>
-			</div>
+		<div class="campaign-center-table-wrapper qvr-form">
+			<table>
+			  <thead>
+			    <tr>
+			      <th>
+			      	<input type="checkbox" />
+			      </th>
+			      <th>
+			      	<label>ID</label>
+			      	<span>
+			      		<i class="fa fa-caret-up"></i>
+			      		<i class="fa fa-caret-down"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Campaign Name</label>
+			      	<span>
+			      		<i class="fa fa-caret-up"></i>
+			      		<i class="fa fa-caret-down"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Likes</label>
+			      	<span>
+			      		<i class="fa fa-caret-up"></i>
+			      		<i class="fa fa-caret-down"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Saves</label>
+			      	<span>
+			      		<i class="fa fa-caret-up"></i>
+			      		<i class="fa fa-caret-down"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Start</label>
+			      	<span>
+			      		<i class="fa fa-caret-up"></i>
+			      		<i class="fa fa-caret-down"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>End</label>
+			      	<span>
+			      		<i class="fa fa-caret-up"></i>
+			      		<i class="fa fa-caret-down"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Status</label>
+			      	<span>
+			      		<i class="fa fa-caret-up"></i>
+			      		<i class="fa fa-caret-down"></i>
+			      	</span>
+			      </th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td><input type="checkbox" /></td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>
+					<div class="input-wrapper campaign-status-wrapper">
+						<select class="qvr-select" ng-model="" required>
+							<option value="" selected>Draft</option>
+							<option value="" >Live</option>
+							<option value="" >Ended</option>
+						</select>
+					</div>
+			      </td>
+			    </tr>
+			    <tr>
+			      <td><input type="checkbox" /></td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>
+					<div class="input-wrapper campaign-status-wrapper">
+						<select class="qvr-select" ng-model="" required>
+							<option value="" selected>Draft</option>
+							<option value="" >Live</option>
+							<option value="" >Ended</option>
+						</select>
+					</div>
+			      </td>
+			    </tr>
+			    <tr>
+			      <td><input type="checkbox" /></td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>Content Goes Here</td>
+			      <td>
+					<div class="input-wrapper campaign-status-wrapper">
+						<select class="qvr-select" ng-model="" required>
+							<option value="" selected>Draft</option>
+							<option value="" >Live</option>
+							<option value="" >Ended</option>
+						</select>
+					</div>
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+			<div class="pagination-wrapper input-wrapper bottom">
+				<button class="qvr-button">
+					<i class="fa fa-angle-double-left"></i>
+				</button>
+				<button class="qvr-button">
+					<i class="fa fa-angle-left"></i>
+				</button>
+				<span class="pagination-info">
+					<input type="text" value="0" />
+					<span>
+						of 
+						<span>0</span>
+					</span>
+			    </span>
 
-			<div class="link-wrap">
-				<a>
-					<span class="icon i-btn-arrow-right"></span>
-				</a>
-			</div>
-		</li>
-	</ul>
-</section>
--->
+
+				<button class="qvr-button">
+					<i class="fa fa-angle-right right"></i>
+				</button>
+				<button class="qvr-button">
+					<i class="fa fa-angle-double-right right"></i>
+				</button>
+			</div>	
+		</div>
+
+	</section>

@@ -1,0 +1,117 @@
+.reporting-center-wrapper{
+	ul{
+		margin: 40px auto;
+    	width: 800px;
+		li{
+			height: 250px;
+			width: 250px;
+			float: left;
+			list-style: none;
+			position: relative;
+			margin-right: 25px;
+			text-transform: uppercase;
+			cursor: pointer;
+			@include border-radius(0px 35px 35px 35px);
+			&:last-child{
+				margin-right: 0px;
+			}
+			i{
+				    height: 100%;
+				    width: 100%;
+				    display: block;
+				    background-repeat: no-repeat;
+				    background-position: 50%;
+				    background-size: 100px;
+			}
+			&.follower-summary{
+				background-color: #019ca8;
+				i{
+					background-image: url(../img/icons/follower-summary.png);
+				}
+			}
+			&.single-campaign{
+				background-color: #007484;
+				i{
+					background-image: url(../img/icons/single-campaign.png);
+				}
+			}	
+			&.comment-summary{
+				background-color: #015359;
+				i{
+					background-image: url(../img/icons/comment-summary.png);
+				}
+			}
+			&.regional-summary{
+				i{
+					background-image: url(../img/icons/regional-summary.png);
+				}
+			}
+			&.multi-campaign{
+				i{
+					background-image: url(../img/icons/multi-campaign.png);
+				}
+			}	
+			&.dynamic-reports{
+				i{
+					background-image: url(../img/icons/dynamic-reports.png);
+				}
+			}			
+			a{
+				position: absolute;
+				bottom: 15px;
+				width: 100%;
+			    text-align: center;
+			    font-size: 21px;
+			    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    			font-weight: 600;
+			}
+		}
+		&.basic{
+			a{
+				color: white;
+			}
+		}
+		&.upgraded{
+			li{
+				background-color: #e6e6e6;
+				a{
+					color: #cccccc;
+				}
+				i{
+					background-position: 50% 15%;
+				}
+				.ribbon{
+					    float: left;
+					    color: white;
+					    height: 40px;
+					    position: relative;
+					    background-color: #60707f;
+					    width: 70%;
+					    font-size: 14px;
+					    margin-top: 25px;
+					    font-weight: bold;
+					    text-indent: 15px;
+					    padding-top: 10px;
+					    text-transform: uppercase;
+					    &.yellow{
+					    	background-color: #efc131;
+					    	.pointer{
+					    		border-color: transparent transparent transparent #efc131;
+					    	}
+					    }
+
+					.pointer{
+						width: 0;
+					    height: 0;
+					    border-style: solid;
+					    border-width: 20px 0 20px 15px;
+					    border-color: transparent transparent transparent #60707f;
+					    position: absolute;
+					    right: -15px;
+					    top: 0px;
+					}
+				}
+			}
+		}
+	}
+}

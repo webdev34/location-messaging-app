@@ -1,55 +1,9 @@
-.manage-campaign.message-content-wrap{
-	
-	.manage-campaign-form{
-		.qvr-label{
-			span{
-				color: #808285;
-			}
-		}
-		.input-wrapper{
-			margin-right: 20px;
-			float: left;
-		}
-		.delivery-box{
-			float: left;
-			margin-right: 20px;
-			position: relative;
-			section.date-selector,
-			section.time-selector{
-				position: absolute;
-				z-index: 10;
-				top: -4px;
-			    left: -15px;
-			    width: 215px;
-			}
-		}
-		#campaign-name-text{
-			width: 300px;
-		}
-		#campaign-id-text{
-			width: 100px;
-		}
-		#campaign-description{
-			width: 420px;
-		}
-		.campaign-description-textarea{
-			height: 150px;
-		}
-		#marketing-assets,
-		#campaigns-tags, 
-		#campaign-participants{
-			width: 350px;
-		}
-		#campaigns-tags{
-			margin-left: 5px;
-		}	
-	}
-	
-	.campaign-messages-wrapper{
-		padding: 45px 0px;
-		background-color: #f0f0f0;
-		margin-top: 30px;
-		.campaign-messages-header{
+	.campaign-center-wrapper{
+		padding-top: 45px;
+		padding-bottom: 60px;
+		background-color: #f2f2f2;
+
+		.campaign-center-header{
 			h1{
 				padding: 0 0 0 30px;
 			    margin: 0;
@@ -85,7 +39,7 @@
 				}
 			}			
 		}
-		.campaign-messages-filter-wrapper{
+		.campaign-center-filter-wrapper{
 			margin-top: 25px;
 			#bulk-action,
 			#tag-filters{
@@ -113,7 +67,7 @@
 			}
 
 		}
-		.campaign-messages-table-wrapper{
+		.campaign-center-table-wrapper{
 			table{
     			width: 98%;
     			margin-left: 10px;
@@ -158,7 +112,7 @@
 						margin-left: 10px;
     					margin-top: 15px;
 					}
-					.message-status-wrapper{
+					.campaign-status-wrapper{
 						select{
 							width: 80%;
 							margin-top: 12px;
@@ -192,4 +146,3 @@
 			}
 		}
 	}
-} 

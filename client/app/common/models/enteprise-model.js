@@ -22,7 +22,7 @@
 			var model = this;
 			
 			if (!model.company){
-				model.company = $cookieStore.get("QVR.company");
+				//model.company = $cookieStore.get("QVR.company");
 			}
 
 			model.getEnterprise = function() {
@@ -36,16 +36,6 @@
 					);
 			};
 			
-			model.getEnterprise = function() {
-				return EnterpriseService.get(UserModel.user.enterprise)
-					.then(
-						function (response) {
-							model.company = response.enterprise;
-							$cookieStore.put("QVR.company", model.company);
-							return response;
-						}
-					);
-			};
 
 			model.updateCompany = function(updatedCompany) {
 				angular.extend(model.company, updatedCompany);
@@ -72,7 +62,7 @@
 			}
 
 			if (!model.company){
-				model.getEnterprise();
+				//model.getEnterprise();
 			}
 		}
 	]);

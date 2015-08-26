@@ -1,38 +1,77 @@
 .page--enterprise {
-	.enterprise-content {}
+
+	.edit-enterprise-btn-wrapper{
+		position: absolute;
+		top: 2px;
+		right: 6%;
+	}
+	
 	
 	.enterprise-profile {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: nowrap;
+		// display: flex;
+		// flex-direction: row;
+		// flex-wrap: nowrap;
 		margin: 0;
 		padding: 0;
-		align-items: center;
-		justify-content: space-around;
+		background-color: #f2f2f2;
+		// align-items: center;
+		// justify-content: space-around;
+
+		.enterprise-content-left,
+		.enterprise-content-right{
+			width: 50%;
+			float: left;
+			padding: 20px;
+		}
+
+		&.edit{
+			textarea{
+				min-height: 150px;
+			}
+			input[type="text"],
+			textarea{
+				margin-bottom: 20px;
+			}
+		}
 
 		.corporate-info {
 			order: 1;
 			margin-left: auto;
+			background-color: transparent;
+			text-align: left;
 
 			.corp-logo {
-				max-width: 210px;
+				max-width: 350px;
+				margin-bottom: 50px;
+			}
+			&.enterprise-content-left{
+				text-align: center;
 			}
 		}
 
 		.details {
 			order: 2;
-			border-left: 1px solid #f2f2f2;
+			//border-left: 1px solid #f2f2f2;
 			width: 50%;
+			&.full-width{
+				width: 100%;
+				text-align: left;
+			}
 			padding-left: 3rem;
 
 			p {
-				font-size: 16px;
+				font-size: 14px;
 				font-weight: $qvr-font-weight-light;
 				width: 300px;
+				margin-bottom: 1.9rem;
+				&.longer{
+					width: 90%;
+				}
 			}
 			
 			label {
-				font-size: 20px;
+				font-size: 15px;
+				font-weight: bold;
 				color: $qvr-blue-1;
 			}
 		}

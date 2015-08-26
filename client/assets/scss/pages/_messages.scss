@@ -1,4 +1,5 @@
 @import "campaigns/manage-campaign";
+@import "campaigns/campaign-center";
 
 .page--messages {
 	display: flex;
@@ -18,7 +19,7 @@
 	.message-content-wrap {
 		section {
 			@extend .clearfix;
-			padding: 15px 15px 0 15px;
+			padding: 25px 15px 0 15px;
 		}
 		
 		h2 {
@@ -585,6 +586,7 @@
 		
 		.content-row {
 			padding: 15px 0 15px 15px;
+			@include display-flex();
 		}
 		
 		.qvr-form {
