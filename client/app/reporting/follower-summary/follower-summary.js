@@ -37,9 +37,6 @@
 					"startTime": "12:01 AM",
 					"endTime": "11:59 PM",
 				};
-				console.log(followerSummaryCtrl)
-			
-
 			}
 
 			
@@ -50,6 +47,8 @@
 			
 			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.startDate", clearTakeOverSelectors);
 			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.endDate", clearTakeOverSelectors);
+			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.startTime", clearTakeOverSelectors);
+			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.endTime", clearTakeOverSelectors);
 
 			resetForm();
 		}

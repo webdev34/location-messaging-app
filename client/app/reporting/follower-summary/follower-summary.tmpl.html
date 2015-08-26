@@ -7,34 +7,64 @@
 		<div class="float-right top-controls">
 			<div class="delivery-box start-date">
 				<label class="qvr-label">Start Date</label>
-				<input type="text" class="date" ng-model="followSummaryCtrl.followerSummaryQuery.startDate" ng-click="followSummaryCtrl.showStartDatePicker=true">
-				<section class="date-selector" ng-show="followSummaryCtrl.showStartDatePicker">
+				<input type="text" class="date" ng-model="followerSummaryCtrl.followerSummaryQuery.startDate" ng-click="followerSummaryCtrl.showStartDatePicker=true">
+				<section class="date-selector" ng-show="followerSummaryCtrl.showStartDatePicker">
 					<date-picker
 					title="Start Date"
 					name="start-date"
-					ng-model="followSummaryCtrl.followerSummaryQuery.startDate"
-					start-date="followSummaryCtrl.followerSummaryQuery.startDate"
-					start-time="followSummaryCtrl.followerSummaryQuery.startTime"
-					end-date="followSummaryCtrl.followerSummaryQuery.endDate"
-					end-time="followSummaryCtrl.followerSummaryQuery.endTime"
+					ng-model="followerSummaryCtrl.followerSummaryQuery.startDate"
+					start-date="followerSummaryCtrl.followerSummaryQuery.startDate"
+					start-time="followerSummaryCtrl.followerSummaryQuery.startTime"
+					end-date="followerSummaryCtrl.followerSummaryQuery.endDate"
+					end-time="followerSummaryCtrl.followerSummaryQuery.endTime"
 					></date-picker>
+				</section>
+			</div>
+			<div class="delivery-box start-time hide">
+				<label class="qvr-label">Start Time</label>
+				<input type="text" class="hourglass" ng-model="followerSummaryCtrl.followerSummaryQuery.startTime" ng-click="followerSummaryCtrl.showStartTimePicker=true">
+				<section class="time-selector" ng-show="followerSummaryCtrl.showStartTimePicker">
+					<time-picker
+					title="Start Time"
+					name="start-time"
+					ng-model="followerSummaryCtrl.followerSummaryQuery.startTime"
+					start-date="followerSummaryCtrl.followerSummaryQuery.startDate"
+					start-time="followerSummaryCtrl.followerSummaryQuery.startTime"
+					end-date="followerSummaryCtrl.followerSummaryQuery.endDate"
+					end-time="followerSummaryCtrl.followerSummaryQuery.endTime"
+					></time-picker>
 				</section>
 			</div>
 			<div class="delivery-box end-date">
 					<label class="qvr-label">End Date</label>
-					<input type="text" class="date" ng-model="followSummaryCtrl.followerSummaryQuery.endDate" ng-click="followSummaryCtrl.showEndDatePicker=true">
-					<section class="date-selector" ng-show="followSummaryCtrl.showEndDatePicker">
+					<input type="text" class="date" ng-model="followerSummaryCtrl.followerSummaryQuery.endDate" ng-click="followerSummaryCtrl.showEndDatePicker=true">
+					<section class="date-selector" ng-show="followerSummaryCtrl.showEndDatePicker">
 					<date-picker
 					title="End Date"
 					name="end-date"
-					ng-model="followSummaryCtrl.followerSummaryQuery.endDate"
-					start-date="followSummaryCtrl.followerSummaryQuery.startDate"
-					start-time="followSummaryCtrl.followerSummaryQuery.startTime"
-					end-date="followSummaryCtrl.followerSummaryQuery.endDate"
-					end-time="followSummaryCtrl.followerSummaryQuery.endTime"
+					ng-model="followerSummaryCtrl.followerSummaryQuery.endDate"
+					start-date="followerSummaryCtrl.followerSummaryQuery.startDate"
+					start-time="followerSummaryCtrl.followerSummaryQuery.startTime"
+					end-date="followerSummaryCtrl.followerSummaryQuery.endDate"
+					end-time="followerSummaryCtrl.followerSummaryQuery.endTime"
 					></date-picker>
 				</section>
 			</div>
+			<div class="delivery-box end-time hide">
+					<label class="qvr-label">End Time</label>
+					<input type="text" class="hourglass" ng-model="followerSummaryCtrl.followerSummaryQuery.endTime" ng-click="followerSummaryCtrl.showEndTimePicker=true">
+					<section class="time-selector" ng-show="followerSummaryCtrl.showEndTimePicker">
+					<time-picker
+					title="End Time"
+					name="end-time"
+					ng-model="followerSummaryCtrl.followerSummaryQuery.endTime"
+					start-date="followerSummaryCtrl.followerSummaryQuery.startDate"
+					start-time="followerSummaryCtrl.followerSummaryQuery.startTime"
+					end-date="followerSummaryCtrl.followerSummaryQuery.endDate"
+					end-time="followerSummaryCtrl.followerSummaryQuery.endTime"
+					></time-picker>
+				</section>
+				</div>
 			<div class="button-wrapper">
 				<button type="submit" class="qvr-button action">RUN REPORT</button>
 				<button  class="qvr-button action">EXPORT</button>
