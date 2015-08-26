@@ -24,9 +24,11 @@
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
 
-			var testMessage = {"comment":{"text":"message text created at 18:40"},"messageLocation":[{"name":"location name","geoFence":{"type":"Point","coordinates":[43.64396,-79.384021]},"distance":999.99,"trigger":1,"startTime":0,"endTime":0}]}
+			var testMessage = {
+				"comment":{"text":"message text created at 18:40"},"messageLocation":[{"name":"location name","geoFence":{"type":"Point","coordinates":[43.64396,-79.384021]},"distance":999.99,"trigger":1,"startTime":0,"endTime":0}]}
 
 			newMessageCtrl.createMessageTest = function() {
+				console.log(neMessageCtrl.newMessage);
 				console.log('started');
 				MessageListModel.createNewMessage(testMessage).then(
 					function success(response){
