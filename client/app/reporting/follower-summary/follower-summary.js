@@ -7,16 +7,20 @@
 		'$rootScope',
 		'$scope',
 		'$state',
+		'FoundationApi',
 		
 		function(
 			$rootScope,
 			$scope,
-			$state
+			$state,
+			FoundationApi
 		) {
 			var followerSummaryCtrl = this;
-			
+
 			followerSummaryCtrl.showStartDatePicker = false;
 			followerSummaryCtrl.showEndDatePicker = false;
+			followerSummaryCtrl.showStartTimePicker = false;
+			followerSummaryCtrl.endStartTimePicker = false;
 			
 			function resetForm() {
 				var today = new Date(),
@@ -29,15 +33,19 @@
 
 				followerSummaryCtrl.followerSummaryQuery = {
 					"startDate": todayProperFormatted,
-					"endDate": tomorrowProperFormatted
+					"endDate": tomorrowProperFormatted,
+					"startTime": "12:01 AM",
+					"endTime": "11:59 PM",
 				};
+				console.log(followerSummaryCtrl)
+			
 
 			}
 
 			
 			function clearTakeOverSelectors(){
-				followerSummaryCtrl.followerSummaryQuery.showStartDatePicker = false;
-				followerSummaryCtrl.followerSummaryQuery.showStartTimePicker = false;
+				followerSummaryCtrl.showStartDatePicker = false;
+				followerSummaryCtrl.showEndDatePicker = false;
 			}
 			
 			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.startDate", clearTakeOverSelectors);

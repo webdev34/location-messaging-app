@@ -14,7 +14,9 @@
 					name="start-date"
 					ng-model="followSummaryCtrl.followerSummaryQuery.startDate"
 					start-date="followSummaryCtrl.followerSummaryQuery.startDate"
+					start-time="followSummaryCtrl.followerSummaryQuery.startTime"
 					end-date="followSummaryCtrl.followerSummaryQuery.endDate"
+					end-time="followSummaryCtrl.followerSummaryQuery.endTime"
 					></date-picker>
 				</section>
 			</div>
@@ -27,13 +29,16 @@
 					name="end-date"
 					ng-model="followSummaryCtrl.followerSummaryQuery.endDate"
 					start-date="followSummaryCtrl.followerSummaryQuery.startDate"
+					start-time="followSummaryCtrl.followerSummaryQuery.startTime"
 					end-date="followSummaryCtrl.followerSummaryQuery.endDate"
+					end-time="followSummaryCtrl.followerSummaryQuery.endTime"
 					></date-picker>
 				</section>
-				</div>
-			
-			<button type="submit" class="qvr-button action">RUN REPORT</button>
-			<button  class="qvr-button action">EXPORT</button>
+			</div>
+			<div class="button-wrapper">
+				<button type="submit" class="qvr-button action">RUN REPORT</button>
+				<button  class="qvr-button action">EXPORT</button>
+			</div>
 		</div>
 	</form>
 	<section class="follower-summary-content-wrapper">
@@ -73,7 +78,7 @@
 
 		<div class="clearfix"></div>
 
-		<div class="follower-sumaary-table-wrapper qvr-form">
+		<div class="follower-summary-table-wrapper qvr-form">
 			<table>
 			  <thead>
 			    <tr>

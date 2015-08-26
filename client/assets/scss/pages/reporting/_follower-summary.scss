@@ -1,10 +1,12 @@
 .follower-summary-wrapper{
 	
 	.follower-summary-form{
-		.qvr-label{
-			span{
-				color: #808285;
-			}
+		.top-controls .qvr-label{
+			margin-bottom: -5px;
+			color: #00A9CC;
+		}
+		.button-wrapper{
+		    float: right;
 		}
 		.input-wrapper{
 			margin-right: 20px;
@@ -14,6 +16,7 @@
 			float: left;
 			margin-right: 20px;
 			position: relative;
+			margin-top: -25px;
 			section.date-selector,
 			section.time-selector{
 				position: absolute;
@@ -22,13 +25,33 @@
 			    left: -15px;
 			    width: 215px;
 			}
+			span.date {
+		        font-size: 26px;
+		        font-weight: $qvr-font-weight-bold;
+		        color: #999;
+		        text-transform: uppercase;
+		    }
+
+		    input {
+		        background-repeat: no-repeat;
+		        background-size: 22px;
+		        background-position: right 5px center;
+		        width: 95%;
+		    }
+
+		    input.date {
+		        background-image: url(..//img/icons/i-calendar.png);
+		    }
+		    
+		    input.hourglass {
+		        background-image: url(..//img/icons/i-hourglass.png);
+		    }
 		}
 	}
 	
 	.follower-summary-content-wrapper{
-		padding: 45px 0px;
+		padding: 60px 0px;
 		background-color: #f0f0f0;
-		margin-top: 30px;
 		.follower-summary-header{
 			h1{
 				padding: 0 0 0 30px;
