@@ -19,8 +19,6 @@
 
 			followerSummaryCtrl.showStartDatePicker = false;
 			followerSummaryCtrl.showEndDatePicker = false;
-			followerSummaryCtrl.showStartTimePicker = false;
-			followerSummaryCtrl.endStartTimePicker = false;
 			
 			function resetForm() {
 				var today = new Date(),
@@ -35,7 +33,7 @@
 					"startDate": todayProperFormatted,
 					"endDate": tomorrowProperFormatted,
 					"startTime": "12:01 AM",
-					"endTime": "11:59 PM",
+					"endTime": "12:01 AM"
 				};
 			}
 
@@ -47,8 +45,6 @@
 			
 			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.startDate", clearTakeOverSelectors);
 			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.endDate", clearTakeOverSelectors);
-			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.startTime", clearTakeOverSelectors);
-			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.endTime", clearTakeOverSelectors);
 
 			resetForm();
 		}

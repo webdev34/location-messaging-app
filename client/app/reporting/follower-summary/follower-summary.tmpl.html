@@ -17,22 +17,9 @@
 					start-time="followerSummaryCtrl.followerSummaryQuery.startTime"
 					end-date="followerSummaryCtrl.followerSummaryQuery.endDate"
 					end-time="followerSummaryCtrl.followerSummaryQuery.endTime"
+					disable-previous-dates="false"
+					show-picker="followerSummaryCtrl.showStartDatePicker"
 					></date-picker>
-				</section>
-			</div>
-			<div class="delivery-box start-time hide">
-				<label class="qvr-label">Start Time</label>
-				<input type="text" class="hourglass" ng-model="followerSummaryCtrl.followerSummaryQuery.startTime" ng-click="followerSummaryCtrl.showStartTimePicker=true">
-				<section class="time-selector" ng-show="followerSummaryCtrl.showStartTimePicker">
-					<time-picker
-					title="Start Time"
-					name="start-time"
-					ng-model="followerSummaryCtrl.followerSummaryQuery.startTime"
-					start-date="followerSummaryCtrl.followerSummaryQuery.startDate"
-					start-time="followerSummaryCtrl.followerSummaryQuery.startTime"
-					end-date="followerSummaryCtrl.followerSummaryQuery.endDate"
-					end-time="followerSummaryCtrl.followerSummaryQuery.endTime"
-					></time-picker>
 				</section>
 			</div>
 			<div class="delivery-box end-date">
@@ -47,24 +34,11 @@
 					start-time="followerSummaryCtrl.followerSummaryQuery.startTime"
 					end-date="followerSummaryCtrl.followerSummaryQuery.endDate"
 					end-time="followerSummaryCtrl.followerSummaryQuery.endTime"
+					disable-previous-dates="false"
+					show-picker="followerSummaryCtrl.showEndDatePicker"
 					></date-picker>
 				</section>
 			</div>
-			<div class="delivery-box end-time hide">
-					<label class="qvr-label">End Time</label>
-					<input type="text" class="hourglass" ng-model="followerSummaryCtrl.followerSummaryQuery.endTime" ng-click="followerSummaryCtrl.showEndTimePicker=true">
-					<section class="time-selector" ng-show="followerSummaryCtrl.showEndTimePicker">
-					<time-picker
-					title="End Time"
-					name="end-time"
-					ng-model="followerSummaryCtrl.followerSummaryQuery.endTime"
-					start-date="followerSummaryCtrl.followerSummaryQuery.startDate"
-					start-time="followerSummaryCtrl.followerSummaryQuery.startTime"
-					end-date="followerSummaryCtrl.followerSummaryQuery.endDate"
-					end-time="followerSummaryCtrl.followerSummaryQuery.endTime"
-					></time-picker>
-				</section>
-				</div>
 			<div class="button-wrapper">
 				<button type="submit" class="qvr-button action">RUN REPORT</button>
 				<button  class="qvr-button action">EXPORT</button>

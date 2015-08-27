@@ -686,9 +686,17 @@ input[type="checkbox"].qvr-slide-toggle {
     }
 }
 
+.picker-closer{
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
 .date-picker {
     font-size: $qvr-input-font-size;
     font-family: $qvr-secondary-font;
+   
     .month-bar {
         height: 45px;
         line-height: 45px;
