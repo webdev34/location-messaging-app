@@ -24,33 +24,6 @@
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
 
-			var testMessage = {
-				"comment":{"text":"message text created at 18:40"},"messageLocation":[{"name":"location name","geoFence":{"type":"Point","coordinates":[43.64396,-79.384021]},"distance":999.99,"trigger":1,"startTime":0,"endTime":0}]}
-
-			newMessageCtrl.createMessageTest = function() {
-				console.log(neMessageCtrl.newMessage);
-				console.log('started');
-				MessageListModel.createNewMessage(testMessage).then(
-					function success(response){
-						$state.go('messages.dashboard');
-						
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Sent',
-							content: '',
-							color: 'success',
-							autoclose: '3000'
-						});
-					},
-					function error(response) {
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Was Not Sent',
-							content: response.code,
-							color: 'fail',
-							autoclose: '3000'
-						});
-					}
-				);
-			}
 			
 			function resetForm() {
 				var today = new Date(),
@@ -62,7 +35,6 @@
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
 				newMessageCtrl.newMessage = {
-					"sid": "",
 					"messageTitle": "",
 					"content": "",
 					"status": "Inactive",
@@ -73,10 +45,8 @@
 					"startTime": "12:01 AM",
 					"endDate": tomorrowProperFormatted,
 					"endTime": "11:59 PM",
-					"locationName": "",
-					"latlng": [],
-					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
-					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
+					"locationName": "generic name",
+					"coordinates": [-79.383184, 43.653226]
 				};
 			}
 			
