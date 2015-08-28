@@ -23,9 +23,9 @@
 			manageCampaignCtrl.showEndDatePicker = false;
 			manageCampaignCtrl.showStartTimePicker = false;
 			manageCampaignCtrl.endStartTimePicker = false;
-			
-			function resetForm() {
-				var today = new Date(),
+
+
+			var today = new Date(),
 					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
 					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
 				
@@ -33,13 +33,71 @@
 					tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
+			manageCampaignCtrl.manageCampaign = {
+				"campaignID": "00131",
+				"campaignName": "Drive A Dream - Vancouver BC",
+				"campaignParticipants": ["group 1", "group 2", "group 3" ],
+				"campaignDescription": "Tesla's Drive A Dream in Vancouver BC will be target- ing the true auto enthusiast having a passion for performance and luxury. The campaign will be physi- cally centered around our two locations. The Quiver campaign will be run simultaneously with a local television campaign spanning the campaign period.",
+				"marketingAssets": ["asset 1", "asset 2", "asset 3" ],
+				"campaignsTags": [],
+				"status": "Draft",
+				"startDate": todayProperFormatted,
+				"startTime": "12:01 AM",
+				"endDate": tomorrowProperFormatted,
+				"endTime": "11:59 PM",
+				"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
+				"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
+			};
+
+			manageCampaignCtrl.statuses = ["Live", "Draft"]; 
+
+
+			manageCampaignCtrl.campaignMessages = [{
+					"id": 0,
+					"label": "Drive A Dream Vanc #1",
+					"to": "507.7 K",
+					"location": "929 Robson St. Vanc",
+					"start": todayProperFormatted,
+					"end": tomorrowProperFormatted,
+					"status": 'Live'
+				},
+				{
+					"id": 1,
+					"label": "Drive A Dream Vanc #2",
+					"to": "507.7 K",
+					"location": "929 Robson St. Vanc",
+					"start": todayProperFormatted,
+					"end": tomorrowProperFormatted,
+					"status": 'Draft'
+
+				},
+				{
+					"id": 2,
+					"label": "Drive A Dream Vanc #3",
+					"to": "507.7 K",
+					"location": "929 Robson St. Vanc",
+					"start": todayProperFormatted,
+					"end": tomorrowProperFormatted,
+					"status": 'Live'
+				},
+				{
+					"id": 3,
+					"label": "Drive A Dream Vanc #4",
+					"to": "507.7 K",
+					"location": "929 Robson St. Vanc",
+					"start": todayProperFormatted,
+					"end": tomorrowProperFormatted,
+					"status": 'Draft'
+				}];
+			
+			function resetForm() {
 				manageCampaignCtrl.manageCampaign = {
 					"campaignID": "",
 					"campaignName": "",
-					"campaignParticipants": "",
+					"campaignParticipants": [],
 					"campaignDescription": "",
-					"marketingAssets": "",
-					"campaignsTags": "",
+					"marketingAssets": [],
+					"campaignsTags": [],
 					"status": "Draft",
 					"startDate": todayProperFormatted,
 					"startTime": "12:01 AM",
@@ -86,7 +144,7 @@
 			$scope.$watch("manageCampaignCtrl.manageCampaign.startTime", clearTakeOverSelectors);
 			$scope.$watch("manageCampaignCtrl.manageCampaign.endTime", clearTakeOverSelectors);
 			
-			resetForm();
+			//resetForm();
 		}
 	]);
 

@@ -81,6 +81,7 @@
 		</div>
 
 		<div class="clearfix"></div>
+		{{followerSummaryCtrl.followerSummaryData}}
 
 		<div class="follower-summary-table-wrapper qvr-form">
 			<table>
@@ -141,35 +142,15 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
+			    <tr data-ng-repeat="summary in followerSummaryCtrl.followerSummaryData">
 			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			    </tr>
-			    <tr>
-			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			    </tr>
-			    <tr>
-			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
+			      <td>{{summary.startDate | date}}</td>
+			      <td>{{summary.startNumber}}</td>
+			      <td>{{summary.new}}</td>
+			      <td>{{summary.losted}}</td>
+			      <td>{{summary.returned}}</td>
+			      <td>{{summary.total}}</td>
+			      <td>{{summary.margin}}</td>
 			    </tr>
 			  </tbody>
 			</table>

@@ -15,7 +15,7 @@
 
 		<div class="campaign-center-filter-wrapper qvr-form">
 			<div id="bulk-action" class="input-wrapper">
-				<select class="qvr-select" ng-model="" required>
+				<select class="qvr-select" ng-model="CampaignCenterCtrl.bulkActions" required>
 					<option value="" selected>Bulk Action</option>
 					<option value="Delete">Delete</option>
 					<option value="Set To Draft">Set To Draft</option>
@@ -27,7 +27,7 @@
 				</button>
 			</div>
 			<div id="tag-filters" class="input-wrapper">
-				<select class="qvr-select" ng-model="" required>
+				<select class="qvr-select" ng-model="CampaignCenterCtrl.addTags" required>
 					<option value="" selected>Add #Tag</option>
 				</select>
 				<button class="qvr-button action">
@@ -131,7 +131,7 @@
 			      <td>Content Goes Here</td>
 			      <td>
 					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
+						<select class="qvr-select" ng-model="CampaignCenterCtrl.status" required>
 							<option value="" selected>Draft</option>
 							<option value="" >Live</option>
 							<option value="" >Ended</option>
@@ -149,7 +149,7 @@
 			      <td>Content Goes Here</td>
 			      <td>
 					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
+						<select class="qvr-select" ng-model="CampaignCenterCtrl.status" required>
 							<option value="" selected>Draft</option>
 							<option value="" >Live</option>
 							<option value="" >Ended</option>
@@ -167,7 +167,7 @@
 			      <td>Content Goes Here</td>
 			      <td>
 					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
+						<select class="qvr-select" ng-model="CampaignCenterCtrl.status" required>
 							<option value="" selected>Draft</option>
 							<option value="" >Live</option>
 							<option value="" >Ended</option>

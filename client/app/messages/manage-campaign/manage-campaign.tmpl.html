@@ -60,9 +60,9 @@
 			
 			<div id="campaign-participants" class="input-wrapper">
 				<label class="qvr-label">Campaign Participants <span>(Groups and Individuals)</span></label>
-				<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignParticipants" required>
+				<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignParticipant" required>
 					<option value="" selected>Select</option>
-					<option value="Placeholder">Placeholder</option>
+					<option ng-repeat="obj in manageCampaignCtrl.manageCampaign.campaignParticipants" value="{{obj}}">{{obj}}</option>
 				</select>
 			</div>
 			<div class="clearfix"></div>
@@ -108,16 +108,16 @@
 			<div class="clearfix"></div>
 				<div id="marketing-assets" class="input-wrapper">
 					<label class="qvr-label">Marketing Assets</label>
-					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.marketingAssets" required>
+					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.marketingAsset" required>
 						<option value="" selected>Select</option>
-						<option value="Placeholder">Placeholder</option>
+						<option ng-repeat="obj in manageCampaignCtrl.manageCampaign.marketingAssets" value="{{obj}}">{{obj}}</option>
 					</select>
 				</div>
 				<div id="campaigns-tags" class="input-wrapper">
 					<label class="qvr-label">Campaigns Tags</label>
-					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignsTags" required>
+					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignsTagsSelected" required>
 						<option value="" selected>Add #Tags</option>
-						<option value="Placeholder">Placeholder</option>
+						<option ng-repeat="obj in manageCampaignCtrl.manageCampaign.campaignsTags" value="{{obj}}">{{obj}}</option>
 					</select>
 				</div>
 		    </div>
@@ -137,7 +137,7 @@
 
 		<div class="campaign-messages-filter-wrapper qvr-form">
 			<div id="bulk-action" class="input-wrapper">
-				<select class="qvr-select" ng-model="" required>
+				<select class="qvr-select" ng-model="manageCampaignCtrl.bulkActions" required>
 					<option value="" selected>Bulk Action</option>
 				</select>
 				<button class="qvr-button action">
@@ -145,7 +145,7 @@
 				</button>
 			</div>
 			<div id="tag-filters" class="input-wrapper">
-				<select class="qvr-select" ng-model="" required>
+				<select class="qvr-select" ng-model="manageCampaignCtrl.tagFilters" required>
 					<option value="" selected>Add #Tag Filters</option>
 				</select>
 				<button class="qvr-button action">
@@ -239,56 +239,18 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
+			    <tr  data-ng-repeat="msg in manageCampaignCtrl.campaignMessages">
 			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
+			      <td>{{msg.id}}</td>
+			      <td>{{msg.label}}</td>
+			      <td>{{msg.to}}</td>
+			      <td>{{msg.location}}</td>
+			      <td>{{msg.start}}</td>
+			      <td>{{msg.end}}</td>
 			      <td>
 					<div class="input-wrapper message-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
-						</select>
-					</div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>
-					<div class="input-wrapper message-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
-						</select>
-					</div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>
-					<div class="input-wrapper message-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
+						<select class="qvr-select {{msg.status}}" ng-model="msg.status" >
+							<option data-ng-repeat="obj in manageCampaignCtrl.statuses">{{obj}}</option>
 						</select>
 					</div>
 			      </td>

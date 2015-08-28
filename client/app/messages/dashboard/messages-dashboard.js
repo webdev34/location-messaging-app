@@ -3,7 +3,7 @@
 
 	angular.module('messages.dashboard', [])
 
-	.controller('ActiveMessageController', [
+	.controller('CampaignCenterCtrl', [
 		'$scope',
 		'$http',
 		'MessageListModel',
@@ -13,6 +13,9 @@
 			$http,
 			MessageListModel
 		) {
+
+			var campaignCenterCtrl = this;
+			
 					console.log("Active Messages");
 			MessageListModel.getMessageList().then(
 				function(response){
