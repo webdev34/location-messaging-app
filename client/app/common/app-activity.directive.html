@@ -1,40 +1,40 @@
-<section class="g-activity" ng-show="appCtrl.showHeader">
+<section class="g-activity" ng-show="appCtrl.showHeader" ng-controller="OverAllActivityCtrl">
 
 	<div class="title">Overall Activity</div>
 
 	<section>
 		<div class="desc">Likes 24HR</div>
-		<div class="count">---</div>
+		<div class="count">{{overallActivityFeed[0].likes24Hour}}</div>
 	</section>
 
 	<section>
 		<div class="desc">Likes 7 Days</div>
-		<div class="count">---</div>
+		<div class="count">{{overallActivityFeed[0].likes7Days}}</div>
 	</section>
 
 	<section>
 		<div class="desc">Likes 1 Month</div>
-		<div class="count">---</div>
+		<div class="count">{{overallActivityFeed[0].likes1Month}}</div>
 	</section>
 
 	<section>
 		<div class="desc">Total Likes</div>
-		<div class="count">---</div>
+		<div class="count">{{overallActivityFeed[0].totalLikes}}</div>
 	</section>
 
 	<section>
 		<div class="desc">Messages Del.</div>
-		<div class="count">---</div>
+		<div class="count">{{overallActivityFeed[0].messagesDeleted}}</div>
 	</section>
 
 	<section>
 		<div class="desc">Messages Read</div>
-		<div class="count">---</div>
+		<div class="count">{{overallActivityFeed[0].messagesRead}}</div>
 	</section>
 
 	<section>
 		<div class="desc">Messages Saved</div>
-		<div class="count">---</div>
+		<div class="count">{{overallActivityFeed[0].messagesSaved}}</div>
 	</section>
 
 </section>
