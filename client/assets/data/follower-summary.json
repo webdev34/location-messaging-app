@@ -1,0 +1,55 @@
+{
+  "followerSummary": [
+    {
+          "startDate": "08/12/2015",
+          "startNumber": 307.6,
+          "new": 4320,
+          "losted": 65,
+          "returned": 190,
+          "total": "312.0 k",
+          "margin": "+.014%"
+        },{
+          "startDate": "08/13/2015",
+          "startNumber": 107.6,
+          "new": 420,
+          "losted": 5,
+          "returned": 19,
+          "total": "912.0 k",
+          "margin": "+.25%"
+        },{
+          "startDate": "08/14/2015",
+          "startNumber": 307.6,
+          "new": 4320,
+          "losted": 65,
+          "returned": 190,
+          "total": "312.0 k",
+          "margin": "+.014%"
+        },{
+          "startDate": "08/15/2015",
+          "startNumber": 307.6,
+          "new": 4320,
+          "losted": 65,
+          "returned": 190,
+          "total": "312.0 k",
+          "margin": "+.014%"
+        },
+        {
+          "startDate": "08/16/2015",
+          "startNumber": 307.6,
+          "new": 4320,
+          "losted": 65,
+          "returned": 190,
+          "total": "312.0 k",
+          "margin": "+.014%"
+        },
+        {
+          "startDate": "08/17/2015",
+          "startNumber": 307.6,
+          "new": 4320,
+          "losted": 65,
+          "returned": 190,
+          "total": "312.0 k",
+          "margin": "+.014%"
+        }
+  ]
+}

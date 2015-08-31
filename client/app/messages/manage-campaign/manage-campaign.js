@@ -7,6 +7,7 @@
 		'$rootScope',
 		'$scope',
 		'$state',
+		'$http',
 		'FoundationApi',
 		'MessageListModel',
 		
@@ -14,6 +15,7 @@
 			$rootScope,
 			$scope,
 			$state,
+			$http,
 			FoundationApi,
 			MessageListModel
 		) {
@@ -51,44 +53,9 @@
 
 			manageCampaignCtrl.statuses = ["Live", "Draft"]; 
 
-
-			manageCampaignCtrl.campaignMessages = [{
-					"id": 0,
-					"label": "Drive A Dream Vanc #1",
-					"to": "507.7 K",
-					"location": "929 Robson St. Vanc",
-					"start": todayProperFormatted,
-					"end": tomorrowProperFormatted,
-					"status": 'Live'
-				},
-				{
-					"id": 1,
-					"label": "Drive A Dream Vanc #2",
-					"to": "507.7 K",
-					"location": "929 Robson St. Vanc",
-					"start": todayProperFormatted,
-					"end": tomorrowProperFormatted,
-					"status": 'Draft'
-
-				},
-				{
-					"id": 2,
-					"label": "Drive A Dream Vanc #3",
-					"to": "507.7 K",
-					"location": "929 Robson St. Vanc",
-					"start": todayProperFormatted,
-					"end": tomorrowProperFormatted,
-					"status": 'Live'
-				},
-				{
-					"id": 3,
-					"label": "Drive A Dream Vanc #4",
-					"to": "507.7 K",
-					"location": "929 Robson St. Vanc",
-					"start": todayProperFormatted,
-					"end": tomorrowProperFormatted,
-					"status": 'Draft'
-				}];
+			$http.get('assets/data/campaign-messages.json').success(function(data) {
+				manageCampaignCtrl.campaignMessages = data.campaignMessages;	
+			});
 			
 			function resetForm() {
 				manageCampaignCtrl.manageCampaign = {

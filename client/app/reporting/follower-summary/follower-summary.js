@@ -7,12 +7,14 @@
 		'$rootScope',
 		'$scope',
 		'$state',
+		'$http',
 		'FoundationApi',
 		
 		function(
 			$rootScope,
 			$scope,
 			$state,
+			$http,
 			FoundationApi
 		) {
 			var followerSummaryCtrl = this;
@@ -28,40 +30,9 @@
 				tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 				tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 
-
-			followerSummaryCtrl.followerSummaryData = [{
-					"startDate": todayProperFormatted,
-					"startNumber": 307.6,
-					"new": 4320,
-					"losted": 65,
-					"returned": 190,
-					"total": '312.0 k',
-					"margin": '+.014%'
-				},{
-					"startDate": todayProperFormatted,
-					"startNumber": 107.6,
-					"new": 420,
-					"losted": 5,
-					"returned": 19,
-					"total": '912.0 k',
-					"margin": '+.25%'
-				},{
-					"startDate": todayProperFormatted,
-					"startNumber": 307.6,
-					"new": 4320,
-					"losted": 65,
-					"returned": 190,
-					"total": '312.0 k',
-					"margin": '+.014%'
-				},{
-					"startDate": todayProperFormatted,
-					"startNumber": 307.6,
-					"new": 4320,
-					"losted": 65,
-					"returned": 190,
-					"total": '312.0 k',
-					"margin": '+.014%'
-				}];
+			$http.get('assets/data/follower-summary.json').success(function(data) {
+				followerSummaryCtrl.followerSummaryData = data.followerSummary;	
+			});
 			
 			function resetForm() {
 				

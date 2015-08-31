@@ -121,56 +121,18 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
+			    <tr data-ng-repeat="campaign in campaignCenterCtrl.campaignData">
 			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
+			      <td>{{campaign.id}}</td>
+			      <td>{{campaign.campaignName}}</td>
+			      <td>{{campaign.likes}}</td>
+			      <td>{{campaign.saves}}</td>
+			      <td>{{campaign.startEnd}}</td>
+			      <td>{{campaign.endDate}}</td>
 			      <td>
 					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select" ng-model="CampaignCenterCtrl.status" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
-						</select>
-					</div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>
-					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select" ng-model="CampaignCenterCtrl.status" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
-						</select>
-					</div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>
-					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select" ng-model="CampaignCenterCtrl.status" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
+						<select class="qvr-select {{campaign.status}}" ng-model="campaign.status" >
+							<option data-ng-repeat="obj in campaignCenterCtrl.statuses">{{obj}}</option>
 						</select>
 					</div>
 			      </td>

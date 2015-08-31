@@ -1,0 +1,39 @@
+{
+  "campaigns": [{
+          "id": "00142",
+          "campaignName": "Drive a Dream - Toronto ON",
+          "likes": 10,
+          "saves": 43,
+          "startDate": "08/12/2015",
+          "endDate": "10/12/2015",
+          "status": "Live"
+        },
+        {
+          "id": "00143",
+          "campaignName": "Drive a Dream - Toronto ON",
+          "likes": 10,
+          "saves": 43,
+          "startDate": "08/12/2015",
+          "endDate": "10/12/2015",
+          "status": "Draft"
+        },
+        {
+          "id": "00144",
+          "campaignName": "Drive a Dream - Toronto ON",
+          "likes": 10,
+          "saves": 43,
+          "startDate": "08/12/2015",
+          "endDate": "10/12/2015",
+          "status": "Live"
+        },
+        {
+          "id": "00145",
+          "campaignName": "Drive a Dream - Toronto ON",
+          "likes": 10,
+          "saves": 43,
+          "startDate": "08/12/2015",
+          "endDate": "10/12/2015",
+          "status": "Draft"
+        }
+  ]
+}
