@@ -30,8 +30,8 @@
 	var API_SERVER = 'http://localhost:8000/';
 
 	app.constant('API_SERVER', API_SERVER);
-	app.constant('API_URL', API_SERVER + 'web1.1');
-	app.constant('API_URL_DROID', API_SERVER + 'droid1.1');
+	app.constant('API_URL', API_SERVER + '1.1');
+	//app.constant('API_URL_DROID', API_SERVER + 'droid1.1');
 
 	config.$inject = ['$httpProvider', '$urlRouterProvider', '$locationProvider'];
 

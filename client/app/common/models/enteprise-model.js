@@ -20,17 +20,14 @@
 			UserModel
 		) {
 			var model = this;
-			
-			if (!model.company){
-				//model.company = $cookieStore.get("QVR.company");
-			}
+
 
 			model.getEnterprise = function() {
 				return (model.company) ? $q.when(model.company) : EnterpriseService.get(UserModel.user.enterprise)
 					.then(
 						function (response) {
 							model.company = response.enterprise;
-							$cookieStore.put("QVR.company", model.company);
+							//$cookieStore.put("QVR.company", model.company);
 							return response;
 						}
 					);

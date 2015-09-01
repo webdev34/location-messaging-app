@@ -32,9 +32,9 @@
 		function($state, $scope, EnterpriseModel, FoundationApi) {
 			var enterpriseCtrl = this;
 			
-			// EnterpriseModel.getEnterprise().then(function(){
-			// 	enterpriseCtrl.company = EnterpriseModel.company;
-			// });
+			EnterpriseModel.getEnterprise().then(function(){
+				enterpriseCtrl.company = EnterpriseModel.company;
+			});
 
 			enterpriseCtrl.company = {
 				'_id': '',
