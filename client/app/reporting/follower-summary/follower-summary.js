@@ -2,7 +2,15 @@
 	'use strict';
 
 	angular.module('reporting.follower-summary', [])
-	
+	.filter('startFrom', function () {
+		return function (input, start) {
+			if (input) {
+				start = +start;
+				return input.slice(start);
+			}
+			return [];
+		};
+	})
 	.controller('FollowerSummaryCtrl', [
 		'$rootScope',
 		'$scope',
@@ -31,7 +39,41 @@
 				tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 
 			$http.get('assets/data/follower-summary.json').success(function(data) {
-				followerSummaryCtrl.followerSummaryData = data.followerSummary;	
+				followerSummaryCtrl.followerSummaryData = data.followerSummary;
+				$scope.totalItems = data.followerSummary.length;
+				$scope.currentPage = 1;
+				$scope.entryLimit = 10; // items per page
+				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
+				$scope.reverse = false;
+				$scope.sortOrderBy = 'startDate';
+				$scope.startAt = 0;
+				$scope.endAt = 9
+
+				$scope.goToPage = function(direction) {
+
+					if(direction == 'up')
+					{
+						$scope.currentPage++;
+					}else if(direction == 'down'){
+						$scope.currentPage--;
+					}
+					else if(direction == 'beginning'){
+						$scope.currentPage = 1;
+					}
+					else if(direction == 'end'){
+						$scope.currentPage = $scope.noOfPages;
+					}
+
+					$scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
+					$scope.endAt = $scope.entryLimit * $scope.currentPage;
+
+				};
+
+				$scope.sortByFunc = function(sortBy, reverse) {
+					$scope.sortOrderBy = sortBy;
+					$scope.reverse = reverse;
+					$scope.currentPage = 1;
+				};
 			});
 			
 			function resetForm() {
@@ -44,14 +86,23 @@
 				};
 			}
 
-			
 			function clearTakeOverSelectors(){
 				followerSummaryCtrl.showStartDatePicker = false;
 				followerSummaryCtrl.showEndDatePicker = false;
 			}
+
+			function paginationValidation(){
+				if($scope.currentPage > $scope.noOfPages ){
+					$scope.currentPage = $scope.noOfPages
+				}
+				else if(typeof $scope.currentPage === "undefined"){
+					$scope.currentPage = 1;
+				}
+			}
 			
 			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.startDate", clearTakeOverSelectors);
 			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.endDate", clearTakeOverSelectors);
+			$scope.$watch("currentPage", paginationValidation);
 
 			resetForm();
 		}

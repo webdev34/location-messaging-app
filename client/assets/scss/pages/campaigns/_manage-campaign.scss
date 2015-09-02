@@ -148,6 +148,9 @@
 					    	&:first-child{
 					    		top: 10px;
 					    	}
+					    	&.active{
+					    		color: $qvr-blue-1;
+					    	}
 					    }
 					}
 				}
@@ -173,6 +176,11 @@
     							background-color: #808285;
     						}
 						}
+					}
+					.qvr-align-center{
+					    font-size: 16px;
+					    padding-top: 10px;
+					    font-weight: bold;
 					}
 				}
 				tr{

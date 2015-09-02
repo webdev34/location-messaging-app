@@ -55,25 +55,23 @@
 		<div class="follower-summary-filter-wrapper qvr-form">
 		
 			<div class="pagination-wrapper input-wrapper">
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1">
 					<i class="fa fa-angle-double-left"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1">
 					<i class="fa fa-angle-left"></i>
 				</button>
 				<span class="pagination-info">
-					<input type="text" value="0" />
+					<input type="number" min="1" max="9999" ng-model="currentPage" />
 					<span>
 						of 
-						<span>0</span>
+						<span>{{noOfPages}}</span>
 					</span>
 			    </span>
-
-
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages">
 					<i class="fa fa-angle-right right"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages">
 					<i class="fa fa-angle-double-right right"></i>
 				</button>
 			</div>	
@@ -90,58 +88,58 @@
 			      	<input type="checkbox" />
 			      </th>
 			      <th>
-			      	<label>Start</label>
+			      	<label>Date</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'startDate' && reverse == false}" ng-click="sortByFunc('startDate',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'startDate' && reverse == true}" ng-click="sortByFunc('startDate',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Start</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'startNumber' && reverse == false}" ng-click="sortByFunc('startNumber',false);"></i>
+			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'startNumber' && reverse == true}" ng-click="sortByFunc('startNumber',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>New</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'new' && reverse == false}" ng-click="sortByFunc('new',false);"></i>
+			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'new' && reverse == true}" ng-click="sortByFunc('new',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Lost</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'losted' && reverse == false}" ng-click="sortByFunc('losted',false);"></i>
+			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'losted' && reverse == true}" ng-click="sortByFunc('losted',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Returned</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'returned' && reverse == false}" ng-click="sortByFunc('returned',false);"></i>
+			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'returned' && reverse == true}" ng-click="sortByFunc('returned',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Total</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'total' && reverse == false}" ng-click="sortByFunc('total',false);"></i>
+			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'total' && reverse == true}" ng-click="sortByFunc('total',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>% +/-</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'margin' && reverse == false}" ng-click="sortByFunc('margin',false);"></i>
+			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'margin' && reverse == true}" ng-click="sortByFunc('margin',true);"></i>
 			      	</span>
 			      </th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr data-ng-repeat="summary in followerSummaryCtrl.followerSummaryData">
+			    <tr data-ng-repeat="summary in followerSummaryCtrl.followerSummaryData | startFrom:(currentPage-1)*entryLimit | orderBy:sortOrderBy:reverse" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}">
 			      <td><input type="checkbox" /></td>
 			      <td>{{summary.startDate | date}}</td>
 			      <td>{{summary.startNumber}}</td>
@@ -154,25 +152,23 @@
 			  </tbody>
 			</table>
 			<div class="pagination-wrapper input-wrapper bottom">
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1">
 					<i class="fa fa-angle-double-left"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1">
 					<i class="fa fa-angle-left"></i>
 				</button>
 				<span class="pagination-info">
-					<input type="text" value="0" />
+					<input type="number" min="1" max="9999" ng-model="currentPage" />
 					<span>
 						of 
-						<span>0</span>
+						<span>{{noOfPages}}</span>
 					</span>
 			    </span>
-
-
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages">
 					<i class="fa fa-angle-right right"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages">
 					<i class="fa fa-angle-double-right right"></i>
 				</button>
 			</div>	

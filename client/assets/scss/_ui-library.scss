@@ -28,6 +28,14 @@ h2 {
     clear: both;
 }
 
+.display-none{
+    display: none;
+}
+
+.display-block{
+    display: block !important;
+}
+
 // Global Styles
 html, body {
     height: 100%;
@@ -650,6 +658,14 @@ input[type="checkbox"].qvr-slide-toggle {
         &.is-disabled, &:disabled {
             background-color: $qvr-grey-2;
         }
+    }
+    &.cancel{
+        background-color: red;
+        color: white;
+        text-transform: uppercase;
+    }
+    &:disabled{
+        background-color: white;
     }
 }
 
