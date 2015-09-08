@@ -64,6 +64,10 @@
 					$scope.reverse = reverse;
 					$scope.currentPage = 1;
 				};
+
+				$scope.resetCurrentPage = function() {
+					$scope.currentPage = 1;
+				};
 			});
 			
 
