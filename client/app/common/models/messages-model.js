@@ -87,13 +87,13 @@
 							"startTime": 1440722869392,
 							"endTime": 1440722869932
 						}
-					]//,
-					// envelope: {
-     //        target: 2
-     //    	},
-     //    	messageRecipient: [
-     //        { sid: '558ad4daed1954f366cd0c41' }
-     //    	]
+					],
+					 envelope: {
+            target: 2
+        	},
+        	messageRecipient: [
+            { recipient: '558ad4daed1954f366cd0c41' }
+        	]
 				}
 
 				

@@ -17,7 +17,7 @@
 				},
 
 				get : function(enterpriseId) {
-					return $http.get(API_URL + '/enterprise/' + enterpriseId + '/user');
+					return $http.get(API_URL + '/enterprise/' + enterpriseId);
 				},
 
 				update : function(enterpriseId, enterpriseObj) {
