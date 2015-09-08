@@ -58,6 +58,7 @@ User types - these are NOT 'social users' (followers)
 							model.user = response.user;
 							model.authorization = response.authorization;
 							model.enterprise = response.enterprise;
+							console.log('ent from user m:' + model.enterprise);
 							model.user.isLoggedIn = true;
 							//$cookieStore.put("QVR.user", model.user);
 							return response;
