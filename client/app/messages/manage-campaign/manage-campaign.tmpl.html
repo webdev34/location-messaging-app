@@ -16,7 +16,17 @@
 				<option>Live</option>
 				<option>Ended</option>
 			</select>
-			<button type="submit" class="qvr-button action" ng-disabled="!campaignForm.$valid">Save Campaign</button>
+			<button zf-open="saveCampaignModal" class="qvr-button action" ng-disabled="!campaignForm.$valid">Save Campaign</button>
+			<div zf-modal="" id="saveCampaignModal">
+				<a zf-close="" class="close-button">×</a>
+				<p class="qvr-align-center">
+					Sample text
+				</p>
+				<div class="modal-button-wrapper qvr-align-center">
+					<button type="submit" class="qvr-button action">Save</button>
+					<button zf-close="" class="qvr-button cancel">Cancel</button>
+				</div>
+			</div>
 		</div>
 		<section class="form-wrapper">
 			<div id="campaign-name-text" class="input-wrapper">
@@ -39,6 +49,8 @@
 					start-time="manageCampaignCtrl.manageCampaign.startTime"
 					end-date="manageCampaignCtrl.manageCampaign.endDate"
 					end-time="manageCampaignCtrl.manageCampaign.endTime"
+					disable-previous-dates="true"
+					show-picker="manageCampaignCtrl.showStartDatePicker"
 					></date-picker>
 				</section>
 			</div>
@@ -55,15 +67,17 @@
 					start-time="manageCampaignCtrl.manageCampaign.startTime"
 					end-date="manageCampaignCtrl.manageCampaign.endDate"
 					end-time="manageCampaignCtrl.manageCampaign.endTime"
+					disable-previous-dates="true"
+					show-picker="manageCampaignCtrl.showStartTimePicker"
 					></time-picker>
 				</section>
 			</div>
 			
 			<div id="campaign-participants" class="input-wrapper">
 				<label class="qvr-label">Campaign Participants <span>(Groups and Individuals)</span></label>
-				<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignParticipants" required>
+				<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignParticipant" required>
 					<option value="" selected>Select</option>
-					<option value="Placeholder">Placeholder</option>
+					<option ng-repeat="obj in manageCampaignCtrl.manageCampaign.campaignParticipants" value="{{obj}}">{{obj}}</option>
 				</select>
 			</div>
 			<div class="clearfix"></div>
@@ -84,6 +98,8 @@
 					start-time="manageCampaignCtrl.manageCampaign.startTime"
 					end-date="manageCampaignCtrl.manageCampaign.endDate"
 					end-time="manageCampaignCtrl.manageCampaign.endTime"
+					disable-previous-dates="true"
+					show-picker="manageCampaignCtrl.showEndDatePicker"
 					></date-picker>
 				</section>
 				</div>
@@ -99,25 +115,28 @@
 					start-time="manageCampaignCtrl.manageCampaign.startTime"
 					end-date="manageCampaignCtrl.manageCampaign.endDate"
 					end-time="manageCampaignCtrl.manageCampaign.endTime"
+					disable-previous-dates="true"
+					show-picker="manageCampaignCtrl.showEndTimePicker"
 					></time-picker>
 				</section>
 				</div>
 			<div class="clearfix"></div>
 				<div id="marketing-assets" class="input-wrapper">
 					<label class="qvr-label">Marketing Assets</label>
-					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.marketingAssets" required>
+					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.marketingAsset" required>
 						<option value="" selected>Select</option>
-						<option value="Placeholder">Placeholder</option>
+						<option ng-repeat="obj in manageCampaignCtrl.manageCampaign.marketingAssets" value="{{obj}}">{{obj}}</option>
 					</select>
 				</div>
 				<div id="campaigns-tags" class="input-wrapper">
 					<label class="qvr-label">Campaigns Tags</label>
-					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignsTags" required>
+					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignsTagsSelected" required>
 						<option value="" selected>Add #Tags</option>
-						<option value="Placeholder">Placeholder</option>
+						<option ng-repeat="obj in manageCampaignCtrl.manageCampaign.campaignsTags" value="{{obj}}">{{obj}}</option>
 					</select>
 				</div>
 		    </div>
+
 		</section>
 	</form>
 	<section class="campaign-messages-wrapper">
@@ -126,7 +145,7 @@
 			<button class="qvr-button action">+ NEW MESSAGE</button>
 			<div class="search-wrapper">
 				<label for="filter-by"><i class="fa fa-search"></i></label>
-				<input type="search" class="search-campaigns" ng-model="manageCampaignCtrl.campaignMessages.searchCampaigns" placeholder="Search Campaigns">
+				<input type="search" class="search-campaigns" ng-model="search"  placeholder="Search Campaigns"  ng-keypress="resetCurrentPage()">
 			</div>
 		</div>
 
@@ -134,7 +153,7 @@
 
 		<div class="campaign-messages-filter-wrapper qvr-form">
 			<div id="bulk-action" class="input-wrapper">
-				<select class="qvr-select" ng-model="" required>
+				<select class="qvr-select" ng-model="manageCampaignCtrl.bulkActions" required>
 					<option value="" selected>Bulk Action</option>
 				</select>
 				<button class="qvr-button action">
@@ -142,7 +161,7 @@
 				</button>
 			</div>
 			<div id="tag-filters" class="input-wrapper">
-				<select class="qvr-select" ng-model="" required>
+				<select class="qvr-select" ng-model="manageCampaignCtrl.tagFilters" required>
 					<option value="" selected>Add #Tag Filters</option>
 				</select>
 				<button class="qvr-button action">
@@ -150,25 +169,24 @@
 				</button>
 			</div>	
 			<div class="pagination-wrapper input-wrapper">
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-double-left"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-left"></i>
 				</button>
 				<span class="pagination-info">
-					<input type="text" value="0" />
+					<input type="number" min="1" max="9999" ng-model="currentPage" />
 					<span>
 						of 
-						<span>0</span>
+						<span ng-hide="results.length == 0">{{noOfPages}}</span>
+						<span ng-show="results.length == 0">1</span>
 					</span>
 			    </span>
-
-
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
 					<i class="fa fa-angle-right right"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
 					<i class="fa fa-angle-double-right right"></i>
 				</button>
 			</div>	
@@ -187,105 +205,73 @@
 			      <th>
 			      	<label>ID</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'id' && reverse == false}" ng-click="sortByFunc('id',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'id' && reverse == true}" ng-click="sortByFunc('id',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Label</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'label' && reverse == false}" ng-click="sortByFunc('label',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'label' && reverse == true}" ng-click="sortByFunc('label',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>To</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'to' && reverse == false}" ng-click="sortByFunc('to',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'to' && reverse == true}" ng-click="sortByFunc('to',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Location</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'location' && reverse == false}" ng-click="sortByFunc('location',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'location' && reverse == true}" ng-click="sortByFunc('location',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Start</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'start' && reverse == false}" ng-click="sortByFunc('start',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'start' && reverse == true}" ng-click="sortByFunc('start',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>End</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'end' && reverse == false}" ng-click="sortByFunc('end',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'end' && reverse == true}" ng-click="sortByFunc('end',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Status</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'status' && reverse == false}" ng-click="sortByFunc('status',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'status' && reverse == true}" ng-click="sortByFunc('status',true);"></i>
 			      	</span>
 			      </th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
+			  	<tr ng-show="results.length == 0">
+			  		<td></td>
+			  		<td colspan="6">
+			  			<p class="qvr-align-center">No Results</p></td>
+			  		<td></td>
+			  	</tr>
+			    <tr  data-ng-repeat="msg in manageCampaignCtrl.campaignMessages | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit | orderBy:sortOrderBy:reverse | filter:search  as results">
 			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
+			      <td>{{msg.id}}</td>
+			      <td>{{msg.label}}</td>
+			      <td>{{msg.to}}</td>
+			      <td>{{msg.location}}</td>
+			      <td>{{msg.start}}</td>
+			      <td>{{msg.end}}</td>
 			      <td>
 					<div class="input-wrapper message-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
-						</select>
-					</div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>
-					<div class="input-wrapper message-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
-						</select>
-					</div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>
-					<div class="input-wrapper message-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
+						<select class="qvr-select {{msg.status}}" ng-model="msg.status" >
+							<option data-ng-repeat="obj in manageCampaignCtrl.statuses">{{obj}}</option>
 						</select>
 					</div>
 			      </td>
@@ -293,25 +279,24 @@
 			  </tbody>
 			</table>
 			<div class="pagination-wrapper input-wrapper bottom">
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-double-left"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-left"></i>
 				</button>
 				<span class="pagination-info">
-					<input type="text" value="0" />
+					<input type="number" min="1" max="9999" ng-model="currentPage" />
 					<span>
 						of 
-						<span>0</span>
+						<span ng-hide="results.length == 0">{{noOfPages}}</span>
+						<span ng-show="results.length == 0">1</span>
 					</span>
 			    </span>
-
-
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
 					<i class="fa fa-angle-right right"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
 					<i class="fa fa-angle-double-right right"></i>
 				</button>
 			</div>	

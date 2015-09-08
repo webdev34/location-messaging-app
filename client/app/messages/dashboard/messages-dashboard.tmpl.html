@@ -7,7 +7,7 @@
 			<button class="qvr-button action">+ NEW CAMPAIGN</button>
 			<div class="search-wrapper">
 				<label for="filter-by"><i class="fa fa-search"></i></label>
-				<input type="search" class="search-campaigns" ng-model="campaignCenterCtrl.searchCampaigns"  placeholder="Search Campaigns">
+				<input type="search" class="search-campaigns" ng-model="search"  placeholder="Search Campaigns" ng-keypress="resetCurrentPage()">
 			</div>
 		</div>
 
@@ -15,7 +15,7 @@
 
 		<div class="campaign-center-filter-wrapper qvr-form">
 			<div id="bulk-action" class="input-wrapper">
-				<select class="qvr-select" ng-model="" required>
+				<select class="qvr-select" ng-model="CampaignCenterCtrl.bulkActions" required>
 					<option value="" selected>Bulk Action</option>
 					<option value="Delete">Delete</option>
 					<option value="Set To Draft">Set To Draft</option>
@@ -27,33 +27,34 @@
 				</button>
 			</div>
 			<div id="tag-filters" class="input-wrapper">
-				<select class="qvr-select" ng-model="" required>
+				<select class="qvr-select" ng-model="CampaignCenterCtrl.addTags" required>
 					<option value="" selected>Add #Tag</option>
+					<option value="">Tag 1</option>
+					<option value="">Tag 2</option>
 				</select>
 				<button class="qvr-button action">
 					<i class="check-mark"></i>
 				</button>
 			</div>	
 			<div class="pagination-wrapper input-wrapper">
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-double-left"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-left"></i>
 				</button>
 				<span class="pagination-info">
-					<input type="text" value="0" />
+					<input type="number" min="1" max="9999" ng-model="currentPage" />
 					<span>
 						of 
-						<span>0</span>
+						<span ng-hide="results.length == 0">{{noOfPages}}</span>
+						<span ng-show="results.length == 0">1</span>
 					</span>
 			    </span>
-
-
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
 					<i class="fa fa-angle-right right"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
 					<i class="fa fa-angle-double-right right"></i>
 				</button>
 			</div>	
@@ -72,105 +73,73 @@
 			      <th>
 			      	<label>ID</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'id' && reverse == false}" ng-click="sortByFunc('id',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'id' && reverse == true}" ng-click="sortByFunc('id',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Campaign Name</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'campaignName' && reverse == false}" ng-click="sortByFunc('campaignName',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'campaignName' && reverse == true}" ng-click="sortByFunc('campaignName',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Likes</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'likes' && reverse == false}" ng-click="sortByFunc('likes',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'likes' && reverse == true}" ng-click="sortByFunc('likes',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Saves</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'saves' && reverse == false}" ng-click="sortByFunc('saves',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'saves' && reverse == true}" ng-click="sortByFunc('saves',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Start</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'startDate' && reverse == false}" ng-click="sortByFunc('startDate',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'startDate' && reverse == true}" ng-click="sortByFunc('startDate',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>End</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'endDate' && reverse == false}" ng-click="sortByFunc('endDate',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'endDate' && reverse == true}" ng-click="sortByFunc('endDate',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Status</label>
 			      	<span>
-			      		<i class="fa fa-caret-up"></i>
-			      		<i class="fa fa-caret-down"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'status' && reverse == false}" ng-click="sortByFunc('status',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'status' && reverse == true}" ng-click="sortByFunc('status',true);"></i>
 			      	</span>
 			      </th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
+			  	<tr ng-show="results.length == 0">
+			  		<td></td>
+			  		<td colspan="6">
+			  			<p class="qvr-align-center">No Results</p></td>
+			  		<td></td>
+			  	</tr>
+			    <tr data-ng-repeat="campaign in campaignCenterCtrl.campaignData | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit | orderBy:sortOrderBy:reverse | filter:search  as results">
 			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
+			      <td>{{campaign.id}}</td>
+			      <td>{{campaign.campaignName}}</td>
+			      <td>{{campaign.likes}}</td>
+			      <td>{{campaign.saves}}</td>
+			      <td>{{campaign.startDate}}</td>
+			      <td>{{campaign.endDate}}</td>
 			      <td>
 					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
-						</select>
-					</div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>
-					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
-						</select>
-					</div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td><input type="checkbox" /></td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>Content Goes Here</td>
-			      <td>
-					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select" ng-model="" required>
-							<option value="" selected>Draft</option>
-							<option value="" >Live</option>
-							<option value="" >Ended</option>
+						<select class="qvr-select {{campaign.status}}" ng-model="campaign.status" >
+							<option data-ng-repeat="obj in campaignCenterCtrl.statuses">{{obj}}</option>
 						</select>
 					</div>
 			      </td>
@@ -178,25 +147,24 @@
 			  </tbody>
 			</table>
 			<div class="pagination-wrapper input-wrapper bottom">
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-double-left"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-left"></i>
 				</button>
 				<span class="pagination-info">
-					<input type="text" value="0" />
+					<input type="number" min="1" max="9999" ng-model="currentPage" />
 					<span>
 						of 
-						<span>0</span>
+						<span ng-hide="results.length == 0">{{noOfPages}}</span>
+						<span ng-show="results.length == 0">1</span>
 					</span>
 			    </span>
-
-
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
 					<i class="fa fa-angle-right right"></i>
 				</button>
-				<button class="qvr-button">
+				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
 					<i class="fa fa-angle-double-right right"></i>
 				</button>
 			</div>	

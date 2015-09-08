@@ -15,7 +15,8 @@
 					startDate: '=startDate',
 					startTime: '=startTime',
 					endDate: '=endDate',
-					endTime: '=endTime'
+					endTime: '=endTime',
+					showPicker: '=showPicker'
 				},
 				link: function (scope, el, attrs) {
 					var oldTime = scope.value,

@@ -148,6 +148,9 @@
 					    	&:first-child{
 					    		top: 10px;
 					    	}
+					    	&.active{
+					    		color: $qvr-blue-1;
+					    	}
 					    }
 					}
 				}
@@ -157,13 +160,27 @@
 					input[type="checkbox"]{
 						margin-left: 10px;
     					margin-top: 15px;
+
 					}
 					.message-status-wrapper{
 						select{
 							width: 80%;
 							margin-top: 12px;
     						float: left;
+    						color: white;
+    						background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #FFFFFF"></polygon></svg>');
+    						&.Live{
+    							background-color: #37a807;
+    						}
+    						&.Draft{
+    							background-color: #808285;
+    						}
 						}
+					}
+					.qvr-align-center{
+					    font-size: 16px;
+					    padding-top: 10px;
+					    font-weight: bold;
 					}
 				}
 				tr{

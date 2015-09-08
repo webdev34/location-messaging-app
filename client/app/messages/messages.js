@@ -19,7 +19,8 @@
 			})
 			.state('messages.dashboard', {
 				url: '/',
-				templateUrl: 'app/messages/dashboard/messages-dashboard.tmpl.html'
+				templateUrl: 'app/messages/dashboard/messages-dashboard.tmpl.html',
+				controller: 'CampaignCenterCtrl as campaignCenterCtrl'
 			})
 			.state('messages.new', {
 				url: '/message/new',

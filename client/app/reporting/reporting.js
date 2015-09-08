@@ -28,10 +28,15 @@
 	}]).controller('ReportingCtrl', [
 		'$state',
 		'$scope',
+		'$location',
 		
 		
-		function($state, $scope) {
+		function($state, $scope, $location) {
 			var reportingCtrl = this;
+			
+			$scope.goToReport = function(url) {
+				$location.path('/'+url);
+			}
 			
 		}
 	]);

@@ -13,8 +13,22 @@
 				<option>Closed</option>
 			</select>
 			<button class="qvr-button action">Preview</button>
+<<<<<<< HEAD
 
 			<button type="submit" ng-click="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)" class="qvr-button action" ng-disabled="!msgForm.$valid">Save Message</button>
+=======
+			<button zf-open="saveMessageModal"  class="qvr-button action" ng-disabled="!msgForm.$valid">Save Message</button>
+			<div zf-modal="" id="saveMessageModal">
+				<a zf-close="" class="close-button">×</a>
+				<p class="qvr-align-center">
+					Sample text
+				</p>
+				<div class="modal-button-wrapper qvr-align-center">
+					<button type="submit" class="qvr-button action" ng-click="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)">Save</button>
+					<button zf-close="" class="qvr-button cancel">Cancel</button>
+				</div>
+			</div>
+>>>>>>> ui-markup-updates
 			
 		</div>
 		<section class="form-upper">
@@ -143,6 +157,8 @@
 					start-time="newMessageCtrl.newMessage.startTime"
 					end-date="newMessageCtrl.newMessage.endDate"
 					end-time="newMessageCtrl.newMessage.endTime"
+					disable-previous-dates="true" 
+					show-picker="newMessageCtrl.showStartTimePicker"
 					></time-picker>
 				</section>
 				
@@ -155,6 +171,8 @@
 					start-time="newMessageCtrl.newMessage.startTime"
 					end-date="newMessageCtrl.newMessage.endDate"
 					end-time="newMessageCtrl.newMessage.endTime"
+					disable-previous-dates="true" 
+					show-picker="newMessageCtrl.showEndTimePicker"
 					></time-picker>
 				</section>
 				
@@ -167,6 +185,8 @@
 					start-time="newMessageCtrl.newMessage.startTime"
 					end-date="newMessageCtrl.newMessage.endDate"
 					end-time="newMessageCtrl.newMessage.endTime"
+					disable-previous-dates="true" 
+					show-picker="newMessageCtrl.showStartDatePicker"
 					></date-picker>
 				</section>
 				
@@ -179,6 +199,8 @@
 					start-time="newMessageCtrl.newMessage.startTime"
 					end-date="newMessageCtrl.newMessage.endDate"
 					end-time="newMessageCtrl.newMessage.endTime"
+					disable-previous-dates="true" 
+					show-picker="newMessageCtrl.showEndDatePicker"
 					></date-picker>
 				</section>
 				
