@@ -35,28 +35,32 @@ User types - these are NOT 'social users' (followers)
 		) {
 			var model = this;
 			
-			model.user = $cookieStore.get("QVR.user");
+			//model.user = $cookieStore.get("QVR.user");
+			//console.log(model.user);
 			
-			model.registerUser = function(userDetail) {
-				return UserService.register(userDetail)
-					.then(
-						function(response) {
-							model.user = response.user;
-							return response;
-						},
-						function(response) {
-							return response;
-						}
-					);
-			};
+			// model.registerUser = function(userDetail) {
+			// 	return UserService.register(userDetail)
+			// 		.then(
+			// 			function(response) {
+			// 				model.user = response.user;
+			// 				return response;
+			// 			},
+			// 			function(response) {
+			// 				return response;
+			// 			}
+			// 		);
+			// };
 
 			model.login = function(userDetail) {
 				return UserService.login(userDetail)
 					.then(
 						function(response) {
 							model.user = response.user;
+							model.authorization = response.authorization;
+							model.enterprise = response.enterprise;
+							console.log('ent from user m:' + model.enterprise);
 							model.user.isLoggedIn = true;
-							$cookieStore.put("QVR.user", model.user);
+							//$cookieStore.put("QVR.user", model.user);
 							return response;
 						},
 						function(response) {
@@ -69,7 +73,7 @@ User types - these are NOT 'social users' (followers)
 				model.user = {};
 				$cookieStore.remove("QVR.user");
 				$cookieStore.remove("QVR.company");
-				return UserService.logout();
+				//return UserService.logout();
 			}
 
 			model.updateUser = function(updatedUserDetail) {

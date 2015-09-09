@@ -23,6 +23,7 @@
 			newMessageCtrl.showEndDatePicker = false;
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
+
 			
 			function resetForm() {
 				var today = new Date(),
@@ -50,6 +51,8 @@
 					"assets": [],
 					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
+					"locationName": "generic name",
+					"coordinates": [-79.383184, 43.653226]
 				};
 			}
 			

@@ -25,10 +25,14 @@
 
 	app.constant('APP_default_state', 'messages.new');
 	
-	var API_SERVER = window.location.host.includes("localhost") ? 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/' : "/";
+	//var API_SERVER = window.location.host.includes("localhost") ? 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/' : "/";
+
+	var API_SERVER = 'http://api-dev.quiver.zone:80/';
+	//var API_SERVER = 'http://localhost:8000/';
+
 	app.constant('API_SERVER', API_SERVER);
-	app.constant('API_URL', API_SERVER + 'web1.1');
-	app.constant('API_URL_DROID', API_SERVER + 'droid1.1');
+	app.constant('API_URL', API_SERVER + '1.1');
+	//app.constant('API_URL_DROID', API_SERVER + 'droid1.1');
 
 	config.$inject = ['$httpProvider', '$urlRouterProvider', '$locationProvider'];
 
@@ -181,15 +185,25 @@
 			);
 
 			$rootScope.$on('$routeChangeStart', function (event) {
-				if (!UserModel.isLoggedIn) {
-					event.preventDefault();
-					goToLogin();
-				}
+				console.log('routechangestart');
+				checkIfLoggedIn();
+
 			});
 			
 			function init() {
+				checkIfLoggedIn();
 				setNavigationState();
 				goToHomePage();
+			}
+
+			function checkIfLoggedIn() {
+				console.log('checking if loggedin');
+
+				if (!UserModel.isLoggedIn) {
+					event.preventDefault();
+					goToLogin();
+					return;
+				}
 			}
 
 			function setNavigationState() {
@@ -217,6 +231,11 @@
 				$state.go(APP_default_state);
 			}
 
+			appCtrl.test = function(){
+				console.log('testing')
+			}
+
+			
 			appCtrl.userLogin = function() {
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
@@ -246,6 +265,12 @@
 						}
 					);
 			}
+
+			appCtrl.userLogout = function(){
+				UserModel.logout();
+				goToLogin();
+			}
+
 
 			init();
 		}

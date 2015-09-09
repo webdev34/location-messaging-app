@@ -5,7 +5,7 @@
 	
 	.factory('MessagesService', [
 		'$http',
-		'API_URL_DROID',
+		'API_URL',
 		
 		function(
 			$http,
@@ -73,7 +73,7 @@
 						"messageRecipient": messageObj.recipients || []
 					};
 					
-					return $http.post(API_URL + '/message', msgObj);
+					return $http.post(API_URL + '/message', messageObj);
 				},
 				list : function(timestamp, limit){
 					if (!timestamp){

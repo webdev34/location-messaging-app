@@ -6,6 +6,11 @@
 		<div class="float-right top-controls">
 			<label class="qvr-label">Campaign Status</label>
 			
+			<!-- Start delete this code -->
+			<a ng-click="manageCampaignCtrl.getMessageList()">message list</a>
+			<!-- End delete this code -->
+
+			
 			<select class="qvr-select select-status" ng-model="manageCampaignCtrl.manageCampaign.status" required>
 				<option selected>Draft</option>
 				<option>Live</option>
