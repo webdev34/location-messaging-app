@@ -3,8 +3,9 @@
 	<header class="heading-bar">
 		<h1>Enterprise Settings</h1>
 		<div class="edit-enterprise-btn-wrapper">
-			<button  ng-hide="editProfile" class="qvr-button action" ng-click="editProfileToggle()">
-				<span >EDIT PROFILE</span>
+			<button class="qvr-button action" ng-click="editProfileToggle()">
+				<span ng-show="!editProfile">EDIT PROFILE</span>
+				<span ng-show="editProfile">VIEW PROFILE</span>
 			</button>
 
 			<button ng-show="editProfile" class="qvr-button action"  zf-open="saveProfileChangesModal">

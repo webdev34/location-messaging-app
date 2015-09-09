@@ -47,6 +47,7 @@
 					"endTime": "11:59 PM",
 					"locationName": "",
 					"latlng": [],
+					"assets": [],
 					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
 				};
@@ -78,6 +79,24 @@
 			$scope.$watch("newMessageCtrl.newMessage.range", function(newValue, oldValue){
 				$rootScope.map_range = newValue;
 			});
+
+			$scope.imageStrings = [];
+
+		  	$scope.processFiles = function(files){
+		    	angular.forEach(files, function(flowFile, i){
+		       	var fileReader = new FileReader();
+		          	fileReader.onload = function (event) {
+		            	var uri = event.target.result;
+		              	$scope.imageStrings.push(uri); 
+		              	newMessageCtrl.newMessage.assets.push(uri);
+		          	};
+		          	fileReader.readAsDataURL(flowFile.file);
+		    	});
+		  	};
+
+		  	$scope.removeFile = function(index){
+		        newMessageCtrl.newMessage.assets.splice(index, 1);   
+		  	};
 
 			$scope.map_range_change = function(operator) {
 				var currentRange = parseFloat($scope.newMessageCtrl.newMessage.range);

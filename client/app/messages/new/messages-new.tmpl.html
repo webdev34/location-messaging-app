@@ -1,7 +1,7 @@
 <header class="heading-bar">
 	<h1>Compose</h1>
 </header>
-<section class="message-content-wrap new-message">
+<section class="message-content-wrap new-message" >
 	<form role="form" class="qvr-form create-edit-message-form" name="msgForm">
 		<div class="float-right top-controls">
 			<label class="qvr-label">Message Status </label>
@@ -50,6 +50,13 @@
 					<option>----------------</option>
 				</select>
 			</span>
+
+			<span id="message-tags" class="input-wrapper">
+					<label class="qvr-label">Message Tags</label>
+					<select class="qvr-select" required>
+						<option>Add #Tags</option>
+					</select>
+				</span>
 		</section>
 		
 		<section class="content-row">
@@ -130,17 +137,37 @@
 					</div>				
 				</span> -->
 			</section>
-			<section class="column-3">
+			<section class="column-3" flow-init flow-name="uploader.flow" flow-files-added="processFiles($files)" flow-files-added="saveFiles($files)">
 				<label class="qvr-label">Message Content</label>
 				<textarea ng-model="newMessageCtrl.newMessage.content" class="message-content" placeholder="Insert Content" required></textarea>
-				<a class="attach-asset"><span class="icon i-camera"></span></a>
-
-				<span id="message-tags" class="input-wrapper">
-					<label class="qvr-label">Message Tags</label>
-					<select class="qvr-select" required>
-						<option>Add #Tags</option>
-					</select>
+				<span class="attach-asset" flow-btn>
+					<span class="icon i-camera"></span>
 				</span>
+
+				<!-- Needed for intial load -->
+				<div class="preview-image-wrapper" ng-hide="newMessageCtrl.newMessage.assets">
+					<ul >
+						<li ng-repeat="image in uploader.flow.files track by $index" ng-class="{'last': ($index+1) % 3 == 0 , 'hide' : imageStringsObj[$index].hide == true}">
+							<i class="fa fa-times-circle" ng-click="removeFile($index);"></i>
+					      	<img class="preview hide" flow-img="image"/><br>
+					        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
+					    </li>
+					</ul>
+			    </div>
+			    <!-- Needed when image has been removed from array -->
+			    <div class="preview-image-wrapper" ng-show="newMessageCtrl.newMessage.assets">
+					<ul >
+						<li ng-repeat="image in newMessageCtrl.newMessage.assets" ng-class="{'last': ($index+1) % 3 == 0 , 'hide' : imageStringsObj[$index].hide == true}">
+							
+							<i class="fa fa-times-circle" ng-click="removeFile($index); imageStringsObj[$index].hide = true;"></i>
+					      	<img class="preview hide" flow-img="image"/><br>
+					        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
+					    </li>
+					</ul>
+			    </div>
+
+			    <div class="clearfix"></div>
+				
 			</section>
 			<section class="column-3">
 				<section class="time-selector" ng-show="newMessageCtrl.showStartTimePicker">

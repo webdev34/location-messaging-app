@@ -6,6 +6,7 @@
 			'ngAnimate',
 			'ngMap',
 			'ngCookies',
+			'flow',
 
 			// foundation
 			'foundation',

@@ -263,11 +263,42 @@
 		  position: relative;
 		  top: -60px;
 		  left: 15px;
+		  cursor: pointer;
 		  
 		  .icon {
 				background-position: 0 -5px;
 				width: 44px;
 				height: 33px;
+			}
+		}
+
+		.preview-image-wrapper{
+			float: left;
+		    width: 100%;
+		    margin-top: -55px;
+		    margin-bottom: 55px;
+			ul{
+				li{
+					list-style: none;
+					float: left;
+					position: relative;
+					margin-right: 20px;
+					&.last{
+						margin-right: 0px;
+					}
+					i{
+						position: absolute;
+						right: -5px;
+					    top: 10px;
+					    font-size: 18px;
+					    color: $qvr-blue-1;
+					    cursor: pointer;
+					}
+					img{
+						width: 125px;
+						height: 125px;
+					}
+				}
 			}
 		}
 
@@ -638,8 +669,8 @@
 			}
 
 			#message-tags{
-				top: -30px;
-    			position: relative;
+				// top: -30px;
+    // 			position: relative;
 			}
 			
 			.message-content {
