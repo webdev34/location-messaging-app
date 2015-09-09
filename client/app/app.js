@@ -26,8 +26,8 @@
 	
 	//var API_SERVER = window.location.host.includes("localhost") ? 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/' : "/";
 
-	//var API_SERVER = window.location.host.includes("localhost") ? 'http://api-dev.quiver.zone:80/' : "/";
-	var API_SERVER = 'http://localhost:8000/';
+	var API_SERVER = 'http://api-dev.quiver.zone:80/';
+	//var API_SERVER = 'http://localhost:8000/';
 
 	app.constant('API_SERVER', API_SERVER);
 	app.constant('API_URL', API_SERVER + '1.1');
