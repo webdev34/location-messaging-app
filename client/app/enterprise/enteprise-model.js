@@ -35,20 +35,22 @@
 			};
 			
 
-			model.updateCompany = function(updatedCompany) {
-				angular.extend(model.company, updatedCompany);
+			model.updateCompany = function(sid, updatedCompany) {
+				//angular.extend(model.company, updatedCompany);
 				
-				return EnterpriseService.update(updatedCompany)
-					.then(
-						function(response) {
-							angular.extend(model.company, response.enterprise);
-							$cookieStore.put("QVR.company", model.company);
-							return response;
-						},
-						function(response) {
-							return response;
-						}
-					);
+				EnterpriseService.update(sid, updatedCompany);
+
+				// return EnterpriseService.update(sid, updatedCompany)
+				// 	.then(
+				// 		function(response) {
+				// 			angular.extend(model.company, response.enterprise);
+				// 			$cookieStore.put("QVR.company", model.company);
+				// 			return response;
+				// 		},
+				// 		function(response) {
+				// 			return response;
+				// 		}
+				// 	);
 			};
 			
 			model.addAdmin = function(newAdmin) {

@@ -20,29 +20,26 @@
 			<div class="enterprise-content-left corporate-info">
 				<div class="details full-width">
 					<label>Account Name</label>
-					{{enterpriseCtrl.company}}
 					<p>{{enterpriseCtrl.company.fullName}}</p>
 				</div>
-				<img  ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo" />
+				<img  ng-src="{{enterpriseCtrl.company.logo || 'assets/img/tesla.png'}}" alt="logo" class="corp-logo" />
 				
 				<div class="details full-width">
 					<label>Company Bio</label>
-					<p class="longer">{{enterpriseCtrl.company.description}}</p>
+					<p class="longer">{{enterpriseCtrl.company.description || 'N/A'}}</p>
 					<label>Primary Contact</label>
-					<p>{{enterpriseCtrl.company.primaryContact}}</p>
+					<p>{{enterpriseCtrl.company.primaryContact || 'N/A'}}</p>
 					<label>Contact Email</label>
 					<p>{{enterpriseCtrl.company.emailAddress}}</p>
 					<label>Contact Number</label>
-					<p>{{enterpriseCtrl.company.phone}}</p>
+					<p>{{enterpriseCtrl.company.phone || 'N/A'}}</p>
 				</div>
 			</div>
 			<div class="enterprise-content-right corporate-info">
 					<div class="details full-width">
 					<label>Company Address</label>
 					<p class="longer">
-						{{enterpriseCtrl.company.address}}
-						<br/>
-						{{enterpriseCtrl.company.state}}, {{enterpriseCtrl.company.city}} {{enterpriseCtrl.company.zip}}
+						{{enterpriseCtrl.company.city || 'N/A'}}
 					</p>
 					</div>
 
@@ -52,36 +49,36 @@
 	</div>
 
 
-	<div class="enterprise-profile edit qvr-form" ng-show="editProfile">
+	<div class="enterprise-profile edit qvr-form" ng-controller="EditEnterpriseCtrl as editEnterpriseCtrl" ng-show="editProfile">
 		<section class="enterprise-content-wrapper">
 			<div class="enterprise-content-left corporate-info">
 				<div class="details full-width">
 					<label>Account Name</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.company.companyName" required >
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.fullName" required >
 				</div>
-				<img  ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo" />
+				<img  ng-src="{{enterpriseCtrl.editedCompany.logo}}" alt="logo" class="corp-logo" />
 				
 				<div class="details full-width">
 					<label>Company Bio</label>
-					<textarea placeholder="" ng-model="enterpriseCtrl.company.bio" required rows="4" cols="50" ></textarea>
+					<textarea placeholder="" ng-model="enterpriseCtrl.editedCompany.description" required rows="4" cols="50" ></textarea>
 					<label>Primary Contact</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.company.primaryContact" required >
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.primaryContact" required >
 					<label>Contact Email</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.company.email" required >
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.emailAddress" required >
 					<label>Contact Number</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.company.phone" required >
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.phone" required >
 				</div>
 			</div>
 			<div class="enterprise-content-right corporate-info">
 					<div class="details full-width">
 						<label>Company Address</label>
-						<input placeholder="" type="text" ng-model="enterpriseCtrl.company.address" required >
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.address" required >
 						<label>State</label>
-						<input placeholder="" type="text" ng-model="enterpriseCtrl.company.state" required >
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.state" required >
 						<label>City</label>
-						<input placeholder="" type="text" ng-model="enterpriseCtrl.company.city" required >
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.city" required >
 						<label>Zip</label>
-						<input placeholder="" type="text" ng-model="enterpriseCtrl.company.zip" required >
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.zip" required >
 					</div>
 			</div>
 			<div class="clearfix"></div>
@@ -96,10 +93,10 @@
 <div zf-modal="" id="saveProfileChangesModal">
 	<a zf-close="" class="close-button">×</a>
 	<p class="qvr-align-center">
-		Sample text
+		Are you sure you want to save chanes?
 	</p>
 	<div class="modal-button-wrapper qvr-align-center">
-		<button type="submit" class="qvr-button action">Save</button>
+		<button ng-click="enterpriseCtrl.saveChanges()" class="qvr-button action">Save</button>
 		<button zf-close="" class="qvr-button cancel">Cancel</button>
 	</div>
 </div>
