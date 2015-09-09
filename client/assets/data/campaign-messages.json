@@ -1,0 +1,40 @@
+{
+  "campaignMessages": [{
+          "id": 0,
+          "label": "Drive A Dream Vanc #1",
+          "to": "507.7 K",
+          "location": "929 Robson St. Vanc",
+          "start": "08/01/2015",
+          "end": "08/29/2015",
+          "status": "Live"
+        },
+        {
+          "id": 1,
+          "label": "Drive A Dream Vanc #2",
+          "to": "507.7 K",
+          "location": "929 Robson St. Vanc",
+          "start": "08/01/2015",
+          "end": "08/30/2015",
+          "status": "Draft"
+
+        },
+        {
+          "id": 2,
+          "label": "Drive A Dream Vanc #3",
+          "to": "507.7 K",
+          "location": "929 Robson St. Vanc",
+          "start": "08/01/2015",
+          "end": "08/25/2015",
+          "status": "Live"
+        },
+        {
+          "id": 3,
+          "label": "Drive A Dream Vanc #4",
+          "to": "507.7 K",
+          "location": "929 Robson St. Vanc",
+          "start": "08/01/2015",
+          "end": "08/25/2015",
+          "status": "Draft"
+        }
+  ]
+}

@@ -1,0 +1,88 @@
+.page--profile {
+	.profile-content {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		margin: 3rem 0;
+		padding: 0;
+		justify-content: space-around;
+
+		.profile-detail {
+			order: 1;
+			width: 50%;
+			margin-left: 5rem;
+			font-size: 22px;
+			font-weight: $qvr-font-weight-light;
+			max-width: 420px;
+
+			.names {
+				float: left;
+				font-size: inherit;
+				line-height: 1.5em;
+				padding-left: 2rem;
+				a {margin-top: 12px;}
+			}
+
+			p {
+				font: inherit;
+				max-width: 300px;
+			}
+		}
+
+		.corporate-box {
+			order: 2;
+			width: 50%;
+			
+			.corporate-info {
+				margin-right: 5rem;
+				height: 404px;
+
+				.corp-logo	{
+					max-width: 250px;
+				}
+			}
+		}
+
+		.password-box {
+			max-width: 450px;
+			padding-left: 30px;
+			margin-top: 5px;
+		}
+
+		// other components
+		$avatar-width: 135px;
+
+		.avatar {
+			width: $avatar-width;
+			height: $avatar-width;
+			margin-right: 1em;
+			float: left;
+		}
+
+		label {
+			font-weight: $qvr-font-weight-bold;
+			color: $qvr-blue-1;
+			font-size: 19px;
+			margin-top: 40px;
+		}
+
+		.profile-edit-form {
+			label {
+				font-size: 12px;
+				line-height: 2em;
+				margin: 0;
+				padding: 0;
+			}
+
+			.names {
+				margin: -25px 0 10px 0;
+				padding: 0;
+				width: 263px;
+
+				input {
+					margin: 0 0 5px 0;
+				}
+			}
+		}
+	}
+}

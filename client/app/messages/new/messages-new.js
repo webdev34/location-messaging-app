@@ -23,6 +23,7 @@
 			newMessageCtrl.showEndDatePicker = false;
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
+
 			
 			function resetForm() {
 				var today = new Date(),
@@ -34,21 +35,18 @@
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
 				newMessageCtrl.newMessage = {
-					"sid": "",
 					"messageTitle": "",
 					"content": "",
 					"status": "Inactive",
 					"range": 5,
 					"sentTo": "TARGET_FRIENDS",
 					"discoverOn": "enter",
-					"startDate": todayFormatted,
+					"startDate": todayProperFormatted,
 					"startTime": "12:01 AM",
-					"endDate": tomorrowFormatted,
+					"endDate": tomorrowProperFormatted,
 					"endTime": "11:59 PM",
-					"locationName": "",
-					"latlng": [],
-					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
-					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
+					"locationName": "generic name",
+					"coordinates": [-79.383184, 43.653226]
 				};
 			}
 			
