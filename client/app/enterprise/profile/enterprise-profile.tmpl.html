@@ -25,8 +25,12 @@
 				<div class="details full-width">
 					<label>Account Name</label>
 					<p>{{enterpriseCtrl.company.fullName}}</p>
+
+					<label>User Name</label>
+					<p>{{enterpriseCtrl.company.username}}</p>
+
 				</div>
-				<img  ng-src="{{enterpriseCtrl.company.logo || 'assets/img/tesla.png'}}" alt="logo" class="corp-logo" />
+				<img  ng-src="{{enterpriseCtrl.company.avatar || 'assets/img/logo-na.png'}}" alt="logo" class="corp-logo" />
 				
 				<div class="details full-width">
 					<label>Company Bio</label>
@@ -59,6 +63,10 @@
 				<div class="details full-width">
 					<label>Account Name</label>
 					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.fullName" required >
+					
+					<label>User Name</label>
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.username" required >
+
 				</div>
 				<img  ng-src="{{enterpriseCtrl.editedCompany.logo}}" alt="logo" class="corp-logo" />
 				
