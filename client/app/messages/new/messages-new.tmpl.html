@@ -145,28 +145,20 @@
 					<span class="icon i-camera"></span>
 				</span>
 
-				<!-- Needed for intial load -->
-				<div class="preview-image-wrapper" ng-hide="newMessageCtrl.newMessage.assets">
+				<div class="preview-image-wrapper" >
+					<p>
+			    		{{uploader.flow.files.length}} Attachments</span>
+			    	</p>
+
 					<ul >
-						<li ng-repeat="image in uploader.flow.files track by $index" ng-class="{'last': ($index+1) % 3 == 0 , 'hide' : imageStringsObj[$index].hide == true}">
+						<li ng-repeat="image in uploader.flow.files track by $index" ng-class="{'last': ($index+1) % 3 == 0}">
 							<i class="fa fa-times-circle" ng-click="removeFile($index);"></i>
 					      	<img class="preview hide" flow-img="image"/><br>
 					        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
 					    </li>
 					</ul>
 			    </div>
-			    <!-- Needed when image has been removed from array -->
-			    <div class="preview-image-wrapper" ng-show="newMessageCtrl.newMessage.assets">
-					<ul >
-						<li ng-repeat="image in newMessageCtrl.newMessage.assets" ng-class="{'last': ($index+1) % 3 == 0 , 'hide' : imageStringsObj[$index].hide == true}">
-							
-							<i class="fa fa-times-circle" ng-click="removeFile($index); imageStringsObj[$index].hide = true;"></i>
-					      	<img class="preview hide" flow-img="image"/><br>
-					        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
-					    </li>
-					</ul>
-			    </div>
-
+			   
 			    <div class="clearfix"></div>
 				
 			</section>

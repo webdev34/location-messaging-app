@@ -50,7 +50,7 @@
 					"latlng": [],
 					"assets": [],
 					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
-					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
+					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
 					"locationName": "generic name",
 					"coordinates": [-79.383184, 43.653226]
 				};
@@ -84,6 +84,7 @@
 			});
 
 			$scope.imageStrings = [];
+			$scope.uploader = {};
 
 		  	$scope.processFiles = function(files){
 		    	angular.forEach(files, function(flowFile, i){
@@ -98,7 +99,11 @@
 		  	};
 
 		  	$scope.removeFile = function(index){
-		        newMessageCtrl.newMessage.assets.splice(index, 1);   
+		        newMessageCtrl.newMessage.assets.splice(index, 1);  
+		        $scope.imageStrings.splice(index, 1); 
+		        console.log($scope.uploader.flow.files);
+		        $scope.uploader.flow.files.splice(index, 1);
+		        console.log($scope.uploader.flow.files);
 		  	};
 
 			$scope.map_range_change = function(operator) {
