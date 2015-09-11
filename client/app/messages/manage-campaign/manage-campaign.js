@@ -51,7 +51,7 @@
 				"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
 			};
 
-			manageCampaignCtrl.statuses = ["Live", "Draft"]; 
+			manageCampaignCtrl.statuses = ["Live", "Draft", "Ended"]; 
 
 			$http.get('assets/data/campaign-messages.json').success(function(data) {
 				manageCampaignCtrl.campaignMessages = data.campaignMessages;	
@@ -61,6 +61,7 @@
 				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 				$scope.reverse = false;
 				$scope.sortOrderBy = 'id';
+				$scope.selectAll = false;
 
 				$scope.goToPage = function(direction) {
 
@@ -86,6 +87,30 @@
 
 				$scope.resetCurrentPage = function() {
 					$scope.currentPage = 1;
+				};
+
+				$scope.toggleSelected = function() {
+					angular.forEach(manageCampaignCtrl.campaignMessages, function(message) {
+				      message.isSelected = $scope.selectAll;
+				    });
+				};
+
+				$scope.bulkActions = function() {
+					var actionDropDown = document.getElementById("bulk-actions");
+					var action = actionDropDown.options[actionDropDown.selectedIndex].value;
+					angular.forEach(manageCampaignCtrl.campaignMessages, function(campaign, i) {
+						if(campaign.isSelected && action != 'Delete'){
+							campaign.status = action;
+							campaign.isSelected = false;
+						}
+						else if(campaign.isSelected && action == 'Delete' && $scope.selectAll == false){
+							manageCampaignCtrl.campaignMessages.splice(i, 1);  
+						}
+						else if(action == 'Delete' && $scope.selectAll == true){
+							manageCampaignCtrl.campaignMessages = []; 
+						}
+				    });
+				    $scope.selectAll = false;
 				};
 			});
 			

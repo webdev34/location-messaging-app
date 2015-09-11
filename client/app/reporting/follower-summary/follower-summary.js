@@ -40,6 +40,7 @@
 
 			$http.get('assets/data/follower-summary.json').success(function(data) {
 				followerSummaryCtrl.followerSummaryData = data.followerSummary;
+				$scope.followerSummaryData = followerSummaryCtrl.followerSummaryData;
 				$scope.totalItems = data.followerSummary.length;
 				$scope.currentPage = 1;
 				$scope.entryLimit = 10; // items per page
@@ -47,7 +48,8 @@
 				$scope.reverse = false;
 				$scope.sortOrderBy = 'startDate';
 				$scope.startAt = 0;
-				$scope.endAt = 9
+				$scope.endAt = 9;
+				$scope.selectAll = false;
 
 				$scope.goToPage = function(direction) {
 
@@ -73,6 +75,12 @@
 					$scope.sortOrderBy = sortBy;
 					$scope.reverse = reverse;
 					$scope.currentPage = 1;
+				};
+
+				$scope.toggleSelected = function() {
+					angular.forEach($scope.followerSummaryData, function(followerSummary) {
+				      followerSummary.isSelected = $scope.selectAll;
+				    });
 				};
 			});
 			

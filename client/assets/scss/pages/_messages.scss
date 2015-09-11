@@ -254,42 +254,64 @@
 			}
 		}
 
-		.message-content {
-			height: 180px;
+		#text-area-upload-wrapper{
+			background-color: white;
+		    border: 1px solid #D1D2D3;
+		    border-radius: 10px;
+		    min-height: 350px;
+		    max-height: 615px;
+		    padding-bottom: 10px;
 		}
 
+		.message-content{
+			height: 180px;
+		}
+		
+		.message-content#upload-text-area {
+			height: 250px;
+			background-color: transparent;
+			border: none;
+		}
+		
+
 		.attach-asset {
-		  padding: 0;
-		  position: relative;
-		  top: -60px;
-		  left: 15px;
-		  cursor: pointer;
+			padding: 0;
+		    margin-left: 15px;
+		    padding-bottom: 10px;
+		    cursor: pointer;
+		    float: left;
 		  
 		  .icon {
 				background-position: 0 -5px;
 				width: 44px;
 				height: 33px;
+				float: left;
+			}
+			.attachment-count{
+			    color: #00A9CC;
+			    margin-top: 12px;
+			    margin-right: 5px;
+			    font-weight: bold;
+			    margin-left: 5px;
+			    float: left;
 			}
 		}
 
 		.preview-image-wrapper{
 			float: left;
 		    width: 100%;
-		    margin-top: -55px;
-		    margin-bottom: 55px;
-		    p{
-			    color: #00A9CC;
-			    margin-top: 15px;
-			    text-align: right;
-			    margin-right: 5px;
-			    font-weight: bold;
-			}
+		    margin-top: -10px;
+		    max-height: 290px;
+		    min-height: 30px;
+		    overflow-y: scroll;
+		    margin-bottom: 10px;
 			ul{
+				margin-left: 12px;
 				li{
 					list-style: none;
 					float: left;
 					position: relative;
-					margin-right: 20px;
+					margin-right: 10px;
 					&.last{
 						margin-right: 0px;
 					}

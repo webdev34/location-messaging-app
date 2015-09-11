@@ -83,7 +83,6 @@
 				$rootScope.map_range = newValue;
 			});
 
-			$scope.imageStrings = [];
 			$scope.uploader = {};
 
 		  	$scope.processFiles = function(files){
@@ -91,7 +90,6 @@
 		       	var fileReader = new FileReader();
 		          	fileReader.onload = function (event) {
 		            	var uri = event.target.result;
-		              	$scope.imageStrings.push(uri); 
 		              	newMessageCtrl.newMessage.assets.push(uri);
 		          	};
 		          	fileReader.readAsDataURL(flowFile.file);
@@ -100,10 +98,7 @@
 
 		  	$scope.removeFile = function(index){
 		        newMessageCtrl.newMessage.assets.splice(index, 1);  
-		        $scope.imageStrings.splice(index, 1); 
-		        console.log($scope.uploader.flow.files);
 		        $scope.uploader.flow.files.splice(index, 1);
-		        console.log($scope.uploader.flow.files);
 		  	};
 
 			$scope.map_range_change = function(operator) {

@@ -32,16 +32,17 @@
 				tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 				tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 			
-			campaignCenterCtrl.statuses = ["Live", "Draft"];
+			campaignCenterCtrl.statuses = ["Live", "Draft", "Ended"];
 			
 			$http.get('assets/data/campaigns.json').success(function(data) {
-				campaignCenterCtrl.campaignData = data.campaigns;	
+				campaignCenterCtrl.campaignData = data.campaigns;
 				$scope.totalItems = data.campaigns.length;
 				$scope.currentPage = 1;
 				$scope.entryLimit = 10; // items per page
 				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 				$scope.reverse = false;
 				$scope.sortOrderBy = 'id';
+				$scope.selectAll = false;
 
 				$scope.goToPage = function(direction) {
 
@@ -68,6 +69,32 @@
 				$scope.resetCurrentPage = function() {
 					$scope.currentPage = 1;
 				};
+
+				$scope.toggleSelected = function() {
+					angular.forEach(campaignCenterCtrl.campaignData, function(campaign) {
+				      campaign.isSelected = $scope.selectAll;
+				    });
+				};
+
+				$scope.bulkActions = function() {
+					var actionDropDown = document.getElementById("bulk-actions");
+					var action = actionDropDown.options[actionDropDown.selectedIndex].value;
+					angular.forEach(campaignCenterCtrl.campaignData, function(campaign, i) {
+						if(campaign.isSelected && action != 'Delete'){
+							campaign.status = action;
+							campaign.isSelected = false;
+						}
+						else if(campaign.isSelected && action == 'Delete' && $scope.selectAll == false){
+							campaignCenterCtrl.campaignData.splice(i, 1);   
+						}
+						else if(action == 'Delete' && $scope.selectAll == true){
+							campaignCenterCtrl.campaignData = [];  
+							
+						}
+				    });
+				    $scope.selectAll = false;
+				};
+
 			});
 			
 
@@ -82,6 +109,7 @@
 			}
 
 			$scope.$watch("currentPage", paginationValidation);
+			
 
 					console.log("Active Messages");
 			// MessageListModel.getMessageList().then(

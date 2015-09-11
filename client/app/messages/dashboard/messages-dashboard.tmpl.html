@@ -15,14 +15,14 @@
 
 		<div class="campaign-center-filter-wrapper qvr-form">
 			<div id="bulk-action" class="input-wrapper">
-				<select class="qvr-select" ng-model="CampaignCenterCtrl.bulkActions" required>
+				<select id="bulk-actions" class="qvr-select" ng-model="CampaignCenterCtrl.bulkActions" required>
 					<option value="" selected>Bulk Action</option>
 					<option value="Delete">Delete</option>
-					<option value="Set To Draft">Set To Draft</option>
-					<option value="Set To Live">Set To Live</option>
-					<option value="Close">Close</option>
+					<option value="Draft">Set To Draft</option>
+					<option value="Live">Set To Live</option>
+					<option value="Ended">Ended</option>
 				</select>
-				<button class="qvr-button action">
+				<button class="qvr-button action" ng-disabled="!CampaignCenterCtrl.bulkActions" ng-click="bulkActions()" >
 					<i class="check-mark"></i>
 				</button>
 			</div>
@@ -68,7 +68,7 @@
 			  <thead>
 			    <tr>
 			      <th>
-			      	<input type="checkbox" />
+			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected();" />
 			      </th>
 			      <th>
 			      	<label>ID</label>
@@ -128,8 +128,9 @@
 			  			<p class="qvr-align-center">No Results</p></td>
 			  		<td></td>
 			  	</tr>
+
 			    <tr data-ng-repeat="campaign in campaignCenterCtrl.campaignData | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit | orderBy:sortOrderBy:reverse | filter:search  as results">
-			      <td><input type="checkbox" /></td>
+			      <td><input type="checkbox" ng-model="campaign.isSelected" /></td>
 			      <td>{{campaign.id}}</td>
 			      <td>{{campaign.campaignName}}</td>
 			      <td>{{campaign.likes}}</td>
