@@ -18,6 +18,7 @@
 			'messages',
 			'reporting',
 			'enterprise',
+			'reporting',
 			'admin'
 		])
 		.config(config)
@@ -26,6 +27,7 @@
 	app.constant('APP_default_state', 'messages.new');
 	
 	//var API_SERVER = window.location.host.includes("localhost") ? 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/' : "/";
+
 
 	var API_SERVER = 'http://api-dev.quiver.zone:80/';
 	//var API_SERVER = 'http://localhost:8000/';
@@ -52,76 +54,88 @@
 	}
 
 	app.config(['$httpProvider', function($httpProvider) {  
-		$httpProvider.interceptors.push(['$q', '$rootScope', '$location', 'FoundationApi', function($q, $rootScope, $location, FoundationApi) {
-			function extractData(response) {
-				return response.data.data;
-			}
+		$httpProvider.interceptors.push([
+			'$q',
+			'$rootScope',
+			'$location',
+			'FoundationApi',
+			
+			function(
+				$q,
+				$rootScope,
+				$location,
+				FoundationApi
+			) {
+				function extractData(response) {
+					return response.data.data;
+				}
 
-			function extractError(response) {
-				return response.data || {
-					'code': "QVR_Server_Connection_Failed"
-				};
-			}
+				function extractError(response) {
+					return response.data || {
+						'code': "QVR_Server_Connection_Failed"
+					};
+				}
 
-			return {
-				request: function(config) {
-					// add auth header for each request
-					// allows for auth id refresh on new login
-					config.headers['Authorization'] = $rootScope.auth;
-					return config;
-				},
-				response: function(response) {
-					// filter for only API requests
-					if (response.headers()['content-type'] === "application/json; charset=utf-8") {
-						var appData = extractData(response);
-						var errorData = extractError(response);
-						
-						if (!response.data){
-							return $q.reject(errorData)
-						}
-						
-						switch(response.data.code){
-							case 'QVR_RESULT' || 'QVR_RESULT_OK':
-								return appData || $q.when(appData)
-								break;
-							case 'QVR_RESULT_ERROR_NO_SESSION':
-								// can't use $state because of cyclical dependency
-								$location.path('/');
-								return $q.reject(errorData);
-								break;
-							default:
+				return {
+					request: function(config) {
+						// add auth header for each request
+						// allows for auth id refresh on new login
+						config.headers['Authorization'] = $rootScope.auth;
+						return config;
+					},
+					response: function(response) {
+						// filter for only API requests
+						if (response.headers()['content-type'] === "application/json; charset=utf-8") {
+							var appData = extractData(response);
+							var errorData = extractError(response);
+							
+							if (!response.data){
 								return $q.reject(errorData)
-								break;
+							}
+							
+							switch(response.data.code){
+								case 'QVR_RESULT' || 'QVR_RESULT_OK':
+									return appData || $q.when(appData)
+									break;
+								case 'QVR_RESULT_ERROR_NO_SESSION':
+									// can't use $state because of cyclical dependency
+									$location.path('/');
+									return $q.reject(errorData);
+									break;
+								default:
+									return $q.reject(errorData)
+									break;
+							}
 						}
-					}
-					
-					// return unchanged for template requests
-					return response || $q.when(response);
-				},
-				responseError: function(rejection) {
-					// transport protocol errors only, application protocol errors all result in status 200
-					if (rejection.status == 401) {
-						rejection.data = {
-							status: 401,
-							descr: 'unauthorized',
-							code: 'QVR_Autherization_Failed'
+						
+						// return unchanged for template requests
+						return response || $q.when(response);
+					},
+					responseError: function(rejection) {
+						// transport protocol errors only, application protocol errors all result in status 200
+						if (rejection.status == 401) {
+							rejection.data = {
+								status: 401,
+								descr: 'unauthorized',
+								code: 'QVR_Autherization_Failed'
+							}
+							return rejection.data;
 						}
-						return rejection.data;
-					}
 
-					rejection = extractError(rejection);
-					
-					FoundationApi.publish('main-notifications', {
-						title: rejection.code.replace("QVR_", "").replace(/_/g, " "),
-						content: '',
-						color: 'fail',
-						autoclose: '3000'
-					});
-					
-					return $q.reject(rejection);
+						rejection = extractError(rejection);
+						
+						FoundationApi.publish('main-notifications', {
+							title: rejection.code.replace("QVR_", "").replace(/_/g, " "),
+							content: '',
+							color: 'fail',
+							autoclose: '3000'
+						});
+						
+						return $q.reject(rejection);
+					}
 				}
 			}
-		}]);
+		]);
 	}]);
 	
 	app.controller('AppCtrl', [
@@ -159,7 +173,7 @@
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
 					{'title': 'Manage Campaign', 'state': 'messages.manage-campaign'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
-					{'title': 'Asset Management', 'state': 'home'}
+					{'title': 'Asset Management', 'state': 'messages.asset'}
 				],
 				'reporting' : [
 					{'title': 'Report Center', 'state': 'reporting.center'}
@@ -251,8 +265,15 @@
 									color: 'success',
 									autoclose: '3000'
 								});
-
+								appCtrl.userLoginInfo = {};
 								goToHomePage();
+							}else{
+								FoundationApi.publish('main-notifications', {
+									title: 'Login Failed',
+									content: response.code,
+									color: 'fail',
+									autoclose: '3000'
+								});
 							}
 						},
 						function error(response) {
@@ -267,9 +288,16 @@
 			}
 
 			appCtrl.userLogout = function(){
+				appCtrl.userLoginInfo = {};
 				UserModel.logout();
 				goToLogin();
 			}
+
+			appCtrl.test = function() {
+				console.log('testing');
+			}
+
+			appCtrl.test();
 
 
 			init();

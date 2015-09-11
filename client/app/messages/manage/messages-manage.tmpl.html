@@ -1,0 +1,139 @@
+<header class="heading-bar">
+	<h1>Manage Campaign</h1>
+</header>
+
+<section class="message-content-wrap manage-message">
+
+	<form role="form" class="qvr-form create-edit-message-form" ng-submit="messagesManageCtrl.saveMessage()">
+		<div class="float-right top-controls">
+			<label class="qvr-label">Campaign Status </label>
+			
+			<select class="qvr-select select-status" ng-model="messagesManageCtrl.campaign.status" required>
+				<option>Draft</option>
+				<option>Inactive</option>
+				<option>Active</option>
+				<option>Closed</option>
+			</select>
+			
+			<button type="submit" class="qvr-button action">Save Campaign</button>
+		</div>
+
+		<section class="form-upper">
+			<span id="msg-title-text" class="input-wrapper">
+				<label class="qvr-label">Campaign Name</label>
+				<input placeholder="" type="text" ng-model="messagesManageCtrl.campaign.name" required>
+			</span>
+			
+			<span class="input-wrapper">
+				<label class="qvr-label">Campaign ID</label>
+				<div class="msg-id">{{messagesManageCtrl.campaign.sid || "00000"}}</div>
+			</span>
+			
+			<span class="input-wrapper">
+				<label class="qvr-label">Marketing Assets</label>
+				<select class="qvr-select" required>
+					<option>No asset packs available</option>
+				</select>
+			</span>
+			
+			<span class="input-wrapper">
+				<label class="qvr-label">Campaign Participants</label>
+				<select class="qvr-select" required>
+					<option>No campaign participants available</option>
+				</select>
+			</span>
+			
+			<span class="input-wrapper">
+				<label class="qvr-label">Campaign Tags</label>
+				<select class="qvr-select" required>
+					<option>No campaign tags available</option>
+				</select>
+			</span>
+			
+			<section class="column-3">
+				<label class="qvr-label">Campaign Description</label>
+				<textarea elastic ng-model="messagesManageCtrl.campaign.description" class="campaign-description form-element" placeholder="Insert Description" required></textarea>
+			</section>
+
+			<section class="column-3">
+				<section class="date-selector" ng-show="messagesManageCtrl.showStartDatePicker">
+					<date-picker
+						title="Start Date"
+						name="start-date"
+						ng-model="messagesManageCtrl.campaign.startDate"
+						start-date="messagesManageCtrl.campaign.startDate"
+						start-time="messagesManageCtrl.campaign.startTime"
+						end-date="messagesManageCtrl.campaign.endDate"
+						end-time="messagesManageCtrl.campaign.endTime"
+						show-me="messagesManageCtrl.showStartDatePicker"
+					></date-picker>
+				</section>
+				
+				<section class="time-selector" ng-show="messagesManageCtrl.showStartTimePicker">
+					<time-picker
+						title="Start Time"
+						name="start-time"
+						ng-model="messagesManageCtrl.campaign.startTime"
+						start-date="messagesManageCtrl.campaign.startDate"
+						start-time="messagesManageCtrl.campaign.startTime"
+						end-date="messagesManageCtrl.campaign.endDate"
+						end-time="messagesManageCtrl.campaign.endTime"
+						show-me="messagesManageCtrl.showStartTimePicker"
+					></time-picker>
+				</section>
+				
+				<section class="date-selector" ng-show="messagesManageCtrl.showEndDatePicker">
+					<date-picker
+						title="End Date"
+						name="end-date"
+						ng-model="messagesManageCtrl.campaign.endDate"
+						start-date="messagesManageCtrl.campaign.startDate"
+						start-time="messagesManageCtrl.campaign.startTime"
+						end-date="messagesManageCtrl.campaign.endDate"
+						end-time="messagesManageCtrl.campaign.endTime"
+						show-me="messagesManageCtrl.showEndDatePicker"
+					></date-picker>
+				</section>
+				
+				<section class="time-selector" ng-show="messagesManageCtrl.showEndTimePicker">
+					<time-picker
+						title="End Time"
+						name="end-time"
+						ng-model="messagesManageCtrl.campaign.endTime"
+						start-date="messagesManageCtrl.campaign.startDate"
+						start-time="messagesManageCtrl.campaign.startTime"
+						end-date="messagesManageCtrl.campaign.endDate"
+						end-time="messagesManageCtrl.campaign.endTime"
+						show-me="messagesManageCtrl.showEndTimePicker"
+					></time-picker>
+				</section>
+				
+				<section class="time-selector" ng-hide="messagesManageCtrl.showStartTimePicker || messagesManageCtrl.showEndTimePicker || messagesManageCtrl.showStartDatePicker || messagesManageCtrl.showEndDatePicker">
+					<div class="delivery-box start-date">
+						<label class="qvr-label">Start Date:</label>
+						<div class="form-element date" ng-click="messagesManageCtrl.showStartDatePicker=true; $event.stopPropagation();">{{messagesManageCtrl.campaign.startDate == '0' ? 'Never' : messagesManageCtrl.campaign.startDate}}</div>
+					</div>
+					<div class="delivery-box start-time">
+						<label class="qvr-label">Start Time:</label>
+						<div class="form-element hourglass" ng-click="messagesManageCtrl.showStartTimePicker=true; $event.stopPropagation();">{{messagesManageCtrl.campaign.startTime == '0' ? 'Never' : messagesManageCtrl.campaign.startTime}}</div>
+					</div>
+
+					<div class="delivery-box end-date">
+						<label class="qvr-label">End Date:</label>
+						<div class="form-element date" ng-click="messagesManageCtrl.showEndDatePicker=true; $event.stopPropagation();">{{messagesManageCtrl.campaign.endDate == '0' ? 'Never' : messagesManageCtrl.campaign.endDate}}</div>
+					</div>
+					<div class="delivery-box end-time">
+						<label class="qvr-label">End Time:</label>
+						<div class="form-element hourglass" ng-click="messagesManageCtrl.showEndTimePicker=true; $event.stopPropagation();">{{messagesManageCtrl.campaign.endTime == '0' ? 'Never' : messagesManageCtrl.campaign.endTime}}</div>
+					</div>
+				</section>
+			</section>
+		</section>
+		
+		<section class="content-row">
+		</section>
+	</form>
+
+	<messages-list></messages-list>
+
+</section>

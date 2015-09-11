@@ -56,10 +56,25 @@ User types - these are NOT 'social users' (followers)
 					.then(
 						function(response) {
 							model.user = response.user;
+							console.log('model user: ' + model.user);
 							model.authorization = response.authorization;
 							model.enterprise = response.enterprise;
-							console.log('ent from user m:' + model.enterprise);
 							model.user.isLoggedIn = true;
+							//$cookieStore.put("QVR.user", model.user);
+							return response;
+						},
+						function(response) {
+							return response;
+						}
+					);
+			}
+
+			model.getAccount = function(userID) {
+				return UserService.get(userID)
+					.then(
+						function(response) {
+							model.user = response.user;
+
 							//$cookieStore.put("QVR.user", model.user);
 							return response;
 						},
@@ -76,20 +91,23 @@ User types - these are NOT 'social users' (followers)
 				//return UserService.logout();
 			}
 
-			model.updateUser = function(updatedUserDetail) {
-				angular.extend(model.user, updatedUserDetail);
+			model.updateAccount = function(updatedUser) {
+
+				UserService.update(updatedUser);
+
+				// angular.extend(model.user, updatedUserDetail);
 				
-				return UserService.update(updatedUserDetail)
-					.then(
-						function(response) {
-							angular.extend(model.user, response.user);
-							$cookieStore.put("QVR.user", model.user);
-							return response;
-						},
-						function(response) {
-							return response;
-						}
-					);
+				// return UserService.update(updatedUserDetail)
+				// 	.then(
+				// 		function(response) {
+				// 			angular.extend(model.user, response.user);
+				// 			$cookieStore.put("QVR.user", model.user);
+				// 			return response;
+				// 		},
+				// 		function(response) {
+				// 			return response;
+				// 		}
+				// 	);
 			};
 
 		}
