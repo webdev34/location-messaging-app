@@ -1,7 +1,7 @@
 <div class="page page--enterprise">
 	
 	<header class="heading-bar">
-		<h1>Enterprise Settings</h1>
+		<h1>Enterprise Profile</h1>
 		<div class="edit-enterprise-btn-wrapper">
 
 			<button  ng-hide="enterpriseCtrl.isEditing" class="qvr-button action" ng-click="enterpriseCtrl.isEditing = true">
@@ -23,24 +23,26 @@
 		<section class="enterprise-content-wrapper">
 			<div class="enterprise-content-left corporate-info">
 				<div class="details full-width">
+					<img  ng-src="{{enterpriseCtrl.company.avatar || 'assets/img/logo-na.png'}}" alt="logo" class="corp-logo" />
+					
 					<label>Account Name</label>
 					<p>{{enterpriseCtrl.company.fullName}}</p>
 
 					<label>User Name</label>
 					<p>{{enterpriseCtrl.company.username}}</p>
-
-				</div>
-				<img  ng-src="{{enterpriseCtrl.company.avatar || 'assets/img/logo-na.png'}}" alt="logo" class="corp-logo" />
 				
-				<div class="details full-width">
 					<label>Company Bio</label>
 					<p class="longer">{{enterpriseCtrl.company.description || 'N/A'}}</p>
+
 					<label>Primary Contact</label>
 					<p>{{enterpriseCtrl.company.primaryContact || 'N/A'}}</p>
+
 					<label>Contact Email</label>
 					<p>{{enterpriseCtrl.company.emailAddress}}</p>
+
 					<label>Contact Number</label>
 					<p>{{enterpriseCtrl.company.phone || 'N/A'}}</p>
+
 				</div>
 			</div>
 			<div class="enterprise-content-right corporate-info">
@@ -57,40 +59,48 @@
 	</div>
 
 
-	<div class="enterprise-profile edit qvr-form" ng-controller="EditEnterpriseCtrl as editEnterpriseCtrl" ng-show="enterpriseCtrl.isEditing">
+	<div class="enterprise-profile edit qvr-form" ng-show="enterpriseCtrl.isEditing">
 		<section class="enterprise-content-wrapper">
 			<div class="enterprise-content-left corporate-info">
+
 				<div class="details full-width">
+
+					<img  ng-src="{{enterpriseCtrl.editedCompany.avatar}}" alt="logo" class="corp-logo" />
+
 					<label>Account Name</label>
 					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.fullName" required >
 					
 					<label>User Name</label>
 					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.username" required >
 
-				</div>
-				<img  ng-src="{{enterpriseCtrl.editedCompany.logo}}" alt="logo" class="corp-logo" />
-				
-				<div class="details full-width">
 					<label>Company Bio</label>
 					<textarea placeholder="" ng-model="enterpriseCtrl.editedCompany.description" required rows="4" cols="50" ></textarea>
+
 					<label>Primary Contact</label>
 					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.primaryContact" required >
+
 					<label>Contact Email</label>
 					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.emailAddress" required >
+
 					<label>Contact Number</label>
 					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.phone" required >
+
 				</div>
 			</div>
+
 			<div class="enterprise-content-right corporate-info">
 					<div class="details full-width">
-						<label>Company Address</label>
+
+						<label>Address</label>
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.city" required >
+
+					<!-- 	<label>Company Address</label>
 						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.address" required >
 						<label>State</label>
 						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.state" required >
-						<label>City</label>
-						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.city" required >
+						
 						<label>Zip</label>
-						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.zip" required >
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.zip" required > -->
 					</div>
 			</div>
 			<div class="clearfix"></div>
