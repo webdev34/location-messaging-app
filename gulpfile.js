@@ -153,7 +153,7 @@ gulp.task('server', function() {
       port: 8080,
       host: 'localhost',
       fallback: 'index.html',
-      livereload: true,
+      livereload: false,
       open: true
     }))
   ;

@@ -5,8 +5,14 @@
 	
 	.directive('timePicker', [
 		'$interval',
+		'$parse',
+		'$document',
 		
-		function ($interval) {
+		function (
+			$interval,
+			$parse,
+			$document
+		) {
 			return {
 				restrict: "E",
 				templateUrl: 'app/common/time-picker.directive.html',
@@ -18,16 +24,31 @@
 					endTime: '=endTime',
 					showPicker: '=showPicker'
 				},
-				link: function (scope, el, attrs) {
-					var oldTime = scope.value,
-						parsedTime = scope.value.toUpperCase().replace(" ", ":").split(":"),
+				link: function (scope, element, attrs) {
+					var hideMe = function(event){
+						scope.showMe = false;
+					}
+					
+					element.bind("click", function(event) {
+						event.stopPropagation();
+					});
+					
+					angular.element($document[0].body).bind("click", function(event) {
+						scope.$apply(function() {
+							hideMe(scope, {
+								$event: event
+							});
+						});
+					});
+					
+					var parsedTime = scope.value ? scope.value.toUpperCase().replace(" ", ":").split(":") : 0,
 						i_am = attrs.name;
 					
 					angular.extend(scope, {
 						"title": attrs.title,
-						"hour": parsedTime[0],
-						"minute": parsedTime[1],
-						"median": parsedTime[2]
+						"hour": parsedTime[0] || "12",
+						"minute": parsedTime[1] || "00",
+						"median": parsedTime[2] || "AM"
 					});
 					
 					scope.adjustHours = function(adjTime){
@@ -83,21 +104,18 @@
 					}
 					
 					scope.makeTime = function(){
-						scope.adjustHours(0);
-						scope.adjustMinutes(0);
-						
 						var newTime = formatTime();
 						
 						if (i_am == "end-time"){
 							var startDate = scope.startDate.split("/"),
 								startTime = scope.startTime.toUpperCase().replace(" ", ":").split(":"),
-								endDate = scope.endDate.split("/"),
+								endDate = scope.endDate ? scope.endDate.split("/") : [1, 1, 5000],
 								endTime = [scope.hour, scope.minute, scope.median];
 						}else if (i_am == "start-time"){
 							var startDate = scope.startDate.split("/"),
 								startTime = [scope.hour, scope.minute, scope.median],
-								endDate = scope.endDate.split("/"),
-								endTime = scope.endTime.toUpperCase().replace(" ", ":").split(":");
+								endDate = scope.endDate ? scope.endDate.split("/") : [1, 1, 5000],
+								endTime = scope.endTime ? scope.endTime.toUpperCase().replace(" ", ":").split(":") : [12, 0, "AM"];
 						}
 						
 						// adding one second ":01" takes care of some midnight weirdness
@@ -112,20 +130,9 @@
 							scope.alert = "";
 						}
 						
-						// force update when time hasn't changed to trigger $watch event to close window - dirty hack
-						if (newTime == oldTime){
-							scope.value = "";
-							var t = $interval(function () { 
-								scope.value = newTime;
-								$interval.cancel(t);
-							}, 100);
-						}else{
-							oldTime = newTime;
-							scope.value = newTime;
-						}
+						scope.value = newTime;
+						scope.showMe = false;
 					}
-					
-					scope.makeTime();
 				}
 			};
 		}
