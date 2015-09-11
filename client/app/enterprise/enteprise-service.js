@@ -17,11 +17,11 @@
 				},
 
 				get : function(enterpriseId) {
-					return $http.get(API_URL + '/enterprise/' + enterpriseId + '/user');
+					return $http.get(API_URL + '/enterprise/' + enterpriseId);
 				},
 
 				update : function(enterpriseId, enterpriseObj) {
-					return $http.post(API_URL + '/enterprise/' + enterpriseId + '/user', {'enterprise' : enterpriseObj});
+					return $http.post(API_URL + '/enterprise', {'enterprise' : {'sid':enterpriseId}, 'fields' : enterpriseObj});
 				},
 
 				remove : function(enterpriseId) {

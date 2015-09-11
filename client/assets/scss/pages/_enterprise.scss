@@ -1,0 +1,118 @@
+.page--enterprise {
+
+	.edit-enterprise-btn-wrapper{
+		position: absolute;
+		top: 2px;
+		right: 6%;
+	}
+	
+	
+	.enterprise-profile {
+		// display: flex;
+		// flex-direction: row;
+		// flex-wrap: nowrap;
+		margin: 0;
+		padding: 0;
+		background-color: #f2f2f2;
+		// align-items: center;
+		// justify-content: space-around;
+
+		.enterprise-content-left,
+		.enterprise-content-right{
+			width: 50%;
+			float: left;
+			padding: 20px;
+		}
+
+		&.edit{
+			textarea{
+				min-height: 150px;
+			}
+			input[type="text"],
+			textarea{
+				margin-bottom: 20px;
+			}
+		}
+
+		.corporate-info {
+			order: 1;
+			margin-left: auto;
+			background-color: transparent;
+			text-align: left;
+
+			.corp-logo {
+				max-width: 350px;
+				margin-bottom: 50px;
+			}
+			&.enterprise-content-left{
+				text-align: center;
+			}
+		}
+
+		.details {
+			order: 2;
+			//border-left: 1px solid #f2f2f2;
+			width: 50%;
+			&.full-width{
+				width: 100%;
+				text-align: left;
+			}
+			padding-left: 3rem;
+
+			p {
+				font-size: 14px;
+				font-weight: $qvr-font-weight-light;
+				width: 300px;
+				margin-bottom: 1.9rem;
+				&.longer{
+					width: 90%;
+				}
+			}
+			
+			label {
+				font-size: 15px;
+				font-weight: bold;
+				color: $qvr-blue-1;
+			}
+		}
+
+		.enterprise-edit-form {
+			max-width: 420px;
+			label { font-size: 12px; font-weight: $qvr-font-weight-bold;}
+		}
+	}
+
+	.enterprise-users {
+		padding:0 4rem 4rem 4rem;
+		max-width: 1150px;
+		margin: 0 auto;
+
+		header {
+			@extend .clearfix;
+			padding-bottom: 1rem;	
+			margin-bottom: 1rem;	
+			border-bottom: 1px solid #ccc;
+		}
+
+		.user-section {
+			display: flex;
+
+			h2 {
+				display: box;
+				order: 1;
+				width: 200px;
+				text-align: right;
+				margin: 1rem;
+			}
+			
+			.g-user-list {
+				order: 2;
+				flex-grow: 1;
+
+				.user-rights {
+					a { width: 160px;}
+				}
+			}
+		}
+	}
+}

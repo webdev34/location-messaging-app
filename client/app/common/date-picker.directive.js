@@ -22,7 +22,8 @@
 					startTime: '=startTime',
 					endDate: '=endDate',
 					endTime: '=endTime',
-					showMe: '=showMe'
+					disablePreviousDates: '=disablePreviousDates',
+					showPicker: '=showPicker'
 				},
 				link: function (scope, element, attrs) {
 					var hideMe = function(event){
@@ -49,9 +50,9 @@
 					
 					angular.extend(scope, {
 						"title": attrs.title,
-						"day": parsedDate[0] || today.getDate(),
-						"month": parsedDate[1] || today.getMonth() + 1,
-						"year": parsedDate[2] || today.getFullYear(),
+						"day": parsedDate[1],
+						"month": parsedDate[0],
+						"year": parsedDate[2],
 					});
 					
 					function daysInMonth(month, year) {
@@ -97,9 +98,12 @@
 							isSelected = (num == sdObj.day && month == sdObj.month)
 										|| (edObj && num == edObj.day && month == edObj.month);
 							
+							
+
+
 							if (offGrid){
 								type = "off";
-							}else if (beforeToday){
+							}else if (beforeToday && scope.disablePreviousDates){
 								type = "beforeToday";
 							}else if (isSelected){
 								type = "selected";
@@ -108,13 +112,23 @@
 							}else{
 								type = "standard";
 							}
-							
-							dayArray.push({
-								"num": num,
-								"day": !offGrid ? num : "",
-								"selectable": !offGrid && !beforeToday,
-								"type": type
-							});
+
+							if(scope.disablePreviousDates){
+								dayArray.push({
+									"num": num,
+									"day": !offGrid ? num : "",
+									"selectable": !offGrid && !beforeToday,
+									"type": type
+								});
+							}else{
+								dayArray.push({
+									"num": num,
+									"day": !offGrid ? num : "",
+									"selectable": true,
+									"type": type
+								});
+							}
+
 						}
 						
 						return dayArray;
@@ -154,7 +168,7 @@
 					}
 					
 					function formatDate(){
-						return ("00" + scope.day).slice(-2) + "/" + ("00" + scope.month).slice(-2) + "/" + scope.year;
+						return ("00" + scope.month).slice(-2) + "/" + ("00" + scope.day).slice(-2) + "/" + scope.year;
 					}
 					
 					function toDateStr(month, day, year, hour, minute, second, median){
@@ -177,10 +191,11 @@
 						if (i_am == "end-date"){
 							var startDate = scope.startDate.split("/"),
 								startTime = scope.startTime.toUpperCase().replace(" ", ":").split(":"),
-								endDate = [scope.day, scope.month, scope.year],
-								endTime = scope.endTime ? scope.endTime.toUpperCase().replace(" ", ":").split(":") : [12, 0, "AM"];
+								endDate = [scope.month, scope.day, scope.year],
+								endTime = scope.endTime.toUpperCase().replace(" ", ":").split(":");
 						}else if (i_am == "start-date"){
-							var startDate = [scope.day, scope.month, scope.year],
+
+							var startDate = [scope.month, scope.day, scope.year],
 								startTime = scope.startTime.toUpperCase().replace(" ", ":").split(":"),
 								endDate = scope.endDate ? scope.endDate.split("/") : [1, 1, 5000],
 								endTime = scope.endTime ? scope.endTime.toUpperCase().replace(" ", ":").split(":") : [12, 0, "AM"];
@@ -188,17 +203,22 @@
 						
 						// adding one second ":01" takes care of some midnight weirdness
 						// month and day are reversed
-						var startDateTime = Date.parse(toDateStr(startDate[1], startDate[0], startDate[2], startTime[0], startTime[1], "01", startTime[2])),
-							endDateTime = Date.parse(toDateStr(endDate[1], endDate[0], endDate[2], endTime[0], endTime[1], "01", endTime[2]));
+
+						var startDateTime = Date.parse(toDateStr(startDate[0], startDate[1], startDate[2], startTime[0], startTime[1], "01", startTime[2])),
+							endDateTime = Date.parse(toDateStr(endDate[0], endDate[1], endDate[2], endTime[0], endTime[1], "01", endTime[2]));
+
+						if (startDateTime > endDateTime){
+							//scope.disablePreviousDates
+							scope.alert = "OOPS! END/TIME EARLIER THAN START/TIME";
+							return;
+						}else{
+							scope.alert = "";
+						}
 						
-						// set new value
-						// set end date and time to never if before start date
-						if (i_am == "end-date"){
-							if (startDateTime > endDateTime){
-								scope.value = 0;
-								scope.endDate = 0;
-								scope.endTime = 0;
-							}else{
+						// force update when time hasn't changed to trigger $watch event to close window - dirty hack
+						if (newDate == oldDate){
+							scope.value = "";
+							var t = $interval(function () { 
 								scope.value = newDate;
 							}
 						}else if (i_am == "start-date"){

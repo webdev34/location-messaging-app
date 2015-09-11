@@ -22,7 +22,7 @@
 					startTime: '=startTime',
 					endDate: '=endDate',
 					endTime: '=endTime',
-					showMe: '=showMe'
+					showPicker: '=showPicker'
 				},
 				link: function (scope, element, attrs) {
 					var hideMe = function(event){

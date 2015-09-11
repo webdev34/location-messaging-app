@@ -6,47 +6,95 @@
 	.config(['$stateProvider', function($stateProvider) {
 		$stateProvider
 			.state('enterprise.profile', {
-				url: '/',
+				url: '/profile',
 				templateUrl: 'app/enterprise/profile/enterprise-profile.tmpl.html',
 				controller: 'EnterpriseCtrl as enterpriseCtrl'
 			})
-			.state('enterprise.edit', {
-				url: '/edit',
-				templateUrl: 'app/enterprise/profile/edit/enterprise-profile-edit.tmpl.html',
-				controller: 'EditEnterpriseCtrl as editEnterpriseCtrl'
-			});
+			;
 	}])
-	
-	.controller('EditEnterpriseCtrl', [
+	.controller('EnterpriseCtrl', [
 		'$state',
+		'$scope',
 		'EnterpriseModel',
+		'FoundationApi',
 		
-		function($state, EnterpriseModel) {
-			var editEnterpriseCtrl = this;
+		function($state, $scope, EnterpriseModel, FoundationApi) {
+			var enterpriseCtrl = this;
+			enterpriseCtrl.isEditing = false;
 
-			EnterpriseModel.getEnterprise().then(function(){
-				editEnterpriseCtrl.enterpriseModel = EnterpriseModel;
-				editEnterpriseCtrl.editedCompany = angular.copy(editEnterpriseCtrl.enterpriseModel.company);
-			});
 
-			function returnToCompanyProfile() {
-				$state.go('enterprise.profile');
+
+			function init() {
+				getEnterprise();
 			}
 
-			function cancelEdit() {
-				returnToCompanyProfile();
+			function getEnterprise() {
+				EnterpriseModel.getEnterprise().then(function() {
+					enterpriseCtrl.company = EnterpriseModel.company;
+					enterpriseCtrl.editedCompany = enterpriseCtrl.company;
+				});
 			}
 
-			function updateCompany() {
-				editEnterpriseCtrl.company = angular.copy(editEnterpriseCtrl.editedCompany);
-				EnterpriseModel.updateCompany(editEnterpriseCtrl.company);
-
-				returnToCompanyProfile();
+			enterpriseCtrl.saveChanges = function() {
+				enterpriseCtrl.updatedCompany = enterpriseCtrl.editedCompany;
+				EnterpriseModel.updateCompany(enterpriseCtrl.updatedCompany.sid, enterpriseCtrl.updatedCompany);
+				FoundationApi.publish('saveProfileChangesModal', 'close');
+				enterpriseCtrl.isEditing = false;
 			}
+			
 
-			editEnterpriseCtrl.updateCompany = updateCompany;
-			editEnterpriseCtrl.cancelEdit = cancelEdit;
+			// enterpriseCtrl.company = {
+			// 	'_id': '',
+			// 	"companyName": "TESLA Motors",
+			// 	"username": "",
+			// 	"primaryContact": "Jason Tumbler",
+			// 	"logo": "assets/img/tesla.png",
+			// 	"email": "NASales@teslamotors.com",
+			// 	"phone": "7187187188",
+			// 	"address": "3500 Deer Creek Rd",
+			// 	"state": "Palo Alto",
+			// 	"city": "CA",
+			// 	"zip": 94304,
+			// 	"bio": "Tesla Motors, Inc. designs, develops, manufactures, and sells electric vehicles, electric vehicle powertrain components, and stationary energy storage systems in the United States, China, Norway, and internationally. It also provides development services to develop electric vehicle powertrain components and systems for other automotive manufacturers. The company sells its products through a network of Tesla stores and galleries, as well as through Internet. It has collaboration agreement with EnerNOC, Inc. for the deployment and management of energy storage systems in commercial and industrial buildings."
+			// }
+
+			init();
+			
 		}
-	]);
+	])	
+	// .controller('EditEnterpriseCtrl', [
+	// 	'$state',
+	// 	'EnterpriseModel',
+		
+	// 	function($state, EnterpriseModel) {
+	// 		var editEnterpriseCtrl = this;
+
+
+
+	// 		EnterpriseModel.getEnterprise().then(function(){
+	// 			editEnterpriseCtrl.enterpriseModel = EnterpriseModel;
+	// 			editEnterpriseCtrl.editedCompany = angular.copy(editEnterpriseCtrl.enterpriseModel.company);
+	// 		});
+
+	// 		function returnToCompanyProfile() {
+	// 			$state.go('enterprise.profile');
+	// 		}
+
+	// 		function cancelEdit() {
+	// 			returnToCompanyProfile();
+	// 		}
+
+	// 		function updateCompany() {
+	// 			editEnterpriseCtrl.company = angular.copy(editEnterpriseCtrl.editedCompany);
+	// 			EnterpriseModel.updateCompany(editEnterpriseCtrl.company);
+
+	// 			returnToCompanyProfile();
+	// 		}
+
+	// 		editEnterpriseCtrl.updateCompany = updateCompany;
+	// 		editEnterpriseCtrl.cancelEdit = cancelEdit;
+	// 	}
+	// ])
+	;
 
 })();

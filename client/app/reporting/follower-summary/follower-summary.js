@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('messages.dashboard', [])
+	angular.module('reporting.follower-summary', [])
 	.filter('startFrom', function () {
 		return function (input, start) {
 			if (input) {
@@ -11,18 +11,24 @@
 			return [];
 		};
 	})
-	.controller('CampaignCenterCtrl', [
+	.controller('FollowerSummaryCtrl', [
+		'$rootScope',
 		'$scope',
+		'$state',
 		'$http',
-		'MessageListModel',
+		'FoundationApi',
 		
 		function(
+			$rootScope,
 			$scope,
+			$state,
 			$http,
-			MessageListModel
+			FoundationApi
 		) {
+			var followerSummaryCtrl = this;
 
-			var campaignCenterCtrl = this;
+			followerSummaryCtrl.showStartDatePicker = false;
+			followerSummaryCtrl.showEndDatePicker = false;
 
 			var today = new Date(),
 					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
@@ -31,17 +37,17 @@
 			var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
 				tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 				tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
-			
-			campaignCenterCtrl.statuses = ["Live", "Draft"];
-			
-			$http.get('assets/data/campaigns.json').success(function(data) {
-				campaignCenterCtrl.campaignData = data.campaigns;	
-				$scope.totalItems = data.campaigns.length;
+
+			$http.get('assets/data/follower-summary.json').success(function(data) {
+				followerSummaryCtrl.followerSummaryData = data.followerSummary;
+				$scope.totalItems = data.followerSummary.length;
 				$scope.currentPage = 1;
 				$scope.entryLimit = 10; // items per page
 				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 				$scope.reverse = false;
-				$scope.sortOrderBy = 'id';
+				$scope.sortOrderBy = 'startDate';
+				$scope.startAt = 0;
+				$scope.endAt = 9
 
 				$scope.goToPage = function(direction) {
 
@@ -57,6 +63,10 @@
 					else if(direction == 'end'){
 						$scope.currentPage = $scope.noOfPages;
 					}
+
+					$scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
+					$scope.endAt = $scope.entryLimit * $scope.currentPage;
+
 				};
 
 				$scope.sortByFunc = function(sortBy, reverse) {
@@ -64,13 +74,22 @@
 					$scope.reverse = reverse;
 					$scope.currentPage = 1;
 				};
-
-				$scope.resetCurrentPage = function() {
-					$scope.currentPage = 1;
-				};
 			});
 			
+			function resetForm() {
+				
+				followerSummaryCtrl.followerSummaryQuery = {
+					"startDate": todayProperFormatted,
+					"endDate": tomorrowProperFormatted,
+					"startTime": "12:01 AM",
+					"endTime": "12:01 AM"
+				};
+			}
 
+			function clearTakeOverSelectors(){
+				followerSummaryCtrl.showStartDatePicker = false;
+				followerSummaryCtrl.showEndDatePicker = false;
+			}
 
 			function paginationValidation(){
 				if($scope.currentPage > $scope.noOfPages ){
@@ -80,27 +99,13 @@
 					$scope.currentPage = 1;
 				}
 			}
-
+			
+			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.startDate", clearTakeOverSelectors);
+			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.endDate", clearTakeOverSelectors);
 			$scope.$watch("currentPage", paginationValidation);
 
-					console.log("Active Messages");
-			// MessageListModel.getMessageList().then(
-			// 	function(response){
-			// 		console.log("------>", response);
-			// 		$scope.active = response;
-			// 	}
-			// );
-
-
+			resetForm();
 		}
-	])
+	]);
 
-	/*
-	.controller('LiveFeedController', ['$scope', '$http', function($scope, $http) {
-		$http.get('assets/data/live-feed.json').
-		success(function(data) {
-			$scope.feed = data;
-		});
-	}]);
-	*/
 })();

@@ -6,7 +6,7 @@
 	.factory('MessagesService', [
 		'$http',
 		'API_URL',
-		'API_URL_DROID',
+
 		
 		function(
 			$http,
@@ -58,23 +58,7 @@
 						"messageRecipient": messageObj.recipients || []
 					};
 					
-					return $http({
-						method: 'POST',
-						url: API_URL_DROID + '/message',
-						headers: {
-							'Content-Type': undefined
-						},
-						transformRequest: function(data) {
-							var formData = new FormData();
-							formData.append("payload", JSON.stringify(data.msgObj));
-							formData.append("attachments", data.attachments);
-							return formData;
-						},
-						data: {
-							"msgObj": msgObj,
-							"attachments": messageObj.file
-						}
-					});
+					return $http.post(API_URL + '/message', messageObj);
 				},
 				list : function(timestamp, limit){
 					if (!timestamp){
