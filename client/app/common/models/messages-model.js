@@ -97,8 +97,6 @@
         	}
 				}
 
-				
-
 				return MessagesService.create(formattedMessage).then(function(response){
 					
 					//var newMessage = response.message[i];

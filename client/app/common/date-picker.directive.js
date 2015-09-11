@@ -5,14 +5,8 @@
 	
 	.directive('datePicker', [
 		'$interval',
-		'$parse',
-		'$document',
 		
-		function (
-			$interval,
-			$parse,
-			$document
-		) {
+		function ($interval) {
 			return {
 				restrict: "E",
 				templateUrl: 'app/common/date-picker.directive.html',
@@ -25,28 +19,12 @@
 					disablePreviousDates: '=disablePreviousDates',
 					showPicker: '=showPicker'
 				},
-				link: function (scope, element, attrs) {
-					var hideMe = function(event){
-						scope.showMe = false;
-					}
+				link: function (scope, el, attrs) {
+					var oldDate = scope.value,
+						parsedDate = scope.value.toUpperCase().split("/"),
+						i_am = attrs.name;
 					
-					element.bind("click", function(event) {
-						event.stopPropagation();
-					});
-					
-					angular.element($document[0].body).bind("click", function(event) {
-						scope.$apply(function() {
-							hideMe(scope, {
-								$event: event
-							});
-						});
-					});
-					
-					var parsedDate = scope.value ? scope.value.toUpperCase().split("/") : 0,
-						i_am = attrs.name,
-						monthNames = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-					
-					var today = new Date();
+					var monthNames = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 					
 					angular.extend(scope, {
 						"title": attrs.title,
@@ -74,29 +52,31 @@
 							tsStart,
 							tsEnd,
 							tsThis,
-							tsToday,
 							len = totalDays + firstDay,
-							today = new Date(),
-							sdObj = parseDate(scope.startDate),
-							edObj = scope.endDate ? parseDate(scope.endDate) : null;
+							today = new Date();
 						
 						len = len - (len + 7)%7 + 7;
 							
+						var todayObj = {
+							"day": today.getDate(),
+							"month": today.getMonth() + 1,
+							"year": today.getFullYear()
+						}
+						
 						for (var i = 0; i < len; i++){
 							num = i - firstDay + 1;
 							
 							offGrid = num < 1 || num > totalDays;
 							
-							tsStart = Date.parse(toDateStr(sdObj.month, sdObj.day, sdObj.year, 0, 0, 0, "PM"));
-							tsEnd = edObj ? Date.parse(toDateStr(edObj.month, edObj.day, edObj.year, 0, 0, 0, "PM")) : 0;
+							tsStart = Date.parse(toDateStr(parseDate(scope.startDate, "month"), parseDate(scope.startDate, "day"), parseDate(scope.startDate, "year"), 0, 0, 0, "PM"));
+							tsEnd = Date.parse(toDateStr(parseDate(scope.endDate, "month"), parseDate(scope.endDate, "day"), parseDate(scope.endDate, "year"), 0, 0, 0, "PM"));
 							tsThis = Date.parse(toDateStr(month, num, year, 0, 0, 0, "PM"));
-							tsToday = Date.parse(toDateStr(today.getMonth() + 1, today.getDate(), today.getFullYear(), 0, 0, 0, "PM"));
 							
 							between = tsThis > tsStart && tsThis < tsEnd;
-							beforeToday = tsThis < tsToday;
+							beforeToday = tsThis < today.getTime();
 							
-							isSelected = (num == sdObj.day && month == sdObj.month)
-										|| (edObj && num == edObj.day && month == edObj.month);
+							isSelected = (num == parseDate(scope.startDate, "day") && month == parseDate(scope.startDate, "month"))
+										|| (num == parseDate(scope.endDate, "day") && month == parseDate(scope.endDate, "month"));
 							
 							
 
@@ -178,10 +158,16 @@
 					function parseDate(date, seg){
 						var dateArray = date.split("/");
 						
-						return {
-							"day": parseInt(dateArray[0]),
-							"month": parseInt(dateArray[1]),
-							"year": parseInt(dateArray[2])
+						switch(seg){
+							case "day":
+								return parseInt(dateArray[0]);
+								break;
+							case "month":
+								return parseInt(dateArray[1]);
+								break;
+							case "year":
+								return parseInt(dateArray[2]);
+								break;
 						}
 					}
 					
@@ -197,13 +183,12 @@
 
 							var startDate = [scope.month, scope.day, scope.year],
 								startTime = scope.startTime.toUpperCase().replace(" ", ":").split(":"),
-								endDate = scope.endDate ? scope.endDate.split("/") : [1, 1, 5000],
-								endTime = scope.endTime ? scope.endTime.toUpperCase().replace(" ", ":").split(":") : [12, 0, "AM"];
+								endDate = scope.endDate.split("/"),
+								endTime = scope.endTime.toUpperCase().replace(" ", ":").split(":");
 						}
 						
 						// adding one second ":01" takes care of some midnight weirdness
 						// month and day are reversed
-
 						var startDateTime = Date.parse(toDateStr(startDate[0], startDate[1], startDate[2], startTime[0], startTime[1], "01", startTime[2])),
 							endDateTime = Date.parse(toDateStr(endDate[0], endDate[1], endDate[2], endTime[0], endTime[1], "01", endTime[2]));
 
@@ -220,27 +205,22 @@
 							scope.value = "";
 							var t = $interval(function () { 
 								scope.value = newDate;
-							}
-						}else if (i_am == "start-date"){
-							if (startDateTime > endDateTime){
-								scope.endDate = 0;
-								scope.endTime = 0;
-							}
-							
+								$interval.cancel(t);
+							}, 100);
+						}else{
+							oldDate = newDate;
 							scope.value = newDate;
 						}
-						
-						// hide window
-						scope.showMe = false;
 					}
 					
-					// watch for date changes and update local scope values
 					scope.$watch("startDate", function(newVal, oldVal){
 						scope.adjustMonth(0);
 					});
 					scope.$watch("endDate", function(newVal, oldVal){
 						scope.adjustMonth(0);
 					});
+					
+					makeDate();
 				}
 			};
 		}

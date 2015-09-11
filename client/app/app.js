@@ -175,7 +175,6 @@
 					{'title': 'Asset Management', 'state': 'messages.asset'}
 				],
 				'reporting' : [
-
 					{'title': 'Report Center', 'state': 'reporting.center'}
 				],
 				'enterprise' : [

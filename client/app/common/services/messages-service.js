@@ -6,7 +6,6 @@
 	.factory('MessagesService', [
 		'$http',
 		'API_URL',
-
 		
 		function(
 			$http,

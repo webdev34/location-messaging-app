@@ -150,7 +150,7 @@ gulp.task('copy:foundation', function(cb) {
 gulp.task('server', function() {
   gulp.src('./build')
     .pipe($.webserver({
-      port: 8000,
+      port: 8080,
       host: 'localhost',
       fallback: 'index.html',
       livereload: false,

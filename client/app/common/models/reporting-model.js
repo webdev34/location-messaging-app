@@ -1,7 +1,6 @@
 (function() {
 	'use strict';
 
-
 	angular.module('enterprise-portal.models.reporting', [
 		'enterprise-portal.services.reporting'
 	])
