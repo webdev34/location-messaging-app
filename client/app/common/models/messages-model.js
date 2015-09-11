@@ -89,11 +89,8 @@
 						}
 					],
 					 envelope: {
-            target: 2
-        	},
-        	messageRecipient: [
-            { recipient: '558ad4daed1954f366cd0c41' }
-        	]
+            target: 3
+        	}
 				}
 
 				

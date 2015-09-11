@@ -250,7 +250,7 @@
 									color: 'success',
 									autoclose: '3000'
 								});
-
+								appCtrl.userLoginInfo = {};
 								goToHomePage();
 							}
 						},
@@ -266,9 +266,16 @@
 			}
 
 			appCtrl.userLogout = function(){
+				appCtrl.userLoginInfo = {};
 				UserModel.logout();
 				goToLogin();
 			}
+
+			appCtrl.test = function() {
+				console.log('testing');
+			}
+
+			appCtrl.test();
 
 
 			init();

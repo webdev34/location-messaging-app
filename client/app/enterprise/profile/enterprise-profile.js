@@ -61,40 +61,40 @@
 			init();
 			
 		}
-	])
-	
-	.controller('EditEnterpriseCtrl', [
-		'$state',
-		'EnterpriseModel',
+	])	
+	// .controller('EditEnterpriseCtrl', [
+	// 	'$state',
+	// 	'EnterpriseModel',
 		
-		function($state, EnterpriseModel) {
-			var editEnterpriseCtrl = this;
+	// 	function($state, EnterpriseModel) {
+	// 		var editEnterpriseCtrl = this;
 
 
 
-			EnterpriseModel.getEnterprise().then(function(){
-				editEnterpriseCtrl.enterpriseModel = EnterpriseModel;
-				editEnterpriseCtrl.editedCompany = angular.copy(editEnterpriseCtrl.enterpriseModel.company);
-			});
+	// 		EnterpriseModel.getEnterprise().then(function(){
+	// 			editEnterpriseCtrl.enterpriseModel = EnterpriseModel;
+	// 			editEnterpriseCtrl.editedCompany = angular.copy(editEnterpriseCtrl.enterpriseModel.company);
+	// 		});
 
-			function returnToCompanyProfile() {
-				$state.go('enterprise.profile');
-			}
+	// 		function returnToCompanyProfile() {
+	// 			$state.go('enterprise.profile');
+	// 		}
 
-			function cancelEdit() {
-				returnToCompanyProfile();
-			}
+	// 		function cancelEdit() {
+	// 			returnToCompanyProfile();
+	// 		}
 
-			function updateCompany() {
-				editEnterpriseCtrl.company = angular.copy(editEnterpriseCtrl.editedCompany);
-				EnterpriseModel.updateCompany(editEnterpriseCtrl.company);
+	// 		function updateCompany() {
+	// 			editEnterpriseCtrl.company = angular.copy(editEnterpriseCtrl.editedCompany);
+	// 			EnterpriseModel.updateCompany(editEnterpriseCtrl.company);
 
-				returnToCompanyProfile();
-			}
+	// 			returnToCompanyProfile();
+	// 		}
 
-			editEnterpriseCtrl.updateCompany = updateCompany;
-			editEnterpriseCtrl.cancelEdit = cancelEdit;
-		}
-	]);
+	// 		editEnterpriseCtrl.updateCompany = updateCompany;
+	// 		editEnterpriseCtrl.cancelEdit = cancelEdit;
+	// 	}
+	// ])
+	;
 
 })();

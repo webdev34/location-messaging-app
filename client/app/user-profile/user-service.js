@@ -25,11 +25,11 @@
 				},
 
 				get : function(userId) {
-					return $http.get(API_URL + '/user/' + userId + '/user');
+					return $http.get(API_URL + '/account/' + userId);
 				},
 
-				update : function(userId, userObj) {
-					return $http.post(API_URL + '/user/' + userId + '/user', {'user' : userObj});
+				update : function(userObj) {
+					return $http.post(API_URL + '/account', {'user' : userObj});
 				}
 			}
 		}

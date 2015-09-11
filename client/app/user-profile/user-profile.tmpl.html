@@ -1,53 +1,94 @@
-<div class="page page--profile">
-
+<div class="page page--enterprise">
+	
 	<header class="heading-bar">
 		<h1>User Profile</h1>
+		<div class="edit-enterprise-btn-wrapper">
+
+			<button  ng-hide="userProfileCtrl.isEditing" class="qvr-button action" ng-click="userProfileCtrl.isEditing = true">
+				<span>EDIT PROFILE</span>
+			</button>
+
+			<button ng-show="userProfileCtrl.isEditing" class="qvr-button action"  ng-click="userProfileCtrl.isEditing = false">
+				<span>Cancel</span>
+			</button>
+			<button ng-show="userProfileCtrl.isEditing" class="qvr-button action"  zf-open="saveProfileChangesModal">
+				<span>SAVE CHANGES</span>
+			</button>
+
+
+		</div>
 	</header>
 
-	<div class="profile-content">
-		<section class="profile-detail">
-			<div class="clearfix">
-				<img ng-src="{{appCtrl.user.avatar}}" alt="avatar" class="avatar">
+		<div class="enterprise-profile" ng-hide="userProfileCtrl.isEditing">
+		<section class="enterprise-content-wrapper">
+			<div class="enterprise-content-left corporate-info">
+				<div class="details full-width">
+					<img  ng-src="{{userProfileCtrl.user.avatar || 'assets/img/logo-na.png'}}" alt="logo" class="corp-logo" />
+					
+					<label>Account Name</label>
+					<p>{{userProfileCtrl.user.fullName}}</p>
 
-				<div class="names">
-					{{appCtrl.user.fullName}}
-					<br> @{{appCtrl.user.username}}
-					<br>
-					<a ui-sref="user-profile/edit" class="qvr-button info">Edit Profile</a>
+					<label>User Name</label>
+					<p>{{userProfileCtrl.user.username}}</p>
+				
+					<label>Description</label>
+					<p class="longer">{{userProfileCtrl.user.description || 'N/A'}}</p>
+
+
+					<label>Contact Email</label>
+					<p>{{userProfileCtrl.user.emailAddress}}</p>
+
+
+
 				</div>
 			</div>
 
-			<label>Description</label>
-			<p>{{appCtrl.user.description}}</p>
-
-			<label>Title</label>
-			<p>{{appCtrl.user.title}}</p>
-
-			<label>Department</label>
-			<p>{{appCtrl.user.department}}</p>
-
-			<label>Email</label>
-			<p>{{appCtrl.user.email}}</p>
-
-			<label>Phone</label>
-			<p>{{appCtrl.user.phone}}</p>
+			<div class="clearfix"></div>
 		</section>
-
-		<div class="corporate-box">
-			<section class="corporate-info" ng-controller="EnterpriseCtrl as enterpriseCtrl">
-				<div class="clearfix">
-					<img ng-src="{{enterpriseCtrl.company.logo}}" alt="logo" class="corp-logo">
-
-					<div class="corp-details">
-						{{enterpriseCtrl.company.sid}}
-						<br>
-						{{enterpriseCtrl.company.companyName}}
-						<br>
-						@{{enterpriseCtrl.company.username}}
-					</div>
-				</div>
-			</section>
-		</div>
 	</div>
 
+
+	<div class="enterprise-profile edit qvr-form"  ng-show="userProfileCtrl.isEditing">
+		<section class="enterprise-content-wrapper">
+			<div class="enterprise-content-left corporate-info">
+
+				<div class="details full-width">
+
+					<img  ng-src="{{userProfileCtrl.editedUser.avatar}}" alt="logo" class="corp-logo" />
+
+					<label>Account Name</label>
+					<input placeholder="" type="text" ng-model="userProfileCtrl.editedUser.fullName" required >
+					
+					<label>User Name</label>
+					<input placeholder="" type="text" ng-model="userProfileCtrl.editedUser.username" required >
+
+					<label>Description</label>
+					<textarea placeholder="" ng-model="userProfileCtrl.editedUser.description" required rows="4" cols="50" ></textarea>
+
+
+					<label>Contact Email</label>
+					<input placeholder="" type="text" ng-model="userProfileCtrl.editedUser.emailAddress" required >
+
+				</div>
+			</div>
+
+			
+			<div class="clearfix"></div>
+		</section>
+	</div>
+
+</div>
+
+
+
+<!-- Modals -->
+<div zf-modal="" id="saveProfileChangesModal">
+	<a zf-close="" class="close-button">×</a>
+	<p class="qvr-align-center">
+		Are you sure you want to save chanes?
+	</p>
+	<div class="modal-button-wrapper qvr-align-center">
+		<button ng-click="userProfileCtrl.saveChanges()" class="qvr-button action">Save</button>
+		<button zf-close="" class="qvr-button cancel">Cancel</button>
+	</div>
 </div>
