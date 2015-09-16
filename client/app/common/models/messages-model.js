@@ -19,7 +19,8 @@
 				message;
 			
 			model.getMessageDetail = function(messageId) {
-				return (message) ? $q.when(message) : MessagesService.get(messageId).then(
+				//return (message) ? $q.when(message) : MessagesService.get(messageId).then(
+				return MessagesService.get(messageId).then(
 					function(response) {
 						message = response;
 						return response;
@@ -54,11 +55,14 @@
 							messageList = [];	
 							
 							for (var i = 0; i < response.message.length; i++){
-								var newMessage = response.message[i];
-								newMessage.comment = response.comment[i];
-								newMessage.envelope = response.envelope[i];
-								newMessage.recipients = response.messageRecipient[i];
-								messageList.push(newMessage);
+								var messageDetail = {
+									message: response.message[i],
+									comment: response.comment[i],
+									envelope: response.envelope[i],
+									messageRecipient: response.messageRecipient[i]
+								}
+								
+								messageList.push(messageDetail);
 							}
 							
 							return messageList;
@@ -93,7 +97,6 @@
         	}
 				}
 
-				
 				return MessagesService.create(formattedMessage).then(function(response){
 					
 					//var newMessage = response.message[i];

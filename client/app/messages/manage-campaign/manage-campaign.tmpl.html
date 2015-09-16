@@ -6,15 +6,12 @@
 		<div class="float-right top-controls">
 			<label class="qvr-label">Campaign Status</label>
 			
-			<!-- Start delete this code -->
-			<a ng-click="manageCampaignCtrl.getMessageList()">message list</a>
-			<!-- End delete this code -->
-
-			
 			<select class="qvr-select select-status" ng-model="manageCampaignCtrl.manageCampaign.status" required>
-				<option selected>Draft</option>
-				<option>Live</option>
-				<option>Ended</option>
+				<option value="" selected>Bulk Action</option>
+					<option value="Delete">Delete</option>
+					<option value="Draft">Set To Draft</option>
+					<option value="Live">Set To Live</option>
+					<option value="Ended">Ended</option>
 			</select>
 			<button zf-open="saveCampaignModal" class="qvr-button action" ng-disabled="!campaignForm.$valid">Save Campaign</button>
 			<div zf-modal="" id="saveCampaignModal">
@@ -153,10 +150,14 @@
 
 		<div class="campaign-messages-filter-wrapper qvr-form">
 			<div id="bulk-action" class="input-wrapper">
-				<select class="qvr-select" ng-model="manageCampaignCtrl.bulkActions" required>
+				<select id="bulk-actions" class="qvr-select" ng-model="manageCampaignCtrl.bulkActions" required >
 					<option value="" selected>Bulk Action</option>
+					<option value="Delete">Delete</option>
+					<option value="Draft">Set To Draft</option>
+					<option value="Live">Set To Live</option>
+					<option value="Ended">Ended</option>
 				</select>
-				<button class="qvr-button action">
+				<button class="qvr-button action" ng-disabled="!manageCampaignCtrl.bulkActions" ng-click="bulkActions()">
 					<i class="check-mark"></i>
 				</button>
 			</div>
@@ -200,7 +201,7 @@
 			  <thead>
 			    <tr>
 			      <th>
-			      	<input type="checkbox" />
+			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected();" />
 			      </th>
 			      <th>
 			      	<label>ID</label>
@@ -261,7 +262,7 @@
 			  		<td></td>
 			  	</tr>
 			    <tr  data-ng-repeat="msg in manageCampaignCtrl.campaignMessages | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit | orderBy:sortOrderBy:reverse | filter:search  as results">
-			      <td><input type="checkbox" /></td>
+			      <td><input type="checkbox" ng-model="msg.isSelected" /></td>
 			      <td>{{msg.id}}</td>
 			      <td>{{msg.label}}</td>
 			      <td>{{msg.to}}</td>

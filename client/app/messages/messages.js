@@ -27,15 +27,20 @@
 				templateUrl: 'app/messages/new/messages-new.tmpl.html',
 				controller: 'NewMessageCtrl as newMessageCtrl'
 			})
-			.state('messages.detail', {
-				url: '/message/:_id',
-				templateUrl: 'app/messages/detail/messages-detail.tmpl.html',
-				controller: 'MessageDetailCtrl as messageDetailCtrl'
-			})
 			.state('messages.edit', {
-				url: '/message/:_id/edit',
-				templateUrl: 'app/messages/edit/messages-edit.tmpl.html',
-				controller: 'EditMessageCtrl as editMessageCtrl'
+				url: '/message/:_id',
+				templateUrl: 'app/messages/new/messages-new.tmpl.html',
+				controller: 'NewMessageCtrl as newMessageCtrl'
+			})
+			.state('messages.asset', {
+				url: '/assets',
+				templateUrl: 'app/messages/asset/messages-asset.tmpl.html',
+				controller: 'AssetMessageCtrl as assetMessageCtrl'
+			})
+			.state('messages.manage', {
+				url: '/manage',
+				templateUrl: 'app/messages/manage/messages-manage.tmpl.html',
+				controller: 'MessagesManageCtrl as messagesManageCtrl'
 			})
 			.state('messages.manage-campaign', {
 				url: '/manage-campaign',
@@ -131,6 +136,22 @@
 				return new google.maps.LatLng(lat, lng);
 			};
 
+			/*
+			function radiusToZoom(map, r){
+				var w = map.getDiv().offsetHeight;;
+				var d = r * 2;
+				var zooms = [,21282,16355,10064,5540,2909,1485,752,378,190,95,48,24,12,6,3,1.48,0.74,0.37,0.19];
+				var z = 20, m;
+				while( zooms[--z] ){
+					m = zooms[z] * w;
+					if( d < m ){
+						break;
+					}
+				}
+				return z;
+			}
+			*/
+			
 			$scope.$on('mapInitialized', function(event, map) {
 				var numTiles = 1 << map.getZoom();
 				var projection = new MercatorProjection();
@@ -144,7 +165,7 @@
 					Math.floor($scope.pixelCoordinate.y / TILE_SIZE));
 				
 				$scope.marker = new google.maps.Marker({
-					position: $scope.toronto,
+					position: map.getCenter(),
 					map: map,
 					icon: {
 						url: 'assets/img/icons/i-location-large.png',
@@ -166,9 +187,22 @@
 				});
 				map.fitBounds($scope.rangeCircle.getBounds());
 				
+				var center = map.getCenter();
+				$rootScope.map_coords = [center.lat(), center.lng()];
+				
+				google.maps.event.addListener(map, 'drag', function() {
+					var center = map.getCenter();
+					
+					$scope.marker.setPosition(center);
+					$scope.rangeCircle.setCenter(center);
+					$rootScope.map_coords = [center.lat(), center.lng()];
+				});
+				
 				$rootScope.$watch("map_range", function(newValue, oldValue){
 					$scope.rangeCircle.setRadius(parseInt(newValue) * 1000);
-					map.fitBounds($scope.rangeCircle.getBounds());
+					
+					map.fitBounds($scope.rangeCircle.getBounds()); // this shifts the center ever so slightly
+					map.setCenter({lat: $rootScope.map_coords[0], lng: $rootScope.map_coords[1]}); // re-center it
 				});
 				
 				$rootScope.$watch("map_search", function(newValue, oldValue){
@@ -181,6 +215,9 @@
 							
 							map.setCenter(loc);
 							map.fitBounds($scope.rangeCircle.getBounds());
+							
+							var center = map.getCenter();
+							$rootScope.map_coords = [center.lat(), center.lng()];
 						} else {
 							console.log("Geocode was not successful for the following reason: " + status);
 						}

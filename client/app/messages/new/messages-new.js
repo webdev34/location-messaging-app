@@ -35,6 +35,7 @@
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
 				newMessageCtrl.newMessage = {
+					"sid": "",
 					"messageTitle": "",
 					"content": "",
 					"status": "Inactive",
@@ -45,6 +46,11 @@
 					"startTime": "12:01 AM",
 					"endDate": tomorrowProperFormatted,
 					"endTime": "11:59 PM",
+					"locationName": "",
+					"latlng": [],
+					"assets": [],
+					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
+					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
 					"locationName": "generic name",
 					"coordinates": [-79.383184, 43.653226]
 				};
@@ -76,6 +82,24 @@
 			$scope.$watch("newMessageCtrl.newMessage.range", function(newValue, oldValue){
 				$rootScope.map_range = newValue;
 			});
+
+			$scope.uploader = {};
+
+		  	$scope.processFiles = function(files){
+		    	angular.forEach(files, function(flowFile, i){
+		       	var fileReader = new FileReader();
+		          	fileReader.onload = function (event) {
+		            	var uri = event.target.result;
+		              	newMessageCtrl.newMessage.assets.push(uri);
+		          	};
+		          	fileReader.readAsDataURL(flowFile.file);
+		    	});
+		  	};
+
+		  	$scope.removeFile = function(index){
+		        newMessageCtrl.newMessage.assets.splice(index, 1);  
+		        $scope.uploader.flow.files.splice(index, 1);
+		  	};
 
 			$scope.map_range_change = function(operator) {
 				var currentRange = parseFloat($scope.newMessageCtrl.newMessage.range);

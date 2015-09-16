@@ -175,6 +175,9 @@
     						&.Draft{
     							background-color: #808285;
     						}
+    						&.Ended{
+    							background-color: $qvr-blue-1;
+    						}
 						}
 					}
 					.qvr-align-center{
