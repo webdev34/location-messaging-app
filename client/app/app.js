@@ -7,6 +7,7 @@
 			'ngMap',
 			'ngCookies',
 			'flow',
+			'isteven-multi-select',
 
 			// foundation
 			'foundation',

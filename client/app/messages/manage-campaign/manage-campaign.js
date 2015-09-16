@@ -2,7 +2,16 @@
 	'use strict';
 
 	angular.module('messages.manage-campaign', [])
-	
+	.filter('startFrom', function () {
+		return function (input, start) {
+			if (input) {
+				start = +start;
+
+				return input;
+			}
+			return [];
+		};
+	})
 	.controller('ManageCampaignCtrl', [
 		'$rootScope',
 		'$scope',
@@ -35,13 +44,41 @@
 					tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
+			manageCampaignCtrl.campaignParticipantsList = [
+				{ icon: "", name: "Group 1", maker: "", ticked: false },
+				{ icon: "", name: "Group 2", maker: "", ticked: false},
+				{ icon: "", name: "Group 3", maker: "", ticked: false},
+				{ icon: "", name: "Group 4", maker: "", ticked: false},
+				{ icon: "", name: "Group 5", maker: "", ticked: false},
+				{ icon: "", name: "Group 6", maker: "", ticked: false},
+				{ icon: "", name: "Group 7", maker: "", ticked: false},
+				{ icon: "", name: "Group 8", maker: "", ticked: false},
+				{ icon: "", name: "Group 9", maker: "", ticked: false},
+				{ icon: "", name: "Group 10", maker: "", ticked: false}
+			];
+
+			manageCampaignCtrl.campaignsTags = [
+				{ icon: "", name: "Tag 1", maker: "", ticked: false },
+				{ icon: "", name: "Tag 2", maker: "", ticked: false},
+				{ icon: "", name: "Tag 3", maker: "", ticked: false},
+				{ icon: "", name: "Tag 4", maker: "", ticked: false},
+				{ icon: "", name: "Tag 5", maker: "", ticked: false},
+				{ icon: "", name: "Tag 6", maker: "", ticked: false},
+				{ icon: "", name: "Tag 7", maker: "", ticked: false},
+				{ icon: "", name: "Tag 8", maker: "", ticked: false},
+				{ icon: "", name: "Tag 9", maker: "", ticked: false},
+				{ icon: "", name: "Tag 10", maker: "", ticked: false}
+			];
+
+			manageCampaignCtrl.tagFilters = [];
+			
 			manageCampaignCtrl.manageCampaign = {
 				"campaignID": "00131",
 				"campaignName": "Drive A Dream - Vancouver BC",
-				"campaignParticipants": ["group 1", "group 2", "group 3" ],
+				"campaignParticipants": [],
 				"campaignDescription": "Tesla's Drive A Dream in Vancouver BC will be target- ing the true auto enthusiast having a passion for performance and luxury. The campaign will be physi- cally centered around our two locations. The Quiver campaign will be run simultaneously with a local television campaign spanning the campaign period.",
 				"marketingAssets": ["asset 1", "asset 2", "asset 3" ],
-				"campaignsTags": ["tag 1", "tag 2", "tag 3"],
+				"campaignsTags": [],
 				"status": "Draft",
 				"startDate": todayProperFormatted,
 				"startTime": "12:01 AM",
@@ -52,6 +89,10 @@
 			};
 
 			manageCampaignCtrl.statuses = ["Live", "Draft", "Ended"]; 
+			manageCampaignCtrl.cloneCampaign = {
+				"campaignName": "",
+				"status": "Draft"
+			};
 
 			$http.get('assets/data/campaign-messages.json').success(function(data) {
 				manageCampaignCtrl.campaignMessages = data.campaignMessages;	
@@ -61,7 +102,10 @@
 				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 				$scope.reverse = false;
 				$scope.sortOrderBy = 'id';
+				$scope.startAt = 0;
+				$scope.endAt = 9;
 				$scope.selectAll = false;
+				$scope.isAnyInputsSelected = false;
 
 				$scope.goToPage = function(direction) {
 
@@ -77,12 +121,17 @@
 					else if(direction == 'end'){
 						$scope.currentPage = $scope.noOfPages;
 					}
+
+					$scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
+					$scope.endAt = $scope.entryLimit * $scope.currentPage;
+
 				};
 
 				$scope.sortByFunc = function(sortBy, reverse) {
 					$scope.sortOrderBy = sortBy;
 					$scope.reverse = reverse;
 					$scope.currentPage = 1;
+					$scope.goToPage(1);
 				};
 
 				$scope.resetCurrentPage = function() {
@@ -112,6 +161,40 @@
 				    });
 				    $scope.selectAll = false;
 				};
+
+				$scope.cloneMessages = function() {
+					manageCampaignCtrl.clonedMessage = [] ;
+					var cleanCopyOfMessages = angular.copy(manageCampaignCtrl.campaignMessages);
+					angular.forEach(cleanCopyOfMessages, function(campaign, i) {
+						if(campaign.isSelected){
+							//campaign.isSelected = false;
+							manageCampaignCtrl.clonedMessage.push(campaign);
+						}
+				    });
+				    // $scope.selectAll = false;
+				};
+
+				$scope.deleteClonedMessage = function(id) {
+					angular.forEach(manageCampaignCtrl.clonedMessage, function(campaign, i) {
+						if(campaign.id == id){
+							manageCampaignCtrl.clonedMessage.splice(i, 1);  
+						}
+				    });
+				};
+
+				$scope.anyInputsSelected = function() {
+					$scope.isAnyInputsSelected = false;
+					$scope.selectAll = true;
+					angular.forEach(manageCampaignCtrl.campaignMessages, function(campaign, i) {
+						if(campaign.isSelected){
+							$scope.isAnyInputsSelected  = true;
+						}
+						else{
+							$scope.selectAll = false;
+						}
+				    });
+				};
+
 			});
 			
 

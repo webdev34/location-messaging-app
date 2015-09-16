@@ -22,7 +22,7 @@
 					<option value="Live">Set To Live</option>
 					<option value="Ended">Ended</option>
 				</select>
-				<button class="qvr-button action" ng-disabled="!CampaignCenterCtrl.bulkActions" ng-click="bulkActions()" >
+				<button class="qvr-button action" ng-disabled="!CampaignCenterCtrl.bulkActions || !isAnyInputsSelected" ng-click="bulkActions()" >
 					<i class="check-mark"></i>
 				</button>
 			</div>
@@ -68,7 +68,7 @@
 			  <thead>
 			    <tr>
 			      <th>
-			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected();" />
+			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
 			      </th>
 			      <th>
 			      	<label>ID</label>
@@ -129,8 +129,8 @@
 			  		<td></td>
 			  	</tr>
 
-			    <tr data-ng-repeat="campaign in campaignCenterCtrl.campaignData | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit | orderBy:sortOrderBy:reverse | filter:search  as results">
-			      <td><input type="checkbox" ng-model="campaign.isSelected" /></td>
+			    <tr data-ng-repeat="campaign in campaignCenterCtrl.campaignData | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}">
+			      <td><input type="checkbox" ng-model="campaign.isSelected" ng-change="anyInputsSelected();" /></td>
 			      <td>{{campaign.id}}</td>
 			      <td>{{campaign.campaignName}}</td>
 			      <td>{{campaign.likes}}</td>

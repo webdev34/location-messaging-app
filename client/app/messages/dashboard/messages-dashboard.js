@@ -6,7 +6,8 @@
 		return function (input, start) {
 			if (input) {
 				start = +start;
-				return input.slice(start);
+
+				return input;
 			}
 			return [];
 		};
@@ -42,7 +43,10 @@
 				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 				$scope.reverse = false;
 				$scope.sortOrderBy = 'id';
+				$scope.startAt = 0;
+				$scope.endAt = 9;
 				$scope.selectAll = false;
+				$scope.isAnyInputsSelected = false;
 
 				$scope.goToPage = function(direction) {
 
@@ -58,12 +62,17 @@
 					else if(direction == 'end'){
 						$scope.currentPage = $scope.noOfPages;
 					}
+
+					$scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
+					$scope.endAt = $scope.entryLimit * $scope.currentPage;
+
 				};
 
 				$scope.sortByFunc = function(sortBy, reverse) {
 					$scope.sortOrderBy = sortBy;
 					$scope.reverse = reverse;
 					$scope.currentPage = 1;
+					$scope.goToPage(1);
 				};
 
 				$scope.resetCurrentPage = function() {
@@ -94,6 +103,20 @@
 				    });
 				    $scope.selectAll = false;
 				};
+
+				$scope.anyInputsSelected = function() {
+					$scope.isAnyInputsSelected = false;
+					$scope.selectAll = true;
+					angular.forEach(campaignCenterCtrl.campaignData, function(campaign, i) {
+						if(campaign.isSelected){
+							$scope.isAnyInputsSelected  = true;
+						}
+						else{
+							$scope.selectAll = false;
+						}
+				    });
+				};
+
 
 			});
 			

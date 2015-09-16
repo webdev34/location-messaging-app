@@ -7,13 +7,14 @@
 			<label class="qvr-label">Campaign Status</label>
 			
 			<select class="qvr-select select-status" ng-model="manageCampaignCtrl.manageCampaign.status" required>
-				<option value="" selected>Bulk Action</option>
-					<option value="Delete">Delete</option>
-					<option value="Draft">Set To Draft</option>
-					<option value="Live">Set To Live</option>
+					<option value="Draft">Draft</option>
+					<option value="Live">Live</option>
 					<option value="Ended">Ended</option>
 			</select>
 			<button zf-open="saveCampaignModal" class="qvr-button action" ng-disabled="!campaignForm.$valid">Save Campaign</button>
+			<button zf-open="cloneCampaignModal" class="qvr-button action">Clone Campaign</button>
+
+			<!-- Confirmation Modal-->
 			<div zf-modal="" id="saveCampaignModal">
 				<a zf-close="" class="close-button">×</a>
 				<p class="qvr-align-center">
@@ -24,6 +25,38 @@
 					<button zf-close="" class="qvr-button cancel">Cancel</button>
 				</div>
 			</div>
+			<!-- Confirmation Modal-->
+
+			<!-- Cloned Campaign Modal -->
+			<div zf-modal="" id="cloneCampaignModal">
+				<a zf-close="" class="close-button">×</a>
+
+				<h1>Clone Campaign</h1>
+				<div class="campaign-selection-wrapper" ng-model="manageCampaignCtrl.cloneCampaign.campaign">
+					<div class="float-left input-field">
+						<label>Create New Campaign Name</label>
+						<input type="text" ng-model="manageCampaignCtrl.cloneCampaign.campaignName"  />
+					</div>
+					<div class="float-left">
+						<label>Status</label>
+						<select class="qvr-select select-status" ng-model="manageCampaignCtrl.cloneCampaign.status" required>
+							<option value="Draft" selected>Draft</option>
+							<option value="Live">Live</option>
+							<option value="Ended">Ended</option>
+						</select>
+					</div>
+				</div>
+
+				<hr class="clearfix" />
+				<div class="modal-button-wrapper qvr-align-center">
+					<button zf-close="" type="submit" class="qvr-button action">Clone Campaign</button>
+					<button zf-close="" class="qvr-button cancel">Cancel</button>
+				</div>
+			</div>
+			<!-- Cloned Campaign Modal -->
+
+
+
 		</div>
 		<section class="form-wrapper">
 			<div id="campaign-name-text" class="input-wrapper">
@@ -69,14 +102,20 @@
 					></time-picker>
 				</section>
 			</div>
-			
 			<div id="campaign-participants" class="input-wrapper">
 				<label class="qvr-label">Campaign Participants <span>(Groups and Individuals)</span></label>
-				<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignParticipant" required>
-					<option value="" selected>Select</option>
-					<option ng-repeat="obj in manageCampaignCtrl.manageCampaign.campaignParticipants" value="{{obj}}">{{obj}}</option>
-				</select>
+				<isteven-multi-select class="add-tags"   
+				    input-model="manageCampaignCtrl.campaignParticipantsList"    
+				    output-model="manageCampaignCtrl.manageCampaign.campaignParticipants"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+					>
+				</isteven-multi-select>
 			</div>
+
+
 			<div class="clearfix"></div>
 			<div id="campaign-description" class="input-wrapper">
 				<label class="qvr-label">Campaign Description</label>
@@ -127,10 +166,18 @@
 				</div>
 				<div id="campaigns-tags" class="input-wrapper">
 					<label class="qvr-label">Campaigns Tags</label>
-					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.campaignsTagsSelected" required>
-						<option value="" selected>Add #Tags</option>
-						<option ng-repeat="obj in manageCampaignCtrl.manageCampaign.campaignsTags" value="{{obj}}">{{obj}}</option>
-					</select>
+
+					<isteven-multi-select class="add-tags" 
+				    input-model="manageCampaignCtrl.campaignsTags"    
+				    output-model="manageCampaignCtrl.manageCampaign.campaignsTags"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+				     >
+
+				</isteven-multi-select>
+					
 				</div>
 		    </div>
 
@@ -150,21 +197,97 @@
 
 		<div class="campaign-messages-filter-wrapper qvr-form">
 			<div id="bulk-action" class="input-wrapper">
+				
 				<select id="bulk-actions" class="qvr-select" ng-model="manageCampaignCtrl.bulkActions" required >
 					<option value="" selected>Bulk Action</option>
 					<option value="Delete">Delete</option>
 					<option value="Draft">Set To Draft</option>
 					<option value="Live">Set To Live</option>
 					<option value="Ended">Ended</option>
+					<option value="Clone">Clone</option>
 				</select>
-				<button class="qvr-button action" ng-disabled="!manageCampaignCtrl.bulkActions" ng-click="bulkActions()">
+				<button class="qvr-button action {{manageCampaignCtrl.bulkActions}}" id="bulk-action-button" ng-disabled="!manageCampaignCtrl.bulkActions || !isAnyInputsSelected" ng-click="bulkActions()">
+					<i class="check-mark"></i>
+				</button>
+				<button zf-open="cloneMessageModal" class="qvr-button action {{manageCampaignCtrl.bulkActions}}" id="cloneMessageModalButton"  ng-click="cloneMessages()" ng-disabled="!isAnyInputsSelected" >
 					<i class="check-mark"></i>
 				</button>
 			</div>
+
+			<!-- Cloned Message Modal -->
+			<div zf-modal="" id="cloneMessageModal">
+				<a zf-close="" class="close-button">×</a>
+
+				<h1>Clone Messages</h1>
+				<div class="clone-messages-modal-wrapper">
+					<p>
+						Selected Messages
+					</p>
+					<table>
+						<thead>
+							<th>
+								<span>*</span>
+								ID
+							</th>
+							<th>
+								Label
+							</th>
+							<th>
+								Status
+							</th>
+							<th></th>												
+						<thead>
+						<tbody>
+							<tr ng-show="manageCampaignCtrl.clonedMessage.length == 0">
+						  		<td></td>
+						  		<td colspan="1">
+						  			<p class="qvr-align-center">No Cloned Messages</p></td>
+						  		<td></td>
+						  	</tr>
+							<tr  data-ng-repeat="msg in manageCampaignCtrl.clonedMessage">
+						      <td><span>*</span>{{msg.id}}</td>
+						      <td>{{msg.label}}</td>
+						      <td>
+						      	<div class="input-wrapper message-status-wrapper">
+									<select class="qvr-select {{msg.status}}" ng-model="msg.status" >
+										<option data-ng-repeat="obj in manageCampaignCtrl.statuses">{{obj}}</option>
+									</select>
+								</div>
+						      </td>
+						      <td><a ng-click="deleteClonedMessage(msg.id);">Remove</a></td>
+						    </tr>
+						</tbody>
+					</table>
+					<span class="unique-id-msg">* A new unique ID will be assigned to cloned messages</span>
+
+					<div class="campaign-selection-wrapper">
+						<label>Select Campaign to Associate Cloned Messages</label>
+						<select class="qvr-select">
+							<option>Select</option>
+						</select>
+					</div>
+				</div>
+				<hr>
+				<div class="modal-button-wrapper qvr-align-center">
+					<button zf-close="" type="submit" class="qvr-button action">Clone Messages</button>
+					<button zf-close="" class="qvr-button cancel">Cancel</button>
+				</div>
+			</div>
+			<!-- Cloned Message Modal -->
+
+
+
 			<div id="tag-filters" class="input-wrapper">
-				<select class="qvr-select" ng-model="manageCampaignCtrl.tagFilters" required>
-					<option value="" selected>Add #Tag Filters</option>
-				</select>
+				<isteven-multi-select class="add-tag-filters float-left"   
+				    input-model="manageCampaignCtrl.campaignsTags"    
+				    output-model="manageCampaignCtrl.tagFilters"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+					>
+				</isteven-multi-select>
+				
 				<button class="qvr-button action">
 					<i class="check-mark"></i>
 				</button>
@@ -201,7 +324,7 @@
 			  <thead>
 			    <tr>
 			      <th>
-			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected();" />
+			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
 			      </th>
 			      <th>
 			      	<label>ID</label>
@@ -261,8 +384,8 @@
 			  			<p class="qvr-align-center">No Results</p></td>
 			  		<td></td>
 			  	</tr>
-			    <tr  data-ng-repeat="msg in manageCampaignCtrl.campaignMessages | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit | orderBy:sortOrderBy:reverse | filter:search  as results">
-			      <td><input type="checkbox" ng-model="msg.isSelected" /></td>
+			    <tr  data-ng-repeat="msg in manageCampaignCtrl.campaignMessages | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" >
+			      <td><input type="checkbox" ng-model="msg.isSelected" ng-change="anyInputsSelected();" /></td>
 			      <td>{{msg.id}}</td>
 			      <td>{{msg.label}}</td>
 			      <td>{{msg.to}}</td>
