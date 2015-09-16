@@ -219,21 +219,26 @@
 						<label class="qvr-label">End Time:</label>
 						<input type="text" class="hourglass" ng-model="newMessageCtrl.newMessage.endTime" ng-click="newMessageCtrl.showEndTimePicker=true">
 					</div>
-					<section class="location-section">
+					<section class="location-section" ng-controller="MapCoordinatesCtrl">
 						<label class="qvr-label">Select Preset Locations</label>
 						<select class="qvr-select" required>
 							<option>---</option>
 						</select>
+
 						
-						<div class="map-search-wrap">
+						<div class="map-search-wrap" >
+
+								
 							<label class="qvr-label">Create Custom Delivery Location</label>
+						
+
 							<span class="icon i-location-large"></span>
 							<div class="search-button" ng-click="doSearch()">
 								<span class="icon i-search-white"></span>
 							</div>
-							<input type="search" ng-model="newMessageCtrl.search" placeholder="Enter Address">
+							<input places-auto-complete type="search" ng-model="newMessageCtrl.search" on-place-changed="placeChanged(place)" placeholder="Enter Address">
 						</div>
-						<div ng-controller="MapCoordinatesCtrl" class="ng-scope">
+						<div  class="ng-scope">
 							<map center="43.642566,-79.387057" zoom="12" style="height:250px">
 							<!--
 							<info-window id="1" position="43.642566,-79.387057" visible="true">

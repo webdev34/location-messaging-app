@@ -58,6 +58,11 @@
 				});
 		}
 	])
+
+	.controller('MyCtrl', ['$scope', function ($scope) {
+     $scope.types = "['establishment']";
+    
+	}])
 	
 	.controller('MapCoordinatesCtrl', [
 		'$rootScope',
@@ -72,6 +77,13 @@
 			var TILE_SIZE = 256;
 			
 			var geocoder = new google.maps.Geocoder();
+
+			$scope.placeChanged = function() {
+				console.log("new place" + this.getPlace());
+	       //$scope.place = this.getPlace();
+	      $rootScope.map_search = this.getPlace();
+
+			}
 			
 			function bound(value, opt_min, opt_max) {
 				if (opt_min != null) value = Math.max(value, opt_min);
