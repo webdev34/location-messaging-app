@@ -49,6 +49,7 @@
 					"locationName": "",
 					"latlng": [],
 					"assets": [],
+					"messageTags":[],
 					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
 					"locationName": "generic name",
@@ -78,6 +79,19 @@
 					}
 				);
 			}
+
+			newMessageCtrl.messageTags = [
+				{ name: "Tag 1", ticked: false },
+				{ name: "Tag 2", ticked: false},
+				{ name: "Tag 3", ticked: false},
+				{ name: "Tag 4", ticked: false},
+				{ name: "Tag 5", ticked: false},
+				{ name: "Tag 6", ticked: false},
+				{ name: "Tag 7", ticked: false},
+				{ name: "Tag 8", ticked: false},
+				{ name: "Tag 9", ticked: false},
+				{ name: "Tag 10", ticked: false}
+			];
 
 			$scope.$watch("newMessageCtrl.newMessage.range", function(newValue, oldValue){
 				$rootScope.map_range = newValue;

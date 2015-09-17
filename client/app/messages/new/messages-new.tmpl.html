@@ -54,10 +54,20 @@
 
 			<span id="message-tags" class="input-wrapper">
 					<label class="qvr-label">Message Tags</label>
-					<select class="qvr-select" required>
-						<option>Add #Tags</option>
-					</select>
-				</span>
+					<isteven-multi-select class="add-tag-filters float-left"   
+				    input-model="newMessageCtrl.messageTags"    
+				    output-model="newMessageCtrl.newMessage.messageTags"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+					>
+				</isteven-multi-select>
+				
+				<button class="qvr-button action" ng-disabled="newMessageCtrl.newMessage.messageTags.length == 0">
+					<i class="check-mark"></i>
+				</button>
+			</span>
 		</section>
 		
 		<section class="content-row">

@@ -159,10 +159,17 @@
 			<div class="clearfix"></div>
 				<div id="marketing-assets" class="input-wrapper">
 					<label class="qvr-label">Marketing Assets</label>
-					<select class="qvr-select" ng-model="manageCampaignCtrl.manageCampaign.marketingAsset" required>
-						<option value="" selected>Select</option>
-						<option ng-repeat="obj in manageCampaignCtrl.manageCampaign.marketingAssets" value="{{obj}}">{{obj}}</option>
-					</select>
+
+					<isteven-multi-select class="marketing-asset"
+				    input-model="manageCampaignCtrl.campaignMarketingAssets"    
+				    output-model="manageCampaignCtrl.manageCampaign.marketingAssets"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+				     >
+				</isteven-multi-select>
+
 				</div>
 				<div id="campaigns-tags" class="input-wrapper">
 					<label class="qvr-label">Campaigns Tags</label>
@@ -279,7 +286,7 @@
 
 			<div id="tag-filters" class="input-wrapper">
 				<isteven-multi-select class="add-tag-filters float-left"   
-				    input-model="manageCampaignCtrl.campaignsTags"    
+				    input-model="manageCampaignCtrl.campaignMessageTags"    
 				    output-model="manageCampaignCtrl.tagFilters"
 				    button-label="icon name"
 				    item-label="icon name maker"
@@ -288,7 +295,7 @@
 					>
 				</isteven-multi-select>
 				
-				<button class="qvr-button action">
+				<button class="qvr-button action" ng-disabled="manageCampaignCtrl.tagFilters.length == 0">
 					<i class="check-mark"></i>
 				</button>
 			</div>	

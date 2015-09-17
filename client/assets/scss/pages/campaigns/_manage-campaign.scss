@@ -88,6 +88,11 @@
             }
         }
     }
+    .marketing-asset{
+        .multiSelect.inlineBlock > button{
+            width: 350px;
+        }
+    }
     .manage-campaign-form {
         .qvr-label {
             span {

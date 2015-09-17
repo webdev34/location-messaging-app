@@ -45,39 +45,63 @@
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
 			manageCampaignCtrl.campaignParticipantsList = [
-				{ icon: "", name: "Group 1", maker: "", ticked: false },
-				{ icon: "", name: "Group 2", maker: "", ticked: false},
-				{ icon: "", name: "Group 3", maker: "", ticked: false},
-				{ icon: "", name: "Group 4", maker: "", ticked: false},
-				{ icon: "", name: "Group 5", maker: "", ticked: false},
-				{ icon: "", name: "Group 6", maker: "", ticked: false},
-				{ icon: "", name: "Group 7", maker: "", ticked: false},
-				{ icon: "", name: "Group 8", maker: "", ticked: false},
-				{ icon: "", name: "Group 9", maker: "", ticked: false},
-				{ icon: "", name: "Group 10", maker: "", ticked: false}
+				{ name: "Group 1", ticked: false },
+				{ name: "Group 2", ticked: false},
+				{ name: "Group 3", ticked: false},
+				{ name: "Group 4", ticked: false},
+				{ name: "Group 5", ticked: false},
+				{ name: "Group 6", ticked: false},
+				{ name: "Group 7", ticked: false},
+				{ name: "Group 8", ticked: false},
+				{ name: "Group 9", ticked: false},
+				{ name: "Group 10",ticked: false}
 			];
 
 			manageCampaignCtrl.campaignsTags = [
-				{ icon: "", name: "Tag 1", maker: "", ticked: false },
-				{ icon: "", name: "Tag 2", maker: "", ticked: false},
-				{ icon: "", name: "Tag 3", maker: "", ticked: false},
-				{ icon: "", name: "Tag 4", maker: "", ticked: false},
-				{ icon: "", name: "Tag 5", maker: "", ticked: false},
-				{ icon: "", name: "Tag 6", maker: "", ticked: false},
-				{ icon: "", name: "Tag 7", maker: "", ticked: false},
-				{ icon: "", name: "Tag 8", maker: "", ticked: false},
-				{ icon: "", name: "Tag 9", maker: "", ticked: false},
-				{ icon: "", name: "Tag 10", maker: "", ticked: false}
+				{ name: "Tag 1", ticked: false },
+				{ name: "Tag 2", ticked: false},
+				{ name: "Tag 3", ticked: false},
+				{ name: "Tag 4", ticked: false},
+				{ name: "Tag 5", ticked: false},
+				{ name: "Tag 6", ticked: false},
+				{ name: "Tag 7", ticked: false},
+				{ name: "Tag 8", ticked: false},
+				{ name: "Tag 9", ticked: false},
+				{ name: "Tag 10", ticked: false}
 			];
 
-			manageCampaignCtrl.tagFilters = [];
+			manageCampaignCtrl.campaignMessageTags = [
+				{ name: "Tag 1", ticked: false },
+				{ name: "Tag 2", ticked: false},
+				{ name: "Tag 3", ticked: false},
+				{ name: "Tag 4", ticked: false},
+				{ name: "Tag 5", ticked: false},
+				{ name: "Tag 6", ticked: false},
+				{ name: "Tag 7", ticked: false},
+				{ name: "Tag 8", ticked: false},
+				{ name: "Tag 9", ticked: false},
+				{ name: "Tag 10", ticked: false}
+			];
+
+			manageCampaignCtrl.campaignMarketingAssets = [
+				{ name: "Asset 1", ticked: false },
+				{ name: "Asset 2", ticked: false},
+				{ name: "Asset 3", ticked: false},
+				{ name: "Asset 4", ticked: false},
+				{ name: "Asset 5", ticked: false},
+				{ name: "Asset 6", ticked: false},
+				{ name: "Asset 7", ticked: false},
+				{ name: "Asset 8", ticked: false},
+				{ name: "Asset 9", ticked: false},
+				{ name: "Asset 10", ticked: false}
+			];
 			
 			manageCampaignCtrl.manageCampaign = {
 				"campaignID": "00131",
 				"campaignName": "Drive A Dream - Vancouver BC",
 				"campaignParticipants": [],
 				"campaignDescription": "Tesla's Drive A Dream in Vancouver BC will be target- ing the true auto enthusiast having a passion for performance and luxury. The campaign will be physi- cally centered around our two locations. The Quiver campaign will be run simultaneously with a local television campaign spanning the campaign period.",
-				"marketingAssets": ["asset 1", "asset 2", "asset 3" ],
+				"marketingAssets": [ ],
 				"campaignsTags": [],
 				"status": "Draft",
 				"startDate": todayProperFormatted,
@@ -87,6 +111,8 @@
 				"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 				"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
 			};
+
+			manageCampaignCtrl.tagFilters = [];
 
 			manageCampaignCtrl.statuses = ["Live", "Draft", "Ended"]; 
 			manageCampaignCtrl.cloneCampaign = {

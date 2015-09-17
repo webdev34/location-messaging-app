@@ -15,24 +15,29 @@
 
 		<div class="campaign-center-filter-wrapper qvr-form">
 			<div id="bulk-action" class="input-wrapper">
-				<select id="bulk-actions" class="qvr-select" ng-model="CampaignCenterCtrl.bulkActions" required>
+				<select id="bulk-actions" class="qvr-select" ng-model="campaignCenterCtrl.bulkActions" required>
 					<option value="" selected>Bulk Action</option>
 					<option value="Delete">Delete</option>
 					<option value="Draft">Set To Draft</option>
 					<option value="Live">Set To Live</option>
 					<option value="Ended">Ended</option>
 				</select>
-				<button class="qvr-button action" ng-disabled="!CampaignCenterCtrl.bulkActions || !isAnyInputsSelected" ng-click="bulkActions()" >
+				<button class="qvr-button action" ng-disabled="!campaignCenterCtrl.bulkActions || !isAnyInputsSelected" ng-click="bulkActions()" >
 					<i class="check-mark"></i>
 				</button>
 			</div>
 			<div id="tag-filters" class="input-wrapper">
-				<select class="qvr-select" ng-model="CampaignCenterCtrl.addTags" required>
-					<option value="" selected>Add #Tag</option>
-					<option value="">Tag 1</option>
-					<option value="">Tag 2</option>
-				</select>
-				<button class="qvr-button action">
+				<isteven-multi-select class="add-tag-filters float-left"   
+				    input-model="campaignCenterCtrl.campaignTags"    
+				    output-model="campaignCenterCtrl.tagFilters"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+					>
+				</isteven-multi-select>
+				
+				<button class="qvr-button action" ng-disabled="campaignCenterCtrl.tagFilters.length == 0">
 					<i class="check-mark"></i>
 				</button>
 			</div>	
