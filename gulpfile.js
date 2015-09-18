@@ -104,6 +104,7 @@ gulp.task('uglify', function(cb) {
     .pipe(gulp.dest(paths.build + '/assets/js/'))
   ;
 
+  // Plugins JS
   gulp.src(paths.plugins)
     .pipe($.sourcemaps.init())
     .pipe($.uglify()
@@ -119,12 +120,11 @@ gulp.task('uglify', function(cb) {
   // App JavaScript
   gulp.src(paths.appJS)
     .pipe($.sourcemaps.init())
-
-    .pipe($.uglify()
-      .on('error', function(e) {
-        $.util.beep();
-        console.log(e);
-      }))
+    // .pipe($.uglify()
+    //   .on('error', function(e) {
+    //     $.util.beep();
+    //     console.log(e);
+    //   }))
     .pipe($.concat('app.js'))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(paths.build + '/assets/js/'))
@@ -172,7 +172,7 @@ gulp.task('server', function() {
       port: 8080,
       host: 'localhost',
       fallback: 'index.html',
-      livereload: false,
+      livereload: true,
       open: true
     }))
   ;

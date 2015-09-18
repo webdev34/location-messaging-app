@@ -24,6 +24,8 @@
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
 
+			newMessageCtrl.initialMapCenter = "43.642566,-79.387057";
+
 			
 			function resetForm() {
 				var today = new Date(),

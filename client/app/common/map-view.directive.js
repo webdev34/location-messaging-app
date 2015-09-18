@@ -1,90 +1,32 @@
 (function() {
 	'use strict';
 
-	angular.module('messages', [
-		'enterprise-portal.models.messages',
-		'messages.dashboard',
-		'messages.detail',
-		'messages.new',
-		'messages.edit',
-		'messages.manage-campaign'
-	])
-
-	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-		$stateProvider
-			.state('messages', {
-				url: '/campaign',
-				templateUrl: 'app/messages/messages.tmpl.html',
-				abstract: true
-			})
-			.state('messages.dashboard', {
-				url: '/',
-				templateUrl: 'app/messages/dashboard/messages-dashboard.tmpl.html',
-				controller: 'CampaignCenterCtrl as campaignCenterCtrl'
-			})
-			.state('messages.new', {
-				url: '/message/new',
-				templateUrl: 'app/messages/new/messages-new.tmpl.html',
-				controller: 'NewMessageCtrl as newMessageCtrl'
-			})
-			.state('messages.edit', {
-				url: '/message/:_id',
-				templateUrl: 'app/messages/new/messages-new.tmpl.html',
-				controller: 'NewMessageCtrl as newMessageCtrl'
-			})
-			.state('messages.asset', {
-				url: '/assets',
-				templateUrl: 'app/messages/asset/messages-asset.tmpl.html',
-				controller: 'AssetMessageCtrl as assetMessageCtrl'
-			})
-			.state('messages.manage', {
-				url: '/manage',
-				templateUrl: 'app/messages/manage/messages-manage.tmpl.html',
-				controller: 'MessagesManageCtrl as messagesManageCtrl'
-			})
-			.state('messages.manage-campaign', {
-				url: '/manage-campaign',
-				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html',
-				controller: 'ManageCampaignCtrl as manageCampaignCtrl'
-			})
-			;
-
-		$urlRouterProvider.otherwise('messages.dashboard');
-	}])
-
-	.controller('MessageListCtrl', [
-		'MessageListModel',
-		
-		function(MessageListModel) {
-			var messageListCtrl = this;
-			MessageListModel.getMessageList()
-				.then(function(result) {
-					messageListCtrl.messages = result;
-				});
-		}
-	])
-
-	.controller('MyCtrl', ['$scope', function ($scope) {
-     $scope.types = "['establishment']";
-    
-	}])
+	angular.module('enterprise-portal')
 	
-	.controller('MapCoordinatesCtrl', [
-		'$rootScope',
-		'$scope',
-		'$compile',
+	.directive('mapView', [
+		'$rootScope', '$compile',
 		
-		function($rootScope, $scope, $compile) {
+		function ($rootScope, $compile) {
+			return {
+				restrict: "E",
+				templateUrl: 'app/common/map-view.directive.html',
+				scope: {
+					title: '=',
+					mapcenter: "="
+				},
+			link:	function(scope, el, attrs) {
 			var TILE_SIZE = 256;
 			
 			var geocoder = new google.maps.Geocoder();
 
-			$scope.placeChanged = function() {
-				console.log("new place" + this.getPlace());
-	       //$scope.place = this.getPlace();
-	      $rootScope.map_search = this.getPlace();
+			// scope.placeChanged = function() {
+			// 	console.log("new place" + this.getPlace());
+	  //      //scope.place = this.getPlace();
+	  //     $rootScope.map_search = this.getPlace();
 
-			}
+			// }
+
+
 			
 			function bound(value, opt_min, opt_max) {
 				if (opt_min != null) value = Math.max(value, opt_min);
@@ -111,8 +53,7 @@
 				var point = opt_point || new google.maps.Point(0, 0);
 				var origin = me.pixelOrigin_;
 
-
-				console.log('latlng from ctrl:' + latLng.lng());
+				console.log('latlng from directive:' + latLng);
 				point.x = origin.x + latLng.lng() * me.pixelsPerLonDegree_;
 
 				// Truncating to 0.9999 effectively limits latitude to 89.189. This is
@@ -150,19 +91,20 @@
 			}
 			*/
 			
-			$scope.$on('mapInitialized', function(event, map) {
+			scope.$on('mapInitialized', function(event, map) {
 				var numTiles = 1 << map.getZoom();
 				var projection = new MercatorProjection();
-				$scope.toronto = map.getCenter();
-				$scope.worldCoordinate = projection.fromLatLngToPoint($scope.toronto);
-				$scope.pixelCoordinate = new google.maps.Point(
-					$scope.worldCoordinate.x * numTiles,
-					$scope.worldCoordinate.y * numTiles);
-				$scope.tileCoordinate = new google.maps.Point(
-					Math.floor($scope.pixelCoordinate.x / TILE_SIZE),
-					Math.floor($scope.pixelCoordinate.y / TILE_SIZE));
+				//scope.toronto = "(43.642566,-79.387057)",
+				scope.toronto = map.getCenter();
+				scope.worldCoordinate = projection.fromLatLngToPoint(scope.toronto);
+				scope.pixelCoordinate = new google.maps.Point(
+					scope.worldCoordinate.x * numTiles,
+					scope.worldCoordinate.y * numTiles);
+				scope.tileCoordinate = new google.maps.Point(
+					Math.floor(scope.pixelCoordinate.x / TILE_SIZE),
+					Math.floor(scope.pixelCoordinate.y / TILE_SIZE));
 				
-				$scope.marker = new google.maps.Marker({
+				scope.marker = new google.maps.Marker({
 					position: map.getCenter(),
 					map: map,
 					icon: {
@@ -173,17 +115,17 @@
 					}
 				});
 				
-				$scope.rangeCircle = new google.maps.Circle({
+				scope.rangeCircle = new google.maps.Circle({
 					'strokeColor': '#00A9CC',
 					'strokeOpacity': 1,
 					'strokeWeight': 2,
 					'fillColor': '#FFFFFF',
 					'fillOpacity': 0.3,
 					'map': map,
-					'center': $scope.toronto,
+					'center': scope.toronto,
 					'radius': 5000
 				});
-				map.fitBounds($scope.rangeCircle.getBounds());
+				map.fitBounds(scope.rangeCircle.getBounds());
 				
 				var center = map.getCenter();
 				$rootScope.map_coords = [center.lat(), center.lng()];
@@ -191,15 +133,15 @@
 				google.maps.event.addListener(map, 'drag', function() {
 					var center = map.getCenter();
 					
-					$scope.marker.setPosition(center);
-					$scope.rangeCircle.setCenter(center);
+					scope.marker.setPosition(center);
+					scope.rangeCircle.setCenter(center);
 					$rootScope.map_coords = [center.lat(), center.lng()];
 				});
 				
 				$rootScope.$watch("map_range", function(newValue, oldValue){
-					$scope.rangeCircle.setRadius(parseInt(newValue) * 1000);
+					scope.rangeCircle.setRadius(parseInt(newValue) * 1000);
 					
-					map.fitBounds($scope.rangeCircle.getBounds()); // this shifts the center ever so slightly
+					map.fitBounds(scope.rangeCircle.getBounds()); // this shifts the center ever so slightly
 					map.setCenter({lat: $rootScope.map_coords[0], lng: $rootScope.map_coords[1]}); // re-center it
 				});
 				
@@ -208,11 +150,11 @@
 						if (status == google.maps.GeocoderStatus.OK) {
 							var loc = results[0].geometry.location;
 							
-							$scope.marker.setPosition(loc);
-							$scope.rangeCircle.setCenter(loc);
+							scope.marker.setPosition(loc);
+							scope.rangeCircle.setCenter(loc);
 							
 							map.setCenter(loc);
-							map.fitBounds($scope.rangeCircle.getBounds());
+							map.fitBounds(scope.rangeCircle.getBounds());
 							
 							var center = map.getCenter();
 							$rootScope.map_coords = [center.lat(), center.lng()];
@@ -224,6 +166,9 @@
 
 
 			});
+		}
+
+			};
 		}
 	]);
 
