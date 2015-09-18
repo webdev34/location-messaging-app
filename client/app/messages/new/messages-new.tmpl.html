@@ -274,7 +274,7 @@
 
 
 						<div class="radius">
-							<span><input ng-model="newMessageCtrl.newMessage.range" ></span><span class="km"> km</span> radius
+							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span class="km"> km</span> radius
 						</div>
 						<div class="radius-wrapper">
 							<span class="radius-minus" radius-interval-button="minus" range-value="newMessageCtrl.newMessage.range" ng-click="map_range_change('minusRange')" >-</span>
