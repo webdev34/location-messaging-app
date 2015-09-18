@@ -244,21 +244,10 @@
 						<input type="text" class="hourglass" ng-model="newMessageCtrl.newMessage.endTime" ng-click="newMessageCtrl.showEndTimePicker=true">
 					</div>
 
-
-					<div class="clearfix"></div>
-										<input ng-model="newMessageCtrl.fakeData">
-
-					<map-view
-							title="newMessageCtrl.fakeData"
-							mapcenter="newMessageCtrl.initialMapCenter"
-					></map-view>
-					<div class="clearfix"></div>		
-
-					<br><br>
-					<section class="location-section" ng-controller="MapCoordinatesCtrl">
+					<section class="location-section">
 						<label class="qvr-label">Select Preset Locations</label>
-						<select class="qvr-select" required>
-							<option>---</option>
+						<select class="qvr-select" disabled>
+							<option>--- N/A ---</option>
 						</select>
 
 						
@@ -274,15 +263,18 @@
 							</div>
 							<input places-auto-complete type="search" ng-model="newMessageCtrl.search" on-place-changed="placeChanged(place)" placeholder="Enter Address">
 						</div>
-						<div  >
-							<map center="43.642566,-79.387057" zoom="12" style="height:250px">
-							</map>
-						</div>
+					
+						<map-view
+							mapcenter="newMessageCtrl.initialMapCenter"
+							coordinates="newMessageCtrl.coordinates"
+							range="newMessageCtrl.newMessage.range"
+
+						></map-view>
 
 
 
 						<div class="radius">
-							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span class="km"> km</span> radius
+							<span><input ng-model="newMessageCtrl.newMessage.range" ></span><span class="km"> km</span> radius
 						</div>
 						<div class="radius-wrapper">
 							<span class="radius-minus" radius-interval-button="minus" range-value="newMessageCtrl.newMessage.range" ng-click="map_range_change('minusRange')" >-</span>

@@ -24,7 +24,27 @@
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
 
-			newMessageCtrl.initialMapCenter = "43.642566,-79.387057";
+			newMessageCtrl.coordinates =  {"H":43.657504642319005,"L":-79.37607067187501};
+			newMessageCtrl.initialMapCenter = newMessageCtrl.coordinates.H + ","+ newMessageCtrl.coordinates.L;
+
+			newMessageCtrl.newMessage = {
+					"sid": "",
+					"messageTitle": "",
+					"content": "",
+					"status": "Inactive",
+					"range": 5,
+					"sentTo": "TARGET_FRIENDS",
+					"discoverOn": "enter",
+					"startTime": "12:01 AM",
+					"endTime": "11:59 PM",
+					"locationName": "",
+					"latlng": [],
+					"assets": [],
+
+
+					"locationName": "generic name",
+					"coordinates": [-79.383184, 43.653226]
+				};
 
 			
 			function resetForm() {
@@ -82,7 +102,8 @@
 			}
 
 			$scope.$watch("newMessageCtrl.newMessage.range", function(newValue, oldValue){
-				$rootScope.map_range = newValue;
+				// console.log("from msg ctrl:" + newMessageCtrl.newMessage.range);
+				// $rootScope.map_range = newValue;
 			});
 
 			$scope.uploader = {};

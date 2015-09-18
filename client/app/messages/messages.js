@@ -74,7 +74,8 @@
 		'$scope',
 		'$compile',
 		
-		function($rootScope, $scope, $compile) {
+		function($rootScope, $scope, $compile
+		) {
 			var TILE_SIZE = 256;
 			
 			var geocoder = new google.maps.Geocoder();
@@ -111,8 +112,6 @@
 				var point = opt_point || new google.maps.Point(0, 0);
 				var origin = me.pixelOrigin_;
 
-
-				console.log('latlng from ctrl:' + latLng.lng());
 				point.x = origin.x + latLng.lng() * me.pixelsPerLonDegree_;
 
 				// Truncating to 0.9999 effectively limits latitude to 89.189. This is
@@ -225,6 +224,7 @@
 
 			});
 		}
-	]);
+	])
+;
 
 })();
