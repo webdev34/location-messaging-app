@@ -71,7 +71,8 @@
 			};
 
 			model.createNewMessage = function(newMessage) {
-				//newMessage.target = 3;
+				console.log("start: "+ newMessage.startDate + " " +  newMessage.startTime);
+				console.log("end: "+ newMessage.endDate + " " + newMessage.endTime);
 
 				var formattedMessage = {
 					"comment": {
@@ -83,17 +84,17 @@
 							"name": newMessage.locationName,
 							"geoFence": {
 								"type": "Point",
-								"coordinates": newMessage.coordinates
+								"coordinates": [newMessage.coordinates.H, newMessage.coordinates.L]
 							},
 							"distance": newMessage.range,
 							"trigger": 1, //is this the same as discoverOn
 							//"discoverOn": newMessage.discoverOn,
-							"startTime": 1440722869392,
-							"endTime": 1440722869932
+							"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
+							"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()
 						}
 					],
 					 envelope: {
-            target: 3
+            target: 3 //targets all followers
         	}
 				}
 

@@ -18,7 +18,7 @@
 			<div zf-modal="" id="saveMessageModal">
 				<a zf-close="" class="close-button">×</a>
 				<p class="qvr-align-center">
-					Sample text
+					Are you sure you want to save this message?
 				</p>
 				<div class="modal-button-wrapper qvr-align-center">
 					<button type="submit" class="qvr-button action" ng-click="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)">Save</button>
@@ -169,6 +169,7 @@
 			</section>
 			<section class="column-3">
 				<section class="time-selector" ng-show="newMessageCtrl.showStartTimePicker">
+				
 					<time-picker
 					title="Start Time"
 					name="start-time"
