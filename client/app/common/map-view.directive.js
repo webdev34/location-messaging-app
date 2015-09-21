@@ -125,7 +125,7 @@
 						});
 
 						scope.$watch("mapsearch", function(newValue, oldValue) {
-							console.log("search for: " + scope.mapsearch)
+							//console.log("search for: " + scope.mapsearch)
 
 								geocoder.geocode({'address': newValue}, function(results, status) {
 								if (status == google.maps.GeocoderStatus.OK) {
@@ -140,7 +140,7 @@
 									var center = map.getCenter();
 									scope.coordinates = center;
 								} else {
-									console.log("Geocode was not successful for the following reason: " + status);
+									//console.log("Geocode was not successful for the following reason: " + status);
 								}
 							});
 						});
