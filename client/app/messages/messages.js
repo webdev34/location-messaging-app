@@ -7,7 +7,8 @@
 		'messages.detail',
 		'messages.new',
 		'messages.edit',
-		'messages.manage-campaign'
+		'messages.manage-campaign',
+		'messages.manage-locations'
 	])
 
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -46,6 +47,11 @@
 				url: '/manage-campaign',
 				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html',
 				controller: 'ManageCampaignCtrl as manageCampaignCtrl'
+			})
+			.state('messages.manage-locations', {
+				url: '/manage-locations',
+				templateUrl: 'app/messages/manage-locations/manage-locations.tmpl.html',
+				controller: 'ManageLocationsCtrl as manageLocationsCtrl'
 			})
 			;
 

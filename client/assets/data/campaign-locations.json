@@ -1,0 +1,94 @@
+{
+  "campaignLocations": [{
+          "id": 412,
+          "locationName": "219 Ocean Ave.",
+          "locationLabel": "Vancouver #1",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 64,
+          "locationName": "938 Middlelane Drive",
+          "locationLabel": "Vancouver #2",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 344,
+          "locationName": "123 Ocean Ave.",
+          "locationLabel": "Vancouver #3",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 9092,
+          "locationName": "567 Ocean Ave.",
+          "locationLabel": "Vancouver #4",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 34,
+          "locationName": "9 Ocean Ave.",
+          "locationLabel": "Vancouver #5",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 324,
+          "locationName": "22399 Ocean Ave.",
+          "locationLabel": "Vancouver #6",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 241234,
+          "locationName": "2 Ocean Ave.",
+          "locationLabel": "Vancouver #7",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 65,
+          "locationName": "2299 Ocean Ave.",
+          "locationLabel": "Vancouver #8",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 234,
+          "locationName": "43 Hathway Lane",
+          "locationLabel": "Vancouver #9",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 2324,
+          "locationName": "9299 Ocean Ave.",
+          "locationLabel": "Vancouver #10",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 23,
+          "locationName": "2399 Ocean Ave.",
+          "locationLabel": "Vancouver #11",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 1212,
+          "locationName": "2299 Ocean Ave.",
+          "locationLabel": "Vancouver #12",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        },
+        {
+          "id": 293,
+          "locationName": "1199 Oceans Ave.",
+          "locationLabel": "Vancouver #13",
+          "coordinates": [-79.383184, 43.653226],
+          "locationTags": []
+        }
+  ]
+}

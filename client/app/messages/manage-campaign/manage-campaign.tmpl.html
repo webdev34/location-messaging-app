@@ -267,11 +267,16 @@
 					</table>
 					<span class="unique-id-msg">* A new unique ID will be assigned to cloned messages</span>
 
-					<div class="campaign-selection-wrapper">
+					<div class="campaign-selection-wrapper" class="input-wrapper">
 						<label>Select Campaign to Associate Cloned Messages</label>
-						<select class="qvr-select">
-							<option>Select</option>
-						</select>
+						<isteven-multi-select class="add-tags"   
+						    input-model="manageCampaignCtrl.campaigns"    
+						    output-model="manageCampaignCtrl.cloneToCampaigns"
+						    button-label="icon name"
+						    item-label="icon name maker"
+						    tick-property="ticked"
+						    this-length="2">
+						</isteven-multi-select>
 					</div>
 				</div>
 				<hr>

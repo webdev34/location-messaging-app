@@ -70,18 +70,7 @@
 				{ name: "Tag 10", ticked: false}
 			];
 
-			manageCampaignCtrl.campaignMessageTags = [
-				{ name: "Tag 1", ticked: false },
-				{ name: "Tag 2", ticked: false},
-				{ name: "Tag 3", ticked: false},
-				{ name: "Tag 4", ticked: false},
-				{ name: "Tag 5", ticked: false},
-				{ name: "Tag 6", ticked: false},
-				{ name: "Tag 7", ticked: false},
-				{ name: "Tag 8", ticked: false},
-				{ name: "Tag 9", ticked: false},
-				{ name: "Tag 10", ticked: false}
-			];
+			manageCampaignCtrl.campaignMessageTags = angular.copy(manageCampaignCtrl.campaignsTags);
 
 			manageCampaignCtrl.campaignMarketingAssets = [
 				{ name: "Asset 1", ticked: false },
@@ -95,7 +84,22 @@
 				{ name: "Asset 9", ticked: false},
 				{ name: "Asset 10", ticked: false}
 			];
+
+			manageCampaignCtrl.campaigns = [
+				{ name: "Campaign 1", ticked: false },
+				{ name: "Campaign 2", ticked: false},
+				{ name: "Campaign 3", ticked: false},
+				{ name: "Campaign 4", ticked: false},
+				{ name: "Campaign 5", ticked: false},
+				{ name: "Campaign 6", ticked: false},
+				{ name: "Campaign 7", ticked: false},
+				{ name: "Campaign 8", ticked: false},
+				{ name: "Campaign 9", ticked: false},
+				{ name: "Campaign 10", ticked: false}
+			];
 			
+			manageCampaignCtrl.cloneToCampaigns = [];
+
 			manageCampaignCtrl.manageCampaign = {
 				"campaignID": "00131",
 				"campaignName": "Drive A Dream - Vancouver BC",
@@ -223,8 +227,6 @@
 
 			});
 			
-
-
 
 			function resetForm() {
 				manageCampaignCtrl.manageCampaign = {

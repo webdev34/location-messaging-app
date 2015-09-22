@@ -1,0 +1,162 @@
+<header class="heading-bar">
+	<h1>Manage Locations</h1>
+</header>
+<section class="message-content-wrap manage-locations">
+	<!-- Create Location -->
+	<section class="new-location-wrapper qvr-form" >
+		<h2>Create Location</h2>
+		
+		<div class="delivery-box">
+			<label class="qvr-label">Name Location</label>
+			<input type="text" ng-model="manageLocationsCtrl.newLocation.locationName" placeholder="Enter Label Name" >
+		</div>
+
+		<section class="location-section">
+			<div class="map-search-wrap">
+				<label class="qvr-label">Search for Location</label>
+				<span class="icon i-location-large"></span>
+				<div class="search-button" ng-click="doSearch()">
+					<span class="icon i-search-white"></span>
+				</div>
+				<input type="search" ng-model="newMessageCtrl.search" placeholder="Search">
+			</div>
+			<div ng-controller="MapCoordinatesCtrl" class="ng-scope">
+				<map center="43.642566,-79.387057" zoom="12" style="height:250px">
+				</map>
+			</div>
+
+			<div class="clearfix"></div>
+			<div id="new-location-tag-filters" class="input-wrapper">
+				<isteven-multi-select class="add-tag-filters float-left"   
+				    input-model="manageLocationsCtrl.newLocationFilters"    
+				    output-model="manageLocationsCtrl.newLocation.locationTags"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+					>
+				</isteven-multi-select>
+				<div class="button-wrapper">
+					<button type="submit" class="qvr-button action">Save</button>
+					<button class="qvr-button cancel">Cancel</button>
+				</div>
+			</div>	
+		</section>
+	</section>
+
+
+	<!-- Locations -->
+	<section class="manage-locations-wrapper">
+		<div class="manage-locations-header qvr-form">
+			<h1 class="float-left">Locations</h1>
+			<div class="search-wrapper">
+				<label for="filter-by"><i class="fa fa-search"></i></label>
+				<input type="search" class="search-locations" ng-model="search"  placeholder="Search Locations"  ng-keypress="resetCurrentPage()">
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+		<div class="manage-locations-filter-wrapper qvr-form">
+			<div id="bulk-action" class="input-wrapper">
+				
+				<select id="bulk-actions" class="qvr-select" ng-model="manageLocationsCtrl.bulkActions" required >
+					<option value="" selected>Bulk Actions</option>
+					<option value="Delete">Delete</option>
+					
+				</select>
+				<button class="qvr-button action" id="bulk-action-button" ng-disabled="!manageLocationsCtrl.bulkActions || !isAnyInputsSelected" ng-click="bulkActions()">
+					<i class="check-mark"></i>
+				</button>
+			</div>
+
+
+			<div id="tag-filters" class="input-wrapper">
+				<isteven-multi-select class="add-tag-filters float-left"   
+				    input-model="manageLocationsCtrl.locationFilters"    
+				    output-model="manageLocationsCtrl.tagFilters"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+					>
+				</isteven-multi-select>
+				
+				<button class="qvr-button action" ng-disabled="manageLocationsCtrl.tagFilters.length == 0">
+					<i class="check-mark"></i>
+				</button>
+			</div>	
+
+
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="manage-locations-table-wrapper qvr-form">
+			<table>
+			  <thead>
+			    <tr>
+			      <th>
+			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
+			      </th>
+			      <th>
+			      	<label>Label</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'locationLabel' && reverse == false}" ng-click="sortByFunc('locationLabel',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'locationLabel' && reverse == true}" ng-click="sortByFunc('locationLabel',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Location</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'locationName' && reverse == false}" ng-click="sortByFunc('locationName',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'locationName' && reverse == true}" ng-click="sortByFunc('locationName',true);"></i>
+			      	</span>
+			      </th>
+			      <th></th>
+			      <th><span style="color: #F2F2F2">*</span></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<tr ng-show="results.length == 0">
+			  		<td></td>
+			  		<td colspan="3">
+			  			<p class="qvr-align-center">No Results</p></td>
+			  		<td><span style="color: white">*</span></td>
+			  	</tr>
+			    <tr  data-ng-repeat="location in manageLocationsCtrl.campaignLocations | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" >
+			      <td><input type="checkbox" ng-model="location.isSelected" ng-change="anyInputsSelected();" /></td>
+			      <td>{{location.locationLabel}}</td>
+			      <td>{{location.locationName}}</td>
+			      <td><a>Edit</a></td>
+			      <td><a ng-click="deleteLocation(location.id);">Delete</a></td>
+			    </tr>
+			  </tbody>
+			</table>
+			<div class="pagination-wrapper input-wrapper bottom">
+				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
+					<i class="fa fa-angle-double-left"></i>
+				</button>
+				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
+					<i class="fa fa-angle-left"></i>
+				</button>
+				<span class="pagination-info">
+					<input type="number" min="1" max="9999" ng-model="currentPage" />
+					<span>
+						of 
+						<span ng-hide="results.length == 0">{{noOfPages}}</span>
+						<span ng-show="results.length == 0">1</span>
+					</span>
+			    </span>
+				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
+					<i class="fa fa-angle-right right"></i>
+				</button>
+				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
+					<i class="fa fa-angle-double-right right"></i>
+				</button>
+			</div>	
+		</div>
+
+	</section>
+
+</section>
+

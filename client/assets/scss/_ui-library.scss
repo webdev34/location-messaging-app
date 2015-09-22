@@ -60,6 +60,43 @@ p {
     padding: 0;
 }
 
+.animated { 
+    -webkit-animation-duration: .1s; 
+    animation-duration: .1s; 
+    -webkit-animation-fill-mode: both; 
+    animation-fill-mode: both; 
+    -webkit-animation-timing-function: ease-in; 
+    animation-timing-function: ease-in; 
+} 
+
+@-webkit-keyframes fadeIn { 
+    0% {opacity: 1;} 
+    100% {opacity: 1;} 
+} 
+@keyframes fadeIn { 
+    0% {opacity: 1;} 
+    100% {opacity: 1;} 
+} 
+
+@-webkit-keyframes fadeOut { 
+    0% {opacity: 0; display:none;} 
+    100% {opacity: 0;} 
+} 
+@keyframes fadeOut { 
+    0% {opacity: 0;} 
+    100% {opacity: 0;} 
+} 
+
+.fadeIn { 
+    -webkit-animation-name: fadeIn; 
+    animation-name: fadeIn; 
+}
+
+.fadeOut { 
+    -webkit-animation-name: fadeOut; 
+    animation-name: fadeOut; 
+}
+
 // Bower foundation overrides
 ul {
     margin: 0;
@@ -794,7 +831,7 @@ input[type="checkbox"].qvr-slide-toggle {
         }
     }
     &.cancel{
-        background-color: red;
+        background-color: rgb(192, 192, 192);
         color: white;
         text-transform: uppercase;
     }
