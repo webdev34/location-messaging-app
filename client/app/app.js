@@ -199,15 +199,12 @@
 				for (var i = 0; i < stateArray.length; i++) {
 
 					if ( ($state.current.name).includes(stateArray[i]) ) {
-						console.log("setNavigationState");
 						appCtrl.gNavStateIs = stateArray[i];
 						break;
 					}
 				}
-								console.log("gNam state is:" + appCtrl.gNavStateIs);
 
-				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];
-				
+				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];				
 				appCtrl.showHeader = appCtrl.currentState.current.name != 'home';
 			}
 
@@ -227,10 +224,10 @@
 
 
 			function checkIfLoggedIn() {
-				console.log('checking if loggedin');
+				//console.log('checking if loggedin');
 
 				if (!UserModel.isLoggedIn) {
-					console.log('not logged in');
+					//console.log('not logged in');
 					//event.preventDefault();
 					goToLogin();
 					return;
@@ -238,7 +235,7 @@
 			}
 
 			$rootScope.$on('$routeChangeStart', function (event) {
-				console.log('routechangestart');
+				//console.log('routechangestart');
 				checkIfLoggedIn();
 
 			});
