@@ -152,7 +152,8 @@
 							}
 						}	
 					}					
-					&:last-child{
+					&:last-child,
+					&.last{
 						td{
 							&:first-child{
 								@include border-radius( 0px 0px 0px 20px);

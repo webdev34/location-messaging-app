@@ -1,44 +1,47 @@
-<div class="page page--enterprise">
+<div class="page page--enterprise" flow-init flow-name="uploader.flow" flow-files-added="processFiles($files)" flow-files-added="saveFiles($files)">
 	
 	<header class="heading-bar">
 		<h1>User Profile</h1>
-		<div class="edit-enterprise-btn-wrapper">
-
-			<button  ng-hide="userProfileCtrl.isEditing" class="qvr-button action" ng-click="userProfileCtrl.isEditing = true">
-				<span>EDIT PROFILE</span>
-			</button>
-
-			<button ng-show="userProfileCtrl.isEditing" class="qvr-button action"  ng-click="userProfileCtrl.isEditing = false">
-				<span>Cancel</span>
-			</button>
-			<button ng-show="userProfileCtrl.isEditing" class="qvr-button action"  zf-open="saveProfileChangesModal">
-				<span>SAVE CHANGES</span>
-			</button>
-
-
-		</div>
 	</header>
 
-		<div class="enterprise-profile" ng-hide="userProfileCtrl.isEditing">
+		<div class="enterprise-profile user-profile" ng-hide="userProfileCtrl.isEditing">
 		<section class="enterprise-content-wrapper">
 			<div class="enterprise-content-left corporate-info">
+				<div class="details full-width avatar">
+					<img  ng-src="{{userProfileCtrl.user.avatar || 'assets/img/default-profile-avatar.png'}}" alt="logo" class="corp-logo" ng-hide="userProfileCtrl.user.newlogo" />
+
+					<div ng-repeat="image in uploader.flow.files track by $index | limitTo:1" ng-if="$index==0">
+				      	<img class="preview" flow-img="image"/><br>
+				        <img class="preview hide" ng-src="{{userProfileCtrl.user.newlogo[$index]}}"/>
+				    </div>
+					<br/>
+					<button class="qvr-button action change-avatar-btn" flow-btn ng-click="removeFiles();">Change Avatar</button>
+					<p>
+						Contact System Administrator to make other changes<br/>
+						to your profile: <a ng-href="#">email</a>
+					</p>
+				</div>
+			</div>
+			<div class="enterprise-content-right corporate-info">
 				<div class="details full-width">
-					<img  ng-src="{{userProfileCtrl.user.avatar || 'assets/img/logo-na.png'}}" alt="logo" class="corp-logo" />
 					
-					<label>Account Name</label>
-					<p>{{userProfileCtrl.user.fullName}}</p>
+					<label>Company Name</label>
+					<p>{{userProfileCtrl.user.companyName}}</p>
 
-					<label>User Name</label>
-					<p>{{userProfileCtrl.user.username}}</p>
-				
-					<label>Description</label>
-					<p class="longer">{{userProfileCtrl.user.description || 'N/A'}}</p>
+					<label>First Name</label>
+					<p>{{userProfileCtrl.user.firstName}}</p>
 
+					<label>Last Name</label>
+					<p>{{userProfileCtrl.user.lastName}}</p>					
 
 					<label>Contact Email</label>
-					<p>{{userProfileCtrl.user.emailAddress}}</p>
+					<p>{{userProfileCtrl.user.email}}</p>
 
+					<label>Contact Phone</label>
+					<p>{{userProfileCtrl.user.email}}</p>
 
+					<label>User Rights</label>
+					<p>{{userProfileCtrl.user.userRights}}</p>
 
 				</div>
 			</div>

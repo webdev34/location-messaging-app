@@ -6,7 +6,8 @@
 		return function (input, start) {
 			if (input) {
 				start = +start;
-				return input.slice(start);
+
+				return input;
 			}
 			return [];
 		};
@@ -47,7 +48,9 @@
 				$scope.reverse = false;
 				$scope.sortOrderBy = 'startDate';
 				$scope.startAt = 0;
-				$scope.endAt = 9
+				$scope.endAt = 9;
+				$scope.selectAll = false;
+				$scope.isAnyInputsSelected = false;
 
 				$scope.goToPage = function(direction) {
 
@@ -73,7 +76,28 @@
 					$scope.sortOrderBy = sortBy;
 					$scope.reverse = reverse;
 					$scope.currentPage = 1;
+					$scope.goToPage(1);
 				};
+
+				$scope.toggleSelected = function() {
+					angular.forEach(followerSummaryCtrl.followerSummaryData, function(followerSummary) {
+				      followerSummary.isSelected = $scope.selectAll;
+				    });
+				};
+
+				$scope.anyInputsSelected = function() {
+					$scope.isAnyInputsSelected = false;
+					$scope.selectAll = true;
+					angular.forEach(followerSummaryCtrl.followerSummaryData, function(campaign, i) {
+						if(campaign.isSelected){
+							$scope.isAnyInputsSelected  = true;
+						}
+						else{
+							$scope.selectAll = false;
+						}
+				    });
+				};
+
 			});
 			
 			function resetForm() {

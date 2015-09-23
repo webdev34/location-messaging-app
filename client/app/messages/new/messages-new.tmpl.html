@@ -1,7 +1,7 @@
 <header class="heading-bar">
 	<h1>Compose</h1>
 </header>
-<section class="message-content-wrap new-message">
+<section class="message-content-wrap new-message" >
 	<form role="form" class="qvr-form create-edit-message-form" name="msgForm">
 		<div class="float-right top-controls">
 			<label class="qvr-label">Message Status </label>
@@ -18,7 +18,7 @@
 			<div zf-modal="" id="saveMessageModal">
 				<a zf-close="" class="close-button">×</a>
 				<p class="qvr-align-center">
-					Sample text
+					Are you sure you want to save this message?
 				</p>
 				<div class="modal-button-wrapper qvr-align-center">
 					<button type="submit" class="qvr-button action" ng-click="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)">Save</button>
@@ -50,6 +50,23 @@
 				<select class="qvr-select" required>
 					<option>----------------</option>
 				</select>
+			</span>
+
+			<span id="message-tags" class="input-wrapper">
+					<label class="qvr-label">Message Tags</label>
+					<isteven-multi-select class="add-tag-filters float-left"   
+				    input-model="newMessageCtrl.messageTags"    
+				    output-model="newMessageCtrl.newMessage.messageTags"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+					>
+				</isteven-multi-select>
+				
+				<button class="qvr-button action" ng-disabled="newMessageCtrl.newMessage.messageTags.length == 0">
+					<i class="check-mark"></i>
+				</button>
 			</span>
 		</section>
 		
@@ -131,20 +148,38 @@
 					</div>				
 				</span> -->
 			</section>
-			<section class="column-3">
+			<section class="column-3" flow-init flow-name="uploader.flow" flow-files-added="processFiles($files)" flow-files-added="saveFiles($files)">
 				<label class="qvr-label">Message Content</label>
-				<textarea ng-model="newMessageCtrl.newMessage.content" class="message-content" placeholder="Insert Content" required></textarea>
-				<a class="attach-asset"><span class="icon i-camera"></span></a>
 
-				<span id="message-tags" class="input-wrapper">
-					<label class="qvr-label">Message Tags</label>
-					<select class="qvr-select" required>
-						<option>Add #Tags</option>
-					</select>
-				</span>
+				<div id="text-area-upload-wrapper">
+					<textarea ng-model="newMessageCtrl.newMessage.content" id="upload-text-area" class="message-content" placeholder="Insert Content" required></textarea>
+
+					<div class="preview-image-wrapper" >
+
+						<ul >
+							<li ng-repeat="image in uploader.flow.files track by $index" ng-class="{'last': ($index+1) % 3 == 0}">
+								<i class="fa fa-times-circle" ng-click="removeFile($index);"></i>
+						      	<img class="preview hide" flow-img="image"/><br>
+						        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
+						    </li>
+						</ul>
+				    </div>
+					<span class="attach-asset" flow-btn>
+						<span class="icon i-camera"></span>
+						<span class="attachment-count">
+				    		{{uploader.flow.files.length}} Attachments</span>
+				    	</span>
+					</span>
+					<div class="clearfix"></div>
+				</div>
+				
+			   
+			    <div class="clearfix"></div>
+				
 			</section>
 			<section class="column-3">
 				<section class="time-selector" ng-show="newMessageCtrl.showStartTimePicker">
+				
 					<time-picker
 					title="Start Time"
 					name="start-time"
@@ -201,7 +236,7 @@
 				</section>
 				
 				<section class="time-selector" ng-hide="newMessageCtrl.showStartTimePicker || newMessageCtrl.showEndTimePicker || newMessageCtrl.showStartDatePicker || newMessageCtrl.showEndDatePicker">
-					<h2>Add Delivery Time<br/> & Location</h2>
+					<h2>Add Delivery Time<br/> &amp; Location</h2>
 					
 					<div class="delivery-box start-date">
 						<label class="qvr-label">Start Date:</label>
@@ -219,31 +254,41 @@
 						<label class="qvr-label">End Time:</label>
 						<input type="text" class="hourglass" ng-model="newMessageCtrl.newMessage.endTime" ng-click="newMessageCtrl.showEndTimePicker=true">
 					</div>
+
 					<section class="location-section">
 						<label class="qvr-label">Select Preset Locations</label>
-						<select class="qvr-select" required>
-							<option>---</option>
+						<select class="qvr-select" disabled>
+							<option>--- N/A ---</option>
 						</select>
+
 						
-						<div class="map-search-wrap">
+						<div class="map-search-wrap" >
+
+								
 							<label class="qvr-label">Create Custom Delivery Location</label>
+						
+
 							<span class="icon i-location-large"></span>
 							<div class="search-button" ng-click="doSearch()">
 								<span class="icon i-search-white"></span>
 							</div>
-							<input type="search" ng-model="newMessageCtrl.search" placeholder="Enter Address">
+							<input places-auto-complete type="search" ng-model="newMessageCtrl.search" on-place-changed="placeChanged(place)" placeholder="Enter Address">
 						</div>
-						<div ng-controller="MapCoordinatesCtrl" class="ng-scope">
-							<map center="43.642566,-79.387057" zoom="12" style="height:250px">
-							<!--
-							<info-window id="1" position="43.642566,-79.387057" visible="true">
-							<div ng-non-bindable="">
-									Toronto, ON
-							</div>
-							</info-window>
-							-->
-							</map>
-						</div>
+						
+						<label class="qvr-label">Name Location</label>
+						<input type="text" ng-model="newMessageCtrl.newMessage.locationName"  placeholder="Enter Label Name">
+
+					
+						<map-view
+							mapcenter="newMessageCtrl.initialMapCenter"
+							coordinates="newMessageCtrl.newMessage.coordinates"
+							range="newMessageCtrl.newMessage.range"
+							mapsearch="newMessageCtrl.search"
+
+						></map-view>
+
+
+
 						<div class="radius">
 							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span class="km"> km</span> radius
 						</div>

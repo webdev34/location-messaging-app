@@ -6,6 +6,8 @@
 			'ngAnimate',
 			'ngMap',
 			'ngCookies',
+			'flow',
+			'isteven-multi-select',
 
 			// foundation
 			'foundation',
@@ -15,6 +17,7 @@
 			// Modules
 			'user-profile',
 			'messages',
+			'locations',
 			'reporting',
 			'enterprise',
 			'reporting',
@@ -28,8 +31,8 @@
 	//var API_SERVER = window.location.host.includes("localhost") ? 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/' : "/";
 
 
-	var API_SERVER = 'http://api-dev.quiver.zone:80/';
-	//var API_SERVER = 'http://localhost:8000/';
+	//var API_SERVER = 'http://api-dev.quiver.zone:80/';
+	var API_SERVER = 'http://localhost:8000/';
 
 	app.constant('API_SERVER', API_SERVER);
 	app.constant('API_URL', API_SERVER + '1.1');
@@ -52,7 +55,12 @@
 		FastClick.attach(document.body);
 	}
 
-	app.config(['$httpProvider', function($httpProvider) {  
+	app.config(['$httpProvider', '$stateProvider', function($httpProvider, $stateProvider) {  
+		$stateProvider
+			.state('home', {
+				url: '/',
+				templateUrl: 'app/home.tmpl.html'
+		});
 		$httpProvider.interceptors.push([
 			'$q',
 			'$rootScope',
@@ -172,6 +180,7 @@
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
 					{'title': 'Manage Campaign', 'state': 'messages.manage-campaign'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
+					{'title': 'Manage Locations', 'state': 'messages.manage-locations'},
 					{'title': 'Asset Management', 'state': 'messages.asset'}
 				],
 				'reporting' : [
@@ -183,6 +192,23 @@
 				]
 			};
 
+			function setNavigationState() {
+				appCtrl.gNavStateIs = "";
+
+				var stateArray = ['messages', 'admin', 'enterprise', 'reporting'];
+
+				for (var i = 0; i < stateArray.length; i++) {
+
+					if ( ($state.current.name).includes(stateArray[i]) ) {
+						appCtrl.gNavStateIs = stateArray[i];
+						break;
+					}
+				}
+
+				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];				
+				appCtrl.showHeader = appCtrl.currentState.current.name != 'home';
+			}
+
 			/*
 			$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
 				$dialogs.error("Something went wrong!", error);
@@ -192,13 +218,25 @@
 
 			$rootScope.$on('$stateChangeSuccess',
 				function(event, toState, toParams, fromState, fromParams) {
-					console.log(fromState.name, "-->", toState.name);
+					//console.log(fromState.name, "-->", toState.name);
 					setNavigationState();
 				}
 			);
 
+
+			function checkIfLoggedIn() {
+				//console.log('checking if loggedin');
+
+				if (!UserModel.isLoggedIn) {
+					//console.log('not logged in');
+					//event.preventDefault();
+					goToLogin();
+					return;
+				}
+			}
+
 			$rootScope.$on('$routeChangeStart', function (event) {
-				console.log('routechangestart');
+				//console.log('routechangestart');
 				checkIfLoggedIn();
 
 			});
@@ -209,32 +247,9 @@
 				goToHomePage();
 			}
 
-			function checkIfLoggedIn() {
-				console.log('checking if loggedin');
+			
 
-				if (!UserModel.isLoggedIn) {
-					event.preventDefault();
-					goToLogin();
-					return;
-				}
-			}
-
-			function setNavigationState() {
-				appCtrl.gNavStateIs = "";
-
-				var stateArray = ['messages', 'admin', 'enterprise', 'reporting'];
-				
-				for (var i = 0; i < stateArray.length; i++) {
-					if (appCtrl.currentState.current.name.includes(stateArray[i])) {
-						appCtrl.gNavStateIs = stateArray[i];
-						break;
-					}
-				}
-				
-				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];
-				
-				appCtrl.showHeader = appCtrl.currentState.current.name != 'home';
-			}
+			
 
 			function goToLogin() {
 				$state.go('home');
@@ -242,10 +257,6 @@
 
 			function goToHomePage() {
 				$state.go(APP_default_state);
-			}
-
-			appCtrl.test = function(){
-				console.log('testing')
 			}
 
 			
@@ -292,15 +303,12 @@
 				goToLogin();
 			}
 
-			appCtrl.test = function() {
-				console.log('testing');
-			}
-
-			appCtrl.test();
 
 
 			init();
 		}
 	]);
+
+	
 
 })();

@@ -2,7 +2,16 @@
 	'use strict';
 
 	angular.module('messages.manage-campaign', [])
-	
+	.filter('startFrom', function () {
+		return function (input, start) {
+			if (input) {
+				start = +start;
+
+				return input;
+			}
+			return [];
+		};
+	})
 	.controller('ManageCampaignCtrl', [
 		'$rootScope',
 		'$scope',
@@ -35,13 +44,69 @@
 					tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
+			manageCampaignCtrl.campaignParticipantsList = [
+				{ name: "Group 1", ticked: false },
+				{ name: "Group 2", ticked: false},
+				{ name: "Group 3", ticked: false},
+				{ name: "Group 4", ticked: false},
+				{ name: "Group 5", ticked: false},
+				{ name: "Group 6", ticked: false},
+				{ name: "Group 7", ticked: false},
+				{ name: "Group 8", ticked: false},
+				{ name: "Group 9", ticked: false},
+				{ name: "Group 10",ticked: false}
+			];
+
+			manageCampaignCtrl.campaignsTags = [
+				{ name: "Tag 1", ticked: false },
+				{ name: "Tag 2", ticked: false},
+				{ name: "Tag 3", ticked: false},
+				{ name: "Tag 4", ticked: false},
+				{ name: "Tag 5", ticked: false},
+				{ name: "Tag 6", ticked: false},
+				{ name: "Tag 7", ticked: false},
+				{ name: "Tag 8", ticked: false},
+				{ name: "Tag 9", ticked: false},
+				{ name: "Tag 10", ticked: false}
+			];
+
+			manageCampaignCtrl.campaignMessageTags = angular.copy(manageCampaignCtrl.campaignsTags);
+
+			manageCampaignCtrl.campaignMarketingAssets = [
+				{ name: "Asset 1", ticked: false },
+				{ name: "Asset 2", ticked: false},
+				{ name: "Asset 3", ticked: false},
+				{ name: "Asset 4", ticked: false},
+				{ name: "Asset 5", ticked: false},
+				{ name: "Asset 6", ticked: false},
+				{ name: "Asset 7", ticked: false},
+				{ name: "Asset 8", ticked: false},
+				{ name: "Asset 9", ticked: false},
+				{ name: "Asset 10", ticked: false}
+			];
+
+			manageCampaignCtrl.campaigns = [
+				{ name: "Campaign 1", ticked: false },
+				{ name: "Campaign 2", ticked: false},
+				{ name: "Campaign 3", ticked: false},
+				{ name: "Campaign 4", ticked: false},
+				{ name: "Campaign 5", ticked: false},
+				{ name: "Campaign 6", ticked: false},
+				{ name: "Campaign 7", ticked: false},
+				{ name: "Campaign 8", ticked: false},
+				{ name: "Campaign 9", ticked: false},
+				{ name: "Campaign 10", ticked: false}
+			];
+			
+			manageCampaignCtrl.cloneToCampaigns = [];
+
 			manageCampaignCtrl.manageCampaign = {
 				"campaignID": "00131",
 				"campaignName": "Drive A Dream - Vancouver BC",
-				"campaignParticipants": ["group 1", "group 2", "group 3" ],
+				"campaignParticipants": [],
 				"campaignDescription": "Tesla's Drive A Dream in Vancouver BC will be target- ing the true auto enthusiast having a passion for performance and luxury. The campaign will be physi- cally centered around our two locations. The Quiver campaign will be run simultaneously with a local television campaign spanning the campaign period.",
-				"marketingAssets": ["asset 1", "asset 2", "asset 3" ],
-				"campaignsTags": ["tag 1", "tag 2", "tag 3"],
+				"marketingAssets": [ ],
+				"campaignsTags": [],
 				"status": "Draft",
 				"startDate": todayProperFormatted,
 				"startTime": "12:01 AM",
@@ -51,7 +116,13 @@
 				"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
 			};
 
-			manageCampaignCtrl.statuses = ["Live", "Draft"]; 
+			manageCampaignCtrl.tagFilters = [];
+
+			manageCampaignCtrl.statuses = ["Live", "Draft", "Ended"]; 
+			manageCampaignCtrl.cloneCampaign = {
+				"campaignName": "",
+				"status": "Draft"
+			};
 
 			$http.get('assets/data/campaign-messages.json').success(function(data) {
 				manageCampaignCtrl.campaignMessages = data.campaignMessages;	
@@ -61,6 +132,10 @@
 				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 				$scope.reverse = false;
 				$scope.sortOrderBy = 'id';
+				$scope.startAt = 0;
+				$scope.endAt = 9;
+				$scope.selectAll = false;
+				$scope.isAnyInputsSelected = false;
 
 				$scope.goToPage = function(direction) {
 
@@ -76,21 +151,82 @@
 					else if(direction == 'end'){
 						$scope.currentPage = $scope.noOfPages;
 					}
+
+					$scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
+					$scope.endAt = $scope.entryLimit * $scope.currentPage;
+
 				};
 
 				$scope.sortByFunc = function(sortBy, reverse) {
 					$scope.sortOrderBy = sortBy;
 					$scope.reverse = reverse;
 					$scope.currentPage = 1;
+					$scope.goToPage(1);
 				};
 
 				$scope.resetCurrentPage = function() {
 					$scope.currentPage = 1;
 				};
+
+				$scope.toggleSelected = function() {
+					angular.forEach(manageCampaignCtrl.campaignMessages, function(message) {
+				      message.isSelected = $scope.selectAll;
+				    });
+				};
+
+				$scope.bulkActions = function() {
+					var actionDropDown = document.getElementById("bulk-actions");
+					var action = actionDropDown.options[actionDropDown.selectedIndex].value;
+					angular.forEach(manageCampaignCtrl.campaignMessages, function(campaign, i) {
+						if(campaign.isSelected && action != 'Delete'){
+							campaign.status = action;
+							campaign.isSelected = false;
+						}
+						else if(campaign.isSelected && action == 'Delete' && $scope.selectAll == false){
+							manageCampaignCtrl.campaignMessages.splice(i, 1);  
+						}
+						else if(action == 'Delete' && $scope.selectAll == true){
+							manageCampaignCtrl.campaignMessages = []; 
+						}
+				    });
+				    $scope.selectAll = false;
+				};
+
+				$scope.cloneMessages = function() {
+					manageCampaignCtrl.clonedMessage = [] ;
+					var cleanCopyOfMessages = angular.copy(manageCampaignCtrl.campaignMessages);
+					angular.forEach(cleanCopyOfMessages, function(campaign, i) {
+						if(campaign.isSelected){
+							//campaign.isSelected = false;
+							manageCampaignCtrl.clonedMessage.push(campaign);
+						}
+				    });
+				    // $scope.selectAll = false;
+				};
+
+				$scope.deleteClonedMessage = function(id) {
+					angular.forEach(manageCampaignCtrl.clonedMessage, function(campaign, i) {
+						if(campaign.id == id){
+							manageCampaignCtrl.clonedMessage.splice(i, 1);  
+						}
+				    });
+				};
+
+				$scope.anyInputsSelected = function() {
+					$scope.isAnyInputsSelected = false;
+					$scope.selectAll = true;
+					angular.forEach(manageCampaignCtrl.campaignMessages, function(campaign, i) {
+						if(campaign.isSelected){
+							$scope.isAnyInputsSelected  = true;
+						}
+						else{
+							$scope.selectAll = false;
+						}
+				    });
+				};
+
 			});
 			
-
-
 
 			function resetForm() {
 				manageCampaignCtrl.manageCampaign = {

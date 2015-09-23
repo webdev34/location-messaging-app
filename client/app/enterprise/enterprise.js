@@ -12,11 +12,11 @@
 				url: '/enterprise',
 				templateUrl: 'app/enterprise/enterprise.tmpl.html',
 				abstract: true
-			});
+			})
+		;
 		
 		$urlRouterProvider.otherwise('enterprise.profile');
 	}])
-	
 	;
 
 })();

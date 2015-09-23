@@ -1,212 +1,310 @@
-.manage-campaign.message-content-wrap{
-	
-	.manage-campaign-form{
-		.qvr-label{
-			span{
-				color: #808285;
-			}
-		}
-		.input-wrapper{
-			margin-right: 20px;
-			float: left;
-		}
-		.delivery-box{
-			float: left;
-			margin-right: 20px;
-			position: relative;
-			section.date-selector,
-			section.time-selector{
-				position: absolute;
-				z-index: 10;
-				top: -4px;
-			    left: -15px;
-			    width: 215px;
-			}
-		}
-		#campaign-name-text{
-			width: 300px;
-		}
-		#campaign-id-text{
-			width: 100px;
-		}
-		#campaign-description{
-			width: 420px;
-		}
-		.campaign-description-textarea{
-			height: 150px;
-		}
-		#marketing-assets,
-		#campaigns-tags, 
-		#campaign-participants{
-			width: 350px;
-		}
-		#campaigns-tags{
-			margin-left: 5px;
-		}	
-	}
-	
-	.campaign-messages-wrapper{
-		padding: 45px 0px;
-		background-color: #f0f0f0;
-		margin-top: 30px;
-		.campaign-messages-header{
-			h1{
-				padding: 0 0 0 30px;
-			    margin: 0;
-			    border-bottom: solid 1 px #808285;
-			    color: #808285;
-			    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-			    font-size: 40px;
-			    line-height: inherit;
-			    font-weight: 300;
-			    text-align: left;
-			    text-transform: uppercase;
-			}	
-			.qvr-button {
-	    		padding: 0px 1em;
-	    		margin-left: 25px;
-			}
-			.search-wrapper{
-				float: right;
-				width: 27%;
-				display: inline-block;
-				margin-right: 20px;
-				position: relative;
-				label{
-					position: absolute;
-				    font-size: 21px;
-				    top: 5px;
-				    left: 10px;
-				    color: #666666;
-				}
-				input[type="search"]{
-					text-indent: 25px;
-					font-weight: normal;
-				}
-			}			
-		}
-		.campaign-messages-filter-wrapper{
-			margin-top: 25px;
-			#bulk-action,
-			#tag-filters{
-				width: 34%;
-				float: left;
-				display: inline-block;
-				select{
-					width: 75%;
-					float: left;
-				}
-				button{
-					float: left;
-					margin-left: 10px;
-					padding: 8px;
-    				padding-top: 0px;
-    				i{
-    					position: relative;
-    					top: 6px;
-    					left: 7px;
-    				}
-				}
-			}
-			#bulk-action{
-				margin-left: 30px;
-			}
+.manage-campaign.message-content-wrap {
+    #cloneMessageModal,
+    #cloneCampaignModal {
+        .modal {
+            overflow: visible;
+            h1 {
+                padding: 0;
+                margin: 0 0 25px 0;
+                border-bottom: solid 1 px #808285;
+                color: #808285;
+                font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 32px;
+                line-height: inherit;
+                font-weight: 300;
+                text-align: center;
+                text-transform: uppercase;
+            }
+            hr {
+                width: 90%;
+                margin: 30px auto;
+            }
+            .modal-button-wrapper {
+                padding-bottom: 20px;
+            }
+            .input-field{
+            	margin-right: 25px;
+            	width: 70%;
+            }
 
-		}
-		.campaign-messages-table-wrapper{
-			table{
-    			width: 98%;
-    			margin-left: 10px;
-				border: thin solid  #D1D2D3;
-				border-collapse: separate;
-    			border-spacing: 0;
-    			padding: 0px;
-				@include border-radius(20px);
-				th{
-					background-color: #F2F2F2;
-					text-align: left;
-					label{
-						font-size: 1.2rem;
-						margin-bottom: 0px;
-						color: #666666;
-						margin-top: 20px;
-						float: left;
-					}
-					input[type="checkbox"]{
-						margin-left: 10px;
-    					margin-top: 15px;
-					}
-					span{
-						float: left;
-					    height: 50px;
-					    width: 10px;
-					    font-size: 21px;
-					    margin-left: 10px;
-					    i{
-    						position: relative;
-    						cursor: pointer;
-					    	&:first-child{
-					    		top: 10px;
-					    	}
-					    	&.active{
-					    		color: $qvr-blue-1;
-					    	}
-					    }
-					}
-				}
-				td{
-					text-align: left;
-					border-bottom: thin solid #D1D2D3;
-					input[type="checkbox"]{
-						margin-left: 10px;
-    					margin-top: 15px;
 
-					}
-					.message-status-wrapper{
-						select{
-							width: 80%;
-							margin-top: 12px;
-    						float: left;
-    						color: white;
-    						background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #FFFFFF"></polygon></svg>');
-    						&.Live{
-    							background-color: #37a807;
-    						}
-    						&.Draft{
-    							background-color: #808285;
-    						}
-						}
-					}
-					.qvr-align-center{
-					    font-size: 16px;
-					    padding-top: 10px;
-					    font-weight: bold;
-					}
-				}
-				tr{
-					background-color: white;
-					&:first-child{
-						th{
-							&:first-child{
-								@include border-radius( 20px 0px 0px 0px);
-							}
-							&:last-child{
-								@include border-radius( 0px 20px 0px 0px);
-							}
-						}	
-					}					
-					&:last-child{
-						td{
-							&:first-child{
-								@include border-radius( 0px 0px 0px 20px);
-							}
-							&:last-child{
-								@include border-radius( 0px 0px 20px 00px);
-							}
-						}	
-					}
-				}
-			}
-		}
-	}
-} 
+            .campaign-selection-wrapper {
+                width: 75%;
+                margin: 35px auto;
+                label {
+                    color: $qvr-blue-1;
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+                select{
+                	margin-left: 0px;
+                }
+            }
+            .clone-messages-modal-wrapper,
+            .clone-campaign-modal-wrapper {
+                width: 75%;
+                margin: 0 auto;
+                table {
+                    width: 100%;
+                    margin-bottom: 10px;
+                    th {
+                        font-weight: bold;
+                        font-size: 16px;
+                        text-align: left;
+                    }
+                    tr {
+                        border-top: thin solid #999;
+                    }
+                    tr:last-child {
+                        border-bottom: thin solid #999;
+                    }
+                    th, td {
+                        padding: 4px;
+                        color: #666666;
+                        select {
+                            margin-bottom: 0;
+                            color: white;
+                            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #FFFFFF"></polygon></svg>');
+                        }
+                    }
+                    td:last-child {
+                        text-align: right;
+                        a {
+                            color: #666666;
+                            font-weight: bold;
+                        }
+                    }
+                }
+                p {
+                    font-weight: bold;
+                    font-size: 16px;
+                    color: #666666;
+                }
+                span {
+                    font-weight: bold;
+                }
+                .unique-id-msg {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .marketing-asset{
+        .multiSelect.inlineBlock > button{
+            width: 350px;
+        }
+    }
+    .manage-campaign-form {
+        .qvr-label {
+            span {
+                color: #808285;
+            }
+        }
+        .input-wrapper {
+            margin-right: 20px;
+            float: left;
+        }
+        .delivery-box {
+            float: left;
+            margin-right: 20px;
+            position: relative;
+            section.date-selector,
+            section.time-selector {
+                position: absolute;
+                z-index: 10;
+                top: -4px;
+                left: -15px;
+                width: 215px;
+            }
+        }
+        #campaign-name-text {
+            width: 300px;
+        }
+        #campaign-id-text {
+            width: 100px;
+        }
+        #campaign-description {
+            width: 420px;
+        }
+        .campaign-description-textarea {
+            height: 150px;
+        }
+        #marketing-assets,
+        #campaigns-tags,
+        #campaign-participants {
+            width: 350px;
+        }
+        #campaigns-tags {
+            margin-left: 5px;
+        }
+    }
+    .campaign-messages-wrapper {
+        padding: 45px 0px;
+        background-color: #f0f0f0;
+        margin-top: 30px;
+        .campaign-messages-header {
+            h1 {
+                padding: 0 0 0 30px;
+                margin: 0;
+                border-bottom: solid 1 px #808285;
+                color: #808285;
+                font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 40px;
+                line-height: inherit;
+                font-weight: 300;
+                text-align: left;
+                text-transform: uppercase;
+            }
+            .qvr-button {
+                padding: 0px 1em;
+                margin-left: 25px;
+            }
+            .search-wrapper {
+                float: right;
+                width: 27%;
+                display: inline-block;
+                margin-right: 20px;
+                position: relative;
+                label {
+                    position: absolute;
+                    font-size: 21px;
+                    top: 5px;
+                    left: 10px;
+                    color: #666666;
+                }
+                input[type="search"] {
+                    text-indent: 25px;
+                    font-weight: normal;
+                }
+            }
+        }
+        .campaign-messages-filter-wrapper {
+            margin-top: 25px;
+            #bulk-action,
+            #tag-filters {
+                width: 34%;
+                float: left;
+                display: inline-block;
+                select {
+                    width: 75%;
+                    float: left;
+                }
+                button.qvr-button {
+                    float: left;
+                    margin-left: 10px;
+                    padding: 8px;
+                    padding-top: 0px;
+                    i {
+                        position: relative;
+                        top: 6px;
+                        left: 7px;
+                    }
+                }
+            }
+            #bulk-action {
+                margin-left: 30px;
+            }
+            #cloneMessageModalButton {
+                position: relative;
+                z-index: 10;
+                top: 0px;
+                display: none;
+            }
+            #bulk-action-button.Clone {
+                display: none;
+            }
+            #cloneMessageModalButton.Clone {
+                display: inline-block;
+            }
+        }
+        .campaign-messages-table-wrapper {
+            table {
+                width: 98%;
+                margin-left: 10px;
+                border: thin solid  #D1D2D3;
+                border-collapse: separate;
+                border-spacing: 0;
+                padding: 0px;
+                @include border-radius(20px);
+                th {
+                    background-color: #F2F2F2;
+                    text-align: left;
+                    label {
+                        font-size: 1.2rem;
+                        margin-bottom: 0px;
+                        color: #666666;
+                        margin-top: 20px;
+                        float: left;
+                    }
+                    input[type="checkbox"] {
+                        margin-left: 10px;
+                        margin-top: 15px;
+                    }
+                    span {
+                        float: left;
+                        height: 50px;
+                        width: 10px;
+                        font-size: 21px;
+                        margin-left: 10px;
+                        i {
+                            position: relative;
+                            cursor: pointer;
+                            &:first-child {
+                                top: 10px;
+                            }
+                            &.active {
+                                color: $qvr-blue-1;
+                            }
+                        }
+                    }
+                }
+                td {
+                    text-align: left;
+                    border-bottom: thin solid #D1D2D3;
+                    input[type="checkbox"] {
+                        margin-left: 10px;
+                        margin-top: 15px;
+                    }
+                    .message-status-wrapper {
+                        select {
+                            width: 80%;
+                            margin-top: 12px;
+                            float: left;
+                            color: white;
+                            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #FFFFFF"></polygon></svg>');
+                        }
+                    }
+                    .qvr-align-center {
+                        font-size: 16px;
+                        padding-top: 10px;
+                        font-weight: bold;
+                    }
+                }
+                tr {
+                    background-color: white;
+                    &:first-child {
+                        th {
+                            &:first-child {
+                                @include border-radius(20px 0px 0px 0px);
+                            }
+                            &:last-child {
+                                @include border-radius(0px 20px 0px 0px);
+                            }
+                        }
+                    }
+                    &:last-child,
+                    &.last {
+                        td {
+                            &:first-child {
+                                @include border-radius(0px 0px 0px 20px);
+                            }
+                            &:last-child {
+                                @include border-radius(0px 0px 20px 0px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

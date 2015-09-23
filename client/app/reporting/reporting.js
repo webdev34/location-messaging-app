@@ -35,7 +35,7 @@
 			var reportingCtrl = this;
 			
 			$scope.goToReport = function(url) {
-				$location.path('/'+url);
+				$state.go(url);
 			}
 			
 		}

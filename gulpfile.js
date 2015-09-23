@@ -39,6 +39,11 @@ var paths = {
     'bower_components/foundation-apps/js/angular/**/*.js',
     '!bower_components/foundation-apps/js/angular/app.js'
   ],
+  // Plugins
+  plugins: [
+   'bower_components/ngmap/build/scripts/ng-map.min.js'
+  ],
+
   // These files are for your app's JavaScript
   appJS: [
     'client/app/app.js',
@@ -91,6 +96,7 @@ gulp.task('uglify', function(cb) {
     .pipe($.sourcemaps.init())
     .pipe($.uglify()
       .on('error', function (e) {
+        $.util.beep();
         console.log(e);
       }))
     .pipe($.concat('foundation.js'))
@@ -98,14 +104,27 @@ gulp.task('uglify', function(cb) {
     .pipe(gulp.dest(paths.build + '/assets/js/'))
   ;
 
+  // Plugins JS
+  gulp.src(paths.plugins)
+    .pipe($.sourcemaps.init())
+    .pipe($.uglify()
+      .on('error', function (e) {
+        $.util.beep();
+        console.log(e);
+      }))
+    .pipe($.concat('plugins.js'))
+    .pipe($.sourcemaps.write())
+    .pipe(gulp.dest(paths.build + '/assets/js/'))
+  ;
+
   // App JavaScript
   gulp.src(paths.appJS)
     .pipe($.sourcemaps.init())
-
-    .pipe($.uglify()
-      .on('error', function(e) {
-        console.log(e);
-      }))
+    // .pipe($.uglify()
+    //   .on('error', function(e) {
+    //     $.util.beep();
+    //     console.log(e);
+    //   }))
     .pipe($.concat('app.js'))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(paths.build + '/assets/js/'))
@@ -153,7 +172,7 @@ gulp.task('server', function() {
       port: 8080,
       host: 'localhost',
       fallback: 'index.html',
-      livereload: false,
+      livereload: true,
       open: true
     }))
   ;
