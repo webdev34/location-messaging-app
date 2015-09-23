@@ -195,7 +195,7 @@
 
 			$rootScope.$on('$stateChangeSuccess',
 				function(event, toState, toParams, fromState, fromParams) {
-					console.log(fromState.name, "-->", toState.name);
+					//console.log(fromState.name, "-->", toState.name);
 					setNavigationState();
 				}
 			);
@@ -216,6 +216,7 @@
 				console.log('checking if loggedin');
 
 				if (!UserModel.isLoggedIn) {
+					console.log('not logged in');
 					event.preventDefault();
 					goToLogin();
 					return;
