@@ -54,7 +54,12 @@
 		FastClick.attach(document.body);
 	}
 
-	app.config(['$httpProvider', function($httpProvider) {  
+	app.config(['$httpProvider', '$stateProvider', function($httpProvider, $stateProvider) {  
+		$stateProvider
+			.state('home', {
+				url: '/',
+				templateUrl: 'app/home.tmpl.html'
+		});
 		$httpProvider.interceptors.push([
 			'$q',
 			'$rootScope',
