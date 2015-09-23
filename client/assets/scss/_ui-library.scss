@@ -635,6 +635,9 @@ select.qvr-select{
 
 // Forms
 // Quiver Custom Form
+
+:required {box-shadow: none;}
+
 .qvr-form {
     // Form Colors
     $qvr-form_color-bg: #F7F7F7;

@@ -191,6 +191,26 @@
 				]
 			};
 
+			function setNavigationState() {
+				appCtrl.gNavStateIs = "";
+
+				var stateArray = ['messages', 'admin', 'enterprise', 'reporting'];
+
+				for (var i = 0; i < stateArray.length; i++) {
+
+					if ( ($state.current.name).includes(stateArray[i]) ) {
+						console.log("setNavigationState");
+						appCtrl.gNavStateIs = stateArray[i];
+						break;
+					}
+				}
+								console.log("gNam state is:" + appCtrl.gNavStateIs);
+
+				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];
+				
+				appCtrl.showHeader = appCtrl.currentState.current.name != 'home';
+			}
+
 			/*
 			$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
 				$dialogs.error("Something went wrong!", error);
@@ -205,6 +225,18 @@
 				}
 			);
 
+
+			function checkIfLoggedIn() {
+				console.log('checking if loggedin');
+
+				if (!UserModel.isLoggedIn) {
+					console.log('not logged in');
+					//event.preventDefault();
+					goToLogin();
+					return;
+				}
+			}
+
 			$rootScope.$on('$routeChangeStart', function (event) {
 				console.log('routechangestart');
 				checkIfLoggedIn();
@@ -217,34 +249,9 @@
 				goToHomePage();
 			}
 
-			function checkIfLoggedIn() {
-				console.log('checking if loggedin');
+			
 
-				if (!UserModel.isLoggedIn) {
-					console.log('not logged in');
-					event.preventDefault();
-					goToLogin();
-					return;
-				}
-			}
-
-			function setNavigationState() {
-				appCtrl.gNavStateIs = "";
-
-				var stateArray = ['messages', 'admin', 'enterprise', 'reporting'];
-				console.log("state name:" + appCtrl.currentState.current.name);
-
-				for (var i = 0; i < stateArray.length; i++) {
-					if (appCtrl.currentState.current.name.includes(stateArray[i])) {
-						appCtrl.gNavStateIs = stateArray[i];
-						break;
-					}
-				}
-				
-				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];
-				
-				appCtrl.showHeader = appCtrl.currentState.current.name != 'home';
-			}
+			
 
 			function goToLogin() {
 				$state.go('home');
