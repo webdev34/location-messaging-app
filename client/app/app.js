@@ -232,7 +232,8 @@
 				appCtrl.gNavStateIs = "";
 
 				var stateArray = ['messages', 'admin', 'enterprise', 'reporting'];
-				
+				console.log("state name:" + appCtrl.currentState.current.name);
+
 				for (var i = 0; i < stateArray.length; i++) {
 					if (appCtrl.currentState.current.name.includes(stateArray[i])) {
 						appCtrl.gNavStateIs = stateArray[i];
@@ -251,10 +252,6 @@
 
 			function goToHomePage() {
 				$state.go(APP_default_state);
-			}
-
-			appCtrl.test = function(){
-				console.log('testing')
 			}
 
 			
@@ -301,11 +298,6 @@
 				goToLogin();
 			}
 
-			appCtrl.test = function() {
-				console.log('testing');
-			}
-
-			appCtrl.test();
 
 
 			init();
