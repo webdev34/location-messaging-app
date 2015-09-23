@@ -1,7 +1,24 @@
 (function() {
 	'use strict';
 
-	angular.module('messages.manage-locations', [])
+	angular.module('locations', [
+
+	])
+
+	.config([
+		'$stateProvider', 
+		'$urlRouterProvider', 
+		function($stateProvider, $urlRouterProvider) {
+			$stateProvider
+				.state('messages.manage-locations', {
+				url: '/manage-locations',
+				templateUrl: 'app/locations/manage-locations.tmpl.html',
+				controller: 'ManageLocationsCtrl as manageLocationsCtrl'
+			})
+			;
+	}])
+
+
 	.filter('startFrom', function () {
 		return function (input, start) {
 			if (input) {
@@ -12,6 +29,10 @@
 			return [];
 		};
 	})
+
+
+
+			
 	.controller('ManageLocationsCtrl', [
 		'$rootScope',
 		'$scope',
@@ -28,19 +49,7 @@
 		) {
 			var manageLocationsCtrl = this;
 			
-			manageLocationsCtrl.showStartDatePicker = false;
-			manageLocationsCtrl.showEndDatePicker = false;
-			manageLocationsCtrl.showStartTimePicker = false;
-			manageLocationsCtrl.endStartTimePicker = false;
 
-			var today = new Date(),
-					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
-					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-				
-				var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
-					tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
-					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
-			
 			manageLocationsCtrl.tagFilters = [];	
 			manageLocationsCtrl.locationFilters = [
 				{ name: "Tag 1", ticked: false },
@@ -56,31 +65,7 @@
 			];
 			manageLocationsCtrl.newLocationFilters = angular.copy(manageLocationsCtrl.locationFilters);
 			
-
 			
-			// manageCampaignCtrl.manageCampaign = {
-			// 	"campaignID": "00131",
-			// 	"campaignName": "Drive A Dream - Vancouver BC",
-			// 	"campaignParticipants": [],
-			// 	"campaignDescription": "Tesla's Drive A Dream in Vancouver BC will be target- ing the true auto enthusiast having a passion for performance and luxury. The campaign will be physi- cally centered around our two locations. The Quiver campaign will be run simultaneously with a local television campaign spanning the campaign period.",
-			// 	"marketingAssets": [ ],
-			// 	"campaignsTags": [],
-			// 	"status": "Draft",
-			// 	"startDate": todayProperFormatted,
-			// 	"startTime": "12:01 AM",
-			// 	"endDate": tomorrowProperFormatted,
-			// 	"endTime": "11:59 PM",
-			// 	"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
-			// 	"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
-			// };
-
-			
-
-			
-			// manageCampaignCtrl.cloneCampaign = {
-			// 	"campaignName": "",
-			// 	"status": "Draft"
-			// };
 
 			$http.get('assets/data/campaign-locations.json').success(function(data) {
 				manageLocationsCtrl.campaignLocations = data.campaignLocations;	
@@ -195,16 +180,17 @@
 			});
 			
 
+			manageLocationsCtrl.newLocation = {
+				"locationName": "",
+				"range": 5,
+				"coordinates":{"H":43.657504642319005,"L":-79.3760706718750},
+			};
+
+			manageLocationsCtrl.initialMapCenter = manageLocationsCtrl.newLocation.coordinates.H + ","+ manageLocationsCtrl.newLocation.coordinates.L;
 
 
-			function resetForm() {
-				manageLocationsCtrl.newLocation = {
-					"id": "",
-					"locationName": "",
-					"coordinates": [-79.383184, 43.653226],
-					"locationTags": []
-				};
-			}
+
+
 
 			function paginationValidation(){
 				if($scope.currentPage > $scope.noOfPages ){
@@ -215,33 +201,11 @@
 				}
 			}
 			
-			// manageCampaignCtrl.updateCampaign = function() {
-				// MessageListModel.createNewMessage(newMessageCtrl.newMessage).then(
-				// 	function success(response){
-				// 		$state.go('messages.dashboard');
-						
-				// 		FoundationApi.publish('main-notifications', {
-				// 			title: 'Message Sent',
-				// 			content: '',
-				// 			color: 'success',
-				// 			autoclose: '3000'
-				// 		});
-				// 	},
-				// 	function error(response) {
-				// 		FoundationApi.publish('main-notifications', {
-				// 			title: 'Message Was Not Sent',
-				// 			content: response.code,
-				// 			color: 'fail',
-				// 			autoclose: '3000'
-				// 		});
-				// 	}
-				// );
-			// }
+
 	
 			
 			$scope.$watch("currentPage", paginationValidation);
 			
-			resetForm();
 		}
 	]);
 

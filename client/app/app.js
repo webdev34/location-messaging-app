@@ -17,6 +17,7 @@
 			// Modules
 			'user-profile',
 			'messages',
+			'locations',
 			'reporting',
 			'enterprise',
 			'reporting',
