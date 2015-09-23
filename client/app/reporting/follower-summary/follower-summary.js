@@ -6,7 +6,8 @@
 		return function (input, start) {
 			if (input) {
 				start = +start;
-				return input.slice(start);
+
+				return input;
 			}
 			return [];
 		};
@@ -40,7 +41,6 @@
 
 			$http.get('assets/data/follower-summary.json').success(function(data) {
 				followerSummaryCtrl.followerSummaryData = data.followerSummary;
-				$scope.followerSummaryData = followerSummaryCtrl.followerSummaryData;
 				$scope.totalItems = data.followerSummary.length;
 				$scope.currentPage = 1;
 				$scope.entryLimit = 10; // items per page
@@ -50,6 +50,7 @@
 				$scope.startAt = 0;
 				$scope.endAt = 9;
 				$scope.selectAll = false;
+				$scope.isAnyInputsSelected = false;
 
 				$scope.goToPage = function(direction) {
 
@@ -75,13 +76,28 @@
 					$scope.sortOrderBy = sortBy;
 					$scope.reverse = reverse;
 					$scope.currentPage = 1;
+					$scope.goToPage(1);
 				};
 
 				$scope.toggleSelected = function() {
-					angular.forEach($scope.followerSummaryData, function(followerSummary) {
+					angular.forEach(followerSummaryCtrl.followerSummaryData, function(followerSummary) {
 				      followerSummary.isSelected = $scope.selectAll;
 				    });
 				};
+
+				$scope.anyInputsSelected = function() {
+					$scope.isAnyInputsSelected = false;
+					$scope.selectAll = true;
+					angular.forEach(followerSummaryCtrl.followerSummaryData, function(campaign, i) {
+						if(campaign.isSelected){
+							$scope.isAnyInputsSelected  = true;
+						}
+						else{
+							$scope.selectAll = false;
+						}
+				    });
+				};
+
 			});
 			
 			function resetForm() {

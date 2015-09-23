@@ -54,10 +54,20 @@
 
 			<span id="message-tags" class="input-wrapper">
 					<label class="qvr-label">Message Tags</label>
-					<select class="qvr-select" required>
-						<option>Add #Tags</option>
-					</select>
-				</span>
+					<isteven-multi-select class="add-tag-filters float-left"   
+				    input-model="newMessageCtrl.messageTags"    
+				    output-model="newMessageCtrl.newMessage.messageTags"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+					>
+				</isteven-multi-select>
+				
+				<button class="qvr-button action" ng-disabled="newMessageCtrl.newMessage.messageTags.length == 0">
+					<i class="check-mark"></i>
+				</button>
+			</span>
 		</section>
 		
 		<section class="content-row">
@@ -226,7 +236,7 @@
 				</section>
 				
 				<section class="time-selector" ng-hide="newMessageCtrl.showStartTimePicker || newMessageCtrl.showEndTimePicker || newMessageCtrl.showStartDatePicker || newMessageCtrl.showEndDatePicker">
-					<h2>Add Delivery Time<br/> & Location</h2>
+					<h2>Add Delivery Time<br/> &amp; Location</h2>
 					
 					<div class="delivery-box start-date">
 						<label class="qvr-label">Start Date:</label>
@@ -264,6 +274,10 @@
 							</div>
 							<input places-auto-complete type="search" ng-model="newMessageCtrl.search" on-place-changed="placeChanged(place)" placeholder="Enter Address">
 						</div>
+						
+						<label class="qvr-label">Name Location</label>
+						<input type="text" ng-model="newMessageCtrl.newMessage.locationName"  placeholder="Enter Label Name">
+
 					
 						<map-view
 							mapcenter="newMessageCtrl.initialMapCenter"

@@ -36,7 +36,19 @@
 			font-size: 14px; 
 			margin: 0;
 		}
-
+		#message-tags{
+			width: 420px;
+		    top: 10px;
+		    position: relative;
+		    .label-holder{
+		    	margin-right: 15px;
+		    }
+		    .check-mark{
+		    	top: 6px;
+			    position: relative;
+			    left: 7px;
+		    }
+		}
 		.owner {
 			display: inline-block;
 			color: $qvr-grey-3;

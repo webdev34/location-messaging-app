@@ -46,13 +46,14 @@
 				"endTime": "11:59 PM",
 				// "startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 				// "endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
-				"locationName": " Generic Name",
+				"locationName": "",
 				"coordinates": {"H":43.657504642319005,"L":-79.3760706718750}
 			};
 
 			newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 
 			newMessageCtrl.initialMapCenter = newMessageCtrl.newMessage.coordinates.H + ","+ newMessageCtrl.newMessage.coordinates.L;
+
 			
 			
 			function resetForm() {
@@ -83,6 +84,21 @@
 					}
 				);
 			}
+
+
+			newMessageCtrl.messageTags = [
+				{ name: "Tag 1", ticked: false },
+				{ name: "Tag 2", ticked: false},
+				{ name: "Tag 3", ticked: false},
+				{ name: "Tag 4", ticked: false},
+				{ name: "Tag 5", ticked: false},
+				{ name: "Tag 6", ticked: false},
+				{ name: "Tag 7", ticked: false},
+				{ name: "Tag 8", ticked: false},
+				{ name: "Tag 9", ticked: false},
+				{ name: "Tag 10", ticked: false}
+			];
+
 
 
 			$scope.uploader = {};

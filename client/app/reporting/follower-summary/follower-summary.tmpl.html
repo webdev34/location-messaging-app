@@ -85,7 +85,7 @@
 			  <thead>
 			    <tr>
 			      <th>
-			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected();" />
+			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
 			      </th>
 			      <th>
 			      	<label>Date</label>
@@ -138,9 +138,10 @@
 			      </th>
 			    </tr>
 			  </thead>
+
 			  <tbody>
-			    <tr data-ng-repeat="summary in followerSummaryCtrl.followerSummaryData | startFrom:(currentPage-1)*entryLimit | orderBy:sortOrderBy:reverse" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}">
-			      <td><input type="checkbox" ng-model="summary.isSelected" /></td>
+			    <tr data-ng-repeat="summary in followerSummaryCtrl.followerSummaryData | startFrom:startAt | orderBy:sortOrderBy:reverse" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}">
+			      <td><input type="checkbox" ng-model="summary.isSelected" ng-change="anyInputsSelected();"  /></td>
 			      <td>{{summary.startDate | date}}</td>
 			      <td>{{summary.startNumber}}</td>
 			      <td>{{summary.new}}</td>
