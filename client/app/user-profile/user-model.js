@@ -56,7 +56,7 @@ User types - these are NOT 'social users' (followers)
 					.then(
 						function(response) {
 							model.user = response.user;
-							console.log('model user: ' + model.user);
+							//console.log('model user: ' + model.user);
 							model.authorization = response.authorization;
 							model.enterprise = response.enterprise;
 							model.user.isLoggedIn = true;

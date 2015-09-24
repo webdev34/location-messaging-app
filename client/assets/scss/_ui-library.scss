@@ -635,6 +635,9 @@ select.qvr-select{
 
 // Forms
 // Quiver Custom Form
+
+:required {box-shadow: none;} //removes red shadow of required elements in firefox
+
 .qvr-form {
     // Form Colors
     $qvr-form_color-bg: #F7F7F7;

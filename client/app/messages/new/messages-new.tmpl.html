@@ -18,7 +18,7 @@
 			<div zf-modal="" id="saveMessageModal">
 				<a zf-close="" class="close-button">×</a>
 				<p class="qvr-align-center">
-					Sample text
+					Are you sure you want to save this message?
 				</p>
 				<div class="modal-button-wrapper qvr-align-center">
 					<button type="submit" class="qvr-button action" ng-click="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)">Save</button>
@@ -179,6 +179,7 @@
 			</section>
 			<section class="column-3">
 				<section class="time-selector" ng-show="newMessageCtrl.showStartTimePicker">
+				
 					<time-picker
 					title="Start Time"
 					name="start-time"
@@ -235,7 +236,7 @@
 				</section>
 				
 				<section class="time-selector" ng-hide="newMessageCtrl.showStartTimePicker || newMessageCtrl.showEndTimePicker || newMessageCtrl.showStartDatePicker || newMessageCtrl.showEndDatePicker">
-					<h2>Add Delivery Time<br/> & Location</h2>
+					<h2>Add Delivery Time<br/> &amp; Location</h2>
 					
 					<div class="delivery-box start-date">
 						<label class="qvr-label">Start Date:</label>
@@ -253,31 +254,41 @@
 						<label class="qvr-label">End Time:</label>
 						<input type="text" class="hourglass" ng-model="newMessageCtrl.newMessage.endTime" ng-click="newMessageCtrl.showEndTimePicker=true">
 					</div>
+
 					<section class="location-section">
 						<label class="qvr-label">Select Preset Locations</label>
-						<select class="qvr-select" required>
-							<option>---</option>
+						<select class="qvr-select" disabled>
+							<option>--- N/A ---</option>
 						</select>
+
 						
-						<div class="map-search-wrap">
+						<div class="map-search-wrap" >
+
+								
 							<label class="qvr-label">Create Custom Delivery Location</label>
+						
+
 							<span class="icon i-location-large"></span>
 							<div class="search-button" ng-click="doSearch()">
 								<span class="icon i-search-white"></span>
 							</div>
-							<input type="search" ng-model="newMessageCtrl.search" placeholder="Enter Address">
+							<input places-auto-complete type="search" ng-model="newMessageCtrl.search" on-place-changed="placeChanged(place)" placeholder="Enter Address">
 						</div>
-						<div ng-controller="MapCoordinatesCtrl" class="ng-scope">
-							<map center="43.642566,-79.387057" zoom="12" style="height:250px">
-							<!--
-							<info-window id="1" position="43.642566,-79.387057" visible="true">
-							<div ng-non-bindable="">
-									Toronto, ON
-							</div>
-							</info-window>
-							-->
-							</map>
-						</div>
+						
+						<label class="qvr-label">Name Location</label>
+						<input type="text" ng-model="newMessageCtrl.newMessage.locationName"  placeholder="Enter Label Name">
+
+					
+						<map-view
+							mapcenter="newMessageCtrl.initialMapCenter"
+							coordinates="newMessageCtrl.newMessage.coordinates"
+							range="newMessageCtrl.newMessage.range"
+							mapsearch="newMessageCtrl.search"
+
+						></map-view>
+
+
+
 						<div class="radius">
 							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span class="km"> km</span> radius
 						</div>

@@ -18,12 +18,15 @@
 				<div class="search-button" ng-click="doSearch()">
 					<span class="icon i-search-white"></span>
 				</div>
-				<input type="search" ng-model="newMessageCtrl.search" placeholder="Search">
+				<input places-auto-complete type="search" ng-model="manageLocationsCtrl.search" on-place-changed="placeChanged(place)" placeholder="Enter Address">
 			</div>
-			<div ng-controller="MapCoordinatesCtrl" class="ng-scope">
-				<map center="43.642566,-79.387057" zoom="12" style="height:250px">
-				</map>
-			</div>
+
+			<map-view
+				mapcenter="manageLocationsCtrl.initialMapCenter"
+				coordinates="manageLocationsCtrl.newLocation.coordinates"
+				range="manageLocationsCtrl.newLocation.range"
+				mapsearch="manageLocationsCtrl.search"
+			></map-view>
 
 			<div class="clearfix"></div>
 			<div id="new-location-tag-filters" class="input-wrapper">
