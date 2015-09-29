@@ -15,6 +15,7 @@
 			'foundation.dynamicRouting.animations',
 
 			// Modules
+			'users',
 			'user-profile',
 			'messages',
 			'locations',
@@ -188,7 +189,8 @@
 				],
 				'enterprise' : [
 					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'},
-					{'title': 'User Profile', 'state': 'enterprise.user-profile'}
+					{'title': 'User Profile', 'state': 'enterprise.user-profile'},
+					{'title': 'Manage Users', 'state': 'enterprise.manage-users'}
 				]
 			};
 

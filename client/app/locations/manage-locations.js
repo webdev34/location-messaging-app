@@ -201,8 +201,6 @@
 				}
 			}
 			
-
-	
 			
 			$scope.$watch("currentPage", paginationValidation);
 			

@@ -1,0 +1,278 @@
+<div class="page page--enterprise" >
+	<header class="heading-bar">
+		<h1>Manage Users</h1>
+	</header>
+	
+	<!-- New User -->
+	<div class="new-user-wrapper" ng-hide="manageUsersCtrl.isEditing" flow-init  flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow-name="uploaderNewUser.flow" flow-files-added="processFiles($files, 'New User')" flow-files-added="saveFiles($files, 'New User')" >
+		<div class="enterprise-manage-users manage-users">
+			<section class="enterprise-manage-users-wrapper">
+				<div class="enterprise-content-left corporate-info">
+					<div class="details full-width avatar">
+						<h1>Add New User</h1>
+
+						<img  ng-src="{{ manageUsersCtrl.flowImgPlaceholder || 'assets/img/default-profile-avatar.png'}}" alt="logo" class="user-avatar"  />
+						<div  ng-repeat="image in uploaderNewUser.flow.files track by $index | limitTo:1" ng-if="$index==0" class="ng-hide">
+							<img class="preview" flow-img="image"/><br>
+							<img class="preview hide" ng-src="{{manageUsersCtrl.newUser.newAvatar[$index]}}"/>
+						</div>
+						<br/>
+						<button class="qvr-button action change-avatar-btn" flow-btn ng-click="removeFiles('New User');">Change Avatar</button>
+					</div>
+				</div>
+				<div class="enterprise-content-right corporate-info">
+					<form role="form" class="qvr-form new-user-form" name="newUserForm">
+						<div class="details full-width">
+							<div class="input-wrapper">
+								<label class="qvr-label">First Name</label>
+								<input placeholder="" type="text" ng-model="manageUsersCtrl.newUser.firstName" >
+							</div>
+							
+							<div class="input-wrapper">
+								<label class="qvr-label">Last Name</label>
+								<input placeholder="" type="text" ng-model="manageUsersCtrl.newUser.lastName">
+							</div>
+							<div class="input-wrapper">
+								<label class="qvr-label">Contact Email</label>
+								<input placeholder="" type="email" ng-model="manageUsersCtrl.newUser.email">
+							</div>
+							<div class="input-wrapper">
+								<label class="qvr-label">Contact Phone</label>
+								<input placeholder="" type="text" ng-model="manageUsersCtrl.newUser.contactNumber">
+							</div>
+							<div class="input-wrapper">
+								<label class="qvr-label">User Rights</label>
+								<select class="qvr-select select-status" ng-model="manageUsersCtrl.newUser.userRights" required>
+									<option value="Admin">Admin</option>
+									<option value="User">User</option>
+								</select>
+							</div>
+							<div class="clearfix"></div>
+							<div class="qvr-button-wrapper">
+								<button type="submit" class="qvr-button action">Save</button>
+								<button class="qvr-button cancel">Cancel</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="clearfix"></div>
+			</section>
+		</div>
+		<div class="enterprise-profile edit qvr-form"  ng-show="userProfileCtrl.isEditing">
+			<section class="enterprise-content-wrapper">
+				<div class="enterprise-content-left corporate-info">
+					<div class="details full-width">
+						<img  ng-src="{{userProfileCtrl.editedUser.avatar}}" alt="logo" class="corp-logo" />
+						<label>Account Name</label>
+						<input placeholder="" type="text" ng-model="userProfileCtrl.editedUser.fullName" required >
+						
+						<label>User Name</label>
+						<input placeholder="" type="text" ng-model="userProfileCtrl.editedUser.username" required >
+						<label>Description</label>
+						<textarea placeholder="" ng-model="userProfileCtrl.editedUser.description" required rows="4" cols="50" ></textarea>
+						<label>Contact Email</label>
+						<input placeholder="" type="text" ng-model="userProfileCtrl.editedUser.emailAddress" required >
+					</div>
+				</div>
+				
+				<div class="clearfix"></div>
+			</section>
+		</div>
+	</div>
+
+
+	<!-- Edit User -->
+	<div class="edit-user-wrapper" ng-show="manageUsersCtrl.isEditing" flow-init  flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow-name="uploaderEditUser.flow" flow-files-added="processFiles($files, 'Edit User')" flow-files-added="saveFiles($files, 'Edit User')">
+		<div class="enterprise-manage-users manage-users" ng-hide="userProfileCtrl.isEditing">
+			<section class="enterprise-manage-users-wrapper">
+				<div class="enterprise-content-left corporate-info">
+					<div class="details full-width avatar">
+						<h1>Edit User</h1>
+						{{uploaderEditUser.flow.files}}
+						<img  ng-src="{{manageUsersCtrl.flowImgPlaceholderEdit}}" alt="logo" class="user-avatar" ng-hide="uploaderEditUser.flow.files.length > 0" />
+						<div ng-repeat="image in uploaderEditUser.flow.files track by $index | limitTo:1" ng-if="$index==0">
+							<img class="preview" flow-img="image"/><br>
+							<img class="preview hide" ng-src="{{manageUsersCtrl.editUser.newAvatar[$index]}}"/>
+						</div>
+						<br/>
+						<button class="qvr-button action change-avatar-btn" flow-btn ng-click="removeFiles('Edit User');">Change Avatar</button>
+					</div>
+				</div>
+				<div class="enterprise-content-right corporate-info">
+					<form role="form" class="qvr-form edit-user-form" name="editUserForm">
+						<div class="details full-width">
+							<div class="input-wrapper">
+								<label class="qvr-label">First Name</label>
+								<input placeholder="" type="text" ng-model="manageUsersCtrl.editUser.firstName" >
+							</div>
+							
+							<div class="input-wrapper">
+								<label class="qvr-label">Last Name</label>
+								<input placeholder="" type="text" ng-model="manageUsersCtrl.editUser.lastName">
+							</div>
+							<div class="input-wrapper">
+								<label class="qvr-label">Contact Email</label>
+								<input placeholder="" type="email" ng-model="manageUsersCtrl.editUser.email">
+							</div>
+							<div class="input-wrapper">
+								<label class="qvr-label">Contact Phone</label>
+								<input placeholder="" type="text" ng-model="manageUsersCtrl.editUser.contactNumber">
+							</div>
+							<div class="input-wrapper">
+								<label class="qvr-label">User Rights</label>
+								<select class="qvr-select select-status" ng-model="manageUsersCtrl.editUser.userRights" required>
+									<option value="Admin">Admin</option>
+									<option value="User">User</option>
+								</select>
+							</div>
+							<div class="clearfix"></div>
+							<div class="qvr-button-wrapper">
+								<button type="submit" class="qvr-button action">Save</button>
+								<button class="qvr-button cancel">Cancel</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="clearfix"></div>
+			</section>
+		</div>
+	</div>
+
+
+	<!-- Users Table -->
+	<section class="manage-users-lower-wrapper">
+		<div class="manage-users-header qvr-form">
+			<h1 class="float-left">Users</h1>
+			<div class="search-wrapper">
+				<label for="filter-by"><i class="fa fa-search"></i></label>
+				<input type="search" class="search-users" ng-model="search"  placeholder="Search Users"  ng-keypress="resetCurrentPage()">
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="manage-users-filter-wrapper qvr-form">
+			<div id="bulk-action" class="input-wrapper">
+				
+				<select id="bulk-actions" class="qvr-select" ng-model="manageUsersCtrl.bulkActions" required >
+					<option value="" selected >Bulk Action</option>
+					<option value="Delete">Delete</option>
+				</select>
+				<button class="qvr-button action {{manageUsersCtrl.bulkActions}}" id="bulk-action-button" ng-disabled="!manageUsersCtrl.bulkActions || !isAnyInputsSelected" ng-click="bulkActions()">
+				<i class="check-mark"></i>
+				</button>
+				
+			</div>
+			<div class="pagination-wrapper input-wrapper">
+				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
+				<i class="fa fa-angle-double-left"></i>
+				</button>
+				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
+				<i class="fa fa-angle-left"></i>
+				</button>
+				<span class="pagination-info">
+					<input type="number" min="1" max="9999" ng-model="currentPage" />
+					<span>
+						of
+						<span ng-hide="results.length == 0">{{noOfPages}}</span>
+						<span ng-show="results.length == 0">1</span>
+					</span>
+				</span>
+				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
+				<i class="fa fa-angle-right right"></i>
+				</button>
+				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
+				<i class="fa fa-angle-double-right right"></i>
+				</button>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="manage-users-table-wrapper qvr-form">
+			<table>
+				<thead>
+					<tr>
+						<th>
+							<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
+						</th>
+						<th>
+							<label>First Name</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'firstName' && reverse == false}" ng-click="sortByFunc('firstName',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'firstName' && reverse == true}" ng-click="sortByFunc('firstName',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Last Name</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'lastName' && reverse == false}" ng-click="sortByFunc('lastName',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'lastName' && reverse == true}" ng-click="sortByFunc('lastName',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>User Rights</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'userRights' && reverse == false}" ng-click="sortByFunc('userRights',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'userRights' && reverse == true}" ng-click="sortByFunc('userRights',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Email</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'email' && reverse == false}" ng-click="sortByFunc('email',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'email' && reverse == true}" ng-click="sortByFunc('email',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Phone Number</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'contactNumber' && reverse == false}" ng-click="sortByFunc('contactNumber',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'contactNumber' && reverse == true}" ng-click="sortByFunc('contactNumber',true);"></i>
+							</span>
+						</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-show="results.length == 0">
+						<td></td>
+						<td colspan="6">
+							<p class="qvr-align-center">No Results</p></td>
+							<td></td>
+						</tr>
+						<tr  data-ng-repeat="user in manageUsersCtrl.users | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" >
+							<td><input type="checkbox" ng-model="user.isSelected" ng-change="anyInputsSelected();" /></td>
+							<td>{{user.firstName}}</td>
+							<td>{{user.lastName}}</td>
+							<td>{{user.userRights}}</td>
+							<td>{{user.email}}</td>
+							<td>{{user.contactNumber}}</td>
+							<td><a ng-click="editUser(user);">edit</a></td>
+							<td><a ng-click="deleteUser(user.id)">delete</a></td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<div class="pagination-wrapper input-wrapper bottom">
+					<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
+					<i class="fa fa-angle-double-left"></i>
+					</button>
+					<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
+					<i class="fa fa-angle-left"></i>
+					</button>
+					<span class="pagination-info">
+						<input type="number" min="1" max="9999" ng-model="currentPage" />
+						<span>
+							of
+							<span ng-hide="results.length == 0">{{noOfPages}}</span>
+							<span ng-show="results.length == 0">1</span>
+						</span>
+					</span>
+					<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
+					<i class="fa fa-angle-right right"></i>
+					</button>
+					<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
+					<i class="fa fa-angle-double-right right"></i>
+					</button>
+				</div>
+				
+			</div>
+		</section>
