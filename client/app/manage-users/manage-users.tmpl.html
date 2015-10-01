@@ -86,11 +86,12 @@
 		<div class="enterprise-manage-users manage-users" ng-hide="userProfileCtrl.isEditing">
 			<section class="enterprise-manage-users-wrapper">
 				<div class="enterprise-content-left corporate-info">
-					<div class="details full-width avatar">
+
+<div class="details full-width avatar">
 						<h1>Edit User</h1>
-						{{uploaderEditUser.flow.files}}
-						<img  ng-src="{{manageUsersCtrl.flowImgPlaceholderEdit}}" alt="logo" class="user-avatar" ng-hide="uploaderEditUser.flow.files.length > 0" />
-						<div ng-repeat="image in uploaderEditUser.flow.files track by $index | limitTo:1" ng-if="$index==0">
+
+						<img  ng-src="{{ manageUsersCtrl.flowImgPlaceholderEdit || 'assets/img/default-profile-avatar.png'}}" alt="logo" class="user-avatar"  />
+						<div  ng-repeat="image in uploaderEditUser.flow.files track by $index | limitTo:1" ng-if="$index==0" class="ng-hide">
 							<img class="preview" flow-img="image"/><br>
 							<img class="preview hide" ng-src="{{manageUsersCtrl.editUser.newAvatar[$index]}}"/>
 						</div>

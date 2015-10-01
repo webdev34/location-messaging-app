@@ -104,20 +104,20 @@
                     $scope.uploaderEditUser = {};
 
                     $scope.processFiles = function(files, section) {
-
+                        
                         angular.forEach(files, function(flowFile, i) {
                             var fileReader = new FileReader();
                             fileReader.onload = function(event) {
                                 var uri = event.target.result;
-                                
-                                if (section = 'New User') {
+                                if (section == 'New User') {
                                     manageUsersCtrl.newUser.newAvatar = null;
                                     manageUsersCtrl.newUser.newAvatar = uri;
                                     manageUsersCtrl.flowImgPlaceholder = angular.copy(uri);
                                 } else {
-                                     uploaderEditUser.flow.files = null;
+                                     manageUsersCtrl.editUser.newAvatar = null;
                                      manageUsersCtrl.editUser.newAvatar = uri;
                                      manageUsersCtrl.flowImgPlaceholderEdit = angular.copy(uri);
+                                     $scope.uploaderEditUser.flow.files = [];
                                 }
                             };
                             fileReader.readAsDataURL(flowFile.file);
