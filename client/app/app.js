@@ -225,12 +225,14 @@
 
 
 			function checkIfLoggedIn() {
-				//console.log('checking if loggedin');
+				console.log('checking if loggedin');
+				appCtrl.goToLogin();
+
 
 				if (!UserModel.isLoggedIn) {
 					//console.log('not logged in');
 					//event.preventDefault();
-					goToLogin();
+					//appCtrl.goToLogin();
 					return;
 				}
 			}
@@ -242,17 +244,24 @@
 			});
 			
 			function init() {
-				checkIfLoggedIn();
-				setNavigationState();
-				goToHomePage();
+
+				//checkIfLoggedIn();
+				//setNavigationState();
+				//goToHomePage();
+				console.log('before');
+				$state.go('messages.new');
+				console.log('after');
 			}
 
 			
 
 			
 
-			function goToLogin() {
+			appCtrl.goToLogin = function() {
+				console.log('going home');
 				$state.go('home');
+				//$state.go('messages.new');
+
 			}
 
 			function goToHomePage() {
@@ -300,7 +309,7 @@
 			appCtrl.userLogout = function(){
 				appCtrl.userLoginInfo = {};
 				UserModel.logout();
-				goToLogin();
+				appCtrl.goToLogin();
 			}
 
 
