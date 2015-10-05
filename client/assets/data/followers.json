@@ -1,0 +1,119 @@
+{
+  "followers": 
+  	[{
+      "id": 0,
+      "firstName": "Abby",
+      "lastName": "Ali",
+      "city": "Los Angeles",
+      "country": "USA",
+      "age": 21,
+      "sex": "f",
+      "isBlocked": true
+  	},
+    {
+      "id": 2,
+      "firstName": "David",
+      "lastName": "Ball",
+      "city": "New York",
+      "country": "USA",
+      "age": 19,
+      "sex": "m",
+      "isBlocked": false
+    }
+    ,
+    {
+      "id": 3,
+      "firstName": "James",
+      "lastName": "Corn",
+      "city": "New Jersey",
+      "country": "USA",
+      "age": 23,
+      "sex": "m",
+      "isBlocked": true
+    },
+    {
+      "id": 4,
+      "firstName": "Sue",
+      "lastName": "Susan",
+      "city": "Liberia",
+      "country": "Africa",
+      "age": 21,
+      "sex": "f",
+      "isBlocked": false
+    },
+    {
+      "id": 5,
+      "firstName": "Justin",
+      "lastName": "Effort",
+      "city": "New York",
+      "country": "USA",
+      "age": 21,
+      "sex": "m",
+      "isBlocked": false
+    }
+    ,
+    {
+      "id": 6,
+      "firstName": "Steve",
+      "lastName": "Kerr",
+      "city": "New York",
+      "country": "USA",
+      "age": 41,
+      "sex": "m",
+      "isBlocked": false
+    }
+    ,
+    {
+      "id": 7,
+      "firstName": "Dee",
+      "lastName": "Mango",
+      "city": "Florida",
+      "country": "USA",
+      "age": 21,
+      "sex": "m",
+      "isBlocked": true
+    }
+    ,
+    {
+      "id": 8,
+      "firstName": "Zoey",
+      "lastName": "Zoe",
+      "city": "New York",
+      "country": "USA",
+      "age": 21,
+      "sex": "m",
+      "isBlocked": false
+    }
+    ,
+    {
+      "id": 9,
+      "firstName": "Truman",
+      "lastName": "Thomas",
+      "city": "New York",
+      "country": "USA",
+      "age": 21,
+      "sex": "m",
+      "isBlocked": false
+    },
+    {
+      "id": 10,
+      "firstName": "Otho",
+      "lastName": "Oreo",
+      "city": "Chicago",
+      "country": "USA",
+      "age": 21,
+      "sex": "f",
+      "isBlocked": false
+    },
+    {
+      "id": 11,
+      "firstName": "Greg",
+      "lastName": "Williams",
+      "city": "Texas",
+      "country": "USA",
+      "age": 21,
+      "sex": "f",
+      "isBlocked": false
+    }
+	]
+}

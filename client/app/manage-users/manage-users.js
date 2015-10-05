@@ -5,6 +5,16 @@
         'enterprise-portal.models.users'
 
     ])
+    .filter('startFrom', function () {
+        return function (input, start) {
+            if (input) {
+                start = +start;
+
+                return input;
+            }
+            return [];
+        };
+    })
 
     .config(['$stateProvider',
         function($stateProvider) {
@@ -70,6 +80,11 @@
                                 $scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
                                 $scope.endAt = $scope.entryLimit * $scope.currentPage;
 
+                            };
+
+
+                            $scope.resetCurrentPage = function() {
+                                $scope.currentPage = 1;
                             };
 
                             $scope.sortByFunc = function(sortBy, reverse) {
