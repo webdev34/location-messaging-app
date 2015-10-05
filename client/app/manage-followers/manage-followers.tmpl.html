@@ -9,7 +9,7 @@
 			<h1 class="float-left">Followers</h1>
 			<div class="search-wrapper">
 				<label for="filter-by"><i class="fa fa-search"></i></label>
-				<input type="search" class="search-followers" ng-model="search"  placeholder="Search Followers"  ng-change="resetCurrentPage();">
+				<input type="search" class="search-followers" ng-model="manageFollowersCtrl.search"  placeholder="Search Followers"  ng-change="manageFollowersCtrl.resetCurrentPage();">
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -52,85 +52,85 @@
 		<div class="alphabets">
 			<ul>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'ALL'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('ALL');">ALL</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'ALL'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('ALL');">ALL</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'A'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('A');">A</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'A'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('A');">A</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'B'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('B'); ">B</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'B'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('B'); ">B</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'C'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('C');">C</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'C'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('C');">C</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'D'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('D');">D</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'D'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('D');">D</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'E'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('E');">E</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'E'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('E');">E</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'F'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('F');">F</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'F'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('F');">F</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'G'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('G');">G</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'G'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('G');">G</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'H'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('H');">H</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'H'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('H');">H</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'I'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('I');">I</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'I'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('I');">I</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'J'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('J');">J</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'J'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('J');">J</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'K'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('K');">K</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'K'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('K');">K</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'L'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('L');">L</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'L'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('L');">L</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'M'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('M');">M</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'M'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('M');">M</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'N'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('N');">N</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'N'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('N');">N</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'O'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('O');">O</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'O'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('O');">O</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'P'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('P');">P</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'P'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('P');">P</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'Q'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('Q');">Q</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'Q'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('Q');">Q</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'R'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('R');">R</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'R'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('R');">R</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'S'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('S');">S</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'S'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('S');">S</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'T'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('T');">T</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'T'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('T');">T</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'U'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('U');">U</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'U'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('U');">U</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'V'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('V');">V</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'V'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('V');">V</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'W'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('W');">W</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'W'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('W');">W</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'X'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('X');">X</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'X'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('X');">X</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'Y'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('Y');">Y</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'Y'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('Y');">Y</a>
 				</li>
 				<li>
-					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'Z'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('Z');">Z</a>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'Z'}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false); manageFollowersCtrl.changeActiveSearchFilter('Z');">Z</a>
 				</li>
 			</ul>
 		</div>
@@ -145,48 +145,48 @@
 				<thead>
 					<tr>
 						<th>
-							<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
+							<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="manageFollowersCtrl.toggleSelected(); manageFollowersCtrl.anyInputsSelected();" />
 						</th>
 						<th>
 							<label>First Name</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'firstName' && reverse == false}" ng-click="sortByFunc('firstName',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'firstName' && reverse == true}" ng-click="sortByFunc('firstName',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'firstName' && manageFollowersCtrl.reverse == false}" ng-click="manageFollowersCtrl.sortByFunc('firstName',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'firstName' && manageFollowersCtrl.reverse == true}" ng-click="manageFollowersCtrl.sortByFunc('firstName',true);"></i>
 							</span>
 						</th>
 						<th>
 							<label>Last Name</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'lastName' && reverse == false}" ng-click="sortByFunc('lastName',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'lastName' && reverse == true}" ng-click="sortByFunc('lastName',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'lastName' && manageFollowersCtrl.reverse == false}" ng-click="manageFollowersCtrl.sortByFunc('lastName',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'lastName' && manageFollowersCtrl.reverse == true}" ng-click="manageFollowersCtrl.sortByFunc('lastName',true);"></i>
 							</span>
 						</th>
 						<th>
 							<label>City</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'city' && reverse == false}" ng-click="sortByFunc('city',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'city' && reverse == true}" ng-click="sortByFunc('city',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'city' && manageFollowersCtrl.reverse == false}" ng-click="manageFollowersCtrl.sortByFunc('city',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'city' && manageFollowersCtrl.reverse == true}" ng-click="manageFollowersCtrl.sortByFunc('city',true);"></i>
 							</span>
 						</th>
 						<th>
 							<label>Country</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'country' && reverse == false}" ng-click="sortByFunc('country',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'country' && reverse == true}" ng-click="sortByFunc('country',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'country' && manageFollowersCtrl.reverse == false}" ng-click="manageFollowersCtrl.sortByFunc('country',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'country' && reverse == true}" ng-click="manageFollowersCtrl.sortByFunc('country',true);"></i>
 							</span>
 						</th>
 						<th>
 							<label>Age</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'age' && reverse == false}" ng-click="sortByFunc('age',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'age' && reverse == true}" ng-click="sortByFunc('age',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'age' && manageFollowersCtrl.reverse == false}" ng-click="manageFollowersCtrl.sortByFunc('age',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'age' && manageFollowersCtrl.reverse == true}" ng-click="manageFollowersCtrl.sortByFunc('age',true);"></i>
 							</span>
 						</th>
 						<th>
 							<label>Sex</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'sex' && reverse == false}" ng-click="sortByFunc('sex',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'sex' && reverse == true}" ng-click="sortByFunc('sex',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'sex' && manageFollowersCtrl.reverse == false}" ng-click="manageFollowersCtrl.sortByFunc('sex',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageFollowersCtrl.sortOrderBy == 'sex' && manageFollowersCtrl.reverse == true}" ng-click="manageFollowersCtrl.sortByFunc('sex',true);"></i>
 							</span>
 						</th>
 						<th></th>
@@ -200,7 +200,7 @@
 							<p class="qvr-align-center">No Results</p></td>
 							<td></td>
 						</tr>
-						<tr  data-ng-repeat="follower in manageFollowersCtrl.followers | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" >
+						<tr  data-ng-repeat="follower in manageFollowersCtrl.followers | startFrom:startAt | orderBy:manageFollowersCtrl.sortOrderBy:manageFollowersCtrl.reverse | filter:manageFollowersCtrl.search as results" ng-show="$index >= manageFollowersCtrl.startAt && $index <= manageFollowersCtrl.endAt" ng-class="{last: manageFollowersCtrl.endAt == $index}" >
 							<td><input type="checkbox" ng-model="follower.isSelected" ng-change="anyInputsSelected();" /></td>
 							<td>{{follower.firstName}}</td>
 							<td>{{follower.lastName}}</td>
@@ -208,31 +208,31 @@
 							<td>{{follower.country}}</td>
 							<td>{{follower.age}}</td>
 							<td>{{follower.sex}}</td>
-							<td><a ng-click="removeFollower(follower);">remove</a></td>
-							<td><a ng-click="blockUser(follower)">block</a></td>
+							<td><a ng-click="manageFollowersCtrl.removeFollower(follower);">remove</a></td>
+							<td><a ng-click="manageFollowersCtrl.blockUser(follower)">block</a></td>
 						</tr>
 					</tbody>
 				</table>
 				
 				<div class="pagination-wrapper input-wrapper bottom">
-					<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
+					<button class="qvr-button" ng-click="manageFollowersCtrl.goToPage('beginning');" ng-disabled="manageFollowersCtrl.currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-double-left"></i>
 					</button>
-					<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
+					<button class="qvr-button" ng-click="manageFollowersCtrl.goToPage('down');" ng-disabled="manageFollowersCtrl.currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-left"></i>
 					</button>
 					<span class="pagination-info">
-						<input type="number" min="1" max="9999" ng-model="currentPage" />
+						<input type="number" min="1" max="9999" ng-model="manageFollowersCtrl.currentPage" />
 						<span>
 							of
-							<span ng-hide="results.length == 0">{{noOfPages}}</span>
+							<span ng-hide="results.length == 0">{{manageFollowersCtrl.noOfPages}}</span>
 							<span ng-show="results.length == 0">1</span>
 						</span>
 					</span>
-					<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
+					<button class="qvr-button" ng-click="manageFollowersCtrl.goToPage('up');" ng-disabled="manageFollowersCtrl.currentPage == manageFollowersCtrl.noOfPages || results.length == 0">
 					<i class="fa fa-angle-right right"></i>
 					</button>
-					<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
+					<button class="qvr-button" ng-click="manageFollowersCtrl.goToPage('end');" ng-disabled="manageFollowersCtrl.currentPage == manageFollowersCtrl.noOfPages|| results.length == 0">
 					<i class="fa fa-angle-double-right right"></i>
 					</button>
 				</div>
