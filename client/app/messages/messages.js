@@ -63,11 +63,6 @@
 				});
 		}
 	])
-
-	.controller('MyCtrl', ['$scope', function ($scope) {
-     $scope.types = "['establishment']";
-    
-	}])
 	
 ;
 
