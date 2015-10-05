@@ -39,7 +39,7 @@
 				"content": "",
 				"status": "Inactive",
 				"range": 5,
-				"discoverOn": "enter",
+				"discoverOn": 1, // 1 => enter; 2 => leave
 				"startDate": todayProperFormatted,
 				"startTime": "12:01 AM",
 				"endDate": tomorrowProperFormatted,

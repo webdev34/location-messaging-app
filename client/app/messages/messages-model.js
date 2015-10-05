@@ -71,31 +71,24 @@
 			};
 
 			model.createNewMessage = function(newMessage) {
-				console.log("start: "+ newMessage.startDate + " " +  newMessage.startTime);
-				console.log("end: "+ newMessage.endDate + " " + newMessage.endTime);
 
 				var formattedMessage = {
-					"comment": {
-						"text": newMessage.content
-						//"messagetitle": newMessage.messageTitle
+					"message": {
+						target: 3, //targets all followers
+						//"name": newMessage.messageTitle,
+						"text": newMessage.content,
+						"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
+						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()
 					},
-					"messageLocation": [
+					"location": [
 						{
-							"name": newMessage.locationName,
-							"geoFence": {
-								"type": "Point",
-								"coordinates": [newMessage.coordinates.H, newMessage.coordinates.L]
-							},
-							"distance": newMessage.range,
-							"trigger": 1, //is this the same as discoverOn
-							//"discoverOn": newMessage.discoverOn,
-							"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
-							"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()
+							"name": newMessage.locationName || "Unnamed Location",
+							"latitude": newMessage.coordinates.H,
+							"longitude": newMessage.coordinates.L,
+							"distance": newMessage.range*1000,
+							"trigger": newMessage.discoverOn
 						}
-					],
-					 envelope: {
-            target: 3 //targets all followers
-        	}
+					]
 				}
 
 				return MessagesService.create(formattedMessage).then(function(response){
