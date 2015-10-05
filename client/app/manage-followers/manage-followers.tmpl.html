@@ -1,0 +1,241 @@
+<div class="page page--enterprise" >
+	<header class="heading-bar">
+		<h1>Manage Followers</h1>
+	</header>
+
+	<!-- Followers Table -->
+	<section class="manage-followers-lower-wrapper">
+		<div class="manage-followers-header qvr-form">
+			<h1 class="float-left">Followers</h1>
+			<div class="search-wrapper">
+				<label for="filter-by"><i class="fa fa-search"></i></label>
+				<input type="search" class="search-followers" ng-model="search"  placeholder="Search Followers"  ng-change="resetCurrentPage();">
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="manage-followers-filter-wrapper qvr-form">
+			<div id="bulk-action" class="input-wrapper">
+				
+				<select id="bulk-actions" class="qvr-select" ng-model="manageFollowersCtrl.bulkActions" required >
+					<option value="" selected >Bulk Action</option>
+					<option value="Delete">Delete</option>
+				</select>
+				<button class="qvr-button action {{manageFollowersCtrl.bulkActions}}" id="bulk-action-button" ng-disabled="!manageFollowersCtrl.bulkActions || !isAnyInputsSelected" ng-click="bulkActions()">
+				<i class="check-mark"></i>
+				</button>
+				
+			</div>
+
+			<div id="tag-filters" class="input-wrapper">
+				<isteven-multi-select class="add-tag-filters float-left"   
+				    input-model="manageFollowersCtrl.tagFilters"    
+				    output-model="manageFollowersCtrl.selectedTagFilters"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="4"
+					>
+				</isteven-multi-select>
+				
+				<button class="qvr-button action" ng-disabled="manageFollowersCtrl.tagFilters.length == 0">
+					<i class="check-mark"></i>
+				</button>
+			</div>	
+
+		</div>
+		<div class="clearfix"></div>
+		<hr/>
+
+
+		<!-- Alphabet Search -->
+
+		<div class="alphabets">
+			<ul>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'ALL'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('ALL');">ALL</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'A'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('A');">A</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'B'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('B'); ">B</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'C'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('C');">C</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'D'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('D');">D</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'E'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('E');">E</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'F'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('F');">F</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'G'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('G');">G</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'H'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('H');">H</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'I'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('I');">I</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'J'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('J');">J</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'K'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('K');">K</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'L'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('L');">L</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'M'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('M');">M</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'N'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('N');">N</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'O'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('O');">O</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'P'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('P');">P</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'Q'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('Q');">Q</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'R'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('R');">R</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'S'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('S');">S</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'T'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('T');">T</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'U'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('U');">U</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'V'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('V');">V</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'W'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('W');">W</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'X'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('X');">X</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'Y'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('Y');">Y</a>
+				</li>
+				<li>
+					<a ng-class="{'active': manageFollowersCtrl.activeSearchFilter == 'Z'}" ng-click="sortByFunc('lastName',false); changeActiveSearchFilter('Z');">Z</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Alphabet Search -->
+
+
+
+		<!-- Manage Followers Table -->
+		<div class="manage-followers-table-wrapper qvr-form">
+			<table>
+				<thead>
+					<tr>
+						<th>
+							<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
+						</th>
+						<th>
+							<label>First Name</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'firstName' && reverse == false}" ng-click="sortByFunc('firstName',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'firstName' && reverse == true}" ng-click="sortByFunc('firstName',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Last Name</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'lastName' && reverse == false}" ng-click="sortByFunc('lastName',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'lastName' && reverse == true}" ng-click="sortByFunc('lastName',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>City</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'city' && reverse == false}" ng-click="sortByFunc('city',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'city' && reverse == true}" ng-click="sortByFunc('city',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Country</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'country' && reverse == false}" ng-click="sortByFunc('country',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'country' && reverse == true}" ng-click="sortByFunc('country',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Age</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'age' && reverse == false}" ng-click="sortByFunc('age',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'age' && reverse == true}" ng-click="sortByFunc('age',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Sex</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'sex' && reverse == false}" ng-click="sortByFunc('sex',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'sex' && reverse == true}" ng-click="sortByFunc('sex',true);"></i>
+							</span>
+						</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-show="results.length == 0">
+						<td></td>
+						<td colspan="5">
+							<p class="qvr-align-center">No Results</p></td>
+							<td></td>
+						</tr>
+						<tr  data-ng-repeat="follower in manageFollowersCtrl.followers | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" >
+							<td><input type="checkbox" ng-model="follower.isSelected" ng-change="anyInputsSelected();" /></td>
+							<td>{{follower.firstName}}</td>
+							<td>{{follower.lastName}}</td>
+							<td>{{follower.city}}</td>
+							<td>{{follower.country}}</td>
+							<td>{{follower.age}}</td>
+							<td>{{follower.sex}}</td>
+							<td><a ng-click="removeFollower(follower);">remove</a></td>
+							<td><a ng-click="blockUser(follower)">block</a></td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<div class="pagination-wrapper input-wrapper bottom">
+					<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
+					<i class="fa fa-angle-double-left"></i>
+					</button>
+					<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
+					<i class="fa fa-angle-left"></i>
+					</button>
+					<span class="pagination-info">
+						<input type="number" min="1" max="9999" ng-model="currentPage" />
+						<span>
+							of
+							<span ng-hide="results.length == 0">{{noOfPages}}</span>
+							<span ng-show="results.length == 0">1</span>
+						</span>
+					</span>
+					<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
+					<i class="fa fa-angle-right right"></i>
+					</button>
+					<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
+					<i class="fa fa-angle-double-right right"></i>
+					</button>
+				</div>
+				
+			</div>
+		</section>

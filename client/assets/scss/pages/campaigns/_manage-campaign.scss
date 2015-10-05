@@ -3,10 +3,11 @@
     #cloneCampaignModal {
         .modal {
             overflow: visible;
+            border: 2px solid #999;
             h1 {
                 padding: 0;
                 margin: 0 0 25px 0;
-                border-bottom: solid 1 px #808285;
+                border-bottom: solid 2 px #999;
                 color: #808285;
                 font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
                 font-size: 32px;
@@ -25,6 +26,12 @@
             .input-field{
             	margin-right: 25px;
             	width: 70%;
+            }
+
+            .multiSelect.inlineBlock{
+                label{
+                    color: #808285;
+                }
             }
 
 
