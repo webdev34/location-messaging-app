@@ -75,7 +75,7 @@
 				var formattedMessage = {
 					"message": {
 						target: 3, //targets all followers
-						//"name": newMessage.messageTitle,
+						"label": newMessage.messageTitle,
 						"text": newMessage.content,
 						"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
 						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()
