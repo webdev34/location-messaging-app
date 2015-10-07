@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('messages.asset', [
+	angular.module('messages.assets', [
 	])
 	
 	.controller('AssetMessageCtrl', [
