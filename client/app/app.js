@@ -222,57 +222,50 @@
 
 			$rootScope.$on('$stateChangeSuccess',
 				function(event, toState, toParams, fromState, fromParams) {
+					if (!fromState.name) {
+						//console.log('refresh');
+						checkIfLoggedIn();
+					}
 					//console.log(fromState.name, "-->", toState.name);
 					setNavigationState();
 				}
 			);
 
+			$rootScope.$on('$routeChangeStart', function (event) {
+				console.log('routechangestart');
+				checkIfLoggedIn();
+			});
+
+			$rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams){
+			    console.log(unfoundState.to); // "lazy.state"
+			    console.log(unfoundState.toParams); // {a:1, b:2}
+			    console.log(unfoundState.options); // {inherit:false} + default options
+			});
+
+
 
 			function checkIfLoggedIn() {
-				console.log('checking if loggedin');
-				appCtrl.goToLogin();
-
+				//console.log('checking if loggedin');
 
 				if (!UserModel.isLoggedIn) {
 					//console.log('not logged in');
-					//event.preventDefault();
-					//appCtrl.goToLogin();
+					event.preventDefault();
+					appCtrl.goToLogin();
 					return;
 				}
 			}
 
-			$rootScope.$on('$routeChangeStart', function (event) {
-				//console.log('routechangestart');
-				checkIfLoggedIn();
-
-			});
-			
-			function init() {
-
-				//checkIfLoggedIn();
-				//setNavigationState();
-				//goToHomePage();
-				console.log('before');
-				$state.go('messages.new');
-				console.log('after');
-			}
-
-			
-
-			
-
-			appCtrl.goToLogin = function() {
-				console.log('going home');
-				$state.go('home');
-				//$state.go('messages.new');
-
-			}
-
 			function goToHomePage() {
+				//console.log('going home');
 				$state.go(APP_default_state);
 			}
 
-			
+			appCtrl.goToLogin = function() {
+				//console.log('going to login');
+				$state.go('home');
+
+			}
+	
 			appCtrl.userLogin = function() {
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
@@ -317,8 +310,6 @@
 			}
 
 
-
-			init();
 		}
 	]);
 

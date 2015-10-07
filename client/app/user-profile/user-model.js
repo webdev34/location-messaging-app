@@ -36,6 +36,7 @@ User types - these are NOT 'social users' (followers)
 			var model = this;
 			
 			//model.user = $cookieStore.get("QVR.user");
+			model.isLoggedIn = false;
 			//console.log(model.user);
 			
 			// model.registerUser = function(userDetail) {
@@ -59,7 +60,7 @@ User types - these are NOT 'social users' (followers)
 							//console.log('model user: ' + model.user);
 							model.authorization = response.authorization;
 							model.enterprise = response.enterprise;
-							model.user.isLoggedIn = true;
+							model.isLoggedIn = true;
 							//$cookieStore.put("QVR.user", model.user);
 							return response;
 						},
