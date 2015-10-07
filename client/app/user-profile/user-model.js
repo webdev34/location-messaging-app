@@ -22,13 +22,15 @@ User types - these are NOT 'social users' (followers)
 	])
 	
 	.service('UserModel', [
-		'$cookies',
+		'$rootScope',
+		//'$cookies',
 		'$cookieStore',
 		'API_URL',
 		'UserService',
 		
 		function(
-			$cookies,
+			$rootScope,
+			//$cookies,
 			$cookieStore,
 			API_URL,
 			UserService
@@ -37,6 +39,34 @@ User types - these are NOT 'social users' (followers)
 			
 			//model.user = $cookieStore.get("QVR.user");
 			model.isLoggedIn = false;
+
+			$rootScope.auth = $cookieStore.get("qvr.auth");
+			model.userCookie = $cookieStore.get("qvr.user");
+
+			model.getAccount = function(userID) {
+				return UserService.get(userID)
+					.then(
+						function(response) {
+							model.user = response.user;
+
+							//$cookieStore.put("QVR.user", model.user);
+							return response;
+						},
+						function(response) {
+							return response;
+						}
+					);
+			}
+
+
+			if (model.userCookie) {
+				model.getAccount(model.userCookie).then(
+					function success (response) {
+						model.isLoggedIn = true;
+					}
+				);
+			}
+
 			//console.log(model.user);
 			
 			// model.registerUser = function(userDetail) {
@@ -61,7 +91,9 @@ User types - these are NOT 'social users' (followers)
 							model.authorization = response.authorization;
 							model.enterprise = response.enterprise;
 							model.isLoggedIn = true;
-							//$cookieStore.put("QVR.user", model.user);
+							$cookieStore.put("qvr.auth", model.authorization );
+							$cookieStore.put("qvr.user", model.user.sid );
+
 							return response;
 						},
 						function(response) {
@@ -70,21 +102,7 @@ User types - these are NOT 'social users' (followers)
 					);
 			}
 
-			model.getAccount = function(userID) {
-				return UserService.get(userID)
-					.then(
-						function(response) {
-							model.user = response.user;
-
-							//$cookieStore.put("QVR.user", model.user);
-							return response;
-						},
-						function(response) {
-							return response;
-						}
-					);
-			}
-
+			
 			model.logout = function() {
 				model.user = {};
 				$cookieStore.remove("QVR.user");
