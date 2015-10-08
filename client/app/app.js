@@ -270,7 +270,8 @@
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
 						function success(response) {
-							$rootScope.auth = response.authorization;
+							//$rootScope.auth = response.authorization;
+							//console.log('login respones: '+ JSON.stringify(response));
 							appCtrl.user = UserModel.user;
 							
 							// suppress false positives

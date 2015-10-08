@@ -35,13 +35,13 @@
 		</ul>
 	</nav>
 	
-	<section class="header-user-info">
+	<section class="header-user-info" controller="UserProfileCtrl as userProfileCtrl">
 		<span class="icon-wrapper"><span class="icon i-header-user active"></span></span>
 		<span class="details">
-			<div class="enterise-name">{{appCtrl.user.username}}</div>
+			<div class="enterise-name">{{userProfileCtrl.user.username}} </div>
 			<div class="enterprise-plan">Current Plan: <span>Warrior</span> <span>Upgrade</span></div>
 		</span>
-		<span class="username"><span>Logged In As:</span> {{appCtrl.user.fullName}}</span>
+		<span class="username"><span>Logged In As:</span> {{userProfileCtrl.user.fullName}}</span>
 	</section>
 
 </header>

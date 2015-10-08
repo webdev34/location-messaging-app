@@ -24,7 +24,7 @@
 
 
 			model.getEnterprise = function() {
-				return (model.company) ? $q.when(model.company) : EnterpriseService.get(UserModel.enterprise[0])
+				return (model.company) ? $q.when(model.company) : EnterpriseService.get(UserModel.enterprise)
 					.then(
 						function (response) {
 							model.company = response.enterprise;
