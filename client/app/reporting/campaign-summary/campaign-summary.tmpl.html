@@ -1,0 +1,306 @@
+<header class="heading-bar">
+	<h1 ng-show="campaignSummaryCtrl.currentView == 'Campaign'">Campaign Summary</h1>
+	<h1 ng-show="campaignSummaryCtrl.currentView == 'Messages'">{{campaignSummaryCtrl.currentMessageNameView}}</h1>
+</header>
+<section class="campaign-summary-wrapper">
+	<form role="form" class="qvr-form campaign-summary-form" name="campaignSummaryForm">
+		<div class="float-right top-controls">
+			
+			<div class="button-wrapper">
+				<button class="qvr-button action" ng-show="campaignSummaryCtrl.currentView == 'Messages'" ng-click="campaignSummaryCtrl.resetCurrentPage(); campaignSummaryCtrl.changeCurrentView('Campaign'); campaignSummaryCtrl.clearSearchField();">Back to Campaigns View</button>
+				<button type="submit" class="qvr-button action">EXPORT</button>
+			</div>
+		</div>
+	</form>
+	<section class="campaign-summary-content-wrapper">
+
+		<div class="clearfix"></div>
+
+		<div class="campaign-summary-header qvr-form">
+			<h1 class="float-left" ng-show="campaignSummaryCtrl.currentView == 'Campaign'">KEY STATS - CAMPAIGNS</h1>
+			<h1 class="float-left" ng-show="campaignSummaryCtrl.currentView == 'Messages'">KEY STATS - MESSAGES</h1>
+			<div class="search-wrapper">
+				<label for="filter-by"><i class="fa fa-search"></i></label>
+				<input type="search" class="search-campaigns" ng-model="campaignSummaryCtrl.search"  placeholder="Search Report"  ng-keypress="campaignSummaryCtrl.resetCurrentPage()">
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<!-- Campaign Breakdown  -->
+		<div class="campaign-summary-table-wrapper qvr-form campaign" ng-show="campaignSummaryCtrl.currentView == 'Campaign'">
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>
+							<label>Campaign</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'campaign' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('campaign',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'campaign' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('campaign',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>To</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'to' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('to',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'to' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('to',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Deliv.</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'delivered' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('delivered',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'delivered' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('delivered',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Opens</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'opens' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('opens',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'opens' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('opens',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Open %</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'opensPecentage' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('opensPecentage',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'opensPecentage' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('opensPecentage',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Saves</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'saves' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('saves',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'saves' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('saves',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Save %</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'savesPecentage' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('savesPecentage',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'savesPecentage' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('savesPecentage',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Shares</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'shares' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('shares',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'shares' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('shares',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Share %</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'sharesPecentage' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('sharesPecentage',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'sharesPecentage' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('sharesPecentage',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Likes</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'likes' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('likes',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'likes' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('likes',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Like %</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'likesPecentage' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('likesPecentage',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'likesPecentage' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('likesPecentage',true);"></i>
+							</span>
+						</th>
+
+						<th>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="blue-row">
+						<td class="bold"></td>
+						<td class="bold">ALL CAMPAIGNS</td>
+						<td class="bold">4,320</td>
+						<td class="bold">360</td>
+						<td class="bold">190</td>
+						<td class="qvr-blue bold">55.3%</td>
+						<td>12</td>
+						<td class="qvr-blue bold">55.3%</td>
+						<td>12</td>
+						<td class="qvr-blue bold">55.3%</td>
+						<td>12</td>
+						<td class="qvr-blue bold">55.3%</td>
+						<td></td>
+					</tr>
+					<tr data-ng-repeat="campaign in campaignSummaryCtrl.campaignSummaryData | startFrom:campaignSummaryCtrl.startAt | orderBy:campaignSummaryCtrl.sortOrderBy:campaignSummaryCtrl.reverse | filter:campaignSummaryCtrl.search as results" ng-show="$index >= campaignSummaryCtrl.startAt && $index <= campaignSummaryCtrl.endAt" ng-class="{last: campaignSummaryCtrl.endAt == $index}">
+						<td></td>
+						<td>{{campaign.campaign}}</td>
+						<td>{{campaign.to | number}}</td>
+						<td>{{campaign.delivered | number}}</td>
+						<td>{{campaign.opens | number}}</td>
+						<td class="qvr-blue">{{campaign.opensPercentage}}</td>
+						<td>{{campaign.saves | number}}</td>
+						<td class="qvr-blue">{{campaign.savesPercentage}}</td>
+						<td>{{campaign.shares | number}}</td>
+						<td class="qvr-blue">{{campaign.sharesPercentage}}</td>
+						<td>{{campaign.likes | number}}</td>
+						<td class="qvr-blue">{{campaign.likesPercentage}}</td>
+						<td class="button-td" >
+							<button class="qvr-button action" ng-click="campaignSummaryCtrl.changeCurrentView('Messages', campaign);">
+								<i class="fa fa-angle-right right"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+
+
+		<!-- Messages Breakdown  -->
+		<div class="campaign-summary-table-wrapper qvr-form messages"  ng-show="campaignSummaryCtrl.currentView == 'Messages'">
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>
+							<label>Campaign</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'campaign' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('campaign',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'campaign' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('campaign',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>To</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'to' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('to',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'to' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('to',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Deliv.</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'delivered' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('delivered',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'delivered' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('delivered',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Opens</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'opens' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('opens',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'opens' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('opens',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Open %</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'opensPecentage' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('opensPecentage',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'opensPecentage' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('opensPecentage',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Saves</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'saves' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('saves',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'saves' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('saves',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Save %</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'savesPecentage' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('savesPecentage',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'savesPecentage' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('savesPecentage',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Shares</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'shares' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('shares',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'shares' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('shares',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Share %</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'sharesPecentage' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('sharesPecentage',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'sharesPecentage' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('sharesPecentage',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Likes</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'likes' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('likes',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'likes' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('likes',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Like %</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'likesPecentage' && campaignSummaryCtrl.reverse == false}" ng-click="campaignSummaryCtrl.sortByFunc('likesPecentage',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: campaignSummaryCtrl.sortOrderBy == 'likesPecentage' && campaignSummaryCtrl.reverse == true}" ng-click="campaignSummaryCtrl.sortByFunc('likesPecentage',true);"></i>
+							</span>
+						</th>
+
+						<th>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="blue-row">
+						<td class="bold"></td>
+						<td class="bold">ALL CAMPAIGNS</td>
+						<td class="bold">4,320</td>
+						<td class="bold">360</td>
+						<td class="bold">190</td>
+						<td class="qvr-blue bold">55.3%</td>
+						<td>12</td>
+						<td class="qvr-blue bold">55.3%</td>
+						<td>12</td>
+						<td class="qvr-blue bold">55.3%</td>
+						<td>12</td>
+						<td class="qvr-blue bold">55.3%</td>
+						<td></td>
+					</tr>
+					<tr data-ng-repeat="campaign in campaignSummaryCtrl.currentMessageObj | startFrom:campaignSummaryCtrl.startAt | orderBy:campaignSummaryCtrl.sortOrderBy:campaignSummaryCtrl.reverse | filter:campaignSummaryCtrl.search as results" ng-show="$index >= campaignSummaryCtrl.startAt && $index <= campaignSummaryCtrl.endAt" ng-class="{last: campaignSummaryCtrl.endAt == $index}">
+						<td></td>
+						<td>{{campaign.message}}</td>
+						<td>{{campaign.to | number}}</td>
+						<td>{{campaign.delivered | number}}</td>
+						<td>{{campaign.opens | number}}</td>
+						<td class="qvr-blue">{{campaign.opensPercentage}}</td>
+						<td>{{campaign.saves | number}}</td>
+						<td class="qvr-blue">{{campaign.savesPercentage}}</td>
+						<td>{{campaign.shares | number}}</td>
+						<td class="qvr-blue">{{campaign.sharesPercentage}}</td>
+						<td>{{campaign.likes | number}}</td>
+						<td class="qvr-blue">{{campaign.likesPercentage}}</td>
+						<td class="button-td" >
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="pagination-wrapper input-wrapper bottom">
+			<button class="qvr-button" ng-click="campaignSummaryCtrl.goToPage('beginning');" ng-disabled="campaignSummaryCtrl.currentPage == 1">
+			<i class="fa fa-angle-double-left"></i>
+			</button>
+			<button class="qvr-button" ng-click="campaignSummaryCtrl.goToPage('down');" ng-disabled="campaignSummaryCtrl.currentPage == 1">
+			<i class="fa fa-angle-left"></i>
+			</button>
+			<span class="pagination-info">
+				<input type="number" min="1" max="9999" ng-model="campaignSummaryCtrl.currentPage" />
+				<span>
+					of
+					<span>{{campaignSummaryCtrl.noOfPages}}</span>
+				</span>
+			</span>
+			<button class="qvr-button" ng-click="campaignSummaryCtrl.goToPage('up');" ng-disabled="campaignSummaryCtrl.currentPage == campaignSummaryCtrl.noOfPages">
+			<i class="fa fa-angle-right right"></i>
+			</button>
+			<button class="qvr-button" ng-click="campaignSummaryCtrl.goToPage('end');" ng-disabled="campaignSummaryCtrl.currentPage == campaignSummaryCtrl.noOfPages">
+			<i class="fa fa-angle-double-right right"></i>
+			</button>
+		</div>
+	</section>
+</section>
