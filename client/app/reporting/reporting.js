@@ -2,7 +2,8 @@
 	'use strict';
 
 	angular.module('reporting', [
-		'reporting.follower-summary'
+		'reporting.follower-summary',
+		'reporting.campaign-summary'
 	])
 
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -21,6 +22,11 @@
 				url: '/follower-summary',
 				templateUrl: 'app/reporting/follower-summary/follower-summary.tmpl.html',
 				controller: 'FollowerSummaryCtrl as followerSummaryCtrl'
+			})
+			.state('reporting.campaign-summary', {
+				url: '/campaign-summary',
+				templateUrl: 'app/reporting/campaign-summary/campaign-summary.tmpl.html',
+				controller: 'CampaignSummaryCtrl as campaignSummaryCtrl'
 			})
 			;
 

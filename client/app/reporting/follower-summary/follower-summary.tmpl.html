@@ -1,183 +1,314 @@
 <header class="heading-bar">
-	<h1>Report</h1>
+	<h1>Follower Summary</h1>
 </header>
-
 <section class="follower-summary-wrapper">
 	<form role="form" class="qvr-form follower-summary-form" name="followerSummaryForm">
 		<div class="float-right top-controls">
-			<div class="delivery-box start-date">
-				<label class="qvr-label">Start Date</label>
-				<input type="text" class="date" ng-model="followerSummaryCtrl.followerSummaryQuery.startDate" ng-click="followerSummaryCtrl.showStartDatePicker=true">
-				<section class="date-selector" ng-show="followerSummaryCtrl.showStartDatePicker">
-					<date-picker
-					title="Start Date"
-					name="start-date"
-					ng-model="followerSummaryCtrl.followerSummaryQuery.startDate"
-					start-date="followerSummaryCtrl.followerSummaryQuery.startDate"
-					start-time="followerSummaryCtrl.followerSummaryQuery.startTime"
-					end-date="followerSummaryCtrl.followerSummaryQuery.endDate"
-					end-time="followerSummaryCtrl.followerSummaryQuery.endTime"
-					disable-previous-dates="false"
-					show-picker="followerSummaryCtrl.showStartDatePicker"
-					></date-picker>
-				</section>
-			</div>
-			<div class="delivery-box end-date">
-					<label class="qvr-label">End Date</label>
-					<input type="text" class="date" ng-model="followerSummaryCtrl.followerSummaryQuery.endDate" ng-click="followerSummaryCtrl.showEndDatePicker=true">
-					<section class="date-selector" ng-show="followerSummaryCtrl.showEndDatePicker">
-					<date-picker
-					title="End Date"
-					name="end-date"
-					ng-model="followerSummaryCtrl.followerSummaryQuery.endDate"
-					start-date="followerSummaryCtrl.followerSummaryQuery.startDate"
-					start-time="followerSummaryCtrl.followerSummaryQuery.startTime"
-					end-date="followerSummaryCtrl.followerSummaryQuery.endDate"
-					end-time="followerSummaryCtrl.followerSummaryQuery.endTime"
-					disable-previous-dates="false"
-					show-picker="followerSummaryCtrl.showEndDatePicker"
-					></date-picker>
-				</section>
-			</div>
+			
 			<div class="button-wrapper">
-				<button type="submit" class="qvr-button action">RUN REPORT</button>
-				<button  class="qvr-button action">EXPORT</button>
+				<button class="qvr-button action" ng-show="followerSummaryCtrl.currentView == 'Daily'" ng-click="followerSummaryCtrl.resetCurrentPage(); followerSummaryCtrl.changeCurrentView('Monthly'); campaignSummaryCtrl.clearSearchField();">
+					Back To Month View
+				</button>
+				<button class="qvr-button action" ng-show="followerSummaryCtrl.currentView == 'Monthly'" ng-click="followerSummaryCtrl.resetCurrentPage(); followerSummaryCtrl.changeCurrentView('Yearly'); campaignSummaryCtrl.clearSearchField();">
+					Back To Yearly View
+				</button>
+				<button type="submit" class="qvr-button action">EXPORT</button>
 			</div>
 		</div>
 	</form>
 	<section class="follower-summary-content-wrapper">
+		<div class="follower-stats-header">
+			<h3>New Followers: <h3>
+			<h3>
+			Today
+			<span>98</span>
+			<h3>
+			<h3>
+			This Week
+			<span>2,107</span>
+			<h3>
+			<h3>
+			This Month
+			<span>32,107</span>
+			<h3>
+			<h3>
+			This Year
+			<span>1,954,107</span>
+			<h3>
+		</div>
+
+		<div class="clearfix"></div>
+
 		<div class="follower-summary-header qvr-form">
-			<h1 class="float-left">FOLLOWER SUMMARY</h1>
+			<h1 class="float-left" ng-show="followerSummaryCtrl.currentView == 'Yearly'">SUMMARY All Time</h1>
+			<h1 class="float-left" ng-show="followerSummaryCtrl.currentView == 'Monthly'">SUMMARY {{followerSummaryCtrl.currentYearView}}</h1>
+			<h1 class="float-left" ng-show="followerSummaryCtrl.currentView == 'Daily'">SUMMARY {{followerSummaryCtrl.currentMonthView}} {{followerSummaryCtrl.currentYearView}}</h1>
+			<div class="search-wrapper">
+				<label for="filter-by"><i class="fa fa-search"></i></label>
+				<input type="search" class="search-followers" ng-model="followerSummaryCtrl.search"  placeholder="Search Report"  ng-keypress="followerSummaryCtrl.resetCurrentPage()">
+			</div>
 		</div>
 
 		<div class="clearfix"></div>
 
-		<div class="follower-summary-filter-wrapper qvr-form">
-		
-			<div class="pagination-wrapper input-wrapper">
-				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1">
-					<i class="fa fa-angle-double-left"></i>
-				</button>
-				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1">
-					<i class="fa fa-angle-left"></i>
-				</button>
-				<span class="pagination-info">
-					<input type="number" min="1" max="9999" ng-model="currentPage" />
-					<span>
-						of 
-						<span>{{noOfPages}}</span>
-					</span>
-			    </span>
-				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages">
-					<i class="fa fa-angle-right right"></i>
-				</button>
-				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages">
-					<i class="fa fa-angle-double-right right"></i>
-				</button>
-			</div>	
 
-		</div>
-
-		<div class="clearfix"></div>
-
-		<div class="follower-summary-table-wrapper qvr-form">
+		<!-- Yearly Breakdown  -->
+		<div class="follower-summary-table-wrapper qvr-form yearly" ng-show="followerSummaryCtrl.currentView == 'Yearly'">
 			<table>
-			  <thead>
-			    <tr>
-			      <th>
-			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
-			      </th>
-			      <th>
-			      	<label>Date</label>
-			      	<span>
-			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'startDate' && reverse == false}" ng-click="sortByFunc('startDate',false);"></i>
-			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'startDate' && reverse == true}" ng-click="sortByFunc('startDate',true);"></i>
-			      	</span>
-			      </th>
-			      <th>
-			      	<label>Start</label>
-			      	<span>
-			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'startNumber' && reverse == false}" ng-click="sortByFunc('startNumber',false);"></i>
-			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'startNumber' && reverse == true}" ng-click="sortByFunc('startNumber',true);"></i>
-			      	</span>
-			      </th>
-			      <th>
-			      	<label>New</label>
-			      	<span>
-			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'new' && reverse == false}" ng-click="sortByFunc('new',false);"></i>
-			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'new' && reverse == true}" ng-click="sortByFunc('new',true);"></i>
-			      	</span>
-			      </th>
-			      <th>
-			      	<label>Lost</label>
-			      	<span>
-			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'losted' && reverse == false}" ng-click="sortByFunc('losted',false);"></i>
-			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'losted' && reverse == true}" ng-click="sortByFunc('losted',true);"></i>
-			      	</span>
-			      </th>
-			      <th>
-			      	<label>Returned</label>
-			      	<span>
-			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'returned' && reverse == false}" ng-click="sortByFunc('returned',false);"></i>
-			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'returned' && reverse == true}" ng-click="sortByFunc('returned',true);"></i>
-			      	</span>
-			      </th>
-			      <th>
-			      	<label>Total</label>
-			      	<span>
-			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'total' && reverse == false}" ng-click="sortByFunc('total',false);"></i>
-			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'total' && reverse == true}" ng-click="sortByFunc('total',true);"></i>
-			      	</span>
-			      </th>
-			      <th>
-			      	<label>% +/-</label>
-			      	<span>
-			      		<i class="fa fa-caret-up"  ng-class="{active: sortOrderBy == 'margin' && reverse == false}" ng-click="sortByFunc('margin',false);"></i>
-			      		<i class="fa fa-caret-down"  ng-class="{active: sortOrderBy == 'margin' && reverse == true}" ng-click="sortByFunc('margin',true);"></i>
-			      	</span>
-			      </th>
-			    </tr>
-			  </thead>
-
-			  <tbody>
-			    <tr data-ng-repeat="summary in followerSummaryCtrl.followerSummaryData | startFrom:startAt | orderBy:sortOrderBy:reverse" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}">
-			      <td><input type="checkbox" ng-model="summary.isSelected" ng-change="anyInputsSelected();"  /></td>
-			      <td>{{summary.startDate | date}}</td>
-			      <td>{{summary.startNumber}}</td>
-			      <td>{{summary.new}}</td>
-			      <td>{{summary.losted}}</td>
-			      <td>{{summary.returned}}</td>
-			      <td>{{summary.total}}</td>
-			      <td>{{summary.margin}}</td>
-			    </tr>
-			  </tbody>
+				<thead>
+					<tr>
+						<th></th>
+						<th>
+							<label>Period</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: followerSummaryCtrl.sortOrderBy == 'period' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('period',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: followerSummaryCtrl.sortOrderBy == 'period' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('period',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Follower Start</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersStart' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('followersStart',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersStart' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('followersStart',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Aquisitions</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'aquisitions' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('aquisitions',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'aquisitions' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('aquisitions',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Followers End</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersEnd' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('followersEnd',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersEnd' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('followersEnd',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Retention Rate</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'retentionRate' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('retentionRate',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'retentionRate' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('retentionRate',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Growth%</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'growth' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('growth',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'growth' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('growth',true);"></i>
+							</span>
+						</th>
+						<th>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="blue-row">
+						<td class="bold"></td>
+						<td class="bold">ALL TIME</td>
+						<td class="bold">0</td>
+						<td class="bold">907,000</td>
+						<td class="bold">800,003</td>
+						<td class="qvr-blue bold">86.30 %</td>
+						<td class="qvr-blue bold">+545.27 %</td>
+						<td></td>
+					</tr>
+					<tr data-ng-repeat="summary in followerSummaryCtrl.followerSummaryData | startFrom:followerSummaryCtrl.startAt | orderBy:followerSummaryCtrl.sortOrderBy:followerSummaryCtrl.reverse | filter:followerSummaryCtrl.search as results" ng-show="$index >= followerSummaryCtrl.startAt && $index <= followerSummaryCtrl.endAt" ng-class="{last: followerSummaryCtrl.endAt == $index}">
+						<td></td>
+						<td>{{summary.period}}</td>
+						<td>{{summary.followersStart | number}}</td>
+						<td>{{summary.aquisitions | number}}</td>
+						<td>{{summary.followersEnd | number}}</td>
+						<td class="qvr-blue">{{summary.retentionRate}}</td>
+						<td class="qvr-blue">{{summary.growth}}</td>
+						<td class="button-td" >
+							<button class="qvr-button action" ng-click="followerSummaryCtrl.changeCurrentView('Monthly', summary);">
+								<i class="fa fa-angle-right right"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
 			</table>
-			<div class="pagination-wrapper input-wrapper bottom">
-				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1">
-					<i class="fa fa-angle-double-left"></i>
-				</button>
-				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1">
-					<i class="fa fa-angle-left"></i>
-				</button>
-				<span class="pagination-info">
-					<input type="number" min="1" max="9999" ng-model="currentPage" />
-					<span>
-						of 
-						<span>{{noOfPages}}</span>
-					</span>
-			    </span>
-				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages">
-					<i class="fa fa-angle-right right"></i>
-				</button>
-				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages">
-					<i class="fa fa-angle-double-right right"></i>
-				</button>
-			</div>	
 		</div>
 
+		<!-- Monthly Breakdown  -->
+		<div class="follower-summary-table-wrapper qvr-form monthly" ng-show="followerSummaryCtrl.currentView == 'Monthly'">
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>
+							<label>Period</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: followerSummaryCtrl.sortOrderBy == 'period' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('period',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: followerSummaryCtrl.sortOrderBy == 'period' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('period',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Follower Start</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersStart' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('followersStart',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersStart' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('followersStart',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Aquisitions</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'aquisitions' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('aquisitions',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'aquisitions' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('aquisitions',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Followers End</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersEnd' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('followersEnd',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersEnd' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('followersEnd',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Retention Rate</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'retentionRate' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('retentionRate',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'retentionRate' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('retentionRate',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Growth%</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'growth' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('growth',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'growth' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('growth',true);"></i>
+							</span>
+						</th>
+						<th>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="blue-row">
+						<td class="bold"></td>
+						<td class="bold">{{followerSummaryCtrl.currentYearView}}</td>
+						<td class="bold">123,980</td>
+						<td class="bold">907,000</td>
+						<td class="bold">800,003</td>
+						<td class="qvr-blue bold">86.30 %</td>
+						<td class="qvr-blue bold">+545.27 %</td>
+						<td></td>
+					</tr>
+					<tr data-ng-repeat="summary in followerSummaryCtrl.currentMonthObj | startFrom:followerSummaryCtrl.startAt | orderBy:followerSummaryCtrl.sortOrderBy:followerSummaryCtrl.reverse | filter:followerSummaryCtrl.search as results" ng-show="$index >= followerSummaryCtrl.startAt && $index <= followerSummaryCtrl.endAt" ng-class="{last: followerSummaryCtrl.endAt == $index}">
+						<td></td>
+						<td>{{summary.period}}</td>
+						<td>{{summary.followersStart | number}}</td>
+						<td>{{summary.aquisitions | number}}</td>
+						<td>{{summary.followersEnd | number}}</td>
+						<td class="qvr-blue">{{summary.retentionRate}}</td>
+						<td class="qvr-blue">{{summary.growth}}</td>
+						<td class="button-td" >
+							<button class="qvr-button action" ng-click="followerSummaryCtrl.changeCurrentView('Daily', summary);">
+								<i class="fa fa-angle-right right"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Daily Breakdown  -->
+		<div class="follower-summary-table-wrapper qvr-form weekly"  ng-show="followerSummaryCtrl.currentView == 'Daily'">
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>
+							<label>Period</label>
+							<span>
+								<i class="fa fa-caret-up" ng-class="{active: followerSummaryCtrl.sortOrderBy == 'period' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('period',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: followerSummaryCtrl.sortOrderBy == 'period' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('period',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Follower Start</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersStart' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('followersStart',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersStart' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('followersStart',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Aquisitions</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'aquisitions' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('aquisitions',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'aquisitions' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('aquisitions',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Followers End</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersEnd' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('followersEnd',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'followersEnd' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('followersEnd',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label class="qvr-blue">Retention Rate</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'retentionRate' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('retentionRate',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'retentionRate' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('retentionRate',true);"></i>
+							</span>
+						</th>
+						<th>
+							<label>Growth%</label>
+							<span>
+								<i class="fa fa-caret-up"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'growth' && followerSummaryCtrl.reverse == false}" ng-click="followerSummaryCtrl.sortByFunc('growth',false);"></i>
+								<i class="fa fa-caret-down"  ng-class="{active: followerSummaryCtrl.sortOrderBy == 'growth' && followerSummaryCtrl.reverse == true}" ng-click="followerSummaryCtrl.sortByFunc('growth',true);"></i>
+							</span>
+						</th>
+						<th>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="blue-row">
+						<td class="bold"></td>
+						<td class="bold">{{followerSummaryCtrl.currentMonthView}}</td>
+						<td class="bold">123,980</td>
+						<td class="bold">907,000</td>
+						<td class="bold">800,003</td>
+						<td class="qvr-blue bold">86.30 %</td>
+						<td class="qvr-blue bold">+545.27 %</td>
+					</tr>
+					<tr data-ng-repeat="summary in followerSummaryCtrl.currentDailyObj | startFrom:followerSummaryCtrl.startAt | orderBy:followerSummaryCtrl.sortOrderBy:followerSummaryCtrl.reverse | filter:followerSummaryCtrl.search as results" ng-show="$index >= followerSummaryCtrl.startAt && $index <= followerSummaryCtrl.endAt" ng-class="{last: followerSummaryCtrl.endAt == $index}">
+						<td></td>
+						<td>{{summary.period}}</td>
+						<td>{{summary.followersStart | number}}</td>
+						<td>{{summary.aquisitions | number}}</td>
+						<td>{{summary.followersEnd | number}}</td>
+						<td class="qvr-blue">{{summary.retentionRate}}</td>
+						<td class="qvr-blue">{{summary.growth}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="pagination-wrapper input-wrapper bottom">
+			<button class="qvr-button" ng-click="followerSummaryCtrl.goToPage('beginning');" ng-disabled="followerSummaryCtrl.currentPage == 1">
+			<i class="fa fa-angle-double-left"></i>
+			</button>
+			<button class="qvr-button" ng-click="followerSummaryCtrl.goToPage('down');" ng-disabled="followerSummaryCtrl.currentPage == 1">
+			<i class="fa fa-angle-left"></i>
+			</button>
+			<span class="pagination-info">
+				<input type="number" min="1" max="9999" ng-model="followerSummaryCtrl.currentPage" />
+				<span>
+					of
+					<span>{{followerSummaryCtrl.noOfPages}}</span>
+				</span>
+			</span>
+			<button class="qvr-button" ng-click="followerSummaryCtrl.goToPage('up');" ng-disabled="followerSummaryCtrl.currentPage == followerSummaryCtrl.noOfPages">
+			<i class="fa fa-angle-right right"></i>
+			</button>
+			<button class="qvr-button" ng-click="followerSummaryCtrl.goToPage('end');" ng-disabled="followerSummaryCtrl.currentPage == followerSummaryCtrl.noOfPages">
+			<i class="fa fa-angle-double-right right"></i>
+			</button>
+		</div>
 	</section>
-
 </section>
-
-
-
