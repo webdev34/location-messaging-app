@@ -1,0 +1,229 @@
+{
+  "users": 
+  	[{
+      "id": 0,
+      "firstName": "Tom",
+      "lastName": "Ford",
+      "email": "tford@gmail.com",
+      "contactNumber": "9175245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  	},
+  	{
+      "id": 51,
+      "firstName": "Jim",
+      "lastName": "Brown",
+      "email": "jBrown@gmail.com",
+      "contactNumber": "7185245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 52,
+      "firstName": "Peyton",
+      "lastName": "Manning",
+      "email": "pmanning@gmail.com",
+      "contactNumber": "3015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 53,
+      "firstName": "Reba",
+      "lastName": "Mann",
+      "email": "rmanning@gmail.com",
+      "contactNumber": "9015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+    {
+      "id": 54,
+      "firstName": "Reba",
+      "lastName": "Mann",
+      "email": "rmanning@gmail.com",
+      "contactNumber": "9015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 40,
+      "firstName": "Tom",
+      "lastName": "Ford",
+      "email": "tford@gmail.com",
+      "contactNumber": "9175245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  	},
+  	{
+      "id": 41,
+      "firstName": "Jim",
+      "lastName": "Brown",
+      "email": "jBrown@gmail.com",
+      "contactNumber": "7185245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 42,
+      "firstName": "Peyton",
+      "lastName": "Manning",
+      "email": "pmanning@gmail.com",
+      "contactNumber": "3015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 43,
+      "firstName": "Reba",
+      "lastName": "Mann",
+      "email": "rmanning@gmail.com",
+      "contactNumber": "9015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+    {
+      "id": 44,
+      "firstName": "Reba",
+      "lastName": "Mann",
+      "email": "rmanning@gmail.com",
+      "contactNumber": "9015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 30,
+      "firstName": "Tom",
+      "lastName": "Ford",
+      "email": "tford@gmail.com",
+      "contactNumber": "9175245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  	},
+  	{
+      "id": 31,
+      "firstName": "Jim",
+      "lastName": "Brown",
+      "email": "jBrown@gmail.com",
+      "contactNumber": "7185245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 32,
+      "firstName": "Peyton",
+      "lastName": "Manning",
+      "email": "pmanning@gmail.com",
+      "contactNumber": "3015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 33,
+      "firstName": "Reba",
+      "lastName": "Mann",
+      "email": "rmanning@gmail.com",
+      "contactNumber": "9015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+    {
+      "id": 34,
+      "firstName": "Reba",
+      "lastName": "Mann",
+      "email": "rmanning@gmail.com",
+      "contactNumber": "9015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 20,
+      "firstName": "Tom",
+      "lastName": "Ford",
+      "email": "tford@gmail.com",
+      "contactNumber": "9175245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  	},
+  	{
+      "id": 21,
+      "firstName": "Jim",
+      "lastName": "Brown",
+      "email": "jBrown@gmail.com",
+      "contactNumber": "7185245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 22,
+      "firstName": "Peyton",
+      "lastName": "Manning",
+      "email": "pmanning@gmail.com",
+      "contactNumber": "3015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 23,
+      "firstName": "Reba",
+      "lastName": "Mann",
+      "email": "rmanning@gmail.com",
+      "contactNumber": "9015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+    {
+      "id": 24,
+      "firstName": "Reba",
+      "lastName": "Mann",
+      "email": "rmanning@gmail.com",
+      "contactNumber": "9015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 10,
+      "firstName": "Tom",
+      "lastName": "Ford",
+      "email": "tford@gmail.com",
+      "contactNumber": "9175245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  	},
+  	{
+      "id": 11,
+      "firstName": "Jim",
+      "lastName": "Brown",
+      "email": "jBrown@gmail.com",
+      "contactNumber": "7185245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 12,
+      "firstName": "Peyton",
+      "lastName": "Manning",
+      "email": "pmanning@gmail.com",
+      "contactNumber": "3015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+  {
+      "id": 13,
+      "firstName": "Reba",
+      "lastName": "Mann",
+      "email": "rmanning@gmail.com",
+      "contactNumber": "9015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  },
+    {
+      "id": 14,
+      "firstName": "Reba",
+      "lastName": "Mann",
+      "email": "rmanning@gmail.com",
+      "contactNumber": "9015245467",
+      "userRights": "Admin",
+      "avatar": "assets/img/avatar.jpg"
+  }
+	]
+}

@@ -381,8 +381,10 @@ select.qvr-select{
     }
     input {
         width: 50px;
+        height: 32px;
         float: left;
         font-weight: normal;
+        border-radius: 10px;
     }
     .pagination-info {
     	display: inline-table;

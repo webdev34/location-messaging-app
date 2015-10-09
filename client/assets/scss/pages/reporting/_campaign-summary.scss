@@ -1,6 +1,6 @@
-.follower-summary-wrapper{
+.campaign-summary-wrapper{
 	
-	.follower-summary-form{
+	.campaign-summary-form{
 		.top-controls .qvr-label{
 			margin-bottom: -5px;
 			color: #00A9CC;
@@ -49,10 +49,10 @@
 		}
 	}
 	
-	.follower-summary-content-wrapper{
+	.campaign-summary-content-wrapper{
 		padding: 30px 0px;
 		background-color: #f0f0f0;
-		.follower-stats-header{
+		.campaign-stats-header{
 			margin-left: 30px;
 			h3{
 				color: $qvr-grey-3;
@@ -67,7 +67,7 @@
 				}
 			}
 		}
-		.follower-summary-header{
+		.campaign-summary-header{
 			margin-top: 30px;
 			h1{
 				padding: 0 0 0 30px;
@@ -104,10 +104,10 @@
 				}
 			}			
 		}
-		.follower-summary-filter-wrapper{
+		.campaign-summary-filter-wrapper{
 			margin-top: 25px;
 		}
-		.follower-summary-table-wrapper{
+		.campaign-summary-table-wrapper{
 			table{
     			width: 98%;
     			margin-left: 10px;
