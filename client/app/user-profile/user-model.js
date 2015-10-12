@@ -49,10 +49,10 @@ User types - these are NOT 'social users' (followers)
 				return UserService.get(userID)
 					.then(
 						function(response) {
-							model.user = response.user[0];
-							//console.log('user: ' + JSON.stringify(model.user));
+							model.user = response.user;
+							console.log('user: ' + JSON.stringify(model.user));
 
-							model.enterprise = response.enterpriseUser[0].enterprise;
+							model.enterprise = response.enterprise[0];
 							//console.log('enterprise: ' + JSON.stringify(response.enterpriseUser[0].enterprise));
 
 							return response;
@@ -93,6 +93,9 @@ User types - these are NOT 'social users' (followers)
 						function(response) {
 							//model.user = response.user;
 							model.userID = response.user.sid;
+							console.log('user: ' + JSON.stringify(response.user));
+
+
 							//console.log('model user id: ' + model.userID);
 							model.authorization = response.authorization;
 							//model.enterprise = response.enterprise;
@@ -104,7 +107,8 @@ User types - these are NOT 'social users' (followers)
 							$cookieStore.put("qvr.user", model.userID );
 							
 							
-							return model.getAccount(model.userID);
+							//return model.getAccount(model.userID);
+							return response;
 						},
 						function(response) {
 							return response;
