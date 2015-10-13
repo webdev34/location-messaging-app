@@ -43,7 +43,7 @@ User types - these are NOT 'social users' (followers)
 
 							//console.log('user: ' + JSON.stringify(model.user));
 
-							model.enterprise = response.enterprise[0];
+							model.enterprise = response.enterprise[0].sid;
 							//console.log('enterprise: ' + JSON.stringify(response.enterpriseUser[0].enterprise));
 
 							return response;
@@ -88,7 +88,7 @@ User types - these are NOT 'social users' (followers)
 							//console.log('user: ' + JSON.stringify(response.user));
 
 							model.authorization = response.authorization;
-							model.enterprise = response.enterprise[0];
+							model.enterprise = response.enterprise[0].sid;
 							//console.log('enterprise: ' + JSON.stringify(response.enterprise));
 
 							$rootScope.auth = response.authorization;
