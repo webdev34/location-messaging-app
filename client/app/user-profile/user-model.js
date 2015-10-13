@@ -23,34 +23,25 @@ User types - these are NOT 'social users' (followers)
 	
 	.service('UserModel', [
 		'$rootScope',
+		'$state',
 		'$cookieStore',
 		'API_URL',
 		'UserService',
-		function( $rootScope, $cookieStore, API_URL, UserService) {
+		function( $rootScope, $state, $cookieStore, API_URL, UserService) {
 			var model = this;
 			
-			model.isLoggedIn = false;
-
-			
-			// if ( $cookieStore.get("qvr.auth") && $cookieStore.get("qvr.user") ) {
-			// 	console.log("cookies yes");
-			// 	model.userID = $cookieStore.get("qvr.user");
-			// 	$rootScope.auth = $cookieStore.get("qvr.auth");
-			// 	model.isLoggedIn = true;
-			// 	model.getAccount(model.userID);
-
-			// } else {
-			// 	console.log("cookies no");
-			// 	model.isLoggedIn = false;
-			// };
-
+			$rootScope.auth = $cookieStore.get("qvr.auth");
+			model.userID = $cookieStore.get("qvr.user");
 
 			model.getAccount = function(userID) {
 				return UserService.get(userID)
 					.then(
 						function(response) {
-							model.user = response.user;
-							console.log('user: ' + JSON.stringify(model.user));
+							model.user = response.user[0];
+							model.user = model.user;
+							//console.log('root user: ' + JSON.stringify($rootScope.user));
+
+							//console.log('user: ' + JSON.stringify(model.user));
 
 							model.enterprise = response.enterprise[0];
 							//console.log('enterprise: ' + JSON.stringify(response.enterpriseUser[0].enterprise));
@@ -64,8 +55,8 @@ User types - these are NOT 'social users' (followers)
 			}
 
 
-			if (model.userCookie) {
-				model.getAccount(model.userCookie).then(
+			if ($rootScope.auth && model.userID) {
+				model.getAccount(model.userID).then(
 					function success (response) {
 						model.isLoggedIn = true;
 					}
@@ -91,23 +82,23 @@ User types - these are NOT 'social users' (followers)
 				return UserService.login(userDetail)
 					.then(
 						function(response) {
-							//model.user = response.user;
+
+							model.user = response.user;
 							model.userID = response.user.sid;
-							console.log('user: ' + JSON.stringify(response.user));
+							//console.log('user: ' + JSON.stringify(response.user));
 
-
-							//console.log('model user id: ' + model.userID);
 							model.authorization = response.authorization;
-							//model.enterprise = response.enterprise;
+							model.enterprise = response.enterprise[0];
+							//console.log('enterprise: ' + JSON.stringify(response.enterprise));
+
 							$rootScope.auth = response.authorization;
+							//console.log('enterprise: ' + JSON.stringify(response.enterprise));
 
 							model.isLoggedIn = true;
 
 							$cookieStore.put("qvr.auth", model.authorization );
 							$cookieStore.put("qvr.user", model.userID );
 							
-							
-							//return model.getAccount(model.userID);
 							return response;
 						},
 						function(response) {

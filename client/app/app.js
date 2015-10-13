@@ -28,17 +28,15 @@
 		.config(config)
 		.run(run);
 
+	//default view
 	app.constant('APP_default_state', 'messages.new');
 	
-	//var API_SERVER = window.location.host.includes("localhost") ? 'http://dev-external-api-lb-1845231822.us-west-2.elb.amazonaws.com:8000/' : "/";
-
 
 	//var API_SERVER = 'http://api-dev.quiver.zone:80/';
 	var API_SERVER = 'http://localhost:8000/';
 
 	app.constant('API_SERVER', API_SERVER);
 	app.constant('API_URL', API_SERVER + '1.1');
-	//app.constant('API_URL_DROID', API_SERVER + 'droid1.1');
 
 	config.$inject = ['$httpProvider', '$urlRouterProvider', '$locationProvider'];
 
@@ -213,18 +211,29 @@
 				appCtrl.showHeader = appCtrl.currentState.current.name != 'home';
 			}
 
-			/*
+			
 			$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
 				$dialogs.error("Something went wrong!", error);
 				console.error("$stateChangeError: ", toState, error);
 			});
-			*/
+			
 
 			$rootScope.$on('$stateChangeSuccess',
 				function(event, toState, toParams, fromState, fromParams) {
+
 					if (!fromState.name) {
-						//console.log('refresh');
+						//console.log('refresh or logged in land');
 						checkIfLoggedIn();
+
+						//console.log('state: ' + JSON.stringify(toState));
+
+						if (toState.name == 'home') {
+							goToHomePage();
+						}
+
+						if (!appCtrl.user) {
+							appCtrl.getAccount();
+						}	
 					}
 					//console.log(fromState.name, "-->", toState.name);
 					setNavigationState();
@@ -232,7 +241,7 @@
 			);
 
 			$rootScope.$on('$routeChangeStart', function (event) {
-				console.log('routechangestart');
+				//console.log('routechangestart');
 				checkIfLoggedIn();
 			});
 
@@ -241,7 +250,6 @@
 			    console.log(unfoundState.toParams); // {a:1, b:2}
 			    console.log(unfoundState.options); // {inherit:false} + default options
 			});
-
 
 
 			function checkIfLoggedIn() {
@@ -260,19 +268,40 @@
 				$state.go(APP_default_state);
 			}
 
+			// function userModelUpdated() {
+			// 	appCtrl.user = UserModel.user;
+			// }
+
 			appCtrl.goToLogin = function() {
 				//console.log('going to login');
 				$state.go('home');
 
+			}
+
+			appCtrl.getAccount = function () {
+				
+
+				if (!UserModel.user) {
+					//console.log('no model');
+					UserModel.getAccount(UserModel.userID)
+						.then (
+							function success(response) {
+								appCtrl.user = UserModel.user;
+							},
+							function error(response) {
+							});
+				} else {
+					appCtrl.user = UserModel.user;
+				}
+				//console.log('userModel: ' + JSON.stringify(UserModel.user));
 			}
 	
 			appCtrl.userLogin = function() {
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
 						function success(response) {
-							//$rootScope.auth = response.authorization;
-							//console.log('login respones: '+ JSON.stringify(response));
 							appCtrl.user = UserModel.user;
+							//console.log('appctrl user:' + JSON.stringify(appCtrl.user));
 							
 							// suppress false positives
 							if (!response.code){
@@ -309,6 +338,8 @@
 				UserModel.logout();
 				appCtrl.goToLogin();
 			}
+
+
 
 
 		}
