@@ -47,6 +47,11 @@
 				url: '/manage-campaign',
 				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html',
 				controller: 'ManageCampaignCtrl as manageCampaignCtrl'
+			}) 
+			.state('messages.all-messages', {
+				url: '/all-messages',
+				templateUrl: 'app/messages/all-messages/all-messages.tmpl.html',
+				controller: 'AllMessagesCtrl as allMessagesCtrl'
 			})
 			.state('messages.communications', {
 				url: '/communications',

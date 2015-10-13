@@ -32,8 +32,8 @@
 	app.constant('APP_default_state', 'messages.new');
 	
 
-	var API_SERVER = 'http://api-dev.quiver.zone:80/';
-	//var API_SERVER = 'http://localhost:8000/';
+	//var API_SERVER = 'http://api-dev.quiver.zone:80/';
+	var API_SERVER = 'http://localhost:8000/';
 
 	app.constant('API_SERVER', API_SERVER);
 	app.constant('API_URL', API_SERVER + '1.1');
@@ -176,7 +176,7 @@
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
 					{'title': 'Manage Campaign', 'state': 'messages.manage-campaign'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
-					{'title': 'All Messages (Temp)', 'state': 'messages.all-messages'},
+					//{'title': 'All Messages', 'state': 'messages.all-messages'},
 
 					{'title': 'Manage Locations', 'state': 'messages.manage-locations'},
 					{'title': 'Asset Management', 'state': 'messages.asset'},
