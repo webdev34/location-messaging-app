@@ -1,0 +1,240 @@
+<header class="heading-bar">
+	<h1>All Messages</h1>
+</header>
+<section class="message-content-wrap manage-campaign">
+
+	<section class="campaign-messages-wrapper">
+		<div class="campaign-messages-header qvr-form">
+
+			<div class="search-wrapper">
+				<label for="filter-by"><i class="fa fa-search"></i></label>
+				<input type="search" class="search-campaigns" ng-model="search"  placeholder="Search Messages"  ng-keypress="resetCurrentPage()">
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="campaign-messages-filter-wrapper qvr-form">
+
+
+			<!-- Cloned Message Modal -->
+			<div zf-modal="" id="cloneMessageModal">
+				<a zf-close="" class="close-button">×</a>
+
+				<h1>Clone Messages</h1>
+				<div class="clone-messages-modal-wrapper">
+					<p>
+						Selected Messages
+					</p>
+					<table>
+						<thead>
+							<th>
+								<span>*</span>
+								ID
+							</th>
+							<th>
+								Label
+							</th>
+							<th>
+								Status
+							</th>
+							<th></th>												
+						<thead>
+						<tbody>
+							<tr ng-show="allMessagesCtrl.clonedMessage.length == 0">
+						  		<td></td>
+						  		<td colspan="1">
+						  			<p class="qvr-align-center">No Cloned Messages</p></td>
+						  		<td></td>
+						  	</tr>
+							<tr  data-ng-repeat="msg in allMessagesCtrl.clonedMessage">
+						      <td><span>*</span>{{msg.id}}</td>
+						      <td>{{msg.label}}</td>
+						      <td>
+						      	<div class="input-wrapper message-status-wrapper">
+									<select class="qvr-select {{msg.status}}" ng-model="msg.status" >
+										<option data-ng-repeat="obj in allMessagesCtrl.statuses">{{obj}}</option>
+									</select>
+								</div>
+						      </td>
+						      <td><a ng-click="deleteClonedMessage(msg.id);">Remove</a></td>
+						    </tr>
+						</tbody>
+					</table>
+					<span class="unique-id-msg">* A new unique ID will be assigned to cloned messages</span>
+
+					<div class="campaign-selection-wrapper" class="input-wrapper">
+						<label>Select Campaign to Associate Cloned Messages</label>
+						<isteven-multi-select class="add-tags"   
+						    input-model="allMessagesCtrl.campaigns"    
+						    output-model="allMessagesCtrl.cloneToCampaigns"
+						    button-label="icon name"
+						    item-label="icon name maker"
+						    tick-property="ticked"
+						    this-length="2">
+						</isteven-multi-select>
+					</div>
+				</div>
+				<hr>
+				<div class="modal-button-wrapper qvr-align-center">
+					<button zf-close="" type="submit" class="qvr-button action">Clone Messages</button>
+					<button zf-close="" class="qvr-button cancel">Cancel</button>
+				</div>
+			</div>
+			<!-- Cloned Message Modal -->
+
+
+
+			<div id="tag-filters" class="input-wrapper">
+				<isteven-multi-select class="add-tag-filters float-left"   
+				    input-model="allMessagesCtrl.campaignMessageTags"    
+				    output-model="allMessagesCtrl.tagFilters"
+				    button-label="icon name"
+				    item-label="icon name maker"
+				    tick-property="ticked"
+				    this-length="3"
+					>
+				</isteven-multi-select>
+				
+				<button class="qvr-button action" ng-disabled="allMessagesCtrl.tagFilters.length == 0">
+					<i class="check-mark"></i>
+				</button>
+			</div>	
+			<div class="pagination-wrapper input-wrapper">
+				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
+					<i class="fa fa-angle-double-left"></i>
+				</button>
+				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
+					<i class="fa fa-angle-left"></i>
+				</button>
+				<span class="pagination-info">
+					<input type="number" min="1" max="9999" ng-model="currentPage" />
+					<span>
+						of 
+						<span ng-hide="results.length == 0">{{noOfPages}}</span>
+						<span ng-show="results.length == 0">1</span>
+					</span>
+			    </span>
+				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
+					<i class="fa fa-angle-right right"></i>
+				</button>
+				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
+					<i class="fa fa-angle-double-right right"></i>
+				</button>
+			</div>	
+
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="campaign-messages-table-wrapper qvr-form">
+			<table>
+			  <thead>
+			    <tr>
+			      <th>
+			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
+			      </th>
+			      <th>
+			      	<label>ID</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'id' && reverse == false}" ng-click="sortByFunc('id',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'id' && reverse == true}" ng-click="sortByFunc('id',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Label</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'label' && reverse == false}" ng-click="sortByFunc('label',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'label' && reverse == true}" ng-click="sortByFunc('label',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>To</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'to' && reverse == false}" ng-click="sortByFunc('to',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'to' && reverse == true}" ng-click="sortByFunc('to',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Location</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'location' && reverse == false}" ng-click="sortByFunc('location',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'location' && reverse == true}" ng-click="sortByFunc('location',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Start</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'start' && reverse == false}" ng-click="sortByFunc('start',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'start' && reverse == true}" ng-click="sortByFunc('start',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>End</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'end' && reverse == false}" ng-click="sortByFunc('end',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'end' && reverse == true}" ng-click="sortByFunc('end',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Status</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'status' && reverse == false}" ng-click="sortByFunc('status',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'status' && reverse == true}" ng-click="sortByFunc('status',true);"></i>
+			      	</span>
+			      </th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<tr ng-show="results.length == 0">
+			  		<td></td>
+			  		<td colspan="6">
+			  			<p class="qvr-align-center">No Results</p></td>
+			  		<td></td>
+			  	</tr>
+			    <tr  data-ng-repeat="msg in allMessagesCtrl.campaignMessages | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" >
+			      <td><input type="checkbox" ng-model="msg.isSelected" ng-change="anyInputsSelected();" /></td>
+			      <td>{{msg.id}}</td>
+			      <td>{{msg.label}}</td>
+			      <td>{{msg.to}}</td>
+			      <td>{{msg.location}}</td>
+			      <td>{{msg.start}}</td>
+			      <td>{{msg.end}}</td>
+			      <td>
+					<div class="input-wrapper message-status-wrapper">
+						<select class="qvr-select {{msg.status}}" ng-model="msg.status" >
+							<option data-ng-repeat="obj in allMessagesCtrl.statuses">{{obj}}</option>
+						</select>
+					</div>
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+			<div class="pagination-wrapper input-wrapper bottom">
+				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
+					<i class="fa fa-angle-double-left"></i>
+				</button>
+				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
+					<i class="fa fa-angle-left"></i>
+				</button>
+				<span class="pagination-info">
+					<input type="number" min="1" max="9999" ng-model="currentPage" />
+					<span>
+						of 
+						<span ng-hide="results.length == 0">{{noOfPages}}</span>
+						<span ng-show="results.length == 0">1</span>
+					</span>
+			    </span>
+				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
+					<i class="fa fa-angle-right right"></i>
+				</button>
+				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
+					<i class="fa fa-angle-double-right right"></i>
+				</button>
+			</div>	
+		</div>
+
+	</section>
+
+</section>
+

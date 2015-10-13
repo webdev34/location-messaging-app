@@ -8,7 +8,8 @@
 		'messages.new',
 		'messages.edit',
 		'messages.manage-campaign',
-		'messages.assets'
+		'messages.assets',
+		'messages.all-messages'
 	])
 
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -47,6 +48,11 @@
 				url: '/manage-campaign',
 				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html',
 				controller: 'ManageCampaignCtrl as manageCampaignCtrl'
+			}) 
+			.state('messages.all-messages', {
+				url: '/all-messages',
+				templateUrl: 'app/messages/all-messages/all-messages.tmpl.html',
+				controller: 'AllMessagesCtrl as allMessagesCtrl'
 			})
 			;
 
