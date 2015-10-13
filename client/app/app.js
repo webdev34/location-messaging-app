@@ -66,18 +66,13 @@
 			'$rootScope',
 			'$location',
 			'FoundationApi',
-			
-			function(
-				$q,
-				$rootScope,
-				$location,
-				FoundationApi
-			) {
+			function($q, $rootScope, $location, FoundationApi) {
 				function extractData(response) {
 					return response.data.data;
 				}
 
 				function extractError(response) {
+
 					return response.data || {
 						'code': "QVR_Server_Connection_Failed"
 					};
@@ -120,6 +115,7 @@
 					},
 					responseError: function(rejection) {
 						// transport protocol errors only, application protocol errors all result in status 200
+
 						if (rejection.status == 401) {
 							rejection.data = {
 								status: 401,
@@ -282,13 +278,21 @@
 				
 
 				if (!UserModel.user) {
-					//console.log('no model');
 					UserModel.getAccount(UserModel.userID)
 						.then (
 							function success(response) {
 								appCtrl.user = UserModel.user;
 							},
 							function error(response) {
+								appCtrl.userLogout();
+
+								FoundationApi.publish('main-notifications', {
+									title: 'Login Failed',
+									content: response.code,
+									color: 'fail',
+									autoclose: '3000'
+								});
+
 							});
 				} else {
 					appCtrl.user = UserModel.user;
