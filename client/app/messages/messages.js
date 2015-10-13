@@ -8,7 +8,8 @@
 		'messages.new',
 		'messages.edit',
 		'messages.manage-campaign',
-		'messages.assets'
+		'messages.assets',
+		'messages.all-messages'
 	])
 
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {

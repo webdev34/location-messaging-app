@@ -139,10 +139,13 @@
 			
 			function getMessageList() {
 				console.log('getting the list');
+<<<<<<< HEAD
 				MessageListModel.getMessageList()
 					.then( function(response) {
 						allMessagesCtrl.messages = response;
 					});
+=======
+>>>>>>> wip: all messages
 			}
 
 
