@@ -49,17 +49,19 @@
 
 			model.getMessageList = function() {
 				//return (messageList) ? $q.when(messageList) : MessagesService.list()
-				return MessagesService.list()
+				console.log('model testing');
+				return MessagesService.list(0,0)
 					.then(
 						function(response){
 							messageList = [];	
+
 							
 							for (var i = 0; i < response.message.length; i++){
 								var messageDetail = {
 									message: response.message[i],
-									comment: response.comment[i],
-									envelope: response.envelope[i],
-									messageRecipient: response.messageRecipient[i]
+									//comment: response.comment[i],
+									//envelope: response.envelope[i],
+									//messageRecipient: response.messageRecipient[i]
 								}
 								
 								messageList.push(messageDetail);

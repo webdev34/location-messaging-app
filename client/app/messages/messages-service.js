@@ -60,16 +60,17 @@
 					return $http.post(API_URL + '/message', messageObj);
 				},
 				list : function(timestamp, limit){
+					console.log('service testing');
 					if (!timestamp){
 						// beginning of the month
 						var date = new Date();
 						timestamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
 					}
 					
-					return $http.get(API_URL_DROID + '/message/' + timestamp + '/limit/' + (limit || 0));
+					return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0));
 				},
 				remove : function(messageId){
-					return $http["delete"](API_URL_DROID + '/message/' + messageId);
+					return $http["delete"](API_URL + '/message/' + messageId);
 				}
 			};
 		}
