@@ -4,9 +4,6 @@
 <section class="message-content-wrap manage-campaign">
 
 	<section class="campaign-messages-wrapper">
-<<<<<<< HEAD
-
-=======
 		<div class="campaign-messages-header qvr-form">
 
 			<div class="search-wrapper">
@@ -127,7 +124,6 @@
 			</div>	
 
 		</div>
->>>>>>> wip: all messages
 
 		<div class="clearfix"></div>
 
@@ -196,25 +192,14 @@
 			  			<p class="qvr-align-center">No Results</p></td>
 			  		<td></td>
 			  	</tr>
-<<<<<<< HEAD
 			    <tr  data-ng-repeat="msg in allMessagesCtrl.messages ">
 			      <td><input type="checkbox" ng-model="msg.isSelected" ng-change="anyInputsSelected();" /></td>
-			      <td><a ng-click="allMessagesCtrl.getMessage()">{{msg.message.sid}}</a></td>
+			      <td>{{msg.message.sid}}</td>
 			      <td>{{msg.message.label}}</td>
-			      <td>{{msg.message.recipients}}</td>
-			      <td ng-repeat="location in msg.message.location">{{location.name}}</td>
+			      <td>{{msg.message.to}}</td>
+			      <td>{{msg.message.location}}</td>
 			      <td>{{msg.message.startTime | date}}</td>
 			      <td>{{msg.message.endTime | date}}</td>
-=======
-			    <tr  data-ng-repeat="msg in allMessagesCtrl.campaignMessages | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" >
-			      <td><input type="checkbox" ng-model="msg.isSelected" ng-change="anyInputsSelected();" /></td>
-			      <td>{{msg.id}}</td>
-			      <td>{{msg.label}}</td>
-			      <td>{{msg.to}}</td>
-			      <td>{{msg.location}}</td>
-			      <td>{{msg.start}}</td>
-			      <td>{{msg.end}}</td>
->>>>>>> wip: all messages
 			      <td>
 					<div class="input-wrapper message-status-wrapper">
 						<select class="qvr-select {{msg.status}}" ng-model="msg.status" >
@@ -225,32 +210,7 @@
 			    </tr>
 			  </tbody>
 			</table>
-<<<<<<< HEAD
 
-=======
-			<div class="pagination-wrapper input-wrapper bottom">
-				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
-					<i class="fa fa-angle-double-left"></i>
-				</button>
-				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
-					<i class="fa fa-angle-left"></i>
-				</button>
-				<span class="pagination-info">
-					<input type="number" min="1" max="9999" ng-model="currentPage" />
-					<span>
-						of 
-						<span ng-hide="results.length == 0">{{noOfPages}}</span>
-						<span ng-show="results.length == 0">1</span>
-					</span>
-			    </span>
-				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
-					<i class="fa fa-angle-right right"></i>
-				</button>
-				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
-					<i class="fa fa-angle-double-right right"></i>
-				</button>
-			</div>	
->>>>>>> wip: all messages
 		</div>
 
 	</section>

@@ -26,12 +26,7 @@
 			$state,
 			$http,
 			FoundationApi,
-<<<<<<< HEAD
-			MessageListModel,
-			MessageDetailModel
-=======
 			MessageListModel
->>>>>>> wip: all messages
 		) {
 			var allMessagesCtrl = this;
 
@@ -39,13 +34,6 @@
 				getMessageList();
 			}
 			
-<<<<<<< HEAD
-			allMessagesCtrl.getMessage = function() {
-				//MessageDetailModel.getMessageDetail(messageSID);
-				console.log('testing');
-			}
-=======
->>>>>>> wip: all messages
 			// $http.get('assets/data/campaign-messages.json').success(function(data) {
 			// 	manageCampaignCtrl.campaignMessages = data.campaignMessages;	
 			// 	$scope.totalItems = data.campaignMessages.length;
@@ -151,13 +139,10 @@
 			
 			function getMessageList() {
 				console.log('getting the list');
-<<<<<<< HEAD
 				MessageListModel.getMessageList()
 					.then( function(response) {
 						allMessagesCtrl.messages = response;
 					});
-=======
->>>>>>> wip: all messages
 			}
 
 

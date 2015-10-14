@@ -44,35 +44,26 @@
 			//$q,
 			MessagesService
 		) {
-			var model = this;
-			
+			var model = this,
+				messageList;
+
 			model.getMessageList = function() {
 				//return (messageList) ? $q.when(messageList) : MessagesService.list()
+				console.log('model testing');
 				return MessagesService.list(0,0)
 					.then(
 						function(response){
-							
-							var messageList = [],
-									noLocation = [{"name": "No Location"}];
-							
-							function getItemByEnvelope(arrayName, objName, envelopeID) {
-								return arrayName.filter(function(item) {
-									return item[objName] == envelopeID;
-								});
-							}
-
+							messageList = [];	
 
 							
-							for (var i = 0; i < response.message.length; i++) {
-								 
-					 			var messageDetail = {},
-										envelopeID = response.message[i].envelope,
-										recipientCount = getItemByEnvelope(response.envelope, "sid", envelopeID);							
-
-								messageDetail.message = response.message[i];
-								messageDetail.message.location = getItemByEnvelope(response.location, "envelope", envelopeID) || noLocation;
-								messageDetail.message.recipients = recipientCount.length;
-
+							for (var i = 0; i < response.message.length; i++){
+								var messageDetail = {
+									message: response.message[i],
+									//comment: response.comment[i],
+									//envelope: response.envelope[i],
+									//messageRecipient: response.messageRecipient[i]
+								}
+								
 								messageList.push(messageDetail);
 							}
 							
@@ -89,21 +80,18 @@
 						"label": newMessage.messageTitle,
 						"text": newMessage.content,
 						"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
-						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()//,
-						//sent: true
+						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()
 					},
 					"location": [
 						{
 							"name": newMessage.locationName || "Unnamed Location",
-							//"coordinates": newMessage.coordinates,
-							"latitude": newMessage.coordinates.lat,
-							"longitude": newMessage.coordinates.lng,
+							"latitude": newMessage.coordinates.H,
+							"longitude": newMessage.coordinates.L,
 							"distance": newMessage.range*1000,
 							"trigger": newMessage.discoverOn
 						}
 					]
 				}
-				//console.log("formattedMessage: " + formattedMessage);
 
 				return MessagesService.create(formattedMessage).then(function(response){
 					

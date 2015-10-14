@@ -176,7 +176,7 @@
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
 					{'title': 'Manage Campaign', 'state': 'messages.manage-campaign'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
-					//{'title': 'All Messages', 'state': 'messages.all-messages'},
+					{'title': 'All Messages', 'state': 'messages.all-messages'},
 
 					{'title': 'Manage Locations', 'state': 'messages.manage-locations'},
 					{'title': 'Asset Management', 'state': 'messages.asset'},
