@@ -28,25 +28,25 @@
 		}
 
 		function getAccount() {
-			// UserModel.getAccount(UserModel.user.sid)
-			// 	.then(
-			// 		function success (response) {
-			// 			console.log('response: ' + response);
-			// 			userProfileCtrl.user = UserModel.user;
-			// 			userProfileCtrl.editedUser = userProfileCtrl.user;
+			UserModel.getAccount(UserModel.user.sid)
+				.then(
+					function success (response) {
+						console.log('response: ' + response);
+						userProfileCtrl.user = UserModel.user;
+						userProfileCtrl.editedUser = userProfileCtrl.user;
 
-			// });
+			});
 
-			userProfileCtrl.user = {
-				'_id': '',
-				"companyName": "TESLA Motors",
-				"firstName": "Jason",
-				"lastName": "Tumbler",
-				"logo": "assets/img/default-profile-avatar.png",
-				"email": "jtumbler@teslamotors.com",
-				"phone": "7187187188",
-				"userRights": "Admin"
-			}
+			// userProfileCtrl.user = {
+			// 	'_id': '',
+			// 	"companyName": "TESLA Motors",
+			// 	"firstName": "Jason",
+			// 	"lastName": "Tumbler",
+			// 	"logo": "assets/img/default-profile-avatar.png",
+			// 	"email": "jtumbler@teslamotors.com",
+			// 	"phone": "7187187188",
+			// 	"userRights": "Admin"
+			// }
 		}
 
 

@@ -1,0 +1,100 @@
+<header class="heading-bar">
+	<h1>All Messages</h1>
+</header>
+<section class="message-content-wrap manage-campaign">
+
+	<section class="campaign-messages-wrapper">
+
+
+		<div class="clearfix"></div>
+
+		<div class="campaign-messages-table-wrapper qvr-form">
+			<table>
+			  <thead>
+			    <tr>
+			      <th>
+			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
+			      </th>
+			      <th>
+			      	<label>ID</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'id' && reverse == false}" ng-click="sortByFunc('id',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'id' && reverse == true}" ng-click="sortByFunc('id',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Label</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'label' && reverse == false}" ng-click="sortByFunc('label',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'label' && reverse == true}" ng-click="sortByFunc('label',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>To</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'to' && reverse == false}" ng-click="sortByFunc('to',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'to' && reverse == true}" ng-click="sortByFunc('to',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Location</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'location' && reverse == false}" ng-click="sortByFunc('location',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'location' && reverse == true}" ng-click="sortByFunc('location',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Start</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'start' && reverse == false}" ng-click="sortByFunc('start',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'start' && reverse == true}" ng-click="sortByFunc('start',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>End</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'end' && reverse == false}" ng-click="sortByFunc('end',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'end' && reverse == true}" ng-click="sortByFunc('end',true);"></i>
+			      	</span>
+			      </th>
+			      <th>
+			      	<label>Status</label>
+			      	<span>
+			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'status' && reverse == false}" ng-click="sortByFunc('status',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'status' && reverse == true}" ng-click="sortByFunc('status',true);"></i>
+			      	</span>
+			      </th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<tr ng-show="results.length == 0">
+			  		<td></td>
+			  		<td colspan="6">
+			  			<p class="qvr-align-center">No Results</p></td>
+			  		<td></td>
+			  	</tr>
+			    <tr  data-ng-repeat="msg in allMessagesCtrl.messages ">
+			      <td><input type="checkbox" ng-model="msg.isSelected" ng-change="anyInputsSelected();" /></td>
+			      <td>{{msg.message.sid}}</td>
+			      <td>{{msg.message.label}}</td>
+			      <td>{{msg.message.recipients}}</td>
+			      <td ng-repeat="location in msg.message.location">{{location.name}}</td>
+			      <td>{{msg.message.startTime | date}}</td>
+			      <td>{{msg.message.endTime | date}}</td>
+			      <td>
+					<div class="input-wrapper message-status-wrapper">
+						<select class="qvr-select {{msg.status}}" ng-model="msg.status" >
+							<option data-ng-repeat="obj in allMessagesCtrl.statuses">{{obj}}</option>
+						</select>
+					</div>
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+
+		</div>
+
+	</section>
+
+</section>
+

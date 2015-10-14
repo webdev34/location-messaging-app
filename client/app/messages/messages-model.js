@@ -44,24 +44,35 @@
 			//$q,
 			MessagesService
 		) {
-			var model = this,
-				messageList;
-
+			var model = this;
+			
 			model.getMessageList = function() {
 				//return (messageList) ? $q.when(messageList) : MessagesService.list()
-				return MessagesService.list()
+				return MessagesService.list(0,0)
 					.then(
 						function(response){
-							messageList = [];	
 							
-							for (var i = 0; i < response.message.length; i++){
-								var messageDetail = {
-									message: response.message[i],
-									comment: response.comment[i],
-									envelope: response.envelope[i],
-									messageRecipient: response.messageRecipient[i]
-								}
-								
+							var messageList = [],
+									noLocation = [{"name": "No Location"}];
+							
+							function getItemByEnvelope(arrayName, objName, envelopeID) {
+								return arrayName.filter(function(item) {
+									return item[objName] == envelopeID;
+								});
+							}
+
+
+							
+							for (var i = 0; i < response.message.length; i++) {
+								 
+					 			var messageDetail = {},
+										envelopeID = response.message[i].envelope,
+										recipientCount = getItemByEnvelope(response.envelope, "sid", envelopeID);							
+
+								messageDetail.message = response.message[i];
+								messageDetail.message.location = getItemByEnvelope(response.location, "envelope", envelopeID) || noLocation;
+								messageDetail.message.recipients = recipientCount.length;
+
 								messageList.push(messageDetail);
 							}
 							
@@ -71,32 +82,27 @@
 			};
 
 			model.createNewMessage = function(newMessage) {
-				console.log("start: "+ newMessage.startDate + " " +  newMessage.startTime);
-				console.log("end: "+ newMessage.endDate + " " + newMessage.endTime);
 
 				var formattedMessage = {
-					"comment": {
-						"text": newMessage.content
-						//"messagetitle": newMessage.messageTitle
+					"message": {
+						target: 3, //targets all followers
+						"label": newMessage.messageTitle,
+						"text": newMessage.content,
+						"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
+						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()
 					},
-					"messageLocation": [
+					"location": [
 						{
-							"name": newMessage.locationName,
-							"geoFence": {
-								"type": "Point",
-								"coordinates": [newMessage.coordinates.H, newMessage.coordinates.L]
-							},
-							"distance": newMessage.range,
-							"trigger": 1, //is this the same as discoverOn
-							//"discoverOn": newMessage.discoverOn,
-							"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
-							"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()
+							"name": newMessage.locationName || "Unnamed Location",
+							"coordinates": newMessage.coordinates,
+							"latitude": newMessage.coordinates.H,
+							"longitude": newMessage.coordinates.L,
+							"distance": newMessage.range*1000,
+							"trigger": newMessage.discoverOn
 						}
-					],
-					 envelope: {
-            target: 3 //targets all followers
-        	}
+					]
 				}
+				//console.log("formattedMessage: " + formattedMessage);
 
 				return MessagesService.create(formattedMessage).then(function(response){
 					

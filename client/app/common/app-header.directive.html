@@ -1,6 +1,6 @@
 <header class="g-header" ng-show="appCtrl.showHeader">
 
-	<a ui-sref="home" class="header-branding">
+	<a class="header-branding">
 		<img class="header-logo" src="assets/img/logo/header-logo-white.png" alt="Quiver">
 		<span class="portal-branding">Enterprise Portal</span>
 	</a>
@@ -35,10 +35,10 @@
 		</ul>
 	</nav>
 	
-	<section class="header-user-info">
+	<section class="header-user-info" controller="AppCtrl as appCtrl">
 		<span class="icon-wrapper"><span class="icon i-header-user active"></span></span>
 		<span class="details">
-			<div class="enterise-name">{{appCtrl.user.username}}</div>
+			<div class="enterise-name">{{appCtrl.user.username}} </div>
 			<div class="enterprise-plan">Current Plan: <span>Warrior</span> <span>Upgrade</span></div>
 		</span>
 		<span class="username"><span>Logged In As:</span> {{appCtrl.user.fullName}}</span>

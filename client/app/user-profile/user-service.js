@@ -17,7 +17,7 @@
 				},
 
 				logout : function(userObj) {
-					return $http.del(API_URL + '/session');
+					return $http.delete(API_URL + '/session');
 				},
 
 				register : function(userObj) {

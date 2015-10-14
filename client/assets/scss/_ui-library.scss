@@ -442,7 +442,9 @@ select.qvr-select{
     }
     .header-branding {
         float: left;
+        cursor: default;
         margin: 12px 0 0 17px;
+
         .header-logo {
             float: left;
             width: 80px;
