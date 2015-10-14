@@ -196,8 +196,8 @@
 			      <td><input type="checkbox" ng-model="msg.isSelected" ng-change="anyInputsSelected();" /></td>
 			      <td>{{msg.message.sid}}</td>
 			      <td>{{msg.message.label}}</td>
-			      <td>{{msg.message.to}}</td>
-			      <td>{{msg.message.location}}</td>
+			      <td>{{msg.message.recipients}}</td>
+			      <td>{{msg.message.location[0].name}}</td>
 			      <td>{{msg.message.startTime | date}}</td>
 			      <td>{{msg.message.endTime | date}}</td>
 			      <td>

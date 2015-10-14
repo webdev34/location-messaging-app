@@ -44,29 +44,51 @@
 			//$q,
 			MessagesService
 		) {
-			var model = this,
-				messageList;
-
+			var model = this;
+			
 			model.getMessageList = function() {
 				//return (messageList) ? $q.when(messageList) : MessagesService.list()
 				console.log('model testing');
 				return MessagesService.list(0,0)
 					.then(
 						function(response){
-							messageList = [];	
+							
+							var messageList = [],
+									noLocation = [{"name": "No Location"}];
+							
+							function getItemByEnvelope(arrayName, objName, envelopeID) {
+								// var results = [];
+								// arrayName.forEach(function(item) {
+								// 	if (item.envelope == envelopeID) {
+								// 		results.push(item);
+								// 	}
+								// });
+								// //console.log(results);
+								// return results;
+								return arrayName.filter(function(item) {
+									return item[objName] == envelopeID;
+								});
+							}
+
 
 							
-							for (var i = 0; i < response.message.length; i++){
-								var messageDetail = {
-									message: response.message[i],
-									//comment: response.comment[i],
-									//envelope: response.envelope[i],
-									//messageRecipient: response.messageRecipient[i]
-								}
-								
+							for (var i = 0; i < response.message.length; i++) {
+								 
+					 			var messageDetail = {},
+										envelopeID = response.message[i].envelope,
+										recipientCount = getItemByEnvelope(response.envelope, "sid", envelopeID);							
+
+								messageDetail.message = response.message[i];
+								//messageDetail.message.location = response.location.filter || noLocation;
+								messageDetail.message.location = getItemByEnvelope(response.location, "envelope", envelopeID) || noLocation;
+								messageDetail.message.recipients = recipientCount.length;
+
+								//messageDetail.
+								console.log(messageDetail);
 								messageList.push(messageDetail);
 							}
 							
+							//console.log(JSON.stringify(messageList));
 							return messageList;
 						}
 					);
