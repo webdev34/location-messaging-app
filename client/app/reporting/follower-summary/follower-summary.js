@@ -6,7 +6,8 @@
 		return function (input, start) {
 			if (input) {
 				start = +start;
-				return input.slice(start);
+
+				return input;
 			}
 			return [];
 		};
@@ -16,95 +17,98 @@
 		'$scope',
 		'$state',
 		'$http',
-		'FoundationApi',
 		
 		function(
 			$rootScope,
 			$scope,
 			$state,
-			$http,
-			FoundationApi
+			$http
 		) {
 			var followerSummaryCtrl = this;
-
-			followerSummaryCtrl.showStartDatePicker = false;
-			followerSummaryCtrl.showEndDatePicker = false;
-
-			var today = new Date(),
-					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
-					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-				
-			var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
-				tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
-				tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
+			followerSummaryCtrl.currentView = 'Yearly';
 
 			$http.get('assets/data/follower-summary.json').success(function(data) {
 				followerSummaryCtrl.followerSummaryData = data.followerSummary;
-				$scope.totalItems = data.followerSummary.length;
-				$scope.currentPage = 1;
-				$scope.entryLimit = 10; // items per page
-				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
-				$scope.reverse = false;
-				$scope.sortOrderBy = 'startDate';
-				$scope.startAt = 0;
-				$scope.endAt = 9
-
-				$scope.goToPage = function(direction) {
-
-					if(direction == 'up')
-					{
-						$scope.currentPage++;
-					}else if(direction == 'down'){
-						$scope.currentPage--;
-					}
-					else if(direction == 'beginning'){
-						$scope.currentPage = 1;
-					}
-					else if(direction == 'end'){
-						$scope.currentPage = $scope.noOfPages;
-					}
-
-					$scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
-					$scope.endAt = $scope.entryLimit * $scope.currentPage;
-
-				};
-
-				$scope.sortByFunc = function(sortBy, reverse) {
-					$scope.sortOrderBy = sortBy;
-					$scope.reverse = reverse;
-					$scope.currentPage = 1;
-				};
+				followerSummaryCtrl.totalItems = data.followerSummary.length;
+				followerSummaryCtrl.currentPage = 1;
+				followerSummaryCtrl.entryLimit = 10; // items per page
+				followerSummaryCtrl.noOfPages = Math.ceil(followerSummaryCtrl.totalItems / followerSummaryCtrl.entryLimit);
+				followerSummaryCtrl.reverse = false;
+				followerSummaryCtrl.sortOrderBy = 'id';
+				followerSummaryCtrl.startAt = 0;
+				followerSummaryCtrl.endAt = 9;
 			});
+
+			$http.get('assets/data/follower-monthly-summary.json').success(function(data) {
+				followerSummaryCtrl.followerMonthlySummaryData = data.followerMonthlySummary;
+			});
+
+			$http.get('assets/data/follower-daily-summary.json').success(function(data) {
+				followerSummaryCtrl.followerDailySummaryData = data;
+			});
+
+			followerSummaryCtrl.goToPage = function(direction) {
+
+				if(direction == 'up')
+				{
+					followerSummaryCtrl.currentPage++;
+				}else if(direction == 'down'){
+					followerSummaryCtrl.currentPage--;
+				}
+				else if(direction == 'beginning'){
+					followerSummaryCtrl.currentPage = 1;
+				}
+				else if(direction == 'end'){
+					followerSummaryCtrl.currentPage = followerSummaryCtrl.noOfPages;
+				}
+
+				followerSummaryCtrl.startAt = (followerSummaryCtrl.currentPage - 1) * followerSummaryCtrl.entryLimit;
+				followerSummaryCtrl.endAt = followerSummaryCtrl.entryLimit * followerSummaryCtrl.currentPage;
+			};
+
+			followerSummaryCtrl.sortByFunc = function(sortBy, reverse) {
+				followerSummaryCtrl.sortOrderBy = sortBy;
+				followerSummaryCtrl.reverse = reverse;
+				followerSummaryCtrl.currentPage = 1;
+				followerSummaryCtrl.goToPage(1);
+			};
+
+
+			followerSummaryCtrl.changeCurrentView = function(view, obj) {
+				followerSummaryCtrl.currentView = view;
+				followerSummaryCtrl.resetCurrentPage();
+				if(view == 'Daily'){
+				   followerSummaryCtrl.currentMonthView = obj.period;
+			       followerSummaryCtrl.currentDailyObj = followerSummaryCtrl.followerDailySummaryData[followerSummaryCtrl.currentMonthView];
+				}
+				else if(view == 'Monthly'){
+					if(obj){
+						followerSummaryCtrl.currentYearView = obj.period;	
+					}
+					followerSummaryCtrl.currentMonthObj = followerSummaryCtrl.followerMonthlySummaryData;
+				}
+			};
+
+			followerSummaryCtrl.resetCurrentPage = function() {
+                followerSummaryCtrl.currentPage = 1;
+                followerSummaryCtrl.startAt = 0;
+				followerSummaryCtrl.endAt = 9;
+            };
+
+            followerSummaryCtrl.clearSearchField = function() {
+                followerSummaryCtrl.search = '';
+            };
 			
-			function resetForm() {
-				
-				followerSummaryCtrl.followerSummaryQuery = {
-					"startDate": todayProperFormatted,
-					"endDate": tomorrowProperFormatted,
-					"startTime": "12:01 AM",
-					"endTime": "12:01 AM"
-				};
-			}
-
-			function clearTakeOverSelectors(){
-				followerSummaryCtrl.showStartDatePicker = false;
-				followerSummaryCtrl.showEndDatePicker = false;
-			}
-
 			function paginationValidation(){
-				if($scope.currentPage > $scope.noOfPages ){
-					$scope.currentPage = $scope.noOfPages
+				if(followerSummaryCtrl.currentPage > followerSummaryCtrl.noOfPages ){
+					followerSummaryCtrl.currentPage = followerSummaryCtrl.noOfPages;
 				}
-				else if(typeof $scope.currentPage === "undefined"){
-					$scope.currentPage = 1;
+				else if(typeof followerSummaryCtrl.currentPage === "undefined"){
+					followerSummaryCtrl.currentPage = 1;
 				}
 			}
-			
-			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.startDate", clearTakeOverSelectors);
-			$scope.$watch("followerSummaryCtrl.followerSummaryQuery.endDate", clearTakeOverSelectors);
-			$scope.$watch("currentPage", paginationValidation);
 
-			resetForm();
+			$scope.$watch("followerSummaryCtrl.currentPage", paginationValidation);
 		}
 	]);
 

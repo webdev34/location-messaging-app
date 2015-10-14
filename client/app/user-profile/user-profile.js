@@ -16,8 +16,8 @@
 	}])
 	.controller(
 		'UserProfileCtrl', 
-		['UserModel', 'FoundationApi', 
-		function (UserModel, FoundationApi) {
+		['UserModel', 'FoundationApi', '$scope', 
+		function (UserModel, FoundationApi, $scope) {
 		
 		var userProfileCtrl = this;
 		userProfileCtrl.isEditing = false;
@@ -36,7 +36,38 @@
 						userProfileCtrl.editedUser = userProfileCtrl.user;
 
 			});
+
+			// userProfileCtrl.user = {
+			// 	'_id': '',
+			// 	"companyName": "TESLA Motors",
+			// 	"firstName": "Jason",
+			// 	"lastName": "Tumbler",
+			// 	"logo": "assets/img/default-profile-avatar.png",
+			// 	"email": "jtumbler@teslamotors.com",
+			// 	"phone": "7187187188",
+			// 	"userRights": "Admin"
+			// }
 		}
+
+
+		$scope.uploader = {};
+
+	  	$scope.processFiles = function(files){
+	  		userProfileCtrl.user.newlogo = null;
+	    	angular.forEach(files, function(flowFile, i){
+	       	var fileReader = new FileReader();
+	          	fileReader.onload = function (event) {
+	            	var uri = event.target.result;
+	            	userProfileCtrl.user.newlogo = uri;
+	              	// userProfileCtrl.user.newlogo.push(uri);
+	          	};
+	          	fileReader.readAsDataURL(flowFile.file);
+	    	});
+	  	};
+
+	  	$scope.removeFiles = function(index){
+		    $scope.uploader.flow.files = []
+		};
 
 		userProfileCtrl.saveChanges = function() {
 			userProfileCtrl.updatedUser = userProfileCtrl.editedUser;

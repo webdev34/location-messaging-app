@@ -7,7 +7,8 @@
 	}
 	
 	
-	.enterprise-profile {
+	.enterprise-profile,
+	.enterprise-manage-users {
 		// display: flex;
 		// flex-direction: row;
 		// flex-wrap: nowrap;
@@ -22,6 +23,32 @@
 			width: 50%;
 			float: left;
 			padding: 20px;
+		}
+
+		&.user-profile{
+			.details {
+				p {
+					width: 100%;
+				}
+				
+				label {
+					color: $qvr-grey-3;
+				}
+			}
+			.full-width.avatar{
+				text-align: center;
+				p{
+					width: 200px;
+    				margin: 0 auto;
+				}
+				img.preview{
+					width: 250px;
+					height: 250px;
+					border: #ccc thin solid;
+					background-color: white;
+				}
+			}
+
 		}
 
 		&.edit{
@@ -42,10 +69,20 @@
 
 			.corp-logo {
 				max-width: 350px;
-				margin-bottom: 50px;
+				margin-bottom: 20px;
+			}
+			.change-avatar-btn{
+				margin-bottom: 20px;
 			}
 			&.enterprise-content-left{
 				text-align: center;
+			}
+			a{
+				color: $qvr-blue-1;
+				font-weight: bold;
+			}
+			p{
+				font-size: 16px;
 			}
 		}
 

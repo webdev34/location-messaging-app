@@ -1,0 +1,197 @@
+.campaign-summary-wrapper{
+	
+	.campaign-summary-form{
+		.top-controls .qvr-label{
+			margin-bottom: -5px;
+			color: #00A9CC;
+		}
+		.button-wrapper{
+		    float: right;
+		}
+		.input-wrapper{
+			margin-right: 20px;
+			float: left;
+		}
+		.delivery-box{
+			float: left;
+			margin-right: 20px;
+			position: relative;
+			margin-top: -25px;
+			section.date-selector,
+			section.time-selector{
+				position: absolute;
+				z-index: 10;
+				top: -4px;
+			    left: -15px;
+			    width: 215px;
+			}
+			span.date {
+		        font-size: 26px;
+		        font-weight: $qvr-font-weight-bold;
+		        color: #999;
+		        text-transform: uppercase;
+		    }
+
+		    input {
+		        background-repeat: no-repeat;
+		        background-size: 22px;
+		        background-position: right 5px center;
+		        width: 95%;
+		    }
+
+		    input.date {
+		        background-image: url(..//img/icons/i-calendar.png);
+		    }
+		    
+		    input.hourglass {
+		        background-image: url(..//img/icons/i-hourglass.png);
+		    }
+		}
+	}
+	
+	.campaign-summary-content-wrapper{
+		padding: 30px 0px;
+		background-color: #f0f0f0;
+		.campaign-stats-header{
+			margin-left: 30px;
+			h3{
+				color: $qvr-grey-3;
+				font-weight: bold;
+				float: left;
+				text-transform: uppercase;
+				margin-right: 10px;
+				font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+				font-size: 24px;
+				span{
+					color: $qvr-blue-1;
+				}
+			}
+		}
+		.campaign-summary-header{
+			margin-top: 30px;
+			h1{
+				padding: 0 0 0 30px;
+			    margin: 0;
+			    border-bottom: solid 1 px #808285;
+			    color: #808285;
+			    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			    font-size: 40px;
+			    line-height: inherit;
+			    font-weight: 300;
+			    text-align: left;
+			    text-transform: uppercase;
+			}	
+			.qvr-button {
+	    		padding: 0px 1em;
+	    		margin-left: 25px;
+			}
+			.search-wrapper{
+				float: right;
+				width: 27%;
+				display: inline-block;
+				margin-right: 20px;
+				position: relative;
+				label{
+					position: absolute;
+				    font-size: 21px;
+				    top: 5px;
+				    left: 10px;
+				    color: #666666;
+				}
+				input[type="search"]{
+					text-indent: 25px;
+					font-weight: normal;
+				}
+			}			
+		}
+		.campaign-summary-filter-wrapper{
+			margin-top: 25px;
+		}
+		.campaign-summary-table-wrapper{
+			table{
+    			width: 98%;
+    			margin-left: 10px;
+				border: thin solid  #D1D2D3;
+				border-collapse: separate;
+    			border-spacing: 0;
+    			padding: 0px;
+				@include border-radius(20px);
+				th{
+					background-color: #F2F2F2;
+					text-align: center;
+					label{
+						font-size: 1.2rem;
+						margin-bottom: 0px;
+						color: #666666;
+						margin-top: 20px;
+						float: left;
+					}
+					
+					span{
+						float: left;
+					    height: 50px;
+					    width: 10px;
+					    font-size: 21px;
+					    margin-left: 10px;
+					    i{
+    						position: relative;
+    						cursor: pointer;
+					    	&:first-child{
+					    		top: 10px;
+					    	}
+					    	&.active{
+					    		color: $qvr-blue-1;
+					    	}
+					    }
+					}
+				}
+				td{
+					text-align: left;
+					border-bottom: thin solid #D1D2D3;
+					padding: 6px;
+					&.button-td{
+						text-align: center;
+					}
+
+					&.bold{
+						font-weight: bold;
+					}
+					.qvr-button.action{
+						padding: 0 1em;
+						.fa{
+							font-size: 24px;
+						}
+					}
+				}
+				tr{
+					background-color: white;
+					&.blue-row{
+						background-color: #baeaff;
+						height: 40px;
+					}
+					&:first-child{
+						th{
+							&:first-child{
+								@include border-radius( 20px 0px 0px 0px);
+							}
+							&:last-child{
+								@include border-radius( 0px 20px 0px 0px);
+							}
+						}	
+					}					
+					&:last-child,
+					&.last{
+						td{
+							&:first-child{
+								@include border-radius( 0px 0px 0px 20px);
+							}
+							&:last-child{
+								@include border-radius( 0px 0px 20px 00px);
+							}
+						}	
+					}
+				}
+			}
+		}
+	}
+} 

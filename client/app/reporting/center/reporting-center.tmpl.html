@@ -2,17 +2,15 @@
 	<h1>reporting center</h1>
 </header>
 
-
-
 <div class="reporting-center-wrapper">
 	<ul class="basic">
-		<li class="follower-summary" ng-click="goToReport('reporting.follower-summary')">
+		<li class="follower-summary" ng-click="goToReport('reporting.follower-summary');">
 			<i></i>
 			<a ui-sref="reporting.follower-summary">Follower Summary</a>
 		</li>
-		<li class="single-campaign">
+		<li class="single-campaign" ng-click="goToReport('reporting.campaign-summary');">
 			<i></i>
-			<a ui-sref="reporting.single-campaign">Single Campaign</a>
+			<a ui-sref="reporting.campaign-summary">Campaign Summary</a>
 		</li>
 		<li class="comment-summary">
 			<i></i>

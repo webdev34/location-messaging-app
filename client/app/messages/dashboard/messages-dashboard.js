@@ -6,7 +6,8 @@
 		return function (input, start) {
 			if (input) {
 				start = +start;
-				return input.slice(start);
+
+				return input;
 			}
 			return [];
 		};
@@ -32,16 +33,33 @@
 				tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 				tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 			
-			campaignCenterCtrl.statuses = ["Live", "Draft"];
+			campaignCenterCtrl.statuses = ["Live", "Draft", "Ended"];
+			campaignCenterCtrl.tagFilters = [];
+			campaignCenterCtrl.campaignTags = [
+				{ name: "Tag 1", ticked: false },
+				{ name: "Tag 2", ticked: false},
+				{ name: "Tag 3", ticked: false},
+				{ name: "Tag 4", ticked: false},
+				{ name: "Tag 5", ticked: false},
+				{ name: "Tag 6", ticked: false},
+				{ name: "Tag 7", ticked: false},
+				{ name: "Tag 8", ticked: false},
+				{ name: "Tag 9", ticked: false},
+				{ name: "Tag 10", ticked: false}
+			];
 			
 			$http.get('assets/data/campaigns.json').success(function(data) {
-				campaignCenterCtrl.campaignData = data.campaigns;	
+				campaignCenterCtrl.campaignData = data.campaigns;
 				$scope.totalItems = data.campaigns.length;
 				$scope.currentPage = 1;
 				$scope.entryLimit = 10; // items per page
 				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 				$scope.reverse = false;
 				$scope.sortOrderBy = 'id';
+				$scope.startAt = 0;
+				$scope.endAt = 9;
+				$scope.selectAll = false;
+				$scope.isAnyInputsSelected = false;
 
 				$scope.goToPage = function(direction) {
 
@@ -57,17 +75,62 @@
 					else if(direction == 'end'){
 						$scope.currentPage = $scope.noOfPages;
 					}
+
+					$scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
+					$scope.endAt = $scope.entryLimit * $scope.currentPage;
+
 				};
 
 				$scope.sortByFunc = function(sortBy, reverse) {
 					$scope.sortOrderBy = sortBy;
 					$scope.reverse = reverse;
 					$scope.currentPage = 1;
+					$scope.goToPage(1);
 				};
 
 				$scope.resetCurrentPage = function() {
 					$scope.currentPage = 1;
 				};
+
+				$scope.toggleSelected = function() {
+					angular.forEach(campaignCenterCtrl.campaignData, function(campaign) {
+				      campaign.isSelected = $scope.selectAll;
+				    });
+				};
+
+				$scope.bulkActions = function() {
+					var actionDropDown = document.getElementById("bulk-actions");
+					var action = actionDropDown.options[actionDropDown.selectedIndex].value;
+					angular.forEach(campaignCenterCtrl.campaignData, function(campaign, i) {
+						if(campaign.isSelected && action != 'Delete'){
+							campaign.status = action;
+							campaign.isSelected = false;
+						}
+						else if(campaign.isSelected && action == 'Delete' && $scope.selectAll == false){
+							campaignCenterCtrl.campaignData.splice(i, 1);   
+						}
+						else if(action == 'Delete' && $scope.selectAll == true){
+							campaignCenterCtrl.campaignData = [];  
+							
+						}
+				    });
+				    $scope.selectAll = false;
+				};
+
+				$scope.anyInputsSelected = function() {
+					$scope.isAnyInputsSelected = false;
+					$scope.selectAll = true;
+					angular.forEach(campaignCenterCtrl.campaignData, function(campaign, i) {
+						if(campaign.isSelected){
+							$scope.isAnyInputsSelected  = true;
+						}
+						else{
+							$scope.selectAll = false;
+						}
+				    });
+				};
+
+
 			});
 			
 
@@ -82,6 +145,7 @@
 			}
 
 			$scope.$watch("currentPage", paginationValidation);
+			
 
 					console.log("Active Messages");
 			// MessageListModel.getMessageList().then(

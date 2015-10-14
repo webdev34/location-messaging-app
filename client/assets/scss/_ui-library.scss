@@ -60,6 +60,43 @@ p {
     padding: 0;
 }
 
+.animated { 
+    -webkit-animation-duration: .1s; 
+    animation-duration: .1s; 
+    -webkit-animation-fill-mode: both; 
+    animation-fill-mode: both; 
+    -webkit-animation-timing-function: ease-in; 
+    animation-timing-function: ease-in; 
+} 
+
+@-webkit-keyframes fadeIn { 
+    0% {opacity: 1;} 
+    100% {opacity: 1;} 
+} 
+@keyframes fadeIn { 
+    0% {opacity: 1;} 
+    100% {opacity: 1;} 
+} 
+
+@-webkit-keyframes fadeOut { 
+    0% {opacity: 0; display:none;} 
+    100% {opacity: 0;} 
+} 
+@keyframes fadeOut { 
+    0% {opacity: 0;} 
+    100% {opacity: 0;} 
+} 
+
+.fadeIn { 
+    -webkit-animation-name: fadeIn; 
+    animation-name: fadeIn; 
+}
+
+.fadeOut { 
+    -webkit-animation-name: fadeOut; 
+    animation-name: fadeOut; 
+}
+
 // Bower foundation overrides
 ul {
     margin: 0;
@@ -178,6 +215,140 @@ ul {
     background-repeat: no-repeat;
 }
 
+// Multi select
+
+.multiSelect.inlineBlock {
+    > button {
+        background-color: white;
+        background-image: none !important;
+        min-height: 32px !important;
+        border: 1px solid #D1D2D3;
+        border-radius: 10px;
+        font-size: 14px;
+        color: #808285;
+        font-weight: bold;
+        min-width: 296px;
+        text-align: left;
+        text-indent: 5px;
+    }
+    .caret{
+        border-top: 5px solid #999;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        position: absolute;
+        right: 10px;
+        top: 45%;
+    }
+
+    .checkBoxContainer {
+        overflow: scroll;
+        height: 160px;
+        padding-top: 0px;
+    }
+
+    .tickMark {
+        font-size: 14px;
+        color: $qvr-blue-1;
+    }
+
+    .inputFilter{
+        height: 33px;
+    }
+    .line{
+        padding: 5px 0px;
+        margin-bottom: 5px;
+        button.helperButton{
+            font-weight: bold;
+            font-size: 12px;
+        }
+        button.helperButton:nth-child(2){
+            font-size: 0px;
+        }
+        button.helperButton:nth-child(2):after {
+            content: "Deselect All";
+            font-weight: bold;
+            font-size: 12px;
+        }
+    }
+    .multiSelectItem{
+        border-bottom: thin solid #9DA2A7;
+        min-height: auto;
+        padding: 5px;
+        &:not(.multiSelectGroup).selected{
+            background-image: none !important;
+            background-color: #ddd;
+        }
+        &:hover{
+            padding: 5px;
+            background-color: #ddd;
+            background-image: none !important;
+            cursor: pointer;
+        }
+    }
+    .acol label{
+        font-weight: bold !important;
+        color: #666;
+        padding: 5px 0px;
+    }
+    .clearButton{
+        right: 0px;
+        top: 5px;
+        height: 26px;
+    }
+}
+
+.add-tags .multiSelect.inlineBlock.none button.label-holder{
+    font-size: 0px;
+    &:after{
+        content: "Add #Tags";
+        font-size: 14px;
+    }
+}
+
+.add-tag-filters .multiSelect.inlineBlock.none button.label-holder{
+    font-size: 0px;
+    &:after{
+        content: "Add #Tag Filter";
+        font-size: 14px;
+    }
+}
+
+
+// Modal
+
+.modal-overlay{
+    .modal{
+        border-radius: 20px;
+        background-color: #F2F2F2;
+    }
+}
+
+// Status Dropdowns
+select.qvr-select{
+    &.Live{
+        background-color: #37a807;
+    }
+    &.Draft{
+        background-color: #808285;
+    }
+    &.Ended{
+        background-color: $qvr-blue-1;
+    }
+    &:hover,
+    &:focus{
+        &.Live{
+            background-color: #37a807;
+        }
+        &.Draft{
+            background-color: #808285;
+        }
+        &.Ended{
+            background-color: $qvr-blue-1;
+        }
+
+    }
+}
+
 // Table Pagination
 
 .pagination-wrapper {
@@ -210,8 +381,10 @@ ul {
     }
     input {
         width: 50px;
+        height: 32px;
         float: left;
         font-weight: normal;
+        border-radius: 10px;
     }
     .pagination-info {
     	display: inline-table;
@@ -269,7 +442,9 @@ ul {
     }
     .header-branding {
         float: left;
+        cursor: default;
         margin: 12px 0 0 17px;
+
         .header-logo {
             float: left;
             width: 80px;
@@ -464,6 +639,9 @@ ul {
 
 // Forms
 // Quiver Custom Form
+
+:required {box-shadow: none;} //removes red shadow of required elements in firefox
+
 .qvr-form {
     // Form Colors
     $qvr-form_color-bg: #F7F7F7;
@@ -660,7 +838,7 @@ input[type="checkbox"].qvr-slide-toggle {
         }
     }
     &.cancel{
-        background-color: red;
+        background-color: rgb(192, 192, 192);
         color: white;
         text-transform: uppercase;
     }

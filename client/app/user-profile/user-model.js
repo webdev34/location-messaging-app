@@ -22,20 +22,47 @@ User types - these are NOT 'social users' (followers)
 	])
 	
 	.service('UserModel', [
-		'$cookies',
+		'$rootScope',
+		'$state',
 		'$cookieStore',
 		'API_URL',
 		'UserService',
-		
-		function(
-			$cookies,
-			$cookieStore,
-			API_URL,
-			UserService
-		) {
+		function( $rootScope, $state, $cookieStore, API_URL, UserService) {
 			var model = this;
 			
-			//model.user = $cookieStore.get("QVR.user");
+			$rootScope.auth = $cookieStore.get("qvr.auth");
+			model.userID = $cookieStore.get("qvr.user");
+
+			model.getAccount = function(userID) {
+				return UserService.get(userID)
+					.then(
+						function(response) {
+							model.user = response.user[0];
+							model.user = model.user;
+							//console.log('root user: ' + JSON.stringify($rootScope.user));
+
+							//console.log('user: ' + JSON.stringify(model.user));
+
+							model.enterprise = response.enterprise[0].sid;
+							//console.log('enterprise: ' + JSON.stringify(response.enterpriseUser[0].enterprise));
+
+							return response;
+						},
+						function(response) {
+							return response;
+						}
+					);
+			}
+
+
+			if ($rootScope.auth && model.userID) {
+				model.getAccount(model.userID).then(
+					function success (response) {
+						model.isLoggedIn = true;
+					}
+				);
+			}
+
 			//console.log(model.user);
 			
 			// model.registerUser = function(userDetail) {
@@ -55,12 +82,23 @@ User types - these are NOT 'social users' (followers)
 				return UserService.login(userDetail)
 					.then(
 						function(response) {
+
 							model.user = response.user;
-							console.log('model user: ' + model.user);
+							model.userID = response.user.sid;
+							//console.log('user: ' + JSON.stringify(response.user));
+
 							model.authorization = response.authorization;
-							model.enterprise = response.enterprise;
-							model.user.isLoggedIn = true;
-							//$cookieStore.put("QVR.user", model.user);
+							model.enterprise = response.enterprise[0].sid;
+							//console.log('enterprise: ' + JSON.stringify(response.enterprise));
+
+							$rootScope.auth = response.authorization;
+							//console.log('enterprise: ' + JSON.stringify(response.enterprise));
+
+							model.isLoggedIn = true;
+
+							$cookieStore.put("qvr.auth", model.authorization );
+							$cookieStore.put("qvr.user", model.userID );
+							
 							return response;
 						},
 						function(response) {
@@ -69,26 +107,14 @@ User types - these are NOT 'social users' (followers)
 					);
 			}
 
-			model.getAccount = function(userID) {
-				return UserService.get(userID)
-					.then(
-						function(response) {
-							model.user = response.user;
-
-							//$cookieStore.put("QVR.user", model.user);
-							return response;
-						},
-						function(response) {
-							return response;
-						}
-					);
-			}
-
+			
 			model.logout = function() {
 				model.user = {};
-				$cookieStore.remove("QVR.user");
-				$cookieStore.remove("QVR.company");
-				//return UserService.logout();
+				model.isLoggedIn = false;
+				$cookieStore.remove("qvr.auth");
+				$cookieStore.remove("qvr.user");
+
+				return UserService.logout();
 			}
 
 			model.updateAccount = function(updatedUser) {

@@ -1,454 +1,118 @@
 {
   "followerSummary": [
-       {
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },
-        {
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/12/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/13/2015",
-          "startNumber": 107.6,
-          "new": 420,
-          "losted": 5,
-          "returned": 19,
-          "total": "912.0 k",
-          "margin": "+.25%"
-        },{
-          "startDate": "08/14/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        },{
-          "startDate": "08/15/2015",
-          "startNumber": 307.6,
-          "new": 4320,
-          "losted": 65,
-          "returned": 190,
-          "total": "312.0 k",
-          "margin": "+.014%"
-        }
+     {
+        "id" : 1,
+        "period": "2015",
+        "followersStart": 27.6,
+        "aquisitions": 1200,
+        "followersEnd": 8003,
+        "retentionRate": "86.30 %",
+        "growth": "+55.27 %"
+      },
+      {
+        "id" : 2,
+        "period": "2014",
+        "followersStart": 37.6,
+        "aquisitions": 100,
+        "followersEnd": 803,
+        "retentionRate": "36.30 %",
+        "growth": "+5.27 %"
+      },
+      {
+        "id" : 3,
+        "period": "2013",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      },
+      {
+        "id" : 4,
+        "period": "2012",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      },
+      {
+        "id" : 5,
+        "period": "2011",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 6,
+        "period": "2010",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      },
+      {
+        "id" : 7,
+        "period": "2009",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 8,
+        "period": "2008",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 9,
+        "period": "2007",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 10,
+        "period": "2008",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 11,
+        "period": "2007",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 12,
+        "period": "2006",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
   ]
 }

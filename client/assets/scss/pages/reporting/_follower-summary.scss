@@ -50,9 +50,25 @@
 	}
 	
 	.follower-summary-content-wrapper{
-		padding: 60px 0px;
+		padding: 30px 0px;
 		background-color: #f0f0f0;
+		.follower-stats-header{
+			margin-left: 30px;
+			h3{
+				color: $qvr-grey-3;
+				font-weight: bold;
+				float: left;
+				text-transform: uppercase;
+				margin-right: 10px;
+				font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+				font-size: 24px;
+				span{
+					color: $qvr-blue-1;
+				}
+			}
+		}
 		.follower-summary-header{
+			margin-top: 30px;
 			h1{
 				padding: 0 0 0 30px;
 			    margin: 0;
@@ -102,7 +118,7 @@
 				@include border-radius(20px);
 				th{
 					background-color: #F2F2F2;
-					text-align: left;
+					text-align: center;
 					label{
 						font-size: 1.2rem;
 						margin-bottom: 0px;
@@ -110,10 +126,7 @@
 						margin-top: 20px;
 						float: left;
 					}
-					input[type="checkbox"]{
-						margin-left: 10px;
-    					margin-top: 15px;
-					}
+					
 					span{
 						float: left;
 					    height: 50px;
@@ -135,13 +148,27 @@
 				td{
 					text-align: left;
 					border-bottom: thin solid #D1D2D3;
-					input[type="checkbox"]{
-						margin-left: 10px;
-    					margin-top: 15px;
+					padding: 6px;
+					&.button-td{
+						text-align: center;
+					}
+
+					&.bold{
+						font-weight: bold;
+					}
+					.qvr-button.action{
+						padding: 0 1em;
+						.fa{
+							font-size: 24px;
+						}
 					}
 				}
 				tr{
 					background-color: white;
+					&.blue-row{
+						background-color: #baeaff;
+						height: 40px;
+					}
 					&:first-child{
 						th{
 							&:first-child{
@@ -152,7 +179,8 @@
 							}
 						}	
 					}					
-					&:last-child{
+					&:last-child,
+					&.last{
 						td{
 							&:first-child{
 								@include border-radius( 0px 0px 0px 20px);
