@@ -48,7 +48,6 @@
 			
 			model.getMessageList = function() {
 				//return (messageList) ? $q.when(messageList) : MessagesService.list()
-				console.log('model testing');
 				return MessagesService.list(0,0)
 					.then(
 						function(response){
@@ -57,14 +56,6 @@
 									noLocation = [{"name": "No Location"}];
 							
 							function getItemByEnvelope(arrayName, objName, envelopeID) {
-								// var results = [];
-								// arrayName.forEach(function(item) {
-								// 	if (item.envelope == envelopeID) {
-								// 		results.push(item);
-								// 	}
-								// });
-								// //console.log(results);
-								// return results;
 								return arrayName.filter(function(item) {
 									return item[objName] == envelopeID;
 								});
@@ -79,16 +70,12 @@
 										recipientCount = getItemByEnvelope(response.envelope, "sid", envelopeID);							
 
 								messageDetail.message = response.message[i];
-								//messageDetail.message.location = response.location.filter || noLocation;
 								messageDetail.message.location = getItemByEnvelope(response.location, "envelope", envelopeID) || noLocation;
 								messageDetail.message.recipients = recipientCount.length;
 
-								//messageDetail.
-								console.log(messageDetail);
 								messageList.push(messageDetail);
 							}
 							
-							//console.log(JSON.stringify(messageList));
 							return messageList;
 						}
 					);
@@ -107,6 +94,7 @@
 					"location": [
 						{
 							"name": newMessage.locationName || "Unnamed Location",
+							"coordinates": newMessage.coordinates,
 							"latitude": newMessage.coordinates.H,
 							"longitude": newMessage.coordinates.L,
 							"distance": newMessage.range*1000,
@@ -114,6 +102,7 @@
 						}
 					]
 				}
+				//console.log("formattedMessage: " + formattedMessage);
 
 				return MessagesService.create(formattedMessage).then(function(response){
 					
