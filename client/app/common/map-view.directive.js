@@ -21,8 +21,8 @@
 				link:	function(scope, element, attrs) {
 					var TILE_SIZE = 256;
 
-					console.log('onstart coordinates:' + JSON.stringify(scope.coordinates));
-					console.log('onstart mapcenter:' + scope.mapcenter);
+					//console.log('onstart coordinates:' + JSON.stringify(scope.coordinates));
+					//console.log('onstart mapcenter:' + scope.mapcenter);
 
 					
 					var geocoder = new google.maps.Geocoder();
@@ -114,7 +114,7 @@
 								"lng": coordinates.lng()
 							};
 
-							console.log("from setCoordinate: " + JSON.stringify(scope.coordinates));
+						//	console.log("from setCoordinate: " + JSON.stringify(scope.coordinates));
 						}
 
 						function setRadius() {
@@ -143,9 +143,9 @@
 							setRadius();
 						});
 
-						scope.$watch("scope.coordinates", function(){
-							console.log("watching coordinates :" + scope.coordinates);
-						});
+						// scope.$watch("scope.coordinates", function(){
+						// 	console.log("watching coordinates :" + scope.coordinates);
+						// });
 
 						scope.$watch("mapsearch", function(newValue, oldValue) {
 
