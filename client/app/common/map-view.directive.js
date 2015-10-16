@@ -20,9 +20,13 @@
 
 				link:	function(scope, element, attrs) {
 					var TILE_SIZE = 256;
+
+					//console.log('onstart coordinates:' + JSON.stringify(scope.coordinates));
+					//console.log('onstart mapcenter:' + scope.mapcenter);
+
 					
 					var geocoder = new google.maps.Geocoder();
-					
+
 					function bound(value, opt_min, opt_max) {
 						if (opt_min != null) value = Math.max(value, opt_min);
 						if (opt_max != null) value = Math.min(value, opt_max);
@@ -99,9 +103,18 @@
 
 						function setCoordinate() {
 							var coordinates = map.getCenter();
+							//console.log("lat: " + map.getCenter().lat());
+							//console.log("lng: " + map.getCenter().lng());
+
 							scope.marker.setPosition(coordinates);
 							scope.rangeCircle.setCenter(coordinates);
 							setRadius();
+							scope.coordinates = {
+								"lat": coordinates.lat(),
+								"lng": coordinates.lng()
+							};
+
+						//	console.log("from setCoordinate: " + JSON.stringify(scope.coordinates));
 						}
 
 						function setRadius() {
@@ -113,32 +126,42 @@
 
 
 						google.maps.event.addListener(map, 'drag', function() {
-							var center = map.getCenter();
+							// var center = map.getCenter();
+							// console.log("lat: " + map.getCenter().lat());
+							// console.log("lng: " + map.getCenter().lng());
+
 							
-							scope.marker.setPosition(center);
-							scope.rangeCircle.setCenter(center);
-							scope.coordinates = center;
+							// scope.marker.setPosition(center);
+							// scope.rangeCircle.setCenter(center);
+							// scope.coordinates = center;
+							// console.log("center: " + center);
+							setCoordinate()
+
 						});
 
 						scope.$watch("range", function(newValue, oldValue) {
 							setRadius();
 						});
 
+						// scope.$watch("scope.coordinates", function(){
+						// 	console.log("watching coordinates :" + scope.coordinates);
+						// });
+
 						scope.$watch("mapsearch", function(newValue, oldValue) {
-							//console.log("search for: " + scope.mapsearch)
 
 								geocoder.geocode({'address': newValue}, function(results, status) {
 								if (status == google.maps.GeocoderStatus.OK) {
 									var loc = results[0].geometry.location;
-									
-									scope.marker.setPosition(loc);
-									scope.rangeCircle.setCenter(loc);
+
+									// scope.marker.setPosition(loc);
+									// scope.rangeCircle.setCenter(loc);
 									
 									map.setCenter(loc);
-									map.fitBounds(scope.rangeCircle.getBounds());
+									//map.fitBounds(scope.rangeCircle.getBounds());
 									
-									var center = map.getCenter();
-									scope.coordinates = center;
+									// var center = map.getCenter();
+									// scope.coordinates = center;
+									setCoordinate();
 								} else {
 									//console.log("Geocode was not successful for the following reason: " + status);
 								}

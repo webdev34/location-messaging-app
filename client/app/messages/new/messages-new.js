@@ -47,12 +47,12 @@
 				// "startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 				// "endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
 				"locationName": "",
-				"coordinates": {"H":43.657504642319005,"L":-79.3760706718750}
+				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
 			};
 
 			newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 
-			newMessageCtrl.initialMapCenter = newMessageCtrl.newMessage.coordinates.H + ","+ newMessageCtrl.newMessage.coordinates.L;
+			newMessageCtrl.initialMapCenter = newMessageCtrl.newMessage.coordinates.lat + ","+ newMessageCtrl.newMessage.coordinates.lng;
 
 			
 			
@@ -61,6 +61,9 @@
 			}
 
 			newMessageCtrl.createNewMessage = function() {
+				
+				//console.log("logging new message: " + JSON.stringify(newMessageCtrl.newMessage));
+
 				MessageListModel.createNewMessage(newMessageCtrl.newMessage).then(
 					function success(response){
 						
@@ -151,9 +154,13 @@
 				newMessageCtrl.newMessage.range = range;
 			};
 
-			$scope.doSearch = function(){
-				$rootScope.map_search = newMessageCtrl.search;
-			};
+			// $scope.$watch("newMessageCtrl.coordinates", function() {
+			// 	console.log("ctrl coordinates changed");
+			// });
+
+			// $scope.doSearch = function(){
+			// 	$rootScope.map_search = newMessageCtrl.search;
+			// };
 
 		}
 	]);

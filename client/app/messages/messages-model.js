@@ -94,9 +94,9 @@
 					"location": [
 						{
 							"name": newMessage.locationName || "Unnamed Location",
-							"coordinates": newMessage.coordinates,
-							"latitude": newMessage.coordinates.H,
-							"longitude": newMessage.coordinates.L,
+							//"coordinates": newMessage.coordinates,
+							"latitude": newMessage.coordinates.lat,
+							"longitude": newMessage.coordinates.lng,
 							"distance": newMessage.range*1000,
 							"trigger": newMessage.discoverOn
 						}
