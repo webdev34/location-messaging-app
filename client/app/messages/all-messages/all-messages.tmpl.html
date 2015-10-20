@@ -199,7 +199,7 @@
 <<<<<<< HEAD
 			    <tr  data-ng-repeat="msg in allMessagesCtrl.messages ">
 			      <td><input type="checkbox" ng-model="msg.isSelected" ng-change="anyInputsSelected();" /></td>
-			      <td>{{msg.message.sid}}</td>
+			      <td><a ng-click="allMessagesCtrl.getMessage()">{{msg.message.sid}}</a></td>
 			      <td>{{msg.message.label}}</td>
 			      <td>{{msg.message.recipients}}</td>
 			      <td ng-repeat="location in msg.message.location">{{location.name}}</td>

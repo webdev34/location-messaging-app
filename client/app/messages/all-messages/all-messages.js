@@ -26,7 +26,8 @@
 			$state,
 			$http,
 			FoundationApi,
-			MessageListModel
+			MessageListModel,
+			MessageDetailModel
 		) {
 			var allMessagesCtrl = this;
 
@@ -34,6 +35,10 @@
 				getMessageList();
 			}
 			
+			allMessagesCtrl.getMessage = function() {
+				//MessageDetailModel.getMessageDetail(messageSID);
+				console.log('testing');
+			}
 			// $http.get('assets/data/campaign-messages.json').success(function(data) {
 			// 	manageCampaignCtrl.campaignMessages = data.campaignMessages;	
 			// 	$scope.totalItems = data.campaignMessages.length;

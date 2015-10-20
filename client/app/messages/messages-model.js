@@ -89,7 +89,8 @@
 						"label": newMessage.messageTitle,
 						"text": newMessage.content,
 						"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
-						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()
+						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()//,
+						//sent: true
 					},
 					"location": [
 						{
