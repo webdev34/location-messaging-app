@@ -179,7 +179,8 @@
 					{'title': 'All Messages (Temp)', 'state': 'messages.all-messages'},
 
 					{'title': 'Manage Locations', 'state': 'messages.manage-locations'},
-					{'title': 'Asset Management', 'state': 'messages.asset'}
+					{'title': 'Asset Management', 'state': 'messages.asset'},
+					{'title': 'Communications', 'state': 'messages.communications'}
 				],
 				'reporting' : [
 					{'title': 'Report Center', 'state': 'reporting.center'}

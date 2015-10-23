@@ -196,6 +196,14 @@ ul {
         width: 32px;
         height: 32px;
     }
+    &.i-plane {
+        background-image: url(../img/icons/i-plane.png);
+        width: 60px;
+        background-repeat: no-repeat;
+        height: 47px;
+        background-size: 60%;
+        cursor: pointer;
+    }
 }
 
 // CSS Shapes

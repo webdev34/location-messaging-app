@@ -1,0 +1,429 @@
+<header class="heading-bar">
+	<h1>Communications</h1>
+</header>
+<section class="communications-content-wrap" >
+	<form role="form" class="qvr-form communications-message-form" name="communicationsForm">
+		<section class="activity-feed-wrapper">
+			<h2>ACTIVITY FEED</h1>
+
+			<div class="input-wrapper">
+				<label class="qvr-label">Campaign Filter</label>
+
+				<isteven-multi-select id="campaign-filter"  class="campaign-filter"
+					    input-model="messagesCommunicationsCtrl.campaignFilters"    
+					    output-model="campaignSelectedFilters"
+					    button-label="icon name"
+					    item-label="icon name maker"
+					    tick-property="ticked"
+					    this-length="1"
+					    
+					     >
+				</isteven-multi-select>
+			</div>
+
+			<div class="input-wrapper">
+				<label class="qvr-label">Message Filter</label>
+				<isteven-multi-select id="message-filter"  class="message-filter"
+					    input-model="messagesCommunicationsCtrl.messageFilters"    
+					    output-model="messageSelectedFilters"
+					    button-label="icon name"
+					    item-label="icon name maker"
+					    tick-property="ticked"
+					    this-length="1"
+					    refresh-select="true"
+
+					     >
+				</isteven-multi-select>
+			</div>
+
+			<div class="input-wrapper">
+				<div class="search-wrapper">
+					<label for="filter-by"><i class="fa fa-search"></i></label>
+					<input type="search" class="search-activity-feed" ng-model="search"  placeholder="Search Activity Feed" />
+				</div>
+			</div>
+
+			<div class="activity-feed-container" zf-tabs="">
+				<!-- ALL ACTIVITY -->
+				<div zf-tab="" title="ALL" class="all-activity">
+					<ul class="messages-ul">
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Jason Johnson</a>
+									<span>10:34</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham porchetta pork cupim jowl boudin.
+									</p>
+								</div>
+							</article>
+						</li>
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Suzie Quentin</a>
+									<span>10:38</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum.
+									</p>
+								</div>
+							</article>
+						</li>
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Barb Kelly</a>
+									<span>Yesterday</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+									</p>
+								</div>
+							</article>
+						</li>
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Barb Kelly</a>
+									<span>October 18, 2015</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+									</p>
+								</div>
+							</article>
+						</li>
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Barb Kelly</a>
+									<span>October 18, 2015</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+									</p>
+								</div>
+							</article>
+						</li>
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Barb Kelly</a>
+									<span>October 18, 2015</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+									</p>
+								</div>
+							</article>
+						</li>						
+					</ul>
+				</div>
+
+				<!-- MENTIONED ACTIVITY -->
+				<div zf-tab="" title="@mentions" class="mentioned-activity">
+					<ul class="messages-ul">
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Jason Johnson</a>
+									<span>10:34</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham porchetta pork cupim jowl boudin.
+									</p>
+								</div>
+							</article>
+						</li>
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Suzie Quentin</a>
+									<span>10:38</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum.
+									</p>
+								</div>
+							</article>
+						</li>
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Barb Kelly</a>
+									<span>Yesterday</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+									</p>
+								</div>
+							</article>
+						</li>
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Barb Kelly</a>
+									<span>October 18, 2015</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+									</p>
+								</div>
+							</article>
+						</li>
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Barb Kelly</a>
+									<span>October 18, 2015</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+									</p>
+								</div>
+							</article>
+						</li>
+						<li>
+							<article class="msg-wrapper">
+								<div class="msg-head">
+									<a>Barb Kelly</a>
+									<span>October 18, 2015</span>
+									<a class="caret">
+										<i class="fa fa-caret-right"></i>
+									</a>
+								</div>
+								<div class="msg-content">
+									<p>
+										Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+									</p>
+								</div>
+							</article>
+						</li>						
+					</ul>
+				</div>
+				
+			</div>
+
+		</section>
+
+
+		<section class="conversation-wrapper" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"  flow-name="messagesCommunicationsCtrl.uploader.flow" flow-files-added="messagesCommunicationsCtrl.processFiles($files)" flow-files-added="saveFiles($files)">
+			<h2>CONVERSATION</h1>
+
+			<div class="input-wrapper campaigns">
+				<label class="qvr-label">Select Campaign</label>
+				<select id="select-campaign" class="qvr-select" ng-model="messagesCommunicationsCtrl.selectedCampaign" required >
+					<option value="">---</option>
+				</select>
+
+				
+			</div>
+
+			<div class="input-wrapper">
+				<label class="qvr-label">Select Message</label>
+				<select id="select-campaign" class="qvr-select" ng-model="messagesCommunicationsCtrl.selectedMessage" required >
+					<option value="">----</option>
+				</select>
+				
+			</div>
+
+			<div class="clearfix"></div>
+			<div id="convo-content-wrapper">
+
+				<div class="convo-content">
+					<div class="featured-msg-wrapper">
+						<ul class="messages-ul featured-msg" >
+							<li>
+								<article class="msg-wrapper">
+									<div class="msg-head">
+										<a>Telsa</a>
+									</div>
+									<div class="msg-content">
+										<p>
+											Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham porchetta pork cupim jowl boudin.Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham porchetta pork cupim jowl boudin.Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham porchetta pork cupim jowl boudin.
+										</p>
+									</div>
+								</article>
+							</li>
+						</ul>
+					</div>
+
+					<div class="featured-messages-wrapper">
+						<ul class="messages-ul featured-messages">
+							<li>
+								<article class="msg-wrapper">
+									<div class="msg-head">
+										<a>Jason Johnson</a>
+										<a class="mention">mention</a>
+										<a class="caret">
+											<i class="fa fa-caret-right"></i>
+										</a>
+									</div>
+									<div class="msg-content">
+										<p>
+											Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham porchetta pork cupim jowl boudin.
+										</p>
+									</div>
+								</article>
+							</li>
+							<li>
+								<article class="msg-wrapper">
+									<div class="msg-head">
+										<a>Suzie Quentin</a>
+										<a class="mention">mention</a>
+										<a class="caret">
+											<i class="fa fa-caret-right"></i>
+										</a>
+									</div>
+									<div class="msg-content">
+										<p>
+											Bacon ipsum.
+										</p>
+									</div>
+								</article>
+							</li>
+							<li>
+								<article class="msg-wrapper">
+									<div class="msg-head">
+										<a>Barb Kelly</a>
+										<a class="mention">mention</a>
+										<a class="caret">
+											<i class="fa fa-caret-right"></i>
+										</a>
+									</div>
+									<div class="msg-content">
+										<p>
+											Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+										</p>
+									</div>
+								</article>
+							</li>
+							<li>
+								<article class="msg-wrapper">
+									<div class="msg-head">
+										<a>Barb Kelly</a>
+										<a class="mention">mention</a>
+										<a class="caret">
+											<i class="fa fa-caret-right"></i>
+										</a>
+									</div>
+									<div class="msg-content">
+										<p>
+											Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+										</p>
+									</div>
+								</article>
+							</li>
+							<li>
+								<article class="msg-wrapper">
+									<div class="msg-head">
+										<a>Barb Kelly</a>
+										<a class="mention">mention</a>
+										<a class="caret">
+											<i class="fa fa-caret-right"></i>
+										</a>
+									</div>
+									<div class="msg-content">
+										<p>
+											Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+										</p>
+									</div>
+								</article>
+							</li>
+							<li>
+								<article class="msg-wrapper">
+									<div class="msg-head">
+										<a>Barb Kelly</a>
+										<a class="mention">mention</a>
+										<a class="caret">
+											<i class="fa fa-caret-right"></i>
+										</a>
+									</div>
+									<div class="msg-content">
+										<p>
+											Bacon ipsum dolor amet leberkas fatback doner, pork chop sausage ham <a>@tesla</a> pork cupim jowl boudin.
+										</p>
+									</div>
+								</article>
+							</li>						
+						</ul>
+					</div>
+				</div>
+
+				<textarea ng-model="messagesCommunicationsCtrl.newMessage.content" id="upload-text-area" class="message-content" placeholder="Enter Reply Content..." required></textarea>
+
+				<div class="preview-image-wrapper" >
+
+					<ul >
+						<li ng-repeat="image in messagesCommunicationsCtrl.uploader.flow.files track by $index" ng-class="{'last': ($index+1) % 3 == 0}">
+							<i class="fa fa-times-circle" ng-click="messagesCommunicationsCtrl.removeFile($index);"></i>
+					      	<img class="preview hide" flow-img="image"/><br>
+					        <img class="preview" ng-src="{{messagesCommunicationsCtrl.messageAssets[$index]}}"/>
+					    </li>
+					</ul>
+			    </div>
+				<span class="attach-asset" flow-btn>
+					<span class="icon i-camera"></span>
+					<span class="attachment-count" ng-show="messagesCommunicationsCtrl.uploader.flow.files.length > 0">
+			    		{{messagesCommunicationsCtrl.uploader.flow.files.length}} Attachments</span>
+			    	</span>
+				</span>
+				<span class="submit-wrapper">
+					<span class="icon i-plane"></span>
+				</span>
+
+				<div class="clearfix"></div>
+			</div>
+			
+		   
+		    <div class="clearfix"></div>
+			
+		</section>
+	</form>
+</section>
