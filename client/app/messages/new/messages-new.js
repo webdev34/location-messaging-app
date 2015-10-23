@@ -7,18 +7,22 @@
 		'$rootScope',
 		'$scope',
 		'$state',
+		'$stateParams',
 		'FoundationApi',
-		'MessageListModel',
+		'MessageDetailModel',
 		
 		function(
 			$rootScope,
 			$scope,
 			$state,
+			$stateParams,
 			FoundationApi,
-			MessageListModel
+			MessageDetailModel
 		) {
 			
 			var newMessageCtrl = this;
+			
+			newMessageCtrl.isEditing = false;
 			
 			newMessageCtrl.showStartDatePicker = false;
 			newMessageCtrl.showEndDatePicker = false;
@@ -52,8 +56,35 @@
 
 			newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 
-			newMessageCtrl.initialMapCenter = newMessageCtrl.newMessage.coordinates.lat + ","+ newMessageCtrl.newMessage.coordinates.lng;
+			if ($state.current.name == "messages.edit" ) {
+				newMessageCtrl.isEditing = true;
+				//console.log('$stateParams: '+ $stateParams._id);
 
+				MessageDetailModel.getMessageDetail($stateParams._id)
+					.then (
+					function success(response) {
+							console.log("response: " + JSON.stringify(response));
+
+							newMessageCtrl.newMessage = response;
+
+							JSON.stringify('new message 67:' + newMessageCtrl.newMessage);
+
+							setMapCenter();
+
+
+					},
+					function error(response) {
+					});
+
+			} else {
+				setMapCenter();
+			}
+
+			//JSON.stringify('new message:' + newMessageCtrl.newMessage);
+
+			function setMapCenter() {
+				newMessageCtrl.initialMapCenter = newMessageCtrl.newMessage.coordinates.lat + ","+ newMessageCtrl.newMessage.coordinates.lng;
+			}
 			
 			
 			function resetForm() {
@@ -64,7 +95,7 @@
 				
 				//console.log("logging new message: " + JSON.stringify(newMessageCtrl.newMessage));
 
-				MessageListModel.createNewMessage(newMessageCtrl.newMessage).then(
+				MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
 					function success(response){
 						
 						FoundationApi.publish('main-notifications', {
@@ -87,6 +118,8 @@
 					}
 				);
 			}
+
+			
 
 
 			newMessageCtrl.messageTags = [
@@ -154,13 +187,6 @@
 				newMessageCtrl.newMessage.range = range;
 			};
 
-			// $scope.$watch("newMessageCtrl.coordinates", function() {
-			// 	console.log("ctrl coordinates changed");
-			// });
-
-			// $scope.doSearch = function(){
-			// 	$rootScope.map_search = newMessageCtrl.search;
-			// };
 
 		}
 	]);

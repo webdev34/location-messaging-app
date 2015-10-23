@@ -1,5 +1,6 @@
 <header class="heading-bar">
-	<h1>Compose</h1>
+	<h1 ng-hide="newMessageCtrl.isEditing">Compose</h1>
+	<h1 ng-show="newMessageCtrl.isEditing">Edit a Message</h1>
 </header>
 <section class="message-content-wrap new-message" >
 	<form role="form" class="qvr-form create-edit-message-form" name="msgForm">
@@ -33,9 +34,9 @@
 				<input placeholder="" type="text" ng-model="newMessageCtrl.newMessage.messageTitle" required>
 			</span>
 			
-			<span id="msg-id-text" class="input-wrapper">
+			<span id="msg-id-text" class="input-wrapper" ng-show="newMessageCtrl.isEditing">
 				<label class="qvr-label">Message ID</label>
-				<input placeholder="00000" type="text" disabled>
+				<input placeholder="00000" type="text" ng-model="newMessageCtrl.newMessage.sid" disabled>
 			</span>
 			
 			<span id="campaign-select" class="input-wrapper">

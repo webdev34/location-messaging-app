@@ -49,6 +49,7 @@ User types - these are NOT 'social users' (followers)
 							return response;
 						},
 						function(response) {
+							model.logout();
 							return response;
 						}
 					);
@@ -102,6 +103,7 @@ User types - these are NOT 'social users' (followers)
 							return response;
 						},
 						function(response) {
+							model.logout();
 							return response;
 						}
 					);

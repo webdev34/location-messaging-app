@@ -60,7 +60,7 @@
 					return $http.post(API_URL + '/message', messageObj);
 				},
 				list : function(timestamp, limit){
-					console.log('service testing');
+					//console.log('service testing');
 					if (!timestamp){
 						// beginning of the month
 						var date = new Date();
