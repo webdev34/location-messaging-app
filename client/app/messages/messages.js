@@ -8,8 +8,7 @@
 		'messages.new',
 		'messages.edit',
 		'messages.manage-campaign',
-		'messages.assets',
-		'messages.all-messages'
+		'messages.communications',
 	])
 
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -48,11 +47,11 @@
 				url: '/manage-campaign',
 				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html',
 				controller: 'ManageCampaignCtrl as manageCampaignCtrl'
-			}) 
-			.state('messages.all-messages', {
-				url: '/all-messages',
-				templateUrl: 'app/messages/all-messages/all-messages.tmpl.html',
-				controller: 'AllMessagesCtrl as allMessagesCtrl'
+			})
+			.state('messages.communications', {
+				url: '/communications',
+				templateUrl: 'app/messages/communications/messages-communications.tmpl.html',
+				controller: 'MessagesCommunicationsCtrl as messagesCommunicationsCtrl'
 			})
 			.state('messages.communications', {
 				url: '/communications',
@@ -75,6 +74,11 @@
 				});
 		}
 	])
+
+	.controller('MyCtrl', ['$scope', function ($scope) {
+     $scope.types = "['establishment']";
+    
+	}])
 	
 ;
 
