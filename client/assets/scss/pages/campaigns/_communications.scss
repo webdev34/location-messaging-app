@@ -131,11 +131,33 @@
             .preview-image-wrapper {
                 float: left;
                 width: 100%;
-                margin-top: -10px;
+                bottom: 40px;
+                left: 15px;
                 max-height: 290px;
                 min-height: 30px;
                 overflow-y: scroll;
                 margin-bottom: 10px;
+                position: absolute;
+               
+                ul{
+                    li{
+                        float: left;
+                        margin-right: 15px;
+                        position: relative;
+                        list-style: none;
+                        .fa{
+                            position: absolute;
+                            right: -5px;
+                            top: 15px;
+                        }
+                         img{
+                            width: 75px;
+                            height: 75px;
+                        }
+
+                    }
+                }
+               
             }
 
             .attach-asset {

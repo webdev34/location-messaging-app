@@ -29,6 +29,8 @@
 
 			messagesCommunicationsCtrl.messageAssets = [];
 
+			messagesCommunicationsCtrl.selectedCampaignMessages = [];
+
 			$scope.campaignSelectedFilters = [];
 			$scope.messageSelectedFilters = [];
 
@@ -56,7 +58,33 @@
 	        }, true);
 
 
+			messagesCommunicationsCtrl.filterSelectedCampaignMessages = function(){
+
+				var matchId = parseInt(messagesCommunicationsCtrl.selectedCampaign);
+				messagesCommunicationsCtrl.selectedCampaignMessages = null;
+				messagesCommunicationsCtrl.selectedMessageToDisplay = '';
+				
+				if($scope.campaignSelectedFilters.length > 0){
+					angular.forEach($scope.campaignSelectedFilters, function(msg, i){
+						messagesCommunicationsCtrl.selectedCampaignMessages = msg.messages;
+			    	});
+				}
+				else{
+					angular.forEach(messagesCommunicationsCtrl.campaignData, function(campaign, i){
+						if(matchId == campaign.id){
+							console.log(campaign)
+							messagesCommunicationsCtrl.selectedCampaignMessages = campaign.messages;
+						}
+			    	});
+
+				}
+
+			}
+
 			function refreshActivityFeedData(){
+
+				messagesCommunicationsCtrl.selectedMessageToDisplay = '';
+				messagesCommunicationsCtrl.selectedCampaign = '';
 		       
 			  	$http.get('assets/data/campaigns.json').success(function(data) {
 					messagesCommunicationsCtrl.campaignData = data.campaigns;
@@ -66,7 +94,7 @@
 						var thisCampaignId = data.id;
 						var thisCampaignName = data.campaignName;
 						
-						messagesCommunicationsCtrl.campaignFilters.push({name: thisCampaignName, id: thisCampaignId, ticked: false});
+						messagesCommunicationsCtrl.campaignFilters.push({name: thisCampaignName, id: thisCampaignId, messages: data.messages,  ticked: false});
 
 						angular.forEach(data.messages, function(msg, i){
 							messagesCommunicationsCtrl.messageFilters.push({name: thisCampaignName+' - Message #'+(msg.id+1), id: msg.id, campaignId: thisCampaignId, ticked: false});
@@ -98,10 +126,15 @@
 					messagesCommunicationsCtrl.messageFilters = [];
 					messagesCommunicationsCtrl.messageFilters = angular.copy(messageHolder);
 				}
+				else{
+					messagesCommunicationsCtrl.selectedCampaign = null;
+					messagesCommunicationsCtrl.selectedCampaignMessages = null;
+					
+				}
 
 		  	};
 
-
+            // If watch is removed this needs to be uncommented
 	        //messagesCommunicationsCtrl.refreshActivityFeedData();
 
 		}

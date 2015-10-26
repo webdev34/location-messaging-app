@@ -24,6 +24,8 @@ h2 {
     }
 }
 
+.ng-
+
 .clearfix {
     clear: both;
 }
@@ -302,6 +304,9 @@ ul {
         right: 0px;
         top: 5px;
         height: 26px;
+    }
+    .helperButton.reset{
+        display: none;
     }
 }
 
@@ -701,9 +706,10 @@ select.qvr-select{
             color: $qvr-grey-3;
         }
         &[disabled], &.is-disabled {
-            background: #eee;
+            background: #eee !important;
             border-color: darkgrey;
             color: #999;
+            cursor: not-allowed;
         }
     }
     input[type="radio"] {

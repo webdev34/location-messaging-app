@@ -10,13 +10,14 @@
 				<label class="qvr-label">Campaign Filter</label>
 
 				<isteven-multi-select id="campaign-filter"  class="campaign-filter"
+						select-label-title="All Campaigns"
 					    input-model="messagesCommunicationsCtrl.campaignFilters"    
 					    output-model="campaignSelectedFilters"
 					    button-label="icon name"
 					    item-label="icon name maker"
 					    tick-property="ticked"
 					    this-length="1"
-					    
+
 					     >
 				</isteven-multi-select>
 			</div>
@@ -31,7 +32,8 @@
 					    tick-property="ticked"
 					    this-length="1"
 					    refresh-select="true"
-
+					    selected-object="campaignSelectedFilters"
+					    select-label-title="All Messages"
 					     >
 				</isteven-multi-select>
 			</div>
@@ -256,10 +258,17 @@
 		<section class="conversation-wrapper" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"  flow-name="messagesCommunicationsCtrl.uploader.flow" flow-files-added="messagesCommunicationsCtrl.processFiles($files)" flow-files-added="saveFiles($files)">
 			<h2>CONVERSATION</h1>
 
-			<div class="input-wrapper campaigns">
+			<div class="input-wrapper campaigns" >
 				<label class="qvr-label">Select Campaign</label>
-				<select id="select-campaign" class="qvr-select" ng-model="messagesCommunicationsCtrl.selectedCampaign" required >
+				<select id="select-campaign" class="qvr-select" ng-model="messagesCommunicationsCtrl.selectedCampaign" required ng-show="campaignSelectedFilters.length == 0" ng-change="messagesCommunicationsCtrl.filterSelectedCampaignMessages();">
 					<option value="">---</option>
+					<option ng-repeat="campaign in messagesCommunicationsCtrl.campaignFilters" value="{{campaign.id}}" >{{campaign.name}}</option>
+					</select>
+
+
+				<select id="select-campaign" class="qvr-select" ng-model="messagesCommunicationsCtrl.selectedCampaign" required ng-show="campaignSelectedFilters.length > 0" ng-change="messagesCommunicationsCtrl.filterSelectedCampaignMessages();" >
+					<option value="">---</option>
+					<option  ng-repeat="campaign in campaignSelectedFilters" value="{{campaign.id}}" >{{campaign.name}}</option>
 				</select>
 
 				
@@ -267,8 +276,9 @@
 
 			<div class="input-wrapper">
 				<label class="qvr-label">Select Message</label>
-				<select id="select-campaign" class="qvr-select" ng-model="messagesCommunicationsCtrl.selectedMessage" required >
+				<select id="select-msg" class="qvr-select" ng-model="messagesCommunicationsCtrl.selectedMessageToDisplay" required ng-disabled="!messagesCommunicationsCtrl.selectedCampaign" >
 					<option value="">----</option>
+					<option ng-repeat="msg in messagesCommunicationsCtrl.selectedCampaignMessages" value="{{msg}}" >Message #{{msg.id+1}}</option>
 				</select>
 				
 			</div>
