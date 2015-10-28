@@ -53,11 +53,6 @@
 				templateUrl: 'app/messages/communications/messages-communications.tmpl.html',
 				controller: 'MessagesCommunicationsCtrl as messagesCommunicationsCtrl'
 			})
-			.state('messages.communications', {
-				url: '/communications',
-				templateUrl: 'app/messages/communications/messages-communications.tmpl.html',
-				controller: 'MessagesCommunicationsCtrl as messagesCommunicationsCtrl'
-			})
 			;
 
 		$urlRouterProvider.otherwise('messages.dashboard');
