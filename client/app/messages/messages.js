@@ -9,6 +9,7 @@
 		'messages.edit',
 		'messages.manage-campaign',
 		'messages.communications',
+		'messages.all-messages'
 	])
 
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
