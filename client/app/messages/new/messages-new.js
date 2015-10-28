@@ -119,6 +119,32 @@
 				);
 			}
 
+			newMessageCtrl.updateMessage = function() {
+				console.log('updating');
+				MessageDetailModel.updateMessage(newMessageCtrl.newMessage).then(
+					function success(response){
+						
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Sent',
+							content: '',
+							color: 'success',
+							autoclose: '3000'
+						});
+
+						$state.go('messages.dashboard');
+
+					},
+					function error(response) {
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Was Not Sent',
+							content: response.code,
+							color: 'fail',
+							autoclose: '3000'
+						});
+					}
+				);
+			}
+
 			
 
 

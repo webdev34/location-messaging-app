@@ -77,22 +77,28 @@
 						}
 					]
 				}
-				//console.log("formattedMessage: " + formattedMessage);
 
-				return MessagesService.create(formattedMessage).then(function(response){
-					
-					//var newMessage = response.message[i];
-					// newMessage.comment = response.comment[i];
-					// newMessage.envelope = response.envelope[i];
-					// newMessage.recipients = response.messageRecipient[i];
-					// messageList.push(newMessage);
-					
-				});
+				return MessagesService.post(formattedMessage).then(function(response){});
 			};
 
 			model.updateMessage = function(updatedMessage) {
-				//message = updatedMessage;
+				console.log('model update');
+				var formattedMessage = {
+					"message": {
+						sid: updatedMessage.sid,
+						target: 3, //targets all followers
+						"label": updatedMessage.messageTitle,
+						"text": updatedMessage.content,
+						"startTime": new Date(updatedMessage.startDate + " " + updatedMessage.startTime).getTime(),
+						"endTime": new Date(updatedMessage.endDate + " " + updatedMessage.endTime).getTime()//,
+						//sent: true
+					}
+				}
+
+				return MessagesService.post(formattedMessage).then(function(response){});
 			};
+
+		
 		}
 	])
 		

@@ -15,7 +15,10 @@
 			</select>
 			<button class="qvr-button action">Preview</button>
 
-			<button zf-open="saveMessageModal"  class="qvr-button action" ng-disabled="!msgForm.$valid">Save Message</button>
+			<button zf-open="saveMessageModal" ng-hide="newMessageCtrl.isEditing"  class="qvr-button action" ng-disabled="!msgForm.$valid">Compose Message</button>
+
+			<button ng-click="newMessageCtrl.updateMessage()" ng-show="newMessageCtrl.isEditing"  class="qvr-button action" ng-disabled="!msgForm.$valid">Save Message</button>
+
 			<div zf-modal="" id="saveMessageModal">
 				<a zf-close="" class="close-button">×</a>
 				<p class="qvr-align-center">
