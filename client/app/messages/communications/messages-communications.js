@@ -1,0 +1,166 @@
+(function() {
+	'use strict';
+
+	angular.module('messages.communications', [])
+	
+	.controller('MessagesCommunicationsCtrl', [
+		'$rootScope',
+		'$scope',
+		'$state',
+		'$http',
+		'$document',
+		'FoundationApi',
+		
+		
+		function(
+			$rootScope,
+			$scope,
+			$state,
+			$http,
+			$document,
+			FoundationApi
+		) {
+			
+			var messagesCommunicationsCtrl = this;
+
+			messagesCommunicationsCtrl.campaignFilters = [];
+
+			messagesCommunicationsCtrl.messageFilters = [];
+
+			messagesCommunicationsCtrl.messageAssets = [];
+
+<<<<<<< HEAD
+			messagesCommunicationsCtrl.selectedCampaignMessages = [];
+
+			// Scope used because we need to watch these two arrays
+=======
+>>>>>>> Communications layout complete , finishing functionalaity
+			$scope.campaignSelectedFilters = [];
+			$scope.messageSelectedFilters = [];
+
+			messagesCommunicationsCtrl.uploader = {};
+
+			messagesCommunicationsCtrl.processFiles = function(files){
+		    	angular.forEach(files, function(flowFile, i){
+		       	var fileReader = new FileReader();
+		          	fileReader.onload = function (event) {
+		            	var uri = event.target.result;
+		              	messagesCommunicationsCtrl.messageAssets.push(uri);
+		          	};
+		          	fileReader.readAsDataURL(flowFile.file);
+		    	});
+		  	};
+
+		  	messagesCommunicationsCtrl.removeFile = function(index){
+<<<<<<< HEAD
+		        messagesCommunicationsCtrl.messageAssets.splice(index, 1);  
+=======
+		        newMessageCtrl.newMessage.assets.splice(index, 1);  
+>>>>>>> Communications layout complete , finishing functionalaity
+		        messagesCommunicationsCtrl.uploader.flow.files.splice(index, 1);
+		  	};
+
+		  	
+			$scope.$watch('campaignSelectedFilters', function(newVal, oldVal) {
+	         	refreshActivityFeedData();
+	        }, true);
+
+
+<<<<<<< HEAD
+			messagesCommunicationsCtrl.filterSelectedCampaignMessages = function(){
+
+				var matchId = parseInt(messagesCommunicationsCtrl.selectedCampaign);
+				messagesCommunicationsCtrl.selectedCampaignMessages = null;
+				messagesCommunicationsCtrl.selectedMessageToDisplay = '';
+				
+				if($scope.campaignSelectedFilters.length > 0){
+					angular.forEach($scope.campaignSelectedFilters, function(msg, i){
+						messagesCommunicationsCtrl.selectedCampaignMessages = msg.messages;
+			    	});
+				}
+				else{
+					angular.forEach(messagesCommunicationsCtrl.campaignData, function(campaign, i){
+						if(matchId == campaign.id){
+							console.log(campaign)
+							messagesCommunicationsCtrl.selectedCampaignMessages = campaign.messages;
+						}
+			    	});
+
+				}
+
+			}
+
+			function refreshActivityFeedData(){
+
+				messagesCommunicationsCtrl.selectedMessageToDisplay = '';
+				messagesCommunicationsCtrl.selectedCampaign = '';
+=======
+			function refreshActivityFeedData(){
+>>>>>>> Communications layout complete , finishing functionalaity
+		       
+			  	$http.get('assets/data/campaigns.json').success(function(data) {
+					messagesCommunicationsCtrl.campaignData = data.campaigns;
+					
+					angular.forEach(messagesCommunicationsCtrl.campaignData, function(data, i){
+
+						var thisCampaignId = data.id;
+						var thisCampaignName = data.campaignName;
+						
+<<<<<<< HEAD
+						messagesCommunicationsCtrl.campaignFilters.push({name: thisCampaignName, id: thisCampaignId, messages: data.messages,  ticked: false});
+=======
+						messagesCommunicationsCtrl.campaignFilters.push({name: thisCampaignName, id: thisCampaignId, ticked: false});
+>>>>>>> Communications layout complete , finishing functionalaity
+
+						angular.forEach(data.messages, function(msg, i){
+							messagesCommunicationsCtrl.messageFilters.push({name: thisCampaignName+' - Message #'+(msg.id+1), id: msg.id, campaignId: thisCampaignId, ticked: false});
+				    	});
+			       
+			    	});
+					
+				});
+
+				if($scope.campaignSelectedFilters.length > 0){
+					var campaignHolder = [];
+					var messageHolder = [];
+				
+					angular.forEach($scope.campaignSelectedFilters, function(selectedFilter, i){
+						angular.forEach(messagesCommunicationsCtrl.campaignData, function(campaign, i){
+							if(selectedFilter.id == campaign.id){
+								var thisCampaignId = campaign.id;
+								var thisCampaignName = campaign.campaignName;
+								campaignHolder.push(angular.copy(campaign));
+								angular.forEach(campaign.messages, function(msg, i){
+									messageHolder.push({name: thisCampaignName+' - Message #'+(msg.id+1), id: msg.id, campaignId: thisCampaignId, ticked: false});
+						    	});
+								
+							}
+				    	});
+			    	});
+
+                    // Refreshes Messages based on selected Campaigns
+					messagesCommunicationsCtrl.messageFilters = [];
+					messagesCommunicationsCtrl.messageFilters = angular.copy(messageHolder);
+				}
+<<<<<<< HEAD
+				else{
+					messagesCommunicationsCtrl.selectedCampaign = null;
+					messagesCommunicationsCtrl.selectedCampaignMessages = null;
+					
+				}
+
+		  	};
+
+            // If watch is removed this needs to be uncommented
+=======
+
+		  	};
+
+
+>>>>>>> Communications layout complete , finishing functionalaity
+	        //messagesCommunicationsCtrl.refreshActivityFeedData();
+
+		}
+	]);
+
+})();
