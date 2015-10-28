@@ -61,84 +61,84 @@
 				url: '/',
 				templateUrl: 'app/home.tmpl.html'
 		});
-		$httpProvider.interceptors.push([
-			'$q',
-			'$rootScope',
-			'$location',
-			'FoundationApi',
-			function($q, $rootScope, $location, FoundationApi) {
-				function extractData(response) {
-					return response.data.data;
-				}
+		// $httpProvider.interceptors.push([
+		// 	'$q',
+		// 	'$rootScope',
+		// 	'$location',
+		// 	'FoundationApi',
+		// 	function($q, $rootScope, $location, FoundationApi) {
+		// 		function extractData(response) {
+		// 			return response.data.data;
+		// 		}
 
-				function extractError(response) {
+		// 		function extractError(response) {
 
-					return response.data || {
-						'code': "QVR_Server_Connection_Failed"
-					};
-				}
+		// 			return response.data || {
+		// 				'code': "QVR_Server_Connection_Failed"
+		// 			};
+		// 		}
 
-				return {
-					request: function(config) {
-						// add auth header for each request
-						// allows for auth id refresh on new login
-						config.headers['Authorization'] = $rootScope.auth;
-						return config;
-					},
-					response: function(response) {
-						// filter for only API requests
-						if (response.headers()['content-type'] === "application/json; charset=utf-8") {
-							var appData = extractData(response);
-							var errorData = extractError(response);
+		// 		return {
+		// 			request: function(config) {
+		// 				// add auth header for each request
+		// 				// allows for auth id refresh on new login
+		// 				config.headers['Authorization'] = $rootScope.auth;
+		// 				return config;
+		// 			},
+		// 			response: function(response) {
+		// 				// filter for only API requests
+		// 				if (response.headers()['content-type'] === "application/json; charset=utf-8") {
+		// 					var appData = extractData(response);
+		// 					var errorData = extractError(response);
 							
-							if (!response.data){
-								return $q.reject(errorData)
-							}
+		// 					if (!response.data){
+		// 						return $q.reject(errorData)
+		// 					}
 							
-							switch(response.data.code){
-								case 'QVR_RESULT' || 'QVR_RESULT_OK':
-									return appData || $q.when(appData)
-									break;
-								case 'QVR_RESULT_ERROR_NO_SESSION':
-									// can't use $state because of cyclical dependency
-									$location.path('/');
-									return $q.reject(errorData);
-									break;
-								default:
-									return $q.reject(errorData)
-									break;
-							}
-						}
+		// 					switch(response.data.code){
+		// 						case 'QVR_RESULT' || 'QVR_RESULT_OK':
+		// 							return appData || $q.when(appData)
+		// 							break;
+		// 						case 'QVR_RESULT_ERROR_NO_SESSION':
+		// 							// can't use $state because of cyclical dependency
+		// 							$location.path('/');
+		// 							return $q.reject(errorData);
+		// 							break;
+		// 						default:
+		// 							return $q.reject(errorData)
+		// 							break;
+		// 					}
+		// 				}
 						
-						// return unchanged for template requests
-						return response || $q.when(response);
-					},
-					responseError: function(rejection) {
-						// transport protocol errors only, application protocol errors all result in status 200
+		// 				// return unchanged for template requests
+		// 				return response || $q.when(response);
+		// 			},
+		// 			responseError: function(rejection) {
+		// 				// transport protocol errors only, application protocol errors all result in status 200
 
-						if (rejection.status == 401) {
-							rejection.data = {
-								status: 401,
-								descr: 'unauthorized',
-								code: 'QVR_Autherization_Failed'
-							}
-							return rejection.data;
-						}
+		// 				if (rejection.status == 401) {
+		// 					rejection.data = {
+		// 						status: 401,
+		// 						descr: 'unauthorized',
+		// 						code: 'QVR_Autherization_Failed'
+		// 					}
+		// 					return rejection.data;
+		// 				}
 
-						rejection = extractError(rejection);
+		// 				rejection = extractError(rejection);
 						
-						FoundationApi.publish('main-notifications', {
-							title: rejection.code.replace("QVR_", "").replace(/_/g, " "),
-							content: '',
-							color: 'fail',
-							autoclose: '3000'
-						});
+		// 				FoundationApi.publish('main-notifications', {
+		// 					title: rejection.code.replace("QVR_", "").replace(/_/g, " "),
+		// 					content: '',
+		// 					color: 'fail',
+		// 					autoclose: '3000'
+		// 				});
 						
-						return $q.reject(rejection);
-					}
-				}
-			}
-		]);
+		// 				return $q.reject(rejection);
+		// 			}
+		// 		}
+		// 	}
+		// ]);
 	}]);
 	
 	app.controller('AppCtrl', [
@@ -159,7 +159,28 @@
 		) {
 			var appCtrl = this;
 
-			appCtrl.user = UserModel.user;
+			//appCtrl.user = UserModel.user;
+			appCtrl.user = {
+	      "sid": "56312b71a01df5eb414ac376",
+	      "deleted": false,
+	      "created": 1446062961619,
+	      "lastModified": 1446062969931,
+	      "username": "quiver",
+	      "usernameKey": "quiver",
+	      "emailAddress": "quiver@quiver.zone",
+	      "suspended": false,
+	      "firstName": "Quiver",
+	      "lastName": "Media",
+	      "fullName": "Quiver Media",
+	      "enterprise": "56312b71a01df5eb414ac377",
+	      "title": "",
+	      "description": "Quiver brings innovation to mobile communications by delivering the world's most flexible, fun and feature-rich messaging platform.",
+	      "likeCount": 0,
+	      "messageCount": 0,
+	      "friendCount": 0,
+	      "followingCount": 0,
+	      "followerCount": 16
+	    }
 			
 			appCtrl.currentState = $rootScope.$state;
 			appCtrl.userLoginInfo = {};
@@ -278,13 +299,13 @@
 			}
 
 			appCtrl.getAccount = function () {
-				
+				appCtrl.user = UserModel.user;
 
 				if (!UserModel.user) {
 					UserModel.getAccount(UserModel.userID)
 						.then (
 							function success(response) {
-								appCtrl.user = UserModel.user;
+								
 							},
 							function error(response) {
 								appCtrl.userLogout();
@@ -345,6 +366,8 @@
 				UserModel.logout();
 				appCtrl.goToLogin();
 			}
+
+
 
 
 
