@@ -29,12 +29,9 @@
 
 			messagesCommunicationsCtrl.messageAssets = [];
 
-<<<<<<< HEAD
 			messagesCommunicationsCtrl.selectedCampaignMessages = [];
 
 			// Scope used because we need to watch these two arrays
-=======
->>>>>>> Communications layout complete , finishing functionalaity
 			$scope.campaignSelectedFilters = [];
 			$scope.messageSelectedFilters = [];
 
@@ -52,11 +49,7 @@
 		  	};
 
 		  	messagesCommunicationsCtrl.removeFile = function(index){
-<<<<<<< HEAD
 		        messagesCommunicationsCtrl.messageAssets.splice(index, 1);  
-=======
-		        newMessageCtrl.newMessage.assets.splice(index, 1);  
->>>>>>> Communications layout complete , finishing functionalaity
 		        messagesCommunicationsCtrl.uploader.flow.files.splice(index, 1);
 		  	};
 
@@ -66,7 +59,6 @@
 	        }, true);
 
 
-<<<<<<< HEAD
 			messagesCommunicationsCtrl.filterSelectedCampaignMessages = function(){
 
 				var matchId = parseInt(messagesCommunicationsCtrl.selectedCampaign);
@@ -94,9 +86,6 @@
 
 				messagesCommunicationsCtrl.selectedMessageToDisplay = '';
 				messagesCommunicationsCtrl.selectedCampaign = '';
-=======
-			function refreshActivityFeedData(){
->>>>>>> Communications layout complete , finishing functionalaity
 		       
 			  	$http.get('assets/data/campaigns.json').success(function(data) {
 					messagesCommunicationsCtrl.campaignData = data.campaigns;
@@ -106,11 +95,7 @@
 						var thisCampaignId = data.id;
 						var thisCampaignName = data.campaignName;
 						
-<<<<<<< HEAD
 						messagesCommunicationsCtrl.campaignFilters.push({name: thisCampaignName, id: thisCampaignId, messages: data.messages,  ticked: false});
-=======
-						messagesCommunicationsCtrl.campaignFilters.push({name: thisCampaignName, id: thisCampaignId, ticked: false});
->>>>>>> Communications layout complete , finishing functionalaity
 
 						angular.forEach(data.messages, function(msg, i){
 							messagesCommunicationsCtrl.messageFilters.push({name: thisCampaignName+' - Message #'+(msg.id+1), id: msg.id, campaignId: thisCampaignId, ticked: false});
@@ -142,7 +127,6 @@
 					messagesCommunicationsCtrl.messageFilters = [];
 					messagesCommunicationsCtrl.messageFilters = angular.copy(messageHolder);
 				}
-<<<<<<< HEAD
 				else{
 					messagesCommunicationsCtrl.selectedCampaign = null;
 					messagesCommunicationsCtrl.selectedCampaignMessages = null;
@@ -152,12 +136,6 @@
 		  	};
 
             // If watch is removed this needs to be uncommented
-=======
-
-		  	};
-
-
->>>>>>> Communications layout complete , finishing functionalaity
 	        //messagesCommunicationsCtrl.refreshActivityFeedData();
 
 		}
