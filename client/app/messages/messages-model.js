@@ -115,23 +115,33 @@
 			var model = this,
 				messageList;
 
-			model.getMessageList = function() {
+				model.getMessageList = function() {
 				//return (messageList) ? $q.when(messageList) : MessagesService.list()
-				console.log('model testing');
 				return MessagesService.list(0,0)
 					.then(
 						function(response){
-							messageList = [];	
+							
+							var messageList = [],
+									noLocation = [{"name": "No Location"}];
+							
+							function getItemByEnvelope(arrayName, objName, envelopeID) {
+								return arrayName.filter(function(item) {
+									return item[objName] == envelopeID;
+								});
+							}
+
 
 							
-							for (var i = 0; i < response.message.length; i++){
-								var messageDetail = {
-									message: response.message[i],
-									//comment: response.comment[i],
-									//envelope: response.envelope[i],
-									//messageRecipient: response.messageRecipient[i]
-								}
-								
+							for (var i = 0; i < response.message.length; i++) {
+								 
+					 			var messageDetail = {},
+										envelopeID = response.message[i].envelope,
+										recipientCount = getItemByEnvelope(response.envelope, "sid", envelopeID);							
+
+								messageDetail.message = response.message[i];
+								messageDetail.message.location = getItemByEnvelope(response.location, "envelope", envelopeID) || noLocation;
+								messageDetail.message.recipients = recipientCount.length;
+
 								messageList.push(messageDetail);
 							}
 							
