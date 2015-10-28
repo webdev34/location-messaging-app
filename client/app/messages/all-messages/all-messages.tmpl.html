@@ -75,7 +75,7 @@
 			  	</tr>
 			    <tr  data-ng-repeat="msg in allMessagesCtrl.messages ">
 			      <td><input type="checkbox" ng-model="msg.isSelected" ng-change="anyInputsSelected();" /></td>
-			      <td><a ng-click="allMessagesCtrl.getMessage()">{{msg.message.sid}}</a></td>
+			      <td><a  ui-sref="messages.edit({ _id: msg.message.sid })">{{msg.message.sid}}</a></td>
 			      <td>{{msg.message.label}}</td>
 			      <td>{{msg.message.recipients}}</td>
 			      <td ng-repeat="location in msg.message.location">{{location.name}}</td>

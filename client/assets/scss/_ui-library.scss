@@ -24,6 +24,10 @@ h2 {
     }
 }
 
+.ng-hide-remove{
+    display: none;
+}
+
 .clearfix {
     clear: both;
 }
@@ -196,6 +200,14 @@ ul {
         width: 32px;
         height: 32px;
     }
+    &.i-plane {
+        background-image: url(../img/icons/i-plane.png);
+        width: 60px;
+        background-repeat: no-repeat;
+        height: 47px;
+        background-size: 60%;
+        cursor: pointer;
+    }
 }
 
 // CSS Shapes
@@ -294,6 +306,9 @@ ul {
         right: 0px;
         top: 5px;
         height: 26px;
+    }
+    .helperButton.reset{
+        display: none;
     }
 }
 
@@ -693,9 +708,10 @@ select.qvr-select{
             color: $qvr-grey-3;
         }
         &[disabled], &.is-disabled {
-            background: #eee;
+            background: #eee !important;
             border-color: darkgrey;
             color: #999;
+            cursor: not-allowed;
         }
     }
     input[type="radio"] {
