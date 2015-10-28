@@ -9,7 +9,7 @@
 		
 		function(
 			$http,
-			API_URL,
+			API_URL
 		) {
 			return {
 				get : function(locationId){
