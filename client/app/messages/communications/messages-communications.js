@@ -31,6 +31,7 @@
 
 			messagesCommunicationsCtrl.selectedCampaignMessages = [];
 
+			// Scope used because we need to watch these two arrays
 			$scope.campaignSelectedFilters = [];
 			$scope.messageSelectedFilters = [];
 
@@ -48,7 +49,7 @@
 		  	};
 
 		  	messagesCommunicationsCtrl.removeFile = function(index){
-		        newMessageCtrl.newMessage.assets.splice(index, 1);  
+		        messagesCommunicationsCtrl.messageAssets.splice(index, 1);  
 		        messagesCommunicationsCtrl.uploader.flow.files.splice(index, 1);
 		  	};
 

@@ -44,7 +44,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
         link: function ( $scope, element, attrs ) {    
 
                         
-
+            
             $scope.backUp           = [];
             $scope.varButtonLabel   = '';               
             $scope.spacingProperty  = '';
@@ -71,7 +71,11 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                 selectedItems       = [],
                 formElements        = [],
                 vMinSearchLength    = 0,
-                clickedItem         = null                
+                clickedItem         = null ,
+                test               
+
+            
+            $scope.originalInputModel = $scope.inputModel;
 
             // v3.0.0
             // clear button clicked
@@ -93,6 +97,27 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                     return false;
                 }                
                 $scope.updateFilter();
+            }
+
+            $scope.unique = function( origArr ) {
+                var newArr = [],
+                    origLen = origArr.length,
+                    found, x, y;
+
+                for (x = 0; x < origLen; x++) {
+                    found = undefined;
+                    for (y = 0; y < newArr.length; y++) {
+                        if (origArr[x] === newArr[y]) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        newArr.push(origArr[x]);
+                    }
+                }
+                console.log(newArr)
+                return newArr;
             }
 
             $scope.updateFilter = function()
@@ -163,11 +188,21 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                 } 
 
                 if($scope.refreshSelect && $scope.selectedObject.length > 0){
-                   
-                    $scope.filteredModel = $scope.backUp;
-                }                
 
-                $scope.filteredModel.reverse();  
+                    $scope.filteredModel = $scope.unique($scope.backUp);
+                    
+
+                } else if($scope.refreshSelect && $scope.selectedObject.length == 0) {
+
+                    $scope.filteredModel  = $scope.unique($scope.inputModel);
+
+                }else{
+
+                    $scope.filteredModel.reverse(); 
+
+                }               
+
+                 
                 
                 $timeout( function() {                    
 
