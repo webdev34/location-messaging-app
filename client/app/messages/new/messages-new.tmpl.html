@@ -22,7 +22,10 @@
 			<div zf-modal="" id="saveMessageModal">
 				<a zf-close="" class="close-button">×</a>
 				<p class="qvr-align-center">
+					<br>
 					Are you sure you want to save this message?
+					<br>
+					<br>
 				</p>
 				<div class="modal-button-wrapper qvr-align-center">
 					<button type="submit" class="qvr-button action" ng-click="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)">Save</button>
@@ -45,14 +48,7 @@
 			<span id="campaign-select" class="input-wrapper">
 				<label class="qvr-label">Associated Campaign</label>
 				<select class="qvr-select" required>
-					<option>No campaigns currently available</option>
-				</select>
-			</span>
-
-			<span id="campaign-details" class="input-wrapper">
-				<label class="qvr-label">Campaign Details</label>
-				<select class="qvr-select" required>
-					<option>----------------</option>
+					<option>Web Summit - Dublin Fade St.</option>
 				</select>
 			</span>
 
@@ -79,7 +75,7 @@
 				<label class="qvr-label">Recipients</label>
 				<div class="message-recipients">
 					<span class="targeted-followers-label">Targeted Followers</span>
-					<span class="targeted-followers-count">0</span>
+					<span class="targeted-followers-count">30,455</span>
 				</div>
 <!--
 				<div class="target-filters">
@@ -161,7 +157,7 @@
 					<div class="preview-image-wrapper" >
 
 						<ul >
-							<li ng-repeat="image in uploader.flow.files track by $index" ng-class="{'last': ($index+1) % 3 == 0}">
+							<li ng-repeat="image in uploader.flow.files track by $index" ng-class="{'odd': ($index+1) % 2}">
 								<i class="fa fa-times-circle" ng-click="removeFile($index);"></i>
 						      	<img class="preview hide" flow-img="image"/><br>
 						        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
@@ -261,8 +257,14 @@
 
 					<section class="location-section">
 						<label class="qvr-label">Select Preset Locations</label>
-						<select class="qvr-select" disabled>
-							<option>--- N/A ---</option>
+						<select class="qvr-select" >
+							<option>Toronto</option>
+							<option>San Francisco</option>
+							<option>Dublin</option>
+							<option>New York</option>
+							<option>Tokyo</option>
+							<option>Barcelona</option>
+							<option>Panama City</option>
 						</select>
 
 						
@@ -294,11 +296,11 @@
 
 
 						<div class="radius">
-							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span class="km"> km</span> radius
+							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span class="km"> m</span> radius
 						</div>
 						<div class="radius-wrapper">
 							<span class="radius-minus" radius-interval-button="minus" range-value="newMessageCtrl.newMessage.range" ng-click="map_range_change('minusRange')" >-</span>
-							<input type="range" class="radius-range" id="radius-range-input" ng-model="newMessageCtrl.newMessage.range" step ="0.50" ng-change="">
+							<input type="range" class="radius-range" id="radius-range-input" ng-model="newMessageCtrl.newMessage.range" step ="50" ng-change="" max="10000">
 							<span class="radius-plus" radius-interval-button="add" range-value="newMessageCtrl.newMessage.range" ng-click="map_range_change('addRange')" >+</span>
 						</div>
 

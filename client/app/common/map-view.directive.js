@@ -118,7 +118,7 @@
 						}
 
 						function setRadius() {
-							scope.rangeCircle.setRadius(parseInt(scope.range) * 1000);
+							scope.rangeCircle.setRadius(parseInt(scope.range) * 1);
 							map.fitBounds(scope.rangeCircle.getBounds());
 						}
 
