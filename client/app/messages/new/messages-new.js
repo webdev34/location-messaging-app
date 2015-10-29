@@ -161,6 +161,7 @@
 				{ name: "Tag 10", ticked: false}
 			];
 
+			newMessageCtrl.newMessage.assets = [];
 
 
 			$scope.uploader = {};
