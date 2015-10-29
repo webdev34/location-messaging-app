@@ -18,10 +18,13 @@
 			<div zf-modal="" id="saveCampaignModal">
 				<a zf-close="" class="close-button">×</a>
 				<p class="qvr-align-center">
-					Sample text
+					<br>
+					Are you sure you want to save your changes?
+					<br>
+					<br>
 				</p>
 				<div class="modal-button-wrapper qvr-align-center">
-					<button type="submit" class="qvr-button action">Save</button>
+					<button  zf-close="" class="qvr-button action">Save</button>
 					<button zf-close="" class="qvr-button cancel">Cancel</button>
 				</div>
 			</div>
@@ -193,7 +196,7 @@
 	<section class="campaign-messages-wrapper">
 		<div class="campaign-messages-header qvr-form">
 			<h1 class="float-left">Campaign Messages</h1>
-			<button class="qvr-button action">+ NEW MESSAGE</button>
+			<button  ui-sref="messages.new" class="qvr-button action" >+ NEW MESSAGE</button>
 			<div class="search-wrapper">
 				<label for="filter-by"><i class="fa fa-search"></i></label>
 				<input type="search" class="search-campaigns" ng-model="search"  placeholder="Search Campaigns"  ng-keypress="resetCurrentPage()">
@@ -398,8 +401,8 @@
 			  	</tr>
 			    <tr  data-ng-repeat="msg in manageCampaignCtrl.campaignMessages | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" >
 			      <td><input type="checkbox" ng-model="msg.isSelected" ng-change="anyInputsSelected();" /></td>
-			      <td>{{msg.id}}</td>
-			      <td>{{msg.label}}</td>
+			      <td><a ui-sref="messages.edit">{{msg.id}}</a></td>
+			      <td><a ui-sref="messages.edit">{{msg.label}}</a></td>
 			      <td>{{msg.to}}</td>
 			      <td>{{msg.location}}</td>
 			      <td>{{msg.start}}</td>

@@ -54,28 +54,30 @@
 				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
 			};
 
+			newMessageCtrl.editMessageTemplate = {
+				"messageTitle": "The Market Bar",
+				"sid": "02",
+				"content": "Welcome Web Summit Attendees to The Market Bar! Join us at Barstool #3 and we'd love to buy you a pint!  Of course there is a catch you will have to claim your company's Quiver handle #QuiverCYH, but hey you'll want to do that anyway once you get to know us!",
+				"status": "Inactive",
+				"range": 200,
+				"discoverOn": 1, // 1 => enter; 2 => leave
+				"startDate": "11/2/2015",
+				"startTime": "9:00 AM",
+				"endDate": "11/3/2015",
+				"endTime": "6:00 AM",
+				// "startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
+				// "endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
+				"locationName": "The Market Bar",
+				"coordinates": {"lat":53.3420655,"lng":-6.2661938}
+			};
+
+
 			newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 
 			if ($state.current.name == "messages.edit" ) {
 				newMessageCtrl.isEditing = true;
-				//console.log('$stateParams: '+ $stateParams._id);
-
-				MessageDetailModel.getMessageDetail($stateParams._id)
-					.then (
-					function success(response) {
-							console.log("response: " + JSON.stringify(response));
-
-							newMessageCtrl.newMessage = response;
-
-							JSON.stringify('new message 67:' + newMessageCtrl.newMessage);
-
-							setMapCenter();
-
-
-					},
-					function error(response) {
-					});
-
+				newMessageCtrl.newMessage = newMessageCtrl.editMessageTemplate;
+				setMapCenter();
 			} else {
 				setMapCenter();
 			}
@@ -149,16 +151,10 @@
 
 
 			newMessageCtrl.messageTags = [
-				{ name: "Tag 1", ticked: false },
-				{ name: "Tag 2", ticked: false},
-				{ name: "Tag 3", ticked: false},
-				{ name: "Tag 4", ticked: false},
-				{ name: "Tag 5", ticked: false},
-				{ name: "Tag 6", ticked: false},
-				{ name: "Tag 7", ticked: false},
-				{ name: "Tag 8", ticked: false},
-				{ name: "Tag 9", ticked: false},
-				{ name: "Tag 10", ticked: false}
+				{ name: "#WebSummit", ticked: false },
+				{ name: "#Dublin", ticked: false},
+				{ name: "#FadeStreet", ticked: false},
+				{ name: "#TheMarketBar", ticked: false}
 			];
 
 			newMessageCtrl.newMessage.assets = [];
@@ -185,13 +181,13 @@
 			$scope.map_range_change = function(operator) {
 				var currentRange = parseFloat($scope.newMessageCtrl.newMessage.range);
 				if(operator == 'addRange'){
-					if(currentRange != 100){
-					  	$scope.newMessageCtrl.newMessage.range = currentRange + 0.50;
+					if(currentRange != 10000){
+					  	$scope.newMessageCtrl.newMessage.range = currentRange + 50;
 					}
 				}
 				else{
 					if(currentRange != 0){
-						$scope.newMessageCtrl.newMessage.range = currentRange - 0.50;
+						$scope.newMessageCtrl.newMessage.range = currentRange - 50;
 					}
 				}
 			};
@@ -210,7 +206,7 @@
 			
 			$scope.checkRange = function(){
 				var range = parseInt(newMessageCtrl.newMessage.range);
-				range = range > 100 ? 100 : (range < 0 || !range ? 0 : range);
+				range = range > 100000 ? 100000 : (range < 0 || !range ? 0 : range);
 				newMessageCtrl.newMessage.range = range;
 			};
 

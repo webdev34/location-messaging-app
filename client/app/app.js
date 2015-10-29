@@ -29,7 +29,7 @@
 		.run(run);
 
 	//default view
-	app.constant('APP_default_state', 'messages.new');
+	app.constant('APP_default_state', 'messages.dashboard');
 	
 
 	var API_SERVER = 'http://api-dev.quiver.zone:80/';
@@ -197,7 +197,7 @@
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
 					{'title': 'Manage Campaign', 'state': 'messages.manage-campaign'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
-					{'title': 'All Messages (Temp)', 'state': 'messages.all-messages'},
+					//{'title': 'All Messages (Temp)', 'state': 'messages.all-messages'},
 
 					{'title': 'Manage Locations', 'state': 'messages.manage-locations'},
 					{'title': 'Asset Management', 'state': 'messages.asset'},
@@ -251,9 +251,9 @@
 							goToHomePage();
 						}
 
-						if (!appCtrl.user) {
-							appCtrl.getAccount();
-						}	
+						// if (!appCtrl.user) {
+						// 	appCtrl.getAccount();
+						// }	
 					}
 					//console.log(fromState.name, "-->", toState.name);
 					setNavigationState();
@@ -275,12 +275,12 @@
 			function checkIfLoggedIn() {
 				//console.log('checking if loggedin');
 
-				if (!UserModel.isLoggedIn) {
-					//console.log('not logged in');
-					event.preventDefault();
-					appCtrl.goToLogin();
-					return;
-				}
+				// if (!UserModel.isLoggedIn) {
+				// 	//console.log('not logged in');
+				// 	//event.preventDefault();
+				// 	appCtrl.goToLogin();
+				// 	return;
+				// }
 			}
 
 			function goToHomePage() {

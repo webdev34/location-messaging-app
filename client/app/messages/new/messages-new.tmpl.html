@@ -45,14 +45,7 @@
 			<span id="campaign-select" class="input-wrapper">
 				<label class="qvr-label">Associated Campaign</label>
 				<select class="qvr-select" required>
-					<option>No campaigns currently available</option>
-				</select>
-			</span>
-
-			<span id="campaign-details" class="input-wrapper">
-				<label class="qvr-label">Campaign Details</label>
-				<select class="qvr-select" required>
-					<option>----------------</option>
+					<option>Web Summit - Dublin Fade St.</option>
 				</select>
 			</span>
 
@@ -79,7 +72,7 @@
 				<label class="qvr-label">Recipients</label>
 				<div class="message-recipients">
 					<span class="targeted-followers-label">Targeted Followers</span>
-					<span class="targeted-followers-count">0</span>
+					<span class="targeted-followers-count">30,455</span>
 				</div>
 <!--
 				<div class="target-filters">
@@ -261,8 +254,14 @@
 
 					<section class="location-section">
 						<label class="qvr-label">Select Preset Locations</label>
-						<select class="qvr-select" disabled>
-							<option>--- N/A ---</option>
+						<select class="qvr-select" >
+							<option>Toronto</option>
+							<option>San Francisco</option>
+							<option>Dublin</option>
+							<option>New York</option>
+							<option>Tokyo</option>
+							<option>Barcelona</option>
+							<option>Panama City</option>
 						</select>
 
 						
@@ -294,11 +293,11 @@
 
 
 						<div class="radius">
-							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span class="km"> km</span> radius
+							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span class="km"> m</span> radius
 						</div>
 						<div class="radius-wrapper">
 							<span class="radius-minus" radius-interval-button="minus" range-value="newMessageCtrl.newMessage.range" ng-click="map_range_change('minusRange')" >-</span>
-							<input type="range" class="radius-range" id="radius-range-input" ng-model="newMessageCtrl.newMessage.range" step ="0.50" ng-change="">
+							<input type="range" class="radius-range" id="radius-range-input" ng-model="newMessageCtrl.newMessage.range" step ="50" ng-change="" max="10000">
 							<span class="radius-plus" radius-interval-button="add" range-value="newMessageCtrl.newMessage.range" ng-click="map_range_change('addRange')" >+</span>
 						</div>
 
