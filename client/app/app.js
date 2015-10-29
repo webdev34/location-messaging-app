@@ -171,7 +171,7 @@
 	      "suspended": false,
 	      "firstName": "Quiver",
 	      "lastName": "Media",
-	      "fullName": "Quiver Media",
+	      "fullName": "Bryan Bogensberger",
 	      "enterprise": "56312b71a01df5eb414ac377",
 	      "title": "",
 	      "description": "Quiver brings innovation to mobile communications by delivering the world's most flexible, fun and feature-rich messaging platform.",
@@ -247,9 +247,9 @@
 
 						//console.log('state: ' + JSON.stringify(toState));
 
-						if (toState.name == 'home') {
-							goToHomePage();
-						}
+						// if (toState.name == 'home') {
+						// 	goToHomePage();
+						// }
 
 						// if (!appCtrl.user) {
 						// 	appCtrl.getAccount();

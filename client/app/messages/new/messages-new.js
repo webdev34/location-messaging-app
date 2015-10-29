@@ -51,8 +51,9 @@
 				// "startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 				// "endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
 				"locationName": "",
-				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
+				"coordinates": {"lat":53.337524,"lng":-6.270449}
 			};
+
 
 			newMessageCtrl.editMessageTemplate = {
 				"messageTitle": "The Market Bar",
@@ -127,7 +128,7 @@
 					function success(response){
 						
 						FoundationApi.publish('main-notifications', {
-							title: 'Message Sent',
+							title: 'Message Saved',
 							content: '',
 							color: 'success',
 							autoclose: '3000'
@@ -151,8 +152,8 @@
 
 
 			newMessageCtrl.messageTags = [
-				{ name: "#WebSummit", ticked: false },
-				{ name: "#Dublin", ticked: false},
+				{ name: "#WebSummit", ticked: true },
+				{ name: "#Dublin", ticked: true},
 				{ name: "#FadeStreet", ticked: false},
 				{ name: "#TheMarketBar", ticked: false}
 			];
