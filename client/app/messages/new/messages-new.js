@@ -42,7 +42,7 @@
 				"messageTitle": "",
 				"content": "",
 				"status": "Inactive",
-				"range": 5,
+				"range": 5000,
 				"discoverOn": 1, // 1 => enter; 2 => leave
 				"startDate": todayProperFormatted,
 				"startTime": "12:01 AM",
