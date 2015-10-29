@@ -73,7 +73,6 @@
 				else{
 					angular.forEach(messagesCommunicationsCtrl.campaignData, function(campaign, i){
 						if(matchId == campaign.id){
-							console.log(campaign)
 							messagesCommunicationsCtrl.selectedCampaignMessages = campaign.messages;
 						}
 			    	});
@@ -98,7 +97,7 @@
 						messagesCommunicationsCtrl.campaignFilters.push({name: thisCampaignName, id: thisCampaignId, messages: data.messages,  ticked: false});
 
 						angular.forEach(data.messages, function(msg, i){
-							messagesCommunicationsCtrl.messageFilters.push({name: thisCampaignName+' - Message #'+(msg.id+1), id: msg.id, campaignId: thisCampaignId, ticked: false});
+							messagesCommunicationsCtrl.messageFilters.push({name: thisCampaignName +' - '+ msg.label, id: msg.id, campaignId: thisCampaignId, campaignName: thisCampaignName, ticked: false});
 				    	});
 			       
 			    	});
@@ -116,7 +115,7 @@
 								var thisCampaignName = campaign.campaignName;
 								campaignHolder.push(angular.copy(campaign));
 								angular.forEach(campaign.messages, function(msg, i){
-									messageHolder.push({name: thisCampaignName+' - Message #'+(msg.id+1), id: msg.id, campaignId: thisCampaignId, ticked: false});
+									messageHolder.push({name: thisCampaignName +' - '+ msg.label, id: msg.id, campaignId: thisCampaignId, campaignName: thisCampaignName, ticked: false});
 						    	});
 								
 							}
