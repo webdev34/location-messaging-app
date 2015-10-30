@@ -157,7 +157,7 @@
 
 			manageLocationsCtrl.newLocation = {
 				"locationName": "",
-				"range": 5,
+				"range": 5000,
 				"coordinates":{"H":43.657504642319005,"L":-79.3760706718750},
 			};
 
