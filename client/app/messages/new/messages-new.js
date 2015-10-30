@@ -152,6 +152,8 @@
 
 
 			newMessageCtrl.messageTags = [
+				{ name: "#SanFrancisco", ticked: false },
+				{ name: "#Barcelona", ticked: false },
 				{ name: "#WebSummit", ticked: true },
 				{ name: "#Dublin", ticked: true},
 				{ name: "#FadeStreet", ticked: false},

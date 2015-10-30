@@ -58,16 +58,9 @@
 			];
 
 			manageCampaignCtrl.campaignsTags = [
-				{ name: "Tag 1", ticked: false },
-				{ name: "Tag 2", ticked: false},
-				{ name: "Tag 3", ticked: false},
-				{ name: "Tag 4", ticked: false},
-				{ name: "Tag 5", ticked: false},
-				{ name: "Tag 6", ticked: false},
-				{ name: "Tag 7", ticked: false},
-				{ name: "Tag 8", ticked: false},
-				{ name: "Tag 9", ticked: false},
-				{ name: "Tag 10", ticked: false}
+				{ name: "#SanFrancisco", ticked: false },
+				{ name: "#Barcelona", ticked: false},
+				{ name: "#Dublin", ticked: true}
 			];
 
 			manageCampaignCtrl.campaignMessageTags = angular.copy(manageCampaignCtrl.campaignsTags);
