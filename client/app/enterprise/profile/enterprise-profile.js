@@ -29,10 +29,33 @@
 			}
 
 			function getEnterprise() {
-				EnterpriseModel.getEnterprise().then(function() {
-					enterpriseCtrl.company = EnterpriseModel.company;
+					enterpriseCtrl.company = {
+						firstName: 'Quiver',
+						emailAddress: 'quiver@quiver.zone',
+						avatar: '/assets/img/logo/quiver-logo_enterprise-profile.jpg',
+						address: 'Post Geographical',
+						sid: '562f8ff5c9fc5be1978f17af',
+						messageCount: 2,
+						fullName: 'Quiver Media',
+						deleted: false,
+						likeCount: 0,
+						usernameKey: 'quiver',
+						lastName: 'Media',
+						created: 1445957621720,
+						title: '',
+						friendCount: 0,
+						lastModified: 1446055593364,
+						followingCount: 0,
+						enterprise: '562f8ff5c9fc5be1978f17b0',
+						followerCount: 16,
+						description: 'Quiver brings innovation to mobile communications by delivering the world\'s most flexible, fun and feature-rich messaging platform.',
+						primaryContact: 'Bryan Bogensberger',
+						phone: '844-8QUIVER (844-878-4837) ext: 102',
+						username: 'quiver',
+       			suspended: false
+					};
+
 					enterpriseCtrl.editedCompany = enterpriseCtrl.company;
-				});
 			}
 
 			enterpriseCtrl.saveChanges = function() {
