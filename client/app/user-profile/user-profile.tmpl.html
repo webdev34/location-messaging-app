@@ -8,7 +8,12 @@
 		<section class="enterprise-content-wrapper">
 			<div class="enterprise-content-left corporate-info">
 				<div class="details full-width avatar">
-					<img  ng-src="{{userProfileCtrl.user.avatar || 'assets/img/default-profile-avatar.png'}}" alt="logo" class="corp-logo" ng-hide="userProfileCtrl.user.newlogo" />
+					
+					<img ng-src="{{userProfileCtrl.user.avatar || 'assets/img/default-profile-avatar.png'}}" alt="logo" class="corp-logo" ng-hide="userProfileCtrl.user.newlogo" />
+					
+
+					<img ng-show
+					="userProfileCtrl.imageUploaded && uploader.flow.files.length == 0" ng-src="{{userProfileCtrl.user.newlogoPlacerHolder}}" class="preview" style="margin-bottom: 20px;"/>
 
 					<div ng-repeat="image in uploader.flow.files track by $index | limitTo:1" ng-if="$index==0">
 				      	<img class="preview" flow-img="image"/><br>
