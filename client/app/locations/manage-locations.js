@@ -52,16 +52,11 @@
 
 			manageLocationsCtrl.tagFilters = [];	
 			manageLocationsCtrl.locationFilters = [
-				{ name: "Tag 1", ticked: false },
-				{ name: "Tag 2", ticked: false},
-				{ name: "Tag 3", ticked: false},
-				{ name: "Tag 4", ticked: false},
-				{ name: "Tag 5", ticked: false},
-				{ name: "Tag 6", ticked: false},
-				{ name: "Tag 7", ticked: false},
-				{ name: "Tag 8", ticked: false},
-				{ name: "Tag 9", ticked: false},
-				{ name: "Tag 10",ticked: false}
+				{ name: "New York", ticked: true },
+				{ name: "Miami", ticked: true},
+				{ name: "Los Angeles", ticked: false},
+				{ name: "Chicago", ticked: false},
+				{ name: "Texas", ticked: false}
 			];
 			manageLocationsCtrl.newLocationFilters = angular.copy(manageLocationsCtrl.locationFilters);
 			
@@ -144,26 +139,6 @@
 				    });
 				};
 
-				// $scope.cloneMessages = function() {
-				// 	manageCampaignCtrl.clonedMessage = [] ;
-				// 	var cleanCopyOfMessages = angular.copy(manageCampaignCtrl.campaignMessages);
-				// 	angular.forEach(cleanCopyOfMessages, function(campaign, i) {
-				// 		if(campaign.isSelected){
-				// 			//campaign.isSelected = false;
-				// 			manageCampaignCtrl.clonedMessage.push(campaign);
-				// 		}
-				//     });
-				//     // $scope.selectAll = false;
-				// };
-
-				// $scope.deleteClonedMessage = function(id) {
-				// 	angular.forEach(manageCampaignCtrl.clonedMessage, function(campaign, i) {
-				// 		if(campaign.id == id){
-				// 			manageCampaignCtrl.clonedMessage.splice(i, 1);  
-				// 		}
-				//     });
-				// };
-
 				$scope.anyInputsSelected = function() {
 					$scope.isAnyInputsSelected = false;
 					$scope.selectAll = true;
@@ -187,9 +162,6 @@
 			};
 
 			manageLocationsCtrl.initialMapCenter = manageLocationsCtrl.newLocation.coordinates.H + ","+ manageLocationsCtrl.newLocation.coordinates.L;
-
-
-
 
 
 			function paginationValidation(){

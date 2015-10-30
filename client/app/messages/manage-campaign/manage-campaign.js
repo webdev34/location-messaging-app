@@ -79,16 +79,12 @@
 			];
 
 			manageCampaignCtrl.campaigns = [
-				{ name: "Campaign 1", ticked: false },
-				{ name: "Campaign 2", ticked: false},
-				{ name: "Campaign 3", ticked: false},
-				{ name: "Campaign 4", ticked: false},
-				{ name: "Campaign 5", ticked: false},
-				{ name: "Campaign 6", ticked: false},
-				{ name: "Campaign 7", ticked: false},
-				{ name: "Campaign 8", ticked: false},
-				{ name: "Campaign 9", ticked: false},
-				{ name: "Campaign 10", ticked: false}
+				{ name: "Quiver Team Building - SF", ticked: false },
+				{ name: "Web Summit - Dublin Fade St.", ticked: false},
+				{ name: "Web Summit - Dublin Harcourt St.", ticked: false},
+				{ name: "Web Summit - Dublin Dame Ln.", ticked: false},
+				{ name: "Web Summit - Dublin Camden St.", ticked: false},
+				{ name: "MWC - 2016 - Barcelona", ticked: false}
 			];
 			
 			manageCampaignCtrl.cloneToCampaigns = [];
