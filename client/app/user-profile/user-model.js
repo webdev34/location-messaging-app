@@ -30,8 +30,7 @@ User types - these are NOT 'social users' (followers)
 		function( $rootScope, $state, $cookieStore, API_URL, UserService) {
 			var model = this;
 			
-			$rootScope.auth = $cookieStore.get("qvr.auth");
-			model.userID = $cookieStore.get("qvr.user");
+			model.isLoggedIn = false;
 
 			model.getAccount = function(userID) {
 				return UserService.get(userID)

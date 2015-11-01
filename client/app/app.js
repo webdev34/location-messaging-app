@@ -275,12 +275,12 @@
 			function checkIfLoggedIn() {
 				//console.log('checking if loggedin');
 
-				// if (!UserModel.isLoggedIn) {
-				// 	//console.log('not logged in');
-				// 	//event.preventDefault();
-				// 	appCtrl.goToLogin();
-				// 	return;
-				// }
+				if (!UserModel.isLoggedIn) {
+					//console.log('not logged in');
+					//event.preventDefault();
+					appCtrl.goToLogin();
+					return;
+				}
 			}
 
 			function goToHomePage() {
@@ -325,40 +325,15 @@
 			}
 	
 			appCtrl.userLogin = function() {
-				UserModel.login(appCtrl.userLoginInfo)
-					.then(
-						function success(response) {
-							appCtrl.user = UserModel.user;
-							//console.log('appctrl user:' + JSON.stringify(appCtrl.user));
-							
-							// suppress false positives
-							if (!response.code){
-								FoundationApi.publish('main-notifications', {
-									title: 'Login Succesful',
-									content: '',
-									color: 'success',
-									autoclose: '3000'
-								});
-								appCtrl.userLoginInfo = {};
-								goToHomePage();
-							}else{
-								FoundationApi.publish('main-notifications', {
-									title: 'Login Failed',
-									content: response.code,
-									color: 'fail',
-									autoclose: '3000'
-								});
-							}
-						},
-						function error(response) {
-							FoundationApi.publish('main-notifications', {
-								title: 'Login Failed',
-								content: response.code,
-								color: 'fail',
-								autoclose: '3000'
-							});
-						}
-					);
+					//console.log(JSON.stringify(appCtrl.userLoginInfo));
+
+				if (appCtrl.userLoginInfo.username == "quiver" && appCtrl.userLoginInfo.password == "demo") {
+					//console.log(JSON.stringify(appCtrl.userLoginInfo));
+
+					UserModel.isLoggedIn = true;
+					goToHomePage();
+				}
+
 			}
 
 			appCtrl.userLogout = function(){
