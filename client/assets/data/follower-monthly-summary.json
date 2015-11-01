@@ -76,8 +76,7 @@
         "followersEnd": 61023,
         "retentionRate": "98.22 %",
         "growth": "7.06 %"
-      }
-      ,
+      },
       {
         "id" : 4,
         "period": "APRIL",
@@ -87,7 +86,6 @@
         "retentionRate": "96.78 %",
         "growth": "28.00 %"
       },
-
       {
         "id" : 3,
         "period": "MARCH",
@@ -106,7 +104,7 @@
         "retentionRate": "98.33 %",
         "growth": "50.20 %"
       },
-     {
+      {
         "id" : 1,
         "period": "JANUARY",
         "followersStart": 18011,
