@@ -41,11 +41,11 @@
 			userProfileCtrl.user = {
 				'_id': '',
 				"companyName": "Quiver",
-				"firstName": "David",
-				"lastName": "Ball",
-				"logo": "assets/img/default-profile-avatar.png",
-				"email": "david.ball@quiver.com",
-				"phone": "7187187188",
+				"firstName": "Bryan",
+				"lastName": "Bogensberger",
+				"logo": "assets/img/profile_bryan.jpg",
+				"email": "bryan@quiver.zone",
+				"phone": "1-519-555-6573",
 				"userRights": "Admin"
 			}
 		}
