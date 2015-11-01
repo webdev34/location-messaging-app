@@ -11,7 +11,7 @@
 					<div class="details full-width avatar">
 						<h1>Add New User</h1>
 
-						<img  ng-src="{{ manageUsersCtrl.flowImgPlaceholder || 'assets/img/default-profile-avatar.png'}}" alt="logo" class="user-avatar"  />
+						<img  ng-src="{{ manageUsersCtrl.flowImgPlaceholder || 'assets/img/profile_bryan.png'}}" alt="logo" class="user-avatar"  />
 						<div  ng-repeat="image in uploaderNewUser.flow.files track by $index | limitTo:1" ng-if="$index==0" class="ng-hide">
 							<img class="preview" flow-img="image"/><br>
 							<img class="preview hide" ng-src="{{manageUsersCtrl.newUser.newAvatar[$index]}}"/>
@@ -90,7 +90,7 @@
 <div class="details full-width avatar">
 						<h1>Edit User</h1>
 
-						<img  ng-src="{{ manageUsersCtrl.flowImgPlaceholderEdit || 'assets/img/default-profile-avatar.png'}}" alt="logo" class="user-avatar"  />
+						<img  ng-src="{{ manageUsersCtrl.flowImgPlaceholderEdit || 'assets/img/profile_bryan.png'}}" alt="logo" class="user-avatar"  />
 						<div  ng-repeat="image in uploaderEditUser.flow.files track by $index | limitTo:1" ng-if="$index==0" class="ng-hide">
 							<img class="preview" flow-img="image"/><br>
 							<img class="preview hide" ng-src="{{manageUsersCtrl.editUser.newAvatar[$index]}}"/>

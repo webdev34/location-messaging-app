@@ -108,11 +108,11 @@
 					<tr class="blue-row">
 						<td class="bold"></td>
 						<td class="bold">ALL TIME</td>
-						<td class="bold">0</td>
-						<td class="bold">907,000</td>
-						<td class="bold">800,003</td>
-						<td class="qvr-blue bold">86.30 %</td>
-						<td class="qvr-blue bold">+545.27 %</td>
+						<td class="bold">26,535</td>
+						<td class="bold">196,839</td>
+						<td class="bold">220,565</td>
+						<td class="qvr-blue bold">98.28 %</td>
+						<td class="qvr-blue bold">N/A</td>
 						<td></td>
 					</tr>
 					<tr data-ng-repeat="summary in followerSummaryCtrl.followerSummaryData | startFrom:followerSummaryCtrl.startAt | orderBy:followerSummaryCtrl.sortOrderBy:followerSummaryCtrl.reverse | filter:followerSummaryCtrl.search as results" ng-show="$index >= followerSummaryCtrl.startAt && $index <= followerSummaryCtrl.endAt" ng-class="{last: followerSummaryCtrl.endAt == $index}">
@@ -188,15 +188,15 @@
 				<tbody>
 					<tr class="blue-row">
 						<td class="bold"></td>
-						<td class="bold">{{followerSummaryCtrl.currentYearView}}</td>
-						<td class="bold">123,980</td>
-						<td class="bold">907,000</td>
-						<td class="bold">800,003</td>
-						<td class="qvr-blue bold">86.30 %</td>
-						<td class="qvr-blue bold">+545.27 %</td>
+						<td class="bold"><!--{{followerSummaryCtrl.currentYearView}}-->2015</td>
+						<td class="bold">846,644</td>
+						<td class="bold">178,000</td>
+						<td class="bold">1,022,083</td>
+						<td class="qvr-blue bold">1.82 %</td>
+						<td class="qvr-blue bold"><span style="color: red;">-77.15 %</span></td>
 						<td></td>
 					</tr>
-					<tr data-ng-repeat="summary in followerSummaryCtrl.currentMonthObj | startFrom:followerSummaryCtrl.startAt | orderBy:followerSummaryCtrl.sortOrderBy:followerSummaryCtrl.reverse | filter:followerSummaryCtrl.search as results" ng-show="$index >= followerSummaryCtrl.startAt && $index <= followerSummaryCtrl.endAt" ng-class="{last: followerSummaryCtrl.endAt == $index}">
+					<tr data-ng-repeat="summary in followerSummaryCtrl.currentMonthObj | startFrom:followerSummaryCtrl.startAt | orderBy:followerSummaryCtrl.sortOrderBy:followerSummaryCtrl | filter:followerSummaryCtrl.search as results" ng-show="$index >= followerSummaryCtrl.startAt && $index <= followerSummaryCtrl.endAt" ng-class="{last: followerSummaryCtrl.endAt == $index}">
 						<td></td>
 						<td>{{summary.period}}</td>
 						<td>{{summary.followersStart | number}}</td>
@@ -269,9 +269,9 @@
 				<tbody>
 					<tr class="blue-row">
 						<td class="bold"></td>
-						<td class="bold">{{followerSummaryCtrl.currentMonthView}}</td>
+						<td class="bold"><!--{{followerSummaryCtrl.currentMonthView}}-->December</td>
 						<td class="bold">123,980</td>
-						<td class="bold">907,000</td>
+						<td class="bold">39,890</td>
 						<td class="bold">800,003</td>
 						<td class="qvr-blue bold">86.30 %</td>
 						<td class="qvr-blue bold">+545.27 %</td>

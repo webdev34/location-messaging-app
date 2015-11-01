@@ -45,16 +45,11 @@
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
 			manageCampaignCtrl.campaignParticipantsList = [
-				{ name: "Group 1", ticked: false },
-				{ name: "Group 2", ticked: false},
-				{ name: "Group 3", ticked: false},
-				{ name: "Group 4", ticked: false},
-				{ name: "Group 5", ticked: false},
-				{ name: "Group 6", ticked: false},
-				{ name: "Group 7", ticked: false},
-				{ name: "Group 8", ticked: false},
-				{ name: "Group 9", ticked: false},
-				{ name: "Group 10",ticked: false}
+				{ name: "#MarketingGroup", ticked: false },
+				{ name: "#BusinessDevelopment", ticked: false},
+				{ name: "#Evangelists", ticked: false},
+				{ name: "Bryan Bogensberger", ticked: false},
+				{ name: "Scott Trasler", ticked: false}
 			];
 
 			manageCampaignCtrl.campaignsTags = [

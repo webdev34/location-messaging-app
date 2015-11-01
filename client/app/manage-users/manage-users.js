@@ -40,12 +40,12 @@
                         "email": "-",
                         "contactNumber": "-",
                         "userRights": "-",
-                        "avatar": "assets/img/default-profile-avatar.png"
+                        "avatar": "assets/img/profile_bryan.png"
                     };
                    
                     manageUsersCtrl.bulkActions = '';
-                    manageUsersCtrl.flowImgPlaceholder = 'assets/img/default-profile-avatar.png';
-                    manageUsersCtrl.flowImgPlaceholderEdit = 'assets/img/default-profile-avatar.png';
+                    manageUsersCtrl.flowImgPlaceholder = 'assets/img/profile_bryan.png';
+                    manageUsersCtrl.flowImgPlaceholderEdit = 'assets/img/profile_bryan.png';
 
                     function init() {
                         getAccounts();

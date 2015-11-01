@@ -1,118 +1,119 @@
 {
   "followerMonthlySummary": [
-     {
-        "id" : 1,
-        "period": "JANUARY",
-        "followersStart": 27.6,
-        "aquisitions": 1200,
-        "followersEnd": 8003,
-        "retentionRate": "86.30 %",
-        "growth": "+55.27 %"
-      },
-      {
-        "id" : 2,
-        "period": "FEBRUARY",
-        "followersStart": 37.6,
-        "aquisitions": 100,
-        "followersEnd": 803,
-        "retentionRate": "36.30 %",
-        "growth": "+5.27 %"
-      },
-      {
-        "id" : 3,
-        "period": "MARCH",
-        "followersStart": 17.6,
-        "aquisitions": 50,
-        "followersEnd": 43,
-        "retentionRate": "6.3 %",
+  {
+        "id" : 12,
+        "period": "DECEMBER",
+        "followersStart": 157883,
+        "aquisitions": 40000,
+        "followersEnd": 193450,
+        "retentionRate": "97.19 %",
         "growth": "+10.27 %"
       },
       {
-        "id" : 4,
-        "period": "APRIL",
-        "followersStart": 17.6,
-        "aquisitions": 50,
-        "followersEnd": 43,
-        "retentionRate": "6.3 %",
-        "growth": "+10.27 %"
-      },
-      {
-        "id" : 5,
-        "period": "MAY",
-        "followersStart": 17.6,
-        "aquisitions": 50,
-        "followersEnd": 43,
-        "retentionRate": "6.3 %",
-        "growth": "+10.27 %"
+        "id" : 11,
+        "period": "NOVEMBER",
+        "followersStart": 129903,
+        "aquisitions": 29700,
+        "followersEnd": 157883,
+        "retentionRate": "98.68 %",
+        "growth": "21.54 %"
       }
       ,
-      {
-        "id" : 6,
-        "period": "JUNE",
-        "followersStart": 17.6,
-        "aquisitions": 50,
-        "followersEnd": 43,
-        "retentionRate": "6.3 %",
-        "growth": "+10.27 %"
-      },
-      {
-        "id" : 7,
-        "period": "JULY",
-        "followersStart": 17.6,
-        "aquisitions": 50,
-        "followersEnd": 43,
-        "retentionRate": "6.3 %",
-        "growth": "+10.27 %"
-      }
-      ,
-      {
-        "id" : 8,
-        "period": "AUGUST",
-        "followersStart": 17.6,
-        "aquisitions": 50,
-        "followersEnd": 43,
-        "retentionRate": "6.3 %",
-        "growth": "+10.27 %"
+       {
+        "id" : 10,
+        "period": "OCTOBER",
+        "followersStart": 101002,
+        "aquisitions": 34000,
+        "followersEnd": 129903,
+        "retentionRate": "94.95 %",
+        "growth": "28.61 %"
       }
       ,
       {
         "id" : 9,
         "period": "SEPTEMBER",
-        "followersStart": 17.6,
-        "aquisitions": 50,
-        "followersEnd": 43,
-        "retentionRate": "6.3 %",
-        "growth": "+10.27 %"
+        "followersStart": 78330,
+        "aquisitions": 25037,
+        "followersEnd": 101002,
+        "retentionRate": "96.98 %",
+        "growth": "28.94 %"
+      }
+      ,
+            {
+        "id" : 8,
+        "period": "AUGUST",
+        "followersStart": 69690,
+        "aquisitions": 10001,
+        "followersEnd": 78330,
+        "retentionRate": "98.05 %",
+        "growth": "12.40 %"
+      }
+      ,
+            {
+        "id" : 7,
+        "period": "JULY",
+        "followersStart": 66701,
+        "aquisitions": 5002,
+        "followersEnd": 69690,
+        "retentionRate": "96.98 %",
+        "growth": "4.48 %"
       }
       ,
       {
-        "id" : 10,
-        "period": "OCTOBER",
-        "followersStart": 17.6,
-        "aquisitions": 50,
-        "followersEnd": 43,
-        "retentionRate": "6.3 %",
-        "growth": "+10.27 %"
+        "id" : 6,
+        "period": "JUNE",
+        "followersStart": 61023,
+        "aquisitions": 7000,
+        "followersEnd": 66701,
+        "retentionRate": "97.83 %",
+        "growth": "9.30 %"
+      },
+      {
+        "id" : 5,
+        "period": "MAY",
+        "followersStart": 57001,
+        "aquisitions": 5034,
+        "followersEnd": 61023,
+        "retentionRate": "98.22 %",
+        "growth": "7.06 %"
       }
       ,
       {
-        "id" : 11,
-        "period": "NOVEMBER",
-        "followersStart": 17.6,
-        "aquisitions": 50,
-        "followersEnd": 43,
-        "retentionRate": "6.3 %",
-        "growth": "+10.27 %"
-      }
-      ,
+        "id" : 4,
+        "period": "APRIL",
+        "followersStart": 44533,
+        "aquisitions": 13900,
+        "followersEnd": 57001,
+        "retentionRate": "96.78 %",
+        "growth": "28.00 %"
+      },
+
       {
-        "id" : 12,
-        "period": "DECEMBER",
-        "followersStart": 17.6,
-        "aquisitions": 50,
-        "followersEnd": 43,
-        "retentionRate": "6.3 %",
-        "growth": "+10.27 %"
-      }
+        "id" : 3,
+        "period": "MARCH",
+        "followersStart": 37560,
+        "aquisitions": 7530,
+        "followersEnd": 445333,
+        "retentionRate": "98.52 %",
+        "growth": "18.56 %"
+      },
+      {
+        "id" : 2,
+        "period": "FEBRUARY",
+        "followersStart": 25007,
+        "aquisitions": 12970,
+        "followersEnd": 37560,
+        "retentionRate": "98.33 %",
+        "growth": "50.20 %"
+      },
+     {
+        "id" : 1,
+        "period": "JANUARY",
+        "followersStart": 18011,
+        "aquisitions": 8007,
+        "followersEnd": 25007,
+        "retentionRate": "94.39 %",
+        "growth": "38.84 %"
+      }   
   ]
 }
