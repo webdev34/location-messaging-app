@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('locations', [
-
+		'enterprise-portal.models.locations'
 	])
 
 	.config([
@@ -39,16 +39,19 @@
 		'$state',
 		'$http',
 		'FoundationApi',
+		'LocationsModel',
 	
 		function(
 			$rootScope,
 			$scope,
 			$state,
 			$http,
-			FoundationApi
+			FoundationApi,
+			LocationsModel
 		) {
 			var manageLocationsCtrl = this;
 			
+			LocationsModel.getLocationList();
 
 			manageLocationsCtrl.tagFilters = [];	
 			manageLocationsCtrl.locationFilters = [
