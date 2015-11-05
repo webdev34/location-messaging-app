@@ -101,16 +101,16 @@
 			manageCampaignCtrl.cloneToCampaigns = [];
 
 			manageCampaignCtrl.manageCampaign = {
-				"campaignID": 48,
-				"campaignName": "Web Summit - Dublin Fade St.",
+				"campaignID": "00131",
+				"campaignName": "Drive A Dream - Vancouver BC",
 				"campaignParticipants": [],
-				"campaignDescription": "N/A",
+				"campaignDescription": "Tesla's Drive A Dream in Vancouver BC will be target- ing the true auto enthusiast having a passion for performance and luxury. The campaign will be physi- cally centered around our two locations. The Quiver campaign will be run simultaneously with a local television campaign spanning the campaign period.",
 				"marketingAssets": [ ],
 				"campaignsTags": [],
-				"status": "Live",
-				"startDate": "11/2/2015",
+				"status": "Draft",
+				"startDate": todayProperFormatted,
 				"startTime": "12:01 AM",
-				"endDate": "11/3/2015",
+				"endDate": tomorrowProperFormatted,
 				"endTime": "11:59 PM",
 				"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 				"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()

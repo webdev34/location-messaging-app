@@ -6,6 +6,7 @@
 		'messages.dashboard',
 		'messages.detail',
 		'messages.new',
+		'messages.edit',
 		'messages.manage-campaign',
 		'messages.communications',
 		'messages.all-messages'
@@ -29,7 +30,7 @@
 				controller: 'NewMessageCtrl as newMessageCtrl'
 			})
 			.state('messages.edit', {
-				url: '/message/edit',
+				url: '/message/:_id',
 				templateUrl: 'app/messages/new/messages-new.tmpl.html',
 				controller: 'NewMessageCtrl as newMessageCtrl'
 			})

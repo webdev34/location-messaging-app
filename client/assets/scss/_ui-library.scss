@@ -510,15 +510,13 @@ select.qvr-select{
         height: 25px;
         background-color: $qvr-grey-4;
         ul {
-            //margin: 0 0 0 265px;
-            margin: 0 0 0 130px;
+            margin: 0 0 0 265px;
             padding: 0;
             li {
                 display: inline-block;
             }
             &.enterprise{
-                //margin-left: 620px;
-                margin-left: 130px;
+                margin-left: 620px;
                 li{
                     margin-right: 30px;
                 }
@@ -531,8 +529,7 @@ select.qvr-select{
             height: 25px;
             margin: 0 20px 0 0;
             color: $qvr-grey-3;
-            font-size: 13px;
-            //font-size: 14px;
+            font-size: 14px;
             line-height: 25px;
             transition: all 0.2s ease-in-out;
             &:hover, &.active {
