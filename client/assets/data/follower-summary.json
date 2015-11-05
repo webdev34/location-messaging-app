@@ -3,47 +3,116 @@
      {
         "id" : 1,
         "period": "2015",
-        "followersStart": 18011,
-        "aquisitions": 178000,
-        "followersEnd": 193450,
-        "retentionRate": "85.78%",
-        "growth": "974.07%"
+        "followersStart": 27.6,
+        "aquisitions": 1200,
+        "followersEnd": 8003,
+        "retentionRate": "86.30 %",
+        "growth": "+55.27 %"
       },
       {
         "id" : 2,
         "period": "2014",
-        "followersStart": 6122,
-        "aquisitions": 12001,
-        "followersEnd": 18011,
-        "retentionRate": "98.17 %",
-        "growth": "194.20 %"
+        "followersStart": 37.6,
+        "aquisitions": 100,
+        "followersEnd": 803,
+        "retentionRate": "36.30 %",
+        "growth": "+5.27 %"
       },
       {
         "id" : 3,
         "period": "2013",
-        "followersStart": 2402,
-        "aquisitions": 3800,
-        "followersEnd": 6122,
-        "retentionRate": "96.67 %",
-        "growth": "154.87 %"
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
       },
       {
         "id" : 4,
         "period": "2012",
-        "followersStart": 580,
-        "aquisitions": 2000,
-        "followersEnd": 2402,
-        "retentionRate": "69.31 %",
-        "growth": "314.14 %"
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
       },
       {
         "id" : 5,
         "period": "2011",
-        "followersStart": 0,
-        "aquisitions": 1038,
-        "followersEnd": 580,
-        "retentionRate": "55.88 %",
-        "growth": "N/A"
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 6,
+        "period": "2010",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      },
+      {
+        "id" : 7,
+        "period": "2009",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 8,
+        "period": "2008",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 9,
+        "period": "2007",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 10,
+        "period": "2008",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 11,
+        "period": "2007",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
+      }
+      ,
+      {
+        "id" : 12,
+        "period": "2006",
+        "followersStart": 17.6,
+        "aquisitions": 50,
+        "followersEnd": 43,
+        "retentionRate": "6.3 %",
+        "growth": "+10.27 %"
       }
   ]
 }

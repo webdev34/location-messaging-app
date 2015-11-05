@@ -24,7 +24,6 @@
 			$state,
 			$http
 		) {
-			
 			var followerSummaryCtrl = this;
 			followerSummaryCtrl.currentView = 'Yearly';
 
@@ -41,7 +40,7 @@
 			});
 
 			$http.get('assets/data/follower-monthly-summary.json').success(function(data) {
-				followerSummaryCtrl.followerMonthlySummaryData = data.followerMonthlySummary.reverse();
+				followerSummaryCtrl.followerMonthlySummaryData = data.followerMonthlySummary;
 			});
 
 			$http.get('assets/data/follower-daily-summary.json').success(function(data) {
