@@ -272,7 +272,7 @@
 		    border-radius: 10px;
 		    min-height: 350px;
 		    max-height: 615px;
-		    padding-bottom: 50px;
+		    padding-bottom: 10px;
 		}
 
 		.message-content{
@@ -323,10 +323,10 @@
 					list-style: none;
 					float: left;
 					position: relative;
-					margin-right: 0px;
+					margin-right: 20px;
     				margin-left: 10px;
-					&.margin-added{
-						margin-right: 20px;
+					&.last{
+						margin-right: 0px;
 					}
 					i{
 						position: absolute;
@@ -335,11 +335,10 @@
 					    font-size: 18px;
 					    color: $qvr-blue-1;
 					    cursor: pointer;
-					    z-index: 1000;
 					}
 					img{
-						width: 100px;
-						height: 100px;
+						width: 125px;
+						height: 125px;
 					}
 				}
 			}

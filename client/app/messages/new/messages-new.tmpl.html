@@ -148,9 +148,7 @@
 					</div>				
 				</span> -->
 			</section>
-
-			<!-- New Upload -->
-			<section ng-if="!newMessageCtrl.isEditing" class="column-3" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"  flow-name="uploader.flow" flow-files-added="processFiles($files)" flow-files-added="saveFiles($files)">
+			<section class="column-3" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"  flow-name="uploader.flow" flow-files-added="processFiles($files)" flow-files-added="saveFiles($files)">
 				<label class="qvr-label">Message Content</label>
 
 				<div id="text-area-upload-wrapper">
@@ -179,60 +177,6 @@
 			    <div class="clearfix"></div>
 				
 			</section>
-
-			<!-- Edit Upload -->
-			<section ng-if="newMessageCtrl.isEditing"  class="column-3" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"  flow-name="uploader.flow" flow-files-added="processFiles($files)" flow-files-added="saveFiles($files)" flow-object="newMessage.assets">
-				<label class="qvr-label">Message Content</label>
-
-				<div id="text-area-upload-wrapper">
-					<textarea ng-model="newMessageCtrl.newMessage.content" id="upload-text-area" class="message-content" placeholder="Insert Content" required></textarea>
-
-					<div class="preview-image-wrapper" >
-
-						<!-- IF Edit Message has Assets -->
-						<ul ng-if="newMessageCtrl.areFilesUploaded" >
-							<li ng-repeat="image in uploader.flow.files track by $index" ng-class="{'margin-added': ($index+1) % 3}">
-								<i class="fa fa-times-circle" ng-click="removeFile($index);"></i>
-						      	<img class="preview hide" flow-img="image"/><br>
-						        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
-						    </li>
-						</ul>
-
-						<!-- IF Edit Message has Assets -->
-						<ul ng-if="!newMessageCtrl.areFilesUploaded" >
-							<li ng-repeat="image in newMessageCtrl.newMessage.assets track by $index" ng-class="{'margin-added': ($index+1) % 3}">
-								<i class="fa fa-times-circle" ng-click="removeFile($index);"></i>
-								<br/>
-						        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
-						    </li>
-						</ul>
-				    </div>
-					
-					<div class="clearfix"></div>
-					<!-- IF Assets actually uploaded -->
-				<span ng-if="newMessageCtrl.areFilesUploaded" class="attach-asset" flow-btn>
-					<span class="icon i-camera"></span>
-					<span class="attachment-count">
-			    		{{uploader.flow.files.length}} Attachments</span>
-			    	</span>
-				</span>
-
-				<!-- IF Edit Message has Assets -->
-				<span ng-if="!newMessageCtrl.areFilesUploaded" class="attach-asset" flow-btn>
-						<span class="icon i-camera"></span>
-						<span class="attachment-count">
-				    		{{newMessageCtrl.newMessage.assets.length}} Attachments</span>
-				    	</span>
-					</span>
-				</div>
-
-				
-
-			    <div class="clearfix"></div>
-				
-			</section>
-
-
 			<section class="column-3">
 				<section class="time-selector" ng-show="newMessageCtrl.showStartTimePicker">
 				

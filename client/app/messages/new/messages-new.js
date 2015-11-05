@@ -7,8 +7,6 @@
 		'$rootScope',
 		'$scope',
 		'$state',
-		'$http',
-		'$timeout',
 		'$stateParams',
 		'FoundationApi',
 		'MessageDetailModel',
@@ -17,8 +15,6 @@
 			$rootScope,
 			$scope,
 			$state,
-			$http,
-			$timeout,
 			$stateParams,
 			FoundationApi,
 			MessageDetailModel
@@ -32,14 +28,6 @@
 			newMessageCtrl.showEndDatePicker = false;
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
-
-			$scope.uploader = {};
-
-			newMessageCtrl.areFilesUploaded = false;
-
-			$http.get('assets/data/demo-images.json').success(function(data) {
-				newMessageCtrl.demoImages = data.demoImages;
-			});
 
 			// Setting up Dates
 			var today = new Date(),
@@ -63,8 +51,7 @@
 				// "startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 				// "endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
 				"locationName": "",
-				"coordinates": {"lat":53.337524,"lng":-6.270449},
-				"assets": []
+				"coordinates": {"lat":53.337524,"lng":-6.270449}
 			};
 
 
@@ -82,8 +69,7 @@
 				// "startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 				// "endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
 				"locationName": "The Market Bar",
-				"coordinates": {"lat":53.3420655,"lng":-6.2661938},
-				"assets": []
+				"coordinates": {"lat":53.3420655,"lng":-6.2661938}
 			};
 
 
@@ -93,16 +79,6 @@
 				newMessageCtrl.isEditing = true;
 				newMessageCtrl.newMessage = newMessageCtrl.editMessageTemplate;
 				setMapCenter();
-   				$timeout(function() {
-        			angular.forEach(newMessageCtrl.demoImages, function(img) {
-				      
-				      newMessageCtrl.newMessage.assets.push(img.image);
-				      $scope.uploader.flow.files.push(img.image);
-				    });
-					console.log(newMessageCtrl.newMessage.assets)
-					console.log($scope.uploader.flow.files)
-    			}, 500);
-
 			} else {
 				setMapCenter();
 			}
@@ -172,25 +148,27 @@
 				);
 			}
 
+			
+
 
 			newMessageCtrl.messageTags = [
-				{ name: "#SanFrancisco", ticked: false },
-				{ name: "#Barcelona", ticked: false },
 				{ name: "#WebSummit", ticked: true },
 				{ name: "#Dublin", ticked: true},
 				{ name: "#FadeStreet", ticked: false},
 				{ name: "#TheMarketBar", ticked: false}
 			];
 
+			newMessageCtrl.newMessage.assets = [];
+
+
+			$scope.uploader = {};
+
 		  	$scope.processFiles = function(files){
-		  		newMessageCtrl.areFilesUploaded = true;
 		    	angular.forEach(files, function(flowFile, i){
 		       	var fileReader = new FileReader();
 		          	fileReader.onload = function (event) {
 		            	var uri = event.target.result;
 		              	newMessageCtrl.newMessage.assets.push(uri);
-		              	console.log(newMessageCtrl.newMessage.assets)
-
 		          	};
 		          	fileReader.readAsDataURL(flowFile.file);
 		    	});

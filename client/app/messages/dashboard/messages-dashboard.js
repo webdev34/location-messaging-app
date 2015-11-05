@@ -36,9 +36,16 @@
 			campaignCenterCtrl.statuses = ["Live", "Draft", "Ended"];
 			campaignCenterCtrl.tagFilters = [];
 			campaignCenterCtrl.campaignTags = [
-				{ name: "#SanFrancisco", ticked: false },
-				{ name: "#Barcelona", ticked: false},
-				{ name: "#Dublin", ticked: false}
+				{ name: "Tag 1", ticked: false },
+				{ name: "Tag 2", ticked: false},
+				{ name: "Tag 3", ticked: false},
+				{ name: "Tag 4", ticked: false},
+				{ name: "Tag 5", ticked: false},
+				{ name: "Tag 6", ticked: false},
+				{ name: "Tag 7", ticked: false},
+				{ name: "Tag 8", ticked: false},
+				{ name: "Tag 9", ticked: false},
+				{ name: "Tag 10", ticked: false}
 			];
 			
 			$http.get('assets/data/campaigns.json').success(function(data) {
