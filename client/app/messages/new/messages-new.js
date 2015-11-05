@@ -122,7 +122,10 @@
 				
 				//console.log("logging new message: " + JSON.stringify(newMessageCtrl.newMessage));
 
-				FoundationApi.publish('main-notifications', {
+				MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
+					function success(response){
+						
+						FoundationApi.publish('main-notifications', {
 							title: 'Message Sent',
 							content: '',
 							color: 'success',
@@ -130,10 +133,25 @@
 						});
 
 						$state.go('messages.dashboard');
+
+					},
+					function error(response) {
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Was Not Sent',
+							content: response.code,
+							color: 'fail',
+							autoclose: '3000'
+						});
+					}
+				);
 			}
 
 			newMessageCtrl.updateMessage = function() {
-				FoundationApi.publish('main-notifications', {
+				console.log('updating');
+				MessageDetailModel.updateMessage(newMessageCtrl.newMessage).then(
+					function success(response){
+						
+						FoundationApi.publish('main-notifications', {
 							title: 'Message Saved',
 							content: '',
 							color: 'success',
@@ -141,6 +159,17 @@
 						});
 
 						$state.go('messages.dashboard');
+
+					},
+					function error(response) {
+						FoundationApi.publish('main-notifications', {
+							title: 'Message Was Not Sent',
+							content: response.code,
+							color: 'fail',
+							autoclose: '3000'
+						});
+					}
+				);
 			}
 
 
