@@ -161,7 +161,7 @@
 						<ul >
 							<li ng-repeat="image in uploader.flow.files track by $index" ng-class="{'odd': ($index+1) % 2}">
 								<i class="fa fa-times-circle" ng-click="removeFile($index);"></i>
-						      	<img class="preview hide" flow-img="image"/>
+						      	<img class="preview hide" flow-img="image"/><br>
 						        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
 						    </li>
 						</ul>
