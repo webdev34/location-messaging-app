@@ -21,10 +21,10 @@
 				return LocationsService.list()
 					.then(
 						function success(response) {
-							console.log(JSON.stringify(response));
+							return response;
 						},
 						function error(response) {
-							console.log('error');
+							return response;
 						});
 			}
 

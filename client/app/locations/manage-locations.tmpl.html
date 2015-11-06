@@ -126,15 +126,17 @@
 			  			<p class="qvr-align-center">No Results</p></td>
 			  		<td><span style="color: white">*</span></td>
 			  	</tr>
-			    <tr  data-ng-repeat="location in manageLocationsCtrl.campaignLocations | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" >
+			    <!-- <tr  data-ng-repeat="location in manageLocationsCtrl.campaignLocations | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" > -->
+			    <tr  data-ng-repeat="location in manageLocationsCtrl.campaignLocations">
 			      <td><input type="checkbox" ng-model="location.isSelected" ng-change="anyInputsSelected();" /></td>
-			      <td>{{location.locationLabel}}</td>
+			      <td>{{location.name}}</td>
 			      <td>{{location.locationName}}</td>
 			      <td><a>Edit</a></td>
 			      <td><a ng-click="deleteLocation(location.id);">Delete</a></td>
 			    </tr>
 			  </tbody>
 			</table>
+			<h2 style="text-align: center;" ng-show="manageLocationsCtrl.noSavedLocations">No Saved Locations</h2>
 			<div class="pagination-wrapper input-wrapper bottom">
 				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-double-left"></i>
