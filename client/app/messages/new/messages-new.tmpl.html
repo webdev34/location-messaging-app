@@ -296,11 +296,9 @@
 						<div class="radius">
 							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span class="km"> km</span> radius
 						</div>
-						<div class="radius-wrapper">
-							<span class="radius-minus" radius-interval-button="minus" range-value="newMessageCtrl.newMessage.range" ng-click="map_range_change('minusRange')" >-</span>
-							<input type="range" class="radius-range" id="radius-range-input" ng-model="newMessageCtrl.newMessage.range" step ="0.50" ng-change="">
-							<span class="radius-plus" radius-interval-button="add" range-value="newMessageCtrl.newMessage.range" ng-click="map_range_change('addRange')" >+</span>
-						</div>
+
+						<radius-dial range-value="newMessageCtrl.newMessage.range" >
+						<radius-dial>
 
 						<div class="switch-wrapper">
 							<span class="icon i-location-enter" ng-class="{active: newMessageCtrl.newMessage.discoverOn==1}"></span>

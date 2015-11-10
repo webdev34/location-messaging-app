@@ -181,19 +181,19 @@
 		        $scope.uploader.flow.files.splice(index, 1);
 		  	};
 
-			$scope.map_range_change = function(operator) {
-				var currentRange = parseFloat($scope.newMessageCtrl.newMessage.range);
-				if(operator == 'addRange'){
-					if(currentRange != 100){
-					  	$scope.newMessageCtrl.newMessage.range = currentRange + 0.50;
-					}
-				}
-				else{
-					if(currentRange != 0){
-						$scope.newMessageCtrl.newMessage.range = currentRange - 0.50;
-					}
-				}
-			};
+			// $scope.map_range_change = function(operator) {
+			// 	var currentRange = parseFloat($scope.newMessageCtrl.newMessage.range);
+			// 	if(operator == 'addRange'){
+			// 		if(currentRange != 100){
+			// 		  	$scope.newMessageCtrl.newMessage.range = currentRange + 0.50;
+			// 		}
+			// 	}
+			// 	else{
+			// 		if(currentRange != 0){
+			// 			$scope.newMessageCtrl.newMessage.range = currentRange - 0.50;
+			// 		}
+			// 	}
+			// };
 			
 			function clearTakeOverSelectors(){
 				newMessageCtrl.showStartDatePicker = false;
