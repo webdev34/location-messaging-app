@@ -52,14 +52,6 @@
 			var vm = this;
 			vm.noSavedLocations = false;
 
-			var newLocationTemplate = {
-				"name": "",
-				"range": 5,
-				"discoverOn": 1,
-				"address": "",
-				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
-			}
-
 
 
 
@@ -69,8 +61,8 @@
 
 			vm.resetLocationForm = function() {
 				var blankSearch = "";
-				vm.newLocation = angular.copy(newLocationTemplate);
 				vm.search = angular.copy(blankSearch);
+				vm.newLocation = angular.copy(LocationsModel.newLocationTemplate);
 				setMapCenter();
 			}
 
@@ -172,9 +164,19 @@
 			];
 			vm.newLocationFilters = angular.copy(vm.locationFilters);
 			
-			vm.editLocation = function(locSID) {
-				console.log('editing: '+ locSID);
+			vm.editLocation = function(locationSID) {
+				console.log('editing: '+ locationSID);
+
+				LocationsModel.getLocation(locationSID)
+					.then( 
+						function success(response) {
+							console.log(JSON.stringify(response));
+						},
+						function error(response) {
+
+						});
 			}
+
 			vm.deleteLocation = function(locSID) {
 				console.log('deleting: '+ locSID);
 			}

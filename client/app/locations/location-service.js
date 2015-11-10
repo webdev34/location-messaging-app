@@ -12,8 +12,8 @@
 			API_URL
 		) {
 			return {
-				get : function(locationId){
-					return $http.get(API_URL + '/location/' + locationId);
+				get : function(locationSID){
+					return $http.get(API_URL + '/location/' + locationSID);
 				},
 				post : function(locationObj) {
 									
@@ -22,8 +22,8 @@
 				list : function(){
 					return $http.get(API_URL + '/location/');
 				},
-				remove : function(messageId){
-					return $http["delete"](API_URL + '/location/' + locationId);
+				remove : function(locationSID){
+					return $http["delete"](API_URL + '/location/' + locationSID);
 				}
 			};
 		}
