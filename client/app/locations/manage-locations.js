@@ -177,8 +177,35 @@
 						});
 			}
 
-			vm.deleteLocation = function(locSID) {
-				console.log('deleting: '+ locSID);
+			vm.updateLocation = function() {
+					LocationsModel.updateLocation(vm.newLocation)
+					.then(
+						function success(response) {
+							FoundationApi.publish('main-notifications', {
+								title: 'Location Updated',
+								content: '',
+								color: 'success',
+								autoclose: '3000'
+							});							
+							init();
+						},
+						function error(response) {
+							console.log("error from ctrl");
+
+						});
+
+			}
+
+			vm.deleteLocation = function(locationSID) {
+				console.log('deleting: '+ locationSID);
+				LocationsModel.deleteLocation(locationSID)
+					.then( 
+						function success(response) {
+							console.log(JSON.stringify(response));
+						},
+						function error(response) {
+
+						});
 			}
 
 

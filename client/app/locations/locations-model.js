@@ -85,6 +85,19 @@
 
 			}
 
+			model.deleteLocation = function(locationSID) {
+				return LocationsService.remove(locationSID)
+					.then(
+						function success(response){
+							console.log('success from model')
+							return response;
+						},
+						function error(response) {
+							console.log('error from model')
+							return response;
+						});
+			}
+
 		
 		}
 	])
