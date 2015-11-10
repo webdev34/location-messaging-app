@@ -3,12 +3,12 @@
 </header>
 <section class="message-content-wrap manage-locations">
 	<!-- Create Location -->
-	<section class="new-location-wrapper qvr-form" >
+	<form class="new-location-wrapper qvr-form" ng-submit="manageLocationsCtrl.createNewLocation()">
 		<h2>Create Location</h2>
 		
 		<div class="delivery-box">
-			<label class="qvr-label">Name Location</label>
-			<input type="text" ng-model="manageLocationsCtrl.newLocation.locationName" placeholder="Enter Label Name" >
+			<label class="qvr-label" >Name Location</label>
+			<input type="text" ng-model="manageLocationsCtrl.newLocation.name" placeholder="Enter Label Name" required>
 		</div>
 
 		<section class="location-section">
@@ -28,6 +28,31 @@
 				mapsearch="manageLocationsCtrl.search"
 			></map-view>
 
+
+			<div class="radius">
+				<span><input ng-model="manageLocationsCtrl.newLocation.range" ng-change="checkRange()"></span><span class="km"> km</span> radius
+			</div>
+			<div class="radius-wrapper">
+				<span class="radius-minus" radius-interval-button="minus" range-value="manageLocationsCtrl.newLocation.range" ng-click="map_range_change('minusRange')" >-</span>
+				<input type="range" class="radius-range" id="radius-range-input" ng-model="manageLocationsCtrl.newLocation.range" step ="0.50" ng-change="">
+				<span class="radius-plus" radius-interval-button="add" range-value="manageLocationsCtrl.newLocation.range" ng-click="map_range_change('addRange')" >+</span>
+			</div>
+
+			<div class="switch-wrapper">
+				<span class="icon i-location-enter" ng-class="{active: manageLocationsCtrl.newLocation.discoverOn==1}"></span>
+				<div class="switch enter-exit-switch">
+					<input type="checkbox" id="enter-exit-switch" ng-true-value="2" ng-false-value="1" ng-model="manageLocationsCtrl.newLocation.discoverOn">
+					<label for="enter-exit-switch"></label>
+				</div>
+				<span class="icon i-location-leave" ng-class="{active: manageLocationsCtrl.newLocation.discoverOn==2}" ></span>
+
+				<p>
+				Recipient discovers message
+				<br>
+				when <span ng-show="manageLocationsCtrl.newLocation.discoverOn=='1'" class="qvr-blue">entering</span><span ng-show="manageLocationsCtrl.newLocation.discoverOn=='2'" class="qvr-blue">leaving</span> the <span class="qvr-blue">{{manageLocationsCtrl.newLocation.range}} KM</span> radius
+			</p>
+			</div>
+
 			<div class="clearfix"></div>
 			<div id="new-location-tag-filters" class="input-wrapper">
 				<isteven-multi-select class="add-tag-filters float-left"   
@@ -41,11 +66,11 @@
 				</isteven-multi-select>
 				<div class="button-wrapper">
 					<button type="submit" class="qvr-button action">Save</button>
-					<button class="qvr-button cancel">Cancel</button>
+					<button class="qvr-button cancel" ng-click="manageLocationsCtrl.resetLocationForm()">Cancel</button>
 				</div>
 			</div>	
 		</section>
-	</section>
+	</form>
 
 
 	<!-- Locations -->
@@ -130,9 +155,13 @@
 			    <tr  data-ng-repeat="location in manageLocationsCtrl.campaignLocations">
 			      <td><input type="checkbox" ng-model="location.isSelected" ng-change="anyInputsSelected();" /></td>
 			      <td>{{location.name}}</td>
-			      <td>{{location.locationName}}</td>
-			      <td><a>Edit</a></td>
-			      <td><a ng-click="deleteLocation(location.id);">Delete</a></td>
+			      <td>{{location.address || "No Saved Address"}}</td>
+			      <td>
+			      	<a ng-click="manageLocationsCtrl.editLocation(location.sid)">Edit</a>
+			      </td>
+			      <td>
+			      	<a ng-click="manageLocationsCtrl.deleteLocation(location.sid);">Delete</a>
+			      </td>
 			    </tr>
 			  </tbody>
 			</table>

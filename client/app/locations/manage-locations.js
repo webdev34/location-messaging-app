@@ -51,8 +51,55 @@
 		) {
 			var vm = this;
 			vm.noSavedLocations = false;
+
+			var newLocationTemplate = {
+				"name": "",
+				"range": 5,
+				"discoverOn": 1,
+				"address": "",
+				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
+			}
+
+
+
+
+			function setMapCenter() {
+				vm.initialMapCenter = vm.newLocation.coordinates.lat + ","+ vm.newLocation.coordinates.lng;
+			}
+
+			vm.resetLocationForm = function() {
+				var blankSearch = "";
+				vm.newLocation = angular.copy(newLocationTemplate);
+				vm.search = angular.copy(blankSearch);
+				setMapCenter();
+			}
+
+			vm.createNewLocation = function() {
+				if(vm.search) {
+					vm.newLocation.address = vm.search;
+				}
+
+				LocationsModel.createNewLocation(vm.newLocation)
+					.then(
+						function success(response) {
+							FoundationApi.publish('main-notifications', {
+								title: 'Location Saved',
+								content: '',
+								color: 'success',
+								autoclose: '3000'
+							});							
+							init();
+						},
+						function error(response) {
+							console.log("error from ctrl");
+
+						});
+			}
+
 			
-			LocationsModel.getLocationList()
+			
+			function getLocationList() {
+				LocationsModel.getLocationList()
 				.then(
 					function success(response) {
 						//console.log(JSON.stringify(response));
@@ -102,7 +149,14 @@
 					function error(response) {
 						console.log('error');
 					});
+			}
 
+			function init() {
+				getLocationList();
+				vm.resetLocationForm();
+			}
+			init();
+		
 			vm.tagFilters = [];	
 			vm.locationFilters = [
 				{ name: "Tag 1", ticked: false },
@@ -118,7 +172,14 @@
 			];
 			vm.newLocationFilters = angular.copy(vm.locationFilters);
 			
-			
+			vm.editLocation = function(locSID) {
+				console.log('editing: '+ locSID);
+			}
+			vm.deleteLocation = function(locSID) {
+				console.log('deleting: '+ locSID);
+			}
+
+
 
 			// $http.get('assets/data/campaign-locations.json').success(function(data) {
 			// 	vm.campaignLocations = data.campaignLocations;	
@@ -231,15 +292,10 @@
 			// 	};
 
 			// });
+
 			
 
-			vm.newLocation = {
-				"locationName": "",
-				"range": 5,
-				"coordinates":{"H":43.657504642319005,"L":-79.3760706718750},
-			};
-
-			vm.initialMapCenter = vm.newLocation.coordinates.H + ","+ vm.newLocation.coordinates.L;
+	
 
 
 
@@ -256,7 +312,6 @@
 			
 			
 			$scope.$watch("currentPage", paginationValidation);
-			
 		}
 	]);
 
