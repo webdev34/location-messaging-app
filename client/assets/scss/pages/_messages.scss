@@ -162,23 +162,6 @@
 			}
 		}
 
-		.switch-wrapper{
-			text-align: center;
-			margin: 15px auto;
-			float: left;
-			width: 100%;
-			&.delivery-info{
-				@include border-radius($qvr-border-radius);
-				background-color: $qvr-grey-5;
-				padding: 15px;
-				margin-top: 0px;
-			}
-			
-			p{
-				margin-top: 15px;
-			}
-		}
-
 		.location-details {
 			padding: 2rem 3rem;
 
