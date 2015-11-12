@@ -64,7 +64,8 @@
 						"text": newMessage.content,
 						"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
 						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()//,
-						//sent: true
+						//sent: true,
+						//'media': [23423awerwe5q435345]
 					},
 					"location": [
 						{
