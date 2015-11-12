@@ -2,18 +2,21 @@
 	'use strict';
 
 	angular.module('enterprise-portal.models.messages', [
-		'enterprise-portal.services.messages'
+		'enterprise-portal.services.messages',
+		'enterprise-portal.models.media'
 	])
 	
 	.service('MessageDetailModel', [
 		'$http',
 		'$q',
 		'MessagesService',
+		'MediaModel',
 		
 		function(
 			$http,
 			$q,
-			MessagesService
+			MessagesService,
+			MediaModel
 		) {
 			var model = this;
 			
