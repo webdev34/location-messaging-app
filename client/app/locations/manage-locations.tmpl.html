@@ -3,8 +3,10 @@
 </header>
 <section class="message-content-wrap manage-locations">
 	<!-- Create Location -->
-	<form class="new-location-wrapper qvr-form" ng-submit="manageLocationsCtrl.createNewLocation()">
-		<h2>Create Location</h2>
+	<form class="new-location-wrapper qvr-form" novalidate>
+		
+		<h2 ng-if="!manageLocationsCtrl.isEdit">Create Location</h2>
+		<h2 ng-if="manageLocationsCtrl.isEdit">Edit Location</h2>
 		
 		<div class="delivery-box">
 			<label class="qvr-label" >Name Location</label>
@@ -51,7 +53,7 @@
 					>
 				</isteven-multi-select>
 				<div class="button-wrapper">
-					<button type="submit" class="qvr-button action">Save</button>
+					<button type="submit" class="qvr-button action" ng-click="manageLocationsCtrl.createNewLocation()">Save</button>
 					<button class="qvr-button cancel" ng-click="manageLocationsCtrl.resetLocationForm()">Cancel</button>
 				</div>
 			</div>	
@@ -65,7 +67,7 @@
 			<h1 class="float-left">Locations</h1>
 			<div class="search-wrapper">
 				<label for="filter-by"><i class="fa fa-search"></i></label>
-				<input type="search" class="search-locations" ng-model="search"  placeholder="Search Locations"  ng-keypress="resetCurrentPage()">
+				<input type="search" class="search-locations" ng-model="manageLocationsCtrl.searchSavedData"  placeholder="Search Locations"  ng-keypress="resetCurrentPage()">
 			</div>
 		</div>
 
@@ -73,12 +75,12 @@
 		<div class="manage-locations-filter-wrapper qvr-form">
 			<div id="bulk-action" class="input-wrapper">
 				
-				<select id="bulk-actions" class="qvr-select" ng-model="manageLocationsCtrl.bulkActions" required >
+				<select id="bulk-actions" class="qvr-select" ng-model="manageLocationsCtrl.bulkActionSelected" required >
 					<option value="" selected>Bulk Actions</option>
 					<option value="Delete">Delete</option>
 					
 				</select>
-				<button class="qvr-button action" id="bulk-action-button" ng-disabled="!manageLocationsCtrl.bulkActions || !isAnyInputsSelected" ng-click="bulkActions()">
+				<button class="qvr-button action" id="bulk-action-button" ng-disabled="!manageLocationsCtrl.bulkActionSelected || !manageLocationsCtrl.isAnyInputsSelected" ng-click="manageLocationsCtrl.bulkActions()">
 					<i class="check-mark"></i>
 				</button>
 			</div>
@@ -110,20 +112,20 @@
 			  <thead>
 			    <tr>
 			      <th>
-			      	<input type="checkbox" id="select-all" ng-model="selectAll" ng-change="toggleSelected(); anyInputsSelected();" />
+			      	<input type="checkbox" id="select-all" ng-model="manageLocationsCtrl.selectAll" ng-change="manageLocationsCtrl.toggleSelected(); manageLocationsCtrl.anyInputsSelected();" />
 			      </th>
 			      <th>
 			      	<label>Label</label>
 			      	<span>
-			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'locationLabel' && reverse == false}" ng-click="sortByFunc('locationLabel',false);"></i>
-			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'locationLabel' && reverse == true}" ng-click="sortByFunc('locationLabel',true);"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: manageLocationsCtrl.sortOrderBy == 'name' && manageLocationsCtrl.reverse == false}" ng-click="manageLocationsCtrl.sortByFunc('name',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: manageLocationsCtrl.sortOrderBy == 'name' && manageLocationsCtrl.reverse == true}" ng-click="manageLocationsCtrl.sortByFunc('name',true);"></i>
 			      	</span>
 			      </th>
 			      <th>
 			      	<label>Location</label>
 			      	<span>
-			      		<i class="fa fa-caret-up" ng-class="{active: sortOrderBy == 'locationName' && reverse == false}" ng-click="sortByFunc('locationName',false);"></i>
-			      		<i class="fa fa-caret-down" ng-class="{active: sortOrderBy == 'locationName' && reverse == true}" ng-click="sortByFunc('locationName',true);"></i>
+			      		<i class="fa fa-caret-up" ng-class="{active: manageLocationsCtrl.sortOrderBy == 'address' && manageLocationsCtrl.reverse == false}" ng-click="manageLocationsCtrl.sortByFunc('address',false);"></i>
+			      		<i class="fa fa-caret-down" ng-class="{active: manageLocationsCtrl.sortOrderBy == 'address' && manageLocationsCtrl.reverse == true}" ng-click="manageLocationsCtrl.sortByFunc('address',true);"></i>
 			      	</span>
 			      </th>
 			      <th></th>
@@ -137,9 +139,8 @@
 			  			<p class="qvr-align-center">No Results</p></td>
 			  		<td><span style="color: white">*</span></td>
 			  	</tr>
-			    <!-- <tr  data-ng-repeat="location in manageLocationsCtrl.campaignLocations | startFrom:startAt | orderBy:sortOrderBy:reverse | filter:search  as results" ng-show="$index >= startAt && $index <= endAt" ng-class="{last: endAt == $index}" > -->
-			    <tr  data-ng-repeat="location in manageLocationsCtrl.campaignLocations">
-			      <td><input type="checkbox" ng-model="location.isSelected" ng-change="anyInputsSelected();" /></td>
+			    <tr  data-ng-repeat="location in manageLocationsCtrl.campaignLocations | startFrom:manageLocationsCtrl.startAt | orderBy:manageLocationsCtrl.sortOrderBy:manageLocationsCtrl.reverse | filter:manageLocationsCtrl.searchSavedData as results" ng-show="$index >= manageLocationsCtrl.startAt && $index <= manageLocationsCtrl.endAt" ng-class="{last: manageLocationsCtrl.endAt == $index}" >
+			      <td><input type="checkbox" ng-model="location.isSelected" ng-change="manageLocationsCtrl.anyInputsSelected();" /></td>
 			      <td>{{location.name}}</td>
 			      <td>{{location.address || "No Saved Address"}}</td>
 			      <td>
@@ -153,10 +154,10 @@
 			</table>
 			<h2 style="text-align: center;" ng-show="manageLocationsCtrl.noSavedLocations">No Saved Locations</h2>
 			<div class="pagination-wrapper input-wrapper bottom">
-				<button class="qvr-button" ng-click="goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
+				<button class="qvr-button" ng-click="manageLocationsCtrl.goToPage('beginning');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-double-left"></i>
 				</button>
-				<button class="qvr-button" ng-click="goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
+				<button class="qvr-button" ng-click="manageLocationsCtrl.goToPage('down');" ng-disabled="currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-left"></i>
 				</button>
 				<span class="pagination-info">
@@ -167,10 +168,10 @@
 						<span ng-show="results.length == 0">1</span>
 					</span>
 			    </span>
-				<button class="qvr-button" ng-click="goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
+				<button class="qvr-button" ng-click="manageLocationsCtrl.goToPage('up');" ng-disabled="currentPage == noOfPages || results.length == 0">
 					<i class="fa fa-angle-right right"></i>
 				</button>
-				<button class="qvr-button" ng-click="goToPage('end');" ng-disabled="currentPage == noOfPages|| results.length == 0">
+				<button class="qvr-button" ng-click="manageLocationsCtrl.goToPage('end');" ng-disabled="currentPage == noOfPages || results.length == 0">
 					<i class="fa fa-angle-double-right right"></i>
 				</button>
 			</div>	

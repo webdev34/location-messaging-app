@@ -51,9 +51,7 @@
 		) {
 			var vm = this;
 			vm.noSavedLocations = false;
-
-
-
+			vm.isEdit = false;
 
 			function setMapCenter() {
 				vm.initialMapCenter = vm.newLocation.coordinates.lat + ","+ vm.newLocation.coordinates.lng;
@@ -63,12 +61,18 @@
 				var blankSearch = "";
 				vm.search = angular.copy(blankSearch);
 				vm.newLocation = angular.copy(LocationsModel.newLocationTemplate);
+				vm.isEdit = false;
 				setMapCenter();
 			}
 
 			vm.createNewLocation = function() {
 				if(vm.search) {
 					vm.newLocation.address = vm.search;
+				}
+
+				if(vm.isEdit){
+					vm.updateLocation();
+					return
 				}
 
 				LocationsModel.createNewLocation(vm.newLocation)
@@ -163,14 +167,27 @@
 				{ name: "Tag 10",ticked: false}
 			];
 			vm.newLocationFilters = angular.copy(vm.locationFilters);
+
+			vm.totalItems = vm.newLocationFilters.length;
+			$scope.currentPage = 1;
+			vm.entryLimit = 10; // items per page
+			$scope.noOfPages = Math.ceil(vm.totalItems / vm.entryLimit);
+			vm.reverse = false;
+			vm.sortOrderBy = 'name'; //initial field orderedBy
+			vm.startAt = 0;
+			vm.endAt = 9;
+			vm.selectAll = false;
+			vm.isAnyInputsSelected = false;
 			
 			vm.editLocation = function(locationSID) {
 				console.log('editing: '+ locationSID);
+				vm.isEdit = true;
 
 				LocationsModel.getLocation(locationSID)
 					.then( 
 						function success(response) {
 							console.log(JSON.stringify(response));
+							vm.newLocation = response;
 						},
 						function error(response) {
 
@@ -178,6 +195,7 @@
 			}
 
 			vm.updateLocation = function() {
+
 					LocationsModel.updateLocation(vm.newLocation)
 					.then(
 						function success(response) {
@@ -208,129 +226,67 @@
 						});
 			}
 
+			vm.goToPage = function(direction) {
 
+				if(direction == 'up')
+				{
+					$scope.currentPage++;
+				}else if(direction == 'down'){
+					$scope.currentPage--;
+				}
+				else if(direction == 'beginning'){
+					$scope.currentPage = 1;
+				}
+				else if(direction == 'end'){
+					$scope.currentPage = $scope.noOfPages;
+				}
 
-			// $http.get('assets/data/campaign-locations.json').success(function(data) {
-			// 	vm.campaignLocations = data.campaignLocations;	
-			// 	$scope.totalItems = data.campaignLocations.length;
-			// 	$scope.currentPage = 1;
-			// 	$scope.entryLimit = 10; // items per page
-			// 	$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
-			// 	$scope.reverse = false;
-			// 	$scope.sortOrderBy = 'locationLabel';
-			// 	$scope.startAt = 0;
-			// 	$scope.endAt = 9;
-			// 	$scope.selectAll = false;
-			// 	$scope.isAnyInputsSelected = false;
+				vm.startAt = ($scope.currentPage - 1) * vm.entryLimit;
+				vm.endAt = vm.entryLimit * $scope.currentPage;
+			};
 
-			// 	$scope.goToPage = function(direction) {
+			vm.sortByFunc = function(sortBy, reverse) {
+				vm.sortOrderBy = sortBy;
+				vm.reverse = reverse;
+				$scope.currentPage = 1;
+				vm.goToPage(1);
+			};
 
-			// 		if(direction == 'up')
-			// 		{
-			// 			$scope.currentPage++;
-			// 		}else if(direction == 'down'){
-			// 			$scope.currentPage--;
-			// 		}
-			// 		else if(direction == 'beginning'){
-			// 			$scope.currentPage = 1;
-			// 		}
-			// 		else if(direction == 'end'){
-			// 			$scope.currentPage = $scope.noOfPages;
-			// 		}
+			vm.resetCurrentPage = function() {
+				$scope.currentPage = 1;
+			};
 
-			// 		$scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
-			// 		$scope.endAt = $scope.entryLimit * $scope.currentPage;
-			// 	};
+			vm.toggleSelected = function() {
+				angular.forEach(vm.campaignLocations, function(location) {
+			      location.isSelected = vm.selectAll;
+			    });
+			};
 
-			// 	$scope.sortByFunc = function(sortBy, reverse) {
-			// 		$scope.sortOrderBy = sortBy;
-			// 		$scope.reverse = reverse;
-			// 		$scope.currentPage = 1;
-			// 		$scope.goToPage(1);
-			// 	};
+			vm.bulkActions = function() {
+				var action = vm.bulkActionSelected;
+				angular.forEach(vm.campaignLocations, function(location, i) {
+					if(location.isSelected){
+						vm.campaignLocations.splice(i, 1);  
+					}
+			    });
+			    vm.selectAll = false;
+			};
 
-			// 	$scope.resetCurrentPage = function() {
-			// 		$scope.currentPage = 1;
-			// 	};
-
-			// 	$scope.toggleSelected = function() {
-			// 		angular.forEach(vm.campaignLocations, function(location) {
-			// 	      location.isSelected = $scope.selectAll;
-			// 	    });
-			// 	};
-
-			// 	$scope.bulkActions = function() {
-			// 		var actionDropDown = document.getElementById("bulk-actions");
-			// 		var action = actionDropDown.options[actionDropDown.selectedIndex].value;
-			// 		angular.forEach(vm.campaignLocations, function(location, i) {
-			// 			if(location.isSelected && action != 'Delete'){
-			// 				location.status = action;
-			// 				location.isSelected = false;
-			// 			}
-			// 			else if(location.isSelected && action == 'Delete' && $scope.selectAll == false){
-			// 				vm.campaignLocations.splice(i, 1);  
-			// 			}
-			// 			else if(action == 'Delete' && $scope.selectAll == true){
-			// 				vm.campaignLocations = []; 
-			// 			}
-			// 	    });
-			// 	    $scope.selectAll = false;
-			// 	};
-
-				
-			// 	$scope.deleteLocation = function(id) {
-			// 		console.log(id);
-			// 		angular.forEach(vm.campaignLocations, function(location, i) {
-			// 			if(location.id == id){
-			// 				vm.campaignLocations.splice(i, 1); 
-			// 			}
-			// 	    });
-			// 	};
-
-			// 	// $scope.cloneMessages = function() {
-			// 	// 	manageCampaignCtrl.clonedMessage = [] ;
-			// 	// 	var cleanCopyOfMessages = angular.copy(manageCampaignCtrl.campaignMessages);
-			// 	// 	angular.forEach(cleanCopyOfMessages, function(campaign, i) {
-			// 	// 		if(campaign.isSelected){
-			// 	// 			//campaign.isSelected = false;
-			// 	// 			manageCampaignCtrl.clonedMessage.push(campaign);
-			// 	// 		}
-			// 	//     });
-			// 	//     // $scope.selectAll = false;
-			// 	// };
-
-			// 	// $scope.deleteClonedMessage = function(id) {
-			// 	// 	angular.forEach(manageCampaignCtrl.clonedMessage, function(campaign, i) {
-			// 	// 		if(campaign.id == id){
-			// 	// 			manageCampaignCtrl.clonedMessage.splice(i, 1);  
-			// 	// 		}
-			// 	//     });
-			// 	// };
-
-			// 	$scope.anyInputsSelected = function() {
-			// 		$scope.isAnyInputsSelected = false;
-			// 		$scope.selectAll = true;
-			// 		angular.forEach(vm.campaignLocations, function(location, i) {
-			// 			if(location.isSelected){
-			// 				$scope.isAnyInputsSelected  = true;
-			// 			}
-			// 			else{
-			// 				$scope.selectAll = false;
-			// 			}
-			// 	    });
-			// 	};
-
-			// });
-
+			vm.anyInputsSelected = function() {
+				vm.isAnyInputsSelected = false;
+				vm.selectAll = true;
+				angular.forEach(vm.campaignLocations, function(location, i) {
+					if(location.isSelected){
+						vm.isAnyInputsSelected  = true;
+					}
+					else{
+						vm.selectAll = false;
+					}
+			    });
+			};
 			
-
-	
-
-
-
-
-
 			function paginationValidation(){
+
 				if($scope.currentPage > $scope.noOfPages ){
 					$scope.currentPage = $scope.noOfPages
 				}
