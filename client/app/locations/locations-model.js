@@ -49,8 +49,6 @@
 								"address": locObj.address,
 								"coordinates": {"lat":locObj.latutude,"lng":locObj.longitude}
 							}
-
-							
 							return formattedLocation;
 						},
 						function error(response) {
@@ -96,6 +94,10 @@
 							console.log('error from model')
 							return response;
 						});
+			}
+
+			model.updateLocation = function(updatedLocation) {
+				
 			}
 
 		

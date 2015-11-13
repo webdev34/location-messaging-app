@@ -188,6 +188,8 @@
 						function success(response) {
 							console.log(JSON.stringify(response));
 							vm.newLocation = response;
+							vm.search = angular.copy(response.address);
+
 						},
 						function error(response) {
 
