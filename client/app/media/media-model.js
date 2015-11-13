@@ -17,8 +17,22 @@
 		) {
 			var model = this;
 			
-			console.log('MediaModel Loaded');
+			
+			model.getMediaReservation = function(numberOfFiles) {
+				return MediaService.getMediaReservation(numberOfFiles)
+					.then(
+						function success(response) {
+							console.log(JSON.stringify(response));
+						},
+						function error(response) {
 
+						});
+			}
+			model.postMedia = function() {
+				
+			}
+
+			model.getMediaReservation(1);
 		
 		}
 	]);

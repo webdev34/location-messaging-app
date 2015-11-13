@@ -11,29 +11,28 @@
 			$http,
 			API_URL
 		) {
-			console.log('MediaService Loaded');
 			return {
 
-				// get : function(messageId){
-				// 	return $http.get(API_URL + '/message/' + messageId);
-				// },
-				// post : function(messageObj) {
-									
-				// 	return $http.post(API_URL + '/message', messageObj);
-				// },
-				// list : function(timestamp, limit){
-				// 	//console.log('service testing');
-				// 	if (!timestamp){
-				// 		// beginning of the month
-				// 		var date = new Date();
-				// 		timestamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
-				// 	}
-					
-				// 	return $http.get(API_URL + '/message/' + timestamp + '/limit/' + (limit || 0));
-				// },
-				// remove : function(messageId){
-				// 	return $http["delete"](API_URL + '/message/' + messageId);
-				// }
+				getMediaReservation : function(numberOfFiles) {
+					return $http.get(API_URL + '/media/' + numberOfFiles)
+				},
+
+				postMedia : function() {
+					return $http.post(API_URL + '/media/' + numberOfFiles)
+
+					/*
+					{
+						"userFile": {
+							"sid": "5645552cfa432a2e3776f6c1",
+							"context": "message",
+							"name": "New File for message",
+							"uploadUri": "http://localhost:8000/1.1/media",
+							"content": ""
+						}
+					} 
+					/*/
+				}
+
 			};
 		}
 	]);
