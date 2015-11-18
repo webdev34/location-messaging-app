@@ -10,6 +10,7 @@
 		'$stateParams',
 		'FoundationApi',
 		'MessageDetailModel',
+		'MediaModel',
 		
 		function(
 			$rootScope,
@@ -17,7 +18,8 @@
 			$state,
 			$stateParams,
 			FoundationApi,
-			MessageDetailModel
+			MessageDetailModel,
+			MediaModel
 		) {
 			
 			var newMessageCtrl = this;
@@ -54,6 +56,7 @@
 				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
 			};
 
+			
 			newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 
 			if ($state.current.name == "messages.edit" ) {
@@ -89,6 +92,12 @@
 			
 			function resetForm() {
 				newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
+			}
+
+			newMessageCtrl.postMediaFile = function() {
+
+				//MediaModel.postMedia();
+
 			}
 
 			newMessageCtrl.createNewMessage = function() {
@@ -173,6 +182,7 @@
 		              	newMessageCtrl.newMessage.assets.push(uri);
 		          	};
 		          	fileReader.readAsDataURL(flowFile.file);
+		          	JSON.stringify("content:" + newMessageCtrl.newMessage.assets);
 		    	});
 		  	};
 
