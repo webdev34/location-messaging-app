@@ -53,7 +53,8 @@
 				// "startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 				// "endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
 				"locationName": "",
-				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
+				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750},
+				"assets": []
 			};
 
 			
@@ -157,9 +158,6 @@
 				);
 			}
 
-			
-
-
 			newMessageCtrl.messageTags = [
 				{ name: "Tag 1", ticked: false },
 				{ name: "Tag 2", ticked: false},
@@ -173,11 +171,9 @@
 				{ name: "Tag 10", ticked: false}
 			];
 
+			newMessageCtrl.uploader = {};
 
-
-			$scope.uploader = {};
-
-		  	$scope.processFiles = function(files){
+		  	newMessageCtrl.processFiles = function(files){
 		    	angular.forEach(files, function(flowFile, i){
 		       	var fileReader = new FileReader();
 		          	fileReader.onload = function (event) {
@@ -189,25 +185,11 @@
 		    	});
 		  	};
 
-		  	$scope.removeFile = function(index){
+		  	newMessageCtrl.removeFile = function(index){
 		        newMessageCtrl.newMessage.assets.splice(index, 1);  
-		        $scope.uploader.flow.files.splice(index, 1);
+		        newMessageCtrl.uploader.flow.files.splice(index, 1);
 		  	};
 
-			// $scope.map_range_change = function(operator) {
-			// 	var currentRange = parseFloat($scope.newMessageCtrl.newMessage.range);
-			// 	if(operator == 'addRange'){
-			// 		if(currentRange != 100){
-			// 		  	$scope.newMessageCtrl.newMessage.range = currentRange + 0.50;
-			// 		}
-			// 	}
-			// 	else{
-			// 		if(currentRange != 0){
-			// 			$scope.newMessageCtrl.newMessage.range = currentRange - 0.50;
-			// 		}
-			// 	}
-			// };
-			
 			function clearTakeOverSelectors(){
 				newMessageCtrl.showStartDatePicker = false;
 				newMessageCtrl.showEndDatePicker = false;
@@ -220,7 +202,7 @@
 			$scope.$watch("newMessageCtrl.newMessage.startTime", clearTakeOverSelectors);
 			$scope.$watch("newMessageCtrl.newMessage.endTime", clearTakeOverSelectors);
 			
-			$scope.checkRange = function(){
+			newMessageCtrl.checkRange = function(){
 				var range = parseInt(newMessageCtrl.newMessage.range);
 				range = range > 100 ? 100 : (range < 0 || !range ? 0 : range);
 				newMessageCtrl.newMessage.range = range;

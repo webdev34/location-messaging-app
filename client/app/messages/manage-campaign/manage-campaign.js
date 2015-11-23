@@ -45,29 +45,17 @@
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 				
 			manageCampaignCtrl.campaignParticipantsList = [
-				{ name: "Group 1", ticked: false },
-				{ name: "Group 2", ticked: false},
-				{ name: "Group 3", ticked: false},
-				{ name: "Group 4", ticked: false},
-				{ name: "Group 5", ticked: false},
-				{ name: "Group 6", ticked: false},
-				{ name: "Group 7", ticked: false},
-				{ name: "Group 8", ticked: false},
-				{ name: "Group 9", ticked: false},
-				{ name: "Group 10",ticked: false}
+				{ name: "#MarketingGroup", ticked: false },
+				{ name: "#BusinessDevelopment", ticked: false},
+				{ name: "#Evangelists", ticked: false},
+				{ name: "Bryan Bogensberger", ticked: false},
+				{ name: "Scott Trasler", ticked: false}
 			];
 
 			manageCampaignCtrl.campaignsTags = [
-				{ name: "Tag 1", ticked: false },
-				{ name: "Tag 2", ticked: false},
-				{ name: "Tag 3", ticked: false},
-				{ name: "Tag 4", ticked: false},
-				{ name: "Tag 5", ticked: false},
-				{ name: "Tag 6", ticked: false},
-				{ name: "Tag 7", ticked: false},
-				{ name: "Tag 8", ticked: false},
-				{ name: "Tag 9", ticked: false},
-				{ name: "Tag 10", ticked: false}
+				{ name: "#SanFrancisco", ticked: false },
+				{ name: "#Barcelona", ticked: false},
+				{ name: "#Dublin", ticked: true}
 			];
 
 			manageCampaignCtrl.campaignMessageTags = angular.copy(manageCampaignCtrl.campaignsTags);
@@ -86,31 +74,27 @@
 			];
 
 			manageCampaignCtrl.campaigns = [
-				{ name: "Campaign 1", ticked: false },
-				{ name: "Campaign 2", ticked: false},
-				{ name: "Campaign 3", ticked: false},
-				{ name: "Campaign 4", ticked: false},
-				{ name: "Campaign 5", ticked: false},
-				{ name: "Campaign 6", ticked: false},
-				{ name: "Campaign 7", ticked: false},
-				{ name: "Campaign 8", ticked: false},
-				{ name: "Campaign 9", ticked: false},
-				{ name: "Campaign 10", ticked: false}
+				{ name: "Quiver Team Building - SF", ticked: false },
+				{ name: "Web Summit - Dublin Fade St.", ticked: false},
+				{ name: "Web Summit - Dublin Harcourt St.", ticked: false},
+				{ name: "Web Summit - Dublin Dame Ln.", ticked: false},
+				{ name: "Web Summit - Dublin Camden St.", ticked: false},
+				{ name: "MWC - 2016 - Barcelona", ticked: false}
 			];
 			
 			manageCampaignCtrl.cloneToCampaigns = [];
 
 			manageCampaignCtrl.manageCampaign = {
-				"campaignID": "00131",
-				"campaignName": "Drive A Dream - Vancouver BC",
+				"campaignID": 48,
+				"campaignName": "Web Summit - Dublin Fade St.",
 				"campaignParticipants": [],
-				"campaignDescription": "Tesla's Drive A Dream in Vancouver BC will be target- ing the true auto enthusiast having a passion for performance and luxury. The campaign will be physi- cally centered around our two locations. The Quiver campaign will be run simultaneously with a local television campaign spanning the campaign period.",
+				"campaignDescription": "N/A",
 				"marketingAssets": [ ],
 				"campaignsTags": [],
-				"status": "Draft",
-				"startDate": todayProperFormatted,
+				"status": "Live",
+				"startDate": "11/2/2015",
 				"startTime": "12:01 AM",
-				"endDate": tomorrowProperFormatted,
+				"endDate": "11/3/2015",
 				"endTime": "11:59 PM",
 				"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 				"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
@@ -126,73 +110,73 @@
 
 			$http.get('assets/data/campaign-messages.json').success(function(data) {
 				manageCampaignCtrl.campaignMessages = data.campaignMessages;	
-				$scope.totalItems = data.campaignMessages.length;
-				$scope.currentPage = 1;
-				$scope.entryLimit = 10; // items per page
-				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
-				$scope.reverse = false;
-				$scope.sortOrderBy = 'id';
-				$scope.startAt = 0;
-				$scope.endAt = 9;
-				$scope.selectAll = false;
-				$scope.isAnyInputsSelected = false;
+				manageCampaignCtrl.totalItems = data.campaignMessages.length;
+				manageCampaignCtrl.currentPage = 1;
+				manageCampaignCtrl.entryLimit = 10; // items per page
+				manageCampaignCtrl.noOfPages = Math.ceil(manageCampaignCtrl.totalItems / manageCampaignCtrl.entryLimit);
+				manageCampaignCtrl.reverse = false;
+				manageCampaignCtrl.sortOrderBy = 'id';
+				manageCampaignCtrl.startAt = 0;
+				manageCampaignCtrl.endAt = 9;
+				manageCampaignCtrl.selectAll = false;
+				manageCampaignCtrl.isAnyInputsSelected = false;
 
-				$scope.goToPage = function(direction) {
+				manageCampaignCtrl.goToPage = function(direction) {
 
 					if(direction == 'up')
 					{
-						$scope.currentPage++;
+						manageCampaignCtrl.currentPage++;
 					}else if(direction == 'down'){
-						$scope.currentPage--;
+						manageCampaignCtrl.currentPage--;
 					}
 					else if(direction == 'beginning'){
-						$scope.currentPage = 1;
+						manageCampaignCtrl.currentPage = 1;
 					}
 					else if(direction == 'end'){
-						$scope.currentPage = $scope.noOfPages;
+						manageCampaignCtrl.currentPage = manageCampaignCtrl.noOfPages;
 					}
 
-					$scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
-					$scope.endAt = $scope.entryLimit * $scope.currentPage;
+					manageCampaignCtrl.startAt = (manageCampaignCtrl.currentPage - 1) * manageCampaignCtrl.entryLimit;
+					manageCampaignCtrl.endAt = manageCampaignCtrl.entryLimit * manageCampaignCtrl.currentPage;
 
 				};
 
-				$scope.sortByFunc = function(sortBy, reverse) {
-					$scope.sortOrderBy = sortBy;
-					$scope.reverse = reverse;
-					$scope.currentPage = 1;
-					$scope.goToPage(1);
+				manageCampaignCtrl.sortByFunc = function(sortBy, reverse) {
+					manageCampaignCtrl.sortOrderBy = sortBy;
+					manageCampaignCtrl.reverse = reverse;
+					manageCampaignCtrl.currentPage = 1;
+					manageCampaignCtrl.goToPage(1);
 				};
 
-				$scope.resetCurrentPage = function() {
-					$scope.currentPage = 1;
+				manageCampaignCtrl.resetCurrentPage = function() {
+					manageCampaignCtrl.currentPage = 1;
 				};
 
-				$scope.toggleSelected = function() {
+				manageCampaignCtrl.toggleSelected = function() {
 					angular.forEach(manageCampaignCtrl.campaignMessages, function(message) {
-				      message.isSelected = $scope.selectAll;
+				      message.isSelected = manageCampaignCtrl.selectAll;
 				    });
 				};
 
-				$scope.bulkActions = function() {
-					var actionDropDown = document.getElementById("bulk-actions");
-					var action = actionDropDown.options[actionDropDown.selectedIndex].value;
+				manageCampaignCtrl.bulkActions = function() {
+					var action = manageCampaignCtrl.bulkActionSelected;
 					angular.forEach(manageCampaignCtrl.campaignMessages, function(campaign, i) {
 						if(campaign.isSelected && action != 'Delete'){
 							campaign.status = action;
 							campaign.isSelected = false;
 						}
-						else if(campaign.isSelected && action == 'Delete' && $scope.selectAll == false){
+						else if(campaign.isSelected && action == 'Delete' && manageCampaignCtrl.selectAll == false){
 							manageCampaignCtrl.campaignMessages.splice(i, 1);  
 						}
-						else if(action == 'Delete' && $scope.selectAll == true){
+						else if(action == 'Delete' && manageCampaignCtrl.selectAll == true){
 							manageCampaignCtrl.campaignMessages = []; 
 						}
 				    });
-				    $scope.selectAll = false;
+				    manageCampaignCtrl.selectAll = false;
+				    manageCampaignCtrl.bulkActionSelected = '';
 				};
 
-				$scope.cloneMessages = function() {
+				manageCampaignCtrl.cloneMessages = function() {
 					manageCampaignCtrl.clonedMessage = [] ;
 					var cleanCopyOfMessages = angular.copy(manageCampaignCtrl.campaignMessages);
 					angular.forEach(cleanCopyOfMessages, function(campaign, i) {
@@ -201,10 +185,10 @@
 							manageCampaignCtrl.clonedMessage.push(campaign);
 						}
 				    });
-				    // $scope.selectAll = false;
+				    // manageCampaignCtrl.selectAll = false;
 				};
 
-				$scope.deleteClonedMessage = function(id) {
+				manageCampaignCtrl.deleteClonedMessage = function(id) {
 					angular.forEach(manageCampaignCtrl.clonedMessage, function(campaign, i) {
 						if(campaign.id == id){
 							manageCampaignCtrl.clonedMessage.splice(i, 1);  
@@ -212,15 +196,15 @@
 				    });
 				};
 
-				$scope.anyInputsSelected = function() {
-					$scope.isAnyInputsSelected = false;
-					$scope.selectAll = true;
+				manageCampaignCtrl.anyInputsSelected = function() {
+					manageCampaignCtrl.isAnyInputsSelected = false;
+					manageCampaignCtrl.selectAll = true;
 					angular.forEach(manageCampaignCtrl.campaignMessages, function(campaign, i) {
 						if(campaign.isSelected){
-							$scope.isAnyInputsSelected  = true;
+							manageCampaignCtrl.isAnyInputsSelected  = true;
 						}
 						else{
-							$scope.selectAll = false;
+							manageCampaignCtrl.selectAll = false;
 						}
 				    });
 				};
@@ -247,11 +231,11 @@
 			}
 
 			function paginationValidation(){
-				if($scope.currentPage > $scope.noOfPages ){
-					$scope.currentPage = $scope.noOfPages
+				if(manageCampaignCtrl.currentPage > manageCampaignCtrl.noOfPages ){
+					manageCampaignCtrl.currentPage = manageCampaignCtrl.noOfPages
 				}
-				else if(typeof $scope.currentPage === "undefined"){
-					$scope.currentPage = 1;
+				else if(typeof manageCampaignCtrl.currentPage === "undefined"){
+					manageCampaignCtrl.currentPage = 1;
 				}
 			}
 			
