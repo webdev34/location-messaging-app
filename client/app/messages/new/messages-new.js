@@ -94,6 +94,9 @@
 				newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 			}
 
+			MediaModel.postMedia();
+
+
 			newMessageCtrl.postMediaFile = function() {
 
 				//MediaModel.postMedia();

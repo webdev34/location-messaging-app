@@ -40,10 +40,12 @@
 									"sid": reservationSID,
 									"context": "message",
 									"name": "New File for message",
-									//"uploadUri": "http://localhost:8000/1.1/media",
-									"content": media.content
+									"uploadUri": "http://localhost:8000/1.1/media",
+									"content": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAARdklEQVR42u2deWwc1R3HEwqNOMqRlDO0oYBIW5USStUoKVAEBZpCL1pouMIhKBQEAoGKqEAgUBGBNqhQkgAtKCilkOAcTmKwsRPHxo6d2F6vz1177fV9rHd9rb3r9dV"
 								}
 							} 
+
+							console.log(JSON.stringify(media));
 
 							MediaService.postMedia(media)
 								.then(
