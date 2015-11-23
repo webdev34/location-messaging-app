@@ -36,69 +36,64 @@
 			campaignCenterCtrl.statuses = ["Live", "Draft", "Ended"];
 			campaignCenterCtrl.tagFilters = [];
 			campaignCenterCtrl.campaignTags = [
-				{ name: "Tag 1", ticked: false },
-				{ name: "Tag 2", ticked: false},
-				{ name: "Tag 3", ticked: false},
-				{ name: "Tag 4", ticked: false},
-				{ name: "Tag 5", ticked: false},
-				{ name: "Tag 6", ticked: false},
-				{ name: "Tag 7", ticked: false},
-				{ name: "Tag 8", ticked: false},
-				{ name: "Tag 9", ticked: false},
-				{ name: "Tag 10", ticked: false}
+				{ name: "#SanFrancisco", ticked: false },
+				{ name: "#Barcelona", ticked: false},
+				{ name: "#Dublin", ticked: false}
 			];
+
+			campaignCenterCtrl.bulkActionSelected = '';
 			
 			$http.get('assets/data/campaigns.json').success(function(data) {
 				campaignCenterCtrl.campaignData = data.campaigns;
-				$scope.totalItems = data.campaigns.length;
-				$scope.currentPage = 1;
-				$scope.entryLimit = 10; // items per page
-				$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
-				$scope.reverse = false;
-				$scope.sortOrderBy = 'id';
-				$scope.startAt = 0;
-				$scope.endAt = 9;
-				$scope.selectAll = false;
-				$scope.isAnyInputsSelected = false;
+				campaignCenterCtrl.totalItems = data.campaigns.length;
+				campaignCenterCtrl.currentPage = 1;
+				campaignCenterCtrl.entryLimit = 10; // items per page
+				campaignCenterCtrl.noOfPages = Math.ceil(campaignCenterCtrl.totalItems / campaignCenterCtrl.entryLimit);
+				campaignCenterCtrl.reverse = false;
+				campaignCenterCtrl.sortOrderBy = 'id';
+				campaignCenterCtrl.startAt = 0;
+				campaignCenterCtrl.endAt = 9;
+				campaignCenterCtrl.selectAll = false;
+				campaignCenterCtrl.isAnyInputsSelected = false;
 
-				$scope.goToPage = function(direction) {
+				campaignCenterCtrl.goToPage = function(direction) {
 
 					if(direction == 'up')
 					{
-						$scope.currentPage++;
+						campaignCenterCtrl.currentPage++;
 					}else if(direction == 'down'){
-						$scope.currentPage--;
+						campaignCenterCtrl.currentPage--;
 					}
 					else if(direction == 'beginning'){
-						$scope.currentPage = 1;
+						campaignCenterCtrl.currentPage = 1;
 					}
 					else if(direction == 'end'){
-						$scope.currentPage = $scope.noOfPages;
+						campaignCenterCtrl.currentPage = campaignCenterCtrl.noOfPages;
 					}
 
-					$scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
-					$scope.endAt = $scope.entryLimit * $scope.currentPage;
+					campaignCenterCtrl.startAt = (campaignCenterCtrl.currentPage - 1) * campaignCenterCtrl.entryLimit;
+					campaignCenterCtrl.endAt = campaignCenterCtrl.entryLimit * campaignCenterCtrl.currentPage;
 
 				};
 
-				$scope.sortByFunc = function(sortBy, reverse) {
-					$scope.sortOrderBy = sortBy;
-					$scope.reverse = reverse;
-					$scope.currentPage = 1;
-					$scope.goToPage(1);
+				campaignCenterCtrl.sortByFunc = function(sortBy, reverse) {
+					campaignCenterCtrl.sortOrderBy = sortBy;
+					campaignCenterCtrl.reverse = reverse;
+					campaignCenterCtrl.currentPage = 1;
+					campaignCenterCtrl.goToPage(1);
 				};
 
-				$scope.resetCurrentPage = function() {
-					$scope.currentPage = 1;
+				campaignCenterCtrl.resetCurrentPage = function() {
+					campaignCenterCtrl.currentPage = 1;
 				};
 
-				$scope.toggleSelected = function() {
+				campaignCenterCtrl.toggleSelected = function() {
 					angular.forEach(campaignCenterCtrl.campaignData, function(campaign) {
-				      campaign.isSelected = $scope.selectAll;
+				      campaign.isSelected = campaignCenterCtrl.selectAll;
 				    });
 				};
 
-				$scope.bulkActions = function() {
+				campaignCenterCtrl.bulkActions = function() {
 					var actionDropDown = document.getElementById("bulk-actions");
 					var action = actionDropDown.options[actionDropDown.selectedIndex].value;
 					angular.forEach(campaignCenterCtrl.campaignData, function(campaign, i) {
@@ -106,26 +101,27 @@
 							campaign.status = action;
 							campaign.isSelected = false;
 						}
-						else if(campaign.isSelected && action == 'Delete' && $scope.selectAll == false){
+						else if(campaign.isSelected && action == 'Delete' && campaignCenterCtrl.selectAll == false){
 							campaignCenterCtrl.campaignData.splice(i, 1);   
 						}
-						else if(action == 'Delete' && $scope.selectAll == true){
+						else if(action == 'Delete' && campaignCenterCtrl.selectAll == true){
 							campaignCenterCtrl.campaignData = [];  
 							
 						}
 				    });
-				    $scope.selectAll = false;
+				    campaignCenterCtrl.selectAll = false;
+				    campaignCenterCtrl.bulkActionSelected = '';
 				};
 
-				$scope.anyInputsSelected = function() {
-					$scope.isAnyInputsSelected = false;
-					$scope.selectAll = true;
+				campaignCenterCtrl.anyInputsSelected = function() {
+					campaignCenterCtrl.isAnyInputsSelected = false;
+					campaignCenterCtrl.selectAll = true;
 					angular.forEach(campaignCenterCtrl.campaignData, function(campaign, i) {
 						if(campaign.isSelected){
-							$scope.isAnyInputsSelected  = true;
+							campaignCenterCtrl.isAnyInputsSelected  = true;
 						}
 						else{
-							$scope.selectAll = false;
+							campaignCenterCtrl.selectAll = false;
 						}
 				    });
 				};
@@ -136,11 +132,11 @@
 
 
 			function paginationValidation(){
-				if($scope.currentPage > $scope.noOfPages ){
-					$scope.currentPage = $scope.noOfPages
+				if(campaignCenterCtrl.currentPage > campaignCenterCtrl.noOfPages ){
+					campaignCenterCtrl.currentPage = campaignCenterCtrl.noOfPages
 				}
-				else if(typeof $scope.currentPage === "undefined"){
-					$scope.currentPage = 1;
+				else if(typeof campaignCenterCtrl.currentPage === "undefined"){
+					campaignCenterCtrl.currentPage = 1;
 				}
 			}
 
