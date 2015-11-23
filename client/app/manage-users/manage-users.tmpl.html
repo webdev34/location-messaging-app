@@ -196,36 +196,36 @@
 						<th>
 							<label>First Name</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: manageUsersCtrl.sortOrderBy == 'firstName' && reverse == false}" ng-click="sortByFunc('firstName',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: manageUsersCtrl.sortOrderBy == 'firstName' && reverse == true}" ng-click="sortByFunc('firstName',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageUsersCtrl.sortOrderBy == 'firstName' && manageUsersCtrl.reverse == false}" ng-click="manageUsersCtrl.sortByFunc('firstName',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageUsersCtrl.sortOrderBy == 'firstName' && manageUsersCtrl.reverse == true}" ng-click="manageUsersCtrl.sortByFunc('firstName',true);"></i>
 							</span>
 						</th>
 						<th>
 							<label>Last Name</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: manageUsersCtrl.sortOrderBy == 'lastName' && reverse == false}" ng-click="sortByFunc('lastName',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: manageUsersCtrl.sortOrderBy == 'lastName' && reverse == true}" ng-click="sortByFunc('lastName',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageUsersCtrl.sortOrderBy == 'lastName' && manageUsersCtrl.reverse == false}" ng-click="manageUsersCtrl.sortByFunc('lastName',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageUsersCtrl.sortOrderBy == 'lastName' && manageUsersCtrl.reverse == true}" ng-click="manageUsersCtrl.sortByFunc('lastName',true);"></i>
 							</span>
 						</th>
 						<th>
 							<label>User Rights</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: manageUsersCtrl.sortOrderBy == 'userRights' && reverse == false}" ng-click="sortByFunc('userRights',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: manageUsersCtrl.sortOrderBy == 'userRights' && reverse == true}" ng-click="sortByFunc('userRights',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageUsersCtrl.sortOrderBy == 'userRights' && manageUsersCtrl.reverse == false}" ng-click="manageUsersCtrl.sortByFunc('userRights',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageUsersCtrl.sortOrderBy == 'userRights' && manageUsersCtrl.reverse == true}" ng-click="manageUsersCtrl.sortByFunc('userRights',true);"></i>
 							</span>
 						</th>
 						<th>
 							<label>Email</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: manageUsersCtrl.sortOrderBy == 'email' && reverse == false}" ng-click="sortByFunc('email',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: manageUsersCtrl.sortOrderBy == 'email' && reverse == true}" ng-click="sortByFunc('email',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageUsersCtrl.sortOrderBy == 'email' && manageUsersCtrl.reverse == false}" ng-click="manageUsersCtrl.sortByFunc('email',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageUsersCtrl.sortOrderBy == 'email' && manageUsersCtrl.reverse == true}" ng-click="manageUsersCtrl.sortByFunc('email',true);"></i>
 							</span>
 						</th>
 						<th>
 							<label>Phone Number</label>
 							<span>
-								<i class="fa fa-caret-up" ng-class="{active: manageUsersCtrl.sortOrderBy == 'contactNumber' && reverse == false}" ng-click="sortByFunc('contactNumber',false);"></i>
-								<i class="fa fa-caret-down" ng-class="{active: manageUsersCtrl.sortOrderBy == 'contactNumber' && reverse == true}" ng-click="sortByFunc('contactNumber',true);"></i>
+								<i class="fa fa-caret-up" ng-class="{active: manageUsersCtrl.sortOrderBy == 'contactNumber' && manageUsersCtrl.reverse == false}" ng-click="manageUsersCtrl.sortByFunc('contactNumber',false);"></i>
+								<i class="fa fa-caret-down" ng-class="{active: manageUsersCtrl.sortOrderBy == 'contactNumber' && manageUsersCtrl.reverse == true}" ng-click="manageUsersCtrl.sortByFunc('contactNumber',true);"></i>
 							</span>
 						</th>
 						<th></th>
@@ -239,7 +239,7 @@
 							<p class="qvr-align-center">No Results</p></td>
 							<td></td>
 						</tr>
-						<tr  data-ng-repeat="user in manageUsersCtrl.users | startFrom:manageUsersCtrl.startAt | orderBy:manageUsersCtrl.sortOrderBy:reverse | filter:manageUsersCtrl.search  as results" ng-show="$index >= manageUsersCtrl.startAt && $index <= manageUsersCtrl.endAt" ng-class="{last: manageUsersCtrl.endAt == $index}" >
+						<tr  data-ng-repeat="user in manageUsersCtrl.users | startFrom:manageUsersCtrl.startAt | orderBy:manageUsersCtrl.sortOrderBy:manageUsersCtrl.reverse | filter:manageUsersCtrl.search  as results" ng-show="$index >= manageUsersCtrl.startAt && $index <= manageUsersCtrl.endAt" ng-class="{last: manageUsersCtrl.endAt == $index}" >
 							<td><input type="checkbox" ng-model="user.isSelected" ng-change="manageUsersCtrl.anyInputsSelected();" /></td>
 							<td>{{user.firstName}}</td>
 							<td>{{user.lastName}}</td>
