@@ -19,7 +19,7 @@
 
 				postMedia : function(media) {
 					//media.uploadUri = (API_URL + '/media/')
-					console.log("service:" + JSON.stringify(media));
+					//console.log("service:" + JSON.stringify(media));
 					return $http.post(API_URL + '/media', media)
 
 					/*

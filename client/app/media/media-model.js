@@ -28,12 +28,24 @@
 							return response;
 						});
 			}
-			model.postMedia = function(media) {
+			model.postMedia = function(mediaFile) {
+				//console.log("media file:" + mediaFile);
+				//var btoaFile = btoa(mediaFile);
+				//console.log("btoa file:" + btoaFile);
+				var strToIndex = ";base64,";
+				var strStart = (mediaFile.indexOf(";base64,") + strToIndex.length);
+				//console.log("start at:" + strStart);
+				var mediaObj = mediaFile.slice(strStart, -1);
+				//console.log("mediaObj:" + mediaObj);
+
+
 				return 	model.getMediaReservation(1)
 					.then(
 						function success(response) {
 							//console.log(JSON.stringify(response));
 							var reservationSID = response.files[0].sid;
+
+							//console.log(file);
 
 							var media = {
 								"userFile": {
@@ -41,11 +53,11 @@
 									"context": "message",
 									"name": "New File for message",
 									"uploadUri": "http://localhost:8000/1.1/media",
-									"content": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAARdklEQVR42u2deWwc1R3HEwqNOMqRlDO0oYBIW5USStUoKVAEBZpCL1pouMIhKBQEAoGKqEAgUBGBNqhQkgAtKCilkOAcTmKwsRPHxo6d2F6vz1177fV9rHd9rb3r9dV"
+									"content": mediaObj
 								}
 							} 
 
-							console.log(JSON.stringify(media));
+							//console.log(JSON.stringify(media));
 
 							MediaService.postMedia(media)
 								.then(

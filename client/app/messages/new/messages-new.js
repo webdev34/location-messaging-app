@@ -95,41 +95,53 @@
 				newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 			}
 
-			MediaModel.postMedia();
 
 
-			newMessageCtrl.postMediaFile = function() {
+			newMessageCtrl.postMediaFile = function(media) {
 
-				//MediaModel.postMedia();
+				MediaModel.postMedia(media);
 
 			}
 
 			newMessageCtrl.createNewMessage = function() {
-				
-				//console.log("logging new message: " + JSON.stringify(newMessageCtrl.newMessage));
 
-				MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
-					function success(response){
-						
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Sent',
-							content: '',
-							color: 'success',
-							autoclose: '3000'
-						});
+				MediaModel.postMedia(newMessageCtrl.newMessage.assets[0])
+					.then(
+						function success(response) {
+							console.log(response);
+							console.log('success');
+							//postMessage();
+						},
+						function error(response) {
+							console.log(response);
+						}
+					);
 
-						$state.go('messages.dashboard');
+					function postMessage() {
+						MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
+							function success(response){
+								
+								FoundationApi.publish('main-notifications', {
+									title: 'Message Sent',
+									content: '',
+									color: 'success',
+									autoclose: '3000'
+								});
 
-					},
-					function error(response) {
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Was Not Sent',
-							content: response.code,
-							color: 'fail',
-							autoclose: '3000'
-						});
+								$state.go('messages.dashboard');
+
+							},
+							function error(response) {
+								FoundationApi.publish('main-notifications', {
+									title: 'Message Was Not Sent',
+									content: response.code,
+									color: 'fail',
+									autoclose: '3000'
+								});
+							}
+						);
 					}
-				);
+				
 			}
 
 			newMessageCtrl.updateMessage = function() {
