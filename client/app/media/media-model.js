@@ -31,7 +31,7 @@
 							});
 
 							//console.log("fileSIDS:" + listOfFiles);
-							return response;
+							return listOfFiles;
 						},
 						function error(response) {
 							return response;

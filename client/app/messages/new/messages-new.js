@@ -25,6 +25,7 @@
 			var newMessageCtrl = this;
 			
 			newMessageCtrl.isEditing = false;
+			newMessageCtrl.uploadingImages = false;
 			
 			newMessageCtrl.showStartDatePicker = false;
 			newMessageCtrl.showEndDatePicker = false;
@@ -108,10 +109,16 @@
 				//console.log(assets);
 
 				if (assets.length > 0) {
-					var mediaArray = [];
+					newMessageCtrl.uploadingImages = true;
 
 					MediaModel.getMediaReservation(assets.length)
 						.then( function(mediaSIDList) {
+								var mediaArray = [];
+								angular.forEach(mediaSIDList, function(sid, i) {
+					 				mediaArray.push({"sid" : sid });
+								});
+								newMessageCtrl.newMessage.media = mediaArray;
+
 							return mediaSIDList;
 						})
 						.then( function(mediaSIDList) {
@@ -119,6 +126,7 @@
 							// console.log(mediaSIDList);
 
 							var numberOfFiles = assets.length;
+							var finishedFiles = 0;
 							var strToIndex = ";base64,";
 
 							angular.forEach(assets, function(asset, i) {
@@ -127,41 +135,33 @@
 								var strStart = (asset.indexOf(";base64,") + strToIndex.length);
 								var mediaObj = asset.slice(strStart, -1);
 
-								MediaModel.postSingleMedia(mediaSIDList[i], mediaObj);
+								MediaModel.postSingleMedia(mediaSIDList[i], mediaObj).then(function(success){
+									console.log('image '+ i);
+									finishedFiles++;
+									checkIfDone();
+								});
 							}); 
 
-							console.log('done');
+							function checkIfDone() {
+								console.log('done with: '+ finishedFiles + 'files');
+								if (finishedFiles >= numberOfFiles) {
+									console.log('finished uploading photos');
+									newMessageCtrl.uploadingImages = false;
+									postMessage();
+									return;
+								};
+							}
 
 						});
-					// return MediaModel.getMediaReservation(assets.length)
-					// 	.then(
-					// 		function success(response) {
-					// 			var mediaSIDList = response;
-					// 			var mediaArray = [];
-								
-					// 			return MediaModel.postMessageMedia(mediaSIDList, newMessageCtrl.newMessage.assets)
-					// 				.then(
-					// 					function success(response) {
-					// 						angular.forEach(mediaSIDList, function(sid, i) {
-					// 							mediaArray.push({"sid" : sid });
-					// 						});
-					// 						newMessageCtrl.newMessage.media = mediaArray;
-					// 							postMessage();
-					// 					},
-					// 					function error(response){});
-
-					// 		},
-					// 		function error(response) {
-
-					// 		});
-
-
+					
 				} else {
 					postMessage();
 				}
 
 
 				function postMessage() {
+					console.log(newMessageCtrl.newMessage);
+
 					MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
 						function success(response){
 							

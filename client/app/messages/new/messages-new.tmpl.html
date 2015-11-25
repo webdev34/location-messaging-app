@@ -22,12 +22,21 @@
 			<div zf-modal="" id="saveMessageModal">
 				<a zf-close="" class="close-button">×</a>
 				<p class="qvr-align-center">
-					Are you sure you want to save this message?
+					<br>
+
+					<span ng-hide="newMessageCtrl.uploadingImages">Are you sure you want to save this message?</span>
+
+					<span  ng-show="newMessageCtrl.uploadingImages">Uploading Images</span>
+					<ajax-loader ng-show="newMessageCtrl.uploadingImages"></ajax-loader>
+						
+					<br>
 				</p>
-				<div class="modal-button-wrapper qvr-align-center">
+				<br>
+				<div class="modal-button-wrapper qvr-align-center" ng-hide="newMessageCtrl.uploadingImages">
 					<button type="submit" class="qvr-button action" ng-click="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)">Save</button>
 					<button zf-close="" class="qvr-button cancel">Cancel</button>
 				</div>
+				<br>
 			</div>
 			
 		</div>
