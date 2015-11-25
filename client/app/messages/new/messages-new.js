@@ -10,6 +10,7 @@
 		'$stateParams',
 		'FoundationApi',
 		'MessageDetailModel',
+		'MediaModel',
 		
 		function(
 			$rootScope,
@@ -17,12 +18,14 @@
 			$state,
 			$stateParams,
 			FoundationApi,
-			MessageDetailModel
+			MessageDetailModel,
+			MediaModel
 		) {
 			
 			var newMessageCtrl = this;
 			
 			newMessageCtrl.isEditing = false;
+			newMessageCtrl.uploadingImages = false;
 			
 			newMessageCtrl.showStartDatePicker = false;
 			newMessageCtrl.showEndDatePicker = false;
@@ -51,9 +54,11 @@
 				// "startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
 				// "endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime(),
 				"locationName": "",
-				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
+				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750},
+				"assets": []
 			};
 
+			
 			newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 
 			if ($state.current.name == "messages.edit" ) {
@@ -63,7 +68,7 @@
 				MessageDetailModel.getMessageDetail($stateParams._id)
 					.then (
 					function success(response) {
-							console.log("response: " + JSON.stringify(response));
+							//console.log("response: " + JSON.stringify(response));
 
 							newMessageCtrl.newMessage = response;
 
@@ -91,36 +96,92 @@
 				newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 			}
 
+
+
+			newMessageCtrl.postMediaFile = function(media) {
+
+				MediaModel.postMedia(media);
+
+			}
+
 			newMessageCtrl.createNewMessage = function() {
+				var assets = newMessageCtrl.newMessage.assets;
+				//console.log(assets);
+
+				if (assets.length > 0) {
+					newMessageCtrl.uploadingImages = true;
+
+					MediaModel.getMediaReservation(assets.length)
+						.then( function(mediaSIDList) {
+								var mediaArray = [];
+								angular.forEach(mediaSIDList, function(sid, i) {
+					 				mediaArray.push({"sid" : sid });
+								});
+								newMessageCtrl.newMessage.media = mediaArray;
+
+							return mediaSIDList;
+						})
+						.then( function(mediaSIDList) {
+
+
+							var numberOfFiles = assets.length;
+							var finishedFiles = 0;
+							var strToIndex = ";base64,";
+
+							angular.forEach(assets, function(asset, i) {
+								var strToIndex = ";base64,";
+								var strStart = (asset.indexOf(";base64,") + strToIndex.length);
+								var mediaObj = asset.slice(strStart, -1);
+
+								MediaModel.postSingleMedia(mediaSIDList[i], mediaObj).then(function(success){
+									finishedFiles++;
+									checkIfDone();
+								});
+							}); 
+
+							function checkIfDone() {
+								if (finishedFiles >= numberOfFiles) {
+									newMessageCtrl.uploadingImages = false;
+									postMessage();
+									return;
+								};
+							}
+
+						});
+					
+				} else {
+					postMessage();
+				}
+
+
+				function postMessage() {
+					MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
+						function success(response){
+							
+							FoundationApi.publish('main-notifications', {
+								title: 'Message Sent',
+								content: '',
+								color: 'success',
+								autoclose: '3000'
+							});
+
+							$state.go('messages.dashboard');
+
+						},
+						function error(response) {
+							FoundationApi.publish('main-notifications', {
+								title: 'Message Was Not Sent',
+								content: response.code,
+								color: 'fail',
+								autoclose: '3000'
+							});
+						}
+					);
+				}
 				
-				//console.log("logging new message: " + JSON.stringify(newMessageCtrl.newMessage));
-
-				MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
-					function success(response){
-						
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Sent',
-							content: '',
-							color: 'success',
-							autoclose: '3000'
-						});
-
-						$state.go('messages.dashboard');
-
-					},
-					function error(response) {
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Was Not Sent',
-							content: response.code,
-							color: 'fail',
-							autoclose: '3000'
-						});
-					}
-				);
 			}
 
 			newMessageCtrl.updateMessage = function() {
-				console.log('updating');
 				MessageDetailModel.updateMessage(newMessageCtrl.newMessage).then(
 					function success(response){
 						
@@ -145,9 +206,6 @@
 				);
 			}
 
-			
-
-
 			newMessageCtrl.messageTags = [
 				{ name: "Tag 1", ticked: false },
 				{ name: "Tag 2", ticked: false},
@@ -161,11 +219,9 @@
 				{ name: "Tag 10", ticked: false}
 			];
 
+			newMessageCtrl.uploader = {};
 
-
-			$scope.uploader = {};
-
-		  	$scope.processFiles = function(files){
+		  	newMessageCtrl.processFiles = function(files){
 		    	angular.forEach(files, function(flowFile, i){
 		       	var fileReader = new FileReader();
 		          	fileReader.onload = function (event) {
@@ -173,28 +229,15 @@
 		              	newMessageCtrl.newMessage.assets.push(uri);
 		          	};
 		          	fileReader.readAsDataURL(flowFile.file);
+		          	// JSON.stringify("content:" + newMessageCtrl.newMessage.assets);
 		    	});
 		  	};
 
-		  	$scope.removeFile = function(index){
+		  	newMessageCtrl.removeFile = function(index){
 		        newMessageCtrl.newMessage.assets.splice(index, 1);  
-		        $scope.uploader.flow.files.splice(index, 1);
+		        newMessageCtrl.uploader.flow.files.splice(index, 1);
 		  	};
 
-			// $scope.map_range_change = function(operator) {
-			// 	var currentRange = parseFloat($scope.newMessageCtrl.newMessage.range);
-			// 	if(operator == 'addRange'){
-			// 		if(currentRange != 100){
-			// 		  	$scope.newMessageCtrl.newMessage.range = currentRange + 0.50;
-			// 		}
-			// 	}
-			// 	else{
-			// 		if(currentRange != 0){
-			// 			$scope.newMessageCtrl.newMessage.range = currentRange - 0.50;
-			// 		}
-			// 	}
-			// };
-			
 			function clearTakeOverSelectors(){
 				newMessageCtrl.showStartDatePicker = false;
 				newMessageCtrl.showEndDatePicker = false;
@@ -207,7 +250,7 @@
 			$scope.$watch("newMessageCtrl.newMessage.startTime", clearTakeOverSelectors);
 			$scope.$watch("newMessageCtrl.newMessage.endTime", clearTakeOverSelectors);
 			
-			$scope.checkRange = function(){
+			newMessageCtrl.checkRange = function(){
 				var range = parseInt(newMessageCtrl.newMessage.range);
 				range = range > 100 ? 100 : (range < 0 || !range ? 0 : range);
 				newMessageCtrl.newMessage.range = range;

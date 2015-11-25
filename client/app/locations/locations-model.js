@@ -43,14 +43,13 @@
 						function success(response) {
 							var locObj = response.location[0];
 							var formattedLocation = {
+								"sid": locObj.sid,
 								"name": locObj.name,
 								"range": locObj.distance / 1000,
 								"discoverOn": locObj.trigger,
 								"address": locObj.address,
 								"coordinates": {"lat":locObj.latutude,"lng":locObj.longitude}
 							}
-
-							
 							return formattedLocation;
 						},
 						function error(response) {
@@ -75,11 +74,11 @@
 				return LocationsService.post(formattedLocation)
 					.then(
 						function success(response){
-							console.log('success from model')
+							//console.log('success from model')
 							return response;
 						},
 						function error(response) {
-							console.log('error from model')
+							//console.log('error from model')
 							return response;
 						});
 
@@ -94,6 +93,31 @@
 						},
 						function error(response) {
 							console.log('error from model')
+							return response;
+						});
+			}
+
+			model.updateLocation = function(newLocation) {
+				var formattedLocation = {
+					"location": {
+						"sid": newLocation.sid,
+						"name": newLocation.name,
+						"address": newLocation.address,
+						"latitude": newLocation.coordinates.lat,
+						"longitude": newLocation.coordinates.lng,
+						"distance": newLocation.range*1000,
+						"trigger": newLocation.discoverOn
+					}	
+				}
+
+				return LocationsService.post(formattedLocation)
+					.then(
+						function success(response){
+							//console.log('success from model')
+							return response;
+						},
+						function error(response) {
+							//console.log('error from model')
 							return response;
 						});
 			}

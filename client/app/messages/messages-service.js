@@ -18,7 +18,7 @@
 				},
 				post : function(messageObj) {
 									
-					return $http.post(API_URL + '/message', messageObj);
+					return $http.post(API_URL + '/messageNew', messageObj);
 				},
 				list : function(timestamp, limit){
 					//console.log('service testing');

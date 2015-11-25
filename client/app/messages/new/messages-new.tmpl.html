@@ -22,12 +22,21 @@
 			<div zf-modal="" id="saveMessageModal">
 				<a zf-close="" class="close-button">×</a>
 				<p class="qvr-align-center">
-					Are you sure you want to save this message?
+					<br>
+
+					<span ng-hide="newMessageCtrl.uploadingImages">Are you sure you want to save this message?</span>
+
+					<span  ng-show="newMessageCtrl.uploadingImages">Uploading Images</span>
+					<ajax-loader ng-show="newMessageCtrl.uploadingImages"></ajax-loader>
+						
+					<br>
 				</p>
-				<div class="modal-button-wrapper qvr-align-center">
+				<br>
+				<div class="modal-button-wrapper qvr-align-center" ng-hide="newMessageCtrl.uploadingImages">
 					<button type="submit" class="qvr-button action" ng-click="newMessageCtrl.createNewMessage(newMessageCtrl.newMessage)">Save</button>
 					<button zf-close="" class="qvr-button cancel">Cancel</button>
 				</div>
+				<br>
 			</div>
 			
 		</div>
@@ -152,7 +161,7 @@
 					</div>				
 				</span> -->
 			</section>
-			<section class="column-3" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"  flow-name="uploader.flow" flow-files-added="processFiles($files)" flow-files-added="saveFiles($files)">
+			<section class="column-3" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"  flow-name="newMessageCtrl.uploader.flow" flow-files-added="newMessageCtrl.processFiles($files)" flow-files-added="newMessageCtrl.saveFiles($files)">
 				<label class="qvr-label">Message Content</label>
 
 				<div id="text-area-upload-wrapper">
@@ -161,8 +170,8 @@
 					<div class="preview-image-wrapper" >
 
 						<ul >
-							<li ng-repeat="image in uploader.flow.files track by $index" ng-class="{'last': ($index+1) % 3 == 0}">
-								<i class="fa fa-times-circle" ng-click="removeFile($index);"></i>
+							<li ng-repeat="image in newMessageCtrl.uploader.flow.files track by $index" ng-class="{'last': ($index+1) % 3 == 0}">
+								<i class="fa fa-times-circle" ng-click="newMessageCtrl.removeFile($index);"></i>
 						      	<img class="preview hide" flow-img="image"/><br>
 						        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
 						    </li>
@@ -171,7 +180,7 @@
 					<span class="attach-asset" flow-btn>
 						<span class="icon i-camera"></span>
 						<span class="attachment-count">
-				    		{{uploader.flow.files.length}} Attachments</span>
+				    		{{newMessageCtrl.uploader.flow.files.length}} Attachments</span>
 				    	</span>
 					</span>
 					<div class="clearfix"></div>
@@ -294,7 +303,7 @@
 
 
 						<div class="radius">
-							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="checkRange()"></span><span class="km"> km</span> radius
+							<span><input ng-model="newMessageCtrl.newMessage.range" ng-change="newMessageCtrl.checkRange()"></span><span class="km"> km</span> radius
 						</div>
 
 						<radius-dial range-value="newMessageCtrl.newMessage.range" >

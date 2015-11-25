@@ -2,18 +2,21 @@
 	'use strict';
 
 	angular.module('enterprise-portal.models.messages', [
-		'enterprise-portal.services.messages'
+		'enterprise-portal.services.messages',
+		'enterprise-portal.models.media'
 	])
 	
 	.service('MessageDetailModel', [
 		'$http',
 		'$q',
 		'MessagesService',
+		'MediaModel',
 		
 		function(
 			$http,
 			$q,
-			MessagesService
+			MessagesService,
+			MediaModel
 		) {
 			var model = this;
 			
@@ -56,6 +59,7 @@
 			};
 
 			model.createNewMessage = function(newMessage) {
+				console.log(newMessage);
 
 				var formattedMessage = {
 					"message": {
@@ -63,8 +67,10 @@
 						"label": newMessage.messageTitle,
 						"text": newMessage.content,
 						"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
-						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()//,
-						//sent: true
+						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime(),
+						'media': newMessage.media
+						//sent: true,
+						//'media': [23423awerwe5q435345]
 					},
 					"location": [
 						{

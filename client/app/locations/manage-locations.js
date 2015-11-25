@@ -87,7 +87,7 @@
 							init();
 						},
 						function error(response) {
-							console.log("error from ctrl");
+							//console.log("error from ctrl");
 
 						});
 			}
@@ -143,7 +143,7 @@
 
 					},
 					function error(response) {
-						console.log('error');
+						//console.log('error');
 					});
 			}
 
@@ -180,14 +180,16 @@
 			vm.isAnyInputsSelected = false;
 			
 			vm.editLocation = function(locationSID) {
-				console.log('editing: '+ locationSID);
+				//console.log('editing: '+ locationSID);
 				vm.isEdit = true;
 
 				LocationsModel.getLocation(locationSID)
 					.then( 
 						function success(response) {
-							console.log(JSON.stringify(response));
+							//console.log(JSON.stringify(response));
 							vm.newLocation = response;
+							vm.search = angular.copy(response.address);
+
 						},
 						function error(response) {
 
@@ -208,14 +210,14 @@
 							init();
 						},
 						function error(response) {
-							console.log("error from ctrl");
+							//console.log("error from ctrl");
 
 						});
 
 			}
 
 			vm.deleteLocation = function(locationSID) {
-				console.log('deleting: '+ locationSID);
+				//console.log('deleting: '+ locationSID);
 				LocationsModel.deleteLocation(locationSID)
 					.then( 
 						function success(response) {

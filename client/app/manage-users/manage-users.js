@@ -42,10 +42,12 @@
                         "userRights": "-",
                         "avatar": "assets/img/default-profile-avatar.png"
                     };
+
+                    manageUsersCtrl.editUser = {};
                    
-                    manageUsersCtrl.bulkActions = '';
+                    manageUsersCtrl.bulkActionSelected = '';
                     manageUsersCtrl.flowImgPlaceholder = 'assets/img/default-profile-avatar.png';
-                    manageUsersCtrl.flowImgPlaceholderEdit = 'assets/img/default-profile-avatar.png';
+                    manageUsersCtrl.flowImgPlaceholderEdit = 'assets/img/profile_bryan.jpg';
 
                     function init() {
                         getAccounts();
@@ -54,60 +56,60 @@
                     function getAccounts() {
                         $http.get('assets/data/users.json').success(function(data) {
                             manageUsersCtrl.users = data.users;
-                            $scope.totalItems = data.users.length;
-                            $scope.currentPage = 1;
-                            $scope.entryLimit = 10; // items per page
-                            $scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
-                            $scope.reverse = false;
-                            $scope.sortOrderBy = 'firstName';
-                            $scope.startAt = 0;
-                            $scope.endAt = 9;
-                            $scope.selectAll = false;
-                            $scope.isAnyInputsSelected = false;
+                            manageUsersCtrl.totalItems = data.users.length;
+                            manageUsersCtrl.currentPage = 1;
+                            manageUsersCtrl.entryLimit = 10; // items per page
+                            manageUsersCtrl.noOfPages = Math.ceil(manageUsersCtrl.totalItems / manageUsersCtrl.entryLimit);
+                            manageUsersCtrl.reverse = false;
+                            manageUsersCtrl.sortOrderBy = 'firstName';
+                            manageUsersCtrl.startAt = 0;
+                            manageUsersCtrl.endAt = 9;
+                            manageUsersCtrl.selectAll = false;
+                            manageUsersCtrl.isAnyInputsSelected = false;
 
-                            $scope.goToPage = function(direction) {
+                            manageUsersCtrl.goToPage = function(direction) {
 
                                 if (direction == 'up') {
-                                    $scope.currentPage++;
+                                    manageUsersCtrl.currentPage++;
                                 } else if (direction == 'down') {
-                                    $scope.currentPage--;
+                                    manageUsersCtrl.currentPage--;
                                 } else if (direction == 'beginning') {
-                                    $scope.currentPage = 1;
+                                    manageUsersCtrl.currentPage = 1;
                                 } else if (direction == 'end') {
-                                    $scope.currentPage = $scope.noOfPages;
+                                    manageUsersCtrl.currentPage = manageUsersCtrl.noOfPages;
                                 }
 
-                                $scope.startAt = ($scope.currentPage - 1) * $scope.entryLimit;
-                                $scope.endAt = $scope.entryLimit * $scope.currentPage;
+                                manageUsersCtrl.startAt = (manageUsersCtrl.currentPage - 1) * manageUsersCtrl.entryLimit;
+                                manageUsersCtrl.endAt = manageUsersCtrl.entryLimit * manageUsersCtrl.currentPage;
 
                             };
 
 
-                            $scope.resetCurrentPage = function() {
-                                $scope.currentPage = 1;
+                            manageUsersCtrl.resetCurrentPage = function() {
+                                manageUsersCtrl.currentPage = 1;
                             };
 
-                            $scope.sortByFunc = function(sortBy, reverse) {
-                                $scope.sortOrderBy = sortBy;
-                                $scope.reverse = reverse;
-                                $scope.currentPage = 1;
-                                $scope.goToPage(1);
+                            manageUsersCtrl.sortByFunc = function(sortBy, reverse) {
+                                manageUsersCtrl.sortOrderBy = sortBy;
+                                manageUsersCtrl.reverse = reverse;
+                                manageUsersCtrl.currentPage = 1;
+                                manageUsersCtrl.goToPage(1);
                             };
 
-                            $scope.toggleSelected = function() {
+                            manageUsersCtrl.toggleSelected = function() {
                                 angular.forEach(manageUsersCtrl.users, function(user) {
-                                    user.isSelected = $scope.selectAll;
+                                    user.isSelected = manageUsersCtrl.selectAll;
                                 });
                             };
 
-                            $scope.anyInputsSelected = function() {
-                                $scope.isAnyInputsSelected = false;
-                                $scope.selectAll = true;
+                            manageUsersCtrl.anyInputsSelected = function() {
+                                manageUsersCtrl.isAnyInputsSelected = false;
+                                manageUsersCtrl.selectAll = true;
                                 angular.forEach(manageUsersCtrl.users, function(user, i) {
                                     if (user.isSelected) {
-                                        $scope.isAnyInputsSelected = true;
+                                        manageUsersCtrl.isAnyInputsSelected = true;
                                     } else {
-                                        $scope.selectAll = false;
+                                        manageUsersCtrl.selectAll = false;
                                     }
                                 });
                             };
@@ -115,10 +117,10 @@
                         });
                     }
 
-                    $scope.uploaderNewUser = {};
-                    $scope.uploaderEditUser = {};
+                    manageUsersCtrl.uploaderNewUser = {};
+                    manageUsersCtrl.uploaderEditUser = {};
 
-                    $scope.processFiles = function(files, section) {
+                    manageUsersCtrl.processFiles = function(files, section) {
                         
                         angular.forEach(files, function(flowFile, i) {
                             var fileReader = new FileReader();
@@ -132,34 +134,49 @@
                                      manageUsersCtrl.editUser.newAvatar = null;
                                      manageUsersCtrl.editUser.newAvatar = uri;
                                      manageUsersCtrl.flowImgPlaceholderEdit = angular.copy(uri);
-                                     $scope.uploaderEditUser.flow.files = [];
+                                     manageUsersCtrl.uploaderEditUser.flow.files = [];
                                 }
                             };
                             fileReader.readAsDataURL(flowFile.file);
                         });
                     };
 
-                    $scope.removeFiles = function(section) {
+                    manageUsersCtrl.removeFiles = function(section) {
                         if (section = 'New User') {
-                            $scope.uploaderNewUser.flow.files = [];
+                            manageUsersCtrl.uploaderNewUser.flow.files = [];
                         } else {
-                            $scope.uploaderEditUser.flow.files = [];
+                            manageUsersCtrl.uploaderEditUser.flow.files = [];
                         }
                     };
 
-                    $scope.editUser = function(user) {
+                    manageUsersCtrl.editUserFunc = function(user) {
                         manageUsersCtrl.isEditing = true;
                         manageUsersCtrl.editUser = user;
                         manageUsersCtrl.flowImgPlaceholderEdit = user.avatar;
                     };
 
-                    $scope.deleteUser = function(id) {
+                    manageUsersCtrl.deleteUser = function(id) {
                         angular.forEach(manageUsersCtrl.users, function(user, i) {
                             if (user.id == id) {
                                 manageUsersCtrl.users.splice(i, 1);
                             }
                         });
                     };
+
+                    manageUsersCtrl.bulkActions = function() {
+                        var action = manageUsersCtrl.bulkActionSelected;
+                        angular.forEach(manageUsersCtrl.users, function(user, i) {
+                            if(user.isSelected && action == 'Delete' && manageUsersCtrl.selectAll == false){
+                                manageUsersCtrl.users.splice(i, 1);  
+                            }
+                            else if(action == 'Delete' && manageUsersCtrl.selectAll == true){
+                                manageUsersCtrl.users = []; 
+                            }
+                        });
+                        manageUsersCtrl.selectAll = false;
+                        manageUsersCtrl.bulkActionSelected = '';
+                    };
+
 
                     // userProfileCtrl.saveChanges = function() {
                     // 	userProfileCtrl.updatedUser = userProfileCtrl.editedUser;
@@ -172,11 +189,11 @@
 
 
 				function paginationValidation(){
-					if($scope.currentPage > $scope.noOfPages ){
-						$scope.currentPage = $scope.noOfPages
+					if(manageUsersCtrl.currentPage > manageUsersCtrl.noOfPages ){
+						manageUsersCtrl.currentPage = manageUsersCtrl.noOfPages
 					}
-					else if(typeof $scope.currentPage === "undefined"){
-						$scope.currentPage = 1;
+					else if(typeof manageUsersCtrl.currentPage === "undefined"){
+						manageUsersCtrl.currentPage = 1;
 					}
 				}
 
