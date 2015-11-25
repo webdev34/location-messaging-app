@@ -68,7 +68,7 @@
 				MessageDetailModel.getMessageDetail($stateParams._id)
 					.then (
 					function success(response) {
-							console.log("response: " + JSON.stringify(response));
+							//console.log("response: " + JSON.stringify(response));
 
 							newMessageCtrl.newMessage = response;
 
@@ -122,30 +122,25 @@
 							return mediaSIDList;
 						})
 						.then( function(mediaSIDList) {
-							// console.log('this is the second promise: ');
-							// console.log(mediaSIDList);
+
 
 							var numberOfFiles = assets.length;
 							var finishedFiles = 0;
 							var strToIndex = ";base64,";
 
 							angular.forEach(assets, function(asset, i) {
-								//console.log(asset);
 								var strToIndex = ";base64,";
 								var strStart = (asset.indexOf(";base64,") + strToIndex.length);
 								var mediaObj = asset.slice(strStart, -1);
 
 								MediaModel.postSingleMedia(mediaSIDList[i], mediaObj).then(function(success){
-									console.log('image '+ i);
 									finishedFiles++;
 									checkIfDone();
 								});
 							}); 
 
 							function checkIfDone() {
-								console.log('done with: '+ finishedFiles + 'files');
 								if (finishedFiles >= numberOfFiles) {
-									console.log('finished uploading photos');
 									newMessageCtrl.uploadingImages = false;
 									postMessage();
 									return;
@@ -160,8 +155,6 @@
 
 
 				function postMessage() {
-					console.log(newMessageCtrl.newMessage);
-
 					MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
 						function success(response){
 							
@@ -189,7 +182,6 @@
 			}
 
 			newMessageCtrl.updateMessage = function() {
-				console.log('updating');
 				MessageDetailModel.updateMessage(newMessageCtrl.newMessage).then(
 					function success(response){
 						
