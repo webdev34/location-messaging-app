@@ -107,18 +107,22 @@
 				var assets = newMessageCtrl.newMessage.assets;
 
 				if (assets.length > 0) {
-					MediaModel.getMediaReservation(assets.length)
+					return MediaModel.getMediaReservation(assets.length)
 						.then(
-							function success(response){
+							function success(response) {
 								var mediaSIDList = response;
 								var mediaArray = []
 								
-								MediaModel.postMessageMedia(mediaSIDList, newMessageCtrl.newMessage.assets);
-								angular.forEach(mediaSIDList, function(sid, i) {
-									mediaArray.push({"sid" : sid });
-								});
-								newMessageCtrl.newMessage.media = mediaArray;
-								postMessage();
+								return MediaModel.postMessageMedia(mediaSIDList, newMessageCtrl.newMessage.assets)
+									.then(
+										function success(response) {
+											angular.forEach(mediaSIDList, function(sid, i) {
+												mediaArray.push({"sid" : sid });
+											});
+											newMessageCtrl.newMessage.media = mediaArray;
+												postMessage();
+										},
+										function error(response){});
 
 							},
 							function error(response) {

@@ -66,14 +66,15 @@
 					MediaService.postMedia(media)
 						.then(
 								function success(response) {
-									//console.log(JSON.stringify(response));
+									return	response;
 								},
 								function error(response) {
-
+									return response;
 								}
 							);
 				});
-				//console.log(mediaArray);
+				
+				return;
 
 			}
 
