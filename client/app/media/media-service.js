@@ -14,13 +14,13 @@
 			return {
 
 				getMediaReservation : function(numberOfFiles) {
-					return $http.get(API_URL + '/media/' + numberOfFiles)
+					return $http.get(API_URL + '/media/' + numberOfFiles);
 				},
 
 				postMedia : function(media) {
-					//media.uploadUri = (API_URL + '/media/')
+					media.uploadUri = (API_URL + '/media/')
 					//console.log("service:" + JSON.stringify(media));
-					return $http.post(API_URL + '/media', media)
+					return $http.post(API_URL + '/media', media);
 
 					/*
 					{
@@ -33,6 +33,17 @@
 						}
 					} 
 					/*/
+				},
+				postAvatar: function(avatarObj) {
+					return $http.post(API_URL + '/account/avatarNew', avatarObj);
+
+					/*
+					{
+						"userFile": {
+							"sid": "..."
+						}
+					}
+        	*/
 				}
 
 			};

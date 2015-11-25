@@ -17,6 +17,12 @@
 		) {
 			var model = this;
 			
+			model.stripBase64 = function(file) {
+				var strToIndex = ";base64,";
+				var strStart = (file.indexOf(";base64,") + strToIndex.length);
+				var mediaObj = file.slice(strStart, -1);
+				return mediaObj;
+			}
 			
 			model.getMediaReservation = function(numberOfFiles) {
 				return MediaService.getMediaReservation(numberOfFiles)
@@ -38,14 +44,25 @@
 						});
 			}
 
-			model.postSingleMedia = function(mediaSID, file) {
+			model.getAvatarReservation = function() {
+				return MediaService.getMediaReservation(1)
+					.then(
+						function success(response) {
+							return response.files[0].sid;
+						},
+						function error(response) {
+							return response;
+						});
+			}
+
+			model.postMessageMedia = function(mediaSID, file) {
 
 				var media = {
 					"userFile": {
 						"sid": mediaSID,
 						"context": "message",
 						"name": "New File for message",
-						"uploadUri": "http://localhost:8000/1.1/media",
+						//"uploadUri": "http://localhost:8000/1.1/media",
 						"content": file
 					}
 				} 
@@ -54,105 +71,31 @@
 
 			}
 
-			model.postMessageMedia = function(mediaSIDList, assets) {
-				//console.log("model sid:" + mediaSIDList);
-				//console.log("assets: " + assets);
+			model.postAvatarMedia = function(mediaSID, file) {
 
-				var numberOfFiles = assets.length;
-				//console.log("numberOfFiles: " + numberOfFiles);
+				var media = {
+					"userFile": {
+						"sid": mediaSID,
+						"context": "avatar",
+						"name": "New File for Avatar",
+						//"uploadUri": "http://localhost:8000/1.1/media",
+						"content": file
+					}
+				} 
 
-				var strToIndex = ";base64,";
-				//var mediaArray = [];
-
-				angular.forEach(assets, function(file, i) {
-					var strStart = (file.indexOf(";base64,") + strToIndex.length);
-					var mediaObj = file.slice(strStart, -1);
-					var mediaSID = mediaSIDList[i];
-
-					var media = {
-						"userFile": {
-							"sid": mediaSID,
-							"context": "message",
-							"name": "New File for message",
-							"uploadUri": "http://localhost:8000/1.1/media",
-							"content": mediaObj
-						}
-					} 
-
-					MediaService.postMedia(media)
-						.then(
-								function success(response) {
-									return	response;
-								},
-								function error(response) {
-									return response;
-								}
-							);
-				});
-				
-				return;
+				return MediaService.postMedia(media);
 
 			}
 
-			model.postMedia = function(mediaFiles) {
-
-				var numberOfFiles = mediaFiles.length;
-				var strToIndex = ";base64,";
-				var mediaArray = [];
-
-				angular.forEach(mediaFiles, function(file, i){
-		    	var strStart = (file.indexOf(";base64,") + strToIndex.length);
-					var mediaObj = file.slice(strStart, -1);
-					mediaArray.push(mediaObj);
-		    });
-
-				console.log(mediaArray);
-
-				return model.getMediaReservation(numberOfFiles)
-					.then(
-						function success(response) {
-							console.log(JSON.stringify(response.files));
-							var fileReservations = response.files;
-							var listOfFiles = [];
-
-							angular.forEach(response.files, function(file, i) {
-								listOfFiles.push(file.sid);
-							});
-
-						//console.log("fileSIDS:" + listOfFiles);
-						return listOfFiles;
-
-							// var media = {
-							// 	"userFile": {
-							// 		"sid": reservationSID,
-							// 		"context": "message",
-							// 		"name": "New File for message",
-							// 		"uploadUri": "http://localhost:8000/1.1/media",
-							// 		"content": mediaObj
-							// 	}
-							// } 
-
-							//console.log(JSON.stringify(media));
-
-							// MediaService.postMedia(media)
-							// 	.then(
-							// 			function success(response) {
-							// 				console.log(JSON.stringify(response));
-							// 			},
-							// 			function error(response) {
-
-							// 			}
-							// 		);
-
-
-						},
-						function error(response) {
-
-						}
-					)
+			model.postAvatarToAccount = function(avatarSID) {
+				var avatarObj = {
+					"userFile": {
+						"sid": avatarSID
+					}		
+				}
+				return MediaService.postAvatar(avatarObj);
 			}
 
-		
 		
 		}
 	]);
