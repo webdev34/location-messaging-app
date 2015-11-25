@@ -31,11 +31,27 @@
 							});
 
 							//console.log("fileSIDS:" + listOfFiles);
-							return listOfFiles;
+							return response;
 						},
 						function error(response) {
 							return response;
 						});
+			}
+
+			model.postSingleMedia = function(mediaSID, file) {
+
+				var media = {
+					"userFile": {
+						"sid": mediaSID,
+						"context": "message",
+						"name": "New File for message",
+						"uploadUri": "http://localhost:8000/1.1/media",
+						"content": file
+					}
+				} 
+
+				return MediaService.postMedia(media);
+
 			}
 
 			model.postMessageMedia = function(mediaSIDList, assets) {

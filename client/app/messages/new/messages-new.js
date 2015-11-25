@@ -105,29 +105,57 @@
 
 			newMessageCtrl.createNewMessage = function() {
 				var assets = newMessageCtrl.newMessage.assets;
+				//console.log(assets);
 
 				if (assets.length > 0) {
-					return MediaModel.getMediaReservation(assets.length)
-						.then(
-							function success(response) {
-								var mediaSIDList = response;
-								var mediaArray = []
+					var mediaArray = [];
+
+					MediaModel.getMediaReservation(assets.length)
+						.then( function(mediaSIDList) {
+							return mediaSIDList;
+						})
+						.then( function(mediaSIDList) {
+							// console.log('this is the second promise: ');
+							// console.log(mediaSIDList);
+
+							var numberOfFiles = assets.length;
+							var strToIndex = ";base64,";
+
+							angular.forEach(assets, function(asset, i) {
+								//console.log(asset);
+								var strToIndex = ";base64,";
+								var strStart = (asset.indexOf(";base64,") + strToIndex.length);
+								var mediaObj = asset.slice(strStart, -1);
+
+								MediaModel.postSingleMedia(mediaSIDList[i], mediaObj);
+							}); 
+
+							console.log('done');
+
+						});
+					// return MediaModel.getMediaReservation(assets.length)
+					// 	.then(
+					// 		function success(response) {
+					// 			var mediaSIDList = response;
+					// 			var mediaArray = [];
 								
-								return MediaModel.postMessageMedia(mediaSIDList, newMessageCtrl.newMessage.assets)
-									.then(
-										function success(response) {
-											angular.forEach(mediaSIDList, function(sid, i) {
-												mediaArray.push({"sid" : sid });
-											});
-											newMessageCtrl.newMessage.media = mediaArray;
-												postMessage();
-										},
-										function error(response){});
+					// 			return MediaModel.postMessageMedia(mediaSIDList, newMessageCtrl.newMessage.assets)
+					// 				.then(
+					// 					function success(response) {
+					// 						angular.forEach(mediaSIDList, function(sid, i) {
+					// 							mediaArray.push({"sid" : sid });
+					// 						});
+					// 						newMessageCtrl.newMessage.media = mediaArray;
+					// 							postMessage();
+					// 					},
+					// 					function error(response){});
 
-							},
-							function error(response) {
+					// 		},
+					// 		function error(response) {
 
-							});
+					// 		});
+
+
 				} else {
 					postMessage();
 				}
