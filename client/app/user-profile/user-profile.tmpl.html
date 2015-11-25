@@ -15,7 +15,11 @@
 				        <img class="preview hide" ng-src="{{userProfileCtrl.user.newlogo[$index]}}"/>
 				    </div>
 					<br/>
-					<button class="qvr-button action change-avatar-btn" flow-btn ng-click="removeFiles();">Change Avatar</button>
+					<button ng-hide="userProfileCtrl.isUploadingAvatar" class="qvr-button action change-avatar-btn" flow-btn ng-click="removeFiles();">Change Avatar</button>
+					<div ng-show="userProfileCtrl.isUploadingAvatar">
+						<p>Uploading Avatar...</p>
+						<ajax-loader></ajax-loader>
+					</div>
 					<p>
 						Contact System Administrator to make other changes<br/>
 						to your profile: <a ng-href="#">email</a>

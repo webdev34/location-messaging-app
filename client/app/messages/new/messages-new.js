@@ -133,7 +133,7 @@
 								var strStart = (asset.indexOf(";base64,") + strToIndex.length);
 								var mediaObj = asset.slice(strStart, -1);
 
-								MediaModel.postSingleMedia(mediaSIDList[i], mediaObj).then(function(success){
+								MediaModel.postMessageMedia(mediaSIDList[i], mediaObj).then(function(success){
 									finishedFiles++;
 									checkIfDone();
 								});
