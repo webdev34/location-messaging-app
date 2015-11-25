@@ -10,6 +10,7 @@
 		'$stateParams',
 		'FoundationApi',
 		'MessageDetailModel',
+		'MediaModel',
 		
 		function(
 			$rootScope,
@@ -17,12 +18,14 @@
 			$state,
 			$stateParams,
 			FoundationApi,
-			MessageDetailModel
+			MessageDetailModel,
+			MediaModel
 		) {
 			
 			var newMessageCtrl = this;
 			
 			newMessageCtrl.isEditing = false;
+			newMessageCtrl.uploadingImages = false;
 			
 			newMessageCtrl.showStartDatePicker = false;
 			newMessageCtrl.showEndDatePicker = false;
@@ -55,6 +58,7 @@
 				"assets": []
 			};
 
+			
 			newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 
 			if ($state.current.name == "messages.edit" ) {
@@ -64,7 +68,7 @@
 				MessageDetailModel.getMessageDetail($stateParams._id)
 					.then (
 					function success(response) {
-							console.log("response: " + JSON.stringify(response));
+							//console.log("response: " + JSON.stringify(response));
 
 							newMessageCtrl.newMessage = response;
 
@@ -92,36 +96,92 @@
 				newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 			}
 
+
+
+			newMessageCtrl.postMediaFile = function(media) {
+
+				MediaModel.postMedia(media);
+
+			}
+
 			newMessageCtrl.createNewMessage = function() {
+				var assets = newMessageCtrl.newMessage.assets;
+				//console.log(assets);
+
+				if (assets.length > 0) {
+					newMessageCtrl.uploadingImages = true;
+
+					MediaModel.getMediaReservation(assets.length)
+						.then( function(mediaSIDList) {
+								var mediaArray = [];
+								angular.forEach(mediaSIDList, function(sid, i) {
+					 				mediaArray.push({"sid" : sid });
+								});
+								newMessageCtrl.newMessage.media = mediaArray;
+
+							return mediaSIDList;
+						})
+						.then( function(mediaSIDList) {
+
+
+							var numberOfFiles = assets.length;
+							var finishedFiles = 0;
+							var strToIndex = ";base64,";
+
+							angular.forEach(assets, function(asset, i) {
+								var strToIndex = ";base64,";
+								var strStart = (asset.indexOf(";base64,") + strToIndex.length);
+								var mediaObj = asset.slice(strStart, -1);
+
+								MediaModel.postSingleMedia(mediaSIDList[i], mediaObj).then(function(success){
+									finishedFiles++;
+									checkIfDone();
+								});
+							}); 
+
+							function checkIfDone() {
+								if (finishedFiles >= numberOfFiles) {
+									newMessageCtrl.uploadingImages = false;
+									postMessage();
+									return;
+								};
+							}
+
+						});
+					
+				} else {
+					postMessage();
+				}
+
+
+				function postMessage() {
+					MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
+						function success(response){
+							
+							FoundationApi.publish('main-notifications', {
+								title: 'Message Sent',
+								content: '',
+								color: 'success',
+								autoclose: '3000'
+							});
+
+							$state.go('messages.dashboard');
+
+						},
+						function error(response) {
+							FoundationApi.publish('main-notifications', {
+								title: 'Message Was Not Sent',
+								content: response.code,
+								color: 'fail',
+								autoclose: '3000'
+							});
+						}
+					);
+				}
 				
-				//console.log("logging new message: " + JSON.stringify(newMessageCtrl.newMessage));
-
-				MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
-					function success(response){
-						
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Sent',
-							content: '',
-							color: 'success',
-							autoclose: '3000'
-						});
-
-						$state.go('messages.dashboard');
-
-					},
-					function error(response) {
-						FoundationApi.publish('main-notifications', {
-							title: 'Message Was Not Sent',
-							content: response.code,
-							color: 'fail',
-							autoclose: '3000'
-						});
-					}
-				);
 			}
 
 			newMessageCtrl.updateMessage = function() {
-				console.log('updating');
 				MessageDetailModel.updateMessage(newMessageCtrl.newMessage).then(
 					function success(response){
 						
@@ -169,6 +229,7 @@
 		              	newMessageCtrl.newMessage.assets.push(uri);
 		          	};
 		          	fileReader.readAsDataURL(flowFile.file);
+		          	// JSON.stringify("content:" + newMessageCtrl.newMessage.assets);
 		    	});
 		  	};
 
