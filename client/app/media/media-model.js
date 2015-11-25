@@ -22,52 +22,110 @@
 				return MediaService.getMediaReservation(numberOfFiles)
 					.then(
 						function success(response) {
-							return response;
+							//console.log(JSON.stringify(response.files));
+							var fileReservations = response.files;
+							var listOfFiles = [];
+
+							angular.forEach(response.files, function(file, i) {
+								listOfFiles.push(file.sid);
+							});
+
+							//console.log("fileSIDS:" + listOfFiles);
+							return listOfFiles;
 						},
 						function error(response) {
 							return response;
 						});
 			}
-			model.postMedia = function(mediaFile) {
-				//console.log("media file:" + mediaFile);
-				//var btoaFile = btoa(mediaFile);
-				//console.log("btoa file:" + btoaFile);
+
+			model.postMessageMedia = function(mediaSIDList, assets) {
+				//console.log("model sid:" + mediaSIDList);
+				//console.log("assets: " + assets);
+
+				var numberOfFiles = assets.length;
+				//console.log("numberOfFiles: " + numberOfFiles);
+
 				var strToIndex = ";base64,";
-				var strStart = (mediaFile.indexOf(";base64,") + strToIndex.length);
-				//console.log("start at:" + strStart);
-				var mediaObj = mediaFile.slice(strStart, -1);
-				//console.log("mediaObj:" + mediaObj);
+				//var mediaArray = [];
 
+				angular.forEach(assets, function(file, i) {
+					var strStart = (file.indexOf(";base64,") + strToIndex.length);
+					var mediaObj = file.slice(strStart, -1);
+					var mediaSID = mediaSIDList[i];
 
-				return 	model.getMediaReservation(1)
+					var media = {
+						"userFile": {
+							"sid": mediaSID,
+							"context": "message",
+							"name": "New File for message",
+							"uploadUri": "http://localhost:8000/1.1/media",
+							"content": mediaObj
+						}
+					} 
+
+					MediaService.postMedia(media)
+						.then(
+								function success(response) {
+									//console.log(JSON.stringify(response));
+								},
+								function error(response) {
+
+								}
+							);
+				});
+				//console.log(mediaArray);
+
+			}
+
+			model.postMedia = function(mediaFiles) {
+
+				var numberOfFiles = mediaFiles.length;
+				var strToIndex = ";base64,";
+				var mediaArray = [];
+
+				angular.forEach(mediaFiles, function(file, i){
+		    	var strStart = (file.indexOf(";base64,") + strToIndex.length);
+					var mediaObj = file.slice(strStart, -1);
+					mediaArray.push(mediaObj);
+		    });
+
+				console.log(mediaArray);
+
+				return model.getMediaReservation(numberOfFiles)
 					.then(
 						function success(response) {
-							//console.log(JSON.stringify(response));
-							var reservationSID = response.files[0].sid;
+							console.log(JSON.stringify(response.files));
+							var fileReservations = response.files;
+							var listOfFiles = [];
 
-							//console.log(file);
+							angular.forEach(response.files, function(file, i) {
+								listOfFiles.push(file.sid);
+							});
 
-							var media = {
-								"userFile": {
-									"sid": reservationSID,
-									"context": "message",
-									"name": "New File for message",
-									"uploadUri": "http://localhost:8000/1.1/media",
-									"content": mediaObj
-								}
-							} 
+						//console.log("fileSIDS:" + listOfFiles);
+						return listOfFiles;
+
+							// var media = {
+							// 	"userFile": {
+							// 		"sid": reservationSID,
+							// 		"context": "message",
+							// 		"name": "New File for message",
+							// 		"uploadUri": "http://localhost:8000/1.1/media",
+							// 		"content": mediaObj
+							// 	}
+							// } 
 
 							//console.log(JSON.stringify(media));
 
-							MediaService.postMedia(media)
-								.then(
-										function succuss(response) {
-											console.log(JSON.stringify(response));
-										},
-										function error(response) {
+							// MediaService.postMedia(media)
+							// 	.then(
+							// 			function success(response) {
+							// 				console.log(JSON.stringify(response));
+							// 			},
+							// 			function error(response) {
 
-										}
-									);
+							// 			}
+							// 		);
 
 
 						},

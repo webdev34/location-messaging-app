@@ -104,43 +104,55 @@
 			}
 
 			newMessageCtrl.createNewMessage = function() {
+				var assets = newMessageCtrl.newMessage.assets;
 
-				MediaModel.postMedia(newMessageCtrl.newMessage.assets[0])
-					.then(
-						function success(response) {
-							console.log(response);
-							console.log('success');
-							//postMessage();
-						},
-						function error(response) {
-							console.log(response);
-						}
-					);
-
-					function postMessage() {
-						MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
+				if (assets.length > 0) {
+					MediaModel.getMediaReservation(assets.length)
+						.then(
 							function success(response){
+								var mediaSIDList = response;
+								var mediaArray = []
 								
-								FoundationApi.publish('main-notifications', {
-									title: 'Message Sent',
-									content: '',
-									color: 'success',
-									autoclose: '3000'
+								MediaModel.postMessageMedia(mediaSIDList, newMessageCtrl.newMessage.assets);
+								angular.forEach(mediaSIDList, function(sid, i) {
+									mediaArray.push({"sid" : sid });
 								});
-
-								$state.go('messages.dashboard');
+								newMessageCtrl.newMessage.media = mediaArray;
+								postMessage();
 
 							},
 							function error(response) {
-								FoundationApi.publish('main-notifications', {
-									title: 'Message Was Not Sent',
-									content: response.code,
-									color: 'fail',
-									autoclose: '3000'
-								});
-							}
-						);
-					}
+
+							});
+				} else {
+					postMessage();
+				}
+
+
+				function postMessage() {
+					MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
+						function success(response){
+							
+							FoundationApi.publish('main-notifications', {
+								title: 'Message Sent',
+								content: '',
+								color: 'success',
+								autoclose: '3000'
+							});
+
+							$state.go('messages.dashboard');
+
+						},
+						function error(response) {
+							FoundationApi.publish('main-notifications', {
+								title: 'Message Was Not Sent',
+								content: response.code,
+								color: 'fail',
+								autoclose: '3000'
+							});
+						}
+					);
+				}
 				
 			}
 
@@ -193,7 +205,7 @@
 		              	newMessageCtrl.newMessage.assets.push(uri);
 		          	};
 		          	fileReader.readAsDataURL(flowFile.file);
-		          	JSON.stringify("content:" + newMessageCtrl.newMessage.assets);
+		          	// JSON.stringify("content:" + newMessageCtrl.newMessage.assets);
 		    	});
 		  	};
 

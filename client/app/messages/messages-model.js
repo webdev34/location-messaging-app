@@ -59,6 +59,7 @@
 			};
 
 			model.createNewMessage = function(newMessage) {
+				console.log(newMessage);
 
 				var formattedMessage = {
 					"message": {
@@ -66,7 +67,8 @@
 						"label": newMessage.messageTitle,
 						"text": newMessage.content,
 						"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
-						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime()//,
+						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime(),
+						'media': newMessage.media
 						//sent: true,
 						//'media': [23423awerwe5q435345]
 					},
