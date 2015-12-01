@@ -11,6 +11,13 @@
 			$http,
 			API_URL
 		) {
+			/*
+				
+				type:11 => Enterprise User
+				type:21 => Social User
+				type: 1 => System Admin
+
+			*/
 			return {
 				login : function(userObj) {
 					return $http.post(API_URL + '/session', {'user' : userObj});
