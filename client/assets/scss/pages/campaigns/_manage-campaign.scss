@@ -105,6 +105,7 @@
         .qvr-label {
             span {
                 color: #808285;
+                display: inline-block;
             }
         }
         .input-wrapper {
@@ -139,7 +140,7 @@
         #marketing-assets,
         #campaigns-tags,
         #campaign-participants {
-            width: 350px;
+            width: 305px;
         }
         #campaigns-tags {
             margin-left: 5px;

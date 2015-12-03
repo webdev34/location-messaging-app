@@ -12,7 +12,7 @@
 					<option value="Ended">Ended</option>
 			</select>
 			<button zf-open="saveCampaignModal" class="qvr-button action" ng-disabled="!campaignForm.$valid">Save Campaign</button>
-			<button zf-open="cloneCampaignModal" class="qvr-button action">Clone Campaign</button>
+			<button zf-open="cloneCampaignModal" class="qvr-button action hide">Clone Campaign</button>
 
 			<!-- Confirmation Modal-->
 			<div zf-modal="" id="saveCampaignModal">
@@ -160,7 +160,7 @@
 				</section>
 				</div>
 			<div class="clearfix"></div>
-				<div id="marketing-assets" class="input-wrapper">
+				<div id="marketing-assets" class="input-wrapper hide">
 					<label class="qvr-label">Marketing Assets</label>
 
 					<isteven-multi-select class="marketing-asset"
@@ -174,7 +174,7 @@
 				</isteven-multi-select>
 
 				</div>
-				<div id="campaigns-tags" class="input-wrapper">
+				<div id="campaigns-tags" class="input-wrapper hide">
 					<label class="qvr-label">Campaigns Tags</label>
 
 					<isteven-multi-select class="add-tags" 
@@ -214,12 +214,12 @@
 					<option value="Draft">Set To Draft</option>
 					<option value="Live">Set To Live</option>
 					<option value="Ended">Ended</option>
-					<option value="Clone">Clone</option>
+					<!-- <option value="Clone">Clone</option> -->
 				</select>
 				<button class="qvr-button action {{manageCampaignCtrl.bulkActionSelected}}" id="bulk-action-button" ng-disabled="!manageCampaignCtrl.bulkActionSelected || !manageCampaignCtrl.isAnyInputsSelected" ng-click="manageCampaignCtrl.bulkActions()">
 					<i class="check-mark"></i>
 				</button>
-				<button zf-open="cloneMessageModal" class="qvr-button action {{manageCampaignCtrl.bulkActionSelected}}" id="cloneMessageModalButton"  ng-click="manageCampaignCtrl.cloneMessages()" ng-disabled="!manageCampaignCtrl.isAnyInputsSelected" >
+				<button zf-open="cloneMessageModal" class="qvr-button action {{manageCampaignCtrl.bulkActionSelected}} hide" id="cloneMessageModalButton"  ng-click="manageCampaignCtrl.cloneMessages()" ng-disabled="!manageCampaignCtrl.isAnyInputsSelected" >
 					<i class="check-mark"></i>
 				</button>
 			</div>
@@ -292,7 +292,7 @@
 
 
 
-			<div id="tag-filters" class="input-wrapper">
+			<div id="tag-filters" class="input-wrapper hide">
 				<isteven-multi-select class="add-tag-filters float-left"   
 				    input-model="manageCampaignCtrl.campaignMessageTags"    
 				    output-model="manageCampaignCtrl.tagFilters"
