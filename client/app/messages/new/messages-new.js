@@ -11,6 +11,7 @@
 		'FoundationApi',
 		'MessageDetailModel',
 		'MediaModel',
+		'$http',
 		
 		function(
 			$rootScope,
@@ -19,7 +20,8 @@
 			$stateParams,
 			FoundationApi,
 			MessageDetailModel,
-			MediaModel
+			MediaModel,
+			$http
 		) {
 			
 			var newMessageCtrl = this;
@@ -31,6 +33,8 @@
 			newMessageCtrl.showEndDatePicker = false;
 			newMessageCtrl.showStartTimePicker = false;
 			newMessageCtrl.endStartTimePicker = false;
+
+			newMessageCtrl.uploader = {};
 
 			// Setting up Dates
 			var today = new Date(),
@@ -62,6 +66,7 @@
 			newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 
 			if ($state.current.name == "messages.edit" ) {
+				
 				newMessageCtrl.isEditing = true;
 				//console.log('$stateParams: '+ $stateParams._id);
 
@@ -76,14 +81,27 @@
 
 							setMapCenter();
 
-
 					},
 					function error(response) {
+
+
 					});
+
+				// Adding images to FLOW object -- When working remove http and use response data for mediaArray variable
+				$http.get('assets/data/edit-message-example.json').success(function(data) {
+					var mediaArray = data.data.message[0].media
+					angular.forEach(mediaArray, function(img, i){
+	       				newMessageCtrl.newMessage.assets.push(img.url);  
+	        			newMessageCtrl.uploader.flow.files.push(img.url);
+	  				});
+           		});	
+						
 
 			} else {
 				setMapCenter();
 			}
+
+
 
 			//JSON.stringify('new message:' + newMessageCtrl.newMessage);
 
@@ -95,8 +113,6 @@
 			function resetForm() {
 				newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
 			}
-
-
 
 			newMessageCtrl.postMediaFile = function(media) {
 
@@ -182,6 +198,7 @@
 			}
 
 			newMessageCtrl.updateMessage = function() {
+
 				MessageDetailModel.updateMessage(newMessageCtrl.newMessage).then(
 					function success(response){
 						
@@ -219,8 +236,6 @@
 				{ name: "Tag 10", ticked: false}
 			];
 
-			newMessageCtrl.uploader = {};
-
 		  	newMessageCtrl.processFiles = function(files){
 		    	angular.forEach(files, function(flowFile, i){
 		       	var fileReader = new FileReader();
@@ -234,8 +249,8 @@
 		  	};
 
 		  	newMessageCtrl.removeFile = function(index){
-		        newMessageCtrl.newMessage.assets.splice(index, 1);  
 		        newMessageCtrl.uploader.flow.files.splice(index, 1);
+		        newMessageCtrl.newMessage.assets.splice(index, 1); 
 		  	};
 
 			function clearTakeOverSelectors(){
@@ -255,7 +270,6 @@
 				range = range > 100 ? 100 : (range < 0 || !range ? 0 : range);
 				newMessageCtrl.newMessage.range = range;
 			};
-
 
 		}
 	]);

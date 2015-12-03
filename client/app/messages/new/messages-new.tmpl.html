@@ -13,7 +13,7 @@
 				<option>Active</option>
 				<option>Closed</option>
 			</select>
-			<button class="qvr-button action">Preview</button>
+			<button class="qvr-button action hide">Preview</button>
 
 			<button zf-open="saveMessageModal" ng-hide="newMessageCtrl.isEditing"  class="qvr-button action" ng-disabled="!msgForm.$valid">Compose Message</button>
 
@@ -58,14 +58,14 @@
 				</select>
 			</span>
 
-			<span id="campaign-details" class="input-wrapper">
+			<span id="campaign-details" class="input-wrapper hide">
 				<label class="qvr-label">Campaign Details</label>
 				<select class="qvr-select" required>
 					<option>----------------</option>
 				</select>
 			</span>
 
-			<span id="message-tags" class="input-wrapper">
+			<span id="message-tags" class="input-wrapper hide">
 					<label class="qvr-label">Message Tags</label>
 					<isteven-multi-select class="add-tag-filters float-left"   
 				    input-model="newMessageCtrl.messageTags"    
@@ -172,8 +172,8 @@
 						<ul >
 							<li ng-repeat="image in newMessageCtrl.uploader.flow.files track by $index" ng-class="{'last': ($index+1) % 3 == 0}">
 								<i class="fa fa-times-circle" ng-click="newMessageCtrl.removeFile($index);"></i>
-						      	<img class="preview hide" flow-img="image"/><br>
-						        <img class="preview" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
+						      	<img class="preview show" flow-img="image" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/><br>
+						        <img class="preview hide" ng-src="{{newMessageCtrl.newMessage.assets[$index]}}"/>
 						    </li>
 						</ul>
 				    </div>
@@ -269,8 +269,8 @@
 					</div>
 
 					<section class="location-section">
-						<label class="qvr-label">Select Preset Locations</label>
-						<select class="qvr-select" disabled>
+						<label class="qvr-label hide">Select Preset Locations</label>
+						<select class="qvr-select hide" disabled>
 							<option>--- N/A ---</option>
 						</select>
 
