@@ -17,15 +17,17 @@
 		'$scope',
 		'EnterpriseModel',
 		'FoundationApi',
+		'$http',
 		
-		function($state, $scope, EnterpriseModel, FoundationApi) {
+		function($state, $scope, EnterpriseModel, FoundationApi, $http) {
 			var enterpriseCtrl = this;
 			enterpriseCtrl.isEditing = false;
 
-
+			
 
 			function init() {
 				getEnterprise();
+				getUserAccounts();
 			}
 
 			function getEnterprise() {
@@ -42,7 +44,23 @@
 				enterpriseCtrl.isEditing = false;
 			}
 
+	        function getUserAccounts() {
+	            $http.get('assets/data/users.json').success(function(data) {
+	                enterpriseCtrl.primaryContacts = data.users;
+	            });
+	        }
 
+	        enterpriseCtrl.selectPrimaryContact = function() {
+				
+				angular.forEach(enterpriseCtrl.primaryContacts, function(contact, index){
+
+					if(parseInt(enterpriseCtrl.editedCompany.primaryContact) == parseInt(contact.id)){
+						enterpriseCtrl.editedCompany.emailAddress = enterpriseCtrl.primaryContacts[index].email;
+						enterpriseCtrl.editedCompany.contactNumber = enterpriseCtrl.primaryContacts[index].contactNumber;
+					}
+					
+		       	});
+			}
 
 			init();
 			
