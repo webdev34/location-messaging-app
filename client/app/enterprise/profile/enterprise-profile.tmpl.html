@@ -77,13 +77,17 @@
 					<textarea placeholder="" ng-model="enterpriseCtrl.editedCompany.description" required rows="4" cols="50" ></textarea>
 
 					<label>Primary Contact</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.primaryContact" required >
+					<select id="primary-contact" class="qvr-select" ng-model="enterpriseCtrl.editedCompany.primaryContact" ng-change="enterpriseCtrl.selectPrimaryContact()" >
+					<option value="">---</option>
+					<option ng-repeat="contact in enterpriseCtrl.primaryContacts" value="{{contact.id}}" >{{contact.firstName}} {{contact.lastName}}</option> 
+					</select>
+					
 
 					<label>Contact Email</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.emailAddress" required >
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.emailAddress" disabled="disabled" >
 
 					<label>Contact Number</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.phone" required >
+					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.contactNumber" disabled="disabled" >
 
 				</div>
 			</div>
