@@ -5,13 +5,13 @@
 		'enterprise-portal.services.messages',
 		'enterprise-portal.models.media'
 	])
-	
+
 	.service('MessageDetailModel', [
 		'$http',
 		'$q',
 		'MessagesService',
 		'MediaModel',
-		
+
 		function(
 			$http,
 			$q,
@@ -19,7 +19,7 @@
 			MediaModel
 		) {
 			var model = this;
-			
+
 			model.getMessageDetail = function(messageId) {
 				//return (message) ? $q.when(message) : MessagesService.get(messageId).then(
 				return MessagesService.get(messageId).then(
@@ -29,7 +29,7 @@
 						var today = new Date(),
 								todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
 								todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-				
+
 						var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
 								tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 								tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
@@ -70,7 +70,7 @@
 						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime(),
 						'media': newMessage.media
 						//sent: true,
-						//'media': [23423awerwe5q435345]
+						//'media': [{'sid': '5661cb2d39a18d7268bf206c'}]
 					},
 					"location": [
 						{
@@ -104,15 +104,15 @@
 				return MessagesService.post(formattedMessage).then(function(response){});
 			};
 
-		
+
 		}
 	])
-		
+
 	.service('MessageListModel', [
 		'$http',
 		//'$q',
 		'MessagesService',
-		
+
 		function(
 			$http,
 			//$q,
@@ -126,10 +126,10 @@
 				return MessagesService.list(0,0)
 					.then(
 						function(response){
-							
+
 							var messageList = [],
 									noLocation = [{"name": "No Location"}];
-							
+
 							function getItemByEnvelope(arrayName, objName, envelopeID) {
 								return arrayName.filter(function(item) {
 									return item[objName] == envelopeID;
@@ -137,12 +137,12 @@
 							}
 
 
-							
+
 							for (var i = 0; i < response.message.length; i++) {
-								 
+
 					 			var messageDetail = {},
 										envelopeID = response.message[i].envelope,
-										recipientCount = getItemByEnvelope(response.envelope, "sid", envelopeID);							
+										recipientCount = getItemByEnvelope(response.envelope, "sid", envelopeID);
 
 								messageDetail.message = response.message[i];
 								messageDetail.message.location = getItemByEnvelope(response.location, "envelope", envelopeID) || noLocation;
@@ -150,7 +150,7 @@
 
 								messageList.push(messageDetail);
 							}
-							
+
 							return messageList;
 						}
 					);

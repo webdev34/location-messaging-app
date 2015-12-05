@@ -30,7 +30,7 @@
 
 	//default view
 	app.constant('APP_default_state', 'messages.new');
-	
+
 
 	//var API_SERVER = 'http://api-dev.quiver.zone:80/';
 	//var API_SERVER = 'http://api-sand.quiver.zone/'
@@ -56,7 +56,7 @@
 		FastClick.attach(document.body);
 	}
 
-	app.config(['$httpProvider', '$stateProvider', function($httpProvider, $stateProvider) {  
+	app.config(['$httpProvider', '$stateProvider', function($httpProvider, $stateProvider) {
 		$stateProvider
 			.state('home', {
 				url: '/',
@@ -91,11 +91,11 @@
 						if (response.headers()['content-type'] === "application/json; charset=utf-8") {
 							var appData = extractData(response);
 							var errorData = extractError(response);
-							
+
 							if (!response.data){
 								return $q.reject(errorData)
 							}
-							
+
 							switch(response.data.code){
 								case 'QVR_RESULT' || 'QVR_RESULT_OK':
 									return appData || $q.when(appData)
@@ -110,7 +110,7 @@
 									break;
 							}
 						}
-						
+
 						// return unchanged for template requests
 						return response || $q.when(response);
 					},
@@ -127,21 +127,21 @@
 						}
 
 						rejection = extractError(rejection);
-						
+
 						FoundationApi.publish('main-notifications', {
 							title: rejection.code.replace("QVR_", "").replace(/_/g, " "),
 							content: '',
 							color: 'fail',
 							autoclose: '3000'
 						});
-						
+
 						return $q.reject(rejection);
 					}
 				}
 			}
 		]);
 	}]);
-	
+
 	app.controller('AppCtrl', [
 		'$http',
 		'UserModel',
@@ -149,7 +149,7 @@
 		'$rootScope',
 		'$state',
 		'APP_default_state',
-		
+
 		function(
 			$http,
 			UserModel,
@@ -161,12 +161,12 @@
 			var appCtrl = this;
 
 			appCtrl.user = UserModel.user;
-			
+
 			appCtrl.currentState = $rootScope.$state;
 			appCtrl.userLoginInfo = {};
-			
+
 			appCtrl.showHeader = false;
-			
+
 			appCtrl.gNavStateIs = "";
 			appCtrl.subnav = [];
 			appCtrl.navObj = {
@@ -207,16 +207,16 @@
 					}
 				}
 
-				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];				
+				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];
 				appCtrl.showHeader = appCtrl.currentState.current.name != 'home';
 			}
 
-			
+
 			$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
 				$dialogs.error("Something went wrong!", error);
 				console.error("$stateChangeError: ", toState, error);
 			});
-			
+
 
 			$rootScope.$on('$stateChangeSuccess',
 				function(event, toState, toParams, fromState, fromParams) {
@@ -233,7 +233,7 @@
 
 						if (!appCtrl.user) {
 							appCtrl.getAccount();
-						}	
+						}
 					}
 					//console.log(fromState.name, "-->", toState.name);
 					setNavigationState();
@@ -279,7 +279,7 @@
 			}
 
 			appCtrl.getAccount = function () {
-				
+
 
 				if (!UserModel.user) {
 					UserModel.getAccount(UserModel.userID)
@@ -303,14 +303,14 @@
 				}
 				//console.log('userModel: ' + JSON.stringify(UserModel.user));
 			}
-	
+
 			appCtrl.userLogin = function() {
 				UserModel.login(appCtrl.userLoginInfo)
 					.then(
 						function success(response) {
 							appCtrl.user = UserModel.user;
 							//console.log('appctrl user:' + JSON.stringify(appCtrl.user));
-							
+
 							// suppress false positives
 							if (!response.code){
 								FoundationApi.publish('main-notifications', {
@@ -353,6 +353,6 @@
 		}
 	]);
 
-	
+
 
 })();

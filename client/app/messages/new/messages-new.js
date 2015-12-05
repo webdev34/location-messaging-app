@@ -88,13 +88,13 @@
 					});
 
 				// Adding images to FLOW object -- When working remove http and use response data for mediaArray variable
-				$http.get('assets/data/edit-message-example.json').success(function(data) {
-					var mediaArray = data.data.message[0].media
-					angular.forEach(mediaArray, function(img, i){
-	       				newMessageCtrl.newMessage.assets.push(img.url);  
-	        			newMessageCtrl.uploader.flow.files.push(img.url);
-	  				});
-           		});	
+				// $http.get('assets/data/edit-message-example.json').success(function(data) {
+				// 	var mediaArray = data.data.message[0].media
+				// 	angular.forEach(mediaArray, function(img, i){
+	   //     				newMessageCtrl.newMessage.assets.push(img.url);  
+	   //      			newMessageCtrl.uploader.flow.files.push(img.url);
+	  	// 			});
+    //        		});	
 						
 
 			} else {
