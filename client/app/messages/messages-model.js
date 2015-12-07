@@ -137,18 +137,19 @@
 							}
 
 
+							if (response.message > 0) {
+								for (var i = 0; i < response.message.length; i++) {
 
-							for (var i = 0; i < response.message.length; i++) {
+						 			var messageDetail = {},
+											envelopeID = response.message[i].envelope,
+											recipientCount = getItemByEnvelope(response.envelope, "sid", envelopeID);
 
-					 			var messageDetail = {},
-										envelopeID = response.message[i].envelope,
-										recipientCount = getItemByEnvelope(response.envelope, "sid", envelopeID);
+									messageDetail.message = response.message[i];
+									messageDetail.message.location = getItemByEnvelope(response.location, "envelope", envelopeID) || noLocation;
+									messageDetail.message.recipients = recipientCount.length;
 
-								messageDetail.message = response.message[i];
-								messageDetail.message.location = getItemByEnvelope(response.location, "envelope", envelopeID) || noLocation;
-								messageDetail.message.recipients = recipientCount.length;
-
-								messageList.push(messageDetail);
+									messageList.push(messageDetail);
+								}
 							}
 
 							return messageList;
