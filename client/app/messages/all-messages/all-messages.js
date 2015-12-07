@@ -41,7 +41,6 @@
 				MessageListModel.getMessageList()
 					.then( function(response) {
 						allMessagesCtrl.messages = response;
-						console.log(allMessagesCtrl.messages);
 					});
 			}
 
