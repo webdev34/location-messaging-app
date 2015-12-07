@@ -21,7 +21,6 @@
 			var model = this;
 
 			model.getMessageDetail = function(messageId) {
-				//return (message) ? $q.when(message) : MessagesService.get(messageId).then(
 				return MessagesService.get(messageId).then(
 					function success(response) {
 						var retrievedMsg = response.message[0];
@@ -34,10 +33,13 @@
 								tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 								tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 
+						//console.log(retrievedMsg.media);
+
 						var formattedMsg = {
 							"sid": retrievedMsg.sid,
 							"messageTitle": retrievedMsg.label,
 							"content": retrievedMsg.text,
+							"media": retrievedMsg.media,
 							"status": "Inactive",
 							"range": 5,
 							"discoverOn": 1, // 1 => enter; 2 => leave
@@ -49,7 +51,7 @@
 							"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
 						}
 
-						console.log("formattedMessage: "+ JSON.stringify(formattedMsg));
+						//console.log("formattedMessage: "+ JSON.stringify(formattedMsg));
 						return formattedMsg;
 					},
 					function error() {
@@ -58,9 +60,8 @@
 				);
 			};
 
-			model.createNewMessage = function(newMessage) {
-				console.log(newMessage);
 
+			model.createNewMessage = function(newMessage) {
 				var formattedMessage = {
 					"message": {
 						target: 3, //targets all followers
@@ -69,13 +70,10 @@
 						"startTime": new Date(newMessage.startDate + " " + newMessage.startTime).getTime(),
 						"endTime": new Date(newMessage.endDate + " " + newMessage.endTime).getTime(),
 						'media': newMessage.media
-						//sent: true,
-						//'media': [{'sid': '5661cb2d39a18d7268bf206c'}]
 					},
 					"location": [
 						{
 							"name": newMessage.locationName || "Unnamed Location",
-							//"coordinates": newMessage.coordinates,
 							"latitude": newMessage.coordinates.lat,
 							"longitude": newMessage.coordinates.lng,
 							"distance": newMessage.range*1000,
@@ -86,6 +84,7 @@
 
 				return MessagesService.post(formattedMessage).then(function(response){});
 			};
+
 
 			model.updateMessage = function(updatedMessage) {
 				console.log('model update');
@@ -122,7 +121,6 @@
 				messageList;
 
 				model.getMessageList = function() {
-				//return (messageList) ? $q.when(messageList) : MessagesService.list()
 				return MessagesService.list(0,0)
 					.then(
 						function(response){

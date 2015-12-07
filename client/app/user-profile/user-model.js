@@ -1,26 +1,10 @@
-/*
-User types - these are NOT 'social users' (followers)
-	admin
-		a/e/d users
-		a/e/d campaigns
-		a/e/d messages
-	campaign manager
-		a/e/d campaigns
-		a/e/d messages
-	normal
-		a/e/d messages
-	quiver admin
-		a/e/d enterprises
-		a/e/d users
-*/
-
 (function() {
 	'use strict';
 
 	angular.module('enterprise-portal.models.user', [
 		'enterprise-portal.services.user'
 	])
-	
+
 	.service('UserModel', [
 		'$rootScope',
 		'$state',
@@ -29,7 +13,7 @@ User types - these are NOT 'social users' (followers)
 		'UserService',
 		function( $rootScope, $state, $cookieStore, API_URL, UserService) {
 			var model = this;
-			
+
 			$rootScope.auth = $cookieStore.get("qvr.auth");
 			model.userID = $cookieStore.get("qvr.user");
 
@@ -65,7 +49,7 @@ User types - these are NOT 'social users' (followers)
 			}
 
 			//console.log(model.user);
-			
+
 			// model.registerUser = function(userDetail) {
 			// 	return UserService.register(userDetail)
 			// 		.then(
@@ -99,7 +83,7 @@ User types - these are NOT 'social users' (followers)
 
 							$cookieStore.put("qvr.auth", model.authorization );
 							$cookieStore.put("qvr.user", model.userID );
-							
+
 							return response;
 						},
 						function(response) {
@@ -109,7 +93,7 @@ User types - these are NOT 'social users' (followers)
 					);
 			}
 
-			
+
 			model.logout = function() {
 				model.user = {};
 				model.isLoggedIn = false;
@@ -124,7 +108,7 @@ User types - these are NOT 'social users' (followers)
 				UserService.update(updatedUser);
 
 				// angular.extend(model.user, updatedUserDetail);
-				
+
 				// return UserService.update(updatedUserDetail)
 				// 	.then(
 				// 		function(response) {
