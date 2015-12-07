@@ -135,7 +135,7 @@
 							}
 
 
-							if (response.message != 0) {
+							if (response.message) {
 								for (var i = 0; i < response.message.length; i++) {
 
 						 			var messageDetail = {},

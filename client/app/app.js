@@ -282,7 +282,7 @@
 
 
 				if (!UserModel.user) {
-					UserModel.getAccount(UserModel.userID)
+					UserModel.getAccount()
 						.then (
 							function success(response) {
 								appCtrl.user = UserModel.user;

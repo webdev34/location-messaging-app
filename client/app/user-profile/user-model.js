@@ -17,17 +17,17 @@
 			$rootScope.auth = $cookieStore.get("qvr.auth");
 			model.userID = $cookieStore.get("qvr.user");
 
-			model.getAccount = function(userID) {
-				return UserService.get(userID)
+			model.getAccount = function() {
+				return UserService.get()
 					.then(
 						function(response) {
 							model.user = response.user[0];
-							model.user = model.user;
+							//model.user = model.user;
 							//console.log('root user: ' + JSON.stringify($rootScope.user));
 
 							//console.log('user: ' + JSON.stringify(model.user));
 
-							model.enterprise = response.enterprise[0].sid;
+							model.enterprise = response.user.enterprise;
 							//console.log('enterprise: ' + JSON.stringify(response.enterpriseUser[0].enterprise));
 
 							return response;
@@ -73,8 +73,8 @@
 							//console.log('user: ' + JSON.stringify(response.user));
 
 							model.authorization = response.authorization;
-							model.enterprise = response.enterprise[0].sid;
-							//console.log('enterprise: ' + JSON.stringify(response.enterprise));
+							model.enterprise = response.user.enterprise;
+							//console.log(model.enterprise);
 
 							$rootScope.auth = response.authorization;
 							//console.log('enterprise: ' + JSON.stringify(response.enterprise));
