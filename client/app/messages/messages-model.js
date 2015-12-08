@@ -51,7 +51,7 @@
 							"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
 						}
 
-						//console.log("formattedMessage: "+ JSON.stringify(formattedMsg));
+						console.log("formattedMessage: "+ JSON.stringify(formattedMsg));
 						return formattedMsg;
 					},
 					function error() {

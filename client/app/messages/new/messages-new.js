@@ -26,9 +26,6 @@
 
 			var vm = this;
 
-			var testObj = "123;base64,12345"
-			var mediaObj = MediaModel.stripBase64(testObj);
-
 			vm.isEditing = false;
 			vm.uploadingImages = false;
 
@@ -66,7 +63,6 @@
 			};
 
 
-			vm.newMessage = vm.newMessageTemplate;
 
 			if ($state.current.name == "messages.edit" ) {
 
@@ -76,7 +72,7 @@
 				MessageDetailModel.getMessageDetail($stateParams._id)
 					.then (
 					function success(response) {
-							//console.log("response: " + JSON.stringify(response));
+							console.log("response: " + JSON.stringify(response));
 
 							vm.newMessage = response;
 
@@ -84,13 +80,22 @@
 
 							setMapCenter();
 
+							//console.log(vm.newMessage.media);
+							var mediaArray = vm.newMessage.media;
+
+							angular.forEach(mediaArray, function(img, i){
+									vm.newMessage.assets.push(img.url);
+									vm.uploader.flow.files.push(img.url);
+									console.log(img.url);
+							});
+
 					},
 					function error(response) {
 
 
 					});
 
-				//if()
+
 
 				/*
 				$http.get('assets/data/edit-message-example.json').success(function(data) {
@@ -104,6 +109,7 @@
 
 
 			} else {
+				vm.newMessage = vm.newMessageTemplate;
 				setMapCenter();
 			}
 
