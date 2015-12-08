@@ -11,17 +11,17 @@
 	.messages-sidebar-wrap {
 		width: 250px;
 	}
-	
+
 	.messages-view-wrap {
 		flex: 1;
 	}
-	
+
 	.message-content-wrap {
 		section {
 			@extend .clearfix;
 			padding: 25px 15px 0 15px;
 		}
-		
+
 		h2 {
 			font-size: 20px;
 			margin: 0;
@@ -32,8 +32,8 @@
 			}
 		}
 
-		p { 
-			font-size: 14px; 
+		p {
+			font-size: 14px;
 			margin: 0;
 		}
 		#message-tags{
@@ -61,7 +61,7 @@
 				height: 60px;
 			}
 		}
-		
+
 		.status-box {
 			a {
 				display: inline-block;
@@ -112,7 +112,7 @@
 					transition: all 0.3s ease-in-out;
 
 				}
-				
+
 				&:hover {
 					span {
 						border: 1px solid darken($qvr-blue-1, 10%);
@@ -128,7 +128,7 @@
 				float: left;
 				margin-right: 1rem;
 			}
-			
+
 			p {
 				font-size: 17px;
 				color: $qvr-grey-3;
@@ -140,10 +140,10 @@
 			font-family: $qvr-tertiary-font;
 			font-weight: $qvr-font-weight-bold;
 			font-size: 16px;
-			
+
 			text-transform: uppercase;
 			text-align: center;
-			
+
 			input {
 				display: inline-block;
 				width: 70px;
@@ -168,11 +168,11 @@
 			.switch-wrapper {
 				text-align: center;
 			}
-			
+
 			.enter-exit-switch {
 				margin: 10px;
 			}
-			
+
 			.icon {
 				background-image: cover;
 				width: 43px;
@@ -191,7 +191,7 @@
 			}
 		}
 
-		.delivery-box {	
+		.delivery-box {
 			span.date {
 				font-size: 26px;
 				font-weight: $qvr-font-weight-bold;
@@ -209,12 +209,12 @@
 			input.date {
 				background-image: url(..//img/icons/i-calendar.png);
 			}
-			
+
 			input.hourglass {
 				background-image: url(..//img/icons/i-hourglass.png);
 			}
 		}
-		
+
 		.info-details {
 			@extend .location-details;
 			input {
@@ -227,13 +227,13 @@
 		.form-upper {
 			padding: 30px 0 10px 15px;
 			background-color: $qvr-blue-3;
-			
+
 			@include box-shadow-inner(0px, 30px, 20px, -30px, $qvr-grey-3);
-			
+
 			label {
 				width: auto;
 			}
-			
+
 			.input-wrapper {
 				display: inline-block;
 				margin: 0 10px 0 0;
@@ -261,13 +261,13 @@
 		.message-content{
 			height: 180px;
 		}
-		
+
 		.message-content#upload-text-area {
 			height: 250px;
 			background-color: transparent;
 			border: none;
 		}
-		
+
 
 		.attach-asset {
 			padding: 0;
@@ -275,7 +275,7 @@
 		    padding-bottom: 10px;
 		    cursor: pointer;
 		    float: left;
-		  
+
 		  .icon {
 				background-position: 0 -5px;
 				width: 44px;
@@ -322,7 +322,7 @@
 					}
 					img{
 						width: 105px;
-						height: 105px;
+						//height: 105px;
 					}
 				}
 			}
@@ -330,31 +330,31 @@
 
 		.map-search-wrap {
 			position: relative;
-			
+
 			input {
 				padding: 0 $qvr-input-height;
 			}
-			
+
 			> .icon {
 				position: absolute;
 				background-position: center;
 				background-size: 50%;
 				background-repeat: no-repeat;
 			}
-			
+
 			.search-button {
 				position: absolute;
 				right: 0;
-				
+
 				height: $qvr-input-height;
 				width: $qvr-input-height * 1.1;
-				
+
 				background-color: $qvr-blue-1;
-				
+
 				@include border-radius($qvr-border-radius);
-				
+
 				cursor: pointer;
-				
+
 				.icon {
 					width: 100%;
 					background-position: center;
@@ -368,7 +368,7 @@
 	.message-active-list {
 		margin-bottom: 0;
 
-		.title-width { 
+		.title-width {
 			display: inline-block;
 			width: 215px;
 			float: left;
@@ -432,13 +432,13 @@
 
 				a {
 					transition: all 0.4s ease-in-out;
-					
+
 					&:hover {
 						color: $qvr-blue-1;
 					}
 				}
-				
-				&:hover {	
+
+				&:hover {
 					background-color: #f2f2f2;
 
 					.stats {
@@ -476,7 +476,7 @@
 				padding: 12px 25px 12px 20px;
 				margin-bottom: 0.5rem;
 				transition: all 0.2s ease-in-out;
-				
+
 				display: flex;
 				flex-direction: row;
 				flex-wrap: nowrap;
@@ -491,7 +491,7 @@
 				}
 
 				.update-body {
-					order: 2; 
+					order: 2;
 					flex: 2;
 					font-size: 12px;
 					font-weight: $qvr-font-weight-bold;
@@ -516,13 +516,13 @@
 				}
 
 				.link-wrap {
-					order: 3; 
+					order: 3;
 					padding-top: 10px;
 				}
 			}
 		}
 	}
-	
+
 	.new-message {
 		h2 {
 			width: 100%;
@@ -534,43 +534,43 @@
 			font-size: 20px;
 			text-transform: uppercase;
 		}
-		
+
 		#msg-title-text {
 			width: 250px;
 		}
-		
+
 		#msg-id-text {
 			width: 90px;
 		}
-		
+
 		map > div {
 			border: 1px solid $qvr-grey-2;
 			@include border-radius($qvr-border-radius);
 		}
-		
+
 		.column-3 {
 			width: 33.3%;
 			padding: 0 15px 0 0;
 			float: left;
 		}
-		
+
 		.content-row {
 			padding: 15px 0 15px 15px;
 			@include display-flex();
 		}
-		
+
 		.qvr-form {
 			.qvr-label{
 				margin-left: 5px;
 			}
 			.message-recipients {
 				@extend .form-element;
-				
+
 				width: 100%;
 				height: 50px;
-				
+
 				padding: 10px 0 0 0;
-				
+
 				.targeted-followers-count {
 					color: $qvr-blue-1;
 					font-family: $qvr-tertiary-font;
@@ -582,7 +582,7 @@
 					margin: 0 -85px 0 0;
 					padding: 0 85px 0 0;
 				}
-				
+
 				.targeted-followers-label {
 					width: 85px;
 					text-align: center;
@@ -611,12 +611,12 @@
 				// top: -30px;
     // 			position: relative;
 			}
-			
+
 			.message-content {
 				width: 100%;
 				height: 458px;
 			}
-			
+
 			.location-section {
 				width: 100%;
 				height: 555px;
@@ -624,26 +624,26 @@
 				@include border-radius(10px);
 				background-color: $qvr-grey-5;
 			}
-			
+
 			.date-selector {
 				width: 100%;
 				padding: 20px;
 				@include border-radius(10px);
 				background-color: $qvr-grey-5;
 			}
-			
+
 			.time-selector {
 				width: 100%;
 				padding: 20px;
 				@include border-radius(10px);
 				background-color: $qvr-grey-5;
-				
+
 				.delivery-box {
 					//padding: 0 25px;
 					width: 50%;
     				float: left;
 				}
-				
+
 				.start-time, .end-time {
 					margin-bottom: 10px;
 				}
@@ -652,7 +652,7 @@
 					padding: 0px;
 				}
 			}
-			
+
 			.location-details {
 				width: 100%;
 				padding: 20px;

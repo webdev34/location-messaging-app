@@ -61,6 +61,7 @@
 				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750},
 				"assets": []
 			};
+			vm.newMessage = vm.newMessageTemplate;
 
 
 
@@ -72,11 +73,12 @@
 				MessageDetailModel.getMessageDetail($stateParams._id)
 					.then (
 					function success(response) {
-							console.log("response: " + JSON.stringify(response));
+							//console.log("response: " + JSON.stringify(response));
 
 							vm.newMessage = response;
+							vm.newMessage.assets = [];
 
-							JSON.stringify('new message 67:' + vm.newMessage);
+							//JSON.stringify('new message 67:' + vm.newMessage);
 
 							setMapCenter();
 
@@ -86,7 +88,7 @@
 							angular.forEach(mediaArray, function(img, i){
 									vm.newMessage.assets.push(img.url);
 									vm.uploader.flow.files.push(img.url);
-									console.log(img.url);
+									//console.log(img.url);
 							});
 
 					},
@@ -95,21 +97,7 @@
 
 					});
 
-
-
-				/*
-				$http.get('assets/data/edit-message-example.json').success(function(data) {
-					var mediaArray = data.data.message[0].media
-					angular.forEach(mediaArray, function(img, i){
-	       				vm.newMessage.assets.push(img.url);
-	        			vm.uploader.flow.files.push(img.url);
-	  				});
-           		});
-				*/
-
-
 			} else {
-				vm.newMessage = vm.newMessageTemplate;
 				setMapCenter();
 			}
 
