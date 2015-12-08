@@ -2,11 +2,11 @@
 	'use strict';
 
 	angular.module('enterprise-portal.services.media', [])
-	
+
 	.factory('MediaService', [
 		'$http',
 		'API_URL',
-		
+
 		function(
 			$http,
 			API_URL
@@ -18,7 +18,7 @@
 				},
 
 				postMedia : function(media) {
-					media.uploadUri = (API_URL + '/media/')
+					media.userFile.uploadUri = (API_URL + '/media/')
 					//console.log("service:" + JSON.stringify(media));
 					return $http.post(API_URL + '/media', media);
 
@@ -31,7 +31,7 @@
 							"uploadUri": "http://localhost:8000/1.1/media",
 							"content": ""
 						}
-					} 
+					}
 					/*/
 				},
 				postAvatar: function(avatarObj) {

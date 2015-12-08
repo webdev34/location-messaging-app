@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('messages.new', [])
-	
+
 	.controller('NewMessageCtrl', [
 		'$rootScope',
 		'$scope',
@@ -12,7 +12,7 @@
 		'MessageDetailModel',
 		'MediaModel',
 		'$http',
-		
+
 		function(
 			$rootScope,
 			$scope,
@@ -23,29 +23,29 @@
 			MediaModel,
 			$http
 		) {
-			
-			var newMessageCtrl = this;
-			
-			newMessageCtrl.isEditing = false;
-			newMessageCtrl.uploadingImages = false;
-			
-			newMessageCtrl.showStartDatePicker = false;
-			newMessageCtrl.showEndDatePicker = false;
-			newMessageCtrl.showStartTimePicker = false;
-			newMessageCtrl.endStartTimePicker = false;
 
-			newMessageCtrl.uploader = {};
+			var vm = this;
+
+			vm.isEditing = false;
+			vm.uploadingImages = false;
+
+			vm.showStartDatePicker = false;
+			vm.showEndDatePicker = false;
+			vm.showStartTimePicker = false;
+			vm.endStartTimePicker = false;
+
+			vm.uploader = {};
 
 			// Setting up Dates
 			var today = new Date(),
 					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
 					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-				
+
 			var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
 					tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 
-			newMessageCtrl.newMessageTemplate = {
+			vm.newMessageTemplate = {
 				"messageTitle": "",
 				"content": "",
 				"status": "Inactive",
@@ -61,13 +61,13 @@
 				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750},
 				"assets": []
 			};
+			vm.newMessage = vm.newMessageTemplate;
 
-			
-			newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
+
 
 			if ($state.current.name == "messages.edit" ) {
-				
-				newMessageCtrl.isEditing = true;
+
+				vm.isEditing = true;
 				//console.log('$stateParams: '+ $stateParams._id);
 
 				MessageDetailModel.getMessageDetail($stateParams._id)
@@ -75,11 +75,21 @@
 					function success(response) {
 							//console.log("response: " + JSON.stringify(response));
 
-							newMessageCtrl.newMessage = response;
+							vm.newMessage = response;
+							vm.newMessage.assets = [];
 
-							JSON.stringify('new message 67:' + newMessageCtrl.newMessage);
+							//JSON.stringify('new message 67:' + vm.newMessage);
 
 							setMapCenter();
+
+							//console.log(vm.newMessage.media);
+							var mediaArray = vm.newMessage.media;
+
+							angular.forEach(mediaArray, function(img, i){
+									vm.newMessage.assets.push(img.url);
+									vm.uploader.flow.files.push(img.url);
+									//console.log(img.url);
+							});
 
 					},
 					function error(response) {
@@ -87,45 +97,35 @@
 
 					});
 
-				// Adding images to FLOW object -- When working remove http and use response data for mediaArray variable
-				$http.get('assets/data/edit-message-example.json').success(function(data) {
-					var mediaArray = data.data.message[0].media
-					angular.forEach(mediaArray, function(img, i){
-	       				newMessageCtrl.newMessage.assets.push(img.url);  
-	        			newMessageCtrl.uploader.flow.files.push(img.url);
-	  				});
-           		});	
-						
-
 			} else {
 				setMapCenter();
 			}
 
 
 
-			//JSON.stringify('new message:' + newMessageCtrl.newMessage);
+			//JSON.stringify('new message:' + vm.newMessage);
 
 			function setMapCenter() {
-				newMessageCtrl.initialMapCenter = newMessageCtrl.newMessage.coordinates.lat + ","+ newMessageCtrl.newMessage.coordinates.lng;
-			}
-			
-			
-			function resetForm() {
-				newMessageCtrl.newMessage = newMessageCtrl.newMessageTemplate;
+				vm.initialMapCenter = vm.newMessage.coordinates.lat + ","+ vm.newMessage.coordinates.lng;
 			}
 
-			newMessageCtrl.postMediaFile = function(media) {
+
+			function resetForm() {
+				vm.newMessage = vm.newMessageTemplate;
+			}
+
+			vm.postMediaFile = function(media) {
 
 				MediaModel.postMedia(media);
 
 			}
 
-			newMessageCtrl.createNewMessage = function() {
-				var assets = newMessageCtrl.newMessage.assets;
+			vm.createNewMessage = function() {
+				var assets = vm.newMessage.assets;
 				//console.log(assets);
 
 				if (assets.length > 0) {
-					newMessageCtrl.uploadingImages = true;
+					vm.uploadingImages = true;
 
 					MediaModel.getMediaReservation(assets.length)
 						.then( function(mediaSIDList) {
@@ -133,7 +133,7 @@
 								angular.forEach(mediaSIDList, function(sid, i) {
 					 				mediaArray.push({"sid" : sid });
 								});
-								newMessageCtrl.newMessage.media = mediaArray;
+								vm.newMessage.media = mediaArray;
 
 							return mediaSIDList;
 						})
@@ -142,38 +142,40 @@
 
 							var numberOfFiles = assets.length;
 							var finishedFiles = 0;
-							var strToIndex = ";base64,";
 
 							angular.forEach(assets, function(asset, i) {
-								var strToIndex = ";base64,";
-								var strStart = (asset.indexOf(";base64,") + strToIndex.length);
-								var mediaObj = asset.slice(strStart, -1);
+								// var strToIndex = ";base64,";
+								// var strStart = (asset.indexOf(";base64,") + strToIndex.length);
+								// var mediaObj = asset.slice(strStart, -1);
+
+								var mediaObj = MediaModel.stripBase64(asset);
+
 
 								MediaModel.postMessageMedia(mediaSIDList[i], mediaObj).then(function(success){
 									finishedFiles++;
 									checkIfDone();
 								});
-							}); 
+							});
 
 							function checkIfDone() {
 								if (finishedFiles >= numberOfFiles) {
-									newMessageCtrl.uploadingImages = false;
+									vm.uploadingImages = false;
 									postMessage();
 									return;
 								};
 							}
 
 						});
-					
+
 				} else {
 					postMessage();
 				}
 
 
 				function postMessage() {
-					MessageDetailModel.createNewMessage(newMessageCtrl.newMessage).then(
+					MessageDetailModel.createNewMessage(vm.newMessage).then(
 						function success(response){
-							
+
 							FoundationApi.publish('main-notifications', {
 								title: 'Message Sent',
 								content: '',
@@ -194,14 +196,14 @@
 						}
 					);
 				}
-				
+
 			}
 
-			newMessageCtrl.updateMessage = function() {
+			vm.updateMessage = function() {
 
-				MessageDetailModel.updateMessage(newMessageCtrl.newMessage).then(
+				MessageDetailModel.updateMessage(vm.newMessage).then(
 					function success(response){
-						
+
 						FoundationApi.publish('main-notifications', {
 							title: 'Message Sent',
 							content: '',
@@ -223,7 +225,7 @@
 				);
 			}
 
-			newMessageCtrl.messageTags = [
+			vm.messageTags = [
 				{ name: "Tag 1", ticked: false },
 				{ name: "Tag 2", ticked: false},
 				{ name: "Tag 3", ticked: false},
@@ -236,39 +238,39 @@
 				{ name: "Tag 10", ticked: false}
 			];
 
-		  	newMessageCtrl.processFiles = function(files){
+		  	vm.processFiles = function(files){
 		    	angular.forEach(files, function(flowFile, i){
 		       	var fileReader = new FileReader();
 		          	fileReader.onload = function (event) {
 		            	var uri = event.target.result;
-		              	newMessageCtrl.newMessage.assets.push(uri);
+		              	vm.newMessage.assets.push(uri);
 		          	};
 		          	fileReader.readAsDataURL(flowFile.file);
-		          	// JSON.stringify("content:" + newMessageCtrl.newMessage.assets);
+		          	// JSON.stringify("content:" + vm.newMessage.assets);
 		    	});
 		  	};
 
-		  	newMessageCtrl.removeFile = function(index){
-		        newMessageCtrl.uploader.flow.files.splice(index, 1);
-		        newMessageCtrl.newMessage.assets.splice(index, 1); 
+		  	vm.removeFile = function(index){
+		        vm.uploader.flow.files.splice(index, 1);
+		        vm.newMessage.assets.splice(index, 1);
 		  	};
 
 			function clearTakeOverSelectors(){
-				newMessageCtrl.showStartDatePicker = false;
-				newMessageCtrl.showEndDatePicker = false;
-				newMessageCtrl.showStartTimePicker = false;
-				newMessageCtrl.showEndTimePicker = false;
+				vm.showStartDatePicker = false;
+				vm.showEndDatePicker = false;
+				vm.showStartTimePicker = false;
+				vm.showEndTimePicker = false;
 			}
-			
-			$scope.$watch("newMessageCtrl.newMessage.startDate", clearTakeOverSelectors);
-			$scope.$watch("newMessageCtrl.newMessage.endDate", clearTakeOverSelectors);
-			$scope.$watch("newMessageCtrl.newMessage.startTime", clearTakeOverSelectors);
-			$scope.$watch("newMessageCtrl.newMessage.endTime", clearTakeOverSelectors);
-			
-			newMessageCtrl.checkRange = function(){
-				var range = parseInt(newMessageCtrl.newMessage.range);
+
+			$scope.$watch("vm.newMessage.startDate", clearTakeOverSelectors);
+			$scope.$watch("vm.newMessage.endDate", clearTakeOverSelectors);
+			$scope.$watch("vm.newMessage.startTime", clearTakeOverSelectors);
+			$scope.$watch("vm.newMessage.endTime", clearTakeOverSelectors);
+
+			vm.checkRange = function(){
+				var range = parseInt(vm.newMessage.range);
 				range = range > 100 ? 100 : (range < 0 || !range ? 0 : range);
-				newMessageCtrl.newMessage.range = range;
+				vm.newMessage.range = range;
 			};
 
 		}

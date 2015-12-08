@@ -16,7 +16,7 @@
 		'$scope',
 		'$http',
 		'MessageListModel',
-		
+
 		function(
 			$scope,
 			$http,
@@ -28,11 +28,11 @@
 			var today = new Date(),
 					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
 					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-				
+
 			var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
 				tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 				tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
-			
+
 			campaignCenterCtrl.statuses = ["Live", "Draft", "Ended"];
 			campaignCenterCtrl.tagFilters = [];
 			campaignCenterCtrl.campaignTags = [
@@ -42,7 +42,7 @@
 			];
 
 			campaignCenterCtrl.bulkActionSelected = '';
-			
+
 			$http.get('assets/data/campaigns.json').success(function(data) {
 				campaignCenterCtrl.campaignData = data.campaigns;
 				campaignCenterCtrl.totalItems = data.campaigns.length;
@@ -102,11 +102,11 @@
 							campaign.isSelected = false;
 						}
 						else if(campaign.isSelected && action == 'Delete' && campaignCenterCtrl.selectAll == false){
-							campaignCenterCtrl.campaignData.splice(i, 1);   
+							campaignCenterCtrl.campaignData.splice(i, 1);
 						}
 						else if(action == 'Delete' && campaignCenterCtrl.selectAll == true){
-							campaignCenterCtrl.campaignData = [];  
-							
+							campaignCenterCtrl.campaignData = [];
+
 						}
 				    });
 				    campaignCenterCtrl.selectAll = false;
@@ -128,7 +128,7 @@
 
 
 			});
-			
+
 
 
 			function paginationValidation(){
@@ -141,9 +141,9 @@
 			}
 
 			$scope.$watch("currentPage", paginationValidation);
-			
 
-					console.log("Active Messages");
+
+					//console.log("Active Messages");
 			// MessageListModel.getMessageList().then(
 			// 	function(response){
 			// 		console.log("------>", response);

@@ -5,7 +5,7 @@
 		'enterprise-portal.models.user'
 
 	])
-	
+
 	.config(['$stateProvider', function($stateProvider) {
 		$stateProvider
 			.state('enterprise.user-profile', {
@@ -16,12 +16,12 @@
 	}])
 	.controller(
 		'UserProfileCtrl', [
-		'UserModel', 
+		'UserModel',
 		'MediaModel',
-		'FoundationApi', 
-		'$scope', 
+		'FoundationApi',
+		'$scope',
 		function (UserModel, MediaModel, FoundationApi, $scope) {
-		
+
 		var vm = this;
 		vm.isEditing = false;
 		vm.isUploadingAvatar = false;
@@ -54,7 +54,7 @@
 		}
 
 		vm.uploadAvatar = function() {
-			console.log('uploading avatar');
+			//console.log('uploading avatar');
 
 			var newAvatar = MediaModel.stripBase64(vm.user.newlogo);
 			vm.isUploadingAvatar = true;

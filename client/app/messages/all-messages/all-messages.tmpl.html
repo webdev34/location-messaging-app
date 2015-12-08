@@ -67,10 +67,11 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			  	<tr ng-show="results.length == 0">
+			  	<tr ng-show="allMessagesCtrl.messages.length == 0">
 			  		<td></td>
 			  		<td colspan="6">
-			  			<p class="qvr-align-center">No Results</p></td>
+			  			<p class="qvr-align-center">No Results</p>
+						</td>
 			  		<td></td>
 			  	</tr>
 			    <tr  data-ng-repeat="msg in allMessagesCtrl.messages ">
@@ -97,4 +98,3 @@
 	</section>
 
 </section>
-
