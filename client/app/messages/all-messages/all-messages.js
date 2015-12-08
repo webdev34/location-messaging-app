@@ -19,7 +19,7 @@
 		'$http',
 		'FoundationApi',
 		'MessageListModel',
-		
+
 		function(
 			$rootScope,
 			$scope,
@@ -35,7 +35,7 @@
 				getMessageList();
 			}
 
-			
+
 			function getMessageList() {
 				//console.log('getting the list');
 				MessageListModel.getMessageList()
@@ -44,7 +44,7 @@
 					});
 			}
 
-			
+
 			init();
 
 		}

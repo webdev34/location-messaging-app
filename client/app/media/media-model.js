@@ -4,26 +4,30 @@
 	angular.module('enterprise-portal.models.media', [
 		'enterprise-portal.services.media'
 	])
-	
+
 	.service('MediaModel', [
 		'$http',
 		'$q',
 		'MediaService',
-		
+
 		function(
 			$http,
 			$q,
 			MediaService
 		) {
 			var model = this;
-			
+
 			model.stripBase64 = function(file) {
+				// console.log('file:');
+				// console.log(file);
 				var strToIndex = ";base64,";
 				var strStart = (file.indexOf(";base64,") + strToIndex.length);
-				var mediaObj = file.slice(strStart, -1);
+				var mediaObj = file.slice(strStart);
+				// console.log('media obj:');
+				// console.log(mediaObj);
 				return mediaObj;
 			}
-			
+
 			model.getMediaReservation = function(numberOfFiles) {
 				return MediaService.getMediaReservation(numberOfFiles)
 					.then(
@@ -65,7 +69,7 @@
 						//"uploadUri": "http://localhost:8000/1.1/media",
 						"content": file
 					}
-				} 
+				}
 
 				return MediaService.postMedia(media);
 
@@ -81,7 +85,7 @@
 						//"uploadUri": "http://localhost:8000/1.1/media",
 						"content": file
 					}
-				} 
+				}
 
 				return MediaService.postMedia(media);
 
@@ -91,12 +95,12 @@
 				var avatarObj = {
 					"userFile": {
 						"sid": avatarSID
-					}		
+					}
 				}
 				return MediaService.postAvatar(avatarObj);
 			}
 
-		
+
 		}
 	]);
 
