@@ -19,10 +19,10 @@
 					<li>
 						<a ui-sref="messages.new" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/campaign/message/new">Compose Message</a>
 					</li>
-					
-					<!--<li>
+
+					<li>
 						<a ui-sref="messages.all-messages" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" class="ng-binding" href="#!/campaign/all-messages">All Messages (Temp)</a>
-					</li>-->
+					</li>
 					<li>
 						<a ui-sref="messages.location-management" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/campaign/location-management">Location Management</a>
 					</li>
@@ -35,7 +35,7 @@
 					<li>
 						<a ui-sref="messages.asset" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/campaign/assets">Asset Management</a>
 					</li>
-					
+
 				</ul>
 			</li>
 			<li>
@@ -74,7 +74,7 @@
 					</li>
 				</ul>
 			</li>
-			
+
 			<!--
 			<li>
 				<a ui-sref="admin" ng-class="{active: appCtrl.gNavStateIs=='admin'}">Admin</a>
@@ -82,7 +82,7 @@
 			-->
 		</ul>
 	</nav>
-	
+
 	<nav class="header-subnav">
 		<!-- <ul class="{{appCtrl.gNavStateIs}}">
 			<li ng-repeat="subnav in appCtrl.subnav">
@@ -103,19 +103,19 @@
 
 		<span class="details">
 			<span class="enterise-name bold">{{appCtrl.user.username}}</span>
-			| 
+			|
 			<span class="enterprise-plan bold">Subscription : <span>Pro</span>
 			|
 			 <a class="upgrade">Upgrade</a>
 			</span>
 		</span>
-		
+
 
 
 	</nav>
-	
+
 	<section class="header-user-info hide" controller="AppCtrl as appCtrl">
-		
+
 	</section>
 
 </header>
