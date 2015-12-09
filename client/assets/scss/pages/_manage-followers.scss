@@ -1,4 +1,4 @@
-.manage-followers-lower-wrapper {
+.follower-management-lower-wrapper {
     padding: 45px;
     background-color: #f0f0f0;
     margin-top: 30px;
@@ -6,7 +6,7 @@
         width: 95%;
         margin: 20px auto;
     }
-    .manage-followers-header {
+    .follower-management-header {
         h1 {
             padding: 0 0 0 30px;
             margin: 0;
@@ -42,7 +42,7 @@
             }
         }
     }
-    .manage-followers-filter-wrapper {
+    .follower-management-filter-wrapper {
         margin-top: 25px;
         #bulk-action,
         #tag-filters {
@@ -99,7 +99,7 @@
     }
 
 
-    .manage-followers-table-wrapper {
+    .follower-management-table-wrapper {
         table {
             width: 98%;
             margin-left: 10px;
