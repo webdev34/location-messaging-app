@@ -5,14 +5,27 @@
   .factory('CampaignsService', [
     '$http',
     'API_URL',
+    'UserModel',
 
     function(
       $http,
-      API_URL
+      API_URL,
+      UserModel
     ) {
-      console.log('campaign service');
+      //console.log('campaign service');
       return {
+        get : function() {
 
+        },
+        post : function() {
+
+        },
+        list : function() {
+
+        },
+        remove: function() {
+
+        }
       };
     }
   ])
