@@ -3,20 +3,15 @@
 
   angular.module('campaigns.campaign-center', [])
   .controller('MainCampaignCtrl', [
-    'CampaignsService',
+    'CampaignsModel',
     '$scope',
 		'$http',
-		'MessageListModel',
 
     function(
-      CampaignsService,
+      CampaignsModel,
       $scope,
-			$http,
-			MessageListModel
+			$http
     ) {
-      var vm = this;
-      console.log('MainCampaignCtrl');
-
       var vm = this;
 
       var today = new Date(),
@@ -35,93 +30,102 @@
         { name: "#Dublin", ticked: false}
       ];
 
+      function init() {
+				vm.getCampaignList();
+			}
+
+
+			vm.getCampaignList = function() {
+        CampaignsModel.getCampaignList()
+          .then(
+            function success(response) {
+              vm.campaignData = response.campaign;
+              vm.totalItems = response.campaign.length;
+              vm.currentPage = 1;
+              vm.entryLimit = 10; // items per page
+              vm.noOfPages = Math.ceil(vm.totalItems / vm.entryLimit);
+              vm.reverse = false;
+              vm.sortOrderBy = 'id';
+              vm.startAt = 0;
+              vm.endAt = 9;
+              vm.selectAll = false;
+              vm.isAnyInputsSelected = false;
+            }
+          )
+			}
+
       vm.bulkActionSelected = '';
 
-      $http.get('assets/data/campaigns.json').success(function(data) {
-        vm.campaignData = data.campaigns;
-        vm.totalItems = data.campaigns.length;
+      vm.goToPage = function(direction) {
+
+        if(direction == 'up')
+        {
+          vm.currentPage++;
+        }else if(direction == 'down'){
+          vm.currentPage--;
+        }
+        else if(direction == 'beginning'){
+          vm.currentPage = 1;
+        }
+        else if(direction == 'end'){
+          vm.currentPage = vm.noOfPages;
+        }
+
+        vm.startAt = (vm.currentPage - 1) * vm.entryLimit;
+        vm.endAt = vm.entryLimit * vm.currentPage;
+
+      };
+
+      vm.sortByFunc = function(sortBy, reverse) {
+        vm.sortOrderBy = sortBy;
+        vm.reverse = reverse;
         vm.currentPage = 1;
-        vm.entryLimit = 10; // items per page
-        vm.noOfPages = Math.ceil(vm.totalItems / vm.entryLimit);
-        vm.reverse = false;
-        vm.sortOrderBy = 'id';
-        vm.startAt = 0;
-        vm.endAt = 9;
-        vm.selectAll = false;
+        vm.goToPage(1);
+      };
+
+      vm.resetCurrentPage = function() {
+        vm.currentPage = 1;
+      };
+
+      vm.toggleSelected = function() {
+        angular.forEach(vm.campaignData, function(campaign) {
+            campaign.isSelected = vm.selectAll;
+          });
+      };
+
+      vm.bulkActions = function() {
+        var actionDropDown = document.getElementById("bulk-actions");
+        var action = actionDropDown.options[actionDropDown.selectedIndex].value;
+        angular.forEach(vm.campaignData, function(campaign, i) {
+          if(campaign.isSelected && action != 'Delete'){
+            campaign.status = action;
+            campaign.isSelected = false;
+          }
+          else if(campaign.isSelected && action == 'Delete' && vm.selectAll == false){
+            vm.campaignData.splice(i, 1);
+          }
+          else if(action == 'Delete' && vm.selectAll == true){
+            vm.campaignData = [];
+
+          }
+          });
+          vm.selectAll = false;
+          vm.bulkActionSelected = '';
+      };
+
+      vm.anyInputsSelected = function() {
         vm.isAnyInputsSelected = false;
-
-        vm.goToPage = function(direction) {
-
-          if(direction == 'up')
-          {
-            vm.currentPage++;
-          }else if(direction == 'down'){
-            vm.currentPage--;
+        vm.selectAll = true;
+        angular.forEach(vm.campaignData, function(campaign, i) {
+          if(campaign.isSelected){
+            vm.isAnyInputsSelected  = true;
           }
-          else if(direction == 'beginning'){
-            vm.currentPage = 1;
-          }
-          else if(direction == 'end'){
-            vm.currentPage = vm.noOfPages;
-          }
-
-          vm.startAt = (vm.currentPage - 1) * vm.entryLimit;
-          vm.endAt = vm.entryLimit * vm.currentPage;
-
-        };
-
-        vm.sortByFunc = function(sortBy, reverse) {
-          vm.sortOrderBy = sortBy;
-          vm.reverse = reverse;
-          vm.currentPage = 1;
-          vm.goToPage(1);
-        };
-
-        vm.resetCurrentPage = function() {
-          vm.currentPage = 1;
-        };
-
-        vm.toggleSelected = function() {
-          angular.forEach(vm.campaignData, function(campaign) {
-              campaign.isSelected = vm.selectAll;
-            });
-        };
-
-        vm.bulkActions = function() {
-          var actionDropDown = document.getElementById("bulk-actions");
-          var action = actionDropDown.options[actionDropDown.selectedIndex].value;
-          angular.forEach(vm.campaignData, function(campaign, i) {
-            if(campaign.isSelected && action != 'Delete'){
-              campaign.status = action;
-              campaign.isSelected = false;
-            }
-            else if(campaign.isSelected && action == 'Delete' && vm.selectAll == false){
-              vm.campaignData.splice(i, 1);
-            }
-            else if(action == 'Delete' && vm.selectAll == true){
-              vm.campaignData = [];
-
-            }
-            });
+          else{
             vm.selectAll = false;
-            vm.bulkActionSelected = '';
-        };
+          }
+          });
+      };
 
-        vm.anyInputsSelected = function() {
-          vm.isAnyInputsSelected = false;
-          vm.selectAll = true;
-          angular.forEach(vm.campaignData, function(campaign, i) {
-            if(campaign.isSelected){
-              vm.isAnyInputsSelected  = true;
-            }
-            else{
-              vm.selectAll = false;
-            }
-            });
-        };
-
-
-      });
 
 
 
@@ -136,6 +140,7 @@
 
       $scope.$watch("currentPage", paginationValidation);
 
+      init();
     }
   ])
   ;

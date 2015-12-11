@@ -27,7 +27,7 @@
 
 							//console.log('user: ' + JSON.stringify(model.user));
 
-							model.enterprise = response.user.enterprise;
+							model.enterprise = model.user.enterprise;
 							//console.log('enterprise: ' + JSON.stringify(response.enterpriseUser[0].enterprise));
 
 							return response;

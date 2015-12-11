@@ -12,19 +12,20 @@
       API_URL,
       UserModel
     ) {
-      //console.log('campaign service');
+      var enterpriseSID = UserModel.enterprise;
+
       return {
-        get : function() {
-
+        get : function(campaignSID) {
+          return $http.get(API_URL + '/campaign'/ + campaignSID);
         },
-        post : function() {
-
+        post : function(campaignObj) {
+          return $http.post(API_URL + '/campaign', campaignObj);
         },
         list : function() {
-
+          return $http.get(API_URL + '/campaign/' + enterpriseSID + '/campaigns');
         },
-        remove: function() {
-
+        delete: function(campaignSID) {
+          return $http["delete"](API_URL + '/campaign/' + campaignSID);
         }
       };
     }
