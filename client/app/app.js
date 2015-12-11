@@ -176,6 +176,7 @@
 					{'title': 'Admin Center', 'state': 'admin'}
 				],
 				'messages' : [
+					{'title': 'Campaign Module', 'state': 'campaigns.campaign-center'},
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
 					{'title': 'Manage Campaign', 'state': 'messages.manage-campaign'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
