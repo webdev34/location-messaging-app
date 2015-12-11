@@ -144,7 +144,7 @@
                     margin-left: 15px;
                     margin-right: 15px;
                     li{
-                        float: left;
+                        display: inline-flex;
                         margin-left: 15px;
                         position: relative;
                         list-style: none;
@@ -156,8 +156,8 @@
                             cursor: pointer;
                         }
                          img{
-                            width: 105px;
-                            height: 105px;
+                            width: 100px;
+                            height: 100px;
                         }
 
                     }

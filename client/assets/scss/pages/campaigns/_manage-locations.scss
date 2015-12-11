@@ -1,4 +1,4 @@
-.manage-locations {
+.location-management {
     margin-top: -15px;
     .new-location-wrapper{
         width: 30%;
@@ -96,14 +96,14 @@
             }
         }
     }
-    section.manage-locations-wrapper {
+    section.location-management-wrapper {
         padding: 45px 0px;
         background-color: #f0f0f0;
         margin-top: 30px;
         width: 65%;
         float: left;
         clear: none;
-        .manage-locations-header {
+        .location-management-header {
             h1 {
                 padding: 0 0 0 30px;
                 margin: 0;
@@ -172,7 +172,7 @@
             margin-right: 50px;
         }
            
-        .manage-locations-table-wrapper {
+        .location-management-table-wrapper {
             .pagination-wrapper{
                 width: auto;
             }

@@ -10,8 +10,8 @@
 		'$urlRouterProvider', 
 		function($stateProvider, $urlRouterProvider) {
 			$stateProvider
-				.state('messages.manage-locations', {
-				url: '/manage-locations',
+				.state('messages.location-management', {
+				url: '/location-management',
 				templateUrl: 'app/locations/manage-locations.tmpl.html',
 				controller: 'ManageLocationsCtrl as manageLocationsCtrl'
 			})

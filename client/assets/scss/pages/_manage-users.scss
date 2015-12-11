@@ -1,4 +1,4 @@
-.enterprise-manage-users {
+.enterprise-user-management {
     h1 {
         margin: 30px 0;
         color: #808285;
@@ -9,7 +9,7 @@
         text-align: center;
         text-transform: uppercase;
     }
-    .enterprise-manage-users-wrapper {
+    .enterprise-user-management-wrapper {
         .details.avatar {
             text-align: center;
         }
@@ -41,11 +41,11 @@
         }
     }
 }
-.manage-users-lower-wrapper{
+.user-management-lower-wrapper{
 	        padding: 45px 0px;
         background-color: #f0f0f0;
         margin-top: 30px;
-        .manage-users-header {
+        .user-management-header {
             h1 {
                 padding: 0 0 0 30px;
                 margin: 0;
@@ -81,7 +81,7 @@
                 }
             }
         }
-        .manage-users-filter-wrapper {
+        .user-management-filter-wrapper {
             margin-top: 25px;
             #bulk-action,
             #tag-filters {
@@ -108,7 +108,7 @@
                 margin-left: 30px;
             }
         }
-.manage-users-table-wrapper {
+.user-management-table-wrapper {
     table {
         width: 98%;
         margin-left: 10px;
