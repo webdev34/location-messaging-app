@@ -18,6 +18,7 @@
 			'followers',
 			'users',
 			'user-profile',
+			'campaigns',
 			'messages',
 			'locations',
 			'reporting',

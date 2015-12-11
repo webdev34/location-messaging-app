@@ -14,7 +14,10 @@
 				<a ui-sref="messages.dashboard" ng-class="{active: appCtrl.gNavStateIs=='messages'}">Campaign Center</a>
 				<ul class="messages">
 					<li>
-						<a ui-sref="messages.create-campaign" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/campaign/create-campaign">Create Campaign</a>
+						<a ui-sref="campaigns.campaign-center">Campaign Module</a>
+					</li>
+					<li>
+						<a ui-sref="messages.create-campaign" ng-class="{active: appCtrl.currentState.current.name==subnav.state}">Create Campaign</a>
 					</li>
 					<li>
 						<a ui-sref="messages.new" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/campaign/message/new">Compose Message</a>
