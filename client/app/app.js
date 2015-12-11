@@ -32,8 +32,8 @@
 	app.constant('APP_default_state', 'messages.new');
 
 
-	//var API_SERVER = 'http://api-dev.quiver.zone:80/';
-	var API_SERVER = 'http://api-sand.quiver.zone/'
+	var API_SERVER = 'http://api-dev.quiver.zone:80/';
+	//var API_SERVER = 'http://api-sand.quiver.zone/'
 	//var API_SERVER = 'http://localhost:8000/';
 
 	app.constant('API_SERVER', API_SERVER);
@@ -167,47 +167,40 @@
 
 			appCtrl.showHeader = false;
 
-			appCtrl.gNavStateIs = "";
-			appCtrl.subnav = [];
-			appCtrl.navObj = {
-				'admin' : [
-					{'title': 'Admin Center', 'state': 'admin'}
-				],
-				'messages' : [
-					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
-					{'title': 'Create Campaign', 'state': 'messages.create-campaign'},
-					{'title': 'Compose Message', 'state': 'messages.new'},
-					{'title': 'All Messages (Temp)', 'state': 'messages.all-messages'},
+			//appCtrl.gNavStateIs = "";
 
-					{'title': 'Location Management', 'state': 'messages.location-management'},
-					{'title': 'Asset Management', 'state': 'messages.asset'},
-					{'title': 'Communications', 'state': 'messages.communications'}
-				],
-				'reporting' : [
-					{'title': 'Report Center', 'state': 'reporting.center'}
-				],
-				'enterprise' : [
-					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'},
-					{'title': 'User Profile', 'state': 'enterprise.user-profile'},
-					{'title': 'Manage Users', 'state': 'enterprise.user-management'},
-					{'title': 'Follower Management', 'state': 'enterprise.follower-management'}
+			appCtrl.navObj = [
+					{'title': 'Communications', 'state': 'messages.communications', 'category': 'communications'},
+					{'title': 'Campaign Center', 'state': 'messages.dashboard', 'category': 'messages',
+					'subNav': [
+						{'title': 'Create Campaign', 'state': 'messages.create-campaign', 'mainNavState': 'messages.dashboard'},
+						{'title': 'Compose Message', 'state': 'messages.new' , 'mainNavState': 'messages.dashboard'},
+						{'title': 'Location Management', 'state': 'messages.location-management' , 'mainNavState': 'messages.dashboard'},
+						{'title': 'Follower Management', 'state': 'enterprise.follower-management' , 'mainNavState': 'messages.dashboard'},
+						{'title': 'Tag Management', 'state': 'messages.tag' , 'mainNavState': 'messages.dashboard'},
+						{'title': 'Asset Management', 'state': 'messages.asset' , 'mainNavState': 'messages.dashboard'}
+					]
+					},
+					{'title': 'Report Center', 'state': 'reporting.center', 'category': 'reporting',
+					'subNav': [
+						{'title': 'Follower Summary', 'state': 'reporting.follower-summary' , 'mainNavState': 'messages.dashboard'},
+						{'title': 'Campaign Summary', 'state': 'reporting.campaign-summary'},
+						{'title': 'Comment Summary', 'state': 'reporting.comment-summary'},
+						{'title': 'Regional Summary', 'state': 'reporting.regional-summary', 'upgrade': true },
+						{'title': 'Multi Campaign', 'state': 'reporting.multi-campaign', 'upgrade': true },
+						{'title': 'Dynamic Reports', 'state': 'reporting.dynamic-reports', 'upgrade': true }
+					]
+					},
+					{'title': 'Enterprise Profile', 'state': 'enterprise.profile', 'category': 'enterprise',
+					'subNav':[
+						{'title': 'Brand Management', 'state': 'enterprise.brand-management'},
+						{'title': 'User Management', 'state': 'enterprise.user-management'}
+					] }
 				]
-			};
+			;
 
 			function setNavigationState() {
-				appCtrl.gNavStateIs = "";
-
-				var stateArray = ['messages', 'admin', 'enterprise', 'reporting'];
-
-				for (var i = 0; i < stateArray.length; i++) {
-
-					if ( ($state.current.name).includes(stateArray[i]) ) {
-						appCtrl.gNavStateIs = stateArray[i];
-						break;
-					}
-				}
-
-				appCtrl.subnav = appCtrl.navObj[appCtrl.gNavStateIs];
+				//appCtrl.gNavStateIs = "";
 				appCtrl.showHeader = appCtrl.currentState.current.name != 'home';
 			}
 

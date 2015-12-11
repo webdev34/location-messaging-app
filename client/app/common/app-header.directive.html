@@ -6,89 +6,20 @@
 	</a>
 
 	<nav class="header-nav">
-		<ul class="main-nav">
-			<li>
-				<a ui-sref="messages.communications" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" class="ng-binding" href="#!/campaign/communications">Communications</a>
-			</li>
-			<li>
-				<a ui-sref="messages.dashboard" ng-class="{active: appCtrl.gNavStateIs=='messages'}">Campaign Center</a>
-				<ul class="messages">
-					<li>
-						<a ui-sref="messages.create-campaign" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/campaign/create-campaign">Create Campaign</a>
-					</li>
-					<li>
-						<a ui-sref="messages.new" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/campaign/message/new">Compose Message</a>
-					</li>
+		<ul class="main-nav ">
+			<li ng-repeat="mainNav in appCtrl.navObj">
+				<a ui-sref="{{mainNav.state}}" ng-class="{active: appCtrl.currentState.current.name==mainNav.state}">{{mainNav.title}}</a>
 
-					<li>
-						<a ui-sref="messages.all-messages" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" class="ng-binding" href="#!/campaign/all-messages">All Messages (Temp)</a>
-					</li>
-					<li>
-						<a ui-sref="messages.location-management" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/campaign/location-management">Location Management</a>
-					</li>
-					<li>
-						<a ui-sref="enterprise.follower-management" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/enterprise/follower-management">Follower Management</a>
-					</li>
-					<li>
-						<a ui-sref="messages.tags" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/campaign/tags">Tag Management</a>
-					</li>
-					<li>
-						<a ui-sref="messages.asset" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/campaign/assets">Asset Management</a>
-					</li>
-
-				</ul>
-			</li>
-			<li>
-				<a ui-sref="reporting.center" ng-class="{active: appCtrl.gNavStateIs=='reporting'}">Report Center</a>
-				<ul class="reporting">
-					<li>
-						<a ui-sref="reporting.follower-summary" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/reporting/follower-summary">Follower Summary</a>
-					</li>
-					<li>
-						<a ui-sref="reporting.campaign-summary" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/reporting/campaign-summary">Campaign Summary</a>
-					</li>
-					<li>
-						<a ui-sref="reporting.comment-summary" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/reporting/comment-summary">Comment Summary</a>
-					</li>
-					<!-- UPGRADE -->
-
-					<li class="upgrade">
-						<a ui-sref="reporting.regional-summary" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/reporting/regional-summary">Regional Summary <span>(Upgrade)</span> </a>
-					</li>
-					<li class="upgrade">
-						<a ui-sref="reporting.multi-summary" ng-class="{active: appCtrl.currentState.current.name==subnav.state}"href="#!/reporting/multi-summary">Multi Summary <span>(Upgrade)</span> </a>
-					</li>
-					<li class="upgrade">
-						<a ui-sref="reporting.dynamic-reports" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/reporting/dynamic-reports">Dynamic Reports <span>(Upgrade)</span> </a>
+				<ul class="{{mainNav.category}}">
+					<li ng-repeat="subNav in mainNav.subNav" ng-class="{'upgrade': subNav.upgrade}" >
+						<a ui-sref="{{subNav.state}}" ng-class="{active: appCtrl.currentState.current.name==subNavNav.state}">{{subNav.title}} <span ng-show="subNav.upgrade">(Upgrade)</span></a>
 					</li>
 				</ul>
 			</li>
-			<li>
-				<a ui-sref="enterprise.profile" ng-class="{active: appCtrl.gNavStateIs=='enterprise'}">Enterprise Profile</a>
-				<ul class="reporting">
-					<li>
-						<a ui-sref="enterprise.brand-management" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/enterprise/brand-management">Brand Management</a>
-					</li>
-					<li>
-						<a ui-sref="enterprise.user-management" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/enterprise/user-management">User Management</a>
-					</li>
-				</ul>
-			</li>
-
-			<!--
-			<li>
-				<a ui-sref="admin" ng-class="{active: appCtrl.gNavStateIs=='admin'}">Admin</a>
-			</li>
-			-->
 		</ul>
 	</nav>
 
 	<nav class="header-subnav">
-		<!-- <ul class="{{appCtrl.gNavStateIs}}">
-			<li ng-repeat="subnav in appCtrl.subnav">
-				<a ui-sref="{{subnav.state}}" ng-class="{active: appCtrl.currentState.current.name==subnav.state}">{{subnav.title}}</a>
-			</li>
-		</ul> -->
 		<span class="icon-wrapper">
 			<span class="icon i-header-user active"></span>
 		</span>
@@ -109,9 +40,6 @@
 			 <a class="upgrade">Upgrade</a>
 			</span>
 		</span>
-
-
-
 	</nav>
 
 	<section class="header-user-info hide" controller="AppCtrl as appCtrl">
