@@ -1,12 +1,12 @@
 <div class="page page--enterprise" >
 	<header class="heading-bar" id="header-bar">
-		<h1>User Management</h1>
+		<h1>Manage Users</h1>
 	</header>
 	
 	<!-- New User -->
 	<div class="new-user-wrapper" ng-hide="manageUsersCtrl.isEditing" flow-init  flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow-name="manageUsersCtrl.uploaderNewUser.flow" flow-files-added="manageUsersCtrl.processFiles($files, 'New User')" flow-files-added="manageUsersCtrl.saveFiles($files, 'New User')" >
-		<div class="enterprise-user-management user-management">
-			<section class="enterprise-user-management-wrapper">
+		<div class="enterprise-manage-users manage-users">
+			<section class="enterprise-manage-users-wrapper">
 				<div class="enterprise-content-left corporate-info">
 					<div class="details full-width avatar">
 						<h1>Add New User</h1>
@@ -83,8 +83,8 @@
 
 	<!-- Edit User -->
 	<div class="edit-user-wrapper" ng-show="manageUsersCtrl.isEditing" flow-init  flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow-name="manageUsersCtrl.uploaderEditUser.flow" flow-files-added="manageUsersCtrl.processFiles($files, 'Edit User')" flow-files-added="manageUsersCtrl.saveFiles($files, 'Edit User')">
-		<div class="enterprise-user-management user-management" ng-hide="userProfileCtrl.isEditing">
-			<section class="enterprise-user-management-wrapper">
+		<div class="enterprise-manage-users manage-users" ng-hide="userProfileCtrl.isEditing">
+			<section class="enterprise-manage-users-wrapper">
 				<div class="enterprise-content-left corporate-info">
 
 <div class="details full-width avatar">
@@ -141,8 +141,8 @@
 
 
 	<!-- Users Table -->
-	<section class="user-management-lower-wrapper">
-		<div class="user-management-header qvr-form">
+	<section class="manage-users-lower-wrapper">
+		<div class="manage-users-header qvr-form">
 			<h1 class="float-left">Users</h1>
 			<div class="search-wrapper">
 				<label for="filter-by"><i class="fa fa-search"></i></label>
@@ -150,7 +150,7 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
-		<div class="user-management-filter-wrapper qvr-form">
+		<div class="manage-users-filter-wrapper qvr-form">
 			<div id="bulk-action" class="input-wrapper">
 				
 				<select id="bulk-actions" class="qvr-select" ng-model="manageUsersCtrl.bulkActionSelected" required >
@@ -186,7 +186,7 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
-		<div class="user-management-table-wrapper qvr-form">
+		<div class="manage-users-table-wrapper qvr-form">
 			<table>
 				<thead>
 					<tr>

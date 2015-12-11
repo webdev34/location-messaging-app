@@ -7,7 +7,7 @@
 		'messages.detail',
 		'messages.new',
 		'messages.edit',
-		'messages.create-campaign',
+		'messages.manage-campaign',
 		'messages.communications',
 		'messages.all-messages'
 	])
@@ -44,8 +44,8 @@
 				templateUrl: 'app/messages/manage/messages-manage.tmpl.html',
 				controller: 'MessagesManageCtrl as messagesManageCtrl'
 			})
-			.state('messages.create-campaign', {
-				url: '/create-campaign',
+			.state('messages.manage-campaign', {
+				url: '/manage-campaign',
 				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html',
 				controller: 'ManageCampaignCtrl as manageCampaignCtrl'
 			})
