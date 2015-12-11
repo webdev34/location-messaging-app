@@ -6,27 +6,51 @@
 		right: 6%;
 	}
 
-	map {
-		height: 460px !important;
-	    display: block;
-	    width: 400px;
-	    position: absolute;
-	    top: 160px;
-	    right: 113px;
-	    &.edit{
-	    	
-	    }
-		&> div {
-		    border: 1px solid #D1D2D3;
-		    border-radius: 10px;
+
+	.map-wrapper{
+
+	    .map-search-wrap{
+			position: relative;
+			.search-button {
+			    position: absolute;
+			    right: 0;
+			    height: 32px;
+			    width: 35.2px;
+			    background-color: #00A9CC;
+			    border-radius: 10px;
+			    cursor: pointer;
+			}
 		}
+
+		.map-search-wrap > .icon {
+		    position: absolute;
+		    background-position: center;
+		    background-size: 50%;
+		    background-repeat: no-repeat;
+		}
+
+		input[type="search"]{
+			text-indent: 18px;
+			width: 400px;
+		}
+
+		map {
+			height: 460px !important;
+		    display: block;
+		    width: 400px;
+		    
+		   
+			&> div {
+			    border: 1px solid #D1D2D3;
+			    border-radius: 10px;
+			}
+		}
+
+		map-view.edit map{
+			top: 300px;
+		}
+
 	}
-
-	map-view.edit map{
-		top: 300px;
-	}
-
-
 	
 	.enterprise-profile,
 	.enterprise-user-management {
