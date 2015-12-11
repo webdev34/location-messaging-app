@@ -19,7 +19,7 @@
 		'$http',
 		'FoundationApi',
 		'MessageListModel',
-		
+
 		function(
 			$rootScope,
 			$scope,
@@ -29,7 +29,7 @@
 			MessageListModel
 		) {
 			var manageCampaignCtrl = this;
-			
+
 			manageCampaignCtrl.showStartDatePicker = false;
 			manageCampaignCtrl.showEndDatePicker = false;
 			manageCampaignCtrl.showStartTimePicker = false;
@@ -39,11 +39,11 @@
 			var today = new Date(),
 					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
 					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-				
+
 				var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
 					tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
-				
+
 			manageCampaignCtrl.campaignParticipantsList = [
 				{ name: "#MarketingGroup", ticked: false },
 				{ name: "#BusinessDevelopment", ticked: false},
@@ -81,7 +81,7 @@
 				{ name: "Web Summit - Dublin Camden St.", ticked: false},
 				{ name: "MWC - 2016 - Barcelona", ticked: false}
 			];
-			
+
 			manageCampaignCtrl.cloneToCampaigns = [];
 
 			manageCampaignCtrl.manageCampaign = {
@@ -102,14 +102,14 @@
 
 			manageCampaignCtrl.tagFilters = [];
 
-			manageCampaignCtrl.statuses = ["Live", "Draft", "Ended"]; 
+			manageCampaignCtrl.statuses = ["Live", "Draft", "Ended"];
 			manageCampaignCtrl.cloneCampaign = {
 				"campaignName": "",
 				"status": "Draft"
 			};
 
 			$http.get('assets/data/campaign-messages.json').success(function(data) {
-				manageCampaignCtrl.campaignMessages = data.campaignMessages;	
+				manageCampaignCtrl.campaignMessages = data.campaignMessages;
 				manageCampaignCtrl.totalItems = data.campaignMessages.length;
 				manageCampaignCtrl.currentPage = 1;
 				manageCampaignCtrl.entryLimit = 10; // items per page
@@ -166,10 +166,10 @@
 							campaign.isSelected = false;
 						}
 						else if(campaign.isSelected && action == 'Delete' && manageCampaignCtrl.selectAll == false){
-							manageCampaignCtrl.campaignMessages.splice(i, 1);  
+							manageCampaignCtrl.campaignMessages.splice(i, 1);
 						}
 						else if(action == 'Delete' && manageCampaignCtrl.selectAll == true){
-							manageCampaignCtrl.campaignMessages = []; 
+							manageCampaignCtrl.campaignMessages = [];
 						}
 				    });
 				    manageCampaignCtrl.selectAll = false;
@@ -191,7 +191,7 @@
 				manageCampaignCtrl.deleteClonedMessage = function(id) {
 					angular.forEach(manageCampaignCtrl.clonedMessage, function(campaign, i) {
 						if(campaign.id == id){
-							manageCampaignCtrl.clonedMessage.splice(i, 1);  
+							manageCampaignCtrl.clonedMessage.splice(i, 1);
 						}
 				    });
 				};
@@ -210,7 +210,7 @@
 				};
 
 			});
-			
+
 
 			function resetForm() {
 				manageCampaignCtrl.manageCampaign = {
@@ -238,12 +238,12 @@
 					manageCampaignCtrl.currentPage = 1;
 				}
 			}
-			
+
 			manageCampaignCtrl.updateCampaign = function() {
 				// MessageListModel.createNewMessage(newMessageCtrl.newMessage).then(
 				// 	function success(response){
 				// 		$state.go('messages.dashboard');
-						
+
 				// 		FoundationApi.publish('main-notifications', {
 				// 			title: 'Message Sent',
 				// 			content: '',
@@ -262,20 +262,20 @@
 				// );
 			}
 
-			
+
 			function clearTakeOverSelectors(){
 				manageCampaignCtrl.showStartDatePicker = false;
 				manageCampaignCtrl.showEndDatePicker = false;
 				manageCampaignCtrl.showStartTimePicker = false;
 				manageCampaignCtrl.showEndTimePicker = false;
 			}
-			
+
 			$scope.$watch("manageCampaignCtrl.manageCampaign.startDate", clearTakeOverSelectors);
 			$scope.$watch("manageCampaignCtrl.manageCampaign.endDate", clearTakeOverSelectors);
 			$scope.$watch("manageCampaignCtrl.manageCampaign.startTime", clearTakeOverSelectors);
 			$scope.$watch("manageCampaignCtrl.manageCampaign.endTime", clearTakeOverSelectors);
 			$scope.$watch("currentPage", paginationValidation);
-			
+
 			//resetForm();
 		}
 	]);
