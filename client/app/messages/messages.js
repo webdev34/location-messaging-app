@@ -7,7 +7,7 @@
 		'messages.detail',
 		'messages.new',
 		'messages.edit',
-		'messages.manage-campaign',
+		'messages.create-campaign',
 		'messages.communications',
 		'messages.all-messages'
 	])
@@ -44,11 +44,11 @@
 				templateUrl: 'app/messages/manage/messages-manage.tmpl.html',
 				controller: 'MessagesManageCtrl as messagesManageCtrl'
 			})
-			.state('messages.manage-campaign', {
-				url: '/manage-campaign',
+			.state('messages.create-campaign', {
+				url: '/create-campaign',
 				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html',
 				controller: 'ManageCampaignCtrl as manageCampaignCtrl'
-			})
+			}) 
 			.state('messages.all-messages', {
 				url: '/all-messages',
 				templateUrl: 'app/messages/all-messages/all-messages.tmpl.html',
@@ -66,7 +66,7 @@
 
 	.controller('MessageListCtrl', [
 		'MessageListModel',
-
+		
 		function(MessageListModel) {
 			var messageListCtrl = this;
 			MessageListModel.getMessageList()
@@ -78,9 +78,9 @@
 
 	.controller('MyCtrl', ['$scope', function ($scope) {
      $scope.types = "['establishment']";
-
+    
 	}])
-
+	
 ;
 
 })();

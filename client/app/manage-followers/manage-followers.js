@@ -19,8 +19,8 @@
     .config(['$stateProvider',
         function($stateProvider) {
             $stateProvider
-                .state('enterprise.manage-followers', {
-                    url: '/manage-followers',
+                .state('enterprise.follower-management', {
+                    url: '/follower-management',
                     templateUrl: 'app/manage-followers/manage-followers.tmpl.html',
                     controller: 'ManageFollowersCtrl as manageFollowersCtrl'
                 });
