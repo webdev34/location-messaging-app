@@ -19,90 +19,85 @@
 		</div>
 	</header>
 
-		<div class="enterprise-profile" ng-hide="enterpriseCtrl.isEditing">
-		<section class="enterprise-content-wrapper">
-			<div class="enterprise-content-left corporate-info">
-				<div class="details full-width">
-					<img  ng-src="{{enterpriseCtrl.company.avatar || 'assets/img/logo-na.png'}}" alt="logo" class="corp-logo" />
+		<div class="enterprise-profile" >
+			<section class="enterprise-content-wrapper qvr-form">
+				<div class="enterprise-content-left corporate-info">
+					<div class="details full-width" ng-hide="enterpriseCtrl.isEditing">
+						<img  ng-src="{{enterpriseCtrl.company.avatar || 'assets/img/logo-na.png'}}" alt="logo" class="corp-logo" />
+						
+						<label>Account Name</label>
+						<p>{{enterpriseCtrl.company.fullName}}</p>
+
+						<label>User Name</label>
+						<p>{{enterpriseCtrl.company.username}}</p>
 					
-					<label>Account Name</label>
-					<p>{{enterpriseCtrl.company.fullName}}</p>
+						<label>Company Bio</label>
+						<p class="longer">{{enterpriseCtrl.company.description || 'N/A'}}</p>
 
-					<label>User Name</label>
-					<p>{{enterpriseCtrl.company.username}}</p>
-				
-					<label>Company Bio</label>
-					<p class="longer">{{enterpriseCtrl.company.description || 'N/A'}}</p>
+						<label>Primary Contact</label>
+						<p>{{enterpriseCtrl.company.primaryContact || 'N/A'}}</p>
 
-					<label>Primary Contact</label>
-					<p>{{enterpriseCtrl.company.primaryContact || 'N/A'}}</p>
+						<label>Contact Email</label>
+						<p>{{enterpriseCtrl.company.emailAddress}}</p>
 
-					<label>Contact Email</label>
-					<p>{{enterpriseCtrl.company.emailAddress}}</p>
+						<label>Contact Number</label>
+						<p>{{enterpriseCtrl.company.phone || 'N/A'}}</p>
 
-					<label>Contact Number</label>
-					<p>{{enterpriseCtrl.company.phone || 'N/A'}}</p>
-
-				</div>
-			</div>
-			<div class="enterprise-content-right corporate-info">
-					<div class="details full-width">
-					<label>Company Address</label>
-					<p class="longer">
-						{{enterpriseCtrl.company.city || 'N/A'}}
-					</p>
 					</div>
 
-			</div>
-			<div class="clearfix"></div>
-		</section>
-	</div>
+					<div class="details full-width" ng-show="enterpriseCtrl.isEditing">
 
+						<img  ng-src="{{enterpriseCtrl.editedCompany.avatar}}" alt="logo" class="corp-logo" />
 
-	<div class="enterprise-profile edit qvr-form" ng-show="enterpriseCtrl.isEditing">
-		<section class="enterprise-content-wrapper">
-			<div class="enterprise-content-left corporate-info">
+						<label>Account Name</label>
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.fullName" required >
+						
+						<label>User Name</label>
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.username" required >
 
-				<div class="details full-width">
+						<label>Company Bio</label>
+						<textarea placeholder="" ng-model="enterpriseCtrl.editedCompany.description" required rows="4" cols="50" ></textarea>
 
-					<img  ng-src="{{enterpriseCtrl.editedCompany.avatar}}" alt="logo" class="corp-logo" />
+						<label>Primary Contact</label>
+						<select id="primary-contact" class="qvr-select" ng-model="enterpriseCtrl.editedCompany.primaryContact" ng-change="enterpriseCtrl.selectPrimaryContact()" >
+						<option value="">---</option>
+						<option ng-repeat="contact in enterpriseCtrl.primaryContacts" value="{{contact.id}}" >{{contact.firstName}} {{contact.lastName}}</option> 
+						</select>
+						
 
-					<label>Account Name</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.fullName" required >
-					
-					<label>User Name</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.username" required >
+						<label>Contact Email</label>
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.emailAddress" disabled="disabled" >
 
-					<label>Company Bio</label>
-					<textarea placeholder="" ng-model="enterpriseCtrl.editedCompany.description" required rows="4" cols="50" ></textarea>
-
-					<label>Primary Contact</label>
-					<select id="primary-contact" class="qvr-select" ng-model="enterpriseCtrl.editedCompany.primaryContact" ng-change="enterpriseCtrl.selectPrimaryContact()" >
-					<option value="">---</option>
-					<option ng-repeat="contact in enterpriseCtrl.primaryContacts" value="{{contact.id}}" >{{contact.firstName}} {{contact.lastName}}</option> 
-					</select>
-					
-
-					<label>Contact Email</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.emailAddress" disabled="disabled" >
-
-					<label>Contact Number</label>
-					<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.contactNumber" disabled="disabled" >
-
-				</div>
-			</div>
-
-			<div class="enterprise-content-right corporate-info">
-					<div class="details full-width">
-
-						<label>Address</label>
-						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.city" required >
+						<label>Contact Number</label>
+						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.contactNumber" disabled="disabled" >
 
 					</div>
-			</div>
-			<div class="clearfix"></div>
-		</section>
-	</div>
+
+
+
+				</div>
+				<div class="enterprise-content-right corporate-info">
+					<div class="details full-width map-wrapper">
+						<label>Company Address</label>
+						<p class="longer" ng-hide="enterpriseCtrl.isEditing">
+							{{enterpriseCtrl.company.city || 'N/A'}}
+						</p>
+
+						<div class="map-search-wrap" ng-show="enterpriseCtrl.isEditing" >
+							<span class="icon i-location-large"></span>
+							<input places-auto-complete type="search" ng-model="enterpriseCtrl.search" on-place-changed="placeChanged(place)" placeholder="Company Address">
+						</div>
+						<map-view
+							mapcenter="enterpriseCtrl.initialMapCenter"
+							coordinates="enterpriseCtrl.companyLocation.coordinates"
+							range="enterpriseCtrl.companyLocation.range"
+							mapsearch="enterpriseCtrl.search"
+							ng-class="{'edit': enterpriseCtrl.isEditing}"
+						></map-view>
+					</div>	
+				</div>
+			</section>
+		</div>
 
 </div>
 

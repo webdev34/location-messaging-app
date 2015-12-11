@@ -6,42 +6,44 @@
 	</a>
 
 	<nav class="header-nav">
-		<ul>
-			<li>
-				<a ui-sref="messages.dashboard" ng-class="{active: appCtrl.gNavStateIs=='messages'}">Campaigns</a>
+		<ul class="main-nav ">
+			<li ng-repeat="mainNav in appCtrl.navObj">
+				<a ui-sref="{{mainNav.state}}" ng-class="{active: appCtrl.currentState.current.name==mainNav.state}">{{mainNav.title}}</a>
+
+				<ul class="{{mainNav.category}}">
+					<li ng-repeat="subNav in mainNav.subNav" ng-class="{'upgrade': subNav.upgrade}" >
+						<a ui-sref="{{subNav.state}}" ng-class="{active: appCtrl.currentState.current.name==subNavNav.state}">{{subNav.title}} <span ng-show="subNav.upgrade">(Upgrade)</span></a>
+					</li>
+				</ul>
 			</li>
-			<li>
-				<a ui-sref="reporting.center" ng-class="{active: appCtrl.gNavStateIs=='reporting'}">Reporting</a>
-			</li>
-			<li>
-				<a ui-sref="enterprise.profile" ng-class="{active: appCtrl.gNavStateIs=='enterprise'}">Enterprise Profile</a>
-			</li>
-			<li>
-				<a ng-click="appCtrl.userLogout()" >Logout</a>
-			</li>
-			<!--
-			<li>
-				<a ui-sref="admin" ng-class="{active: appCtrl.gNavStateIs=='admin'}">Admin</a>
-			</li>
-			-->
 		</ul>
 	</nav>
 
 	<nav class="header-subnav">
-		<ul class="{{appCtrl.gNavStateIs}}">
-			<li ng-repeat="subnav in appCtrl.subnav">
-				<a ui-sref="{{subnav.state}}" ng-class="{active: appCtrl.currentState.current.name==subnav.state}">{{subnav.title}}</a>
-			</li>
-		</ul>
+		<span class="icon-wrapper">
+			<span class="icon i-header-user active"></span>
+		</span>
+		<span class="username">
+			<span class="bold">Welcome</span> {{appCtrl.user.fullName}}</span>
+
+		<span class="profile-wrapper">
+
+			<a ui-sref="enterprise.user-profile" ng-class="{active: appCtrl.currentState.current.name==subnav.state}" href="#!/enterprise/user-profile">Profile</a>
+			<a ng-click="appCtrl.userLogout()" >Logout</a>
+		</span>
+
+		<span class="details">
+			<span class="enterise-name bold">{{appCtrl.user.username}}</span>
+			|
+			<span class="enterprise-plan bold">Subscription : <span>Pro</span>
+			|
+			 <a class="upgrade">Upgrade</a>
+			</span>
+		</span>
 	</nav>
 
-	<section class="header-user-info" controller="AppCtrl as appCtrl">
-		<span class="icon-wrapper"><span class="icon i-header-user active"></span></span>
-		<span class="details">
-			<div class="enterise-name">{{appCtrl.user.username}} </div>
-			<div class="enterprise-plan">Current Plan: <span>Warrior</span> <span>Upgrade</span></div>
-		</span>
-		<span class="username"><span>Logged In As:</span> {{appCtrl.user.fullName}}</span>
+	<section class="header-user-info hide" controller="AppCtrl as appCtrl">
+
 	</section>
 
 </header>

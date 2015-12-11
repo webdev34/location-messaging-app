@@ -40,6 +40,14 @@ h2 {
     display: block !important;
 }
 
+.upgrade{
+    color: #66cc33 !important;
+    font-weight: bold;
+}
+.bold{
+    font-weight: bold;
+}
+
 // Global Styles
 html, body {
     height: 100%;
@@ -64,41 +72,41 @@ p {
     padding: 0;
 }
 
-.animated { 
-    -webkit-animation-duration: .1s; 
-    animation-duration: .1s; 
-    -webkit-animation-fill-mode: both; 
-    animation-fill-mode: both; 
-    -webkit-animation-timing-function: ease-in; 
-    animation-timing-function: ease-in; 
-} 
-
-@-webkit-keyframes fadeIn { 
-    0% {opacity: 1;} 
-    100% {opacity: 1;} 
-} 
-@keyframes fadeIn { 
-    0% {opacity: 1;} 
-    100% {opacity: 1;} 
-} 
-
-@-webkit-keyframes fadeOut { 
-    0% {opacity: 0; display:none;} 
-    100% {opacity: 0;} 
-} 
-@keyframes fadeOut { 
-    0% {opacity: 0;} 
-    100% {opacity: 0;} 
-} 
-
-.fadeIn { 
-    -webkit-animation-name: fadeIn; 
-    animation-name: fadeIn; 
+.animated {
+    -webkit-animation-duration: .1s;
+    animation-duration: .1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
 }
 
-.fadeOut { 
-    -webkit-animation-name: fadeOut; 
-    animation-name: fadeOut; 
+@-webkit-keyframes fadeIn {
+    0% {opacity: 1;}
+    100% {opacity: 1;}
+}
+@keyframes fadeIn {
+    0% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+@-webkit-keyframes fadeOut {
+    0% {opacity: 0; display:none;}
+    100% {opacity: 0;}
+}
+@keyframes fadeOut {
+    0% {opacity: 0;}
+    100% {opacity: 0;}
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
 }
 
 // Bower foundation overrides
@@ -112,11 +120,14 @@ ul {
     display: inline-block;
     background-size: cover;
     &.i-header-user {
-        background-image: url(../img/icons/i-header-user.png);
+        background-image: url(../img/icons/i-user-active.png);
         width: 26px;
         height: 24px;
+        margin-top: 3px;
+        background-size: 75%;
+        background-repeat: no-repeat;
         &.active {
-            background-image: url(../img/icons/i-header-user_active.png);
+            background-image: url(../img/icons/i-user.png);
         }
     }
     &.i-user-large {
@@ -341,7 +352,7 @@ ul {
         padding: 15px;
         margin-top: 0px;
     }
-    
+
     p{
         margin-top: 15px;
     }
@@ -371,23 +382,23 @@ ul {
     input[type="range"].radius-range {
         position: relative;
         -webkit-appearance: none;
-        
+
         width: 98%;
         height: 20px;
-        
+
         padding: 0 10px;
-        
+
         border: none;
         background: transparent;
-        
+
         font-weight: $qvr-font-weight-light;
         line-height: 15px;
         margin-left: 5px;
-    
+
         &:focus {
             outline: none;
         }
-        
+
         &::-webkit-slider-runnable-track {
             width: 100%;
             height: 8px;
@@ -396,7 +407,7 @@ ul {
             animate: 0.2s;
             background: $qvr-blue-1;
         }
-        
+
         &::-webkit-slider-thumb {
             position: relative;
             height: 36px;
@@ -410,30 +421,30 @@ ul {
 
             &::after {
                 content: ' ';
-                
+
                 display: block;
-                
+
                 position: absolute;
                 top: 6px;
                 left: 6px;
-                
+
                 background-image: url(..//img/icons/i-location.png);
                 background-size: 49%;
                 background-repeat: no-repeat;
                 background-position: 6px 6px;
-                
+
                 width: 22px;
                 height: 22px;
-                
+
                 border-radius: 22px;
                 border: 1px solid $qvr-blue-1;
             }
         }
-        
+
         &:focus::-webkit-slider-runnable-track {
             background: $qvr-blue-1;
         }
-    } 
+    }
 }
 
 // Modal
@@ -563,7 +574,7 @@ select.qvr-select{
         background-color: transparent;
     }
     .header-branding {
-        float: left;
+        position: absolute;
         cursor: default;
         margin: 12px 0 0 17px;
 
@@ -584,13 +595,63 @@ select.qvr-select{
             font-size: 16px;
             font-family: $qvr-primary-font;
             //ont-weight: $qvr-font-weight-thin;
-       
+
         }
     }
     .header-nav {
         height: 50px;
         ul {
             display: inline-block;
+            &.main-nav{
+                float: right;
+                margin-right: 3%;
+                li{
+                    position: relative;
+                    &:hover{
+                        ul{
+                            display: block;
+                            z-index: 10;
+                            position: absolute;
+                            box-shadow: 3px 5px 3px -1px rgba(0,0,0,0.6);
+                        }
+                    }
+                    ul{
+                        display: none;
+                        margin: 0;
+                        width: 175px;
+                        top: 49px;
+
+                        li{
+                            display: flex;
+                            background-color: #00b6ce;
+                            border-bottom: thin solid #00a9cc;
+                            height: 38px;
+                            cursor: pointer;
+                            &:hover{
+                                background-color: #00cce7;
+                            }
+                            &.upgrade{
+                                a{
+                                    color: #0099ad;
+                                    span{
+                                        color: #00ff00;
+                                        font-weight: bold;
+                                    }
+                                }
+                            }
+                            a{
+                                font-size: 12px;
+                                margin: 10px 7px -5px;
+                                width: 100%;
+                                text-align: left;
+                                &:hover{
+                                    border-bottom: thin transparent solid;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             li {
                 display: inline-block;
             }
@@ -602,9 +663,9 @@ select.qvr-select{
                 font-weight: $qvr-font-weight-bold;
                 color: $qvr-white-1;
                 border-bottom: 7px solid transparent;
-                width: 150px;
+                //width: 150px;
                 height: 30px;
-                margin: 14px 10px 0 0;
+                margin: 14px 25px;
                 padding-bottom: 28px;
                 transition: all 0.2s ease-in-out;
                 &:hover, &.active {
@@ -616,6 +677,36 @@ select.qvr-select{
     .header-subnav {
         height: 25px;
         background-color: $qvr-grey-4;
+        position: relative;
+
+        .icon-wrapper{
+            margin-left: 130px;
+        }
+        .username{
+            top: -10px;
+            position: relative;
+        }
+        .details{
+            position: absolute;
+            right: 10px;
+            width: auto;
+            top: 0px;
+            text-transform: capitalize;
+        }
+        .profile-wrapper{
+            position: absolute;
+            margin-left: 15px;
+            a{
+                color: $qvr-blue-1;
+                font-weight: bold;
+                margin-right: 5px;
+                &:before{
+                    content: "|";
+                    color: $qvr-grey-3;
+                    padding-right: 8px;
+                }
+            }
+        }
         ul {
             margin: 0 0 0 265px;
             padding: 0;
@@ -1013,7 +1104,7 @@ input[type="checkbox"].qvr-slide-toggle {
 .date-picker {
     font-size: $qvr-input-font-size;
     font-family: $qvr-secondary-font;
-   
+
     .month-bar {
         height: 45px;
         line-height: 45px;
