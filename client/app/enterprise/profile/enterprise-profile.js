@@ -62,6 +62,13 @@
 		       	});
 			}
 
+			 enterpriseCtrl.companyLocation = {
+			 	"range": 5,
+				"coordinates": {"lat":43.657504642319005,"lng":-79.3760706718750}
+			}
+
+			enterpriseCtrl.initialMapCenter = enterpriseCtrl.companyLocation.coordinates.lat + ","+ enterpriseCtrl.companyLocation.coordinates.lng;
+
 			init();
 			
 		}

@@ -52,7 +52,6 @@
 						{{enterpriseCtrl.company.city || 'N/A'}}
 					</p>
 					</div>
-
 			</div>
 			<div class="clearfix"></div>
 		</section>
@@ -96,13 +95,22 @@
 					<div class="details full-width">
 
 						<label>Address</label>
-						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.city" required >
+						<textarea ng-model="enterpriseCtrl.editedCompany.city" required ></textarea>
 
 					</div>
+
+					
 			</div>
 			<div class="clearfix"></div>
 		</section>
 	</div>
+
+	<map-view
+		mapcenter="enterpriseCtrl.initialMapCenter"
+		coordinates="enterpriseCtrl.companyLocation.coordinates"
+		range="enterpriseCtrl.companyLocation.range"
+		ng-class="{'edit': enterpriseCtrl.isEditing}"
+	></map-view>
 
 </div>
 
