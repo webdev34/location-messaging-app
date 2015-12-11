@@ -4,9 +4,7 @@
 	angular.module('messages', [
 		'enterprise-portal.models.messages',
 		'messages.dashboard',
-		'messages.detail',
 		'messages.new',
-		'messages.edit',
 		'messages.manage-campaign',
 		'messages.communications',
 		'messages.all-messages'

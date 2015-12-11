@@ -174,14 +174,15 @@
 
 			appCtrl.navObj = [
 					{'title': 'Communications', 'state': 'messages.communications', 'category': 'communications'},
-					{'title': 'Campaign Center', 'state': 'messages.dashboard', 'category': 'messages',
+					{'title': 'Campaign Center', 'state': 'campaigns.campaign-center', 'category': 'campaign',
 					'subNav': [
-						{'title': 'Create Campaign', 'state': 'messages.create-campaign', 'mainNavState': 'messages.dashboard'},
+						{'title': 'Create Campaign', 'state': 'messages.manage-campaign', 'mainNavState': 'messages.dashboard'},
+						{'title': 'AllMessages(temp)', 'state': 'messages.all-messages' , 'mainNavState': 'messages.dashboard'},
 						{'title': 'Compose Message', 'state': 'messages.new' , 'mainNavState': 'messages.dashboard'},
-						{'title': 'Location Management', 'state': 'messages.location-management' , 'mainNavState': 'messages.dashboard'},
-						{'title': 'Follower Management', 'state': 'enterprise.follower-management' , 'mainNavState': 'messages.dashboard'},
-						{'title': 'Tag Management', 'state': 'messages.tag' , 'mainNavState': 'messages.dashboard'},
-						{'title': 'Asset Management', 'state': 'messages.asset' , 'mainNavState': 'messages.dashboard'}
+						//{'title': 'Location Management', 'state': 'messages.manage-locations' , 'mainNavState': 'messages.dashboard'},
+						{'title': 'Follower Management', 'state': 'enterprise.manage-followers' , 'mainNavState': 'messages.dashboard'},
+						//{'title': 'Tag Management', 'state': 'messages.tag' , 'mainNavState': 'messages.dashboard'},
+						//{'title': 'Asset Management', 'state': 'messages.asset' , 'mainNavState': 'messages.dashboard'}
 					]
 					},
 					{'title': 'Report Center', 'state': 'reporting.center', 'category': 'reporting',
