@@ -32,8 +32,8 @@
 	app.constant('APP_default_state', 'messages.new');
 
 
-	var API_SERVER = 'http://api-dev.quiver.zone:80/';
-	//var API_SERVER = 'http://api-sand.quiver.zone/'
+	//var API_SERVER = 'http://api-dev.quiver.zone:80/';
+	var API_SERVER = 'http://api-sand.quiver.zone/'
 	//var API_SERVER = 'http://localhost:8000/';
 
 	app.constant('API_SERVER', API_SERVER);
