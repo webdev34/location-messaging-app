@@ -11,6 +11,9 @@
       API_URL
     ) {
       console.log('campaign service');
+      return {
+
+      };
     }
   ])
 

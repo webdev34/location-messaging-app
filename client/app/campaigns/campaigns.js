@@ -1,7 +1,8 @@
 (function() {
   'use strict';
   angular.module('campaigns', [
-    'enterprise-portal.models.campaigns'
+    'enterprise-portal.models.campaigns',
+    'campaigns.campaign-center'
   ])
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 		$stateProvider
@@ -13,7 +14,7 @@
 			.state('campaigns.campaign-center', {
 				url: '/',
 				templateUrl: 'app/campaigns/campaign-center/campaign-center.tmpl.html',
-				controller: 'CampaignCenterCtrl as campaignCenterCtrl'
+				controller: 'MainCampaignCtrl as campaignCenterCtrl'
 			})
 			;
 
