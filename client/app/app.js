@@ -175,12 +175,12 @@
 				],
 				'messages' : [
 					{'title': 'Campaign Center', 'state': 'messages.dashboard'},
-					{'title': 'Create Campaign', 'state': 'messages.create-campaign'},
+					{'title': 'Manage Campaign', 'state': 'messages.manage-campaign'},
 					{'title': 'Compose Message', 'state': 'messages.new'},
 					{'title': 'All Messages (Temp)', 'state': 'messages.all-messages'},
 
-					{'title': 'Location Management', 'state': 'messages.location-management'},
-					{'title': 'Asset Management', 'state': 'messages.asset'},
+					{'title': 'Manage Locations', 'state': 'messages.manage-locations'},
+					//{'title': 'Asset Management', 'state': 'messages.asset'},
 					{'title': 'Communications', 'state': 'messages.communications'}
 				],
 				'reporting' : [
@@ -189,8 +189,8 @@
 				'enterprise' : [
 					{'title': 'Enterprise Profile', 'state': 'enterprise.profile'},
 					{'title': 'User Profile', 'state': 'enterprise.user-profile'},
-					{'title': 'Manage Users', 'state': 'enterprise.user-management'},
-					{'title': 'Follower Management', 'state': 'enterprise.follower-management'}
+					{'title': 'Manage Users', 'state': 'enterprise.manage-users'},
+					{'title': 'Manage Followers', 'state': 'enterprise.manage-followers'}
 				]
 			};
 
@@ -279,6 +279,7 @@
 			}
 
 			appCtrl.getAccount = function () {
+
 
 				if (!UserModel.user) {
 					UserModel.getAccount()
