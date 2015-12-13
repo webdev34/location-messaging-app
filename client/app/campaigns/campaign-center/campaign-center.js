@@ -22,7 +22,8 @@
         tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
         tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 
-      vm.statuses = ["Live", "Draft", "Ended"];
+      vm.statuses = CampaignsModel.campaignStatusList;
+      
       vm.tagFilters = [];
       vm.campaignTags = [
         { name: "#SanFrancisco", ticked: false },

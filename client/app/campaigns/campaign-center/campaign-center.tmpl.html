@@ -143,11 +143,11 @@
 			      <td>{{campaign.startDate}}</td>
 			      <td>{{campaign.endDate}}</td>
 			      <td>
-					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select {{campaign.status}}" ng-model="campaign.status" >
-							<option data-ng-repeat="obj in campaignCenterCtrl.statuses">{{obj}}</option>
-						</select>
-					</div>
+							<div class="input-wrapper campaign-status-wrapper">
+								<select class="qvr-select {{campaign.status}}" ng-model="campaign.status" >
+									<option data-ng-repeat="status in campaignCenterCtrl.statuses">{{status}}</option>
+								</select>
+							</div>
 			      </td>
 			    </tr>
 			  </tbody>

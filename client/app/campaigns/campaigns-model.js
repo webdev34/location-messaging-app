@@ -13,12 +13,23 @@
     ) {
       var model = this;
 
+      model.campaignStatusList = ["Draft", "Live", "Ended"];
+
       model.getCampaignList = function() {
           return CampaignsService.list().then(
             function success(response) {
               console.log('campaign list(model):');
               console.log(response);
-              return response;
+
+              var formattedResponse = response;
+
+              angular.forEach(response.campaign, function(campaign) {
+                console.log(campaign.status);
+                campaign.status = model.campaignStatusList[campaign.status];
+                console.log(campaign.status);
+              });
+
+              return formattedResponse;
             },
             function error() {
               alert('Campaign List failed to load');
@@ -44,7 +55,7 @@
         var formattedCampaign = campaignObj;
 
         formattedCampaign.campaign.enterprise = enterpriseSID;
-        
+
         return CampaignsService.post(formattedCampaign).then(
           function success(response) {
             console.log('campaign create(model):');
