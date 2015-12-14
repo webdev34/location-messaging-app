@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('messages.manage-campaign', [])
+	angular.module('campaigns.edit-campaign', [])
 	.filter('startFrom', function () {
 		return function (input, start) {
 			if (input) {

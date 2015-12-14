@@ -1,10 +1,9 @@
 <header class="heading-bar">
-	<h1>Campaign Center (Campaign Module)</h1>
+	<h1>Campaign Center</h1>
 </header>
-<!-- <messages-list></messages-list> -->
 	<section class="campaign-center-wrapper">
 		<div class="campaign-center-header qvr-form">
-			<button class="qvr-button action" ui-sref="messages.create-campaign">+ NEW CAMPAIGN</button>
+			<button class="qvr-button action" ui-sref="campaigns.new-campaign">+ NEW CAMPAIGN</button>
 			<div class="search-wrapper">
 				<label for="filter-by"><i class="fa fa-search"></i></label>
 				<input type="search" class="search-campaigns" ng-model="campaignCenterCtrl.search"  placeholder="Search Campaigns" ng-keypress="campaignCenterCtrl.resetCurrentPage()">

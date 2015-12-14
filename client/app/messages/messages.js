@@ -5,7 +5,6 @@
 		'enterprise-portal.models.messages',
 		'messages.dashboard',
 		'messages.new',
-		'messages.manage-campaign',
 		'messages.communications',
 		'messages.all-messages'
 	])
@@ -41,11 +40,6 @@
 				url: '/manage',
 				templateUrl: 'app/messages/manage/messages-manage.tmpl.html',
 				controller: 'MessagesManageCtrl as messagesManageCtrl'
-			})
-			.state('messages.manage-campaign', {
-				url: '/manage-campaign',
-				templateUrl: 'app/messages/manage-campaign/manage-campaign.tmpl.html',
-				controller: 'ManageCampaignCtrl as manageCampaignCtrl'
 			})
 			.state('messages.all-messages', {
 				url: '/all-messages',

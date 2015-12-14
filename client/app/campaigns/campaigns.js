@@ -2,7 +2,8 @@
   'use strict';
   angular.module('campaigns', [
     'enterprise-portal.models.campaigns',
-    'campaigns.campaign-center'
+    'campaigns.campaign-center',
+    'campaigns.edit-campaign'
   ])
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 		$stateProvider
@@ -16,6 +17,16 @@
 				templateUrl: 'app/campaigns/campaign-center/campaign-center.tmpl.html',
 				controller: 'MainCampaignCtrl as campaignCenterCtrl'
 			})
+      .state('campaigns.new-campaign', {
+        url: '/new',
+        templateUrl: 'app/campaigns/edit-campaign/edit-campaign.tmpl.html',
+        controller: 'ManageCampaignCtrl as manageCampaignCtrl'
+      })
+      .state('campaigns.edit-campaign', {
+        url: '/message/:_id',
+        templateUrl: 'app/campaigns/edit-campaign/edit-campaign.tmpl.html',
+        controller: 'ManageCampaignCtrl as manageCampaignCtrl'
+      })
 			;
 
 		$urlRouterProvider.otherwise('campaigns.campaign-center');

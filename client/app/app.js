@@ -176,7 +176,7 @@
 					{'title': 'Communications', 'state': 'messages.communications', 'category': 'communications'},
 					{'title': 'Campaign Center', 'state': 'campaigns.campaign-center', 'category': 'campaign',
 					'subNav': [
-						{'title': 'Create Campaign', 'state': 'messages.manage-campaign', 'mainNavState': 'messages.dashboard'},
+						{'title': 'Create Campaign', 'state': 'campaigns.new-campaign', 'mainNavState': 'messages.dashboard'},
 						{'title': 'AllMessages(temp)', 'state': 'messages.all-messages' , 'mainNavState': 'messages.dashboard'},
 						{'title': 'Compose Message', 'state': 'messages.new' , 'mainNavState': 'messages.dashboard'},
 						//{'title': 'Location Management', 'state': 'messages.manage-locations' , 'mainNavState': 'messages.dashboard'},
