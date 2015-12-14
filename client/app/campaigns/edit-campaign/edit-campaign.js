@@ -30,27 +30,30 @@
 			FoundationApi,
 			MessageListModel
 		) {
-			var manageCampaignCtrl = this;
+			var vm = this;
 
 			if ($state.current.name == "campaigns.edit-campaign" ) {
 				console.log('editing:' + $stateParams._id);
 			}
 
-			manageCampaignCtrl.showStartDatePicker = false;
-			manageCampaignCtrl.showEndDatePicker = false;
-			manageCampaignCtrl.showStartTimePicker = false;
-			manageCampaignCtrl.endStartTimePicker = false;
+			//Date Picker display variables need to be abstracted into date-picker directive
+			vm.showStartDatePicker = false;
+			vm.showEndDatePicker = false;
+			vm.showStartTimePicker = false;
+			vm.endStartTimePicker = false;
 
 
+			//var today and tomorrow need to be abstracted into date-picker directive
 			var today = new Date(),
 					todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
 					todayProperFormatted = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-
-				var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
+			var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
 					tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 
-			manageCampaignCtrl.campaignParticipantsList = [
+			//Disabled Features
+			/*
+			vm.campaignParticipantsList = [
 				{ name: "#MarketingGroup", ticked: false },
 				{ name: "#BusinessDevelopment", ticked: false},
 				{ name: "#Evangelists", ticked: false},
@@ -58,15 +61,16 @@
 				{ name: "Scott Trasler", ticked: false}
 			];
 
-			manageCampaignCtrl.campaignsTags = [
+			// Tags Need to be abstracted
+			vm.campaignsTags = [
 				{ name: "#SanFrancisco", ticked: false },
 				{ name: "#Barcelona", ticked: false},
 				{ name: "#Dublin", ticked: true}
 			];
+			vm.campaignMessageTags = angular.copy(vm.campaignsTags);
 
-			manageCampaignCtrl.campaignMessageTags = angular.copy(manageCampaignCtrl.campaignsTags);
-
-			manageCampaignCtrl.campaignMarketingAssets = [
+			// Assets need to be abstracted
+			vm.campaignMarketingAssets = [
 				{ name: "Asset 1", ticked: false },
 				{ name: "Asset 2", ticked: false},
 				{ name: "Asset 3", ticked: false},
@@ -79,7 +83,11 @@
 				{ name: "Asset 10", ticked: false}
 			];
 
-			manageCampaignCtrl.campaigns = [
+			*/
+
+
+
+			vm.campaigns = [
 				{ name: "Quiver Team Building - SF", ticked: false },
 				{ name: "Web Summit - Dublin Fade St.", ticked: false},
 				{ name: "Web Summit - Dublin Harcourt St.", ticked: false},
@@ -88,9 +96,9 @@
 				{ name: "MWC - 2016 - Barcelona", ticked: false}
 			];
 
-			manageCampaignCtrl.cloneToCampaigns = [];
+			vm.cloneToCampaigns = [];
 
-			manageCampaignCtrl.manageCampaign = {
+			vm.manageCampaign = {
 				"campaignID": 48,
 				"campaignName": "Web Summit - Dublin Fade St.",
 				"campaignParticipants": [],
@@ -106,111 +114,111 @@
 				"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
 			};
 
-			manageCampaignCtrl.tagFilters = [];
+			vm.tagFilters = [];
 
-			manageCampaignCtrl.statuses = ["Live", "Draft", "Ended"];
-			manageCampaignCtrl.cloneCampaign = {
+			vm.statuses = ["Live", "Draft", "Ended"];
+			vm.cloneCampaign = {
 				"campaignName": "",
 				"status": "Draft"
 			};
 
 			$http.get('assets/data/campaign-messages.json').success(function(data) {
-				manageCampaignCtrl.campaignMessages = data.campaignMessages;
-				manageCampaignCtrl.totalItems = data.campaignMessages.length;
-				manageCampaignCtrl.currentPage = 1;
-				manageCampaignCtrl.entryLimit = 10; // items per page
-				manageCampaignCtrl.noOfPages = Math.ceil(manageCampaignCtrl.totalItems / manageCampaignCtrl.entryLimit);
-				manageCampaignCtrl.reverse = false;
-				manageCampaignCtrl.sortOrderBy = 'id';
-				manageCampaignCtrl.startAt = 0;
-				manageCampaignCtrl.endAt = 9;
-				manageCampaignCtrl.selectAll = false;
-				manageCampaignCtrl.isAnyInputsSelected = false;
+				vm.campaignMessages = data.campaignMessages;
+				vm.totalItems = data.campaignMessages.length;
+				vm.currentPage = 1;
+				vm.entryLimit = 10; // items per page
+				vm.noOfPages = Math.ceil(vm.totalItems / vm.entryLimit);
+				vm.reverse = false;
+				vm.sortOrderBy = 'id';
+				vm.startAt = 0;
+				vm.endAt = 9;
+				vm.selectAll = false;
+				vm.isAnyInputsSelected = false;
 
-				manageCampaignCtrl.goToPage = function(direction) {
+				vm.goToPage = function(direction) {
 
 					if(direction == 'up')
 					{
-						manageCampaignCtrl.currentPage++;
+						vm.currentPage++;
 					}else if(direction == 'down'){
-						manageCampaignCtrl.currentPage--;
+						vm.currentPage--;
 					}
 					else if(direction == 'beginning'){
-						manageCampaignCtrl.currentPage = 1;
+						vm.currentPage = 1;
 					}
 					else if(direction == 'end'){
-						manageCampaignCtrl.currentPage = manageCampaignCtrl.noOfPages;
+						vm.currentPage = vm.noOfPages;
 					}
 
-					manageCampaignCtrl.startAt = (manageCampaignCtrl.currentPage - 1) * manageCampaignCtrl.entryLimit;
-					manageCampaignCtrl.endAt = manageCampaignCtrl.entryLimit * manageCampaignCtrl.currentPage;
+					vm.startAt = (vm.currentPage - 1) * vm.entryLimit;
+					vm.endAt = vm.entryLimit * vm.currentPage;
 
 				};
 
-				manageCampaignCtrl.sortByFunc = function(sortBy, reverse) {
-					manageCampaignCtrl.sortOrderBy = sortBy;
-					manageCampaignCtrl.reverse = reverse;
-					manageCampaignCtrl.currentPage = 1;
-					manageCampaignCtrl.goToPage(1);
+				vm.sortByFunc = function(sortBy, reverse) {
+					vm.sortOrderBy = sortBy;
+					vm.reverse = reverse;
+					vm.currentPage = 1;
+					vm.goToPage(1);
 				};
 
-				manageCampaignCtrl.resetCurrentPage = function() {
-					manageCampaignCtrl.currentPage = 1;
+				vm.resetCurrentPage = function() {
+					vm.currentPage = 1;
 				};
 
-				manageCampaignCtrl.toggleSelected = function() {
-					angular.forEach(manageCampaignCtrl.campaignMessages, function(message) {
-				      message.isSelected = manageCampaignCtrl.selectAll;
+				vm.toggleSelected = function() {
+					angular.forEach(vm.campaignMessages, function(message) {
+				      message.isSelected = vm.selectAll;
 				    });
 				};
 
-				manageCampaignCtrl.bulkActions = function() {
-					var action = manageCampaignCtrl.bulkActionSelected;
-					angular.forEach(manageCampaignCtrl.campaignMessages, function(campaign, i) {
+				vm.bulkActions = function() {
+					var action = vm.bulkActionSelected;
+					angular.forEach(vm.campaignMessages, function(campaign, i) {
 						if(campaign.isSelected && action != 'Delete'){
 							campaign.status = action;
 							campaign.isSelected = false;
 						}
-						else if(campaign.isSelected && action == 'Delete' && manageCampaignCtrl.selectAll == false){
-							manageCampaignCtrl.campaignMessages.splice(i, 1);
+						else if(campaign.isSelected && action == 'Delete' && vm.selectAll == false){
+							vm.campaignMessages.splice(i, 1);
 						}
-						else if(action == 'Delete' && manageCampaignCtrl.selectAll == true){
-							manageCampaignCtrl.campaignMessages = [];
+						else if(action == 'Delete' && vm.selectAll == true){
+							vm.campaignMessages = [];
 						}
 				    });
-				    manageCampaignCtrl.selectAll = false;
-				    manageCampaignCtrl.bulkActionSelected = '';
+				    vm.selectAll = false;
+				    vm.bulkActionSelected = '';
 				};
 
-				manageCampaignCtrl.cloneMessages = function() {
-					manageCampaignCtrl.clonedMessage = [] ;
-					var cleanCopyOfMessages = angular.copy(manageCampaignCtrl.campaignMessages);
+				vm.cloneMessages = function() {
+					vm.clonedMessage = [] ;
+					var cleanCopyOfMessages = angular.copy(vm.campaignMessages);
 					angular.forEach(cleanCopyOfMessages, function(campaign, i) {
 						if(campaign.isSelected){
 							//campaign.isSelected = false;
-							manageCampaignCtrl.clonedMessage.push(campaign);
+							vm.clonedMessage.push(campaign);
 						}
 				    });
-				    // manageCampaignCtrl.selectAll = false;
+				    // vm.selectAll = false;
 				};
 
-				manageCampaignCtrl.deleteClonedMessage = function(id) {
-					angular.forEach(manageCampaignCtrl.clonedMessage, function(campaign, i) {
+				vm.deleteClonedMessage = function(id) {
+					angular.forEach(vm.clonedMessage, function(campaign, i) {
 						if(campaign.id == id){
-							manageCampaignCtrl.clonedMessage.splice(i, 1);
+							vm.clonedMessage.splice(i, 1);
 						}
 				    });
 				};
 
-				manageCampaignCtrl.anyInputsSelected = function() {
-					manageCampaignCtrl.isAnyInputsSelected = false;
-					manageCampaignCtrl.selectAll = true;
-					angular.forEach(manageCampaignCtrl.campaignMessages, function(campaign, i) {
+				vm.anyInputsSelected = function() {
+					vm.isAnyInputsSelected = false;
+					vm.selectAll = true;
+					angular.forEach(vm.campaignMessages, function(campaign, i) {
 						if(campaign.isSelected){
-							manageCampaignCtrl.isAnyInputsSelected  = true;
+							vm.isAnyInputsSelected  = true;
 						}
 						else{
-							manageCampaignCtrl.selectAll = false;
+							vm.selectAll = false;
 						}
 				    });
 				};
@@ -219,7 +227,7 @@
 
 
 			function resetForm() {
-				manageCampaignCtrl.manageCampaign = {
+				vm.manageCampaign = {
 					"campaignID": "",
 					"campaignName": "",
 					"campaignParticipants": [],
@@ -237,15 +245,15 @@
 			}
 
 			function paginationValidation(){
-				if(manageCampaignCtrl.currentPage > manageCampaignCtrl.noOfPages ){
-					manageCampaignCtrl.currentPage = manageCampaignCtrl.noOfPages
+				if(vm.currentPage > vm.noOfPages ){
+					vm.currentPage = vm.noOfPages
 				}
-				else if(typeof manageCampaignCtrl.currentPage === "undefined"){
-					manageCampaignCtrl.currentPage = 1;
+				else if(typeof vm.currentPage === "undefined"){
+					vm.currentPage = 1;
 				}
 			}
 
-			manageCampaignCtrl.updateCampaign = function() {
+			vm.updateCampaign = function() {
 				// MessageListModel.createNewMessage(newMessageCtrl.newMessage).then(
 				// 	function success(response){
 				// 		$state.go('messages.dashboard');
@@ -270,16 +278,16 @@
 
 
 			function clearTakeOverSelectors(){
-				manageCampaignCtrl.showStartDatePicker = false;
-				manageCampaignCtrl.showEndDatePicker = false;
-				manageCampaignCtrl.showStartTimePicker = false;
-				manageCampaignCtrl.showEndTimePicker = false;
+				vm.showStartDatePicker = false;
+				vm.showEndDatePicker = false;
+				vm.showStartTimePicker = false;
+				vm.showEndTimePicker = false;
 			}
 
-			$scope.$watch("manageCampaignCtrl.manageCampaign.startDate", clearTakeOverSelectors);
-			$scope.$watch("manageCampaignCtrl.manageCampaign.endDate", clearTakeOverSelectors);
-			$scope.$watch("manageCampaignCtrl.manageCampaign.startTime", clearTakeOverSelectors);
-			$scope.$watch("manageCampaignCtrl.manageCampaign.endTime", clearTakeOverSelectors);
+			$scope.$watch("vm.manageCampaign.startDate", clearTakeOverSelectors);
+			$scope.$watch("vm.manageCampaign.endDate", clearTakeOverSelectors);
+			$scope.$watch("vm.manageCampaign.startTime", clearTakeOverSelectors);
+			$scope.$watch("vm.manageCampaign.endTime", clearTakeOverSelectors);
 			$scope.$watch("currentPage", paginationValidation);
 
 			//resetForm();
