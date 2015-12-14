@@ -16,6 +16,7 @@
 		'$rootScope',
 		'$scope',
 		'$state',
+		'$stateParams',
 		'$http',
 		'FoundationApi',
 		'MessageListModel',
@@ -24,11 +25,16 @@
 			$rootScope,
 			$scope,
 			$state,
+			$stateParams,
 			$http,
 			FoundationApi,
 			MessageListModel
 		) {
 			var manageCampaignCtrl = this;
+
+			if ($state.current.name == "campaigns.edit-campaign" ) {
+				console.log('editing:' + $stateParams._id);
+			}
 
 			manageCampaignCtrl.showStartDatePicker = false;
 			manageCampaignCtrl.showEndDatePicker = false;

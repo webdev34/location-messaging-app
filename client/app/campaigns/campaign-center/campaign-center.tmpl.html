@@ -135,8 +135,8 @@
 
 			    <tr data-ng-repeat="campaign in campaignCenterCtrl.campaignData | startFrom:startAt | orderBy:campaignCenterCtrl.sortOrderBy:campaignCenterCtrl.reverse | filter:campaignCenterCtrl.search  as results" ng-show="$index >= campaignCenterCtrl.startAt && $index <= campaignCenterCtrl.endAt" ng-class="{last: campaignCenterCtrl.endAt == $index}">
 			      <td><input type="checkbox" ng-model="campaign.isSelected" ng-change="campaignCenterCtrl.anyInputsSelected();" /></td>
-			      <td><a ui-sref="messages.create-campaign">{{campaign.sid}}</a></td>
-			      <td><a ui-sref="messages.create-campaign">{{campaign.name}}</a></td>
+			      <td><a ui-sref="campaigns.edit-campaign({ _id: campaign.sid })">{{campaign.sid}}</a></td>
+			      <td><a ui-sref="campaigns.edit-campaign({ _id: campaign.sid })">{{campaign.name}}</a></td>
 			      <td>{{campaign.likes}}</td>
 			      <td>{{campaign.saves}}</td>
 			      <td>{{campaign.startDate}}</td>

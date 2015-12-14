@@ -23,7 +23,7 @@
         controller: 'ManageCampaignCtrl as manageCampaignCtrl'
       })
       .state('campaigns.edit-campaign', {
-        url: '/message/:_id',
+        url: '/:_id/edit',
         templateUrl: 'app/campaigns/edit-campaign/edit-campaign.tmpl.html',
         controller: 'ManageCampaignCtrl as manageCampaignCtrl'
       })
