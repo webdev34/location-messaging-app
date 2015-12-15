@@ -46,9 +46,12 @@
       model.getCampaign = function (campaignSID) {
         return CampaignsService.get(campaignSID).then(
           function success(response) {
-            //console.log('campaign loaded(model):');
-            //console.log(response);
-            return response;
+
+            //formatting for timestamps
+            var formattedCampaign = response.campaign;
+            formattedCampaign.status = model.campaignStatusList[formattedCampaign.status];
+
+            return formattedCampaign;
           },
           function error() {
             alert('Campaign failed to load');
@@ -63,7 +66,7 @@
         formattedCampaign.campaign = {
           "name": campaignObj.name,
   				"description": campaignObj.description,
-  				"status": model.createCampaignStatusList.indexOf(campaignObj.status),
+  				"status": model.createCampaignStatusList.indexOf(campaignObj.status, 0),
           "startTime": new Date(campaignObj.startDate + " " + campaignObj.startTime).getTime(),
           "endTime": new Date(campaignObj.endDate + " " + campaignObj.endTime).getTime(),
         };

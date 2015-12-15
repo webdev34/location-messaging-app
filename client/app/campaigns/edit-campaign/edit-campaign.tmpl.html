@@ -27,7 +27,7 @@
 			</div>
 			<div id="campaign-id-text" class="input-wrapper" ng-show="manageCampaignCtrl.isEditing">
 				<label class="qvr-label">Campaign ID</label>
-				<input placeholder="00000" type="text" disabled ng-model="manageCampaignCtrl.campaignObj.campaignID">
+				<input placeholder="00000" type="text" disabled ng-model="manageCampaignCtrl.campaignObj.sid">
 			</div>
 			<div class="delivery-box start-date">
 				<label class="qvr-label">Start Date</label>
@@ -359,7 +359,7 @@
 		<br>
 	</p>
 	<div class="modal-button-wrapper qvr-align-center">
-		<button  zf-close="" class="qvr-button action">Save</button>
+		<button ng-click="manageCampaignCtrl.updateCampaign()" class="qvr-button action">Save</button>
 		<button zf-close="" class="qvr-button cancel">Cancel</button>
 	</div>
 </div>

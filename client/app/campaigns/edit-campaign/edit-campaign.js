@@ -69,6 +69,19 @@
 				vm.isEditing = true;
 				vm.statuses = CampaignsModel.campaignStatusList;
 
+				CampaignsModel.getCampaign($stateParams._id).then(
+					function success(response) {
+
+						vm.campaignObj = response;
+						vm.campaignObj.startDate = todayProperFormatted;
+						vm.campaignObj.startTime = "12:01 AM";
+						vm.campaignObj.endDate   = tomorrowProperFormatted;
+						vm.campaignObj.endTime   = "11:59 PM";
+					}
+				);
+
+
+
 			} else {
 
 			}
@@ -101,8 +114,32 @@
 
 			}
 
+
+
 			vm.updateCampaign = function() {
-				console.log('updating campaign');
+				CampaignsModel.updateCampaign(vm.campaignObj).then(
+					function success(response) {
+						//console.log(response.campaign[0].sid);
+
+						FoundationApi.publish('main-notifications', {
+							title: 'Campaign Updated',
+							content: '',
+							color: 'success',
+							autoclose: '3000'
+						});
+
+						$state.go('campaigns.campaign-center');
+
+					},
+					function error(response) {
+						FoundationApi.publish('main-notifications', {
+							title: 'Campaign Was Not Created',
+							content: response.code,
+							color: 'fail',
+							autoclose: '3000'
+						});
+					}
+				);
 			}
 
 

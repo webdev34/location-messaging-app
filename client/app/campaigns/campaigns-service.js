@@ -16,11 +16,11 @@
 
       return {
         get : function(campaignSID) {
-          return $http.get(API_URL + '/campaign'/ + campaignSID);
+          return $http.get(API_URL + '/campaign/' + campaignSID);
         },
         post : function(campaignObj) {
           campaignObj.campaign.enterprise = enterpriseSID;
-          
+
           return $http.post(API_URL + '/campaign', campaignObj);
         },
         list : function() {
