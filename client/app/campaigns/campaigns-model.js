@@ -56,10 +56,10 @@
         )
       };
 
-      model.createCampaign = function (campaignObj) {
-
+      function processCampaign(campaignObj) {
 
         var formattedCampaign = {}
+
         formattedCampaign.campaign = {
           "name": campaignObj.name,
   				"description": campaignObj.description,
@@ -68,7 +68,12 @@
           "endTime": new Date(campaignObj.endDate + " " + campaignObj.endTime).getTime(),
         };
 
+        return formattedCampaign;
 
+      }
+
+      model.createCampaign = function (campaignObj) {
+        var formattedCampaign = processCampaign(campaignObj);
 
         return CampaignsService.post(formattedCampaign).then(
           function success(response) {
@@ -83,8 +88,10 @@
       };
 
       model.updateCampaign = function (campaignObj) {
-        //campaignObj should have .sid
-        return CampaignsService.post(campaignObj).then(
+        var formattedCampaign = processCampaign(campaignObj);
+        formattedCampaign.campaign.sid = campaignObj.sid;
+
+        return CampaignsService.post(formattedCampaign).then(
           function success(response) {
             //console.log('campaign create(model):');
             //console.log(response);

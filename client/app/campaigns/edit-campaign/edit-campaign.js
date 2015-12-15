@@ -67,12 +67,13 @@
 			if ($state.current.name == "campaigns.edit-campaign" ) {
 				console.log('editing:' + $stateParams._id);
 				vm.isEditing = true;
+				vm.statuses = CampaignsModel.campaignStatusList;
+
 			} else {
 
 			}
 
 			vm.createNewCampaign = function() {
-				//console.log(vm.campaignObj);
 				CampaignsModel.createCampaign(vm.campaignObj).then(
 					function success(response) {
 						//console.log(response.campaign[0].sid);
@@ -97,6 +98,7 @@
 						});
 					}
 				);
+
 			}
 
 			vm.updateCampaign = function() {
