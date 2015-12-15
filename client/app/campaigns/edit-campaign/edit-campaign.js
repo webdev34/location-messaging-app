@@ -17,6 +17,7 @@
 		'$state',
 		'$stateParams',
 		'$http',
+		'CampaignsModel',
 		'FoundationApi',
 
 		function(
@@ -24,13 +25,14 @@
 			$state,
 			$stateParams,
 			$http,
+			CampaignsModel,
 			FoundationApi
 		) {
 			var vm = this;
 
 			vm.isEditing = false;
 
-			vm.statuses = CampaignsModel.campaignStatusList;
+			vm.statuses = CampaignsModel.createCampaignStatusList;
 
 
 			//Date Picker display variables need to be abstracted into date-picker directive
@@ -51,7 +53,7 @@
 
 			//vm.newCampaignTemplate should moved to model once date-picker is refactored
 			vm.newCampaignTemplate = {
-				"campaignName": "",
+				"name": "",
 				"campaignDescription": "",
 				"status": "Draft",
 				"startDate": todayProperFormatted,
@@ -70,7 +72,31 @@
 			}
 
 			vm.createNewCampaign = function() {
-				console.log(vm.campaignObj);
+				//console.log(vm.campaignObj);
+				CampaignsModel.createCampaign(vm.campaignObj).then(
+					function success(response) {
+						//console.log(response.campaign[0].sid);
+						var createdCampaignSID = response.campaign[0].sid;
+
+						FoundationApi.publish('main-notifications', {
+							title: 'Campaign Created',
+							content: '',
+							color: 'success',
+							autoclose: '3000'
+						});
+
+						$state.go('campaigns.edit-campaign',{ _id: createdCampaignSID });
+
+					},
+					function error(response) {
+						FoundationApi.publish('main-notifications', {
+							title: 'Campaign Was Not Created',
+							content: response.code,
+							color: 'fail',
+							autoclose: '3000'
+						});
+					}
+				);
 			}
 
 			vm.updateCampaign = function() {

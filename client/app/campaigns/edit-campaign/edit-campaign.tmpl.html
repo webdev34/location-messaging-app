@@ -24,7 +24,7 @@
 		<section class="form-wrapper">
 			<div id="campaign-name-text" class="input-wrapper">
 				<label class="qvr-label">Campaign Name</label>
-				<input placeholder="" type="text" ng-model="manageCampaignCtrl.campaignObj.campaignName" required>
+				<input placeholder="" type="text" ng-model="manageCampaignCtrl.campaignObj.name" required>
 			</div>
 			<div id="campaign-id-text" class="input-wrapper" ng-show="manageCampaignCtrl.isEditing">
 				<label class="qvr-label">Campaign ID</label>
@@ -447,7 +447,7 @@
 	<div class="campaign-selection-wrapper" ng-model="manageCampaignCtrl.cloneCampaign.campaign">
 		<div class="float-left input-field">
 			<label>Create New Campaign Name</label>
-			<input type="text" ng-model="manageCampaignCtrl.cloneCampaign.campaignName"  />
+			<input type="text" ng-model="manageCampaignCtrl.cloneCampaign.name"  />
 		</div>
 		<div class="float-left">
 			<label>Status</label>

@@ -20,7 +20,8 @@
       QvrCampaign.LIVE    = 1;
       QvrCampaign.ENDED   = 2;
       */
-      model.campaignStatusList = ["Draft", "Live", "Ended"];
+      model.createCampaignStatusList =  ["Draft", "Live"];
+      model.campaignStatusList =        ["Draft", "Live", "Ended"];
 
       model.getCampaignList = function() {
           return CampaignsService.list().then(
@@ -58,8 +59,12 @@
       };
 
       model.createCampaign = function (campaignObj) {
+        console.log(campaignObj);
         var enterpriseSID = UserModel.enterprise;
-        var formattedCampaign = campaignObj;
+        console.log(UserModel.enterprise);
+
+        var formattedCampaign = {}
+        formattedCampaign.campaign = campaignObj;
 
         formattedCampaign.campaign.enterprise = enterpriseSID;
 
