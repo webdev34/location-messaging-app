@@ -30,7 +30,7 @@
 		.run(run);
 
 	//default view
-	app.constant('APP_default_state', 'messages.new');
+	app.constant('APP_default_state', 'campaigns.campaign-center');
 
 
 	//var API_SERVER = 'http://api-dev.quiver.zone:80/';

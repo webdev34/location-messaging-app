@@ -59,12 +59,19 @@
       };
 
       model.createCampaign = function (campaignObj) {
-        console.log(campaignObj);
+        //console.log(campaignObj);
         var enterpriseSID = UserModel.enterprise;
-        console.log(UserModel.enterprise);
+        //console.log(UserModel.enterprise);
 
         var formattedCampaign = {}
-        formattedCampaign.campaign = campaignObj;
+        formattedCampaign.campaign = {
+          "name": campaignObj.name,
+  				"description": campaignObj.description,
+  				"status": model.createCampaignStatusList.indexOf(campaignObj.status),
+          "startTime": new Date(campaignObj.startDate + " " + campaignObj.startTime).getTime(),
+          "endTime": new Date(campaignObj.endDate + " " + campaignObj.endTime).getTime(),
+        };
+
 
         formattedCampaign.campaign.enterprise = enterpriseSID;
 

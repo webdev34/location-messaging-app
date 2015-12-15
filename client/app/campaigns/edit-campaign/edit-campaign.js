@@ -54,7 +54,7 @@
 			//vm.newCampaignTemplate should moved to model once date-picker is refactored
 			vm.newCampaignTemplate = {
 				"name": "",
-				"campaignDescription": "",
+				"description": "",
 				"status": "Draft",
 				"startDate": todayProperFormatted,
 				"startTime": "12:01 AM",
