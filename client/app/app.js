@@ -32,8 +32,8 @@
 	app.constant('APP_default_state', 'messages.new');
 
 
-	var API_SERVER = 'http://api-dev.quiver.zone:80/';
-	//var API_SERVER = 'http://api-sand.quiver.zone/'
+	//var API_SERVER = 'http://api-dev.quiver.zone:80/';
+	var API_SERVER = 'http://api-sand.quiver.zone/'
 	//var API_SERVER = 'http://localhost:8000/';
 
 	app.constant('API_SERVER', API_SERVER);
@@ -42,7 +42,7 @@
 	config.$inject = ['$httpProvider', '$urlRouterProvider', '$locationProvider'];
 
 	function config($httpProvider, $urlProvider, $locationProvider) {
-		$urlProvider.otherwise('/');
+		$urlProvider.otherwise('/404');
 
 		$locationProvider.html5Mode({
 			enabled: false,
@@ -61,6 +61,9 @@
 			.state('home', {
 				url: '/',
 				templateUrl: 'app/home.tmpl.html'
+		}).state('error', {
+				url: '/404',
+				templateUrl: 'app/404.tmpl.html'
 		});
 		$httpProvider.interceptors.push([
 			'$q',
