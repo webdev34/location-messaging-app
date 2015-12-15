@@ -13,28 +13,25 @@
 		};
 	})
 	.controller('ManageCampaignCtrl', [
-		'$rootScope',
 		'$scope',
 		'$state',
 		'$stateParams',
 		'$http',
 		'FoundationApi',
-		'MessageListModel',
 
 		function(
-			$rootScope,
 			$scope,
 			$state,
 			$stateParams,
 			$http,
-			FoundationApi,
-			MessageListModel
+			FoundationApi
 		) {
 			var vm = this;
 
-			if ($state.current.name == "campaigns.edit-campaign" ) {
-				console.log('editing:' + $stateParams._id);
-			}
+			vm.isEditing = false;
+
+			vm.statuses = CampaignsModel.campaignStatusList;
+
 
 			//Date Picker display variables need to be abstracted into date-picker directive
 			vm.showStartDatePicker = false;
@@ -50,6 +47,36 @@
 			var tomorrow = new Date(today.getTime() + (24*60*60*1000 * 7)),
 					tomorrowFormatted = tomorrow.getDate() + "/" + (tomorrow.getMonth() + 1) + "/" + tomorrow.getFullYear(),
 					tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
+
+
+			//vm.newCampaignTemplate should moved to model once date-picker is refactored
+			vm.newCampaignTemplate = {
+				"campaignName": "",
+				"campaignDescription": "",
+				"status": "Draft",
+				"startDate": todayProperFormatted,
+				"startTime": "12:01 AM",
+				"endDate": tomorrowProperFormatted,
+				"endTime": "11:59 PM",
+			};
+
+			vm.campaignObj = vm.newCampaignTemplate;
+
+			if ($state.current.name == "campaigns.edit-campaign" ) {
+				console.log('editing:' + $stateParams._id);
+				vm.isEditing = true;
+			} else {
+
+			}
+
+			vm.createNewCampaign = function() {
+				console.log(vm.campaignObj);
+			}
+
+			vm.updateCampaign = function() {
+				console.log('updating campaign');
+			}
+
 
 			//Disabled Features
 			/*
@@ -87,40 +114,7 @@
 
 
 
-			vm.campaigns = [
-				{ name: "Quiver Team Building - SF", ticked: false },
-				{ name: "Web Summit - Dublin Fade St.", ticked: false},
-				{ name: "Web Summit - Dublin Harcourt St.", ticked: false},
-				{ name: "Web Summit - Dublin Dame Ln.", ticked: false},
-				{ name: "Web Summit - Dublin Camden St.", ticked: false},
-				{ name: "MWC - 2016 - Barcelona", ticked: false}
-			];
 
-			vm.cloneToCampaigns = [];
-
-			vm.manageCampaign = {
-				"campaignID": 48,
-				"campaignName": "Web Summit - Dublin Fade St.",
-				"campaignParticipants": [],
-				"campaignDescription": "N/A",
-				"marketingAssets": [ ],
-				"campaignsTags": [],
-				"status": "Live",
-				"startDate": "11/2/2015",
-				"startTime": "12:01 AM",
-				"endDate": "11/3/2015",
-				"endTime": "11:59 PM",
-				"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
-				"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
-			};
-
-			vm.tagFilters = [];
-
-			vm.statuses = ["Live", "Draft", "Ended"];
-			vm.cloneCampaign = {
-				"campaignName": "",
-				"status": "Draft"
-			};
 
 			$http.get('assets/data/campaign-messages.json').success(function(data) {
 				vm.campaignMessages = data.campaignMessages;
@@ -226,24 +220,6 @@
 			});
 
 
-			function resetForm() {
-				vm.manageCampaign = {
-					"campaignID": "",
-					"campaignName": "",
-					"campaignParticipants": [],
-					"campaignDescription": "",
-					"marketingAssets": [],
-					"campaignsTags": [],
-					"status": "Draft",
-					"startDate": todayProperFormatted,
-					"startTime": "12:01 AM",
-					"endDate": tomorrowProperFormatted,
-					"endTime": "11:59 PM",
-					"startTimestamp": new Date(todayProperFormatted + " 12:01 AM").getTime(),
-					"endTimestamp": new Date(tomorrowProperFormatted + " 11:59 PM").getTime()
-				};
-			}
-
 			function paginationValidation(){
 				if(vm.currentPage > vm.noOfPages ){
 					vm.currentPage = vm.noOfPages
@@ -253,28 +229,7 @@
 				}
 			}
 
-			vm.updateCampaign = function() {
-				// MessageListModel.createNewMessage(newMessageCtrl.newMessage).then(
-				// 	function success(response){
-				// 		$state.go('messages.dashboard');
 
-				// 		FoundationApi.publish('main-notifications', {
-				// 			title: 'Message Sent',
-				// 			content: '',
-				// 			color: 'success',
-				// 			autoclose: '3000'
-				// 		});
-				// 	},
-				// 	function error(response) {
-				// 		FoundationApi.publish('main-notifications', {
-				// 			title: 'Message Was Not Sent',
-				// 			content: response.code,
-				// 			color: 'fail',
-				// 			autoclose: '3000'
-				// 		});
-				// 	}
-				// );
-			}
 
 
 			function clearTakeOverSelectors(){
@@ -290,7 +245,6 @@
 			$scope.$watch("vm.manageCampaign.endTime", clearTakeOverSelectors);
 			$scope.$watch("currentPage", paginationValidation);
 
-			//resetForm();
 		}
 	]);
 

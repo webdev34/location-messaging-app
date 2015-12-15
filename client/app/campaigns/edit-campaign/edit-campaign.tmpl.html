@@ -1,89 +1,47 @@
 <header class="heading-bar">
-	<h1>Manage Campaign</h1>
+	<h1 ng-show="!manageCampaignCtrl.isEditing">New Campaign</h1>
+	<h1 ng-show="manageCampaignCtrl.isEditing">Manage Campaign</h1>
 </header>
+
 <section class="message-content-wrap manage-campaign">
 	<form role="form" class="qvr-form manage-campaign-form" name="campaignForm">
 		<div class="float-right top-controls">
 			<label class="qvr-label">Campaign Status</label>
 
-			<select class="qvr-select select-status" ng-model="manageCampaignCtrl.manageCampaign.status" required>
+			<select class="qvr-select select-status" ng-model="manageCampaignCtrl.campaignObj.status" required>
 					<option value="Draft">Draft</option>
 					<option value="Live">Live</option>
 					<option value="Ended">Ended</option>
 			</select>
-			<button zf-open="saveCampaignModal" class="qvr-button action" ng-disabled="!campaignForm.$valid">Save Campaign</button>
+			<button ng-show="manageCampaignCtrl.isEditing" zf-open="saveCampaignModal" class="qvr-button action" ng-disabled="!campaignForm.$valid">Save Changes</button>
+			<button ng-show="!manageCampaignCtrl.isEditing" ng-click="manageCampaignCtrl.createNewCampaign()" class="qvr-button action" ng-disabled="!campaignForm.$valid">Create Campaign</button>
 
 			<!--
 			<button zf-open="cloneCampaignModal" class="qvr-button action ">Clone Campaign</button>
  			-->
-			<!-- Confirmation Modal-->
-			<div zf-modal="" id="saveCampaignModal">
-				<a zf-close="" class="close-button">×</a>
-				<p class="qvr-align-center">
-					<br>
-					Are you sure you want to save your changes?
-					<br>
-					<br>
-				</p>
-				<div class="modal-button-wrapper qvr-align-center">
-					<button  zf-close="" class="qvr-button action">Save</button>
-					<button zf-close="" class="qvr-button cancel">Cancel</button>
-				</div>
-			</div>
-			<!-- Confirmation Modal-->
-
-			<!-- Cloned Campaign Modal -->
-			<div zf-modal="" id="cloneCampaignModal">
-				<a zf-close="" class="close-button">×</a>
-
-				<h1>Clone Campaign</h1>
-				<div class="campaign-selection-wrapper" ng-model="manageCampaignCtrl.cloneCampaign.campaign">
-					<div class="float-left input-field">
-						<label>Create New Campaign Name</label>
-						<input type="text" ng-model="manageCampaignCtrl.cloneCampaign.campaignName"  />
-					</div>
-					<div class="float-left">
-						<label>Status</label>
-						<select class="qvr-select select-status" ng-model="manageCampaignCtrl.cloneCampaign.status" required>
-							<option value="Draft" selected>Draft</option>
-							<option value="Live">Live</option>
-							<option value="Ended">Ended</option>
-						</select>
-					</div>
-				</div>
-
-				<hr class="clearfix" />
-				<div class="modal-button-wrapper qvr-align-center">
-					<button zf-close="" type="submit" class="qvr-button action">Clone Campaign</button>
-					<button zf-close="" class="qvr-button cancel">Cancel</button>
-				</div>
-			</div>
-			<!-- Cloned Campaign Modal -->
-
-
 
 		</div>
 		<section class="form-wrapper">
 			<div id="campaign-name-text" class="input-wrapper">
 				<label class="qvr-label">Campaign Name</label>
-				<input placeholder="" type="text" ng-model="manageCampaignCtrl.manageCampaign.campaignName" required>
+				<input placeholder="" type="text" ng-model="manageCampaignCtrl.campaignObj.campaignName" required>
 			</div>
-			<div id="campaign-id-text" class="input-wrapper">
+			<div id="campaign-id-text" class="input-wrapper" ng-show="manageCampaignCtrl.isEditing">
 				<label class="qvr-label">Campaign ID</label>
-				<input placeholder="00000" type="text" disabled ng-model="manageCampaignCtrl.manageCampaign.campaignID">
+				<input placeholder="00000" type="text" disabled ng-model="manageCampaignCtrl.campaignObj.campaignID">
 			</div>
 			<div class="delivery-box start-date">
 				<label class="qvr-label">Start Date</label>
-				<input type="text" class="date" ng-model="manageCampaignCtrl.manageCampaign.startDate" ng-click="manageCampaignCtrl.showStartDatePicker=true">
+				<input type="text" class="date" ng-model="manageCampaignCtrl.campaignObj.startDate" ng-click="manageCampaignCtrl.showStartDatePicker=true">
 				<section class="date-selector" ng-show="manageCampaignCtrl.showStartDatePicker">
 					<date-picker
 					title="Start Date"
 					name="start-date"
-					ng-model="manageCampaignCtrl.manageCampaign.startDate"
-					start-date="manageCampaignCtrl.manageCampaign.startDate"
-					start-time="manageCampaignCtrl.manageCampaign.startTime"
-					end-date="manageCampaignCtrl.manageCampaign.endDate"
-					end-time="manageCampaignCtrl.manageCampaign.endTime"
+					ng-model="manageCampaignCtrl.campaignObj.startDate"
+					start-date="manageCampaignCtrl.campaignObj.startDate"
+					start-time="manageCampaignCtrl.campaignObj.startTime"
+					end-date="manageCampaignCtrl.campaignObj.endDate"
+					end-time="manageCampaignCtrl.campaignObj.endTime"
 					disable-previous-dates="true"
 					show-picker="manageCampaignCtrl.showStartDatePicker"
 					></date-picker>
@@ -92,16 +50,16 @@
 
 			<div class="delivery-box start-time">
 				<label class="qvr-label">Start Time</label>
-				<input type="text" class="hourglass" ng-model="manageCampaignCtrl.manageCampaign.startTime" ng-click="manageCampaignCtrl.showStartTimePicker=true">
+				<input type="text" class="hourglass" ng-model="manageCampaignCtrl.campaignObj.startTime" ng-click="manageCampaignCtrl.showStartTimePicker=true">
 				<section class="time-selector" ng-show="manageCampaignCtrl.showStartTimePicker">
 					<time-picker
 					title="Start Time"
 					name="start-time"
-					ng-model="manageCampaignCtrl.manageCampaign.startTime"
-					start-date="manageCampaignCtrl.manageCampaign.startDate"
-					start-time="manageCampaignCtrl.manageCampaign.startTime"
-					end-date="manageCampaignCtrl.manageCampaign.endDate"
-					end-time="manageCampaignCtrl.manageCampaign.endTime"
+					ng-model="manageCampaignCtrl.campaignObj.startTime"
+					start-date="manageCampaignCtrl.campaignObj.startDate"
+					start-time="manageCampaignCtrl.campaignObj.startTime"
+					end-date="manageCampaignCtrl.campaignObj.endDate"
+					end-time="manageCampaignCtrl.campaignObj.endTime"
 					disable-previous-dates="true"
 					show-picker="manageCampaignCtrl.showStartTimePicker"
 					></time-picker>
@@ -113,7 +71,7 @@
 				<label class="qvr-label">Campaign Participants <span>(Groups and Individuals)</span></label>
 				<isteven-multi-select class="add-tags"
 				    input-model="manageCampaignCtrl.campaignParticipantsList"
-				    output-model="manageCampaignCtrl.manageCampaign.campaignParticipants"
+				    output-model="manageCampaignCtrl.campaignObj.campaignParticipants"
 				    button-label="icon name"
 				    item-label="icon name maker"
 				    tick-property="ticked"
@@ -126,23 +84,23 @@
 			<div class="clearfix"></div>
 			<div id="campaign-description" class="input-wrapper">
 				<label class="qvr-label">Campaign Description</label>
-				<textarea ng-model="manageCampaignCtrl.manageCampaign.campaignDescription" class="campaign-description-textarea" required></textarea>
+				<textarea ng-model="manageCampaignCtrl.campaignObj.campaignDescription" class="campaign-description-textarea" required></textarea>
 			</div>
 
 
 			<div class="float-left">
 				<div class="delivery-box end-date">
 					<label class="qvr-label">End Date</label>
-					<input type="text" class="date" ng-model="manageCampaignCtrl.manageCampaign.endDate" ng-click="manageCampaignCtrl.showEndDatePicker=true">
+					<input type="text" class="date" ng-model="manageCampaignCtrl.campaignObj.endDate" ng-click="manageCampaignCtrl.showEndDatePicker=true">
 					<section class="date-selector" ng-show="manageCampaignCtrl.showEndDatePicker">
 					<date-picker
 					title="End Date"
 					name="end-date"
-					ng-model="manageCampaignCtrl.manageCampaign.endDate"
-					start-date="manageCampaignCtrl.manageCampaign.startDate"
-					start-time="manageCampaignCtrl.manageCampaign.startTime"
-					end-date="manageCampaignCtrl.manageCampaign.endDate"
-					end-time="manageCampaignCtrl.manageCampaign.endTime"
+					ng-model="manageCampaignCtrl.campaignObj.endDate"
+					start-date="manageCampaignCtrl.campaignObj.startDate"
+					start-time="manageCampaignCtrl.campaignObj.startTime"
+					end-date="manageCampaignCtrl.campaignObj.endDate"
+					end-time="manageCampaignCtrl.campaignObj.endTime"
 					disable-previous-dates="true"
 					show-picker="manageCampaignCtrl.showEndDatePicker"
 					></date-picker>
@@ -150,16 +108,16 @@
 				</div>
 				<div class="delivery-box end-time">
 					<label class="qvr-label">End Time</label>
-					<input type="text" class="hourglass" ng-model="manageCampaignCtrl.manageCampaign.endTime" ng-click="manageCampaignCtrl.showEndTimePicker=true">
+					<input type="text" class="hourglass" ng-model="manageCampaignCtrl.campaignObj.endTime" ng-click="manageCampaignCtrl.showEndTimePicker=true">
 					<section class="time-selector" ng-show="manageCampaignCtrl.showEndTimePicker">
 					<time-picker
 					title="End Time"
 					name="end-time"
-					ng-model="manageCampaignCtrl.manageCampaign.endTime"
-					start-date="manageCampaignCtrl.manageCampaign.startDate"
-					start-time="manageCampaignCtrl.manageCampaign.startTime"
-					end-date="manageCampaignCtrl.manageCampaign.endDate"
-					end-time="manageCampaignCtrl.manageCampaign.endTime"
+					ng-model="manageCampaignCtrl.campaignObj.endTime"
+					start-date="manageCampaignCtrl.campaignObj.startDate"
+					start-time="manageCampaignCtrl.campaignObj.startTime"
+					end-date="manageCampaignCtrl.campaignObj.endDate"
+					end-time="manageCampaignCtrl.campaignObj.endTime"
 					disable-previous-dates="true"
 					show-picker="manageCampaignCtrl.showEndTimePicker"
 					></time-picker>
@@ -167,13 +125,13 @@
 				</div>
 				<div class="clearfix"></div>
 
-			<!--
+				<!--
 				<div id="marketing-assets" class="input-wrapper">
 					<label class="qvr-label">Marketing Assets</label>
 
 					<isteven-multi-select class="marketing-asset"
 				    input-model="manageCampaignCtrl.campaignMarketingAssets"
-				    output-model="manageCampaignCtrl.manageCampaign.marketingAssets"
+				    output-model="manageCampaignCtrl.campaignObj.marketingAssets"
 				    button-label="icon name"
 				    item-label="icon name maker"
 				    tick-property="ticked"
@@ -190,7 +148,7 @@
 
 					<isteven-multi-select class="add-tags"
 				    input-model="manageCampaignCtrl.campaignsTags"
-				    output-model="manageCampaignCtrl.manageCampaign.campaignsTags"
+				    output-model="manageCampaignCtrl.campaignObj.campaignsTags"
 				    button-label="icon name"
 				    item-label="icon name maker"
 				    tick-property="ticked"
@@ -201,23 +159,24 @@
 
 				</div>
 				 -->
-		    </div>
+		  </div>
 
 		</section>
 	</form>
-	<section class="campaign-messages-wrapper">
+	<section class="campaign-messages-wrapper" ng-show="manageCampaignCtrl.isEditing">
 		<div class="campaign-messages-header qvr-form">
 			<h1 class="float-left">Campaign Messages</h1>
 			<button  ui-sref="messages.new" class="qvr-button action" >+ NEW MESSAGE</button>
 			<div class="search-wrapper">
 				<label for="filter-by"><i class="fa fa-search"></i></label>
-				<input type="search" class="search-campaigns" ng-model="manageCampaignCtrl.search"  placeholder="Search Campaigns"  ng-keypress="manageCampaignCtrl.resetCurrentPage()">
+				<input type="search" class="search-campaigns" ng-model="manageCampaignCtrl.search"  placeholder="Search Messages"  ng-keypress="manageCampaignCtrl.resetCurrentPage()">
 			</div>
 		</div>
 
 		<div class="clearfix"></div>
 
 		<div class="campaign-messages-filter-wrapper qvr-form">
+
 			<div id="bulk-action" class="input-wrapper">
 
 				<select id="bulk-actions" class="qvr-select" ng-model="manageCampaignCtrl.bulkActionSelected" required >
@@ -231,79 +190,10 @@
 				<button class="qvr-button action {{manageCampaignCtrl.bulkActionSelected}}" id="bulk-action-button" ng-disabled="!manageCampaignCtrl.bulkActionSelected || !manageCampaignCtrl.isAnyInputsSelected" ng-click="manageCampaignCtrl.bulkActions()">
 					<i class="check-mark"></i>
 				</button>
-				<button zf-open="cloneMessageModal" class="qvr-button action {{manageCampaignCtrl.bulkActionSelected}} " id="cloneMessageModalButton"  ng-click="manageCampaignCtrl.cloneMessages()" ng-disabled="!manageCampaignCtrl.isAnyInputsSelected" >
-					<i class="check-mark"></i>
-				</button>
+
 			</div>
 
-			<!-- Cloned Message Modal -->
-			<div zf-modal="" id="cloneMessageModal">
-				<a zf-close="" class="close-button">×</a>
-
-				<h1>Clone Messages</h1>
-				<div class="clone-messages-modal-wrapper">
-					<p>
-						Selected Messages
-					</p>
-					<table>
-						<thead>
-							<th>
-								<span>*</span>
-								ID
-							</th>
-							<th>
-								Label
-							</th>
-							<th>
-								Status
-							</th>
-							<th></th>
-						<thead>
-						<tbody>
-							<tr ng-show="manageCampaignCtrl.clonedMessage.length == 0">
-						  		<td></td>
-						  		<td colspan="1">
-						  			<p class="qvr-align-center">No Cloned Messages</p></td>
-						  		<td></td>
-						  	</tr>
-							<tr  data-ng-repeat="msg in manageCampaignCtrl.clonedMessage">
-						      <td><span>*</span>{{msg.id}}</td>
-						      <td>{{msg.label}}</td>
-						      <td>
-						      	<div class="input-wrapper message-status-wrapper">
-									<select class="qvr-select {{msg.status}}" ng-model="msg.status" >
-										<option data-ng-repeat="obj in manageCampaignCtrl.statuses">{{obj}}</option>
-									</select>
-								</div>
-						      </td>
-						      <td><a ng-click="deleteClonedMessage(msg.id);">Remove</a></td>
-						    </tr>
-						</tbody>
-					</table>
-					<span class="unique-id-msg">* A new unique ID will be assigned to cloned messages</span>
-
-					<div class="campaign-selection-wrapper" class="input-wrapper">
-						<label>Select Campaign to Associate Cloned Messages</label>
-						<isteven-multi-select class="add-tags"
-						    input-model="manageCampaignCtrl.campaigns"
-						    output-model="manageCampaignCtrl.cloneToCampaigns"
-						    button-label="icon name"
-						    item-label="icon name maker"
-						    tick-property="ticked"
-						    this-length="1">
-						</isteven-multi-select>
-					</div>
-				</div>
-				<hr>
-				<div class="modal-button-wrapper qvr-align-center">
-					<button zf-close="" type="submit" class="qvr-button action">Clone Messages</button>
-					<button zf-close="" class="qvr-button cancel">Cancel</button>
-				</div>
-			</div>
-			<!-- Cloned Message Modal -->
-
-
-
+			<!--
 			<div id="tag-filters" class="input-wrapper">
 				<isteven-multi-select class="add-tag-filters float-left"
 				    input-model="manageCampaignCtrl.campaignMessageTags"
@@ -319,6 +209,8 @@
 					<i class="check-mark"></i>
 				</button>
 			</div>
+			 -->
+
 			<div class="pagination-wrapper input-wrapper">
 				<button class="qvr-button" ng-click="manageCampaignCtrl.goToPage('beginning');" ng-disabled="manageCampaignCtrl.currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-double-left"></i>
@@ -456,3 +348,122 @@
 	</section>
 
 </section>
+
+
+<!-- Save Campaign Modal-->
+<div zf-modal="" id="saveCampaignModal">
+	<a zf-close="" class="close-button">×</a>
+	<p class="qvr-align-center">
+		<br>
+		Are you sure you want to save your changes?
+		<br>
+		<br>
+	</p>
+	<div class="modal-button-wrapper qvr-align-center">
+		<button  zf-close="" class="qvr-button action">Save</button>
+		<button zf-close="" class="qvr-button cancel">Cancel</button>
+	</div>
+</div>
+<!-- /end Save Campaign Modal-->
+
+
+
+
+<!-- Cloned Message Modal -->
+<!--
+<div zf-modal="" id="cloneMessageModal">
+	<a zf-close="" class="close-button">×</a>
+
+	<h1>Clone Messages</h1>
+	<div class="clone-messages-modal-wrapper">
+		<p>
+			Selected Messages
+		</p>
+		<table>
+			<thead>
+				<th>
+					<span>*</span>
+					ID
+				</th>
+				<th>
+					Label
+				</th>
+				<th>
+					Status
+				</th>
+				<th></th>
+			<thead>
+			<tbody>
+				<tr ng-show="manageCampaignCtrl.clonedMessage.length == 0">
+						<td></td>
+						<td colspan="1">
+							<p class="qvr-align-center">No Cloned Messages</p></td>
+						<td></td>
+					</tr>
+				<tr  data-ng-repeat="msg in manageCampaignCtrl.clonedMessage">
+						<td><span>*</span>{{msg.id}}</td>
+						<td>{{msg.label}}</td>
+						<td>
+							<div class="input-wrapper message-status-wrapper">
+						<select class="qvr-select {{msg.status}}" ng-model="msg.status" >
+							<option data-ng-repeat="obj in manageCampaignCtrl.statuses">{{obj}}</option>
+						</select>
+					</div>
+						</td>
+						<td><a ng-click="deleteClonedMessage(msg.id);">Remove</a></td>
+					</tr>
+			</tbody>
+		</table>
+		<span class="unique-id-msg">* A new unique ID will be assigned to cloned messages</span>
+
+		<div class="campaign-selection-wrapper" class="input-wrapper">
+			<label>Select Campaign to Associate Cloned Messages</label>
+			<isteven-multi-select class="add-tags"
+					input-model="manageCampaignCtrl.campaigns"
+					output-model="manageCampaignCtrl.cloneToCampaigns"
+					button-label="icon name"
+					item-label="icon name maker"
+					tick-property="ticked"
+					this-length="1">
+			</isteven-multi-select>
+		</div>
+	</div>
+	<hr>
+	<div class="modal-button-wrapper qvr-align-center">
+		<button zf-close="" type="submit" class="qvr-button action">Clone Messages</button>
+		<button zf-close="" class="qvr-button cancel">Cancel</button>
+	</div>
+</div>
+ -->
+<!-- /end Cloned Message Modal -->
+
+
+<!-- Cloned Campaign Modal -->
+<!--
+<div zf-modal="" id="cloneCampaignModal">
+	<a zf-close="" class="close-button">×</a>
+
+	<h1>Clone Campaign</h1>
+	<div class="campaign-selection-wrapper" ng-model="manageCampaignCtrl.cloneCampaign.campaign">
+		<div class="float-left input-field">
+			<label>Create New Campaign Name</label>
+			<input type="text" ng-model="manageCampaignCtrl.cloneCampaign.campaignName"  />
+		</div>
+		<div class="float-left">
+			<label>Status</label>
+			<select class="qvr-select select-status" ng-model="manageCampaignCtrl.cloneCampaign.status" required>
+				<option value="Draft" selected>Draft</option>
+				<option value="Live">Live</option>
+				<option value="Ended">Ended</option>
+			</select>
+		</div>
+	</div>
+
+	<hr class="clearfix" />
+	<div class="modal-button-wrapper qvr-align-center">
+		<button zf-close="" type="submit" class="qvr-button action">Clone Campaign</button>
+		<button zf-close="" class="qvr-button cancel">Cancel</button>
+	</div>
+</div>
+ -->
+<!-- /end Cloned Campaign Modal -->

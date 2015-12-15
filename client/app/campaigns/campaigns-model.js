@@ -13,6 +13,13 @@
     ) {
       var model = this;
 
+      /*
+      API Configuration:
+
+      QvrCampaign.DRAFT   = 0;
+      QvrCampaign.LIVE    = 1;
+      QvrCampaign.ENDED   = 2;
+      */
       model.campaignStatusList = ["Draft", "Live", "Ended"];
 
       model.getCampaignList = function() {
