@@ -65,7 +65,6 @@
 			vm.campaignObj = vm.newCampaignTemplate;
 
 			if ($state.current.name == "campaigns.edit-campaign" ) {
-				console.log('editing:' + $stateParams._id);
 				vm.isEditing = true;
 				vm.statuses = CampaignsModel.campaignStatusList;
 
@@ -73,10 +72,27 @@
 					function success(response) {
 
 						vm.campaignObj = response;
+						console.log(response);
+
+						//needs to be updated when date-picker is refactored
 						vm.campaignObj.startDate = todayProperFormatted;
 						vm.campaignObj.startTime = "12:01 AM";
 						vm.campaignObj.endDate   = tomorrowProperFormatted;
 						vm.campaignObj.endTime   = "11:59 PM";
+
+						vm.campaignMessages = response.messages;
+
+						//needs to be refactored into table directive
+						vm.totalItems = vm.campaignMessages.length;
+						vm.currentPage = 1;
+						vm.entryLimit = 10; // items per page
+						vm.noOfPages = Math.ceil(vm.totalItems / vm.entryLimit);
+						vm.reverse = false;
+						vm.sortOrderBy = 'id';
+						vm.startAt = 0;
+						vm.endAt = 9;
+						vm.selectAll = false;
+						vm.isAnyInputsSelected = false;
 					}
 				);
 
@@ -181,108 +197,94 @@
 
 
 
-			$http.get('assets/data/campaign-messages.json').success(function(data) {
-				vm.campaignMessages = data.campaignMessages;
-				vm.totalItems = data.campaignMessages.length;
+			//Everything below needs to go into directives
+			vm.goToPage = function(direction) {
+
+				if(direction == 'up')
+				{
+					vm.currentPage++;
+				}else if(direction == 'down'){
+					vm.currentPage--;
+				}
+				else if(direction == 'beginning'){
+					vm.currentPage = 1;
+				}
+				else if(direction == 'end'){
+					vm.currentPage = vm.noOfPages;
+				}
+
+				vm.startAt = (vm.currentPage - 1) * vm.entryLimit;
+				vm.endAt = vm.entryLimit * vm.currentPage;
+
+			};
+
+			vm.sortByFunc = function(sortBy, reverse) {
+				vm.sortOrderBy = sortBy;
+				vm.reverse = reverse;
 				vm.currentPage = 1;
-				vm.entryLimit = 10; // items per page
-				vm.noOfPages = Math.ceil(vm.totalItems / vm.entryLimit);
-				vm.reverse = false;
-				vm.sortOrderBy = 'id';
-				vm.startAt = 0;
-				vm.endAt = 9;
-				vm.selectAll = false;
+				vm.goToPage(1);
+			};
+
+			vm.resetCurrentPage = function() {
+				vm.currentPage = 1;
+			};
+
+			vm.toggleSelected = function() {
+				angular.forEach(vm.campaignMessages, function(message) {
+						message.isSelected = vm.selectAll;
+					});
+			};
+
+			vm.bulkActions = function() {
+				var action = vm.bulkActionSelected;
+				angular.forEach(vm.campaignMessages, function(campaign, i) {
+					if(campaign.isSelected && action != 'Delete'){
+						campaign.status = action;
+						campaign.isSelected = false;
+					}
+					else if(campaign.isSelected && action == 'Delete' && vm.selectAll == false){
+						vm.campaignMessages.splice(i, 1);
+					}
+					else if(action == 'Delete' && vm.selectAll == true){
+						vm.campaignMessages = [];
+					}
+					});
+					vm.selectAll = false;
+					vm.bulkActionSelected = '';
+			};
+
+			vm.cloneMessages = function() {
+				vm.clonedMessage = [] ;
+				var cleanCopyOfMessages = angular.copy(vm.campaignMessages);
+				angular.forEach(cleanCopyOfMessages, function(campaign, i) {
+					if(campaign.isSelected){
+						//campaign.isSelected = false;
+						vm.clonedMessage.push(campaign);
+					}
+					});
+					// vm.selectAll = false;
+			};
+
+			vm.deleteClonedMessage = function(id) {
+				angular.forEach(vm.clonedMessage, function(campaign, i) {
+					if(campaign.id == id){
+						vm.clonedMessage.splice(i, 1);
+					}
+					});
+			};
+
+			vm.anyInputsSelected = function() {
 				vm.isAnyInputsSelected = false;
-
-				vm.goToPage = function(direction) {
-
-					if(direction == 'up')
-					{
-						vm.currentPage++;
-					}else if(direction == 'down'){
-						vm.currentPage--;
+				vm.selectAll = true;
+				angular.forEach(vm.campaignMessages, function(campaign, i) {
+					if(campaign.isSelected){
+						vm.isAnyInputsSelected  = true;
 					}
-					else if(direction == 'beginning'){
-						vm.currentPage = 1;
+					else{
+						vm.selectAll = false;
 					}
-					else if(direction == 'end'){
-						vm.currentPage = vm.noOfPages;
-					}
-
-					vm.startAt = (vm.currentPage - 1) * vm.entryLimit;
-					vm.endAt = vm.entryLimit * vm.currentPage;
-
-				};
-
-				vm.sortByFunc = function(sortBy, reverse) {
-					vm.sortOrderBy = sortBy;
-					vm.reverse = reverse;
-					vm.currentPage = 1;
-					vm.goToPage(1);
-				};
-
-				vm.resetCurrentPage = function() {
-					vm.currentPage = 1;
-				};
-
-				vm.toggleSelected = function() {
-					angular.forEach(vm.campaignMessages, function(message) {
-				      message.isSelected = vm.selectAll;
-				    });
-				};
-
-				vm.bulkActions = function() {
-					var action = vm.bulkActionSelected;
-					angular.forEach(vm.campaignMessages, function(campaign, i) {
-						if(campaign.isSelected && action != 'Delete'){
-							campaign.status = action;
-							campaign.isSelected = false;
-						}
-						else if(campaign.isSelected && action == 'Delete' && vm.selectAll == false){
-							vm.campaignMessages.splice(i, 1);
-						}
-						else if(action == 'Delete' && vm.selectAll == true){
-							vm.campaignMessages = [];
-						}
-				    });
-				    vm.selectAll = false;
-				    vm.bulkActionSelected = '';
-				};
-
-				vm.cloneMessages = function() {
-					vm.clonedMessage = [] ;
-					var cleanCopyOfMessages = angular.copy(vm.campaignMessages);
-					angular.forEach(cleanCopyOfMessages, function(campaign, i) {
-						if(campaign.isSelected){
-							//campaign.isSelected = false;
-							vm.clonedMessage.push(campaign);
-						}
-				    });
-				    // vm.selectAll = false;
-				};
-
-				vm.deleteClonedMessage = function(id) {
-					angular.forEach(vm.clonedMessage, function(campaign, i) {
-						if(campaign.id == id){
-							vm.clonedMessage.splice(i, 1);
-						}
-				    });
-				};
-
-				vm.anyInputsSelected = function() {
-					vm.isAnyInputsSelected = false;
-					vm.selectAll = true;
-					angular.forEach(vm.campaignMessages, function(campaign, i) {
-						if(campaign.isSelected){
-							vm.isAnyInputsSelected  = true;
-						}
-						else{
-							vm.selectAll = false;
-						}
-				    });
-				};
-
-			});
+					});
+			};
 
 
 			function paginationValidation(){
