@@ -9,9 +9,8 @@
 			<label class="qvr-label">Campaign Status</label>
 
 			<select class="qvr-select select-status" ng-model="manageCampaignCtrl.campaignObj.status" required>
-					<option value="Draft">Draft</option>
-					<option value="Live">Live</option>
-					<option value="Ended">Ended</option>
+				<option data-ng-repeat="status in manageCampaignCtrl.statuses">{{status}}</option>
+
 			</select>
 			<button ng-show="manageCampaignCtrl.isEditing" zf-open="saveCampaignModal" class="qvr-button action" ng-disabled="!campaignForm.$valid">Save Changes</button>
 			<button ng-show="!manageCampaignCtrl.isEditing" ng-click="manageCampaignCtrl.createNewCampaign()" class="qvr-button action" ng-disabled="!campaignForm.$valid">Create Campaign</button>

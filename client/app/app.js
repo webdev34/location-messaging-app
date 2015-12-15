@@ -54,8 +54,19 @@
 		$locationProvider.hashPrefix('!');
 	}
 
-	function run() {
+	function run(UserModel, $state, $cookieStore, $rootScope) {
 		FastClick.attach(document.body);
+		$rootScope.auth = $cookieStore.get("qvr.auth");
+
+		if ($rootScope.auth) {
+			UserModel.getAccount().then(
+				function success (response) {
+					UserModel.isLoggedIn = true;
+				}
+			);
+		} else {
+			$state.go('home');
+		}
 	}
 
 	app.config(['$httpProvider', '$stateProvider', function($httpProvider, $stateProvider) {
@@ -225,7 +236,7 @@
 						//console.log('state: ' + JSON.stringify(toState));
 
 						if (toState.name == 'home') {
-							goToHomePage();
+							//goToHomePage();
 						}
 
 						if (!appCtrl.user) {

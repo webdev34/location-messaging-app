@@ -4,15 +4,19 @@
   angular.module('campaigns.campaign-center', [])
   .controller('MainCampaignCtrl', [
     'CampaignsModel',
+    '$rootScope',
     '$scope',
 		'$http',
 
     function(
       CampaignsModel,
+      $rootScope,
       $scope,
 			$http
     ) {
       var vm = this;
+      vm.enterpriseSID = {};
+
 
       var today = new Date(),
           todayFormatted = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
@@ -23,7 +27,7 @@
         tomorrowProperFormatted = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
 
       vm.statuses = CampaignsModel.campaignStatusList;
-      
+
       vm.tagFilters = [];
       vm.campaignTags = [
         { name: "#SanFrancisco", ticked: false },
@@ -40,17 +44,26 @@
         CampaignsModel.getCampaignList()
           .then(
             function success(response) {
-              vm.campaignData = response.campaign;
-              vm.totalItems = response.campaign.length;
-              vm.currentPage = 1;
-              vm.entryLimit = 10; // items per page
-              vm.noOfPages = Math.ceil(vm.totalItems / vm.entryLimit);
-              vm.reverse = false;
-              vm.sortOrderBy = 'id';
-              vm.startAt = 0;
-              vm.endAt = 9;
-              vm.selectAll = false;
-              vm.isAnyInputsSelected = false;
+
+              if (response.campaign) {
+                vm.campaignData = response.campaign;
+                vm.totalItems = response.campaign.length;
+                vm.currentPage = 1;
+                vm.entryLimit = 10; // items per page
+                vm.noOfPages = Math.ceil(vm.totalItems / vm.entryLimit);
+                vm.reverse = false;
+                vm.sortOrderBy = 'id';
+                vm.startAt = 0;
+                vm.endAt = 9;
+                vm.selectAll = false;
+                vm.isAnyInputsSelected = false;
+              } else {
+                vm.campaignData = [];
+              }
+
+            },
+            function error(response) {
+              return response;
             }
           )
 			}

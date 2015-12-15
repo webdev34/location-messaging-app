@@ -5,11 +5,9 @@
   ])
   .service('CampaignsModel', [
     'CampaignsService',
-    'UserModel',
 
     function(
-      CampaignsService,
-      UserModel
+      CampaignsService
     ) {
       var model = this;
 
@@ -59,9 +57,7 @@
       };
 
       model.createCampaign = function (campaignObj) {
-        //console.log(campaignObj);
-        var enterpriseSID = UserModel.enterprise;
-        //console.log(UserModel.enterprise);
+
 
         var formattedCampaign = {}
         formattedCampaign.campaign = {
@@ -73,7 +69,6 @@
         };
 
 
-        formattedCampaign.campaign.enterprise = enterpriseSID;
 
         return CampaignsService.post(formattedCampaign).then(
           function success(response) {

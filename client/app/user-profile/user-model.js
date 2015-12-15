@@ -7,15 +7,14 @@
 
 	.service('UserModel', [
 		'$rootScope',
-		'$state',
 		'$cookieStore',
 		'API_URL',
 		'UserService',
-		function( $rootScope, $state, $cookieStore, API_URL, UserService) {
+		function( $rootScope, $cookieStore, API_URL, UserService) {
 			var model = this;
 
-			$rootScope.auth = $cookieStore.get("qvr.auth");
-			model.userID = $cookieStore.get("qvr.user");
+			// $rootScope.auth = $cookieStore.get("qvr.auth");
+			// model.userID = $cookieStore.get("qvr.user");
 
 			model.getAccount = function() {
 				return UserService.get()
@@ -28,6 +27,8 @@
 							//console.log('user: ' + JSON.stringify(model.user));
 
 							model.enterprise = model.user.enterprise;
+							$rootScope.enterprise = model.enterprise;
+
 							//console.log('enterprise: ' + JSON.stringify(response.enterpriseUser[0].enterprise));
 
 							return response;
@@ -40,13 +41,13 @@
 			}
 
 
-			if ($rootScope.auth && model.userID) {
-				model.getAccount(model.userID).then(
-					function success (response) {
-						model.isLoggedIn = true;
-					}
-				);
-			}
+			// if ($rootScope.auth && model.userID) {
+			// 	model.getAccount(model.userID).then(
+			// 		function success (response) {
+			// 			model.isLoggedIn = true;
+			// 		}
+			// 	);
+			// }
 
 			//console.log(model.user);
 
@@ -74,6 +75,7 @@
 
 							model.authorization = response.authorization;
 							model.enterprise = response.user.enterprise;
+							$rootScope.enterprise = model.enterprise;
 							//console.log(model.enterprise);
 
 							$rootScope.auth = response.authorization;
