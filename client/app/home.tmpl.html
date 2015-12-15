@@ -3,14 +3,14 @@
 	<form class="login-form qvr-form medium-4 medium-offset-4" ng-submit="appCtrl.userLogin()">
 		<img class="header-logo" src="assets/img/logo/header-logo.png" alt="Quiver">
 		<span class="portal-branding">Enterprise Portal</span>
-		
+
 		<input type="text" placeholder="User" ng-model="appCtrl.userLoginInfo.username" required>
 		<input type="password" placeholder="Password" ng-model="appCtrl.userLoginInfo.password" required>
 
 		<button type="submit" class="qvr-button action float-left">Sign In</button>
-		
+
 		<a ui-sref="#" class="forget float-right">Forgot Password?</a>
-		
+
 		<span class="remember float-left">
 			<input class="float-left" type="checkbox">Remember Me</input>
 		</span>

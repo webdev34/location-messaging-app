@@ -54,7 +54,7 @@ var paths = {
   ],
   build:'./build'
   //build: './../quiver-api-server/api/web/enterprise'
-  
+
 }
 
 // 3. TASKS
@@ -172,7 +172,7 @@ gulp.task('server', function() {
       port: 8080,
       host: 'localhost',
       fallback: 'index.html',
-      livereload: false,
+      livereload: true,
       open: true
     }))
   ;
