@@ -15,12 +15,12 @@
 	.controller('CampaignCenterCtrl', [
 		'$scope',
 		'$http',
-		'MessageListModel',
+		//'MessageListModel',
 
 		function(
 			$scope,
-			$http,
-			MessageListModel
+			$http
+			//MessageListModel
 		) {
 
 			var campaignCenterCtrl = this;

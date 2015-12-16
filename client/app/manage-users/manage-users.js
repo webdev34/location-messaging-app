@@ -19,8 +19,8 @@
     .config(['$stateProvider',
         function($stateProvider) {
             $stateProvider
-                .state('enterprise.user-management', {
-                    url: '/user-management',
+                .state('enterprise.manage-users', {
+                    url: '/manage-users',
                     templateUrl: 'app/manage-users/manage-users.tmpl.html',
                     controller: 'ManageUsersCtrl as manageUsersCtrl'
                 });

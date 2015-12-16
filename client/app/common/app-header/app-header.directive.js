@@ -3,13 +3,13 @@
 
 	angular.module('enterprise-portal')
 
-	.directive('messagesList',
+	.directive('appHeader',
 		function () {
 			return {
 				restrict: "E",
-				templateUrl: 'app/messages/messages-list.directive.html'
+				templateUrl: 'app/common/app-header/app-header.directive.html'
 			};
 		}
 	);
-	  
+
 })();

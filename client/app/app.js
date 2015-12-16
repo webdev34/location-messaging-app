@@ -18,6 +18,7 @@
 			'followers',
 			'users',
 			'user-profile',
+			'campaigns',
 			'messages',
 			'locations',
 			'reporting',
@@ -29,12 +30,13 @@
 		.run(run);
 
 	//default view
-	app.constant('APP_default_state', 'messages.new');
+	app.constant('APP_default_state', 'campaigns.campaign-center');
 
 
 	//var API_SERVER = 'http://api-dev.quiver.zone:80/';
 	var API_SERVER = 'http://api-sand.quiver.zone/'
 	//var API_SERVER = 'http://localhost:8000/';
+
 
 	app.constant('API_SERVER', API_SERVER);
 	app.constant('API_URL', API_SERVER + '1.1');
@@ -52,8 +54,19 @@
 		$locationProvider.hashPrefix('!');
 	}
 
-	function run() {
+	function run(UserModel, $state, $cookieStore, $rootScope) {
 		FastClick.attach(document.body);
+		$rootScope.auth = $cookieStore.get("qvr.auth");
+
+		if ($rootScope.auth) {
+			UserModel.getAccount().then(
+				function success (response) {
+					UserModel.isLoggedIn = true;
+				}
+			);
+		} else {
+			$state.go('home');
+		}
 	}
 
 	app.config(['$httpProvider', '$stateProvider', function($httpProvider, $stateProvider) {
@@ -170,18 +183,20 @@
 
 			appCtrl.showHeader = false;
 
+
 			//appCtrl.gNavStateIs = "";
 
 			appCtrl.navObj = [
 					{'title': 'Communications', 'state': 'messages.communications', 'category': 'communications'},
-					{'title': 'Campaign Center', 'state': 'messages.dashboard', 'category': 'messages',
+					{'title': 'Campaign Center', 'state': 'campaigns.campaign-center', 'category': 'campaign',
 					'subNav': [
-						{'title': 'Create Campaign', 'state': 'messages.create-campaign', 'mainNavState': 'messages.dashboard'},
+						{'title': 'Create Campaign', 'state': 'campaigns.new-campaign', 'mainNavState': 'messages.dashboard'},
+						{'title': 'AllMessages(temp)', 'state': 'messages.all-messages' , 'mainNavState': 'messages.dashboard'},
 						{'title': 'Compose Message', 'state': 'messages.new' , 'mainNavState': 'messages.dashboard'},
-						{'title': 'Location Management', 'state': 'messages.location-management' , 'mainNavState': 'messages.dashboard'},
-						{'title': 'Follower Management', 'state': 'enterprise.follower-management' , 'mainNavState': 'messages.dashboard'},
-						{'title': 'Tag Management', 'state': 'messages.tag' , 'mainNavState': 'messages.dashboard'},
-						{'title': 'Asset Management', 'state': 'messages.asset' , 'mainNavState': 'messages.dashboard'}
+						//{'title': 'Location Management', 'state': 'messages.manage-locations' , 'mainNavState': 'messages.dashboard'},
+						{'title': 'Follower Management', 'state': 'enterprise.manage-followers' , 'mainNavState': 'messages.dashboard'},
+						//{'title': 'Tag Management', 'state': 'messages.tag' , 'mainNavState': 'messages.dashboard'},
+						//{'title': 'Asset Management', 'state': 'messages.asset' , 'mainNavState': 'messages.dashboard'}
 					]
 					},
 					{'title': 'Report Center', 'state': 'reporting.center', 'category': 'reporting',
@@ -224,7 +239,7 @@
 						//console.log('state: ' + JSON.stringify(toState));
 
 						if (toState.name == 'home') {
-							goToHomePage();
+							//goToHomePage();
 						}
 
 						if (!appCtrl.user) {
@@ -275,6 +290,7 @@
 			}
 
 			appCtrl.getAccount = function () {
+
 
 				if (!UserModel.user) {
 					UserModel.getAccount()

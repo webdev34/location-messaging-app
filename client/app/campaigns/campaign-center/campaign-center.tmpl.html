@@ -1,10 +1,9 @@
 <header class="heading-bar">
 	<h1>Campaign Center</h1>
 </header>
-<!-- <messages-list></messages-list> -->
 	<section class="campaign-center-wrapper">
 		<div class="campaign-center-header qvr-form">
-			<button class="qvr-button action" ui-sref="messages.manage-campaign">+ NEW CAMPAIGN</button>
+			<button class="qvr-button action" ui-sref="campaigns.new-campaign">+ NEW CAMPAIGN</button>
 			<div class="search-wrapper">
 				<label for="filter-by"><i class="fa fa-search"></i></label>
 				<input type="search" class="search-campaigns" ng-model="campaignCenterCtrl.search"  placeholder="Search Campaigns" ng-keypress="campaignCenterCtrl.resetCurrentPage()">
@@ -27,8 +26,8 @@
 				</button>
 			</div>
 			<div id="tag-filters" class="input-wrapper hide">
-				<isteven-multi-select class="add-tag-filters float-left"   
-				    input-model="campaignCenterCtrl.campaignTags"    
+				<isteven-multi-select class="add-tag-filters float-left"
+				    input-model="campaignCenterCtrl.campaignTags"
 				    output-model="campaignCenterCtrl.tagFilters"
 				    button-label="icon name"
 				    item-label="icon name maker"
@@ -36,11 +35,11 @@
 				    this-length="1"
 					>
 				</isteven-multi-select>
-				
+
 				<button class="qvr-button action" ng-disabled="campaignCenterCtrl.tagFilters.length == 0">
 					<i class="check-mark"></i>
 				</button>
-			</div>	
+			</div>
 			<div class="pagination-wrapper input-wrapper">
 				<button class="qvr-button" ng-click="campaignCenterCtrl.goToPage('beginning');" ng-disabled="campaignCenterCtrl.currentPage == 1 || results.length == 0">
 					<i class="fa fa-angle-double-left"></i>
@@ -51,7 +50,7 @@
 				<span class="pagination-info">
 					<input type="number" min="1" max="9999" ng-model="campaignCenterCtrl.currentPage" />
 					<span>
-						of 
+						of
 						<span ng-hide="results.length == 0">{{campaignCenterCtrl.noOfPages}}</span>
 						<span ng-show="results.length == 0">1</span>
 					</span>
@@ -62,7 +61,7 @@
 				<button class="qvr-button" ng-click="campaignCenterCtrl.goToPage('end');" ng-disabled="campaignCenterCtrl.currentPage == campaignCenterCtrl.noOfPages|| results.length == 0">
 					<i class="fa fa-angle-double-right right"></i>
 				</button>
-			</div>	
+			</div>
 
 		</div>
 
@@ -127,7 +126,7 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			  	<tr ng-show="results.length == 0">
+			  	<tr ng-show="campaignCenterCtrl.campaignData.length == 0">
 			  		<td></td>
 			  		<td colspan="6">
 			  			<p class="qvr-align-center">No Results</p></td>
@@ -136,18 +135,18 @@
 
 			    <tr data-ng-repeat="campaign in campaignCenterCtrl.campaignData | startFrom:startAt | orderBy:campaignCenterCtrl.sortOrderBy:campaignCenterCtrl.reverse | filter:campaignCenterCtrl.search  as results" ng-show="$index >= campaignCenterCtrl.startAt && $index <= campaignCenterCtrl.endAt" ng-class="{last: campaignCenterCtrl.endAt == $index}">
 			      <td><input type="checkbox" ng-model="campaign.isSelected" ng-change="campaignCenterCtrl.anyInputsSelected();" /></td>
-			      <td><a ui-sref="messages.manage-campaign">{{campaign.id}}</a></td>
-			      <td><a ui-sref="messages.manage-campaign">{{campaign.campaignName}}</a></td>
+			      <td><a ui-sref="campaigns.edit-campaign({ _id: campaign.sid })">{{campaign.sid}}</a></td>
+			      <td><a ui-sref="campaigns.edit-campaign({ _id: campaign.sid })">{{campaign.name}}</a></td>
 			      <td>{{campaign.likes}}</td>
 			      <td>{{campaign.saves}}</td>
 			      <td>{{campaign.startDate}}</td>
 			      <td>{{campaign.endDate}}</td>
 			      <td>
-					<div class="input-wrapper campaign-status-wrapper">
-						<select class="qvr-select {{campaign.status}}" ng-model="campaign.status" >
-							<option data-ng-repeat="obj in campaignCenterCtrl.statuses">{{obj}}</option>
-						</select>
-					</div>
+							<div class="input-wrapper campaign-status-wrapper">
+								<select class="qvr-select {{campaign.status}}" ng-model="campaign.status" >
+									<option data-ng-repeat="status in campaignCenterCtrl.statuses">{{status}}</option>
+								</select>
+							</div>
 			      </td>
 			    </tr>
 			  </tbody>
@@ -162,7 +161,7 @@
 				<span class="pagination-info">
 					<input type="number" min="1" max="9999" ng-model="campaignCenterCtrl.currentPage" />
 					<span>
-						of 
+						of
 						<span ng-hide="results.length == 0">{{campaignCenterCtrl.noOfPages}}</span>
 						<span ng-show="results.length == 0">1</span>
 					</span>
@@ -173,7 +172,7 @@
 				<button class="qvr-button" ng-click="campaignCenterCtrl.goToPage('end');" ng-disabled="campaignCenterCtrl.currentPage == campaignCenterCtrl.noOfPages|| results.length == 0">
 					<i class="fa fa-angle-double-right right"></i>
 				</button>
-			</div>	
+			</div>
 		</div>
 
 	</section>
