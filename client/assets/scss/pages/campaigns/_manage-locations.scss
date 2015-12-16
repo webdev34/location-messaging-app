@@ -1,5 +1,6 @@
 .location-management {
     margin-top: -15px;
+    display: flex;
     .new-location-wrapper{
         width: 30%;
         margin-left: 2%;
@@ -7,7 +8,6 @@
         padding: 20px;
         border-radius: 10px;
         background-color: #E6E6E6;
-        float: left;
         margin-top: 50px;
         h2{
             width: 100%;
@@ -124,7 +124,7 @@
                 float: right;
                 width: 36%;
                 display: inline-block;
-                margin-right: 154px;
+                margin-right: 10px;
                 position: relative;
                 label {
                     position: absolute;
@@ -142,8 +142,6 @@
 
         #bulk-action,
         #tag-filters {
-            
-            float: left;
             display: inline-block;
             select {
                 width: 75%;
@@ -169,12 +167,15 @@
         #bulk-action {
             margin-left: 30px;
             width: 317px;
-            margin-right: 50px;
+        }
+        #tag-filters{
+            float: right;
         }
            
         .location-management-table-wrapper {
             .pagination-wrapper{
                 width: auto;
+                margin-right: 0px;
             }
             table {
                 width: 98%;

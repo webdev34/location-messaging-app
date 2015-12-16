@@ -432,7 +432,7 @@
 						<span ng-show="results.length == 0">1</span>
 					</span>
 			    </span>
-				<button class="qvr-button" ng-click="manageCampaignCtrl.goToPage('up');" ng-disabled="manageCampaignCtrl.currentPage == noOfPages || results.length == 0">
+				<button class="qvr-button" ng-click="manageCampaignCtrl.goToPage('up');" ng-disabled="manageCampaignCtrl.currentPage == manageCampaignCtrl.noOfPages || results.length == 0">
 					<i class="fa fa-angle-right right"></i>
 				</button>
 				<button class="qvr-button" ng-click="manageCampaignCtrl.goToPage('end');" ng-disabled="manageCampaignCtrl.currentPage == manageCampaignCtrl.noOfPages|| results.length == 0">

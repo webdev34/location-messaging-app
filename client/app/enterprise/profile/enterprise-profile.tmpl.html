@@ -23,7 +23,7 @@
 			<section class="enterprise-content-wrapper qvr-form">
 				<div class="enterprise-content-left corporate-info">
 					<div class="details full-width" ng-hide="enterpriseCtrl.isEditing">
-						<img  ng-src="{{enterpriseCtrl.company.avatar || 'assets/img/logo-na.png'}}" alt="logo" class="corp-logo" />
+						<img  ng-src="{{enterpriseCtrl.company.avatar || 'assets/img/logo-na.jpg'}}" alt="logo" class="corp-logo" />
 						
 						<label>Account Name</label>
 						<p>{{enterpriseCtrl.company.fullName}}</p>
@@ -47,7 +47,7 @@
 
 					<div class="details full-width" ng-show="enterpriseCtrl.isEditing">
 
-						<img  ng-src="{{enterpriseCtrl.editedCompany.avatar}}" alt="logo" class="corp-logo" />
+						<img  ng-src="{{enterpriseCtrl.editedCompany.avatar || 'assets/img/logo-na.jpg'}}" alt="logo" class="corp-logo" />
 
 						<label>Account Name</label>
 						<input placeholder="" type="text" ng-model="enterpriseCtrl.editedCompany.fullName" required >

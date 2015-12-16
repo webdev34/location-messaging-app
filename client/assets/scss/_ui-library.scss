@@ -25,7 +25,21 @@ h2 {
 }
 
 .ng-hide-remove{
-    display: none;
+    display: none !important;
+    transition: opacity 0.5s linear;
+       -webkit-transition: opacity 0.5s linear;
+       -moz-transition: opacity 0.5s linear;
+       -o-transition: opacity 0.5s linear;
+       -ms-transition: opacity 0.5s linear;
+}
+
+.ng-hide-add{
+    display: inline-block !important;
+    transition: opacity 0.5s linear;
+       -webkit-transition: opacity 0.5s linear;
+       -moz-transition: opacity 0.5s linear;
+       -o-transition: opacity 0.5s linear;
+       -ms-transition: opacity 0.5s linear;
 }
 
 .clearfix {
@@ -488,6 +502,7 @@ select.qvr-select{
 		@include display-flex();
 	    width: 28%;
     	float: right;
+        margin-right: 30px;
     &.bottom {
         margin-top: 10px;
     }
