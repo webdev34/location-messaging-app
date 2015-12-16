@@ -302,18 +302,18 @@
 			  			<p class="qvr-align-center">No Results</p></td>
 			  		<td></td>
 			  	</tr>
-			    <tr  data-ng-repeat="msg in manageCampaignCtrl.campaignMessages | startFrom:manageCampaignCtrl.startAt | orderBy:manageCampaignCtrl.sortOrderBy:manageCampaignCtrl.reverse | filter:manageCampaignCtrl.search  as results" ng-show="$index >= manageCampaignCtrl.startAt && $index <= manageCampaignCtrl.endAt" ng-class="{last: manageCampaignCtrl.endAt == $index}" >
+			    <tr  data-ng-repeat="message in manageCampaignCtrl.campaignMessages | startFrom:manageCampaignCtrl.startAt | orderBy:manageCampaignCtrl.sortOrderBy:manageCampaignCtrl.reverse | filter:manageCampaignCtrl.search  as results" ng-show="$index >= manageCampaignCtrl.startAt && $index <= manageCampaignCtrl.endAt" ng-class="{last: manageCampaignCtrl.endAt == $index}" >
 			      <td><input type="checkbox" ng-model="msg.isSelected" ng-change="manageCampaignCtrl.anyInputsSelected();" /></td>
-			      <td><a ui-sref="messages.edit">{{msg.id}}</a></td>
-			      <td><a ui-sref="messages.edit">{{msg.label}}</a></td>
-			      <td>{{msg.to}}</td>
-			      <td>{{msg.location}}</td>
-			      <td>{{msg.start}}</td>
-			      <td>{{msg.end}}</td>
+			      <td><a ui-sref="messages.edit">{{message.sid}}</a></td>
+			      <td><a ui-sref="messages.edit">{{message.label}}</a></td>
+			      <td>{{message.to || 'N/A'}}</td>
+			      <td>{{message.location || 'N/A'}}</td>
+			      <td>{{message.startTime | date}}</td>
+			      <td>{{message.endTime | date}}</td>
 			      <td>
 					<div class="input-wrapper message-status-wrapper">
-						<select class="qvr-select {{msg.status}}" ng-model="msg.status" >
-							<option data-ng-repeat="obj in manageCampaignCtrl.statuses">{{obj}}</option>
+						<select class="qvr-select {{messages.status}}" ng-model="messages.status" >
+							<option data-ng-repeat="status in manageCampaignCtrl.statuses">{{status}}</option>
 						</select>
 					</div>
 			      </td>
