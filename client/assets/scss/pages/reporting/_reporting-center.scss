@@ -36,9 +36,14 @@
 				}
 			}	
 			&.comment-summary{
-				background-color: #015359;
+				//background-color: #015359;
+				cursor: default;
+				background-color: #e6e6e6;
 				i{
 					background-image: url(../img/icons/comment-summary.png);
+				}
+				a{
+					cursor: default;
 				}
 			}
 			&.regional-summary{

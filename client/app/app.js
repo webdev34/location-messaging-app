@@ -44,7 +44,7 @@
 	config.$inject = ['$httpProvider', '$urlRouterProvider', '$locationProvider'];
 
 	function config($httpProvider, $urlProvider, $locationProvider) {
-		$urlProvider.otherwise('/');
+		$urlProvider.otherwise('/404');
 
 		$locationProvider.html5Mode({
 			enabled: false,
@@ -74,6 +74,9 @@
 			.state('home', {
 				url: '/',
 				templateUrl: 'app/home.tmpl.html'
+		}).state('error', {
+				url: '/404',
+				templateUrl: 'app/404.tmpl.html'
 		});
 		$httpProvider.interceptors.push([
 			'$q',
