@@ -8,7 +8,7 @@
 	<nav class="header-nav">
 		<ul class="main-nav ">
 			<li ng-repeat="mainNav in appCtrl.navObj">
-				<a ui-sref="{{mainNav.state}}" ng-class="{active: appCtrl.currentState.current.name==mainNav.state}">{{mainNav.title}}</a>
+				<a ui-sref="{{mainNav.state}}" ng-class="{active: appCtrl.currentState.current.name==mainNav.state || appCtrl.currentNavCategory == mainNav.category }">{{mainNav.title}}</a>
 
 				<ul class="{{mainNav.category}}">
 					<li ng-repeat="subNav in mainNav.subNav" ng-class="{'upgrade': subNav.upgrade}" >

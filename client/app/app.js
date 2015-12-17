@@ -34,8 +34,8 @@
 
 
 	//var API_SERVER = 'http://api-dev.quiver.zone:80/';
-	var API_SERVER = 'http://api-sand.quiver.zone/'
-	//var API_SERVER = 'http://localhost:8000/';
+	//var API_SERVER = 'http://api-sand.quiver.zone/'
+	var API_SERVER = 'http://localhost:8000/';
 
 
 	app.constant('API_SERVER', API_SERVER);
@@ -220,6 +220,14 @@
 			function setNavigationState() {
 				//appCtrl.gNavStateIs = "";
 				appCtrl.showHeader = appCtrl.currentState.current.name != 'home';
+				appCtrl.currentNavCategory  = null;
+ 
+				angular.forEach( appCtrl.navObj, function( value, key ) {
+                  	if(value.state == $state.current.name){ appCtrl.currentNavCategory  = value.category; }
+                   angular.forEach( value.subNav, function( value2, key2 ) {
+	                   if(value2.state == $state.current.name){ appCtrl.currentNavCategory  = value.category; }
+	                });
+                });
 			}
 
 
