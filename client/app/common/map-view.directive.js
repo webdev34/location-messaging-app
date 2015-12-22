@@ -15,7 +15,8 @@
 					coordinates: '=',
 					mapcenter: "=",
 					range: "=",
-					mapsearch: "="
+					mapsearch: "=",
+					showradius: "="
 				},
 
 				link:	function(scope, element, attrs) {
@@ -100,7 +101,6 @@
 							//'radius': scope.range *1000
 						});
 
-
 						function setCoordinate() {
 							var coordinates = map.getCenter();
 							//console.log("lat: " + map.getCenter().lat());
@@ -118,8 +118,12 @@
 						}
 
 						function setRadius() {
-							scope.rangeCircle.setRadius(parseInt(scope.range) * 1000);
-							map.fitBounds(scope.rangeCircle.getBounds());
+
+							if(scope.showradius){
+								scope.rangeCircle.setRadius(parseInt(scope.range) * 1000);
+								map.fitBounds(scope.rangeCircle.getBounds());
+							}
+							
 						}
 
 						setCoordinate();
@@ -135,7 +139,9 @@
 							// scope.rangeCircle.setCenter(center);
 							// scope.coordinates = center;
 							// console.log("center: " + center);
-							setCoordinate()
+							if(scope.showradius){
+								setCoordinate();
+							}
 
 						});
 

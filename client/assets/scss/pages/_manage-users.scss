@@ -9,6 +9,7 @@
         text-align: center;
         text-transform: uppercase;
     }
+
     .enterprise-manage-users-wrapper {
         .details.avatar {
             text-align: center;
@@ -107,6 +108,9 @@
             #bulk-action {
                 margin-left: 30px;
             }
+        }
+        .pagination-wrapper{
+            margin-right: 75px;
         }
 .manage-users-table-wrapper {
     table {

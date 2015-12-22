@@ -75,6 +75,13 @@
 			}
 		}
 
+		map-view:not(.edit){
+			pointer-events:none;
+			.gmnoprint{
+				display: none;
+			}
+		}
+
 		&.user-profile{
 			.details {
 				p {
