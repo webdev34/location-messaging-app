@@ -274,12 +274,12 @@
 			function checkIfLoggedIn() {
 				//console.log('checking if loggedin');
 
-				// if (!UserModel.isLoggedIn) {
-				// 	//console.log('not logged in');
-				// 	event.preventDefault();
-				// 	appCtrl.goToLogin();
-				// 	return;
-				// }
+				if (!UserModel.isLoggedIn) {
+					//console.log('not logged in');
+					event.preventDefault();
+					appCtrl.goToLogin();
+					return;
+				}
 			}
 
 			function goToHomePage() {
